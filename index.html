@@ -1,0 +1,214 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+
+.g {
+  width:100%;
+  height:100%;
+  position:fixed;
+  top:0px;
+  left:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+}
+.g * {
+  font-family: 'Noto Sans TC', sans-serif;
+  -webkit-appearance:none;
+outline:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);//
+}
+input[type="text"],.btn {
+  height:35px;
+  border:none;
+  background:#f5f5f5;
+  border-radius:15px;
+  margin-top:10px;
+  padding:5px;
+  text-align: center;
+  font-size:15px;
+  font-weight:500
+}
+#pwd {
+  width:clamp(115px,calc(90% - 10px),340px);
+  line-height:30px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  color:rgba(0,0,0,0);
+  transition:0.2s;
+}
+#pwd:hover {
+  text-shadow: 0 0 10px rgba(0,0,0,0);
+  color:rgba(0,0,0,1);
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left:5px;
+  width:calc(50% - 7.5px);
+  font-weight:700;
+  -webkit-user-select: none;
+}
+#len {
+  width:calc(50% - 7.5px);
+background: linear-gradient(90deg, rgba(225,225,225,1) 0%, rgba(225,225,225,1) 0%, rgba(245,245,245,1) 0%);
+  -webkit-user-select: none;
+  font-weight:700;
+}
+.g2 {
+  width:clamp(120px,90%,350px);
+  height:45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+  
+}
+h2 {
+  margin:0px;
+  margin-top:15px;
+  padding:0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight:400
+}
+</style>
+<body>
+<div class="g">
+  <h2>Password generator</h2>
+<input type="text" id="pwd" readonly="readonly">
+  <div class="g2">
+<input type="text" id="len" readonly="readonly">
+<div class="btn" id="copy">Copy</div>
+    </div>
+</div>
+</body>
+<script>
+
+function shuffleSelf(array, size) {
+        var index = -1,
+            length = array.length,
+            lastIndex = length - 1;
+        size = size === undefined ? length : size;
+        while (++index < size) {
+            // var rand = baseRandom(index, lastIndex),
+            var rand = index + Math.floor( Math.random() * (lastIndex - index + 1))
+                value = array[rand];
+            array[rand] = array[index];
+            array[index] = value;
+        }
+        array.length = size;
+        return array;
+    }
+
+function pwd(len) {
+  var pwdarr = [] ;
+  var len1 = Math.round(len/4) 
+  var chars_all = ['abcdefghijklmnopqrstuvxyz','ABCDEFGHIJKLMNOPQRSTUVXYZ','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
+  for (var i = 0; i < 4; i++) {
+    for (var ie = 0; ie < len1; ie++) {
+  var randnum = Math.floor(Math.random() * chars_all[i].length) ; 
+      pwdarr.push(chars_all[i].substring(randnum, randnum + 1));
+    }
+  }
+  var pwdstr = shuffleSelf(pwdarr,pwdarr.length).join('') ;
+  if(pwdstr.length > len) {
+    pwdstr = pwdstr.substring(0, len) 
+  }
+  else {
+    for (var y = 0; y < (len-pwdstr.length); y++) {
+      pwdarr.push('-')
+  }
+    var pwdstr = shuffleSelf(pwdarr,pwdarr.length).join('') ;
+  }
+  return pwdstr ;
+}
+
+
+let mouseX = 0
+let mouseY = 0
+let offsetX = 0
+let offsetY = 0
+let isDown = false
+div2 = document.querySelector('#len') ;
+
+
+div2.addEventListener('touchstart', function(e) {
+  isDown = true
+  mouseX = e.pageX
+  mouseY = e.pageY
+  document.addEventListener('touchmove', m2)
+}, {passive: true});
+document.addEventListener('touchend', function(e) {
+  if (isDown) {
+    offsetX += e.pageX - mouseX
+    offsetY += e.pageY - mouseY
+  }
+  isDown = false
+  document.removeEventListener('touchmove',m2) 
+});
+
+
+
+/*
+div2.addEventListener('mousedown', function(e) {
+  isDown = true
+  mouseX = e.pageX
+  mouseY = e.pageY
+  document.addEventListener('mousemove', m2)
+}, {passive: true});
+document.addEventListener('mouseup', function(e) {
+  if (isDown) {
+    offsetX += e.pageX - mouseX
+    offsetY += e.pageY - mouseY
+  }
+  isDown = false
+  document.removeEventListener('touchmove',m2) 
+});
+*/
+
+
+
+function m2(e) {
+  //$(document).scrollTop(0);
+  var px2 = e.pageX-$('#len').offset().left-$(window).scrollLeft() ;
+  if((e.pageX-$('#len').offset().left-$(window).scrollLeft()) > $('#len').width()) {
+    px2 = $('#len').width();
+  }
+  if((e.pageX-$('#len').offset().left-$(window).scrollLeft()) < 0) {
+    px2 = 0;
+  }
+  $('#len').css({'background':'linear-gradient(90deg, rgba(225,225,225,1) 0%, rgba(225,225,225,1) ' + (px2/$('#len').width()*100) + '%, rgba(245,245,245,1) ' + (px2/$('#len').width()*100) + '%)'})
+  var len2 = 16+Math.round(240*(px2/$('#len').width())) ;
+  $('#pwd').val(pwd(len2))
+  $('#len').val(len2)
+}
+  $('#pwd').val(pwd(16))
+  $('#len').val(16)
+
+$('.btn#copy').click(function() {
+  var copyText = $('#pwd');
+  copyText.select();
+  document.execCommand("Copy");
+});
+
+$(document).ready(function() {
+        var googlefontloadtime = new Date().getTime() ;
+        if(googlefontloadtime-parseInt(localStorage.getItem('googlefontNotoSansTCloaded')) < 2592000000) {
+  $('body').append('<style>' + localStorage.getItem('googlefontNotoSansTC') + '</style>');
+  console.log('loaded')
+}
+else {
+ $.ajax({type:'get',url:"https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap",dataType:'text',success:function(e) {
+  var googlefontloadtimedd = new Date().getTime() ;
+  localStorage.setItem('googlefontNotoSansTC', e); localStorage.setItem('googlefontNotoSansTCloaded', googlefontloadtimedd);
+   $('body').append('<style>' + e + '</style>');
+   
+   console.log('loaded2')
+   }
+}); 
+}
+  });
+</script>
