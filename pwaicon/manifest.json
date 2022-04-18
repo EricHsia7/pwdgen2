@@ -28,6 +28,6 @@
     "type": "image/png"
   }
   ],
-  "start_url": "./?pwa=1",
+  "start_url": "?pwa=v2",
   "display": "standalone"
 }
