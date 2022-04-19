@@ -370,25 +370,25 @@ $('.mes').css({'transform':'translateX(-50%) translateY(120px)'});
 }
 
 function dsp(gid) {
-  if(String($('.btn1[h="' + gid + '"]').attr('c')) === '0') {
-    $('.btn1[h="' + gid + '"]').attr('c','1')
+  if(String($('.dspoo[h="' + gid + '"]').attr('c')) === '0') {
+    $('.dspoo[h="' + gid + '"]').attr('c','1')
     $('input[u="' + gid + '"]').attr('type','text')
     mes('visible')
   }
   else {
-    $('.btn1[h="' + gid + '"]').attr('c','0')
+    $('.dspoo[h="' + gid + '"]').attr('c','0')
     $('input[u="' + gid + '"]').attr('type','password')
     mes('invisible')
   }
 }
 function save(gid) {
-  if(String($('.btn1[h="' + gid + '"]').attr('g')) === '0') {
-    $('.btn1[h="' + gid + '"]').attr('g','1')
+  if(String($('.saveoo[h="' + gid + '"]').attr('g')) === '0') {
+    $('.saveoo[h="' + gid + '"]').attr('g','1')
     //$('input[u="' + gid + '"]').attr('type','text')
     mes('saved')
   }
   else {
-    $('.btn1[h="' + gid + '"]').attr('g','0')
+    $('.saveoo[h="' + gid + '"]').attr('g','0')
     //$('input[u="' + gid + '"]').attr('type','password')
     mes('unsaved')
   }
@@ -421,7 +421,7 @@ $('#gen').click(function() {
   var pwlen = parseInt($('.input input').val())
   var pw = pwd(pwlen)
   var pwgid =  gid()
-  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="password" value="' + pw + '" u="' + pwgid + '" readonly="readonly"><div class="btn1" h="' + pwgid + '" c="0" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ')" style="left:60px">' + copyicon + '</div><div class="btn1" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + saveicon + savedicon + '</div></div>')
+  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="password" value="' + pw + '" u="' + pwgid + '" readonly="readonly"><div class="btn1 dspoo" h="' + pwgid + '" c="0" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ')" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
   mes('generated')
 })
