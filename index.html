@@ -449,7 +449,7 @@ function showsavedhistory() {
  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
  for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
-     var thpwdd = localStorage.getItem(savedlist[i]).split(':')
+     var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
      
      var pwtime = new Date()
      pwtime.setTime(thpwdd[2])
