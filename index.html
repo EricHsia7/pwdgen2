@@ -24,7 +24,7 @@
 body {
   background:var(--g-ffffff);
 }
-.title {
+.title,.title2 {
   position:fixed;
   top:0px;
   left:0px;
@@ -236,6 +236,15 @@ align-items: center;
    width:30px;
    height:30px
   }
+  .page2 {
+width:100%;
+    height:calc(100% - 55px);
+    background:var(--g-ffffff);
+    position:fixed;
+    top:55px;
+    left:0px;
+    dispaly:none;
+  }
   .promptcenter {
     position: absolute;
     left: 15px;
@@ -307,6 +316,13 @@ message
    </svg>
     </div>
 </div>
+  <div class="page2">
+    
+
+  </div>
+  <div class="title2" style="display:none;">
+  Options
+  </div>
 </body>
 <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
