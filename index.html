@@ -386,7 +386,7 @@ function save(gid) {
   var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
-  var psehash = sha256(pse)
+  var psehash = 'pw_' + sha256(pse)
   localStorage.setItem(psehash,pse)
   if(String($('.saveoo[h="' + gid + '"]').attr('g')) === '0') {
     $('.saveoo[h="' + gid + '"]').attr('g','1')
