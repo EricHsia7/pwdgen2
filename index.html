@@ -383,6 +383,8 @@ function dsp(gid) {
   }
 }
 function save(gid) {
+  var pwlist = String(localStorage.getItem('pwdgen2_saved_list'))
+  var pwlistarr = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
   var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
@@ -393,12 +395,22 @@ function save(gid) {
     //$('input[u="' + gid + '"]').attr('type','text')
     mes('saved')
     localStorage.setItem(psehash,pse)
+    if(pwlist.indexOf(psehash) > -1) {
+    
+    }
+    else {
+      pwlistarr.push(psehash)
+      localStorage.setItem('pwdgen2_saved_list',pwlistarr.join(','))
+    }
   }
   else {
     $('.saveoo[h="' + gid + '"]').attr('g','0')
     //$('input[u="' + gid + '"]').attr('type','password')
     mes('unsaved')
     localStorage.removeItem(psehash)
+    if(pwlist.indexOf(psehash) > -1) {
+    localStorage.setItem('pwdgen2_saved_list',pwlist.replaceAll(',' + psehash,'').replaceAll(psehash,''))
+    }
   }
 }
 function copy(gid) {
