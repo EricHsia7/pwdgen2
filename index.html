@@ -32,7 +32,8 @@ body {
   height:30px;
   font-size:25px;
   white-space: nowrap;
-  color:var(--g-4e4e4e)
+  color:var(--g-4e4e4e);
+  -webkit-user-select: none;
 }
 .input {
   width:clamp(180px,90%,350px);
@@ -43,6 +44,7 @@ body {
   top:35%;
   left:50%;
   transform:translateX(-50%);
+  -webkit-user-select: none;
 }
 .input input {
   border:none;
@@ -70,10 +72,12 @@ align-items: center;
   background:var(--g-e3e3e3);
   border-radius:14px;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
+  -webkit-user-select: none;
 }
 .input .btn svg {
   width:25px;
   height:25px;
+  -webkit-user-select: none;
 }
 .history {
   width:clamp(180px,90%,350px);
@@ -81,7 +85,8 @@ align-items: center;
   top:calc(35% + 45px + 0px);
   left:50%;
   transform:translateX(-50%);
-  padding-bottom:50px
+  padding-bottom:50px;
+  -webkit-user-select: none;
 }
 .box {
   width:100%;
@@ -89,7 +94,8 @@ align-items: center;
   background:var(--g-f4f4f4);
   border-radius:15px;
   position:relative;
-  margin-top:10px
+  margin-top:10px;
+  -webkit-user-select: none;
 }
 .box .boxtitle {
   position:absolute;
@@ -99,7 +105,8 @@ align-items: center;
   height:25px;
   background:rgba(0, 0, 0, 0);
   font-size:20px;
-  color:var(--g-4e4e4e)
+  color:var(--g-4e4e4e);
+  -webkit-user-select: none;
 }
 .box input {
   width:clac(100% - 30px);
@@ -116,7 +123,7 @@ align-items: center;
   border-radius:0px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color:var(--g-4e4e4e)
+  color:var(--g-4e4e4e);
 }
 .box .btn1 {
   height:40px;
@@ -130,10 +137,12 @@ align-items: center;
 justify-content: center;
 align-items: center;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
+  -webkit-user-select: none;
 }
 .box .btn1 svg{
   width:30px;
   height:30px;
+  -webkit-user-select: none;
 }
 
 .box .btn1[c="0"] #eyeicon {
@@ -161,6 +170,7 @@ background:var(--g-e3e3e3);
   transition:0.5s;
   box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.08);
   transition-timing-function: ease-out;
+  -webkit-user-select: none;
 }
 .mestxt {
   position:absolute;
@@ -172,6 +182,7 @@ background:var(--g-e3e3e3);
 /*justify-content: center;*/
 align-items: center;
   color:var(--g-4e4e4e);
+  -webkit-user-select: none;
 }
 @media (prefers-color-scheme: dark) {
   :root {
