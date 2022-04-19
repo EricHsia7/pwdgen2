@@ -540,7 +540,8 @@ function share(gid) {
 $('#gen').click(function() {
   var pwlen = parseInt($('.input input').val())
   if(pwlen < 8 || pwlen > 32768){
-    mes('Please enter a value between 8 and 32768.')
+    
+    $('body').prompt({'message':'Please enter a value between 8 and 32768.','time':3000,'animate':'slide'});
   }
   else {
   var pwtime = new Date()
