@@ -538,14 +538,19 @@ function share(gid) {
 }
 
 $('#gen').click(function() {
+  var pwlen = parseInt($('.input input').val())
+  if(pwlen < 8 || pwlen > 32768){
+    mes('Please enter a value between 8~32768.')
+  }
+  else {
   var pwtime = new Date()
   var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-  var pwlen = parseInt($('.input input').val())
   var pw = pwd(pwlen)
   var pwgid =  gid()
   $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="password" value="' + pw + '" u="' + pwgid + '" readonly="readonly"><div class="btn1 dspoo" h="' + pwgid + '" c="0" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ')" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
   mes('generated')
+  }
 })
   
 function showsavedhistory() {
