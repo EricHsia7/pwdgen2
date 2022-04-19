@@ -365,7 +365,8 @@ function share(gid) {
 }
 
 function showshared() {
-  var pwtime = new Date(url.searchParams.get('t'))
+  var pwtime = new Date()
+  pwtime.setTime(url.searchParams.get('t'))
   var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
   
   var pw = deur(decu(url.searchParams.get('d'),url.searchParams.get('n')))
