@@ -205,9 +205,6 @@ message
 <script>
 var getUrlString = location.href;
 var url = new URL(getUrlString);
-
-
-ripple('.btn','var(--g-4e4e4e)','0.3',888,'true');
 function encu(textu) {
  var ivqu = parseInt(
                     Math.floor(Math.random() * 8 + 1) +
@@ -269,44 +266,8 @@ var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
             }
   return genid ;
 }
-function shuffleSelf(array, size) {
-        var index = -1,
-            length = array.length,
-            lastIndex = length - 1;
-        size = size === undefined ? length : size;
-        while (++index < size) {
-            // var rand = baseRandom(index, lastIndex),
-            var rand = index + Math.floor( Math.random() * (lastIndex - index + 1))
-                value = array[rand];
-            array[rand] = array[index];
-            array[index] = value;
-        }
-        array.length = size;
-        return array;
-    }
 
-function pwd(len) {
-  var pwdarr = [] ;
-  var len1 = Math.round(len/4) 
-  var chars_all = ['abcdefghijklmnopqrstuvxyz','ABCDEFGHIJKLMNOPQRSTUVXYZ','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
-  for (var i = 0; i < 4; i++) {
-    for (var ie = 0; ie < len1; ie++) {
-  var randnum = Math.floor(Math.random() * chars_all[i].length) ; 
-      pwdarr.push(chars_all[i].substring(randnum, randnum + 1));
-    }
-  }
-  var pwdstr = shuffleSelf(pwdarr,pwdarr.length).join('') ;
-  if(pwdstr.length > len) {
-    pwdstr = pwdstr.substring(0, len) 
-  }
-  else {
-    for (var y = 0; y < (len-pwdstr.length); y++) {
-      pwdarr.push('-')
-  }
-    var pwdstr = shuffleSelf(pwdarr,pwdarr.length).join('') ;
-  }
-  return pwdstr ;
-}
+
 function che(y) {
   if(y < 10) {
     return '0' + y
