@@ -1,1 +1,425 @@
+<meta charset="UTF-8">
+<title>Password Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://erichsia7.github.io/pwdgen2/pwaicon2/512x512.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" p="light">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" p="dark">
+<link rel="manifest" href="https://erichsia7.github.io/pwdgen2/manifest.json?ddd">
+<style>
+:root {
+  --g-f4f4f4:#f4f4f4;
+  --g-4e4e4e:#4e4e4e;
+  --g-e3e3e3:#e3e3e3;
+  --g-ffffff:#ffffff;
+}
+* {
+  -webkit-appearance:none;
+  outline:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  font-family: 'Noto Sans', sans-serif;
+}
+body {
+  background:var(--g-ffffff);
+}
+.title {
+  position:absolute;
+  top:calc(35% - 40px);
+  left:50%;
+  transform:translateX(-50%);
+  height:30px;
+  font-size:25px;
+  white-space: nowrap;
+  color:var(--g-4e4e4e)
+}
+.input {
+  width:clamp(180px,90%,350px);
+  height:45px;
+  background:var(--g-f4f4f4);
+  border-radius:15px;
+  position:absolute;
+  top:35%;
+  left:50%;
+  transform:translateX(-50%);
+}
+.input input {
+  border:none;
+  border-radius:0px;
+  background:rgba(0, 0, 0, 0);
+  color:var(--g-4e4e4e);
+  position:absolute;
+  top:5px;
+  left:10px;
+  width:calc(100% - 5px - 10px - 45px);
+  height:calc(100% - 10px);
+  margin:0px;
+  padding:0px;
+  font-size:18px
+}
+.input .btn {
+  width:calc(45px - 5px);
+  height:calc(45px - 5px);
+  position:absolute;
+  top:calc(5px / 2);
+  right:calc(5px / 2);
+  display: flex;
+justify-content: center;
+align-items: center;
+  background:var(--g-e3e3e3);
+  border-radius:14px;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+.input .btn svg {
+  width:25px;
+  height:25px;
+}
+.history {
+  width:clamp(180px,90%,350px);
+  position:absolute;
+  top:calc(35% + 5px + 0px);
+  left:50%;
+  transform:translateX(-50%);
+  padding-bottom:50px
+}
+.box {
+  width:100%;
+  height:130px;
+  background:var(--g-f4f4f4);
+  border-radius:15px;
+  position:relative;
+  margin-top:10px
+}
+.box .boxtitle {
+  position:absolute;
+  top:15px;
+  left:15px;
+  width:calc(100% - 30px);
+  height:25px;
+  background:rgba(0, 0, 0, 0);
+  font-size:20px;
+  color:var(--g-4e4e4e)
+}
+.box input {
+  width:clac(100% - 30px);
+  height:25px;
+  border:none;
+  background:rgba(0, 0, 0, 0);
+  padding:0px;
+  margin:0px;
+  position:absolute;
+  top:calc(15px + 25px + 5px);
+  left:15px;
+  width:calc(100% - 30px);
+  font-size:18px;
+  border-radius:0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color:var(--g-4e4e4e)
+}
+.box .btn1 {
+  height:40px;
+  width:40px;
+  background:var(--g-e3e3e3);
+  border-radius:15px;
+  position:absolute;
+  left:15px;
+  top:calc(15px + 25px + 5px + 25px + 5px);
+  display: flex;
+justify-content: center;
+align-items: center;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+.box .btn1 svg{
+  width:30px;
+  height:30px;
+}
 
+.box .btn1[c="0"] #eyeicon {
+  display:block;
+}
+.box .btn1[c="0"] #eyeicon2 {
+  display:none;
+}
+
+.box .btn1[c="1"] #eyeicon {
+  display:none;
+}
+.box .btn1[c="1"] #eyeicon2 {
+  display:block;
+}
+.mes {
+background:var(--g-e3e3e3);
+  width:clamp(180px,90%,350px);
+  height:45px;
+  border-radius:15px;
+  position:fixed;
+  left:50%;
+  bottom:15px;
+  transform:translateX(-50%) translateY(120px);
+  transition:0.5s;
+  box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.08);
+  transition-timing-function: ease-out;
+}
+.mestxt {
+  position:absolute;
+  top:5px;
+  left:10px;
+  width:calc(100% - 20px);
+  height:calc(100% - 10px);
+  display: flex;
+/*justify-content: center;*/
+align-items: center;
+  color:var(--g-4e4e4e);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+  --g-f4f4f4:#1f1f1f;
+  --g-4e4e4e:#fff;
+  --g-e3e3e3:#383838;
+  --g-ffffff:#1a1a1a;
+}
+}
+</style>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap" rel="stylesheet">
+<div class="title">
+  Password Generator
+</div>
+
+<div class="history">
+  
+</div>
+
+<div class="mes">
+<div class="mestxt">
+message
+</div>
+</div>
+</body>
+<script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
+<script>
+var getUrlString = location.href;
+var url = new URL(getUrlString);
+
+
+ripple('.btn','var(--g-4e4e4e)','0.3',888,'true');
+function encu(textu) {
+ var ivqu = parseInt(
+                    Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1)
+                );
+                
+                var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+                
+                var textBytesu = aesjs.utils.utf8.toBytes(textu);
+
+                var aesCtru = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(ivqu));
+                var encryptedBytesu = aesCtru.encrypt(textBytesu);
+
+                var encryptedHexu = aesjs.utils.hex.fromBytes(encryptedBytesu);
+                //console.log(encryptedHexu);
+                return [encryptedHexu,ivqu]
+                
+            }
+
+function decu(juy,oik) {
+                var keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+                var gbu = juy;
+                var kiu = oik;
+                var encryptedBytese = aesjs.utils.hex.toBytes(gbu);
+
+                // The counter mode of operation maintains internal state, so to
+                // decrypt a new instance must be instantiated.
+                var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(kiu)));
+                var decryptedBytese = aesCtre.decrypt(encryptedBytese);
+
+                // Convert our bytes back into text
+                var decryptedTexte = aesjs.utils.utf8.fromBytes(decryptedBytese);
+                //console.log(decryptedTexte);
+                return decryptedTexte;
+                
+            }
+ function enur(u) {
+return encodeURIComponent(u)
+}
+ function deur(u) {
+return decodeURIComponent(u)
+}
+ 
+function gid() {
+var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            var genid = "";
+            for (var i = 0; i < 64; i++) {
+                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+            }
+  return genid ;
+}
+function shuffleSelf(array, size) {
+        var index = -1,
+            length = array.length,
+            lastIndex = length - 1;
+        size = size === undefined ? length : size;
+        while (++index < size) {
+            // var rand = baseRandom(index, lastIndex),
+            var rand = index + Math.floor( Math.random() * (lastIndex - index + 1))
+                value = array[rand];
+            array[rand] = array[index];
+            array[index] = value;
+        }
+        array.length = size;
+        return array;
+    }
+
+function pwd(len) {
+  var pwdarr = [] ;
+  var len1 = Math.round(len/4) 
+  var chars_all = ['abcdefghijklmnopqrstuvxyz','ABCDEFGHIJKLMNOPQRSTUVXYZ','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
+  for (var i = 0; i < 4; i++) {
+    for (var ie = 0; ie < len1; ie++) {
+  var randnum = Math.floor(Math.random() * chars_all[i].length) ; 
+      pwdarr.push(chars_all[i].substring(randnum, randnum + 1));
+    }
+  }
+  var pwdstr = shuffleSelf(pwdarr,pwdarr.length).join('') ;
+  if(pwdstr.length > len) {
+    pwdstr = pwdstr.substring(0, len) 
+  }
+  else {
+    for (var y = 0; y < (len-pwdstr.length); y++) {
+      pwdarr.push('-')
+  }
+    var pwdstr = shuffleSelf(pwdarr,pwdarr.length).join('') ;
+  }
+  return pwdstr ;
+}
+function che(y) {
+  if(y < 10) {
+    return '0' + y
+  }
+  else {
+    return y
+  }
+}
+let eyeicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="eyeicon"><path d="M32.0092 47.6766C34.4683 47.6766 36.7922 47.3816 38.9808 46.7914C41.1694 46.2012 43.1921 45.4204 45.0487 44.4491C46.9053 43.4778 48.5683 42.4081 50.0376 41.24C51.5069 40.0719 52.7611 38.8977 53.8001 37.7174C54.8391 36.537 55.6321 35.4458 56.1793 34.4437C56.7264 33.4416 57 32.6271 57 32C57 31.3729 56.7264 30.5584 56.1793 29.5563C55.6321 28.5542 54.8391 27.463 53.8001 26.2826C52.7611 25.1023 51.5039 23.9281 50.0284 22.76C48.5529 21.5919 46.8869 20.5222 45.0302 19.5509C43.1736 18.5796 41.1541 17.7988 38.9716 17.2086C36.7891 16.6184 34.4683 16.3234 32.0092 16.3234C29.5747 16.3234 27.2693 16.6184 25.093 17.2086C22.9166 17.7988 20.9002 18.5796 19.0435 19.5509C17.1869 20.5222 15.5178 21.5919 14.0361 22.76C12.5545 23.9281 11.2881 25.1023 10.2368 26.2826C9.18554 27.463 8.38325 28.5542 7.82995 29.5563C7.27665 30.5584 7 31.3729 7 32C7 32.6271 7.27665 33.4416 7.82995 34.4437C8.38325 35.4458 9.18554 36.537 10.2368 37.7174C11.2881 38.8977 12.5545 40.0719 14.0361 41.24C15.5178 42.4081 17.1869 43.4778 19.0435 44.4491C20.9002 45.4204 22.9166 46.2012 25.093 46.7914C27.2693 47.3816 29.5747 47.6766 32.0092 47.6766ZM32.0092 42.2728C30.5706 42.2728 29.2273 42.0054 27.9793 41.4705C26.7313 40.9357 25.637 40.1918 24.6964 39.2389C23.7558 38.286 23.0211 37.1917 22.4924 35.956C21.9637 34.7204 21.6932 33.4017 21.6809 32C21.6686 30.5614 21.9299 29.2212 22.4648 27.9794C22.9996 26.7376 23.7374 25.6463 24.678 24.7058C25.6186 23.7652 26.716 23.0336 27.9701 22.511C29.2243 21.9885 30.5706 21.7272 32.0092 21.7272C33.4355 21.7272 34.7727 21.9885 36.0207 22.511C37.2687 23.0336 38.363 23.7652 39.3036 24.7058C40.2442 25.6463 40.9819 26.7376 41.5168 27.9794C42.0516 29.2212 42.3191 30.5614 42.3191 32C42.3191 33.4017 42.0516 34.7204 41.5168 35.956C40.9819 37.1917 40.2442 38.286 39.3036 39.2389C38.363 40.1918 37.2687 40.9357 36.0207 41.4705C34.7727 42.0054 33.4355 42.2728 32.0092 42.2728ZM32.0092 35.7071C33.0298 35.7071 33.9089 35.3413 34.6466 34.6097C35.3844 33.8781 35.7532 33.0082 35.7532 32C35.7532 30.9795 35.3844 30.1034 34.6466 29.3719C33.9089 28.6403 33.0298 28.2745 32.0092 28.2745C30.9764 28.2745 30.0911 28.6403 29.3534 29.3719C28.6156 30.1034 28.2468 30.9795 28.2468 32C28.2468 33.0082 28.6156 33.8781 29.3534 34.6097C30.0911 35.3413 30.9764 35.7071 32.0092 35.7071Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
+let eyeicon2 = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink" id="eyeicon2"><path d="M32.0092 48.1054C33.7183 48.1054 35.3598 47.9579 36.9336 47.6628C38.5074 47.3677 39.9891 46.9619 41.3785 46.4455L36.5463 41.6134C35.87 41.9699 35.1477 42.2404 34.3792 42.4249C33.6107 42.6093 32.8207 42.7015 32.0092 42.7015C30.5706 42.7015 29.2273 42.4341 27.9793 41.8992C26.7313 41.3644 25.637 40.6205 24.6964 39.6676C23.7558 38.7147 23.0181 37.6204 22.4832 36.3847C21.9484 35.149 21.6809 33.8302 21.6809 32.4286C21.6809 31.6047 21.7731 30.8025 21.9576 30.0217C22.142 29.2409 22.4064 28.5063 22.7506 27.8177L16.443 21.4732C14.9921 22.3831 13.6857 23.3575 12.5238 24.3965C11.3619 25.4354 10.369 26.4652 9.54519 27.4857C8.72138 28.5063 8.09123 29.4469 7.65474 30.3076C7.21825 31.1683 7 31.8753 7 32.4286C7 33.0556 7.27665 33.8702 7.82995 34.8723C8.38325 35.8744 9.18554 36.9656 10.2368 38.146C11.2881 39.3264 12.5545 40.5006 14.0361 41.6687C15.5178 42.8368 17.1869 43.9065 19.0435 44.8778C20.9002 45.8492 22.9166 46.63 25.093 47.2201C27.2693 47.8103 29.5747 48.1054 32.0092 48.1054ZM26.1258 32.0044C26.1258 33.0864 26.3932 34.07 26.9281 34.9553C27.4629 35.8406 28.1761 36.5476 29.0675 37.0763C29.9589 37.605 30.9457 37.8693 32.0277 37.8693C32.1506 37.8693 32.2736 37.8663 32.3965 37.8601C32.5195 37.854 32.6486 37.8448 32.7838 37.8325L26.1627 31.2113C26.1504 31.3465 26.1412 31.4818 26.135 31.617C26.1289 31.7523 26.1258 31.8814 26.1258 32.0044ZM37.8742 32.0412C37.8742 30.9715 37.6129 29.991 37.0904 29.0995C36.5678 28.2081 35.8639 27.5011 34.9786 26.9785C34.0933 26.456 33.1035 26.1947 32.0092 26.1947C31.8863 26.1947 31.7664 26.1978 31.6496 26.2039C31.5328 26.2101 31.419 26.2193 31.3084 26.2316L37.8373 32.7605C37.8496 32.6499 37.8588 32.5331 37.865 32.4101C37.8711 32.2872 37.8742 32.1642 37.8742 32.0412ZM48.0918 43.0704C49.887 41.89 51.4516 40.6143 52.7857 39.2434C54.1198 37.8724 55.1557 36.5783 55.8934 35.361C56.6311 34.1438 57 33.1663 57 32.4286C57 31.8015 56.7264 30.9869 56.1793 29.9848C55.6321 28.9827 54.8391 27.8915 53.8001 26.7111C52.7611 25.5307 51.5039 24.3565 50.0284 23.1884C48.5529 22.0203 46.8869 20.9506 45.0302 19.9793C43.1736 19.0079 41.1541 18.2272 38.9716 17.637C36.7891 17.0468 34.4683 16.7517 32.0092 16.7517C30.4354 16.7517 28.9169 16.8777 27.4537 17.1298C25.9905 17.3818 24.5888 17.7292 23.2486 18.1718L28.0439 22.9671C28.6464 22.7089 29.2796 22.5091 29.9436 22.3677C30.6075 22.2263 31.2961 22.1556 32.0092 22.1556C33.4355 22.1556 34.7727 22.4169 36.0207 22.9394C37.2687 23.462 38.363 24.1936 39.3036 25.1342C40.2442 26.0748 40.9819 27.166 41.5168 28.4079C42.0516 29.6497 42.3191 30.99 42.3191 32.4286C42.3191 33.1294 42.2453 33.8118 42.0977 34.4758C41.9502 35.1397 41.735 35.7668 41.4522 36.357L48.0918 43.0704ZM46.3397 48.4005C46.6225 48.6833 46.9576 48.8309 47.3449 48.8432C47.7322 48.8555 48.0673 48.7079 48.3501 48.4005C48.6451 48.0931 48.7896 47.7519 48.7835 47.3769C48.7773 47.0019 48.6329 46.673 48.3501 46.3902L17.5127 15.5713C17.2299 15.3008 16.8918 15.1625 16.4983 15.1563C16.1049 15.1502 15.7668 15.2885 15.484 15.5713C15.2135 15.8418 15.0782 16.1769 15.0782 16.5765C15.0782 16.9761 15.2135 17.3111 15.484 17.5816L46.3397 48.4005Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
+
+let copyicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.4688 7C25.4152 7 23.8705 7.52249 22.8438 8.5625C21.817 9.60251 21.3125 11.17 21.3125 13.25L21.3125 16.9062L17.8438 16.9062C15.7902 16.9062 14.2455 17.4534 13.2188 18.5C12.192 19.5466 11.6875 21.0895 11.6875 23.1562L11.6875 50.75C11.6875 52.83 12.192 54.3975 13.2188 55.4375C14.2455 56.4775 15.7902 57 17.8438 57L36.5312 57C38.5848 57 40.1295 56.4841 41.1562 55.4375C42.183 54.3909 42.6875 52.8167 42.6875 50.75L42.6875 47.0938L46.1562 47.0938C48.2098 47.0937 49.7545 46.5466 50.7812 45.5C51.808 44.4534 52.3125 42.9105 52.3125 40.8438L52.3125 13.25C52.3125 11.1832 51.808 9.60914 50.7812 8.5625C49.7545 7.51587 48.2098 7 46.1562 7L27.4688 7ZM31.9688 11.0625L41.6562 11.0625C42.0802 11.0625 42.413 11.1678 42.625 11.4062C42.837 11.6447 42.9375 11.914 42.9375 12.2188L42.9375 12.6562C42.9375 12.961 42.837 13.2303 42.625 13.4688C42.413 13.7072 42.0802 13.8125 41.6562 13.8125L31.9688 13.8125C31.5315 13.8125 31.2053 13.7072 31 13.4688C30.7946 13.2303 30.6875 12.961 30.6875 12.6562L30.6875 12.2188C30.6875 11.914 30.7946 11.6447 31 11.4062C31.2054 11.1678 31.5315 11.0625 31.9688 11.0625ZM18 20.125L24.5312 20.125L24.5312 31.6562C24.5312 32.9149 24.8394 33.8461 25.4688 34.4688C26.0981 35.0914 27.0179 35.4063 28.25 35.4062L39.4688 35.4062L39.4688 50.6875C39.4687 51.6811 39.2174 52.4634 38.6875 53C38.1576 53.5366 37.3951 53.8125 36.375 53.8125L17.9688 53.8125C16.9486 53.8125 16.1796 53.5366 15.6562 53C15.1329 52.4634 14.875 51.6811 14.875 50.6875L14.875 23.1875C14.875 22.2071 15.1329 21.4428 15.6562 20.9062C16.1796 20.3697 16.9666 20.125 18 20.125ZM27.5312 20.8438L38.875 32.4062L28.625 32.4062C28.2275 32.4062 27.9535 32.2972 27.7812 32.125C27.609 31.9528 27.5313 31.6787 27.5312 31.2812L27.5312 20.8438Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
+
+let shareicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M19.2951 57L44.7049 57C47.0236 57 48.7627 56.4277 49.922 55.2831C51.0814 54.1385 51.6611 52.4217 51.6611 50.1325L51.6611 28.0456C51.6611 25.7565 51.0814 24.0396 49.922 22.895C48.7627 21.7504 47.0236 21.1781 44.7049 21.1781L38.5241 21.1781L38.5241 24.7448L44.6385 24.7448C45.7314 24.7448 46.5806 25.0365 47.1861 25.6198C47.7916 26.2032 48.0944 27.0709 48.0944 28.2229L48.0944 49.9553C48.0944 51.1072 47.7916 51.9749 47.1861 52.5583C46.5806 53.1416 45.7314 53.4333 44.6385 53.4333L19.3394 53.4333C18.2317 53.4333 17.3825 53.1416 16.7918 52.5583C16.201 51.9749 15.9056 51.1072 15.9056 49.9553L15.9056 28.2229C15.9056 27.0709 16.201 26.2032 16.7918 25.6198C17.3825 25.0365 18.2317 24.7448 19.3394 24.7448L25.4759 24.7448L25.4759 21.1781L19.2951 21.1781C16.9764 21.1781 15.2373 21.7504 14.078 22.895C12.9186 24.0396 12.3389 25.7565 12.3389 28.0456L12.3389 50.1325C12.3389 52.4217 12.9186 54.1385 14.078 55.2831C15.2373 56.4277 16.9764 57 19.2951 57ZM32.0111 39.654C32.4837 39.654 32.8935 39.4841 33.2406 39.1444C33.5877 38.8048 33.7612 38.3986 33.7612 37.926L33.7612 15.1746L33.6283 11.8516L35.1125 13.4245L38.4798 17.0133C38.79 17.3677 39.1887 17.545 39.6761 17.545C40.134 17.545 40.5179 17.3973 40.8281 17.1019C41.1382 16.8065 41.2933 16.4299 41.2933 15.9721C41.2933 15.7358 41.249 15.5253 41.1604 15.3407C41.0718 15.1561 40.9389 14.9826 40.7616 14.8201L33.2738 7.59814C33.0523 7.37661 32.8418 7.22153 32.6424 7.13292C32.4431 7.04431 32.2326 7 32.0111 7C31.7748 7 31.5569 7.04431 31.3576 7.13292C31.1582 7.22153 30.9477 7.37661 30.7262 7.59814L23.2384 14.8201C23.0611 14.9826 22.9282 15.1561 22.8396 15.3407C22.751 15.5253 22.7067 15.7358 22.7067 15.9721C22.7067 16.4299 22.8581 16.8065 23.1608 17.1019C23.4636 17.3973 23.8439 17.545 24.3017 17.545C24.8039 17.545 25.21 17.3677 25.5202 17.0133L28.8875 13.4245L30.3717 11.8516L30.2388 15.1746L30.2388 37.926C30.2388 38.3986 30.4123 38.8048 30.7594 39.1444C31.1065 39.4841 31.5237 39.654 32.0111 39.654Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>';
+
+function mes(mess) {
+  $('.mestxt').text(mess)
+$('.mes').css({'transform':'translateX(-50%) translateY(0px)'});
+  setTimeout(function() {
+$('.mes').css({'transform':'translateX(-50%) translateY(120px)'});
+},1500)
+}
+
+function dsp(gid) {
+  if(String($('.btn1[h="' + gid + '"]').attr('c')) === '0') {
+    $('.btn1[h="' + gid + '"]').attr('c','1')
+    $('input[u="' + gid + '"]').attr('type','text')
+    mes('visible')
+  }
+  else {
+    $('.btn1[h="' + gid + '"]').attr('c','0')
+    $('input[u="' + gid + '"]').attr('type','password')
+    mes('invisible')
+  }
+}
+function copy(gid) {
+        var textArea = document.createElement("textarea");
+        textArea.value = $('input[u="' + gid + '"]').attr('value');
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+  mes('copied')
+}
+function share(gid) {
+  var enc = encu(enur($('input[u="' + gid + '"]').attr('value')))
+  
+  var textArea = document.createElement("textarea");
+        textArea.value = 'https://erichsia7.github.io/pwdgen2/s/?d=' + enc[0] + '&n=' + enc[1] + '&t=' + $('.box[f="' + gid + '"]').attr('t')
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+  mes('share link copied')
+  
+}
+
+function showshared() {
+  var pwtime = new Date(url.searchParams.get('t'))
+  var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+  
+  var pw = deur(decu(url.searchParams.get('d'),url.searchParams.get('n')))
+  var pwgid =  gid()
+  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="password" value="' + pw + '" u="' + pwgid + '" readonly="readonly"><div class="btn1" h="' + pwgid + '" c="0" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ')" style="left:60px">' + copyicon + '</div><div class="btn1" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div></div>')
+  ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
+}
+showshared()
+</script>
+
+<script>
+  
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+  e.preventDefault();
+}
+
+function preventDefaultForScrollKeys(e) {
+  if (keys[e.keyCode]) {
+    preventDefault(e);
+    return false;
+  }
+}
+
+// modern Chrome requires { passive: false } when adding event
+var supportsPassive = false;
+try {
+  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+    get: function () { supportsPassive = true; } 
+  }));
+} catch(e) {}
+
+var wheelOpt = supportsPassive ? { passive: false } : false;
+var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+// call this to Disable
+function disableScroll() {
+  window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+  window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+  window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+  window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+// call this to Enable
+function enableScroll() {
+  window.removeEventListener('DOMMouseScroll', preventDefault, false);
+  window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+  window.removeEventListener('touchmove', preventDefault, wheelOpt);
+  window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+  
+//disableScroll();
+  
+</script>
