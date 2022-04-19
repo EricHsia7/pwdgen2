@@ -229,6 +229,8 @@ align-items: center;
 display: flex;
 justify-content: center;
 align-items: center;
+  border-radius:15px;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
  .btn2 svg {
    width:30px;
@@ -380,7 +382,7 @@ message
     };
 })(jQuery);
   
-ripple('.btn','var(--g-4e4e4e)','0.3',888,'true');
+ripple('.btn,.btn2','var(--g-4e4e4e)','0.3',888,'true');
 
 function encu(textu) {
  var ivqu = parseInt(
