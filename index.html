@@ -358,6 +358,18 @@ function copy(gid) {
         textArea.remove();
   mes('copied')
 }
+function share(gid) {
+  var enc = encu(enur($('input[u="' + gid + '"]').attr('value')))
+  
+  var textArea = document.createElement("textarea");
+        textArea.value = 'https://erichsia7.github.io/pwdgen2/s/?d=' + enc[0] + '&n=' + enc[1]
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+  mes('share link copied')
+  
+}
 
 $('#gen').click(function() {
   var pwtime = new Date()
