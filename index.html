@@ -210,6 +210,38 @@ align-items: center;
 }
 }
 </style>
+<style>
+  .promptcenter {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 15px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 700;
+}
+.promptcenter * {
+    color: #fff;
+    font-size: 15px;
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 700;
+}
+
+    .prompt {
+        width: clamp(180px,90%,350px);
+        height: 60px;
+        border-radius: 15px;
+        position: fixed;
+        left: 50%;
+        bottom: -80px;
+        opacity: 0;
+        transform: translateX(-50%);
+        background:var(--g-e3e3e3);
+      box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.08);
+    }
+
+</style>
 <body>
 <link rel="preconnect" href="https://fonts.googleapis.com"> 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
@@ -243,7 +275,77 @@ message
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <script>
 
+
+(function ($) {
+    $.fn.prompt = function (options) {
+        var settings = $.extend(
+            {
+                message: "undefined",
+                time: 2000,
+                animate: "slide",
+            },
+            options
+        );
+
+        return this.each(function () {
+            $(".prompt").remove();
+            var promptchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            var promptid = "";
+            for (var i = 0; i < 10; i++) {
+                var randomNumber = Math.floor(Math.random() * promptchars.length);
+                promptid += promptchars.substring(randomNumber, randomNumber + 1);
+            }
+
+            if (settings.animate === "slide") {
+                $(this).append('<div class="prompt" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
+
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "10px" });
+                }, 100);
+
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "0", transition: "0.4s", bottom: "-80px" });
+                }, settings.time + 100);
+
+                setTimeout(function () {
+                    $("#" + promptid).remove();
+                }, settings.time + 400);
+            }
+
+            if (settings.animate === "fade") {
+                $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
+
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "10px" });
+                }, 100);
+
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "0", transition: "0.4s" });
+                }, settings.time + 100);
+
+                setTimeout(function () {
+                    $("#" + promptid).remove();
+                }, settings.time + 400);
+            }
+
+            if (settings.animate === "show") {
+                $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "1", transition: "0s", bottom: "10px" });
+                }, 100);
+                setTimeout(function () {
+                    $("#" + promptid).css({ opacity: "0", transition: "0s" });
+                }, settings.time + 100);
+                setTimeout(function () {
+                    $("#" + promptid).remove();
+                }, settings.time + 400);
+            }
+        });
+    };
+})(jQuery);
+  
 ripple('.btn','var(--g-4e4e4e)','0.3',888,'true');
+
 function encu(textu) {
  var ivqu = parseInt(
                     Math.floor(Math.random() * 8 + 1) +
@@ -363,11 +465,14 @@ let saveicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:e
 let savedicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="savedicon"><path d="M18.7599 57C19.3193 57 19.8477 56.8096 20.345 56.4289C20.8423 56.0482 21.6193 55.345 22.676 54.3193L31.7902 45.345C31.9301 45.1896 32.0699 45.1896 32.2098 45.345L41.324 54.3193C42.3807 55.3294 43.1538 56.0287 43.6434 56.4172C44.1329 56.8057 44.6651 57 45.2401 57C46.0171 57 46.6232 56.7514 47.0583 56.2541C47.4934 55.7568 47.711 55.0575 47.711 54.1562L47.711 13.69C47.711 11.4678 47.1593 9.7972 46.0559 8.67832C44.9526 7.55944 43.3054 7 41.1142 7L22.8858 7C20.6946 7 19.0474 7.55944 17.9441 8.67832C16.8407 9.7972 16.289 11.4678 16.289 13.69L16.289 54.1562C16.289 55.0575 16.5066 55.7568 16.9417 56.2541C17.3768 56.7514 17.9829 57 18.7599 57Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
 
 function mes(mess) {
+  /*
   $('.mestxt').text(mess)
 $('.mes').css({'transform':'translateX(-50%) translateY(0px)'});
   setTimeout(function() {
 $('.mes').css({'transform':'translateX(-50%) translateY(120px)'});
 },1500)
+*/
+ $('body').prompt({'message':mess,'time':1200,'animate':'slide'});
 }
 
 function dsp(gid) {
