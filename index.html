@@ -240,6 +240,7 @@ message
 </body>
 <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <script>
 
 ripple('.btn','var(--g-4e4e4e)','0.3',888,'true');
@@ -382,15 +383,22 @@ function dsp(gid) {
   }
 }
 function save(gid) {
+  var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
+  var ddt = $('.box[f="' + gid + '"]').attr('t')
+  var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
+  var psehash = sha256(pse)
+  localStorage.setItem(psehash,pse)
   if(String($('.saveoo[h="' + gid + '"]').attr('g')) === '0') {
     $('.saveoo[h="' + gid + '"]').attr('g','1')
     //$('input[u="' + gid + '"]').attr('type','text')
     mes('saved')
+    localStorage.setItem(psehash,pse)
   }
   else {
     $('.saveoo[h="' + gid + '"]').attr('g','0')
     //$('input[u="' + gid + '"]').attr('type','password')
     mes('unsaved')
+    localStorage.removeItem(psehash)
   }
 }
 function copy(gid) {
