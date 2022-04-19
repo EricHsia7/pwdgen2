@@ -211,9 +211,62 @@ message
 </div>
 </body>
 <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js"></script>
 <script>
 
 ripple('.btn','var(--g-4e4e4e)','0.3',888,'true');
+function encu(textu) {
+ var ivqu = parseInt(
+                    Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1) +
+                        "" +
+                        Math.floor(Math.random() * 8 + 1)
+                );
+                
+                var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+                
+                var textBytesu = aesjs.utils.utf8.toBytes(textu);
+
+                var aesCtru = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(ivqu));
+                var encryptedBytesu = aesCtru.encrypt(textBytesu);
+
+                var encryptedHexu = aesjs.utils.hex.fromBytes(encryptedBytesu);
+                //console.log(encryptedHexu);
+                return [encryptedHexu,ivqu]
+                
+            }
+
+function decu(juy,oik) {
+                var keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+                var gbu = juy;
+                var kiu = oik;
+                var encryptedBytese = aesjs.utils.hex.toBytes(gbu);
+
+                // The counter mode of operation maintains internal state, so to
+                // decrypt a new instance must be instantiated.
+                var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(kiu)));
+                var decryptedBytese = aesCtre.decrypt(encryptedBytese);
+
+                // Convert our bytes back into text
+                var decryptedTexte = aesjs.utils.utf8.fromBytes(decryptedBytese);
+                //console.log(decryptedTexte);
+                return decryptedTexte;
+                
+            }
+ function enur(u) {
+return encodeURIComponent(u)
+}
+ function deur(u) {
+return decodeURIComponent(u)
+}
+ 
 function gid() {
 var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
             var genid = "";
