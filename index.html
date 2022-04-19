@@ -381,6 +381,18 @@ function dsp(gid) {
     mes('invisible')
   }
 }
+function share(gid) {
+  if(String($('.btn1[h="' + gid + '"]').attr('g')) === '0') {
+    $('.btn1[h="' + gid + '"]').attr('g','1')
+    //$('input[u="' + gid + '"]').attr('type','text')
+    mes('saved')
+  }
+  else {
+    $('.btn1[h="' + gid + '"]').attr('g','0')
+    //$('input[u="' + gid + '"]').attr('type','password')
+    mes('unsaved')
+  }
+}
 function copy(gid) {
         var textArea = document.createElement("textarea");
         textArea.value = $('input[u="' + gid + '"]').attr('value');
