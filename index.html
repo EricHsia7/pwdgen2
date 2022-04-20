@@ -690,18 +690,18 @@ function share(gid) {
   
 }
 function page2() {
-$('.page2,.title2').css({'right':'-100%','opacity':'0'});
+$('.page2,.title2').css({'right':'0%','opacity':'0'});
   $('.page2').css({'display':'block'});
   $('.title2').css({'display':'flex'});
 setTimeout(function() {
- $('.page2,.title2').css({'right':'0%','opacity':'1','transition':'0.5s'});
+ $('.page2,.title2').css({'right':'0%','opacity':'1','transition':'0.3s'});
 },1);
 }
 function clspage2() {
-$('.page2,.title2').css({'right':'-100%','opacity':'0'});
+$('.page2,.title2').css({'right':'0%','opacity':'0'});
 setTimeout(function() {
  $('.page2,.title2').css({'display':'none','right':'0%','transition':'0s'});
-},500);
+},300);
 }
 function setoptions() {
   for (var i = 0; i < $('.switch input').length; i++) {
