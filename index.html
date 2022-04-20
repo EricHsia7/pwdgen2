@@ -405,6 +405,11 @@ message
   <div class="options_list_txt">Auto save password</div>
 <label for="options_autosavepwd" class="switch"><input type="checkbox" id="options_autosavepwd" name="options_autosavepwd" jg="autosavepwd"></label>
 </li>
+    
+    <li class="options_list">
+  <div class="options_list_txt">Auto copy password</div>
+<label for="options_autocopypwd" class="switch"><input type="checkbox" id="options_autocopypwd" name="options_autocopypwd" jg="autocopypwd"></label>
+</li>
 
   </div>
   <div class="title2" style="display:none;">
@@ -668,14 +673,16 @@ function save(gid,shwmes) {
     }
   }
 }
-function copy(gid) {
+function copy(gid,messw) {
         var textArea = document.createElement("textarea");
         textArea.value = $('input[u="' + gid + '"]').attr('value');
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand("Copy");
         textArea.remove();
+  if(messw) {
   mes('copied')
+  }
 }
 function share(gid) {
   var enc = encu(enur($('input[u="' + gid + '"]').attr('value')))
@@ -736,12 +743,15 @@ function gen() {
   var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
   var pw = pwd(pwlen)
   var pwgid =  gid()
-  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="password" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="0" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ')" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="0">' + saveicon + savedicon + '</div></div>')
+  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="password" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="0" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="0">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
   mes('generated')
   
   if(localStorage.getItem('pw_options_autosavepwd') === '1') {
      save(pwgid,false)
+  }
+  if(localStorage.getItem('pw_options_autocopypwd') === '1') {
+     copy(pwgid,false)
   }
     
   }
@@ -762,7 +772,7 @@ function showsavedhistory() {
   
   var pw = deur(decu(thpwdd[0],thpwdd[1]))
   var pwgid =  gid()
-  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="password" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="0" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ')" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
+  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="password" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="0" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
      }
      
@@ -776,7 +786,7 @@ function showsavedhistory() {
   
   
   const addResourcesToCache = async (resources) => {
-  const cache = await caches.open("v_dv45e0rgyczvojt4");
+  const cache = await caches.open("v_mx7yov8dunyo1t9s");
   await cache.addAll(resources);
 };
 
