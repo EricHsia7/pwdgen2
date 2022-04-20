@@ -701,11 +701,11 @@ setTimeout(function() {
 }
 function setoptions() {
   for (var i = 0; i < $('.switch input').length; i++) {
-if($('.switch input').eq(i).prop('checked')) {
-    localStorage.setItem('pw_options_' + $('.switch input').eq(i).attr('jg'),'1')
+    if(localStorage.getItem('pw_options_' + $('.switch input').eq(i).attr('jg')) === '1') {
+    $('.switch input').eq(i).prop('checked',true)
   }
   else {
-    localStorage.setItem('pw_options_' + $('.switch input').eq(i).attr('jg'),'0')
+    $('.switch input').eq(i).prop('checked',false)
   }
   }
 }
