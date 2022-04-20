@@ -14,6 +14,9 @@
   --g-4e4e4e:#4e4e4e;
   --g-e3e3e3:#e3e3e3;
   --g-ffffff:#ffffff;
+  --d-switch-a:#f4f4f4;
+  --d-switch-b:#fff;
+  --d-switch-c:#888;
 }
 * {
   -webkit-appearance:none;
@@ -292,7 +295,7 @@ width:100%;
 }
 .switch input::before {
   content:'';
-  background:var(--g-e3e3e3);
+  background:var(--d-switch-a);
   width:40px;
   height:25px;
   position:absolute;
@@ -302,11 +305,11 @@ width:100%;
   transition:0.3s;
 }
 .switch input:checked::before {
-  background:#888;
+  background:var(--d-switch-c);
 }
 .switch input::after {
   content:'';
-  background:var(--g-4e4e4e);
+  background:var(--d-switch-a);
   width:22px;
   height:22px;
   position:absolute;
@@ -317,7 +320,7 @@ width:100%;
 }
 .switch input:checked::after {
   content:'';
-  background:var(--g-4e4e4e);
+  background:var(--d-switch-b);
   width:22px;
   height:22px;
   position:absolute;
@@ -356,6 +359,9 @@ width:100%;
   --g-4e4e4e:#fff;
   --g-e3e3e3:#383838;
   --g-ffffff:#1a1a1a;
+  --d-switch-a:#1f1f1f;
+  --d-switch-b:#383838;
+  --d-switch-c:#111;
 }
   .title,.title2 {
     background:#1a1a1a;
