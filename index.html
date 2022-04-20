@@ -403,7 +403,7 @@ message
     
     <li class="options_list">
   <div class="options_list_txt">Auto save password</div>
-<label for="options_autosavepwd" class="switch"><input type="checkbox" id="options_autosavepwd" name="options_autosavepwd"></label>
+<label for="options_autosavepwd" class="switch"><input type="checkbox" id="options_autosavepwd" name="options_autosavepwd" jg="autosavepwd"></label>
 </li>
 
   </div>
@@ -699,6 +699,18 @@ setTimeout(function() {
  $('.page2,.title2').css({'display':'none','right':'0%','transition':'0s'});
 },500);
 }
+function saveoptions() {
+  mes('options saved')
+}
+  $('.switch input').click(function() {
+  if($(this).prop('checked')) {
+    localStorage.setItem('pw_options_' + $(this).attr('jg'),'1')
+  }
+  else {
+    localStorage.setItem('pw_options_' + $(this).attr('jg'),'0')
+  }
+  saveoptions()
+})
 function gen() {
   var pwlen = parseInt($('.input input').val())
   if(pwlen < 8 || pwlen > 32768){
