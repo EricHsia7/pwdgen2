@@ -699,6 +699,16 @@ setTimeout(function() {
  $('.page2,.title2').css({'display':'none','right':'0%','transition':'0s'});
 },500);
 }
+function setoptions() {
+  for (var i = 0; i < $('.switch input').length; i++) {
+if($('.switch input').eq(i).prop('checked')) {
+    localStorage.setItem('pw_options_' + $('.switch input').eq(i).attr('jg'),'1')
+  }
+  else {
+    localStorage.setItem('pw_options_' + $('.switch input').eq(i).attr('jg'),'0')
+  }
+  }
+}
 function saveoptions() {
   mes('options saved')
 }
@@ -753,6 +763,7 @@ function showsavedhistory() {
  }
 }
   showsavedhistory()
+  setoptions()
 </script>
 
 <script>
