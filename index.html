@@ -842,12 +842,11 @@ function setoptions() {
     $('.switch input').eq(i).prop('checked',false)
   }
   }
-  if(localStorage.getItem('pw_options_autodelpwd') === '1') {
-$('.options_list[dy="autodelpwd"]').attr('dsb','0')
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
   }
-
+  if(localStorage.getItem('pw_options_autodelpwd') === '1') {
+$('.options_list[dy="autodelpwd"]').attr('dsb','0')
   }
 }
 function saveoptions() {
@@ -858,6 +857,9 @@ $('.options_list[dy="autodelpwd"]').attr('dsb','0')
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
   }
+  }
+  else {
+$('.options_list[dy="autodelpwd"]').attr('dsb','1')
   }
 
 }
