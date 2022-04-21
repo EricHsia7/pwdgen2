@@ -342,6 +342,27 @@ width:100%;
   transform:translateX(-50%);
   -webkit-user-select: none;
 }
+.merge-t {
+  border-radius:15px 15px 0px 0px;
+  }
+.merge-c {
+  border-radius:0px;
+  margin-top:0px;
+  }
+.merge-b {
+  border-radius:0px 0px 15px 15px;
+  margin-top:0px;
+  }
+.merge-border-t-b {
+  border-top:1px var(--g-e3e3e3) solid;
+  border-bottom:1px var(--g-e3e3e3) solid;
+  }
+.merge-border-t {
+  border-top:1px var(--g-e3e3e3) solid;
+  }
+  .merge-border-b {
+  border-bottom:1px var(--g-e3e3e3) solid;
+  }
 .options_list[dsb="1"] {
   opacity:0.35;
   }
@@ -466,12 +487,12 @@ message
 <label for="options_defaultpwdvisible" class="switch"><input type="checkbox" id="options_defaultpwdvisible" name="options_defaultpwdvisible" jg="defaultpwdvisible"></label>
 </li>
     
-<li class="options_list">
+<li class="options_list merge-t merge-border-b">
   <div class="options_list_txt" style="font-size:13px;">Auto delete passwords saved&nbsp;<span id="autodelpwddaysspan">--</span>&nbsp;days ago</div>
 <label for="options_autodelpwd" class="switch"><input type="checkbox" id="options_autodelpwd" name="options_autodelpwd" jg="autodelpwd"></label>
 </li>
 
-<li class="options_list" dsb="1" dy="autodelpwd">
+<li class="options_list merge-b" dsb="1" dy="autodelpwd">
   <div class="options_list_txt"><input type="text" placeholder="days" id="autodelpwddaystt" jg="autodelpwddaystt"></div>
   <div class="options_list_cg">days</div>
 </li>
