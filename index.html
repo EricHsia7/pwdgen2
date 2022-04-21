@@ -850,9 +850,28 @@ function showsavedhistory() {
   showsavedhistory()
   setoptions()
   
+  function version_id(newid) {
+if(newid || localStorage.getItem('pw_version_id') === null) {
+var vt = new Date().getTime()
+var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            var vid = "";
+            for (var i = 0; i < 8; i++) {
+                var vrandomNumber = Math.floor(Math.random() * vidchars.length);
+                vid += vidchars.substring(vrandomNumber, vrandomNumber + 1);
+            }
+  localStorage.setItem('pw_version_id',vt + '.' + vid)
+  return [vt,vid] ;
+}
+    else {
+    return String(localStorage.getItem('pw_version_id')).split('.')
+    }
+}
+  
+  var vvd = version_id(false)
+  
   
   const addResourcesToCache = async (resources) => {
-  const cache = await caches.open("v_hcnels1h5catjp02");
+  const cache = await caches.open("version_" + vvd[0] + '_' + vvd[1]);
   await cache.addAll(resources);
 };
 
