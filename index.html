@@ -1160,6 +1160,7 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   ripple('.confirm .btn3','var(--g-4e4e4e)','0.3',888,'true');
   function deleteallsavedpwds() {
     if($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
+   mes('Do not close the window.')
   var dellist = []
   var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
   
