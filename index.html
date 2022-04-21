@@ -443,10 +443,13 @@ background:rgba(0,0,0,0);
   .confirm {
 width:clamp(180px,90%,350px);
   height:170px;
-  background:#e3e3e3;
-  position:relative;
+  background:var(--g-f4f4f4);
+  position:fixed;
   border-radius:15px;
   display:none;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 .confirm .confirmtitle {
 position:absolute;
@@ -455,7 +458,7 @@ position:absolute;
   width:calc(100% - 30px);
   height:45px;
   font-size:18px;
-  
+  color:var(--g-4e4e4e)
 }
 .confirm .confirminput {
   position:absolute;
@@ -468,19 +471,21 @@ position:absolute;
   box-sizing: border-box;
   border-radius:12px;
   background:rgba(0,0,0,0);
-  border:1px #4e4e4e solid;
+  border:1px var(--g-4e4e4e) solid;
+  color:var(--g-4e4e4e);
 }
 .confirm .btn3 {
   position:absolute;
   top:calc(15px + 55px + 35px + 5px);
   left:15px;
-  background:#fafafa;
+  background:var(--g-e3e3e3);
   height:45px;
   width:calc(50% - 15px - 5px);
   border-radius:15px;
   display: flex;
 justify-content: center;
 align-items: center;
+  color:var(--g-4e4e4e);
 }
   /*icon size in svg width*64px */
 @media (prefers-color-scheme: dark) {
