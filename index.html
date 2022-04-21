@@ -494,7 +494,7 @@ message
 
 <li class="options_list merge-b" dsb="1" dy="autodelpwd">
   <div class="options_list_txt"><input type="text" placeholder="days" id="autodelpwddaystt" jg="autodelpwddaystt"></div>
-  <div class="options_list_cg">days</div>
+  <div class="options_list_cg" dy="autodeldaysdvpx">days</div>
 </li>
 
 <li class="options_list" dy="refresh" ripple-onclick="vrefresh()">
@@ -868,11 +868,12 @@ function setoptions() {
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
-   var daysff = ' day'
+   var daysff = 'day'
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 1) {
-   daysff = ' days'
+   daysff = 'days'
   }
-  $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt') + daysff)
+  $('.options_list_cg[dy="autodeldaysdvpx"]').text(daysff)
+  $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt') + ' ' + daysff)
   }
 else {
 $('#autodelpwddaysspan').text('--')
@@ -890,11 +891,12 @@ $('.options_list[dy="autodelpwd"]').attr('dsb','0')
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   //$('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
-var daysff = ' day'
+var daysff = 'day'
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 1) {
-   daysff = ' days'
+   daysff = 'days'
   }
-  $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt') + daysff)
+  $('.options_list_cg[dy="autodeldaysdvpx"]').text(daysff)
+  $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt') + ' ' + daysff)
   }
 else {
 $('#autodelpwddaysspan').text('--')
