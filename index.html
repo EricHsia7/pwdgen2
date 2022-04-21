@@ -844,7 +844,7 @@ function setoptions() {
   }
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
-  if(parseInt(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
+  if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
   $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt'))
   }
 else {
@@ -862,7 +862,7 @@ function saveoptions() {
 $('.options_list[dy="autodelpwd"]').attr('dsb','0')
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
-  if(parseInt(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
+  if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
   $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt'))
   }
 else {
