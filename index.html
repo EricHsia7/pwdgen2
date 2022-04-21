@@ -1158,7 +1158,28 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   
   ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"]','var(--g-4e4e4e)','0.3',1300,'true');
   ripple('.confirm .btn3','var(--g-4e4e4e)','0.3',888,'true');
+  function deleteallsavedpwds() {
+    if($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
+  var dellist = []
+  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
   
+  for (var i = 0; i < savedlist.length; i++) {
+   if(!(savedlist[i] === 'null')) {
+     if(!(localStorage.getItem(savedlist[i]) === null)) {
+    dellist.push(savedlist[i])
+    localStorage.removeItem(savedlist[i])
+    if(savedlist.indexOf(savedlist[i]) > -1) {
+    localStorage.setItem('pwdgen2_saved_list',String(localStorage.getItem('pwdgen2_saved_list')).replaceAll(',' + savedlist[i],'').replaceAll(savedlist[i],''))
+    }       
+  }
+   }
+  }
+  //dddyy
+    }
+    else {
+    mes('The entered text does not match.')
+    }
+  }
   function confirmcf() {
     var confirmchars = "123456789abcdefghkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ";
             var confirmtxt = "";
@@ -1167,7 +1188,7 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
                 confirmtxt += confirmchars.substring(confirmrandomNumber, confirmrandomNumber + 1);
             }
     $('#confirmcftxt').text(confirmtxt).attr('cftxt',confirmtxt)
-      //confirminput
+    $('.confirminput').val('')
   $('body').css({'overflow':'hidden'});
 $('.confirm_mask,.confirm').css({'opacity':'0','display':'block'});
   
