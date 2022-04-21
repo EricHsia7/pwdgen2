@@ -1160,6 +1160,14 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   ripple('.confirm .btn3','var(--g-4e4e4e)','0.3',888,'true');
   
   function confirmcf() {
+    var confirmchars = "123456789abcdefghkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ";
+            var confirmtxt = "";
+            for (var i = 0; i < 10; i++) {
+                var confirmrandomNumber = Math.floor(Math.random() * confirmchars.length);
+                confirmtxt += confirmchars.substring(confirmrandomNumber, confirmrandomNumber + 1);
+            }
+    $('#confirmcftxt').text(confirmtxt).attr('cftxt',confirmtxt)
+      //confirminput
   $('body').css({'overflow':'hidden'});
 $('.confirm_mask,.confirm').css({'opacity':'0','display':'block'});
   
