@@ -469,8 +469,8 @@ message
 <label for="options_autodelpwd" class="switch"><input type="checkbox" id="options_autodelpwd" name="options_autodelpwd" jg="autodelpwd"></label>
 </li>
 
-<li class="options_list">
-  <div class="options_list_txt"><input type="text" placeholder="days"></div>
+<li class="options_list" dsb="1" dy="autodelpwd">
+  <div class="options_list_txt"><input type="text" placeholder="days" id="autodelpwddaystt" jg="autodelpwddaystt"></div>
   <div class="options_list_cg">days</div>
 </li>
 
@@ -842,9 +842,22 @@ function setoptions() {
     $('.switch input').eq(i).prop('checked',false)
   }
   }
+  if(localStorage.getItem('pw_options_autodelpwd') === '1') {
+$('.options_list[dy="autodelpwd"]').attr('dsb','0')
+  if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
+  $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
+  }
+
+  }
 }
 function saveoptions() {
   mes('options saved')
+
+  if(localStorage.getItem('pw_options_autodelpwd') === '1') {
+$('.options_list[dy="autodelpwd"]').attr('dsb','0')
+  if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
+  $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
+  }
 }
   $('.switch input').click(function() {
   if($(this).prop('checked')) {
@@ -853,6 +866,10 @@ function saveoptions() {
   else {
     localStorage.setItem('pw_options_' + $(this).attr('jg'),'0')
   }
+  saveoptions()
+})
+$('.page2 input[type="text"]').keyup(function() {
+  localStorage.setItem('pw_options_' + $(this).attr('jg'),$(this).val())
   saveoptions()
 })
 function gen() {
