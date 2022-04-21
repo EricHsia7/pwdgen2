@@ -415,6 +415,9 @@ message
   <div class="options_list_txt">Default password visible</div>
 <label for="options_defaultpwdvisible" class="switch"><input type="checkbox" id="options_defaultpwdvisible" name="options_defaultpwdvisible" jg="defaultpwdvisible"></label>
 </li>
+<li class="options_list" dy="refresh" ripple-onclick="version_id(true)">
+  <div class="options_list_txt">Refresh</div>
+</li>
     
   </div>
   <div class="title2" style="display:none;">
@@ -883,7 +886,10 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
       "https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js",
       "https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js",
       "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    ])  
+    ])
+  
+  ripple('.options_list[dy="refresh"]','var(--g-4e4e4e)','0.3',888,'true');
+  
 </script>
 
 <script>
