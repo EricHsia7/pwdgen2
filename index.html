@@ -568,7 +568,7 @@ message
   </div>
 </li>
     
-    <li class="options_list" dy="deleteall" ripple-onclick="deleteallcof()">
+    <li class="options_list" dy="deleteall" ripple-onclick="confirmcf()">
   <div class="options_list_txt">Delete all saved passwords</div>
   <div class="options_list_icon">
 <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -602,8 +602,8 @@ message
     Enter "<span id="confirmcftxt"></span>" to confirm deletion of saved passwords.
   </div>
   <input type="text" class="confirminput" placeholder="Enter text here...">
-  <div class="btn3">Confirm</div>
-  <div class="btn3" style="left:calc(50% + 5px)">Cancel</div>
+  <div class="btn3" ripple-onclick="deleteallsavedpwds()">Confirm</div>
+  <div class="btn3" style="left:calc(50% + 5px)" ripple-onclick="confirmcls()">Cancel</div>
 </div>
   
 </body>
@@ -1148,7 +1148,23 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   }
   
   ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"]','var(--g-4e4e4e)','0.3',1300,'true');
+  ripple('.confirm .btn3','var(--g-4e4e4e)','0.3',888,'true');
   
+  function confirmcf() {
+  $('body').css({'overflow':'hidden'});
+$('.confirm_mask,.confirm').css({'opacity':'0','display':'block'});
+  
+setTimeout(function() {
+ $('.confirm_mask,.confirm').css({'opacity':'1','transition':'0.3s'});
+},1);
+}
+function confirmcls() {
+  $('body').css({'overflow':'scroll'});
+$('.confirm_mask,.confirm').css({'opacity':'0'});
+setTimeout(function() {
+ $('.confirm_mask,.confirm').css({'display':'none','transition':'0s'});
+},300);
+}
   /*
   $(document).ready(function() {
 var odsha = String(localStorage.getItem('pw_github_sha'))
