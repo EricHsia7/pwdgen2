@@ -450,6 +450,7 @@ width:clamp(180px,90%,350px);
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
+  -webkit-user-select: none;
 }
 .confirm .confirmtitle {
 position:absolute;
@@ -458,7 +459,8 @@ position:absolute;
   width:calc(100% - 30px);
   height:45px;
   font-size:18px;
-  color:var(--g-4e4e4e)
+  color:var(--g-4e4e4e);
+  -webkit-user-select: none;
 }
 .confirm .confirminput {
   position:absolute;
@@ -486,6 +488,8 @@ position:absolute;
 justify-content: center;
 align-items: center;
   color:var(--g-4e4e4e);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  -webkit-user-select: none;
 }
   /*icon size in svg width*64px */
 @media (prefers-color-scheme: dark) {
