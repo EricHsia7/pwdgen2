@@ -1160,19 +1160,19 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   ripple('.confirm .btn3','var(--g-4e4e4e)','0.3',888,'true');
   function deleteallsavedpwds() {
     if($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
-   mes('Do not close the window.')
+   
   var dellist = []
   var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
   
   for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      if(!(localStorage.getItem(savedlist[i]) === null)) {
-    dellist.push(savedlist[i])
     localStorage.removeItem(savedlist[i])
-    if(savedlist.indexOf(savedlist[i]) > -1) {
-    localStorage.setItem('pwdgen2_saved_list',String(localStorage.getItem('pwdgen2_saved_list')).replaceAll(',' + savedlist[i],'').replaceAll(savedlist[i],''))
-    }       
   }
+     if(savedlist.indexOf(savedlist[i]) > -1) {
+    localStorage.setItem('pwdgen2_saved_list',String(localStorage.getItem('pwdgen2_saved_list')).replaceAll(',' + savedlist[i],'').replaceAll(savedlist[i],''))
+    }
+     
    }
   }
   //dddyy
