@@ -1063,14 +1063,14 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
 var odsha = String(localStorage.getItem('pw_github_sha'))
 var gitshaurl = 'https://api.github.com/repos/EricHsia7/pwdgen2/commits?per_page=1&' + new Date().getTime()
 var pw_github_sha_time = new Date().getTime() ;
- if(pw_github_sha_time-parseInt(localStorage.getItem('pw_github_sha_time')) < 86400000) {
+ if(pw_github_sha_time-parseInt(localStorage.getItem('pw_github_sha_time')) < 30000) {
   console.log(localStorage.getItem('pw_github_sha'))
 }
 else {
  $.ajax({type:'get',url:gitshaurl,dataType:'json',success:function(e) {
   var pw_github_sha_time = new Date().getTime() ;
    if(!(odsha === e[0].sha)) {
-   $('body').prompt({'message':'Remember to press the refresh button on the options page.','time':15000,'animate':'slide'});
+   $('body').prompt({'message':'There is a new version, need to refresh.','time':15000,'animate':'slide'});
    }
   localStorage.setItem('pw_github_sha', e[0].sha);
    localStorage.setItem('pw_github_sha_time', pw_github_sha_time);
