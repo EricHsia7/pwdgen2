@@ -868,9 +868,9 @@ function setoptions() {
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
-   var daysff = '&nbsp;day'
+   var daysff = ' day'
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 1) {
-   daysff = '&nbsp;days'
+   daysff = ' days'
   }
   $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt') + daysff)
   }
@@ -890,9 +890,9 @@ $('.options_list[dy="autodelpwd"]').attr('dsb','0')
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   //$('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
-var daysff = '&nbsp;day'
+var daysff = ' day'
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 1) {
-   daysff = '&nbsp;days'
+   daysff = ' days'
   }
   $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt') + daysff)
   }
