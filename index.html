@@ -359,6 +359,8 @@ width:100%;
   color:var(--g-4e4e4e);
   -webkit-user-select: none;
   font-size:15px;
+  overflow:hidden;
+  white-space: nowrap;
 }
 .options_list_txt input[type="text"] {
 position:absolute;
@@ -861,7 +863,7 @@ function saveoptions() {
   if(localStorage.getItem('pw_options_autodelpwd') === '1') {
 $('.options_list[dy="autodelpwd"]').attr('dsb','0')
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
-  $('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
+  //$('#autodelpwddaystt').val(localStorage.getItem('pw_options_autodelpwddaystt'))
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
   $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt'))
   }
