@@ -918,7 +918,38 @@ function gen() {
     
   }
 }
+
+
+function autodeletesavedpwd() {
+  if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
+  if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
+  var nwtime = new Date().getTime()
+  var deltime = 86400000*parseFloat(localStorage.getItem('pw_options_autodelpwddaystt'))
+  var dellist = []
+  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
   
+  for (var i = 0; i < savedlist.length; i++) {
+   if(!(savedlist[i] === 'null')) {
+     if(!(localStorage.getItem(savedlist[i]) === null)) {
+     var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
+     var pwtime = parseInt(thpwdd[2])
+  if((nwtime-pwtime) > deltime){
+    dellist.push(savedlist[i])
+    localStorage.removeItem(savedlist[i])
+    if(savedlist.indexOf(savedlist[i]) > -1) {
+    localStorage.setItem('pwdgen2_saved_list',String(localStorage.getItem('pwdgen2_saved_list')).replaceAll(',' + savedlist[i],'').replaceAll(savedlist[i],''))
+    }
+  }
+       
+  }
+   }
+  }
+  //ddd
+  }
+  }
+}
+  
+
 function showsavedhistory() {
  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
  for (var i = 0; i < savedlist.length; i++) {
@@ -950,6 +981,7 @@ function showsavedhistory() {
    }
  }
 }
+  autodeletesavedpwd()
   showsavedhistory()
   setoptions()
   
