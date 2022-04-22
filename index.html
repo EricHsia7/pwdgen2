@@ -607,6 +607,24 @@ message
   </div>
 </li>
     
+    
+    
+    <li class="options_list" dy="viewongit" ripple-onclick="viewongithub()">
+  <div class="options_list_txt">View on Github</div>
+  <div class="options_list_icon">
+<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M28.4079 1.13684C13.658 2.74008 1.79398 14.6041 0.190728 29.0333C-1.41252 44.1039 7.24502 57.5712 20.3917 62.7016C21.3536 63.0222 22.3156 62.3809 22.3156 61.0983L22.3156 55.9679C22.3156 55.9679 21.033 56.2886 19.4297 56.2886C14.9406 56.2886 13.0167 52.4408 12.6961 50.1962C12.3754 48.9136 11.7341 47.9517 10.7722 46.9897C9.81022 46.6691 9.48957 46.6691 9.48957 46.3484C9.48957 45.7071 10.4515 45.7071 10.7722 45.7071C12.6961 45.7071 14.2993 47.9517 14.9406 48.9136C16.5439 51.4788 18.4678 52.1201 19.4297 52.1201C20.7123 52.1201 21.6743 51.7995 22.3156 51.4788C22.6362 49.2343 23.5982 46.9897 25.522 45.7071C18.1471 44.1039 12.6961 39.9354 12.6961 32.8811C12.6961 29.354 14.2993 25.8269 16.5439 23.2617C16.2232 22.6204 15.9026 21.0171 15.9026 18.7726C15.9026 17.49 15.9026 15.5661 16.8645 13.6422C16.8645 13.6422 21.3536 13.6422 25.8427 17.8106C27.4459 17.1693 29.6905 16.8487 31.935 16.8487C34.1796 16.8487 36.4241 17.1693 38.348 17.8106C42.5165 13.6422 47.3262 13.6422 47.3262 13.6422C47.9675 15.5661 47.9675 17.49 47.9675 18.7726C47.9675 21.3378 47.6469 22.6204 47.3262 23.2617C49.5708 25.8269 51.174 29.0333 51.174 32.8811C51.174 39.9354 45.723 44.1039 38.348 45.7071C40.2719 47.3104 41.5545 50.1962 41.5545 53.0821L41.5545 61.419C41.5545 62.3809 42.5165 63.3429 43.7991 63.0222C55.6631 58.2125 64 46.6691 64 33.2018C64 13.9628 47.6469-1.10771 28.4079 1.13684Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/>
+</svg>
+  </div>
+</li>
+  
+
+
+ 
+    
+    
+    
+    
   </div>
   <div class="title2" style="display:none;">
   Options
@@ -1169,7 +1187,7 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
   
-  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"]','var(--g-4e4e4e)','0.3',1300,'true');
+  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"]','var(--g-4e4e4e)','0.3',1300,'true');
   ripple('.confirm .btn3','var(--g-4e4e4e)','0.3',888,'true');
   
   function deleteallsavedpwds() {
@@ -1222,6 +1240,9 @@ setTimeout(function() {
 },300);
 }
   
+  function viewongithub() {
+window.open('https://github.com/EricHsia7/pwdgen2')
+  }
   
   function backuppwdzip() {
   
