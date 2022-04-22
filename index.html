@@ -1253,7 +1253,7 @@ setTimeout(function() {
     //ggg
     
      var zip = new JSZip();
-zip.file('backup_' + bktime.getTime() + '.json',pwddatalist)
+zip.file('backup_' + bktime.getTime() + '.json','[' + pwddatalist.join(',') + ']')
 var txtfolder = zip.folder("Text");
 
 for (var w = 0; w < pwddatalist.length; w++) {
