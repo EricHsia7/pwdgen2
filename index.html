@@ -1257,7 +1257,7 @@ zip.file('backup_' + bktime.getTime() + '.json',pwddatalist)
 var txtfolder = zip.folder("Text");
 
 for (var w = 0; w < pwddatalist.length; w++) {
-  txtfolder.file('#' +  w + '_' pwddatalist[w].time + '.txt', deur(decu(pwddatalist[w].pwd_aes,pwddatalist[w].pwd_iv)) , {base64: false});
+  txtfolder.file('#' +  w + '_' + pwddatalist[w].time + '.txt', deur(decu(pwddatalist[w].pwd_aes,pwddatalist[w].pwd_iv)) , {base64: false});
 }
       
 zip.generateAsync({type:"blob"})
