@@ -500,7 +500,8 @@ align-items: center;
 }
   /*icon size in svg width*64px */
   .ripple {
-    -webkit-backface-visibility: hidden;
+    /*-webkit-backface-visibility: hidden;*/
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
 @media (prefers-color-scheme: dark) {
   :root {
