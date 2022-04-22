@@ -1254,7 +1254,7 @@ var jsonobjgg = {'pwd_aes':thpwdd[0],'pwd_iv':thpwdd[1],'time':pwtime.getTime()}
     //ggg
     
      var zip = new JSZip();
-zip.file('backup_' + bktime.getTime() + '.json','[' + pwddataliststr.join(',') + ']')
+zip.file('password_backup_' + bktime.getTime() + '.json','{"time":"' + bktime.getTime() + '","data":[' + pwddataliststr.join(',') + ']}')
 var txtfolder = zip.folder("Text");
 
 for (var w = 0; w < pwddatalist.length; w++) {
@@ -1264,7 +1264,7 @@ for (var w = 0; w < pwddatalist.length; w++) {
 zip.generateAsync({type:"blob"})
 .then(function(content) {
     // see FileSaver.js
-    saveAs(content, 'backup_' + bktime.getTime() + '.zip');
+    saveAs(content, 'password_backup_' + bktime.getTime() + '.zip');
 }); 
  
 }
