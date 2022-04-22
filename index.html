@@ -1252,6 +1252,7 @@ window.open('https://github.com/EricHsia7/pwdgen2')
     var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var pwddatalist = [] ;
     var pwddataliststr = [] ;
+    var pwddatalistcsv = []
     for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      if(!(localStorage.getItem(savedlist[i]) === null)) {
@@ -1273,6 +1274,9 @@ window.open('https://github.com/EricHsia7/pwdgen2')
 var jsonobjgg = {'pwd_aes':thpwdd[0],'pwd_iv':thpwdd[1],'time':pwtime.getTime()}
   pwddatalist.push(jsonobjgg)
   pwddataliststr.push(JSON.stringify(jsonobjgg))
+  pwddatalistcsv.push('"' + pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds()) + '","' + deur(decu(thpwdd[0],thpwdd[1])) + '","' + pwtime.getTime() + '"')
+      
+
      }
      
    }
@@ -1282,7 +1286,8 @@ var jsonobjgg = {'pwd_aes':thpwdd[0],'pwd_iv':thpwdd[1],'time':pwtime.getTime()}
     //ggg
     
      var zip = new JSZip();
-zip.file('password_backup_' + bktime.getTime() + '.json','{"time":"' + bktime.getTime() + '","data":[' + pwddataliststr.join(',') + ']}')
+zip.file('password_backup_' + bktime.getTime() + '_json.json','{"time":"' + bktime.getTime() + '","data":[' + pwddataliststr.join(',') + ']}')
+zip.file('password_backup_' + bktime.getTime() + '_csv.csv','"Time","password","Time(ms)"' + pwddatalistcsv.join('\n'))   
 var txtfolder = zip.folder("Text");
 
 for (var w = 0; w < pwddatalist.length; w++) {
