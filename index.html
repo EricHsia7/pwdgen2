@@ -1006,7 +1006,7 @@ function setoptions() {
   $('#autodelpwddaysspan').text('Auto delete passwords saved ' + localStorage.getItem('pw_options_autodelpwddaystt') + ' ' + daysff + ' ago')
   }
 else {
-$('#autodelpwddaysspan').text('--')
+$('#autodelpwddaysspan').text('Auto delete passwords saved -- day ago')
 }
   }
   if(localStorage.getItem('pw_options_autodelpwd') === '1') {
@@ -1029,7 +1029,7 @@ var daysff = 'day'
   $('#autodelpwddaysspan').text('Auto delete passwords saved ' + localStorage.getItem('pw_options_autodelpwddaystt') + ' ' + daysff + ' ago')
   }
 else {
-$('#autodelpwddaysspan').text('--')
+$('#autodelpwddaysspan').text('Auto delete passwords saved -- day ago')
 $('.options_list_cg[dy="autodeldaysdvpx"]').text('day')
 }
   }
