@@ -563,7 +563,7 @@ message
 </li>
     
 <li class="options_list merge-t merge-border-b">
-  <div class="options_list_txt" style="font-size:13px;">Auto delete passwords saved&nbsp;<span id="autodelpwddaysspan">--&nbsp;day</span>&nbsp;ago</div>
+  <div class="options_list_txt" style="font-size:13px;"><span id="autodelpwddaysspan">Auto delete passwords saved&nbsp;--&nbsp;day&nbsp;ago</span></div>
 <label for="options_autodelpwd" class="switch"><input type="checkbox" id="options_autodelpwd" name="options_autodelpwd" jg="autodelpwd"></label>
 </li>
 
@@ -1003,7 +1003,7 @@ function setoptions() {
    daysff = 'days'
   }
   $('.options_list_cg[dy="autodeldaysdvpx"]').text(daysff)
-  $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt') + ' ' + daysff)
+  $('#autodelpwddaysspan').text('Auto delete passwords saved ' + localStorage.getItem('pw_options_autodelpwddaystt') + ' ' + daysff + ' ago')
   }
 else {
 $('#autodelpwddaysspan').text('--')
@@ -1026,7 +1026,7 @@ var daysff = 'day'
    daysff = 'days'
   }
   $('.options_list_cg[dy="autodeldaysdvpx"]').text(daysff)
-  $('#autodelpwddaysspan').text(localStorage.getItem('pw_options_autodelpwddaystt') + ' ' + daysff)
+  $('#autodelpwddaysspan').text('Auto delete passwords saved ' + localStorage.getItem('pw_options_autodelpwddaystt') + ' ' + daysff + ' ago')
   }
 else {
 $('#autodelpwddaysspan').text('--')
