@@ -1221,6 +1221,7 @@ setTimeout(function() {
     var bktime = new Date()
     var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var pwddatalist = [] ;
+    var pwddataliststr = [] ;
     for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      if(!(localStorage.getItem(savedlist[i]) === null)) {
@@ -1239,9 +1240,9 @@ setTimeout(function() {
   pwdvisible = '1'
   pwdvisible_type = 'text'
   }
-
-  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
-  pwddatalist.push({'pwd_aes':thpwdd[0],'pwd_iv':thpwdd[1],'time':pwtime.getTime()})
+var jsonobjgg = {'pwd_aes':thpwdd[0],'pwd_iv':thpwdd[1],'time':pwtime.getTime()}
+  pwddatalist.push(jsonobjgg)
+  pwddataliststr.push(JSON.stringify(jsonobjgg))
      }
      
      
@@ -1253,7 +1254,7 @@ setTimeout(function() {
     //ggg
     
      var zip = new JSZip();
-zip.file('backup_' + bktime.getTime() + '.json','[' + pwddatalist.join(',') + ']')
+zip.file('backup_' + bktime.getTime() + '.json','[' + pwddataliststr.join(',') + ']')
 var txtfolder = zip.folder("Text");
 
 for (var w = 0; w < pwddatalist.length; w++) {
