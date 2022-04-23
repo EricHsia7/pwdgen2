@@ -6,6 +6,8 @@
     --d-switch-a: #e0e0e0;
     --d-switch-b: #fff;
     --d-switch-c: #888;
+    --meta-theme-color-light:#fff;
+    --meta-theme-color-dark:#1a1a1a;
 }
 @media (prefers-color-scheme: dark) {
     :root {
@@ -16,6 +18,8 @@
         --d-switch-a: #3b3b3b;
         --d-switch-b: #4d4d4d;
         --d-switch-c: #111;
+        --meta-theme-color-light:#fff;
+        --meta-theme-color-dark:#1a1a1a;
     }
     .title,
     .title2 {
