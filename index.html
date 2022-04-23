@@ -1383,7 +1383,12 @@ window.open('https://github.com/EricHsia7/pwdgen2')
         theme_css = 'https://erichsia7.github.io/pwdgen2/theme/' + od + '.css' ;
         localStorage.setItem('pw_theme_n',od)
       }
+    else {
+      return ''
+    }
     //ajax
+    $('.themecircle').attr('cv','0')
+    $('.themecircle[od="' + od + '"]').attr('cv','1')
     
 if(localStorage.getItem('pw_theme_' + od + '_ld') === theme_version) {
   settheme(localStorage.getItem('pw_theme_' + od))
@@ -1410,8 +1415,7 @@ else {
   }
   
   $('.themecircle').click(function() {
-    $('.themecircle').attr('cv','0')
-    $(this).attr('cv','1')
+    
     switchthemecss($(this).attr('od'),true)
   });
   if(!(localStorage.getItem('pw_theme_n') === null)) {
