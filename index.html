@@ -883,8 +883,8 @@ function enableScroll() {
 var historyloadingboxhtml = []
 var historyloadingboxcc = Math.floor(window.innerHeight/130)+1 ;
 
-for (var i = 0; i < historyloadingboxcc; i++) {
-historyloadingboxhtml.push('<div class="box loading" f="" t=""><div class=boxtitle></div><input type="" u="" readonly autocomplete=off><div class="btn1 dspoo" h="" c=""></div><div class="btn1 copyoo" h="" style=left:60px></div><div class="btn1 shareoo" h="" c=0 style=left:105px></div><div class="btn1 saveoo" h="" c=0 style=left:150px g=1></div></div>');
+for (var j = 0; j < historyloadingboxcc; j++) {
+historyloadingboxhtml.push('<div class="box loading" f="" t=""><div class="boxtitle"></div><input type="" u="" readonly autocomplete="off"><div class="btn1 dspoo" h="" c=""></div><div class="btn1 copyoo" h="" style="left:60px"></div><div class="btn1 shareoo" h="" c=0 style=left:105px></div><div class="btn1 saveoo" h="" c=0 style="left:150px" g="1"></div></div>');
 }
 $('.history').prepend(historyloadingboxhtml.join(''))
   
