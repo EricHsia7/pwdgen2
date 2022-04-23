@@ -1373,7 +1373,7 @@ window.open('https://github.com/EricHsia7/pwdgen2')
   function settheme(odcss) {
     $('#themestyle').html(odcss)
   }
-  function switchthemecss(od) {
+  function switchthemecss(od,showmes) {
     let themenamelist = ['white','green']
     var themenamelisth = 0 ;
 
@@ -1387,15 +1387,21 @@ window.open('https://github.com/EricHsia7/pwdgen2')
     
 if(localStorage.getItem('pw_theme_' + od + '_ld') === theme_version) {
   settheme(localStorage.getItem('pw_theme_' + od))
+  if(showmes) {
   mes('The theme has been applied')
+  }
 }
 else {
+  if(showmes) {
   mes('Theme loading')
+  }
  $.ajax({type:'get',url:theme_css + '?' + new Date().getTime(),dataType:'text',success:function(e) {
   localStorage.setItem('pw_theme_' + od + '_ld',theme_version);
    localStorage.setItem('pw_theme_' + od, e);
    settheme(e)
+   if(showmes) {
    mes('The theme has been applied')
+   }
    }
 }); 
 }
@@ -1406,10 +1412,10 @@ else {
   $('.themecircle').click(function() {
     $('.themecircle').attr('cv','0')
     $(this).attr('cv','1')
-    switchthemecss($(this).attr('od'))
+    switchthemecss($(this).attr('od'),true)
   });
   if(!(localStorage.getItem('pw_theme_n') === null)) {
-    switchthemecss(String(localStorage.getItem('pw_theme_n')))
+    switchthemecss(String(localStorage.getItem('pw_theme_n')),false)
   }
 
     
