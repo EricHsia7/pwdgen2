@@ -1123,7 +1123,7 @@ function autodeletesavedpwd() {
 
 function showsavedhistory() {
  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
- if(savedlist.length > 0) {
+ //if(savedlist.length > 0) {
  for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      
@@ -1153,14 +1153,14 @@ function showsavedhistory() {
    }
  }
    
-   
+   /*
    $('.history .loading').remove()
  }
 else {
 $('.history .loading').remove()
 
 }
-
+*/
 
 }
   autodeletesavedpwd()
