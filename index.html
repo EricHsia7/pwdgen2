@@ -1090,7 +1090,6 @@ function gen() {
   }
 }
 
-
 function autodeletesavedpwd() {
   if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
@@ -1099,7 +1098,7 @@ function autodeletesavedpwd() {
   var dellist = []
   var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
   
-  
+  for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      if(!(localStorage.getItem(savedlist[i]) === null)) {
      var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
@@ -1119,6 +1118,7 @@ function autodeletesavedpwd() {
   }
   }
 }
+
   
 
 function showsavedhistory() {
