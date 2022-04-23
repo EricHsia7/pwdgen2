@@ -529,6 +529,10 @@ align-items: center;
   float:left;
   margin-left:5px;
 }
+.themecircle[cv="1"] {
+  box-shadow:inset 0px 0px 0px 2px var(--g-4e4e4e),inset 0px 0px 0px 3.5px var(--g-f4f4f4);
+  box-sizing: border-box;
+}
 </style>
   <style id="themestyle">
   :root {
@@ -621,11 +625,12 @@ message
 
 <li class="options_list merge-b">
   <div class="themebx">
-  <div class="themecircle" od="white"></div>
+  <div class="themecircle" od="white" cv="1"></div>
   <div class="themecircle" od="green"></div>
   </div>
 </li>
-    
+
+
 <li class="options_list" dy="refresh" ripple-onclick="vrefresh()">
   <div class="options_list_txt">Refresh</div>
   <div class="options_list_icon">
@@ -1353,7 +1358,6 @@ setTimeout(function() {
  $('.confirm_mask,.confirm').css({'display':'none','transition':'0s'});
 },300);
 }
-  
   function viewongithub() {
 window.open('https://github.com/EricHsia7/pwdgen2')
   }
@@ -1366,7 +1370,44 @@ window.open('https://github.com/EricHsia7/pwdgen2')
         textArea.remove();
   mes('link copied')
  }
+  function settheme(odcss) {
+    $('#themestyle').html(odcss)
+  }
+  function switchthemecss(od) {
+   //listcheck
+    
+    //end
+    var theme_css = '' ;
+    var theme_version = 'v1' ;
+    if(od === 'white') {
+    
+    }
+    if(od === 'green') {
+      theme_css = 'https://erichsia7.github.io/pwdgen2/theme/green.css' ;
+    }
+    
+    //ajax
+    
+if(localStorage.getItem('pw_theme_' + od + '_ld') === theme_version) {
+  settheme(localStorage.getItem('pw_theme_' + od))
+}
+else {
+ $.ajax({type:'get',url:theme_css + '?' + new Date().getTime(),dataType:'text',success:function(e) {
+  localStorage.setItem('pw_theme_' + od + '_ld',theme_version);
+   localStorage.setItem('pw_theme_' + od, e);
+   settheme(e)
+   }
+}); 
+}
+    
+    //end
+  }
   
+  $('.themecircle').click(function() {
+    $('.themecircle').attr('cv','0')
+    mes('Theme loading')
+    switchthemecss($(this).attr('od'))
+  });
   function backuppwdzip() {
     mes('File processing.')
     var bktime = new Date()
