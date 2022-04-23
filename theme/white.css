@@ -1,0 +1,24 @@
+:root {
+    --g-f4f4f4: #f4f4f4;
+    --g-4e4e4e: #4e4e4e;
+    --g-e3e3e3: #e3e3e3;
+    --g-ffffff: #ffffff;
+    --d-switch-a: #e0e0e0;
+    --d-switch-b: #fff;
+    --d-switch-c: #888;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --g-f4f4f4: #1f1f1f;
+        --g-4e4e4e: #fff;
+        --g-e3e3e3: #383838;
+        --g-ffffff: #1a1a1a;
+        --d-switch-a: #3b3b3b;
+        --d-switch-b: #4d4d4d;
+        --d-switch-c: #111;
+    }
+    .title,
+    .title2 {
+        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
+    }
+}
