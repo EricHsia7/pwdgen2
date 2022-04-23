@@ -1124,6 +1124,7 @@ function autodeletesavedpwd() {
 function showsavedhistory() {
  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
  if(savedlist.length > 0) {
+   setTimeout(function() {
  for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      
@@ -1153,6 +1154,7 @@ function showsavedhistory() {
    }
  }
    
+   },1200);
    
    $('.history .loading').remove()
  }
