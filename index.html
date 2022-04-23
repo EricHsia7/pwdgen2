@@ -1374,18 +1374,15 @@ window.open('https://github.com/EricHsia7/pwdgen2')
     $('#themestyle').html(odcss)
   }
   function switchthemecss(od) {
-   //listcheck
-    
-    //end
+    let themenamelist = ['white','green']
+    var themenamelisth = 0 ;
+
     var theme_css = '' ;
     var theme_version = 'v1' ;
-    if(od === 'white') {
-      theme_css = 'https://erichsia7.github.io/pwdgen2/theme/white.css' ;
-    }
-    if(od === 'green') {
-      theme_css = 'https://erichsia7.github.io/pwdgen2/theme/green.css' ;
-    }
-    
+    if(themenamelist.indexOf(od) > -1) {
+        theme_css = 'https://erichsia7.github.io/pwdgen2/theme/' + od + '.css' ;
+        localStorage.setItem('pw_theme_n',od)
+      }
     //ajax
     
 if(localStorage.getItem('pw_theme_' + od + '_ld') === theme_version) {
@@ -1411,6 +1408,12 @@ else {
     $(this).attr('cv','1')
     switchthemecss($(this).attr('od'))
   });
+  if(!(localStorage.getItem('pw_theme_n') === null)) {
+    switchthemecss(String(localStorage.getItem('pw_theme_n')))
+  }
+
+    
+  
   function backuppwdzip() {
     mes('File processing.')
     var bktime = new Date()
