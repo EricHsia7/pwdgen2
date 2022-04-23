@@ -77,6 +77,10 @@ align-items: center;
   width:auto;
   height:calc(100% - 10px);
   font-size:18px;
+  display: flex;
+justify-content: center;
+align-items: center;
+  margin-left:5px;
   }
 .input .btn {
   width:calc(45px - 5px);
@@ -1157,7 +1161,7 @@ function autodeletesavedpwd() {
   }
   
   $('.t2').text('Shared password')
-  $('.input').css({'display':'flex','justify-content':'center','align-items':'center'});
+  $('.input').css({'display':'flex','justify-content':'center','align-items':'center','background':'rgba(0,0,0,0)'});
   $('.input .btn').html(backarrowicon).css({'right':'auto','top':'auto','position':'relative'}).attr('ripple-onclick','sharedback()');
   $('.input input').remove()
   $('.input').append('<div class="ipttxt">Back to generator</div>');
