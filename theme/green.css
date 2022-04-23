@@ -1,0 +1,24 @@
+:root {
+    --g-f4f4f4: #a1c7b7;
+    --g-4e4e4e: #347365;
+    --g-e3e3e3: #83a69d;
+    --g-ffffff: #aed4c4;
+    --d-switch-a: #638263;
+    --d-switch-b: #90b1a3;
+    --d-switch-c: #3c4f3c;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --g-f4f4f4: #a1c7b7;
+        --g-4e4e4e: #347365;
+        --g-e3e3e3: #83a69d;
+        --g-ffffff: #aed4c4;
+        --d-switch-a: #638263;
+        --d-switch-b: #90b1a3;
+        --d-switch-c: #3c4f3c;
+    }
+    .title,
+    .title2 {
+        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
+    }
+}
