@@ -9,8 +9,8 @@
 <link href="https://erichsia7.github.io/pwdgen2/pwaicon2/512x512.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" p="light">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" p="dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" kji="light">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" kji="dark">
 <link rel="manifest" href="https://erichsia7.github.io/pwdgen2/manifest.json?e1">
 
 <style>
@@ -1372,6 +1372,7 @@ window.open('https://github.com/EricHsia7/pwdgen2')
  }
   function settheme(odcss) {
     $('#themestyle').html(odcss)
+    $('meta[kji="light"]').attr('content',getComputedStyle(document.body).getPropertyValue('--g-ffffff'));
   }
   function switchthemecss(od,showmes) {
     let themenamelist = ['white','green']
