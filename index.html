@@ -9,8 +9,8 @@
 <link href="https://erichsia7.github.io/pwdgen2/pwaicon2/512x512.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" p="light">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" p="dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="var(--g-ffffff)" p="light">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="var(--g-ffffff)" p="dark">
 <link rel="manifest" href="https://erichsia7.github.io/pwdgen2/manifest.json?e1">
 
 <style>
@@ -512,7 +512,23 @@ align-items: center;
     /*-webkit-backface-visibility: hidden;*/
     -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
-
+  
+.themebx {
+  width:calc((26px + 5px) * 2);
+  height:26px;
+  position:absolute;
+  top:calc(19px / 2);
+  left:calc((19px / 2) - 5px);
+  padding-right:calc(19px / 2);;
+}
+.themecircle {
+  height:26px;
+  width:26px;
+  background:var(--g-e3e3e3);
+  border-radius:99em;
+  float:left;
+  margin-left:5px;
+}
 </style>
   <style id="themestyle">
   :root {
@@ -598,15 +614,24 @@ message
   <div class="options_list_cg" dy="autodeldaysdvpx">days</div>
 </li>
 
+    
+<li class="options_list merge-t merge-border-b">
+  <div class="options_list_txt">Theme</div>
+</li>
+
+<li class="options_list merge-b">
+  <div class="themebx">
+  <div class="themecircle" od="white"></div>
+  <div class="themecircle" od="green"></div>
+  </div>
+</li>
+    
 <li class="options_list" dy="refresh" ripple-onclick="vrefresh()">
   <div class="options_list_txt">Refresh</div>
   <div class="options_list_icon">
 <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M30.9294 7.10543e-15C30.2553 7.10543e-15 29.71 0.247831 29.2639 0.713755C28.8178 1.17968 28.5502 1.76456 28.5502 2.45849C28.5502 2.75589 28.5998 3.03346 28.7088 3.33086C28.8178 3.62825 29.0458 3.886 29.2639 4.12392L37.1945 11.8959C35.4725 11.5716 33.7873 11.4201 32.0397 11.4201C28.3916 11.4201 24.9913 12.1239 21.8092 13.482C18.627 14.8401 15.8017 16.7137 13.4027 19.1128C11.0037 21.5118 9.13011 24.3371 7.772 27.5192C6.41388 30.7014 5.71004 34.0421 5.71004 37.6704C5.71004 41.3383 6.41388 44.798 7.772 47.9802C9.13011 51.1623 11.0037 53.9777 13.4027 56.3866C15.8017 58.7955 18.627 60.6691 21.8092 62.0173C24.9913 63.3656 28.3916 64 32.0397 64C35.6679 64 39.088 63.3656 42.2701 62.0173C45.4523 60.6691 48.1883 58.7955 50.5973 56.3866C53.0062 53.9777 54.8798 51.1623 56.228 47.9802C57.5762 44.798 58.29 41.3383 58.29 37.6704C58.29 36.9566 58.0322 36.3916 57.5762 35.9257C57.1202 35.4597 56.5651 35.2119 55.8315 35.2119C55.1177 35.2119 54.5031 35.4597 54.0867 35.9257C53.6704 36.3916 53.5316 36.9566 53.5316 37.6704C53.5316 40.6642 52.9765 43.4696 51.8662 46.0768C50.7559 48.684 49.1499 51.0037 47.1871 52.9765C45.2243 54.9492 42.9641 56.4758 40.3668 57.5762C37.7695 58.6766 35.0136 59.2416 32.0397 59.2416C29.0458 59.2416 26.2305 58.6766 23.6332 57.5762C21.0359 56.4758 18.7757 54.9492 16.8129 52.9765C14.8501 51.0037 13.3234 48.684 12.2131 46.0768C11.1029 43.4696 10.5477 40.6642 10.5477 37.6704C10.5477 34.6964 11.1029 31.9405 12.2131 29.3432C13.3234 26.746 14.8501 24.4857 16.8129 22.5229C18.7757 20.5601 21.0359 19.0335 23.6332 17.9232C26.2305 16.8129 29.0458 16.2577 32.0397 16.2577C33.8042 16.2577 35.3903 16.347 36.8773 16.575C37.3159 16.6422 37.6542 16.8034 38.0669 16.8922L29.2639 25.6159C29.0458 25.8538 28.9071 26.1214 28.7881 26.4089C28.6691 26.6964 28.5502 27.0434 28.5502 27.3606C28.5502 28.0347 28.8079 28.57 29.2639 29.026C29.72 29.482 30.2751 29.7398 30.9294 29.7398C31.6629 29.7398 32.2577 29.482 32.6741 29.026L44.8872 16.7336C45.145 16.4758 45.3234 16.1586 45.4424 15.8612C45.5613 15.5638 45.6803 15.2466 45.6803 14.9095C45.6803 14.2354 45.3829 13.6803 44.8872 13.1648L32.6741 0.713755C32.2379 0.237918 31.6431 7.10543e-15 30.9294 7.10543e-15Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/>
-</svg>
-
-
- 
+    </svg>
   </div>
 </li>
     
