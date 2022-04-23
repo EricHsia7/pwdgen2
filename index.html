@@ -1138,14 +1138,14 @@ function autodeletesavedpwd() {
   var pw = deur(decu(url.searchParams.get('d'),url.searchParams.get('n')))
   var pwgid =  gid()
   var pwdvisible = '0'
-  var sharedpwdsaved = '1'
+  var sharedpwdsaved = '0'
   var pwdvisible_type = 'password'
   if(localStorage.getItem('pw_options_defaultpwdvisible') === '1') {
   pwdvisible = '1'
   pwdvisible_type = 'text'
   }
-  if(String(localStorage.getItem('pwdgen2_saved_list')).indexOf(  'pw_' + sha256(pw + '_' + pwtime.getTime())) > -1) {
-    sharedpwdsaved = '0'
+  if(String(localStorage.getItem('pwdgen2_saved_list')).indexOf('pw_' + sha256(pw + '_' + pwtime.getTime())) > -1) {
+    sharedpwdsaved = '1'
   }
   
   $('.t2').text('Shared password')
