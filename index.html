@@ -1390,12 +1390,15 @@ window.open('https://github.com/EricHsia7/pwdgen2')
     
 if(localStorage.getItem('pw_theme_' + od + '_ld') === theme_version) {
   settheme(localStorage.getItem('pw_theme_' + od))
+  mes('The theme has been applied')
 }
 else {
+  mes('Theme loading')
  $.ajax({type:'get',url:theme_css + '?' + new Date().getTime(),dataType:'text',success:function(e) {
   localStorage.setItem('pw_theme_' + od + '_ld',theme_version);
    localStorage.setItem('pw_theme_' + od, e);
    settheme(e)
+   mes('The theme has been applied')
    }
 }); 
 }
@@ -1406,7 +1409,6 @@ else {
   $('.themecircle').click(function() {
     $('.themecircle').attr('cv','0')
     $(this).attr('cv','1')
-    mes('Theme loading')
     switchthemecss($(this).attr('od'))
   });
   function backuppwdzip() {
