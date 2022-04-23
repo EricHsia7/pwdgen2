@@ -1176,9 +1176,7 @@ function showsavedhistory() {
    
      $('.history .loading').remove()
      
-     if(url.searchParams.get('share') === '1') {
-    showshared()
-  }
+     
      
    },1200);
    
@@ -1195,7 +1193,14 @@ $('.history .loading').remove()
 
   
   autodeletesavedpwd()
-  showsavedhistory()
+  
+  if(url.searchParams.get('share') === '1') {
+    showshared()
+    $('.history .loading').remove()
+  }
+  else {
+   showsavedhistory()
+  }
   setoptions()
   
   
