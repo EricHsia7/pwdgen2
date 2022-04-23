@@ -666,6 +666,8 @@ message
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script>
+var getUrlString = location.href;
+var url = new URL(getUrlString);
 
 
 (function ($) {
@@ -1128,7 +1130,16 @@ function autodeletesavedpwd() {
   }
 }
 
+  function showshared() {
+  var pwtime = new Date()
+  pwtime.setTime(url.searchParams.get('t'))
+  var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
   
+  var pw = deur(decu(url.searchParams.get('d'),url.searchParams.get('n')))
+  var pwgid =  gid()
+  $('.history').prepend('<div class="box shared" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
+  ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
+}
 
 function showsavedhistory() {
  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
@@ -1164,6 +1175,11 @@ function showsavedhistory() {
  }
    
      $('.history .loading').remove()
+     
+     if(url.searchParams.get('share') === '1') {
+    showshared()
+  }
+     
    },1200);
    
    
@@ -1175,9 +1191,14 @@ $('.history .loading').remove()
 
 
 }
+  
+
+  
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
+  
+  
   
   function version_id(newid) {
 if(newid || localStorage.getItem('pw_version_id') === null) {
