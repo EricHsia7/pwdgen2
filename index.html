@@ -634,7 +634,7 @@ message
     
     
 
-<li class="options_list" dy="viewongit" ripple-onclick="copywebspplink()">
+<li class="options_list" dy="viewongit" ripple-onclick="copywebapplink()">
   <div class="options_list_txt">Copy the link for this web app</div>
   <div class="options_list_icon">
 <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1206,26 +1206,14 @@ function showsavedhistory() {
   $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
      }
-     
-     
-     
    }
  }
-   
-     $('.history .loading').remove()
-     
-     
-     
-   },1200);
-   
-   
+ $('.history .loading').remove()
+ },1200);
  }
 else {
 $('.history .loading').remove()
-
 }
-
-
 }
   
 
@@ -1341,6 +1329,15 @@ setTimeout(function() {
   function viewongithub() {
 window.open('https://github.com/EricHsia7/pwdgen2')
   }
+ function copywebapplink() {
+   var textArea = document.createElement("textarea");
+        textArea.value = 'https://erichsia7.github.io/pwdgen2/' ;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+  mes('link copied')
+ }
   
   function backuppwdzip() {
     mes('File processing.')
