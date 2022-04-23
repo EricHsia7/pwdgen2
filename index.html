@@ -1152,7 +1152,7 @@ function autodeletesavedpwd() {
   
   $('.t2').text('Shared password')
   $('.input .btn').html(backarrowicon).css({'right':'auto','left':'calc(5px / 2)'}).attr('ripple-onclick','sharedback()');
-  $('.input input').css({'left':'calc(45px + 5px)','-webkit-user-select':'none'}).val('Back').attr('readonly','readonly');
+  $('.input input').css({'left':'calc(45px + 5px)','-webkit-user-select':'none'}).val('Back to generator').attr('readonly','readonly');
   $('.history').prepend('<div class="box shared" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="' + sharedpwdsaved + '">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
 }
