@@ -1372,14 +1372,15 @@ window.open('https://github.com/EricHsia7/pwdgen2')
  }
   function settheme(odcss) {
     $('#themestyle').html(odcss)
-    $('meta[kji="light"],meta[kji="dark"]').attr('content',getComputedStyle(document.body).getPropertyValue('--g-ffffff'));
+    $('meta[kji="light"]').attr('content',getComputedStyle(document.body).getPropertyValue('--meta-theme-color-light'));
+    $('meta[kji="dark"]').attr('content',getComputedStyle(document.body).getPropertyValue('--meta-theme-color-dark'));
   }
   function switchthemecss(od,showmes) {
     let themenamelist = ['white','green']
     var themenamelisth = 0 ;
 
     var theme_css = '' ;
-    var theme_version = 'v1' ;
+    var theme_version = 'v2' ;
     if(themenamelist.indexOf(od) > -1) {
         theme_css = 'https://erichsia7.github.io/pwdgen2/theme/' + od + '.css' ;
         localStorage.setItem('pw_theme_n',od)
@@ -1416,7 +1417,6 @@ else {
   }
   
   $('.themecircle').click(function() {
-    
     switchthemecss($(this).attr('od'),true)
   });
   if(!(localStorage.getItem('pw_theme_n') === null)) {
