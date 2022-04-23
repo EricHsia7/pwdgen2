@@ -980,7 +980,7 @@ function share(gid) {
   var enc = encu(enur($('input[u="' + gid + '"]').attr('value')))
   
   var textArea = document.createElement("textarea");
-        textArea.value = 'https://erichsia7.github.io/pwdgen2/s/?d=' + enc[0] + '&n=' + enc[1] + '&t=' + $('.box[f="' + gid + '"]').attr('t')
+        textArea.value = 'https://erichsia7.github.io/pwdgen2/?share=1&d=' + enc[0] + '&n=' + enc[1] + '&t=' + $('.box[f="' + gid + '"]').attr('t')
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand("Copy");
@@ -1143,6 +1143,8 @@ function autodeletesavedpwd() {
   pwdvisible = '1'
   pwdvisible_type = 'text'
   }
+  $('.t2').text('Shared password')
+  $('.input').html('')
   $('.history').prepend('<div class="box shared" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
 }
