@@ -9,6 +9,9 @@
     --meta-theme-color-light:#2a869b;
     --meta-theme-color-dark:#2a869b;
 }
+::placeholder {
+    color:rgba(142, 204, 219,0.4);
+}
 @media (prefers-color-scheme: dark) {
     :root {
         --g-f4f4f4: #217385;
