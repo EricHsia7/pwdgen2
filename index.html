@@ -519,7 +519,8 @@ align-items: center;
   position:absolute;
   top:calc(19px / 2);
   left:calc((19px / 2) - 5px);
-  padding-right:calc(19px / 2);;
+  padding-right:calc(19px / 2);
+  -webkit-user-select: none;
 }
 .themecircle {
   height:26px;
@@ -528,6 +529,7 @@ align-items: center;
   border-radius:99em;
   float:left;
   margin-left:5px;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 .themecircle[cv="1"] {
   box-shadow:inset 0px 0px 0px 2px var(--g-4e4e4e),inset 0px 0px 0px 3.5px var(--g-f4f4f4);
