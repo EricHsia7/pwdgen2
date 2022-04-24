@@ -12,10 +12,6 @@
 ::placeholder {
     color:rgba(26, 26, 26,0.4);
 }
-div {
- background-size:35px;
- background-repeat: repeat;
-}
 @media (prefers-color-scheme: dark) {
     :root {
         --g-f4f4f4: #f4f4f4;
