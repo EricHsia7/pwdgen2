@@ -1417,10 +1417,11 @@ else {
   $('.themecircle').click(function() {
     switchthemecss($(this).attr('od'),true)
   });
+  ripple('.themecircle','var(--g-4e4e4e)','0.3',888,'true');
   if(!(localStorage.getItem('pw_theme_n') === null)) {
     switchthemecss(String(localStorage.getItem('pw_theme_n')),false)
   }
-
+  
     
   
   function backuppwdzip() {
