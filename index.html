@@ -1333,12 +1333,12 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
    }
   }
   //dddyy
-      mes('Deleted successfully.')
+      mes('Deleted successfully')
       $('.history').html('')
       confirmcls()
     }
     else {
-    mes('The entered text does not match.')
+    mes('The entered text does not match')
     }
   }
   function confirmcf() {
@@ -1431,7 +1431,7 @@ else {
     
   
   function backuppwdzip() {
-    mes('File processing.')
+    mes('File processing')
     var bktime = new Date()
     var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var pwddatalist = [] ;
@@ -1482,7 +1482,7 @@ for (var w = 0; w < pwddatalist.length; w++) {
 zip.generateAsync({type:"blob"})
 .then(function(content) {
     // see FileSaver.js
-  mes('File processing completed.')
+  mes('File processing completed')
     saveAs(content, 'password_backup_' + bktime.getTime() + '.zip');
 });
 }
