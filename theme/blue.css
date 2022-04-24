@@ -1,0 +1,27 @@
+:root {
+    --g-f4f4f4: #8fbcfc;
+    --g-4e4e4e: #5174dd;
+    --g-e3e3e3: #8faafa;
+    --g-ffffff: #76aeed;
+    --d-switch-a: #8faafa;
+    --d-switch-b: #bfd2ff;
+    --d-switch-c: #5174dd;
+    --meta-theme-color-light:#76aeed;
+    --meta-theme-color-dark:#76aeed;
+}
+::placeholder {
+    color:rgba(81, 116, 221,0.4);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --g-f4f4f4: #8fbcfc;
+        --g-4e4e4e: #5174dd;
+        --g-e3e3e3: #8faafa;
+        --g-ffffff: #76aeed;
+        --d-switch-a: #8faafa;
+        --d-switch-b: #bfd2ff;
+        --d-switch-c: #5174dd;
+        --meta-theme-color-light:#76aeed;
+        --meta-theme-color-dark:#76aeed;
+    }
+}
