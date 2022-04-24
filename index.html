@@ -1179,7 +1179,7 @@ function gen() {
 }
 
 function autodeletesavedpwd() {
-  if(!(localStorage.getItem('pw_options_autodelpwddaystt') === null)) {
+  if(localStorage.getItem('pw_options_autodelpwddaystt') === '1') {
   if(parseFloat(localStorage.getItem('pw_options_autodelpwddaystt')) > 0) {
   var nwtime = new Date().getTime()
   var deltime = 86400000*parseFloat(localStorage.getItem('pw_options_autodelpwddaystt'))
