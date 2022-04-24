@@ -514,7 +514,7 @@ align-items: center;
   }
   
 .themebx {
-  width:calc((26px + 5px) * 3);
+  width:calc((26px + 5px) * 4);
   height:26px;
   position:absolute;
   top:calc(19px / 2);
@@ -543,6 +543,9 @@ align-items: center;
 }
 .themecircle[od="pink"] {
   background:#ffc5c5;
+}
+.themecircle[od="cyan-blue"] {
+  background:#2a869b;
 }
 </style>
   <style id="themestyle">
@@ -639,6 +642,7 @@ message
   <div class="themecircle" od="white" cv="1"></div>
   <div class="themecircle" od="green"></div>
   <div class="themecircle" od="pink"></div>
+  <div class="themecircle" od="cyan-blue"></div>
   </div>
 </li>
 
@@ -1382,7 +1386,7 @@ window.open('https://github.com/EricHsia7/pwdgen2')
     $('meta[kji="dark"]').attr('content',getComputedStyle(document.body).getPropertyValue('--meta-theme-color-dark'));
   }
   function switchthemecss(od,showmes) {
-    let themenamelist = ['white','green','pink']
+    let themenamelist = ['white','green','pink','cyan-blue']
     var themenamelisth = 0 ;
     var theme_css = '' ;
     var theme_version = 'zd0weo6cwcdgvxgb' ;
