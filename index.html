@@ -356,6 +356,10 @@ width:100%;
   transform:translateX(-50%);
   -webkit-user-select: none;
 }
+.options_list_ovf {
+  overflow-x:scroll;
+  overflow-y:hidden;
+}
 .page2 .options_list:first-child {
   margin-top:30px;
   }
@@ -640,7 +644,7 @@ message
   <div class="options_list_txt">Theme</div>
 </li>
 
-<li class="options_list merge-b">
+<li class="options_list merge-b options_list_ovf">
   <div class="themebx">
   <div class="themecircle" od="white" cv="1"></div>
   <div class="themecircle" od="pink"></div>
