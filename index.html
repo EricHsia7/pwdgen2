@@ -1255,10 +1255,7 @@ $('.history .loading').remove()
 }
 }
   
-
-  
   autodeletesavedpwd()
-  
   if(url.searchParams.get('share') === '1') {
     showshared()
     $('.history .loading').remove()
@@ -1267,9 +1264,6 @@ $('.history .loading').remove()
    showsavedhistory()
   }
   setoptions()
-  
-  
-  
   function version_id(newid) {
 if(newid || localStorage.getItem('pw_version_id') === null) {
 var vt = new Date().getTime()
@@ -1385,7 +1379,7 @@ window.open('https://github.com/EricHsia7/pwdgen2')
     let themenamelist = ['white','green']
     var themenamelisth = 0 ;
     var theme_css = '' ;
-    var theme_version = 'vyoe5d0bmi6opg3n' ;
+    var theme_version = 'zd0weo6cwcdgvxgb' ;
     if(themenamelist.indexOf(od) > -1) {
         theme_css = 'https://erichsia7.github.io/pwdgen2/theme/' + od + '.css' ;
         localStorage.setItem('pw_theme_n',od)
@@ -1396,8 +1390,7 @@ window.open('https://github.com/EricHsia7/pwdgen2')
     //ajax
     $('.themecircle').attr('cv','0')
     $('.themecircle[od="' + od + '"]').attr('cv','1')
-    
-if(localStorage.getItem('pw_theme_' + od + '_ld') === theme_version) {
+  if(localStorage.getItem('pw_theme_' + od + '_ld') === theme_version) {
   settheme(localStorage.getItem('pw_theme_' + od))
   if(showmes) {
   mes('The theme has been applied')
