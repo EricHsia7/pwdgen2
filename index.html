@@ -1139,7 +1139,7 @@ function gen() {
   var pwlen = parseInt($('.input input').val())
   if(pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN'){
     
-    $('body').prompt({'message':'Please enter a value between 8 and 32768.','time':3000,'animate':'slide'});
+    $('body').prompt({'message':'Please enter a value between 8 and 32768','time':3000,'animate':'slide'});
   }
   else {
   var pwtime = new Date()
