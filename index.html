@@ -1448,6 +1448,13 @@ settheme(localStorage.getItem('pw_theme_' + od))
    if(showmes) {
    mes('The theme has been applied')
    }
+   else {
+if(String(localStorage.getItem('pw_theme_' + od)).length>10) {
+settheme(localStorage.getItem('pw_theme_' + od))
+  mes('Theme updated')
+}
+  }
+   
    }
 }); 
 }
