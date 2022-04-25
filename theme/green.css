@@ -1,11 +1,11 @@
 :root {
-    --g-f4f4f4: #a1c7b7;
+    --g-f4f4f4: #9bc7b4;
     --g-4e4e4e: #347365;
-    --g-e3e3e3: #7ba89c;
+    --g-e3e3e3: #7ba895;
     --g-ffffff: #aed4c4;
-    --d-switch-a: #638263;
+    --d-switch-a: #56847a;
     --d-switch-b: #90b1a3;
-    --d-switch-c: #3c4f3c;
+    --d-switch-c: #347365;
     --meta-theme-color-light:#aed4c4;
     --meta-theme-color-dark:#aed4c4;
 }
@@ -14,13 +14,13 @@
 }
 @media (prefers-color-scheme: dark) {
     :root {
-        --g-f4f4f4: #a1c7b7;
+        --g-f4f4f4: #9bc7b4;
         --g-4e4e4e: #347365;
-        --g-e3e3e3: #7ba89c;
+        --g-e3e3e3: #7ba895;
         --g-ffffff: #aed4c4;
-        --d-switch-a: #638263;
+        --d-switch-a: #56847a;
         --d-switch-b: #90b1a3;
-        --d-switch-c: #3c4f3c;
+        --d-switch-c: #347365;
         --meta-theme-color-light:#aed4c4;
         --meta-theme-color-dark:#aed4c4;
     }
