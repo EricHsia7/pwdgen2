@@ -689,7 +689,8 @@ align-items: center;
   </div>
   <div class="border"></div>
   <div class="customs">
-    <li class="customlist"><input type="checkbox"><div class="customlisttxt"></div></li>
+    <li class="customlist"><input type="checkbox"><div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div></li>
+    <li class="customlist"><input type="checkbox"><div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div></li>
   </div>
 </div>
 <div class="history">
@@ -1004,7 +1005,7 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   var len1 = [Math.round(len*(capital)),Math.round(len*(lowercase)),Math.round(len*(number)),Math.round(len*(symbol))]
   
   if(nosimilar) {
-    var chars_all = ['abcdefghkmnpqrstuvxyz','ABCDEFGHKMNPQRSTUVXYZ','23456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
+    var chars_all = ['abcdefghkmnpqrstuvxyz','ABCDEFGHKMNPQRSTUVXYZ','23456789','%-+=/,.)(*&$#@}{][^_~\<>!?})'] ;
   }
   else {
   var chars_all = ['abcdefghijklmnopqrstuvxyz','ABCDEFGHIJKLMNOPQRSTUVXYZ','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
