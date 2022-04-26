@@ -912,12 +912,25 @@ function shuffleSelf(array, size) {
         return array;
     }
 
-function pwd(len) {
+function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   var pwdarr = [] ;
-  var len1 = Math.round(len/4) 
+  if(!(custom_proportion)) {
+    capital= 0.25
+    lowercase = 0.25
+    number = 0.25
+    symbol = 0.25
+  }
+  var len1 = [Math.round(len*(capital)),Math.round(len*(lowercase)),Math.round(len*(number)),Math.round(len*(symbol))]
+  
+  if(nosimilar) {
+    var chars_all = ['abcdefghkmnpqrstuvxyz','ABCDEFGHKMNPQRSTUVXYZ','23456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
+  }
+  else {
   var chars_all = ['abcdefghijklmnopqrstuvxyz','ABCDEFGHIJKLMNOPQRSTUVXYZ','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
+}
+  
   for (var i = 0; i < 4; i++) {
-    for (var ie = 0; ie < len1; ie++) {
+    for (var ie = 0; ie < len1[i]; ie++) {
   var randnum = Math.floor(Math.random() * chars_all[i].length) ; 
       pwdarr.push(chars_all[i].substring(randnum, randnum + 1));
     }
@@ -932,8 +945,9 @@ function pwd(len) {
   }
     var pwdstr = shuffleSelf(pwdarr,pwdarr.length).join('') ;
   }
-  return pwdstr ;
+  return {'str':pwdstr,'customs':{'length':len,'nosimilar':nosimilar,'custom_proportion':custom_proportion,'capital':capital,'lowercase':lowercase,'number':number,'symbol':symbol}} ;
 }
+
 function che(y) {
   if(y < 10) {
     return '0' + y
@@ -1173,7 +1187,7 @@ function gen() {
   else {
   var pwtime = new Date()
   var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-  var pw = pwd(pwlen)
+  var pw = pwd(pwlen,false,false,0.25,0.25,0.25,0.25)
   var pwgid =  gid()
   var pwdvisible = '0'
   var pwdvisible_type = 'password'
