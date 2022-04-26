@@ -66,7 +66,7 @@ align-items: center;
   top:5px;
   left:10px;
   width:calc(100% - 5px - 10px - 45px - 45px);
-  height:calc(100% - 10px);
+  height:35px;
   margin:0px;
   padding:0px;
   font-size:18px
@@ -1192,14 +1192,14 @@ function pwdcustom() {
   
   if($('.btn5').attr('uj') === '0') {
     $('.input').css({'height':'120px'});
-  $('.history').css({'transform':'translateX(-50%) translateY(120px)'});
-  $('.btn5 svg').css({'transform':'rotate(180)'});
+  $('.history').css({'transform':'translateX(-50%) translateY(' + (120-45) + 'px)'});
+  $('.btn5 svg').css({'transform':'rotate(180deg)'});
     $('.btn5').attr('uj','1')
   }
   else {
     $('.input').css({'height':'45px'});
   $('.history').css({'transform':'translateX(-50%) translateY(0px)'});
-  $('.btn5 svg').css({'transform':'rotate(0)'});
+  $('.btn5 svg').css({'transform':'rotate(0deg)'});
     $('.btn5').attr('uj','0')
   }
   
