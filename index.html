@@ -55,6 +55,7 @@ align-items: center;
   left:50%;
   transform:translateX(-50%);
   -webkit-user-select: none;
+  overflow:hidden;
 }
 .input input {
   border:none;
@@ -1188,6 +1189,19 @@ $('.page2 input[type="text"]').keyup(function() {
   saveoptions()
 })
 function pwdcustom() {
+  
+  if($('.btn5').attr('tj') === '0') {
+    $('.input').css({'height':'120px'});
+  $('.history').css({'transform':'translateX(-50%) translateY(120px)'});
+  $('.btn5 svg').css({'transform':'rotate(180)'});
+    $('.btn5').attr('tj','1')
+  }
+  else {
+    $('.input').css({'height':'45px'});
+  $('.history').css({'transform':'translateX(-50%) translateY(0px)'});
+  $('.btn5 svg').css({'transform':'rotate(0)'});
+    $('.btn5').attr('tj','0')
+  }
   
 }
 function gen() {
