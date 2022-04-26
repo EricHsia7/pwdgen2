@@ -144,7 +144,7 @@ align-items: center;
     left:0px;
     width:25px;
     height:25px;
-    border-radius:5px;
+    border-radius:6px;
     background:var(--g-e3e3e3);
   }
   .input .customs input[type="checkbox"]::after {
@@ -154,12 +154,22 @@ align-items: center;
     left:2.5px;
     width:20px;
     height:20px;
-    border-radius:5px;
+    border-radius:6px;
     background:var(--g-4e4e4e);
     opacity:0;
   }
     .input .customs input[type="checkbox"]:checked::after {
     opacity:1;
+  }
+  .input .customlist .customlisttxt{
+  position:absolute;
+  top:5px;
+  left:45px;
+  width:calc(100% - 45px);
+  height:35px;
+  display: flex;
+  align-items: center;
+  color:var(--g-4e4e4e);
   }
 .t2 {
   font-size:18px;
@@ -679,7 +689,7 @@ align-items: center;
   </div>
   <div class="border"></div>
   <div class="customs">
-    <li class="customlist"><input type="checkbox"></li>
+    <li class="customlist"><input type="checkbox"><div class="customlisttxt"></div></li>
   </div>
 </div>
 <div class="history">
