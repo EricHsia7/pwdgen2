@@ -614,7 +614,7 @@ align-items: center;
 <path d="M25.9205 56.7969C27.1586 56.7969 28.1356 56.2552 28.8514 55.1718L56.2745 11.9913C56.526 11.585 56.7098 11.2126 56.8259 10.8741C56.942 10.5355 57 10.1921 57 9.84388C57 9.05069 56.7582 8.41227 56.2745 7.92861C55.7909 7.44496 55.1524 7.20313 54.3593 7.20313C53.7789 7.20313 53.3049 7.31437 52.9373 7.53685C52.5697 7.75933 52.2118 8.14142 51.8636 8.68311L25.8044 50.2095L12.2815 32.5078C11.585 31.5599 10.7531 31.0859 9.78584 31.0859C8.9733 31.0859 8.30586 31.3422 7.78352 31.8549C7.26117 32.3676 7 33.0205 7 33.8137C7 34.1619 7.06771 34.515 7.20313 34.8729C7.33856 35.2308 7.55136 35.5839 7.84156 35.9321L22.9025 55.1138C23.7731 56.2358 24.7791 56.7969 25.9205 56.7969Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/>
 </svg>
   </div>
-  <div class="btn5" id="pwdcustom" ripple-onclick="pwdcustom()">
+  <div class="btn5" id="pwdcustom" ripple-onclick="pwdcustom()" uj="0">
 <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M53.5984 10.2206L10.3816 10.2206C8.84998 10.2206 7.82544 10.9243 7.308 12.3318C6.79056 13.7392 6.92509 15.126 7.71161 16.492L28.637 51.823C29.4235 53.1062 30.5412 53.7582 31.99 53.7789C33.4388 53.7996 34.5565 53.1476 35.343 51.823L56.2063 16.492C57.0756 15.0018 57.2308 13.584 56.672 12.2386C56.1131 10.8933 55.0886 10.2206 53.5984 10.2206Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/>
 </svg>
@@ -842,7 +842,7 @@ var url = new URL(getUrlString);
     };
 })(jQuery);
   
-ripple('.btn','var(--g-4e4e4e)','0.3',888,'true');
+ripple('.btn,.btn5','var(--g-4e4e4e)','0.3',888,'true');
 ripple('.btn2','var(--g-4e4e4e)','0.3',555,'true');
 
 function encu(textu) {
@@ -1190,17 +1190,17 @@ $('.page2 input[type="text"]').keyup(function() {
 })
 function pwdcustom() {
   
-  if($('.btn5').attr('tj') === '0') {
+  if($('.btn5').attr('uj') === '0') {
     $('.input').css({'height':'120px'});
   $('.history').css({'transform':'translateX(-50%) translateY(120px)'});
   $('.btn5 svg').css({'transform':'rotate(180)'});
-    $('.btn5').attr('tj','1')
+    $('.btn5').attr('uj','1')
   }
   else {
     $('.input').css({'height':'45px'});
   $('.history').css({'transform':'translateX(-50%) translateY(0px)'});
   $('.btn5 svg').css({'transform':'rotate(0)'});
-    $('.btn5').attr('tj','0')
+    $('.btn5').attr('uj','0')
   }
   
 }
