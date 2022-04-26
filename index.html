@@ -133,7 +133,7 @@ align-items: center;
     height:0px;
     margin:0px;
     padding:0px;
-    top:12.5;
+    top:12.5px;
     left:5px;
     border:none;
     background:rgba(0, 0, 0, 0)
@@ -692,6 +692,10 @@ align-items: center;
   <div class="customs">
     <li class="customlist"><input type="checkbox"><div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div></li>
     <li class="customlist"><input type="checkbox"><div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div></li>
+    <li class="customlist">Capital:<input type="text" placeholder="percentage" value="25%"></li>
+    <li class="customlist">Lowercase:<input type="text" placeholder="percentage" value="25%"></li>
+    <li class="customlist">Number:<input type="text" placeholder="percentage" value="25%"></li>
+    <li class="customlist">Symbol:<input type="text" placeholder="percentage" value="25%"></li>
   </div>
 </div>
 <div class="history">
@@ -1264,8 +1268,8 @@ $('.page2 input[type="text"]').keyup(function() {
 function pwdcustom() {
   
   if($('.btn5').attr('uj') === '0') {
-    $('.input').css({'height':'141px'});
-  $('.history').css({'transform':'translateX(-50%) translateY(' + (141-45) + 'px)'});
+    $('.input').css({'height':'276px'});
+  $('.history').css({'transform':'translateX(-50%) translateY(' + (276-45) + 'px)'});
   $('.btn5 svg').css({'transform':'rotate(180deg)'});
     $('.btn5').attr('uj','1')
   }
