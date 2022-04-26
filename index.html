@@ -1187,7 +1187,7 @@ function gen() {
   else {
   var pwtime = new Date()
   var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-  var pw = pwd(pwlen,false,false,0.25,0.25,0.25,0.25)
+  var pw = pwd(pwlen,false,false,0.25,0.25,0.25,0.25).str
   var pwgid =  gid()
   var pwdvisible = '0'
   var pwdvisible_type = 'password'
