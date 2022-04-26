@@ -127,6 +127,23 @@ align-items: center;
     position:relative;
     font-size:12px;
   }
+  .input .customs .customlist .customslisttxt2 {
+    position:absolute;
+  top:5px;
+  left:5px;
+  width:90px;
+  height:35px;
+  display: flex;
+  align-items: center;
+  color:var(--g-4e4e4e);
+  }
+  .customslisttxt2 input[type="text"] {
+    position:absolute;
+    top:5px;
+    left:calc(90px + 5px);
+    height:35px;
+    width:90px;
+  }
   .input .customs input[type="checkbox"] {
     position:absolute;
     width:0px;
@@ -692,10 +709,10 @@ align-items: center;
   <div class="customs">
     <li class="customlist"><input type="checkbox"><div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div></li>
     <li class="customlist"><input type="checkbox"><div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div></li>
-    <li class="customlist">Capital:<input type="text" placeholder="percentage" value="25%"></li>
-    <li class="customlist">Lowercase:<input type="text" placeholder="percentage" value="25%"></li>
-    <li class="customlist">Number:<input type="text" placeholder="percentage" value="25%"></li>
-    <li class="customlist">Symbol:<input type="text" placeholder="percentage" value="25%"></li>
+    <li class="customlist"><div class="customslisttxt2">Capital:</div><input type="text" placeholder="percentage" value="25%"></li>
+    <li class="customlist"><div class="customslisttxt2">Lowercase:</div><input type="text" placeholder="percentage" value="25%"></li>
+    <li class="customlist"><div class="customslisttxt2">Number:</div><input type="text" placeholder="percentage" value="25%"></li>
+    <li class="customlist"><div class="customslisttxt2">Symbol:</div><input type="text" placeholder="percentage" value="25%"></li>
   </div>
 </div>
 <div class="history">
@@ -1268,8 +1285,8 @@ $('.page2 input[type="text"]').keyup(function() {
 function pwdcustom() {
   
   if($('.btn5').attr('uj') === '0') {
-    $('.input').css({'height':'276px'});
-  $('.history').css({'transform':'translateX(-50%) translateY(' + (276-45) + 'px)'});
+    $('.input').css({'height':'321px'});
+  $('.history').css({'transform':'translateX(-50%) translateY(' + (321-45) + 'px)'});
   $('.btn5 svg').css({'transform':'rotate(180deg)'});
     $('.btn5').attr('uj','1')
   }
