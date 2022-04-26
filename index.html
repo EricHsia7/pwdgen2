@@ -617,8 +617,6 @@ align-items: center;
 <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
 <path d="M53.5984 10.2206L10.3816 10.2206C8.84998 10.2206 7.82544 10.9243 7.308 12.3318C6.79056 13.7392 6.92509 15.126 7.71161 16.492L28.637 51.823C29.4235 53.1062 30.5412 53.7582 31.99 53.7789C33.4388 53.7996 34.5565 53.1476 35.343 51.823L56.2063 16.492C57.0756 15.0018 57.2308 13.584 56.672 12.2386C56.1131 10.8933 55.0886 10.2206 53.5984 10.2206Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/>
 </svg>
-
-
   </div>
   
 </div>
@@ -1189,6 +1187,9 @@ $('.page2 input[type="text"]').keyup(function() {
   localStorage.setItem('pw_options_' + $(this).attr('jg'),$(this).val())
   saveoptions()
 })
+function pwdcustom() {
+  
+}
 function gen() {
   var pwlen = parseInt($('.input input').val())
   if(pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN'){
