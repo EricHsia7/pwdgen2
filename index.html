@@ -136,13 +136,17 @@ align-items: center;
   display: flex;
   align-items: center;
   color:var(--g-4e4e4e);
+  font-size:15px;
   }
   .customs input[type="text"] {
     position:absolute;
     top:5px;
     left:65px;
     height:35px;
-    width:calc(100% - 65px - 5px);
+    width:120px;
+    font-size:15px;
+    border-radius:0px;
+    border-bottom:1px var(--g-e3e3e3) solid;
   }
   .input .customs input[type="checkbox"] {
     position:absolute;
@@ -709,10 +713,10 @@ align-items: center;
   <div class="customs">
     <li class="customlist"><input type="checkbox"><div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div></li>
     <li class="customlist"><input type="checkbox"><div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div></li>
-    <li class="customlist"><div class="customslisttxt2" style="font-size:16px">Capital:</div><input type="text" placeholder="percentage" value="25%"></li>
-    <li class="customlist"><div class="customslisttxt2" style="font-size:11px">Lowercase:</div><input type="text" placeholder="percentage" value="25%"></li>
-    <li class="customlist"><div class="customslisttxt2" style="font-size:13px">Number:</div><input type="text" placeholder="percentage" value="25%"></li>
-    <li class="customlist"><div class="customslisttxt2" style="font-size:15px">Symbol:</div><input type="text" placeholder="percentage" value="25%"></li>
+    <li class="customlist"><div class="customslisttxt2" >Capital:<input type="text" placeholder="percentage" value="25" inputmode="numeric"></div></li>
+    <li class="customlist"><div class="customslisttxt2" >Lowercase:<input type="text" placeholder="percentage" value="25" inputmode="numeric"></div></li>
+    <li class="customlist"><div class="customslisttxt2" >Number:<input type="text" placeholder="percentage" value="25" inputmode="numeric"></div></li>
+    <li class="customlist"><div class="customslisttxt2" >Symbol:<input type="text" placeholder="percentage" value="25" inputmode="numeric"></div></li>
   </div>
 </div>
 <div class="history">
@@ -747,7 +751,7 @@ message
   <div class="options_list_txt">Default password visible</div>
 <label for="options_defaultpwdvisible" class="switch"><input type="checkbox" id="options_defaultpwdvisible" name="options_defaultpwdvisible" jg="defaultpwdvisible"></label>
 </li>
-    
+         
 <li class="options_list merge-t merge-border-b">
   <div class="options_list_txt" style="font-size:13px;"><span id="autodelpwddaysspan">Auto delete passwords saved&nbsp;--&nbsp;day&nbsp;ago</span></div>
 <label for="options_autodelpwd" class="switch"><input type="checkbox" id="options_autodelpwd" name="options_autodelpwd" jg="autodelpwd"></label>
