@@ -1105,7 +1105,7 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   
   var repair = '-' ;
   if(symbol <= 0.01) {
-    var lenf = len1
+    var lenf = [Math.round(len*(capital)),Math.round(len*(lowercase)),Math.round(len*(number)),Math.round(len*(symbol))]
     lenf.sort(function(a, b) {
   return a - b;
 });
