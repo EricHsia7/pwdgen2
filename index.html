@@ -1103,6 +1103,31 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   var chars_all = ['ABCDEFGHIJKLMNOPQRSTUVXYZ','abcdefghijklmnopqrstuvxyz','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
 }
   
+  var repair = '-' ;
+  if(symbol <= 0.01) {
+    var lenf = len1
+    lenf.sort(function(a, b) {
+  return a - b;
+});
+    lenfmax = lenf[0]
+    if(lenfmax === len1[0]) {
+      var ransgh = Math.floor(Math.random() * chars_all[0].length) ;
+      repair = chars_all[0].substring(ransgh, ransgh + 1)
+    }
+    if(lenfmax === len1[1]) {
+      var ransgh = Math.floor(Math.random() * chars_all[1].length) ;
+      repair = chars_all[1].substring(ransgh, ransgh + 1)
+    }
+    if(lenfmax === len1[2]) {
+      var ransgh = Math.floor(Math.random() * chars_all[2].length) ;
+      repair = chars_all[2].substring(ransgh, ransgh + 1)
+    }
+    if(lenfmax === len1[3]) {
+      var ransgh = Math.floor(Math.random() * chars_all[3].length) ;
+      repair = chars_all[3].substring(ransgh, ransgh + 1)
+    }
+    
+  }
   for (var i = 0; i < 4; i++) {
     for (var ie = 0; ie < len1[i]; ie++) {
   var randnum = Math.floor(Math.random() * chars_all[i].length) ; 
@@ -1115,7 +1140,7 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   }
   else {
     for (var y = 0; y < (len-pwdstr.length); y++) {
-      pwdarr.push('-')
+      pwdarr.push(repair)
   }
     var pwdstr = shuffleSelf(pwdarr,pwdarr.length).join('') ;
   }
