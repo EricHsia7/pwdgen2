@@ -1382,7 +1382,7 @@ function cgbwfn(l,e) {
     $('.cgbw').eq(l).attr('gh','0')
   }
   var cgbwft = cgbwsj()
-  $('#cgbwprop').html('Capital:' + cgbwft[0] + '%&nbsp;Lowercase:' + cgbwft[1] + '%&nbsp;Number:' + cgbwft[2] + '%&nbsp;Symbol:' + cgbwft[3] + '%')
+  $('#cgbwprop').html('Capital:' + parseInt(cgbwft[0]*100) + '%&nbsp;Lowercase:' + parseInt(cgbwft[1]*100) + '%&nbsp;Number:' + parseInt(cgbwft[2]*100) + '%&nbsp;Symbol:' + parseInt(cgbwft[3]*100) + '%')
 }
 var cgbwtd = false 
 document.querySelectorAll('.cgbw')[0].addEventListener('touchstart',function(e) {
