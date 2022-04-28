@@ -673,12 +673,13 @@ align-items: center;
 }
 
 .cgb {
-  position:relative;
+  position:absolute;
   width:calc(100% - 20px);
   height:25px;
   background:var(--g-e3e3e3);
   border-radius:5px;
   left:10px;
+  top:calc(45px * 3 + 1px);
 }
 .cgbw {
   position:absolute;
@@ -688,7 +689,7 @@ align-items: center;
   height:100%;
   background:var(--g-4e4e4e);
   border-radius:5px;
-  transition:height 0.3s
+  transition:height 0.3s;
 }
 .cgbw:before {
   content:'';
@@ -775,12 +776,12 @@ align-items: center;
   <div class="customs">
     <li class="customlist"><input type="checkbox" id="dontusesimilarchars"><div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div></li>
     <li class="customlist"><input type="checkbox" id="cuschaprop"><div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div></li>
+    <li class="customlist" style="position:absolute;left:0px;top:calc(45px * 3 + 1px + 35px);"><div class="customlisttxt" id="cgbwprop">Capital:25%&nbsp;Lowercase:25%&nbsp;Number:25%&nbsp;Symbol:25%</div></li>
     <div class="cgb">
   <div class="cgbw" jwf="0" style="left:25%" kp="0.25"></div>
   <div class="cgbw" jwf="1" style="left:50%" kp="0.5"></div>
   <div class="cgbw" jwf="2" style="left:75%" kp="0.75"></div>
 </div>
-    <li class="customlist"><div class="customlisttxt" id="cgbwprop">Capital:25%&nbsp;Lowercase:25%&nbsp;Number:25%&nbsp;Symbol:25%</div></li>
   </div>
 </div>
 <div class="history">
