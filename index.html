@@ -766,8 +766,8 @@ align-items: center;
   </div>
   <div class="border"></div>
   <div class="customs">
-    <li class="customlist"><input type="checkbox"><div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div></li>
-    <li class="customlist"><input type="checkbox"><div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div></li>
+    <li class="customlist"><input type="checkbox" id="dontusesimilarchars"><div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div></li>
+    <li class="customlist"><input type="checkbox" id="cuschaprop"><div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div></li>
     <div class="cgb">
   <div class="cgbw" jwf="0" style="left:25%" kp="0.25"></div>
   <div class="cgbw" jwf="1" style="left:50%" kp="0.5"></div>
@@ -1357,7 +1357,6 @@ function cgbwsj() {
  var ch_c = carr[2]-carr[1]
  var ch_d = 1-carr[2]
  var ch_all = [ch_a,ch_b,ch_c,ch_d]
-  console.log(ch_all)
 }
 function cgbwfn(l,e) {
   e.preventDefault()
@@ -1441,7 +1440,10 @@ function gen() {
   else {
   var pwtime = new Date()
   var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-  if(false) {
+   
+  var cushapropg = $('#cuschaprop').prop('checked')
+  var dontusesimilarcharsg = $('#dontusesimilarchars').prop('checked')
+  if(cushapropg) {
     var pww = cgbwsj()
     var pw_a = pww[0]
     var pw_b = pww[1]
@@ -1454,7 +1456,7 @@ function gen() {
     var pw_c = 0.25
     var pw_d = 0.25
   }
-  var pw = pwd(pwlen,false,false,pw_a,pw_b,pw_c,pw_d).str
+  var pw = pwd(pwlen,dontusesimilarcharsg,cushapropg,pw_a,pw_b,pw_c,pw_d).str
   var pwgid =  gid()
   var pwdvisible = '0'
   var pwdvisible_type = 'password'
