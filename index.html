@@ -773,6 +773,7 @@ align-items: center;
   <div class="cgbw" jwf="1" style="left:50%" kp="0.5"></div>
   <div class="cgbw" jwf="2" style="left:75%" kp="0.75"></div>
 </div>
+    <li class="customlist"><div class="customlisttxt" id="cgbwprop">Capital:25%&nbsp;Lowercase:25%&nbsp;Number:25%&nbsp;Symbol:25%</div></li>
   </div>
 </div>
 <div class="history">
@@ -1380,6 +1381,8 @@ function cgbwfn(l,e) {
   else {
     $('.cgbw').eq(l).attr('gh','0')
   }
+  var cgbwft = cgbwsj()
+  $('#cgbwprop').html('Capital:' + cgbwft[0] + '%&nbsp;Lowercase:' + cgbwft[1] + '%&nbsp;Number:' + cgbwft[2] + '%&nbsp;Symbol:' + cgbwft[3] + '%')
 }
 var cgbwtd = false 
 document.querySelectorAll('.cgbw')[0].addEventListener('touchstart',function(e) {
