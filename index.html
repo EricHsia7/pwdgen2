@@ -664,6 +664,59 @@ align-items: center;
 .themecircle[od="dark-blue"] {
   background:#20283a;
 }
+
+.cgb {
+  position:relative;
+  width:calc(100% - 10px);
+  height:25px;
+  background:var(--g-e3e3e3);
+  border-radius:5px;
+}
+.cgbw {
+  position:absolute;
+  top:0px;
+  left:0%;
+  width:3px;
+  height:100%;
+  background:var(--g-4e4e4e);
+  border-radius:5px;
+  transition:height 0.3s
+}
+.cgbw:before {
+  content:'';
+  position:absolute;
+  top:0px;
+  left:-6px;
+  background:rgba(0, 0, 0,0);
+  width:15px;
+  height:50px;
+}
+.cgbw[gh="1"] {
+  height:30px;
+}
+
+.cgbw:after {
+  content:'';
+  position:absolute;
+  top:25px;
+  right:0px;
+  width:15px;
+  height:22px;
+  background:var(--g-4e4e4e);
+  opacity:0;
+  transform:translateX(calc(50% - 1.5px)) scale(0); 
+  clip-path:path('M7.5 0C7.5 0 6.62992 1.25123 5.52546 2.93899C4.42101 4.62674 3.08218 6.75102 2.14468 8.49711C1.20718 10.2432 0.671007 11.4019 0.369213 12.2286C0.067419 13.0554 0 13.5503 0 13.9688L0 14.25L0 14.5312C0 16.4488 0.797787 18.151 2.08731 19.4016C3.37682 20.6523 5.15807 21.4513 7.125 21.5625L7.5 21.5625L7.875 21.5625C9.84193 21.4513 11.6232 20.6523 12.9127 19.4016C14.2022 18.151 15 16.4488 15 14.5312L15 14.25L15 13.9688C15 13.5503 14.9276 13.0475 14.6208 12.2128C14.314 11.3781 13.7729 10.2115 12.8354 8.46544C11.8979 6.71934 10.564 4.60298 9.46455 2.92315C8.36509 1.24331 7.5 0 7.5 0Z');
+  
+}
+.cgbw[gh="1"]:after {
+  opacity:1;
+  transform:translateX(calc(50% - 1.5px)) scale(1); 
+}
+.cgbw:after {
+  content:'';
+  transition:0.3s;
+  transform-origin:50% 0%;
+}
 </style>
   <style id="themestyle">
   :root {
@@ -714,10 +767,11 @@ align-items: center;
   <div class="customs">
     <li class="customlist"><input type="checkbox"><div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div></li>
     <li class="customlist"><input type="checkbox"><div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div></li>
-    <li class="customlist"><div class="customslisttxt2" >Capital:<input type="text" placeholder="percentage" value="25" inputmode="numeric">%</div></li>
-    <li class="customlist"><div class="customslisttxt2" >Lowercase:<input type="text" placeholder="percentage" value="25" inputmode="numeric">%</div></li>
-    <li class="customlist"><div class="customslisttxt2" >Number:<input type="text" placeholder="percentage" value="25" inputmode="numeric">%</div></li>
-    <li class="customlist"><div class="customslisttxt2" >Symbol:<input type="text" placeholder="percentage" value="25" inputmode="numeric">%</div></li>
+    <div class="cgb">
+  <div class="cgbw" jwf="0" style="left:25%" kp="0.25"></div>
+  <div class="cgbw" jwf="1" style="left:50%" kp="0.5"></div>
+  <div class="cgbw" jwf="2" style="left:75%" kp="0.75"></div>
+</div>
   </div>
 </div>
 <div class="history">
@@ -1287,11 +1341,85 @@ $('.page2 input[type="text"]').keyup(function() {
   localStorage.setItem('pw_options_' + $(this).attr('jg'),$(this).val())
   saveoptions()
 })
+
+function cgbwsj() {
+  var c1 = parseFloat($('.cgbw').eq(0).attr('kp'))
+  var c2 = parseFloat($('.cgbw').eq(1).attr('kp'))
+  var c3 = parseFloat($('.cgbw').eq(2).attr('kp'))
+  
+  var carr = [c1,c2,c3]
+  carr.sort(function(a, b) {
+  return a - b;
+});
+ var ch_a = carr[0]
+ var ch_b = carr[1]-carr[0]
+ var ch_c = carr[2]-carr[1]
+ var ch_d = 1-carr[2]
+ var ch_all = [ch_a,ch_b,ch_c,ch_d]
+  console.log(ch_all)
+}
+function cgbwfn(l,e) {
+  e.preventDefault()
+  if(cgbwtd) {
+    
+  
+  var pgx = e.pageX
+  var pgfl = $('.cgb').offset().left
+  var pgw = $('.cgb').width()-3
+  var pgsl = $(document).scrollLeft()
+  var hx = pgx-pgfl-pgsl
+  if(hx < 0 ) {
+    hx = 0
+  }
+  if(hx > pgw) {
+    hx = pgw
+  }
+  $('.cgbw').eq(l).css({'left':hx}).attr('kp',hx/pgw).attr('gh','1')
+  }
+  else {
+    $('.cgbw').eq(l).attr('gh','0')
+  }
+}
+var cgbwtd = false 
+document.querySelectorAll('.cgbw')[0].addEventListener('touchstart',function(e) {
+  cgbwtd = true
+})
+document.querySelectorAll('.cgbw')[1].addEventListener('touchstart',function(e) {
+  cgbwtd = true
+})
+document.querySelectorAll('.cgbw')[2].addEventListener('touchstart',function(e) {
+  cgbwtd = true
+})
+
+document.querySelectorAll('.cgbw')[0].addEventListener('touchend',function(e) {
+  cgbwtd = false
+  $('.cgbw').eq(0).attr('gh','0')
+})
+document.querySelectorAll('.cgbw')[1].addEventListener('touchend',function(e) {
+  cgbwtd = false
+  $('.cgbw').eq(1).attr('gh','0')
+})
+document.querySelectorAll('.cgbw')[2].addEventListener('touchend',function(e) {
+  cgbwtd = false
+  $('.cgbw').eq(2).attr('gh','0')
+})
+
+
+document.querySelectorAll('.cgbw')[0].addEventListener('touchmove',function(e) {
+  cgbwfn(0,e)
+})
+document.querySelectorAll('.cgbw')[1].addEventListener('touchmove',function(e) {
+  cgbwfn(1,e)
+})
+document.querySelectorAll('.cgbw')[2].addEventListener('touchmove',function(e) {
+  cgbwfn(2,e)
+})
+
 function pwdcustom() {
   
   if($('.btn5').attr('uj') === '0') {
-    $('.input').css({'height':'321px'});
-  $('.history').css({'transform':'translateX(-50%) translateY(' + (321-45) + 'px)'});
+    $('.input').css({'height':'200px'});
+  $('.history').css({'transform':'translateX(-50%) translateY(' + (200-45) + 'px)'});
   $('.btn5 svg').css({'transform':'rotate(180deg)'});
     $('.btn5').attr('uj','1')
   }
@@ -1312,7 +1440,20 @@ function gen() {
   else {
   var pwtime = new Date()
   var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-  var pw = pwd(pwlen,false,false,0.25,0.25,0.25,0.25).str
+  if(false) {
+    var pww = cgbwsj()
+    var pw_a = pww[0]
+    var pw_b = pww[1]
+    var pw_c = pww[2]
+    var pw_d = pww[3]
+  }
+  else {
+    var pw_a = 0.25
+    var pw_b = 0.25
+    var pw_c = 0.25
+    var pw_d = 0.25
+  }
+  var pw = pwd(pwlen,false,false,pw_a,pw_b,pw_c,pw_d).str
   var pwgid =  gid()
   var pwdvisible = '0'
   var pwdvisible_type = 'password'
