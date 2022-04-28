@@ -1095,10 +1095,10 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   var len1 = [Math.round(len*(capital)),Math.round(len*(lowercase)),Math.round(len*(number)),Math.round(len*(symbol))]
   
   if(nosimilar) {
-    var chars_all = ['abcdefghkmnpqrstuvxyz','ABCDEFGHKMNPQRSTUVXYZ','23456789','%-+=/,.)(*&$#@}{][^_~\<>!?})'] ;
+    var chars_all = ['ABCDEFGHKMNPQRSTUVXYZ','abcdefghkmnpqrstuvxyz','23456789','%-+=/,.)(*&$#@}{][^_~\<>!?})'] ;
   }
   else {
-  var chars_all = ['abcdefghijklmnopqrstuvxyz','ABCDEFGHIJKLMNOPQRSTUVXYZ','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
+  var chars_all = ['ABCDEFGHIJKLMNOPQRSTUVXYZ','abcdefghijklmnopqrstuvxyz','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
 }
   
   for (var i = 0; i < 4; i++) {
