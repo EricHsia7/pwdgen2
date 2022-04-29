@@ -1231,18 +1231,19 @@ function checkpwd(pwdstr) {
  if(rsp <= 0) {
    rsp = 0
  }
-  
+var rspkk = Math.floor(rsp*100)
+
 var rspst = '--'
- if(rsp >= 85 && rsp <= 100) {
+ if(rspkk >= 85 && rspkk <= 100) {
   rspst = 'Strong'
  }
-  if(rsp >= 65 && rsp < 85) {
+  if(rspkk >= 65 && rspkk < 85) {
    rspst = 'Passable'
  }
-  if(rsp >= 45 && rsp < 65) {
+  if(rspkk >= 45 && rspkk < 65) {
    rspst = 'Fragile'
  }
-  if(rsp >= 0 && rsp < 45) {
+  if(rspkk >= 0 && rspkk < 45) {
    rspst = 'Unsafe'
  }
   
