@@ -1146,7 +1146,81 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   }
   return {'str':pwdstr,'customs':{'length':len,'nosimilar':nosimilar,'custom_proportion':custom_proportion,'capital':capital,'lowercase':lowercase,'number':number,'symbol':symbol}} ;
 }
-
+function checkpwd(pwdstr) {
+  var chars_all = ['ABCDEFGHIJKLMNOPQRSTUVXYZ','abcdefghijklmnopqrstuvxyz','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
+  var chars_c = 0
+  var chars_l = 0
+  var chars_n = 0
+  var chars_s = 0
+  var pwdarr = pwdstr.split('')
+  for (var i = 0; i < pwdarr.length; i++) {
+    for (var t = 0; t < chars_all.length; t++) {
+      if(String(chars_all[t]).indexOf(pwdarr[i]) > -1) {
+        if(t === 0) {
+          chars_c +=1
+        }
+        if(t === 1) {
+          chars_l +=1
+        }
+        if(t === 2) {
+          chars_n +=1
+        }
+        if(t === 3) {
+          chars_s +=1
+        }
+      }
+    }
+  }
+  
+  //repeatchars
+  var rreajson = {}
+  var rrea = pwdstr.split('')
+  rrea.sort()
+  
+  for (var e = 0; e < rrea.length; e++) {
+    var rrajsonname = btoa(encodeURIComponent(rrea[e])).replaceAll('=','_')
+    if(eval('rreajson.' + rrajsonname) === undefined) {
+      eval('rreajson.' + rrajsonname + ' = 1')
+    }
+    else {
+      eval('rreajson.' + rrajsonname + ' = parseInt(rreajson.' + rrajsonname + ')+1')
+    }
+  }
+  var rreaal = 0 
+  var rreatp = 0
+  for(var x in rreajson) {
+    rreaal += eval('rreajson.' + x)
+    rreatp +=1
+  }
+  var lenT = 64
+  var len0 = pwdstr.length
+  var len1 = chars_c+chars_l+chars_n+chars_s
+  var len2 = (len0-len1)
+  
+ var cpp = Math.floor(chars_c/len1*100)
+ var lpp = Math.floor(chars_l/len1*100)
+ var npp = Math.floor(chars_n/len1*100)
+ var spp = Math.floor(chars_s/len1*100)
+ 
+ var bhc = Math.abs(25-cpp)
+ var bhl = Math.abs(25-lpp)
+ var bhn = Math.abs(25-npp)
+ var bhs = Math.abs(25-spp)
+ var bha = (bhc+bhl+bhn+bhs)/4
+ 
+ var bhrrea =  (rreaal/rreatp)/len0
+ 
+ var rsp = (len1-((bha/100)*len1)+len2*0.02)/len0*0.5+(len0/lenT)*0.5-(bhrrea*0.2)
+  
+ if(rsp >= 1) {
+   rsp = 1
+ }
+ if(rsp <= 0) {
+   rsp = 0
+ }
+ 
+  return Math.floor(rsp*100)
+  
 function che(y) {
   if(y < 10) {
     return '0' + y
@@ -1551,6 +1625,33 @@ function autodeletesavedpwd() {
   }
   }
 }
+  function scrollcheckpwd() {
+    
+    //j
+      var scrollxselect = '.box'
+     $(document).scroll(function() {
+      var dftuuarr = [] ;
+  for (var i = 0; i < $(scrollxselect).length; i++) {
+    var thswww = $(scrollxselect).eq(i).offset().top-$(document).scrollTop()
+    var thshh = $(scrollxselect).eq(i).height()
+    if(thswww > (0-thshh) && thswww < window.innerHeight) {
+     var thsfid = String($(scrollxselect).eq(i).attr('f'))
+     if($('.box[f="' + thsfid + '"]').attr('stch') === '0') {
+       $('.box[f="' + thsfid + '"]').attr('stch','1')
+     var thsstr = $('input[u="' + thsfid + '"]').val()
+     var thspt = checkpwd(thsstr)
+     $('.box[f="' + thsfid + '"] .boxtitle').html($('.box[f="' + thsfid + '"] .boxtitle').text() + '<div class="checkpwd" pt="' + thspt + '">' + thspt + '</div>'):
+     }
+      
+    }
+    
+  }
+      
+      
+});
+    
+    //j
+  }
   function sharedback() {
     window.location.replace('https://erichsia7.github.io/pwdgen2/')
   }
@@ -1605,12 +1706,13 @@ function showsavedhistory() {
   pwdvisible_type = 'text'
   }
 
-  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '"><div class="boxtitle">' + pwtimestr + '</div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
+  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0"><div class="boxtitle">' + pwtimestr + '</div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
      }
    }
  }
  $('.history .loading').remove()
+ 
  },1200);
  }
 else {
