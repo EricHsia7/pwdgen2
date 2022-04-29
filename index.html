@@ -1109,7 +1109,7 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
     lenf.sort(function(a, b) {
   return a - b;
 });
-    lenfmax = lenf[0]
+    lenfmax = lenf.reverse()[0]
     if(lenfmax === len1[0]) {
       var ransgh = Math.floor(Math.random() * chars_all[0].length) ;
       repair = chars_all[0].substring(ransgh, ransgh + 1)
