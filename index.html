@@ -1668,8 +1668,13 @@ function autodeletesavedpwd() {
        $('.box[f="' + thsfid + '"]').attr('stch','1')
      var thsstr = $('input[u="' + thsfid + '"]').val()
      var thspt = checkpwd(thsstr)
-     
-     $('.box[f="' + thsfid + '"] .boxtitle').html($('.box[f="' + thsfid + '"] .boxtitle').text() + '<div class="checkpwd" pt="' + thspt.p + '">' + thspt.str + '</div>')
+     var thstime = parseInt(String($('.box[f="' + thsfid + '"]').attr('t')))
+
+     var pwtime = new Date()
+     pwtime.setTime(thstime)
+     var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+  
+     $('.box[f="' + thsfid + '"] .boxtitle').html(pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '">' + thspt.str + '</div>')
      }
       
     }
