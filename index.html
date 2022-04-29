@@ -246,16 +246,18 @@ align-items: center;
   -webkit-user-select: none;
 }
 .box .checkpwd {
-position:absolute;
-  top:0px;
-  right:0px;
   height:25px;
-  width:50px;
+  width:80px;
   background:var(--g-e3e3e3);
   border-radius:12px;
   display: flex;
 justify-content: center;
 align-items: center;
+  font-size:12px;
+  position:absolute;
+  top:0px;
+  right:0px;
+  
   }
 .box input {
   width:clac(100% - 30px);
@@ -1229,8 +1231,22 @@ function checkpwd(pwdstr) {
  if(rsp <= 0) {
    rsp = 0
  }
- 
-  return Math.floor(rsp*100)
+  
+
+ if(rsp >= 85 && <= 100) {
+  var rspst = 'Strong'
+ }
+  if(rsp >= 65 && < 85) {
+  var rspst = 'Passable'
+ }
+  if(rsp >= 45 && < 65) {
+  var rspst = 'Fragile'
+ }
+  if(rsp >= 0 && < 45) {
+  var rspst = 'Unsafe'
+ }
+  
+  return {'p':Math.floor(rsp*100),'str':rspst}
 }
 function che(y) {
   if(y < 10) {
@@ -1651,7 +1667,8 @@ function autodeletesavedpwd() {
        $('.box[f="' + thsfid + '"]').attr('stch','1')
      var thsstr = $('input[u="' + thsfid + '"]').val()
      var thspt = checkpwd(thsstr)
-     $('.box[f="' + thsfid + '"] .boxtitle').html($('.box[f="' + thsfid + '"] .boxtitle').text() + '<div class="checkpwd" pt="' + thspt + '">' + thspt + '</div>')
+     
+     $('.box[f="' + thsfid + '"] .boxtitle').html($('.box[f="' + thsfid + '"] .boxtitle').text() + '<div class="checkpwd" pt="' + thspt.p + '">' + thspt.str + '</div>')
      }
       
     }
