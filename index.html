@@ -1233,16 +1233,16 @@ function checkpwd(pwdstr) {
  }
   
 var rspst = '--'
- if(rsp >= 85 && <= 100) {
+ if(rsp >= 85 && rsp <= 100) {
   rspst = 'Strong'
  }
-  if(rsp >= 65 && < 85) {
+  if(rsp >= 65 && rsp < 85) {
    rspst = 'Passable'
  }
-  if(rsp >= 45 && < 65) {
+  if(rsp >= 45 && rsp < 65) {
    rspst = 'Fragile'
  }
-  if(rsp >= 0 && < 45) {
+  if(rsp >= 0 && rsp < 45) {
    rspst = 'Unsafe'
  }
   
