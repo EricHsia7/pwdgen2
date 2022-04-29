@@ -1232,18 +1232,18 @@ function checkpwd(pwdstr) {
    rsp = 0
  }
   
-
+var rspst = '--'
  if(rsp >= 85 && <= 100) {
-  var rspst = 'Strong'
+  rspst = 'Strong'
  }
   if(rsp >= 65 && < 85) {
-  var rspst = 'Passable'
+   rspst = 'Passable'
  }
   if(rsp >= 45 && < 65) {
-  var rspst = 'Fragile'
+   rspst = 'Fragile'
  }
   if(rsp >= 0 && < 45) {
-  var rspst = 'Unsafe'
+   rspst = 'Unsafe'
  }
   
   return {'p':Math.floor(rsp*100),'str':rspst}
