@@ -46,7 +46,7 @@ align-items: center;
   background-repeat:repeat;
 }
 .bottom {
-  height:calc(45px + env(safe-area-inset-bottom));
+  height:calc(55px + env(safe-area-inset-bottom) - 10px);
   width:100%;
   position:fixed;
   left:0px;
@@ -60,7 +60,7 @@ align-items: center;
   .bottom-btn {
     position:absolute;
     width:calc(100% / 2);
-    height:45px;
+    height:55px;
     top:0px;
     left:calc((100% / 2) * var(--n-btn-x));
     display: flex;
@@ -768,7 +768,7 @@ align-items: center;
 </style>
   <style id="iphonesafearea">
     :root {
-     --fx-bth:calc(55px + 34px)
+     --fx-bth:calc(55px + 24px)
     }
     @media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
         .bottom {
