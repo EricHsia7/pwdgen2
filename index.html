@@ -1803,7 +1803,7 @@ function autodeletesavedpwd() {
      if($('.box[f="' + thsfid + '"]').attr('stch') === '0') {
        $('.box[f="' + thsfid + '"]').attr('stch','1')
      var thsstr = $('input[u="' + thsfid + '"]').val()
-     var thspt = checkpwd(thsstr)
+     var thspt = checkpwd(thsstr,true,thsfid)
      var thstime = parseInt(String($('.box[f="' + thsfid + '"]').attr('t')))
 
      var pwtime = new Date()
