@@ -807,6 +807,26 @@ align-items: center;
    -webkit-user-select: none;
   color:var(--g-4e4e4e);
 }
+.chpw_details {
+  width:100%;
+}
+.chpw_details h1 ,.chpw_details h3 ,.chpw_details h4,.chpw_details li,.chpw_details h5{
+  margin:0px;
+  padding:3px 0px;
+}
+.chpw_details h3 {
+  font-size:25px;
+}
+.chpw_details h4 {
+  font-size:20px;
+}
+.chpw_details h5 {
+  font-size:18px;
+}
+.chpw_details li{
+  list-style:none;
+  font-size:15px;
+}
 </style>
   <style id="iphonesafearea">
     :root {
@@ -936,6 +956,35 @@ align-items: center;
     <style id="pcphstyle"></style>
   </div>
 
+    
+<div class="chpw_details">
+  <div class="dettit">
+    <h1>Details</h1>
+  </div>
+  
+  <h3>Evenly distributed - <span id="chpwevdis"></span></h3>
+    <h4>If you get a high score.</h4>
+    <li>Contains capital, lowercase, numbers, symbols, and evenly distributed.</li>
+  <h4>If you get a low score.</h4>
+    <li>Chars are single or no evenly distributed.</li>
+    <h5>Example</h5>
+    <li>abcdefg(Lowercase only.)</li>
+    <li>abcdef8(The proportion of alphabets and numbers varies greatly.)</li>
+  
+  <h3>Length - <span id="chpwlen"></span></h3>
+  <h4>If you get a high score.</h4>
+  <li>Password is long enough.</li>
+  <h4>If you get a low score.</h4>
+  <li>Password length too short.</li>
+  
+  <h3>Repeat - <span id="chpwrepeat"></span></h3>
+  <h4>If you get a high score.</h4>
+  <li>Lots of repeated characters.</li>
+  <h4>If you get a low score.</h4>
+  <li>No massive repetition of characters.</li>
+</div>
+    
+    
 </div>
   
 <div class="mes">
@@ -2009,6 +2058,9 @@ $('#pcphstyle').html(pcphanimate)
   function checkpwfv() {
     var chpwpt = checkpwd($('.input2 input').val(),false)
     setpcph(chpwpt.p)
+    $('#chpwevdis').text(parseInt(chpwpt.details.evdis))
+    $('#chpwlen').text(parseInt(chpwpt.details.len))
+    $('#chpwrepeat').text(parseInt(chpwpt.details.repeat))
     
   }
   //end
