@@ -1959,6 +1959,11 @@ function autodeletesavedpwd() {
   function sharedback() {
     window.location.replace('https://erichsia7.github.io/pwdgen2/')
   }
+  function showpwcheckdet(gid) {
+    $('.input2 input').val($('input[u="' + gid + '"]').attr('value'))
+    checkpwfv()
+    bpage('b')
+  }
   function showshared() {
   var pwtime = new Date()
   pwtime.setTime(url.searchParams.get('t'))
@@ -1984,6 +1989,7 @@ function autodeletesavedpwd() {
   $('.input').append('<div class="ipttxt">Back to generator</div>');
   $('.history').prepend('<div class="box shared" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0"><div class="boxtitle">' + pwtimestr + '</div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="' + sharedpwdsaved + '">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
+  
 }
 
 function showsavedhistory() {
@@ -2018,8 +2024,10 @@ var thspt = checkpwd(pw)
   else {
   var thspt = {'p':'--','str':'--'}
   }
-  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
+  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
+  ripple('.checkpwd[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
+  
      }
    }
  }
