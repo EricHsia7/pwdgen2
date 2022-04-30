@@ -953,14 +953,7 @@ align-items: center;
   </div>
   <div class="checkpwdp">
   <div class="chpwfra">
-    <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
-      <path d="M64 19L64 19C88.8528 19 109 39.1472 109 64L109 64C109 88.8528 88.8528 109 64 109L64 109C39.1472 109 19 88.8528 19 64L19 64C19 39.1472 39.1472 19 64 19Z" fill="none" fill-rule="evenodd" opacity="1" stroke="var(--g-e3e3e3)" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.84857" />
-
-      <path d="M64 19L64 19C88.8528 19 109 39.1472 109 64L109 64C109 88.8528 88.8528 109 64 109L64 109C39.1472 109 19 88.8528 19 64L19 64C19 39.1472 39.1472 19 64 19Z" fill="none" fill-rule="evenodd" opacity="1" stroke="var(--g-4e4e4e)" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.84857" id="pchpit" />
-    </svg>
     <div class="chpwfratxt">--</div>
-    <style id="pcphstyle"></style>
   </div>
 
     
@@ -2053,21 +2046,13 @@ $('.history .loading').remove()
   }
   setoptions()
   //checkpwpage
-  function setpcph(pt) {
-$('#pchpit').attr('class','')
-var pcphanimate = '.pchpitan {animation-name: pchp;animation-duration: 0.75s;animation-timing-function: ease-out;animation-fill-mode: forwards;}@keyframes pchp {0% {stroke-dashoffset: 282px;}100% {stroke-dashoffset: ' + (282-282*pt/100) + 'px;}}'
-$('.chpwfratxt').text(pt)
-$('#pcphstyle').html(pcphanimate)
-  setTimeout(function() {
-    $('#pchpit').attr('class','pchpitan')
-  },1)
-}
+  
   function checkpwfv() {
     var chpwpt = checkpwd($('.input2 input').val(),false)
-    setpcph(chpwpt.p)
-    $('#chpwevdis').text(parseInt(chpwpt.details.evdis))
-    $('#chpwlen').text(parseInt(chpwpt.details.len))
-    $('#chpwrepeat').text(parseInt(chpwpt.details.repeat))
+    $('.chpwfratxt').html(chpwpt.p + '/100<br>Your password is ' + String(chpwpt.str).toLowerCase() + '.')
+    $('#chpwevdis').text(parseInt(chpwpt.details.evdis) + '/100')
+    $('#chpwlen').text(parseInt(chpwpt.details.len) + '/100')
+    $('#chpwrepeat').text(parseInt(chpwpt.details.repeat) + '/100')
     $('.chpw_details').css({'display':'block'});
   }
   //end
