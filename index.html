@@ -1044,7 +1044,7 @@ message
 </li>
 
 <li class="options_list merge-b" dsb="1" dy="autodelpwd">
-  <div class="options_list_txt"><input type="text" placeholder="days" id="autodelpwddaystt" jg="autodelpwddaystt" inputmode="decimal"></div>
+  <div class="options_list_txt"><input type="text" placeholder="days" id="autodelpwddaystt" jg="autodelpwddaystt" inputmode="numeric"></div>
   <div class="options_list_cg" dy="autodeldaysdvpx">days</div>
 </li>
 
@@ -1900,9 +1900,9 @@ function gen() {
 
 function autodeletesavedpwd() {
   if(localStorage.getItem('pw_options_autodelpwddaystt') === '1') {
-  if(parseFloat(String(localStorage.getItem('pw_options_autodelpwddaystt'))) > 0) {
+  if(parseInt(String(localStorage.getItem('pw_options_autodelpwddaystt'))) > 0) {
   var nwtime = new Date().getTime()
-  var deltime = 86400000*parseFloat(String(localStorage.getItem('pw_options_autodelpwddaystt')))
+  var deltime = 86400000*parseInt(String(localStorage.getItem('pw_options_autodelpwddaystt')))
   var dellist = []
   var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
   
