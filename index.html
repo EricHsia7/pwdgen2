@@ -1439,15 +1439,16 @@ var rspst = '--'
   var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
   sessionStorage.setItem(psehash,Math.floor(rsp*100))
   }
-  var det_avg = (len1-((bha/100)*len1)+len2*0.02)/len0*100
+  var det_evdis = (len1-((bha/100)*len1)+len2*0.02)/len0*100
+  //Evenly distributed
   var det_len = (len0/lenT)*100
   var det_repeat = (bhrrea*100)
   
-  if(det_avg >= 100) {
-   det_avg = 100
+  if(det_evdis >= 100) {
+   det_evdis = 100
  }
- if(det_avg <= 0) {
-   det_avg = 0
+ if(det_evdis <= 0) {
+   det_evdis = 0
  }
   if(det_len >= 100) {
    det_len = 100
@@ -1461,7 +1462,7 @@ var rspst = '--'
  if(det_repeat <= 0) {
    det_repeat = 0
  }
-  return {'p':Math.floor(rsp*100),'str':rspst,'details':{'avg':det_avg,'len':det_len,'repeat':det_repeat}}
+  return {'p':Math.floor(rsp*100),'str':rspst,'details':{'evdis':det_evdis,'len':det_len,'repeat':det_repeat}}
 }
 function che(y) {
   if(y < 10) {
