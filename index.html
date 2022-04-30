@@ -1259,7 +1259,33 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   }
   return {'str':pwdstr,'customs':{'length':len,'nosimilar':nosimilar,'custom_proportion':custom_proportion,'capital':capital,'lowercase':lowercase,'number':number,'symbol':symbol}} ;
 }
-function checkpwd(pwdstr) {
+function checkpwd(pwdstr,cache,gid) {
+  
+  if(cache) {
+  var ddt = $('.box[f="' + gid + '"]').attr('t')
+  var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
+  if(!(localStorage.getItem(psehash) === null)) {
+  
+  var ccrspst = '--'
+  var ccrspkk = parseInt(String(localStorage.getItem(psehash)))
+ if(ccrspkk >= 85 && ccrspkk <= 100) {
+  ccrspst = 'Strong'
+ }
+  if(ccrspkk >= 60 && ccrspkk < 85) {
+   ccrspst = 'Passable'
+ }
+  if(ccrspkk >= 45 && ccrspkk < 60) {
+   ccrspst = 'Fragile'
+ }
+  if(ccrspkk >= 0 && ccrspkk < 45) {
+   ccrspst = 'Unsafe'
+ }
+    
+  return {'p':ccrspkk,'str':ccrspst}
+    
+  }
+  }
+  
   var chars_all = ['ABCDEFGHIJKLMNOPQRSTUVXYZ','abcdefghijklmnopqrstuvxyz','0123456789','%-+=/,.)(*&$#@}{][^_|~\<>!?})'] ;
   var chars_c = 0
   var chars_l = 0
@@ -1346,6 +1372,12 @@ var rspst = '--'
   if(rspkk >= 0 && rspkk < 45) {
    rspst = 'Unsafe'
  }
+  
+  if(cache) {
+  var ddt = $('.box[f="' + gid + '"]').attr('t')
+  var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
+  localStorage.setItem(psehash,Math.floor(rsp*100))
+  }
   
   return {'p':Math.floor(rsp*100),'str':rspst}
 }
