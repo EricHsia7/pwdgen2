@@ -799,6 +799,7 @@ align-items: center;
   justify-content: center;
   align-items: center;
    -webkit-user-select: none;
+  color:var(--g-4e4e4e);
 }
 </style>
   <style id="iphonesafearea">
@@ -909,6 +910,14 @@ align-items: center;
 <div class="history">
 </div>
 
+  <div class="input2">
+  <input type="text" placeholder="password">
+  <div class="btn6" id="checkpw" ripple-onclick="checkpwfv()">
+<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path d="M25.9205 56.7969C27.1586 56.7969 28.1356 56.2552 28.8514 55.1718L56.2745 11.9913C56.526 11.585 56.7098 11.2126 56.8259 10.8741C56.942 10.5355 57 10.1921 57 9.84388C57 9.05069 56.7582 8.41227 56.2745 7.92861C55.7909 7.44496 55.1524 7.20313 54.3593 7.20313C53.7789 7.20313 53.3049 7.31437 52.9373 7.53685C52.5697 7.75933 52.2118 8.14142 51.8636 8.68311L25.8044 50.2095L12.2815 32.5078C11.585 31.5599 10.7531 31.0859 9.78584 31.0859C8.9733 31.0859 8.30586 31.3422 7.78352 31.8549C7.26117 32.3676 7 33.0205 7 33.8137C7 34.1619 7.06771 34.515 7.20313 34.8729C7.33856 35.2308 7.55136 35.5839 7.84156 35.9321L22.9025 55.1138C23.7731 56.2358 24.7791 56.7969 25.9205 56.7969Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/>
+</svg>
+  </div>
+  </div>
   <div class="checkpwdp">
   <div class="chpwfra">
     <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1979,7 +1988,7 @@ $('#pcphstyle').html(pcphanimate)
       $('#bottom-btn-svg-fill-b').attr('fill','var(--g-ffffff)').attr('stroke','var(--g-ffffff)')
       $('#bottom-btn-svg-fill-d').attr('fill','var(--g-4e4e4e)')
       $('.t2').text('New Password')
-      $('.checkpwdp').css({'display':'none'});
+      $('.checkpwdp,.input2').css({'display':'none'});
       $('.input,.history').css({'display':'block'});
     }
     if(page === 'b') {
@@ -1987,7 +1996,7 @@ $('#pcphstyle').html(pcphanimate)
       $('#bottom-btn-svg-fill-b').attr('fill','var(--g-4e4e4e)').attr('stroke','var(--g-4e4e4e)')
       $('#bottom-btn-svg-fill-d').attr('fill','var(--g-ffffff)')
       $('.t2').text('Check Password')
-      $('.checkpwdp').css({'display':'block'});
+      $('.checkpwdp,.input2').css({'display':'block'});
       $('.input,.history').css({'display':'none'});
     }
   }
