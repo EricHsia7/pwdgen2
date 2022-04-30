@@ -127,7 +127,7 @@ align-items: center;
 .input .btn5 {
   right:45px;
   }
-.input .btn svg,.input .btn5 svg {
+.input .btn svg,.input .btn5 svg ,.input2 .btn6 svg{
   width:25px;
   height:25px;
   -webkit-user-select: none;
@@ -1175,7 +1175,7 @@ var url = new URL(getUrlString);
     };
 })(jQuery);
   
-ripple('.btn,.btn5','var(--g-4e4e4e)','0.3',888,'true');
+ripple('.btn,.btn5,.btn6','var(--g-4e4e4e)','0.3',888,'true');
 ripple('.btn2','var(--g-4e4e4e)','0.3',555,'true');
 ripple('.bottom-btn','var(--g-4e4e4e)','0.3',888,'true');
   
@@ -1981,7 +1981,10 @@ $('#pcphstyle').html(pcphanimate)
     $('#pchpit').attr('class','pchpitan')
   },1)
 }
-  
+  function checkpwfv() {
+    var chpwpt = checkpwd($('.input2 input').val(),false)
+    setpcph(chpwpt.p)
+  }
   //end
   
   //bpage 
