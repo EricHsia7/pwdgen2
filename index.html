@@ -765,6 +765,34 @@ align-items: center;
   transition:0.3s;
   transform-origin:50% 0%;
 }
+
+#pchpit {
+  stroke-dasharray: 282px;
+  stroke-dashoffset: 282px;
+}
+
+.chpwfra {
+  position: absolute;
+  width: clamp(180px, 90%, 350px);
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.chpwfra svg {
+  width: 100%;
+}
+.chpwfra .chpwfratxt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 90px;
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
   <style id="iphonesafearea">
     :root {
@@ -874,6 +902,20 @@ align-items: center;
 <div class="history">
 </div>
 
+  <div class="checkpwdp">
+  <div class="chpwfra">
+    <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+      <path d="M64 19L64 19C88.8528 19 109 39.1472 109 64L109 64C109 88.8528 88.8528 109 64 109L64 109C39.1472 109 19 88.8528 19 64L19 64C19 39.1472 39.1472 19 64 19Z" fill="none" fill-rule="evenodd" opacity="0.5" stroke="#e3e3e3" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.84857" />
+
+      <path d="M64 19L64 19C88.8528 19 109 39.1472 109 64L109 64C109 88.8528 88.8528 109 64 109L64 109C39.1472 109 19 88.8528 19 64L19 64C19 39.1472 39.1472 19 64 19Z" fill="none" fill-rule="evenodd" opacity="1" stroke="#4e4e4e" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.84857" id="pchpit" />
+    </svg>
+    <div class="chpwfratxt">--</div>
+    <style id="pcphstyle"></style>
+  </div>
+
+</div>
+  
 <div class="mes">
 <div class="mestxt">
 message
@@ -1910,6 +1952,18 @@ $('.history .loading').remove()
    showsavedhistory()
   }
   setoptions()
+  //checkpwpage
+  function setpcph(pt) {
+$('#pchpit').attr('class','')
+var pcphanimate = '.pchpitan {animation-name: pchp;animation-duration: 1.2s;animation-timing-function: ease-out;animation-fill-mode: forwards;}@keyframes pchp {0% {stroke-dashoffset: 282px;}100% {stroke-dashoffset: ' + (282-282*pt/100) + 'px;}}'
+$('.chpwfratxt').text(pt)
+$('#pcphstyle').html(pcphanimate)
+  setTimeout(function() {
+    $('#pchpit').attr('class','pchpitan')
+  },1)
+}
+  
+  //end
   function version_id(newid) {
 if(newid || localStorage.getItem('pw_version_id') === null) {
 var vt = new Date().getTime()
