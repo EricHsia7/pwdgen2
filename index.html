@@ -1973,11 +1973,17 @@ $('#pcphstyle').html(pcphanimate)
       $('#bottom-btn-svg-fill-a').attr('fill','var(--g-4e4e4e)').attr('stroke','var(--g-4e4e4e)')
       $('#bottom-btn-svg-fill-b').attr('fill','var(--g-ffffff)').attr('stroke','var(--g-ffffff)')
       $('#bottom-btn-svg-fill-d').attr('fill','var(--g-4e4e4e)')
+      $('.t2').text('New Password')
+      $('.checkpwdp').css({'dsiplay':'none'});
+      $('.input,.history').css({'dsiplay':'block'});
     }
     if(page === 'b') {
       $('#bottom-btn-svg-fill-a').attr('fill','var(--g-ffffff)').attr('stroke','var(--g-ffffff)')
       $('#bottom-btn-svg-fill-b').attr('fill','var(--g-4e4e4e)').attr('stroke','var(--g-4e4e4e)')
       $('#bottom-btn-svg-fill-d').attr('fill','var(--g-ffffff)')
+      $('.t2').text('Check Password')
+      $('.checkpwdp').css({'dsiplay':'block'});
+      $('.input,.history').css({'dsiplay':'none'});
     }
   }
   //end
