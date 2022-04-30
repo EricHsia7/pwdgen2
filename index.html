@@ -770,15 +770,17 @@ align-items: center;
   stroke-dasharray: 282px;
   stroke-dashoffset: 282px;
 }
-
-.chpwfra {
+.checkpwdp {
   position: absolute;
   width: clamp(180px, 90%, 350px);
-  height:300px;
   top: calc(35% + 45px + 0px);
   left: 50%;
   transform: translateX(-50%);
   display:none;
+  }
+.chpwfra {
+  width:100%;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -1985,7 +1987,7 @@ $('#pcphstyle').html(pcphanimate)
       $('#bottom-btn-svg-fill-b').attr('fill','var(--g-4e4e4e)').attr('stroke','var(--g-4e4e4e)')
       $('#bottom-btn-svg-fill-d').attr('fill','var(--g-ffffff)')
       $('.t2').text('Check Password')
-      $('.checkpwdp').css({'display':'flex'});
+      $('.checkpwdp').css({'display':'block'});
       $('.input,.history').css({'display':'none'});
     }
   }
