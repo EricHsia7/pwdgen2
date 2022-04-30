@@ -1264,10 +1264,10 @@ function checkpwd(pwdstr,cache,gid) {
   if(cache) {
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
-  if(!(localStorage.getItem(psehash) === null)) {
+  if(!(sessionStorage.getItem(psehash) === null)) {
   
   var ccrspst = '--'
-  var ccrspkk = parseInt(String(localStorage.getItem(psehash)))
+  var ccrspkk = parseInt(String(sessionStorage.getItem(psehash)))
  if(ccrspkk >= 85 && ccrspkk <= 100) {
   ccrspst = 'Strong'
  }
@@ -1376,7 +1376,7 @@ var rspst = '--'
   if(cache) {
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
-  localStorage.setItem(psehash,Math.floor(rsp*100))
+  sessionStorage.setItem(psehash,Math.floor(rsp*100))
   }
   
   return {'p':Math.floor(rsp*100),'str':rspst}
