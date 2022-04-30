@@ -811,6 +811,7 @@ align-items: center;
 }
 .chpw_details {
   width:100%;
+  display:none;
 }
 .chpw_details h1 ,.chpw_details h3 ,.chpw_details h4,.chpw_details li,.chpw_details h5{
   margin:0px;
@@ -2064,7 +2065,7 @@ $('#pcphstyle').html(pcphanimate)
     $('#chpwevdis').text(parseInt(chpwpt.details.evdis))
     $('#chpwlen').text(parseInt(chpwpt.details.len))
     $('#chpwrepeat').text(parseInt(chpwpt.details.repeat))
-    
+    $('.chpw_details').css({'display':'block'});
   }
   //end
   
