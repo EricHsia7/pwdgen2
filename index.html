@@ -57,6 +57,14 @@ align-items: center;
   background-repeat:repeat;
   -webkit-user-select: none;
   }
+  .bottom:after {
+    position:absolute;
+    left:0px;
+    top:54px;
+    width:100%;
+    height:calc(env(safe-area-inset-bottom) + 3px);
+    background:var(--g-ffffff);
+  }
 .input {
   width:clamp(180px,90%,350px);
   height:45px;
