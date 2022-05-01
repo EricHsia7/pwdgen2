@@ -968,10 +968,6 @@ align-items: center;
 
     
 <div class="chpw_details">
-  <div class="dettit">
-    <h1>Details</h1>
-  </div>
-  
   <h3>Evenly distributed - <span id="chpwevdis"></span></h3>
     <h4>If you get a high score.</h4>
     <li>Contains capital, lowercase, numbers, symbols, and evenly distributed.</li>
@@ -1976,6 +1972,7 @@ function autodeletesavedpwd() {
     $('.input2 input').val($('input[u="' + gid + '"]').attr('value'))
     checkpwfv()
     bpage('b')
+    $('body,html').scrollTop(0)
   }
   function showshared() {
   var pwtime = new Date()
