@@ -849,6 +849,15 @@ function che(y) {
     return y
   }
 }
+function searchItemsbyname(name) {
+  var gh = []
+for(var t in window.localStorage) {
+if(String(t).indexOf(name) > -1) {
+gh.push(t)
+}
+}
+return gh
+}
 
 // left: 37, up: 38, right: 39, down: 40,
 // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
@@ -1252,7 +1261,6 @@ function autodeletesavedpwd() {
   }
 }
   function scrollcheckpwd() {
-    
     //j
       var scrollxselect = '.box'
      $(document).scroll(function() {
@@ -1267,11 +1275,9 @@ function autodeletesavedpwd() {
      var thsstr = $('input[u="' + thsfid + '"]').val()
      var thspt = checkpwd(thsstr,true,thsfid)
      var thstime = parseInt(String($('.box[f="' + thsfid + '"]').attr('t')))
-
      var pwtime = new Date()
      pwtime.setTime(thstime)
      var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-  
      $('.box[f="' + thsfid + '"] .boxtitle .checkpwd').attr('pt',thspt.p).text(thspt.str)
      }
       
@@ -1320,7 +1326,16 @@ function autodeletesavedpwd() {
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
   
 }
-
+function deletepwcache() {
+  var pwdhlist = searchItemsbyname('pwch_cache_') ;
+  var pwnwtt = new Date().getTime()
+  for (var i = 0; i < pwdhlist.length; i++) {
+    var pwhhhcc = String(localStorage.getItem(pwdhlist[i])).split(':')
+    if(pwnwtt-parseInt(pwhhhcc[0]) > 43200000) {
+    localStorage.removeItem(pwdhlist[i])
+    }
+  }
+}
 function showsavedhistory() {
  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
  if(savedlist.length > 0) {
@@ -1362,10 +1377,12 @@ function showsavedhistory() {
 
  $('.history .loading').remove()
  scrollcheckpwd()
+ deletepwcache()
  },1200);
  }
 else {
 $('.history .loading').remove()
+deletepwcache()
 }
 }
   
