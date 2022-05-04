@@ -944,8 +944,6 @@ function dsp(gid) {
   }
 }
 function save(gid,shwmes) {
-  var pwlist = String(localStorage.getItem('pwdgen2_saved_list'))
-  var pwlistarr = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
   var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
@@ -958,24 +956,14 @@ function save(gid,shwmes) {
     mes('saved')
     }
     localStorage.setItem(psehash,pse)
-    if(pwlist.indexOf(psehash) > -1) {
     
-    }
-    else {
-      pwlistarr.push(psehash)
-      localStorage.setItem('pwdgen2_saved_list',pwlistarr.join(','))
-    }
   }
   else {
     $('.saveoo[h="' + gid + '"]').attr('g','0')
-    //$('input[u="' + gid + '"]').attr('type','password')
     if(shwmes) {
     mes('unsaved')
     }
     localStorage.removeItem(psehash)
-    if(pwlist.indexOf(psehash) > -1) {
-    localStorage.setItem('pwdgen2_saved_list',pwlist.replaceAll(',' + psehash,'').replaceAll(psehash,''))
-    }
   }
 }
 function copy(gid,messw) {
@@ -1238,8 +1226,8 @@ function autodeletesavedpwd() {
   var nwtime = new Date().getTime()
   var deltime = 86400000*parseInt(String(localStorage.getItem('pw_options_autodelpwddaystt')))
   var dellist = []
-  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
-  
+  var savedlist = searchItemsbyname('pwdgen2_saved_a_') 
+ 
   for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      if(!(localStorage.getItem(savedlist[i]) === null)) {
@@ -1313,7 +1301,7 @@ function autodeletesavedpwd() {
   pwdvisible = '1'
   pwdvisible_type = 'text'
   }
-  if(String(localStorage.getItem('pwdgen2_saved_list')).indexOf('pw_' + sha256(pw + '_' + pwtime.getTime())) > -1) {
+  if(searchItemsbyname('pwdgen2_saved_a_').indexOf('pw_' + sha256(pw + '_' + pwtime.getTime())) > -1) {
     sharedpwdsaved = '1'
   }
   
@@ -1481,16 +1469,14 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
     if($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
    
   var dellist = []
-  var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
+  var savedlist = searchItemsbyname('pwdgen2_saved_a_') 
   
   for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      if(!(localStorage.getItem(savedlist[i]) === null)) {
     localStorage.removeItem(savedlist[i])
   }
-     if(savedlist.indexOf(savedlist[i]) > -1) {
-    localStorage.setItem('pwdgen2_saved_list',String(localStorage.getItem('pwdgen2_saved_list')).replaceAll(',' + savedlist[i],'').replaceAll(savedlist[i],''))
-    }
+     
      
    }
   }
@@ -1608,7 +1594,7 @@ settheme(localStorage.getItem('pw_theme_' + od))
   function backuppwdzip() {
     mes('File processing')
     var bktime = new Date()
-    var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
+    var savedlist = searchItemsbyname('pwdgen2_saved_a_') 
     var pwddatalist = [] ;
     var pwddataliststr = [] ;
     var pwddatalistcsv = []
