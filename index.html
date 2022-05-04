@@ -1301,7 +1301,7 @@ function autodeletesavedpwd() {
   pwdvisible = '1'
   pwdvisible_type = 'text'
   }
-  if(searchItemsbyname('pwdgen2_saved_a_').indexOf('pw_' + sha256(pw + '_' + pwtime.getTime())) > -1) {
+  if(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + sha256(pw + '_' + pwtime.getTime())) > -1) {
     sharedpwdsaved = '1'
   }
   
