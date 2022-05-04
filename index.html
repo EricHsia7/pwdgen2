@@ -685,14 +685,15 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   return {'str':pwdstr,'customs':{'length':len,'nosimilar':nosimilar,'custom_proportion':custom_proportion,'capital':capital,'lowercase':lowercase,'number':number,'symbol':symbol}} ;
 }
 function checkpwd(pwdstr,cache,gid) {
-  
   if(cache) {
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
-  if(!(sessionStorage.getItem(psehash) === null)) {
+  if(!(localStorage.getItem(psehash) === null)) {
   
   var ccrspst = '--'
-  var ccrspkk = parseInt(String(sessionStorage.getItem(psehash)))
+  var ccrspkk = parseInt(String(localStorage.getItem(psehash)).split(':')[1])
+  var ccrsptt = parseInt(String(localStorage.getItem(psehash)).split(':')[0])
+  var ccrnwtt = new Date().getTime()
  if(ccrspkk >= 85 && ccrspkk <= 100) {
   ccrspst = 'Strong'
  }
@@ -705,8 +706,12 @@ function checkpwd(pwdstr,cache,gid) {
   if(ccrspkk >= 0 && ccrspkk < 45) {
    ccrspst = 'Unsafe'
  }
-    
+    if((ccrnwtt-ccrsptt) < 43200000) {
   return {'p':ccrspkk,'str':ccrspst,'details':'--'}
+    }
+    else {
+      localStorage.removeItem(psehash)
+    }
     
   }
   }
@@ -801,7 +806,8 @@ var rspst = '--'
   if(cache) {
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
-  sessionStorage.setItem(psehash,Math.floor(rsp*100))
+  var chtt = new Date().getTime()
+  localStorage.setItem(psehash,chtt + ':' + Math.floor(rsp*100))
   }
   var det_evdis = (len1-((bha/100)*len1)+len2*0.02)/len0*100
   //Evenly distributed
@@ -1333,9 +1339,7 @@ function showsavedhistory() {
   }
        
   if(i >= (savedlist.length-historyloadingboxcc)) {
-var thspt = checkpwd(pw)
-
-     
+  var thspt = checkpwd(pw)
   }
   else {
   var thspt = {'p':'--','str':'--'}
@@ -1343,7 +1347,6 @@ var thspt = checkpwd(pw)
   $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
   ripple('.checkpwd[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
-  
      }
    }
  }
