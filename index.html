@@ -949,7 +949,7 @@ function save(gid,shwmes) {
   var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
-  var psehash = 'pw_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
+  var psehash = 'pwdgen2_saved_a_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
   localStorage.setItem(psehash,pse)
   if(String($('.saveoo[h="' + gid + '"]').attr('g')) === '0') {
     $('.saveoo[h="' + gid + '"]').attr('g','1')
@@ -1337,7 +1337,8 @@ function deletepwcache() {
   }
 }
 function showsavedhistory() {
- var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
+ //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
+ var savedlist = searchItemsbyname('pwdgen2_saved_a_')
  if(savedlist.length > 0) {
    setTimeout(function() {
  for (var i = 0; i < savedlist.length; i++) {
