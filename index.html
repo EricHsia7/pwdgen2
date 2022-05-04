@@ -684,7 +684,7 @@ function pwd(len,nosimilar,custom_proportion,capital,lowercase,number,symbol) {
   }
   return {'str':pwdstr,'customs':{'length':len,'nosimilar':nosimilar,'custom_proportion':custom_proportion,'capital':capital,'lowercase':lowercase,'number':number,'symbol':symbol}} ;
 }
-function checkpwd(pwdstr,cache,gid) {
+function checkpwd(pwdstr,cache,gid,tt) {
   if(cache) {
   var ddt = $('.box[f="' + gid + '"]').attr('t')
   var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
@@ -804,8 +804,15 @@ var rspst = '--'
  }
   
   if(cache) {
-  var ddt = $('.box[f="' + gid + '"]').attr('t')
-  var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
+  if(gid === false) {
+    var ddt = tt
+    var ddpw = pwdstr 
+  }
+  else {
+    var ddt = $('.box[f="' + gid + '"]').attr('t')
+    var ddpw = $('input[u="' + gid + '"]').attr('value')
+  }
+  var psehash = 'pwch_cache_' + sha256(ddpw + '_' + ddt)
   var chtt = new Date().getTime()
   localStorage.setItem(psehash,chtt + ':' + Math.floor(rsp*100))
   }
@@ -1339,7 +1346,7 @@ function showsavedhistory() {
   }
        
   if(i >= (savedlist.length-historyloadingboxcc)) {
-  var thspt = checkpwd(pw)
+  var thspt = checkpwd(pw,true,false,pwtime.getTime())
   }
   else {
   var thspt = {'p':'--','str':'--'}
