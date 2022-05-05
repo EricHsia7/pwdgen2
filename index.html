@@ -901,6 +901,10 @@ function pwinfo(gid) {
   var sttt = $('.box[f="' + gid + '"]').attr('t')
   var psehash = 'pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)
   var stog = String(localStorage.getItem(psehash)).length + psehash.length
+  if(!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)) > -1)) {
+    stog = 0
+  }
+  
   return {'len':stle,'check':stcc,'time':sttt,'storage':stog}
 }
 function storagesize(bytes) {
