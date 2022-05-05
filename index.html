@@ -894,7 +894,7 @@ function pwinfo(gid) {
   var stch = checkpwd(pwdstr,false)
   var stcc = stch.str
   var sttt = $('.box[f="' + gid + '"]').attr('t')
-  var psehash = 'pwch_cache_' + sha256(pwdstr + '_' + sttt)
+  var psehash = 'pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)
   var stog = String(localStorage.getItem(psehash)).length + psehash.length
   return {'len':stle,'check':stcc,'time':sttt,'storage':stog}
 }
