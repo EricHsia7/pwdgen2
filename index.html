@@ -166,6 +166,8 @@ justify-content: center;
 align-items: center;
   color:var(--g-4e4e4e);
   overflow:hidden;
+  word-break: break-word;
+  text-align: center;
 }
 .pwnf_title {
   position:absolute;
@@ -917,16 +919,16 @@ function storagesize(bytes) {
   var togb = 0.000000001
   
   if(bytes > 1000000000) {
-   return (bytes*togb).toFixed(0) + 'GB'
+   return (bytes*togb).toFixed(0) + ' GB'
   }
   if(bytes > 1000000) {
-   return (bytes*tomb).toFixed(0) + 'MB'
+   return (bytes*tomb).toFixed(0) + ' MB'
   }
   if(bytes > 1000) {
-   return (bytes*tokb).toFixed(0) + 'KB'
+   return (bytes*tokb).toFixed(0) + ' KB'
   }
   if(bytes <= 1000) {
-   return (bytes*1) + 'BYTE'
+   return (bytes*1) + ' BYTE'
   }
 }
 function che(y) {
