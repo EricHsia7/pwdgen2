@@ -1429,7 +1429,7 @@ function showsavedhistory() {
  var savedlist_t = []
  var savedlist_d = []
  for (var i = 0; i < savedlist.length; i++) {
-   savedlist_t.push(String(localStorage.getItem(savedlist[i])).split(':')[2])
+   savedlist_t.push(parseInt(String(localStorage.getItem(savedlist[i])).split(':')[2]))
    savedlist_d.push('hxtt_' + String(localStorage.getItem(savedlist[i])).split(':')[2] + '_' + savedlist[i])
  }
  savedlist_t.sort(function(a, b) {
