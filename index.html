@@ -1070,11 +1070,18 @@ function share(gid) {
   mes('share link copied')
   
 }
+function delpwdinfo(gid) {
+  $('.box_nf[j="' + gid + '"]').css({'opacity':'0'});
+  setTimeout(function() {
+    $('.box_nf[j="' + gid + '"]').remove()
+    },180);
+}
 function showpwdinfo(gid) {
   var datt = pwinfo(gid)
-  var shhtm = '<div class="box_nf" style="transition:0.3s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
+  var shhtm = '<div class="box_nf" style="transition:0.15s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" ripple-onclick="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
   if($('.box[f="' + gid + '"] .box_nf').length === 0) {
     $('.box[f="' + gid + '"]').append(shhtm)
+    ripple('.pwnf[nk="' + gid + '"]','var(--g-4e4e4e)','0.3',888,'true');
     setTimeout(function() {
     $('.box_nf[j="' + gid + '"]').css({'opacity':'1'})
     },1);
