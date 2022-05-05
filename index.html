@@ -896,7 +896,7 @@ var rspst = '--'
 function pwinfo(gid) {
   var pwdstr = $('input[u="' + gid + '"]').attr('value')
   var stle = pwdstr.length 
-  var stch = checkpwd(pwdstr,false)
+  var stch = checkpwd(pwdstr,true,gid)
   var stcc = stch.str
   var sttt = $('.box[f="' + gid + '"]').attr('t')
   var psehash = 'pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)
