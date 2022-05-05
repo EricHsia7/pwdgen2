@@ -1066,10 +1066,10 @@ function share(gid) {
 }
 function showpwdinfo(gid) {
   var datt = pwinfo(gid)
-  var shhtm = '<div class="box_nf"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf"><div class="pwnf_val"></div><div class="pwnf_title">Close</div></div></div></div>'
+  var shhtm = '<div class="box_nf" style="transition:0.3s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf"><div class="pwnf_val"></div><div class="pwnf_title">Close</div></div></div></div>'
   if($('.box[f="' + gid + '"] .box_nf').length === 0) {
     $('.box[f="' + gid + '"]').append(shhtm)
-  
+    $('.box_nf[j="' + gid + '"]').css({'opacity':'1'})
   }
   }
 function page2() {
