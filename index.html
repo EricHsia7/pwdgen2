@@ -845,7 +845,7 @@ function pwinfo(gid) {
   var pwdstr = $('input[u="' + gid + '"]').attr('value')
   var stle = pwdstr.length 
   var stch = checkpwd(pwdstr,false)
-  var stcc = stch.p
+  var stcc = stch.str
   var sttt = $('.box[f="' + gid + '"]').attr('t')
   var psehash = 'pwch_cache_' + sha256(pwdstr + '_' + sttt)
   var stog = String(localStorage.getItem(psehash)).length + psehash.length
@@ -999,6 +999,14 @@ function share(gid) {
   mes('share link copied')
   
 }
+function showpwdinfo(gid) {
+  var datt = pwinfo(gid)
+  var shhtm = '<div class="box_nf"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + datt.storage + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf"><div class="pwnf_val"></div><div class="pwnf_title">Close</div></div></div></div>'
+  if($('.box[f="' + gid + '"] .box_nf').length === 0) {
+    $('.box[f="' + gid + '"]').append(shhtm)
+  
+  }
+  }
 function page2() {
   $('body').css({'overflow':'hidden'});
 $('.page2,.title2').css({'right':'0%','opacity':'0'});
