@@ -841,6 +841,16 @@ var rspst = '--'
  }
   return {'p':Math.floor(rsp*100),'str':rspst,'details':{'evdis':det_evdis,'len':det_len,'repeat':det_repeat}}
 }
+function pwinfo(gid) {
+  var pwdstr = $('input[u="' + gid + '"]').attr('value')
+  var stle = pwdstr.length 
+  var stch = checkpwd(pwdstr,false)
+  var stcc = stch.p
+  var sttt = $('.box[f="' + gid + '"]').attr('t')
+  var psehash = 'pwch_cache_' + sha256(pwdstr + '_' + sttt)
+  var stog = String(localStorage.getItem(psehash)).length + psehash.length
+  return {'len':stle,'check':stcc,'time':sttt,'storage':stog}
+}
 function che(y) {
   if(y < 10) {
     return '0' + y
