@@ -132,11 +132,13 @@ body{background:var(--g-ffffff);background-size:var(--b-size);background-repeat:
   position:absolute;
   top:0px;
   left:0px;
-  background:var(--g-f4f4f4);
+  background:rgba(0,0,0,0);
   width:100%;
   height:100%;
   border-radius:15px;
   overflow:hidden;
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
 }
 .box_gdx {
   position:absolute;
@@ -154,6 +156,7 @@ body{background:var(--g-ffffff);background-size:var(--b-size);background-repeat:
   position:relative;
   -webkit-mask-image:-webkit-radial-gradient(white,black);
   overflow:hidden;
+  opacity:0.6;
 }
 .pwnf_val {
   position:absolute;
