@@ -192,7 +192,7 @@ align-items: center;
 .boxmnuli {
   width:180px;
   height:calc(41px * 2 - 1px);
-  background:#f4f4f4;
+  background:var(--g-4f4f4f);
   border-radius:15px;
   overflow:hidden;
   position:absolute;
@@ -208,7 +208,8 @@ align-items: center;
   display: flex;
 align-items: center;
   padding-left:10px;
-  border-bottom:1px #e3e3e3 solid;
+  border-bottom:1px var(--g-e3e3e3) solid;
+  color:var(--g-4e4e4e);
 }
 </style>
   <style id="iphonesafearea">
@@ -1110,7 +1111,7 @@ function showboxmnuli(gid) {
   var bthheight = $('.momenuliooo[h="' + gid + '"]').height()
   var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
   var bthwidth = $('.momenuliooo[h="' + gid + '"]').height()
-var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + 'px;right:' + (btnleft+bthwidth) + 'px;" bxz="' + gid + '"><li>info</li><li>notes</li></div>' ;
+var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + 'px;left:' + (btnleft+bthwidth-180) + 'px;" bxz="' + gid + '"><li>info</li><li>notes</li></div>' ;
   $('body').append(boxmnulihtm)
 }
 function delpwdinfo(gid) {
