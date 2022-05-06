@@ -1111,15 +1111,23 @@ function share(gid) {
   mes('share link copied')
   
 }
+function delboxmnuli(gid) {
+  $('.boxmnuli[bxz="' + gid + '"]').remove()
+  $('div[jvw="bxbg-' + gid + '"]').remove()
+}
 function showboxmnuli(gid) {
   var btnleft = $('.momenuliooo[h="' + gid + '"]').offset().left
   var bthheight = $('.momenuliooo[h="' + gid + '"]').height()
   var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
   var bthwidth = $('.momenuliooo[h="' + gid + '"]').height()
+  var bxbgffft = '<div style="background:rgba(0,0,0,0);position:fixed;top:0px;left:0px;width:100%;height:100%;" jvw="bxbg-' + gid + '"></div>' ;
 var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + 'px;left:' + (btnleft+bthwidth-180) + 'px;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" ripple-onclick="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '">notes</li></div>' ;
   if($('.boxmnuli[bxz="' + gid + '"]').length === 0) {
-  $('body').append(boxmnulihtm)
+  $('body').append(bxbgffft + boxmnulihtm)
   ripple('li[gxv="bxnmuu-' + gid + '"]','var(--g-4e4e4e)','0.3',888,'true');
+    $('div[jvw="bxbg-' + gid + '"]').click(function() {
+    delboxmnuli(gid)
+    });
   }
 }
 function delpwdinfo(gid) {
