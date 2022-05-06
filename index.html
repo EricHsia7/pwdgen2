@@ -192,12 +192,14 @@ align-items: center;
 .boxmnuli {
   width:180px;
   height:calc(41px * 2 - 1px);
-  background:var(--g-4f4f4f);
+  background:var(--g-f4f4f4);
   border-radius:15px;
   overflow:hidden;
   position:absolute;
   top:0px;
   left:0px;
+  -webkit-mask-image:-webkit-radial-gradient(white,black);
+  -webkit-user-select:none;
 }
 .boxmnuli li {
   list-style:none;
@@ -210,6 +212,9 @@ align-items: center;
   padding-left:10px;
   border-bottom:1px var(--g-e3e3e3) solid;
   color:var(--g-4e4e4e);
+  overflow:hidden;
+  -webkit-mask-image:-webkit-radial-gradient(white,black);
+  -webkit-user-select:none;
 }
 </style>
   <style id="iphonesafearea">
