@@ -1110,7 +1110,7 @@ function showboxmnuli(gid) {
   var bthheight = $('.momenuliooo[h="' + gid + '"]').height()
   var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
   var bthwidth = $('.momenuliooo[h="' + gid + '"]').height()
-var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+btntop+5) + 'px;right:' + (btnleft+bthwidth) + 'px;" bxz="' + gid + '"><li>info</li><li>notes</li></div>' ;
+var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + 'px;right:' + (btnleft+bthwidth) + 'px;" bxz="' + gid + '"><li>info</li><li>notes</li></div>' ;
   $('body').append(boxmnulihtm)
 }
 function delpwdinfo(gid) {
