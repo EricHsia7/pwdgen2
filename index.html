@@ -1117,14 +1117,14 @@ function delboxmnuli(gid) {
   setTimeout(function() {
   $('.boxmnuli[bxz="' + gid + '"]').remove()
   },230);
-  $('div[jvw="bxbg-' + gid + '"]').remove()
+  $('.boxmnulibgjj[jvw="bxbg-' + gid + '"]').remove()
 }
 function showboxmnuli(gid) {
   var btnleft = $('.momenuliooo[h="' + gid + '"]').offset().left
   var bthheight = $('.momenuliooo[h="' + gid + '"]').height()
   var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
   var bthwidth = $('.momenuliooo[h="' + gid + '"]').height()
-  var bxbgffft = '<div style="background:rgba(0,0,0,0);position:fixed;top:0px;left:0px;width:100%;height:100%;" jvw="bxbg-' + gid + '"></div>' ;
+  var bxbgffft = '<div class="boxmnulibgjj" style="background:rgba(0,0,0,0);position:fixed;top:0px;left:0px;width:100%;height:100%;" jvw="bxbg-' + gid + '"></div>' ;
 var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + 'px;left:' + (btnleft+bthwidth-180) + 'px;transform:scale(0);transform-origin: right top;opacity:0;transition:0.2s;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" ripple-onclick="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '">notes</li></div>' ;
   if($('.boxmnuli[bxz="' + gid + '"]').length === 0) {
   $('body').append(bxbgffft + boxmnulihtm)
@@ -1132,7 +1132,7 @@ var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + '
   $('.boxmnuli[bxz="' + gid + '"]').css({'transform':'scale(1)','opacity':'1'});
   },1);
   ripple('li[gxv="bxnmuu-' + gid + '"]','var(--g-4e4e4e)','0.3',888,'true');
-    $('div[jvw="bxbg-' + gid + '"]').click(function() {
+    $('.boxmnulibgjj[jvw="bxbg-' + gid + '"]').click(function() {
     delboxmnuli(gid)
     });
   }
@@ -1570,6 +1570,12 @@ deletepwcache()
    showsavedhistory()
   }
   setoptions()
+  
+  $(document).scroll(function() {
+    $('.boxmnuli').remove()
+  $('.boxmnulibgjj').remove()
+  });
+  
   //checkpwpage
   
   function checkpwfv() {
