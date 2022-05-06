@@ -1125,7 +1125,7 @@ function showboxmnuli(gid) {
   var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
   var bthwidth = $('.momenuliooo[h="' + gid + '"]').height()
   var bxbgffft = '<div style="background:rgba(0,0,0,0);position:fixed;top:0px;left:0px;width:100%;height:100%;" jvw="bxbg-' + gid + '"></div>' ;
-var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + 'px;left:' + (btnleft+bthwidth-180) + 'px;transform:scale(0);transform-origin: right top;opacity:0;transition:0.15s;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" ripple-onclick="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '">notes</li></div>' ;
+var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + 'px;left:' + (btnleft+bthwidth-180) + 'px;transform:scale(0);transform-origin: right top;opacity:0;transition:0.3s;transition-timing-function: cubic-bezier(0.000, 0.950, 0.525, 1.285);" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" ripple-onclick="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '">notes</li></div>' ;
   if($('.boxmnuli[bxz="' + gid + '"]').length === 0) {
   $('body').append(bxbgffft + boxmnulihtm)
   setTimeout(function() {
