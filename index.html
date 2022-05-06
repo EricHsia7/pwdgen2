@@ -189,6 +189,27 @@ align-items: center;
   width:30px;
   height:30px;
   }
+.boxmnuli {
+  width:180px;
+  height:calc(41px * 2 - 1px);
+  background:#f4f4f4;
+  border-radius:15px;
+  overflow:hidden;
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+.boxmnuli li {
+  list-style:none;
+  margin:0px;
+  padding:0px;
+  width:calc(100% - 10px);
+  height:40px;
+  display: flex;
+align-items: center;
+  padding-left:10px;
+  border-bottom:1px #e3e3e3 solid;
+}
 </style>
   <style id="iphonesafearea">
     :root {
@@ -1084,6 +1105,12 @@ function share(gid) {
   mes('share link copied')
   
 }
+function showboxmnuli(gid) {
+  var btnleft = $('.momenuliooo[h="' + gid + '"]').offset().left
+  var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
+var boxmnulihtm = '<div class="boxmnuli" style="top:' + btntop + 'px;left:' + btnleft + 'px;" bxz="' + gid + '"><li>info</li><li>notes</li></div>' ;
+  $('body').append(boxmnulihtm)
+}
 function delpwdinfo(gid) {
   $('.box_nf[j="' + gid + '"]').css({'opacity':'0'});
   setTimeout(function() {
@@ -1487,7 +1514,7 @@ for (var i = 0; i < savedlist_t.length; i++) {
   else {
   var thspt = {'p':'--','str':'--'}
   }
-  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>')
+  $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:150px" g="1">' + saveicon + savedicon + '</div><div class="btn1 momenuliooo" h="' + pwgid + '" c="0" ripple-onclick="showboxmnuli(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>')
   ripple('.btn1[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
   ripple('.checkpwd[h="' + pwgid + '"]','var(--g-4e4e4e)','0.3',888,'true');
      }
