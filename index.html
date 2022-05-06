@@ -1107,8 +1107,10 @@ function share(gid) {
 }
 function showboxmnuli(gid) {
   var btnleft = $('.momenuliooo[h="' + gid + '"]').offset().left
+  var bthheight = $('.momenuliooo[h="' + gid + '"]').height()
   var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
-var boxmnulihtm = '<div class="boxmnuli" style="top:' + btntop + 'px;left:' + btnleft + 'px;" bxz="' + gid + '"><li>info</li><li>notes</li></div>' ;
+  var bthwidth = $('.momenuliooo[h="' + gid + '"]').height()
+var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+btntop+5) + 'px;right:' + (btnleft+bthwidth) + 'px;" bxz="' + gid + '"><li>info</li><li>notes</li></div>' ;
   $('body').append(boxmnulihtm)
 }
 function delpwdinfo(gid) {
