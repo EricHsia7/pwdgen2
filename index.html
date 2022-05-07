@@ -128,6 +128,10 @@ body{background:var(--g-ffffff);background-size:var(--b-size);background-repeat:
 .chpwdesc h5{font-size:15px;padding-left:5px}
 .chpwdesc li{list-style:none;font-size:15px;padding-left:5px}
 .chpwdesc li.d{padding-left:10px}
+  .bxntx {
+  top:auto;
+  bottom:0px;
+  }
 .bxnotesaa {
   position:absolute;
   top:0px;
@@ -145,7 +149,7 @@ body{background:var(--g-ffffff);background-size:var(--b-size);background-repeat:
   left:10px;
   background:rgba(0, 0, 0, 0);
   width:calc(100% - 20px);
-  height:calc(100% - 20px);
+  height:calc(100% - 20px - 40px);
   border-radius:0px;
   margin:0px;
     padding:0px;
@@ -1160,7 +1164,7 @@ function pwnotes_a(gide) {
   if(!(localStorage.getItem(psehash) === null)) {
     txtval = deur(atob(String(localStorage.getItem(psehash))))
   }
-  var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea></div>'
+  var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:0px"></div><div class="btn1 bxntx" style="left:45px"></div></div>'
   if($('.box[f="' + gide + '"] .bxnotestxt').length === 0) {
   $('.box[f="' + gide + '"]').append(txthtml)
   $('textarea[j="' + txthash + '"]').val(txtval)
