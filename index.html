@@ -1132,7 +1132,7 @@ function pwnotes_a(gide) {
   var txthash = 'notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt) + '_' + gid()
   var txtval = ''
   if(!(localStorage.getItem(psehash) === null)) {
-    txtval = deur(atob(localStorage.getItem(psehash)))
+    txtval = deur(atob(String(localStorage.getItem(psehash))))
   }
   var txthtml = '<textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt" value="' + txtval + '"></textarea>'
   if($('.box[f="' + gide + '"] .bxnotestxt').length === 0) {
