@@ -1615,6 +1615,7 @@ function deletepwcache() {
   var pwnwtt = new Date().getTime()
   
   var pwdhlist = searchItemsbyname('pwch_cache_') ;
+  var savedlist = searchItemsbyname('pwdgen2_saved_a_') ;
   var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
   var notesjson = {}
   
@@ -1622,11 +1623,10 @@ function deletepwcache() {
     eval('notesjson.' + noteslist[i] + ' = "0"')
   }
   
-  
-  
+  for (var i = 0; i < savedlist.length; i++) {
+    eval('notesjson.pwdgen2_saved_notes_cf_' + String(savedlist[i]).split('_')[3] + ' = "1"')
+  }
   for (var i = 0; i < pwdhlist.length; i++) {
-    eval('notesjson.pwdgen2_saved_notes_cf_' + String(pwdhlist[i]).split('_')[3] + ' = "1"')
-       
     var pwhhhcc = String(localStorage.getItem(pwdhlist[i])).split(':')
     if(pwnwtt-parseInt(pwhhhcc[0]) > 43200000) {
     localStorage.removeItem(pwdhlist[i])
