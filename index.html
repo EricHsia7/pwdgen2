@@ -1172,7 +1172,7 @@ function pwnotes_a(gide) {
   if(!(localStorage.getItem(psehash) === null)) {
     txtval = deur(atob(String(localStorage.getItem(psehash))))
   }
-  var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" ripple-onclick="copynotes(' + "'" + gide + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" ripple-onclick="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
+  var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" ripple-onclick="copynotes(' + "'" + gide + "'" + ',' + "'" + txthash + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" ripple-onclick="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
   if($('.box[f="' + gide + '"] .bxnotestxt').length === 0) {
   $('.box[f="' + gide + '"]').append(txthtml)
   $('textarea[j="' + txthash + '"]').val(txtval)
