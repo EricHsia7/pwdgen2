@@ -264,14 +264,7 @@ align-items: center;
   .box[search="n"] {
     display:block;
   }
-  .searchinpbar {
-  position:absolute;
-  top:44px;
-  left:0px;
-  background:var(--g-e3e3e3);
-  height:1px;
-  width:0%
-  }
+ 
 </style>
   <style id="iphonesafearea">
     :root {
@@ -447,7 +440,6 @@ align-items: center;
   
   <div class="input3">
   <input type="text" placeholder="keyword" autocomplete="off">
-    <div class="searchinpbar"></div>
   </div>
   
   
@@ -1276,9 +1268,7 @@ function showpwdinfo(gid) {
   }
 
 function showsearchresult() {
-  $('.searchinpbar').css({'opacity':'1','width':'0%'});
-  var seapr = $('.history .box').length*2
-  var seapr_w = 0
+  
   searchindexjson = {}
 for (var r = 0; r < $('.history .box').length; r++) {
   var thw_bxf = $('.history .box').eq(r).attr('f')
@@ -1302,8 +1292,7 @@ for (var r = 0; r < $('.history .box').length; r++) {
   //if(saved) {}
   
   eval('searchindexjson.f_' + r + '_s_' + thw_bxf + ' = ["' + thw_pwd + '","' + pwtimestr + '",' + thw_notes + ',' + thw_saved + ',' + thw_time + ']')
-  seapr_w += 1 
-  $('.searchinpbar').css({'width':seapr_w/seapr*100 + '%'});
+  
 }
   
   //seapr = $('.history .box').length+Object.keys(searchindexjson).length
@@ -1318,9 +1307,7 @@ for (var r = 0; r < $('.history .box').length; r++) {
     if((eval('searchindexjson.' + f).join(' ')).indexOf(keywd) > -1) {
       $('.box[f="' + String(f).split('_')[3] + '"]').attr('search','1').attr('ksearch','1')
     }
-    seapr_w += 1 
     
-    $('.searchinpbar').css({'width':seapr_w/seapr*100 + '%'});
   }
   
   
