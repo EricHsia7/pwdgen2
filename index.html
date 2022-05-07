@@ -1129,8 +1129,8 @@ function showboxmnuli(gid) {
   var ftop = (btntop+bthheight+5);
   var fleft = (btnleft+bthwidth-180);
   
-  if(wwwh-btntop-bthheight < (46*2)-1) {
-  ftop = (btntop-5-(46*2)-1));
+  if((wwwh-btntop-bthheight) < (46*2)-1) {
+  ftop = (btntop-5-((46*2)-1));
 }
   var bxbgffft = '<div class="boxmnulibgjj" style="background:rgba(0,0,0,0);position:fixed;top:0px;left:0px;width:100%;height:100%;" jvw="bxbg-' + gid + '"></div>' ;
 var boxmnulihtm = '<div class="boxmnuli" style="top:' + ftop + 'px;left:' + fleft + 'px;transform:scale(0);transform-origin: right top;opacity:0;transition:0.2s;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" ripple-onclick="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '">notes</li></div>' ;
