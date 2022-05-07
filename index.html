@@ -21,10 +21,11 @@ body{background:var(--g-ffffff);background-size:var(--b-size);background-repeat:
 .bottom{height:calc(55px + env(safe-area-inset-bottom));width:100%;position:fixed;left:0;bottom:0;background:var(--g-ffffff);box-shadow:0 0 10px 2px rgba(0,0,0,0.045);background-size:var(--b-size);background-repeat:repeat;-webkit-user-select:none}
 .bottom-btn{position:absolute;width:calc(100% / 3);height:55px;top:0;left:calc((100% / 3) * var(--n-btn-x));display:flex;justify-content:center;align-items:center;-webkit-user-select:none}
 .bottom-btn svg{width:45px;height:45px;-webkit-user-select:none}
-.input,.input2{width:clamp(180px,90%,350px);height:45px;background:var(--g-f4f4f4);border-radius:15px;position:absolute;top:35%;left:50%;transform:translateX(-50%);-webkit-user-select:none;overflow:hidden}
+.input,.input2,.input3{width:clamp(180px,90%,350px);height:45px;background:var(--g-f4f4f4);border-radius:15px;position:absolute;top:35%;left:50%;transform:translateX(-50%);-webkit-user-select:none;overflow:hidden}
 .input2{display:none}
-.input input,.input2 input{border:none;border-radius:0;background:rgba(0,0,0,0);color:var(--g-4e4e4e);position:absolute;top:5px;left:10px;width:calc(100% - 5px - 10px - 45px - 45px);height:35px;margin:0;padding:0;font-size:18px}
+.input input,.input2 input,.input3 input{border:none;border-radius:0;background:rgba(0,0,0,0);color:var(--g-4e4e4e);position:absolute;top:5px;left:10px;width:calc(100% - 5px - 10px - 45px - 45px);height:35px;margin:0;padding:0;font-size:18px}
 .input2 input{width:calc(100% - 5px - 10px - 45px)}
+.input3 input{width:calc(100% - 5px - 10px)}
 .input .ipttxt{color:var(--g-4e4e4e);width:auto;height:calc(100% - 10px);font-size:18px;display:flex;justify-content:center;align-items:center;margin-left:5px}
 .input .btn,.input .btn5,.input2 .btn6{width:calc(45px - 5px);height:calc(45px - 5px);position:absolute;top:calc(5px / 2);right:calc(5px / 2);display:flex;justify-content:center;align-items:center;background:var(--g-e3e3e3);border-radius:14px;-webkit-mask-image:-webkit-radial-gradient(white,black);-webkit-user-select:none}
 .input .btn5{right:45px}
@@ -422,6 +423,12 @@ align-items: center;
     
     
 </div>
+  
+  
+  <div class="input3">
+  <input type="text" placeholder="keyword" autocomplete="off">
+  </div>
+  
   
 <div class="mes">
 <div class="mestxt">
@@ -1700,7 +1707,7 @@ deletepwcache()
       $('#bottom-btn-svg-fill-d').attr('fill','var(--g-4e4e4e)')
       $('#bottom-btn-svg-fill-s').attr('stroke','var(--g-ffffff)').attr('stroke-width','0')
       $('.t2').text('New Password')
-      $('.checkpwdp,.input2').css({'display':'none'});
+      $('.checkpwdp,.input2,.input3').css({'display':'none'});
       $('.input,.history').css({'display':'block'});
     }
     if(page === 'b') {
@@ -1710,7 +1717,7 @@ deletepwcache()
       $('#bottom-btn-svg-fill-s').attr('stroke','var(--g-ffffff)').attr('stroke-width','0')
       $('.t2').text('Check Password')
       $('.checkpwdp,.input2').css({'display':'block'});
-      $('.input,.history').css({'display':'none'});
+      $('.input,.history,.input3').css({'display':'none'});
     }
     if(page === 's') {
       $('#bottom-btn-svg-fill-a').attr('fill','var(--g-ffffff)').attr('stroke','var(--g-ffffff)')
@@ -1718,7 +1725,7 @@ deletepwcache()
       $('#bottom-btn-svg-fill-d').attr('fill','var(--g-4e4e4e)')
       $('#bottom-btn-svg-fill-s').attr('stroke','var(--g-4e4e4e)').attr('stroke-width','2.68449')
       $('.t2').text('Search Password')
-      $('').css({'display':'block'});
+      $('.input3').css({'display':'block'});
       $('.input,.history,.checkpwdp,.input2').css({'display':'none'});
     }
     
