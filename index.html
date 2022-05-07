@@ -1135,6 +1135,15 @@ function copy(gid,messw) {
   mes('copied')
   }
 }
+function copynotes(gid,txthash) {
+  var textArea = document.createElement("textarea");
+        textArea.value = $('textarea[j="' + txthash + '"]').val()
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+  mes('notes copied')
+}
 function share(gid) {
   var enc = encu(enur($('input[u="' + gid + '"]').attr('value')))
   
@@ -1147,8 +1156,11 @@ function share(gid) {
   mes('share link copied')
   
 }
+function pwnotes_del(gide) {
+  $('.box[f="' + gide + '"] .bxnotesaa').remove()
+}
 function pwnotes_ev(e,psehash,txthash) {
-  var pseb = btoa(enur($('textarea[j="' + txthash + '"]').val()))
+  var pseb = btoa(enur($('textarea[j="' +   + '"]').val()))
   localStorage.setItem(psehash,pseb)
 }
 function pwnotes_a(gide) {
@@ -1160,7 +1172,7 @@ function pwnotes_a(gide) {
   if(!(localStorage.getItem(psehash) === null)) {
     txtval = deur(atob(String(localStorage.getItem(psehash))))
   }
-  var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '">' + xmarkicon + '</div></div>'
+  var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" ripple-onclick="copynotes(' + "'" + gide + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" ripple-onclick="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
   if($('.box[f="' + gide + '"] .bxnotestxt').length === 0) {
   $('.box[f="' + gide + '"]').append(txthtml)
   $('textarea[j="' + txthash + '"]').val(txtval)
