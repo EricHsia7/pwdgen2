@@ -1305,7 +1305,7 @@ for (var r = 0; r < $('.history .box').length; r++) {
   
 }
 }
-function showsearchresult(e) {
+function showsearchresult() {
   var keywd = $('.input3 input').val()
   if(keywd === ' ' || keywd === '') {
   keywd = gid() + '#' + gid()
@@ -1746,16 +1746,16 @@ deletepwcache()
   });
   
   document.querySelector('.input3 input').addEventListener("paste", function (e){
-    showsearchresult(e)
+    showsearchresult()
   });
 document.querySelector('.input3 input').addEventListener("cut", function (e){
-    showsearchresult(e)
+    showsearchresult()
   });
 document.querySelector('.input3 input').addEventListener("selectionchange", function (e){
-    showsearchresult(e)
+    showsearchresult()
   });
 document.querySelector('.input3 input').addEventListener("keyup", function (e){
-    showsearchresult(e)
+    showsearchresult()
   });
   
   //checkpwpage
@@ -1802,9 +1802,7 @@ document.querySelector('.input3 input').addEventListener("keyup", function (e){
       $('.input3').css({'display':'block'});
       $('.input,.checkpwdp,.input2').css({'display':'none'});
       searchindex()
-      for (var d = 0; d < $('.history .box').length; d++) {
-    $('.history .box').eq(d).attr('search',$('.history .box').eq(d).attr('ksearch'))
-  }
+      showsearchresult()
     }
     
   }
