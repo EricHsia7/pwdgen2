@@ -1319,7 +1319,7 @@ function showsearchresult(e) {
   }
   $('.history .box').attr('search','0')
   for (var d = 0; d < rst.length; d++) {
-    $('.box[f="' + bid.split('_')[3] + '"]').attr('search','1')
+    $('.box[f="' + String(rst).split('_')[3] + '"]').attr('search','1')
   }
   }
   
