@@ -1276,7 +1276,7 @@ for (var r = 0; r < $('.history .box').length; r++) {
   var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
   var thw_notes = 0
   if(!(localStorage.getItem(thw_nhash) === null)) {
-    thw_notes = '"' + String(localStorage.getItem(thw_nhash)) + '"' 
+    thw_notes = '"' + deur(atob(String(localStorage.getItem(thw_nhash)))) + '"' 
   }
   var psehash = 'pwdgen2_saved_a_' + sha256(thw_pwd + '_' + thw_time)
   var thw_saved = 0
@@ -1290,7 +1290,7 @@ for (var r = 0; r < $('.history .box').length; r++) {
   
   //if(saved) {}
   
-  eval('searchindexjson.s_' + thw_bxf + ' = ["' + thw_pwd + '","' + pwtimestr + '",' + thw_notes + ',' + thw_saved + ']')
+  eval('searchindexjson.f_' + r + '_s_' + thw_bxf + ' = ["' + thw_pwd + '","' + pwtimestr + '",' + thw_notes + ',' + thw_saved + ']')
   
 }
        console.log(searchindexjson)
