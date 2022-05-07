@@ -1325,7 +1325,15 @@ function showsearchresult(e) {
   bpage('a')
   var oftop = $('.box[f="' + bid.split('_')[3] + '"]').offset().top
   var bxh = $('.box[f="' + bid.split('_')[3] + '"]').height()
-  $('body,html').scrollTop((oftop-45))
+  var ofg = (window.innerHeight/2-bxh/2-55)
+  var fj = 0
+if(oftop < ofg) {
+ fj = 0
+}
+    else {
+fj = (oftop-55-ofg)
+    }
+  $('body,html').scrollTop(fj)
   }
 function page2() {
   $('body').css({'overflow':'hidden'});
