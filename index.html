@@ -1947,7 +1947,7 @@ settheme(localStorage.getItem('pw_theme_' + od))
      if(!(localStorage.getItem(savedlist[i]) === null)) {
      
      var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
-     var thpwnote = localStorage.getItem('pwdgen2_saved_notes_cf_' + savedlist[i])
+     var thpwnote = localStorage.getItem('pwdgen2_saved_notes_cf_' + String(savedlist[i]).split('_')[3])
      var pwtime = new Date()
      pwtime.setTime(thpwdd[2])
   var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
