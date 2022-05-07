@@ -252,16 +252,17 @@ align-items: center;
   background:var(--g-4e4e4e);
   opacity:0.3;
   }
-  .searchresults {position:absolute;width:clamp(180px,90%,350px);top:calc(35% + 45px + 0px);left:50%;transform:translateX(-50%);display:none;padding-bottom:130px;-webkit-user-select:none}
-  .searchresults li {
-    list-style:none;
-    width:calc(100% - 10px);height:45px;background:var(--g-f4f4f4);border-radius:15px;margin:0px;padding:0px;margin-top:10px;-webkit-user-select:none;overflow:hidden;color:var(--g-4e4e4e);
-    display: flex;
-align-items: center;
-  padding-left:10px;
+  
+  .box[search="0"] {
+    display:none;
   }
-  .searchresults a {
-  text-decoration: none;
+  
+  .box[search="1"] {
+    display:block;
+  }
+  
+  .box[search="n"] {
+    display:block;
   }
 </style>
   <style id="iphonesafearea">
@@ -1316,25 +1317,12 @@ function showsearchresult(e) {
     rst.push(String(f))
     }
   }
+  $('.history .box').attr('search','0')
   for (var d = 0; d < rst.length; d++) {
-    tsr.push('<a href="javascript:gobox(' + "'" + rst[d] + "'" + ')"><li>' + eval('searchindexjson.' + rst[d])[1] + '</li></a>')
+    $('.box[f="' + bid.split('_')[3] + '"]').attr('search','1')
   }
-    $('.searchresults').html(tsr.join(''))
   }
-  function gobox(bid) {
-  bpage('a')
-  var oftop = $('.box[f="' + bid.split('_')[3] + '"]').offset().top
-  var bxh = $('.box[f="' + bid.split('_')[3] + '"]').height()
-  var ofg = (window.innerHeight/2-bxh/2-55)
-  var fj = 0
-if(oftop < ofg) {
- fj = 0
-}
-    else {
-fj = (oftop-55-ofg)
-    }
-  $('body,html').scrollTop(fj)
-  }
+  
 function page2() {
   $('body').css({'overflow':'hidden'});
 $('.page2,.title2').css({'right':'0%','opacity':'0'});
@@ -1793,6 +1781,7 @@ document.querySelector('.input3 input').addEventListener("keyup", function (e){
       $('.t2').text('New Password')
       $('.checkpwdp,.input2,.input3').css({'display':'none'});
       $('.input,.history').css({'display':'block'});
+      $('.box').attr('search','n')
     }
     if(page === 'b') {
       $('#bottom-btn-svg-fill-a').attr('fill','var(--g-ffffff)').attr('stroke','var(--g-ffffff)')
@@ -1802,6 +1791,7 @@ document.querySelector('.input3 input').addEventListener("keyup", function (e){
       $('.t2').text('Check Password')
       $('.checkpwdp,.input2').css({'display':'block'});
       $('.input,.history,.input3').css({'display':'none'});
+      $('.box').attr('search','n')
     }
     if(page === 's') {
       $('#bottom-btn-svg-fill-a').attr('fill','var(--g-ffffff)').attr('stroke','var(--g-ffffff)')
