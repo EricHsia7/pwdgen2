@@ -1949,7 +1949,7 @@ settheme(localStorage.getItem('pw_theme_' + od))
      var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
      var thpwnote = localStorage.getItem('pwdgen2_saved_notes_cf_' + String(savedlist[i]).split('_')[3])
      if(thpwnote === null) {
-     thpwnote = '0'
+     thpwnote = "MA=="
      }
      var pwtime = new Date()
      pwtime.setTime(thpwdd[2])
@@ -1966,7 +1966,7 @@ settheme(localStorage.getItem('pw_theme_' + od))
 var jsonobjgg = {'pwd_aes':thpwdd[0],'pwd_iv':thpwdd[1],'notes':thpwnote,'time':pwtime.getTime()}
   pwddatalist.push(jsonobjgg)
   pwddataliststr.push(JSON.stringify(jsonobjgg))
-  pwddatalistcsv.push('"' + pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds()) + '","' + deur(decu(thpwdd[0],thpwdd[1])) + '","' + deur(atob(thpwnote)).replaceAll('"',' ').replaceAll("'",' ') + '","' + pwtime.getTime() + '"')
+  pwddatalistcsv.push('"' + pwtime.getFullYear() + '-' + che(pwtime.getMonth()+1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds()) + '","' + deur(decu(thpwdd[0],thpwdd[1])) + '","' + deur(atob(String(thpwnote))).replaceAll('"',' ').replaceAll("'",' ') + '","' + pwtime.getTime() + '"')
       
 
      }
