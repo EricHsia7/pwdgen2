@@ -252,6 +252,7 @@ align-items: center;
   background:var(--g-4e4e4e);
   opacity:0.3;
   }
+  .searchresults {position:absolute;width:clamp(180px,90%,350px);top:calc(35% + 45px + 0px);left:50%;transform:translateX(-50%);display:none;padding-bottom:130px;-webkit-user-select:none}
 </style>
   <style id="iphonesafearea">
     :root {
@@ -428,7 +429,7 @@ align-items: center;
   <div class="input3">
   <input type="text" placeholder="keyword" autocomplete="off">
   </div>
-  
+  <div class="searchresults"></div>
   
 <div class="mes">
 <div class="mestxt">
@@ -1265,6 +1266,35 @@ function showpwdinfo(gid) {
     },1);
   }
   }
+var searchindexjson = {}
+function searchindex() {
+  searchindexjson = {}
+for (var r = 0; r < $('.history .box').length; r++) {
+  var thw_bxf = $('.history .box').eq(r).attr('f')
+  var thw_pwd = $('input[u="' + thw_bxf + '"]').attr('value')
+  var thw_time = $('.box[f="' + thw_bxf + '"]').attr('t')
+  var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
+  var thw_notes = 0
+  if(!(localStorage.getItem(thw_nhash) === null)) {
+    thw_notes = '"' + String(localStorage.getItem(thw_nhash)) + '"' 
+  }
+  var psehash = 'pwdgen2_saved_a_' + sha256(thw_pwd + '_' + thw_time)
+  var thw_saved = 0
+  if(!(localStorage.getItem(psehash) === null)) {
+    thw_saved = 1
+  }
+  
+  var pwt = new Date()
+  pwt.setTime(thw_time)
+  var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth()+1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
+  
+  //if(saved) {}
+  
+  eval('searchindexjson.s_' + thw_bxf + ' = ["' + thw_pwd + '","' + pwtimestr + '",' + thw_notes + ',' + thw_saved + ']'
+  
+}
+       console.log(searchindexjson)
+}
 function page2() {
   $('body').css({'overflow':'hidden'});
 $('.page2,.title2').css({'right':'0%','opacity':'0'});
@@ -1728,8 +1758,7 @@ deletepwcache()
       $('.input3').css({'display':'block'});
       $('.input,.history,.checkpwdp,.input2').css({'display':'none'});
     }
-    
-    
+    searchindex()
   }
   $('.bottom-btn').click(function() {
   bpage($(this).attr('b'))
