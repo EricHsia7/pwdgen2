@@ -1160,8 +1160,10 @@ function pwnotes_del(gide) {
   $('.box[f="' + gide + '"] .bxnotesaa').remove()
 }
 function pwnotes_ev(e,psehash,txthash) {
-  var pseb = btoa(enur($('textarea[j="' +   + '"]').val()))
+  if($('textarea[j="' + txthash + '"]').length > 0) {
+  var pseb = btoa(enur($('textarea[j="' + txthash + '"]').val()))
   localStorage.setItem(psehash,pseb)
+  }
 }
 function pwnotes_a(gide) {
   delboxmnuli(gide)
