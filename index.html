@@ -1300,7 +1300,7 @@ function showsearchresult(e) {
   var rst = []
   var tsr = []
   for(var f in searchindexjson) {
-    if((eval('searchindexjson.' + f)).indexOf(keywd) > -1) {
+    if((eval('searchindexjson.' + f).join(' ')).indexOf(keywd) > -1) {
     rst.push(String(f).split('_')[3])
     }
   }
