@@ -1322,9 +1322,9 @@ function showsearchresult(e) {
     $('.searchresults').html(tsr.join(''))
   }
   function gobox(bid) {
+  bpage('a')
   var oftop = $('.box[f="' + bid.split('_')[3] + '"]').offset().top
   var bxh = $('.box[f="' + bid.split('_')[3] + '"]').height()
-  bpage('a')
   $('body,html').animate({'scrollTop':(oftop-bxh)},888)
   }
 function page2() {
