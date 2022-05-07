@@ -1124,8 +1124,16 @@ function showboxmnuli(gid) {
   var bthheight = $('.momenuliooo[h="' + gid + '"]').height()
   var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
   var bthwidth = $('.momenuliooo[h="' + gid + '"]').height()
+  var wwwh = window.innerHeight 
+  var wwww = window.innerWidth
+  var ftop = (btntop+bthheight+5);
+  var fleft = (btnleft+bthwidth-180);
+  
+  if(wwwh-btntop-bthheight < (46*2)-1) {
+  ftop = (btntop-5-(46*2)-1));
+}
   var bxbgffft = '<div class="boxmnulibgjj" style="background:rgba(0,0,0,0);position:fixed;top:0px;left:0px;width:100%;height:100%;" jvw="bxbg-' + gid + '"></div>' ;
-var boxmnulihtm = '<div class="boxmnuli" style="top:' + (btntop+bthheight+5) + 'px;left:' + (btnleft+bthwidth-180) + 'px;transform:scale(0);transform-origin: right top;opacity:0;transition:0.2s;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" ripple-onclick="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '">notes</li></div>' ;
+var boxmnulihtm = '<div class="boxmnuli" style="top:' + ftop + 'px;left:' + fleft + 'px;transform:scale(0);transform-origin: right top;opacity:0;transition:0.2s;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" ripple-onclick="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '">notes</li></div>' ;
   if($('.boxmnuli[bxz="' + gid + '"]').length === 0) {
   $('body').append(bxbgffft + boxmnulihtm)
   setTimeout(function() {
