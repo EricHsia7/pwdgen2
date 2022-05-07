@@ -1130,7 +1130,12 @@ function pwnotes_a(gide) {
   var ddt = $('.box[f="' + gide + '"]').attr('t')
   var psehash = 'pwdgen2_saved_notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt)
   var txthash = 'notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt) + '_' + gid()
-  var txthtml = '<textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea>'
+  var txtval = ''
+  if(!(localStorage.getItem(psehash) === null)) {
+    txtval = deur(atob(localStorage.getItem(psehash)))
+  }
+  var txthtml = '<textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt" value="' + txtval + '"></textarea>'
+  if($('.box[f="' + gide + '"] .bxnotestxt').length === 0) {
   $('.box[f="' + gide + '"]').append(txthtml)
   document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e){
     pwnotes_ev(e,String(psehash),String(txthash));
@@ -1145,7 +1150,8 @@ document.querySelector('textarea[j="' + txthash + '"]').addEventListener("keyup"
     pwnotes_ev(e,String(psehash),String(txthash));
   });
   
-  
+  }
+    
 }
 function delboxmnuli(gid) {
   $('.boxmnuli[bxz="' + gid + '"]').css({'transform':'scale(0)','opacity':'0'});
