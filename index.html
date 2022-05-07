@@ -1551,12 +1551,13 @@ function autodeletesavedpwd() {
   var deltime = 86400000*parseInt(String(localStorage.getItem('pw_options_autodelpwddaystt')))
   var dellist = []
   var savedlist = searchItemsbyname('pwdgen2_saved_a_') 
- 
+  
   for (var i = 0; i < savedlist.length; i++) {
    if(!(savedlist[i] === 'null')) {
      if(!(localStorage.getItem(savedlist[i]) === null)) {
      var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
      var pwtime = parseInt(thpwdd[2])
+     
   if((nwtime-pwtime) > deltime){
     dellist.push(savedlist[i])
     localStorage.removeItem(savedlist[i])
@@ -1611,14 +1612,33 @@ function autodeletesavedpwd() {
   }
   
 function deletepwcache() {
-  var pwdhlist = searchItemsbyname('pwch_cache_') ;
   var pwnwtt = new Date().getTime()
+  
+  var pwdhlist = searchItemsbyname('pwch_cache_') ;
+  var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
+  var notesjson = {}
+  
+  for (var i = 0; i < noteslist.length; i++) {
+    eval('notesjson.' + noteslist[i] + ' = "0"')
+  }
+  
+  
+  
   for (var i = 0; i < pwdhlist.length; i++) {
+    eval('notesjson.pwdgen2_saved_notes_cf_' + String(pwdhlist[i]).split('_')[3] + ' = "1"')
+       
     var pwhhhcc = String(localStorage.getItem(pwdhlist[i])).split(':')
     if(pwnwtt-parseInt(pwhhhcc[0]) > 43200000) {
     localStorage.removeItem(pwdhlist[i])
     }
   }
+  
+  for(var t in notesjson) {
+    if(eval('notesjson.' + t) === "0") {
+      localStorage.removeItem(t)
+    }
+  }
+  
 }
 function showsavedhistory() {
  //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
