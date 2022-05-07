@@ -1160,10 +1160,11 @@ function pwnotes_a(gide) {
   if(!(localStorage.getItem(psehash) === null)) {
     txtval = deur(atob(String(localStorage.getItem(psehash))))
   }
-  var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px">' + xmarkicon + '</div></div>'
+  var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '">' + xmarkicon + '</div></div>'
   if($('.box[f="' + gide + '"] .bxnotestxt').length === 0) {
   $('.box[f="' + gide + '"]').append(txthtml)
   $('textarea[j="' + txthash + '"]').val(txtval)
+  ripple('.bxntx[yj="' + gide + '"]','var(--g-4e4e4e)','0.3',888,'true');
   document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e){
     pwnotes_ev(e,String(psehash),String(txthash));
   });
