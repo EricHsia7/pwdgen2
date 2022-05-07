@@ -1295,8 +1295,10 @@ for (var r = 0; r < $('.history .box').length; r++) {
 }
 }
 function showsearchresult(e) {
-  
   var keywd = $('.input3 input').val()
+  if(keywd === ' ' || keywd === '') {
+  keywd = gid() + '#' + gid()
+  }
   var rst = []
   var tsr = []
   for(var f in searchindexjson) {
