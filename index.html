@@ -1317,9 +1317,9 @@ function showsearchresult(e) {
     rst.push(String(f))
     }
   }
-  $('.history .box').attr('search','0')
+  $('.history .box').attr('search','0').attr('ksearch','0')
   for (var d = 0; d < rst.length; d++) {
-    $('.box[f="' + String(rst[d]).split('_')[3] + '"]').attr('search','1')
+    $('.box[f="' + String(rst[d]).split('_')[3] + '"]').attr('search','1').attr('ksearch','1')
   }
   }
   
@@ -1802,6 +1802,9 @@ document.querySelector('.input3 input').addEventListener("keyup", function (e){
       $('.input3').css({'display':'block'});
       $('.input,.checkpwdp,.input2').css({'display':'none'});
       searchindex()
+      for (var d = 0; d < $('.history .box').length; d++) {
+    $('.history .box').eq(d).attr('search',$('.history .box').eq(d).attr('ksearch'))
+  }
     }
     
   }
