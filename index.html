@@ -1709,6 +1709,7 @@ for (var i = 0; i < savedlist_t.length; i++) {
  $('.history .loading').remove()
  scrollcheckpwd()
  deletepwcache()
+ searchindex()
  },1200);
  }
 else {
@@ -1786,8 +1787,9 @@ document.querySelector('.input3 input').addEventListener("keyup", function (e){
       $('.t2').text('Search Password')
       $('.input3,.searchresults').css({'display':'block'});
       $('.input,.history,.checkpwdp,.input2').css({'display':'none'});
+      searchindex()
     }
-    searchindex()
+    
   }
   $('.bottom-btn').click(function() {
   bpage($(this).attr('b'))
