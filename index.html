@@ -1130,13 +1130,14 @@ function pwnotes_a(gide) {
   var ddt = $('.box[f="' + gide + '"]').attr('t')
   var psehash = 'pwdgen2_saved_notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt)
   var txthash = 'notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt) + '_' + gid()
-  var txtval = ''
+  var txtval = '' ;
   if(!(localStorage.getItem(psehash) === null)) {
     txtval = deur(atob(String(localStorage.getItem(psehash))))
   }
-  var txthtml = '<textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt" value="' + txtval + '"></textarea>'
+  var txthtml = '<textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea>'
   if($('.box[f="' + gide + '"] .bxnotestxt').length === 0) {
   $('.box[f="' + gide + '"]').append(txthtml)
+  $('textarea[j="' + txthash + '"]').val(txtval)
   document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e){
     pwnotes_ev(e,String(psehash),String(txthash));
   });
