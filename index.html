@@ -1276,7 +1276,7 @@ function showpwdinfo(gid) {
   }
 
 function showsearchresult() {
-  $('.searchinpbar').css({'opacity':'1','width':'0%','transition':'0s'});
+  $('.searchinpbar').css({'opacity':'1','width':'0%'});
   var seapr = $('.history .box').length*2
   var seapr_w = 0
   searchindexjson = {}
@@ -1303,7 +1303,7 @@ for (var r = 0; r < $('.history .box').length; r++) {
   
   eval('searchindexjson.f_' + r + '_s_' + thw_bxf + ' = ["' + thw_pwd + '","' + pwtimestr + '",' + thw_notes + ',' + thw_saved + ',' + thw_time + ']')
   seapr_w += 1 
-  $('.searchinpbar').css({'width':seapr_w/seapr*100 + '%','transition':'0.3s'});
+  $('.searchinpbar').css({'width':seapr_w/seapr*100 + '%'});
 }
   
   //seapr = $('.history .box').length+Object.keys(searchindexjson).length
@@ -1320,7 +1320,7 @@ for (var r = 0; r < $('.history .box').length; r++) {
     }
     seapr_w += 1 
     
-    $('.searchinpbar').css({'width':seapr_w/seapr*100 + '%','transition':'0.3s'});
+    $('.searchinpbar').css({'width':seapr_w/seapr*100 + '%'});
   }
   
   
