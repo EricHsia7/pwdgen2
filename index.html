@@ -1321,6 +1321,11 @@ function showsearchresult(e) {
   }
     $('.searchresults').html(tsr.join(''))
   }
+  function gobox(bid) {
+  var oftop = $('.box[f="' + bid.split('_')[3] + '"]').offset().top
+  var bxh = $('.box[f="' + bid.split('_')[3] + '"]').height()
+  $(document).scrollTop(oftop-bxh)
+  }
 function page2() {
   $('body').css({'overflow':'hidden'});
 $('.page2,.title2').css({'right':'0%','opacity':'0'});
