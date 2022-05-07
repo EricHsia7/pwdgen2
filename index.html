@@ -1276,7 +1276,7 @@ for (var r = 0; r < $('.history .box').length; r++) {
   var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
   var thw_notes = 0
   if(!(localStorage.getItem(thw_nhash) === null)) {
-    thw_notes = '"' + deur(atob(String(localStorage.getItem(thw_nhash)))) + '"' 
+    thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"','').replaceAll("'",'') + '"' 
   }
   var psehash = 'pwdgen2_saved_a_' + sha256(thw_pwd + '_' + thw_time)
   var thw_saved = 0
