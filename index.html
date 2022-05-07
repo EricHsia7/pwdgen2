@@ -253,6 +253,9 @@ align-items: center;
   opacity:0.3;
   }
   .searchresults {position:absolute;width:clamp(180px,90%,350px);top:calc(35% + 45px + 0px);left:50%;transform:translateX(-50%);display:none;padding-bottom:130px;-webkit-user-select:none}
+  .searchresults li {
+    list-style:none;
+  }
 </style>
   <style id="iphonesafearea">
     :root {
@@ -1307,7 +1310,7 @@ function showsearchresult(e) {
     }
   }
   for (var d = 0; d < rst.length; d++) {
-    tsr.push('<li>' + rst[d] + '</li>')
+    tsr.push('<a href="javascript:gobox(' + "'" + rst[d] + "'" + ')"><li>' + 'view' + '</li></a>')
   }
     $('.searchresults').html(tsr.join(''))
   }
