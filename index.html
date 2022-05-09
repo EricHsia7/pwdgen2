@@ -1214,6 +1214,9 @@ document.querySelector('textarea[j="' + txthash + '"]').addEventListener("cut", 
 document.querySelector('textarea[j="' + txthash + '"]').addEventListener("selectionchange", function (e){
     pwnotes_ev(e,String(psehash),String(txthash));
   });
+document.addEventListener("selectionchange", function (e){
+    pwnotes_ev(e,String(psehash),String(txthash));
+  });
 document.querySelector('textarea[j="' + txthash + '"]').addEventListener("keyup", function (e){
     pwnotes_ev(e,String(psehash),String(txthash));
   });
