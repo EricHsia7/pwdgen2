@@ -264,6 +264,7 @@ align-items: center;
     display:block;
   }
  
+
 </style>
   <style id="iphonesafearea">
     :root {
@@ -635,7 +636,7 @@ var ogstyle = $(this).attr('style');
 
 var ppchars = "0123456789abcdefghijklmnopqrstuvwxyz";
             var ppid = "";
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 16; i++) {
                 var randomNumber = Math.floor(Math.random() * ppchars.length);
                 ppid += ppchars.substring(randomNumber, randomNumber + 1);
             }
@@ -669,15 +670,13 @@ ggww = $(this).height()*4 ;
  var yPos = (eee.pageY - $(this).offset().top)-(ggww/2);
 
 $(this).append('<div style="width:' + ggww + 'px;height:' + ggww + 'px;position: absolute;top:' + yPos + 'px;left:' + xPos + 'px;border-radius:99em;transform:scale(0.125);transition:transform ' + (time/1000) + 's,opacity ' + (time/1.5/1000) + 's;opacity:' + opacity + ';background:' + color + '; overflow:hidden; -webkit-user-select:none; outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0);transition-timing-function: ease-out;" id="' + ppid + '"></div>');
-
+$('body').append('<style vgf="' + ppid + '">.rippleanimation' + ppid + ' {animation-name:ripple' + ppid + ';animation-duration:' + (time/0.9/1000) + 's;animation-fill-mode:forwards;animation-timing-function:linear}@keyframes ripple' + ppid + ' {0%{opacity:calc(0 * 0);transform:scale(0.125)}30%{opaciy:calc(0.7 * 0.3);transform:scale(0.25)}65%{opacity:calc(1 * 0.3);transform:scale(0.8)}100%{opacity:calc(0 * 0.3);transform:scale(1)}}</style>');
 setTimeout(function () {
-                    $('#' + ppid).css({'transform':'scale(1)'});
+                    $('#' + ppid).attr('class','rippleanimation' + 'ppid')
                 }, 1);
-  setTimeout(function () {
-                    $('#' + ppid).css({'opacity':'0'});
-                }, 5);
      setTimeout(function () {
                     $('#' + ppid).remove();
+                    $('style[vgf="' + ppid + '"]').remove();
                     $('*[rippleid="' + ppida + '"]').attr('style',ogstyle);
                 }, time/0.9);
   if($(this).attr('ripple-onclick') != '') {
