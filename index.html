@@ -642,7 +642,7 @@ var ppchars = "0123456789abcdefghijklmnopqrstuvwxyz";
 
             var ppcharsa = "0123456789abcdefghijklmnopqrstuvwxyz";
             var ppida = "";
-            for (var ia = 0; ia < 5; ia++) {
+            for (var ia = 0; ia < 16; ia++) {
                 var randomNumbera = Math.floor(Math.random() * ppcharsa.length);
                 ppida += ppcharsa.substring(randomNumbera, randomNumbera + 1);
             }
@@ -763,19 +763,13 @@ function isRunningStandalone() {
 }
   
 function encu(textu) {
- var ivqu = parseInt(
-                    Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1) +
-                        "" +
-                        Math.floor(Math.random() * 8 + 1)
-                );
+  var eechars = "123456789";
+  var eeid = "";
+  for (var i = 0; i < 8; i++) {
+   var eerandomNumber = Math.floor(Math.random() * ppchars.length);
+   eeid += eechars.substring(eerandomNumber, eerandomNumber + 1);
+    }
+ var ivqu = parseInt(eeid);
                 
                 var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
                 
