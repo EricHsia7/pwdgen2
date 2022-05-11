@@ -1516,37 +1516,37 @@ var chbw = 1
 if($.support.touch) {
 var chbw = 0
 }
-document.querySelectorAll('.cgbw')[0].addEventListener('touchstart',function(e) {
+document.querySelectorAll('.cgbw')[0].addEventListener(chbwtost[chbw],function(e) {
   cgbwtd = true
 })
-document.querySelectorAll('.cgbw')[1].addEventListener('touchstart',function(e) {
+document.querySelectorAll('.cgbw')[1].addEventListener(chbwtost[chbw],function(e) {
   cgbwtd = true
 })
-document.querySelectorAll('.cgbw')[2].addEventListener('touchstart',function(e) {
+document.querySelectorAll('.cgbw')[2].addEventListener(chbwtost[chbw],function(e) {
   cgbwtd = true
 })
 
-document.querySelectorAll('.cgbw')[0].addEventListener('touchend',function(e) {
+document.querySelectorAll('.cgbw')[0].addEventListener(chbwtoed[chbw],function(e) {
   cgbwtd = false
   $('.cgbw').eq(0).attr('gh','0')
 })
-document.querySelectorAll('.cgbw')[1].addEventListener('touchend',function(e) {
+document.querySelectorAll('.cgbw')[1].addEventListener(chbwtoed[chbw],function(e) {
   cgbwtd = false
   $('.cgbw').eq(1).attr('gh','0')
 })
-document.querySelectorAll('.cgbw')[2].addEventListener('touchend',function(e) {
+document.querySelectorAll('.cgbw')[2].addEventListener(chbwtoed[chbw],function(e) {
   cgbwtd = false
   $('.cgbw').eq(2).attr('gh','0')
 })
 
 
-document.querySelectorAll('.cgbw')[0].addEventListener('touchmove',function(e) {
+document.querySelectorAll('.cgbw')[0].addEventListener(chbwtohm[chbw],function(e) {
   cgbwfn(0,e)
 })
-document.querySelectorAll('.cgbw')[1].addEventListener('touchmove',function(e) {
+document.querySelectorAll('.cgbw')[1].addEventListener(chbwtohm[chbw],function(e) {
   cgbwfn(1,e)
 })
-document.querySelectorAll('.cgbw')[2].addEventListener('touchmove',function(e) {
+document.querySelectorAll('.cgbw')[2].addEventListener(chbwtohm[chbw],function(e) {
   cgbwfn(2,e)
 })
 
