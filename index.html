@@ -2062,11 +2062,10 @@ var jsonobjgg = {'pwd_aes':thpwdd[0],'pwd_iv':thpwdd[1],'notes':thpwnote,'time':
      
    }
  }
-    
-    
+ 
     //ggg
     
-     var zip = new JSZip();
+var zip = new JSZip();
 zip.file('password_backup_' + bktime.getTime() + '_json.json','{"time":"' + bktime.getTime() + '","data":[' + pwddataliststr.join(',') + ']}')
 zip.file('password_backup_' + bktime.getTime() + '_csv.csv','"Time","password","notes","Time(ms)"\n' + pwddatalistcsv.join('\n'))   
 var txtfolder = zip.folder("Text");
@@ -2084,7 +2083,56 @@ zip.generateAsync({type:"blob"})
 });
 }
   
-  
+function importpwdfromjson(jsonstr,m) {
+  jsonstr = String(jsonstr)
+  var gjson = JSON.parse(jsonstr)
+  var gtime = gjson.time
+  var gdata = gjson.data
+  for (var w = 0; w < gdata.length; w++) {
+    var wpw = gdata[w]
+    var waes = wpw.pwd_aes
+    var wiv = wpw.pwd_iv
+    var wnt = wpw.notes
+    var wtt = wpw.time
+    var wpwd = deur(decu(waes,wiv))
+    var whash = sha256(wpwd + '_' + wtt)
+    if(m === 0) {
+      //overwrite
+    //localStorage start
+    localStorage.setItem('pwdgen2_saved_a_' + whash,waes + ':' + wiv + ':' + wtt)
+    localStorage.setItem('pwdgen2_saved_notes_cf_' + whash,wnt)
+    //localStorage end
+    }
+    if(m === 1) {
+      //repeat duplicate
+    //localStorage start
+    if(!(localStorage.getItem('pwdgen2_saved_a_' + whash) === null)) {
+      
+    for (var i = 0; i < 10; i++) {
+    var dxf = Math.round(Math.random()*5000)
+    var dtg = Math.random()
+    if(dtg > 0.5) {
+      dxf = dxf*-1
+    }
+      if(localStorage.getItem('pwdgen2_saved_a_' + sha256(wpwd + '_' + (wpw.time+(dxf)) )) === null) {
+        wtt = wpw.time+(dxf)
+        whash = sha256(wpwd + '_' + wtt)
+      }
+      
+      }
+      //*
+    }
+    else {
+      
+    }
+      localStorage.setItem('pwdgen2_saved_a_' + whash,waes + ':' + wiv + ':' + wtt)
+      localStorage.setItem('pwdgen2_saved_notes_cf_' + whash,wnt)
+      
+    //localStorage end
+    }
+    
+  }
+}
   
   
   
