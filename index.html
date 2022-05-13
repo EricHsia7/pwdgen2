@@ -552,6 +552,9 @@ message
 </li>
     
     
+    <label for="imbkpwd">
+<input type="file" id="imbkpwd" name="imbkpwd" accept="application/json">
+      
     <li class="options_list" dy="importbackuppwd">
   <div class="options_list_txt">Import passwords from backup(JSON)</div>
   <div class="options_list_icon">
@@ -560,7 +563,7 @@ message
 </svg>
   </div>
 </li>
-    
+    </label>
     
     <li class="options_list" dy="deleteall" ripple-onclick="confirmcf()">
   <div class="options_list_txt">Delete all saved passwords</div>
@@ -1904,7 +1907,7 @@ var vidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
   
-  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"]','var(--g-4e4e4e)','0.3',1300,'true');
+  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="importbackuppwd"]','var(--g-4e4e4e)','0.3',1300,'true');
   ripple('.confirm .btn3','var(--g-4e4e4e)','0.3',888,'true');
   
   function deleteallsavedpwds() {
