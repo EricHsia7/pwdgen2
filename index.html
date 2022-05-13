@@ -669,8 +669,8 @@ message
   <div class="impbktitle">
 After confirming the import, you "cannot" cancel it
   </div> 
-  <div class="btn8">Confirm</div>
-  <div class="btn8" style="left:calc(50% + 5px)">Cancel</div>
+  <div class="btn8" ripple-onclick="cifimport()">Confirm</div>
+  <div class="btn8" style="left:calc(50% + 5px)" ripple-onclick="clsimbkpp()">Cancel</div>
 </div>
   
 </body>
@@ -2004,6 +2004,20 @@ setTimeout(function() {
  $('.confirm_mask,.confirm').css({'display':'none','transition':'0s'});
 },300);
 }
+function imbkpp() {
+
+ $('.confirm_mask,.impbk').css({'opacity':'0','display':'block'});
+  
+setTimeout(function() {
+ $('.confirm_mask,.impbk').css({'opacity':'1','transition':'0.3s'});
+},1);
+}
+  function clsimbkpp() {
+$('.confirm_mask,.impbk').css({'opacity':'0'});
+setTimeout(function() {
+ $('.confirm_mask,.impbk').css({'display':'none','transition':'0s'});
+},300);
+  }
   function viewongithub() {
 window.open('https://github.com/EricHsia7/pwdgen2')
   }
@@ -2208,14 +2222,30 @@ function handleFileSelect(evt) {
       //showing file converted to base64
       
 
-      console.log(binaryData)
-      
+      sessionStorage.setItem('pwdgen2_import',binaryData)
+      mes('Loading JSON')
+      imbkpp()
+      mes('Loaded JSON')
     };
   })(f);
   // Read in the image file as a data URL.
   reader.readAsBinaryString(f);
 }
   
+  function cifimport() {
+     
+     var jsonhh = sessionStorage.getItem('pwdgen2_import')
+     clsimbkpp()
+    $('.confirm_mask').css({'display':'block','opacity':'1','background':'var(--g-ffffff)','transition':'0s'}).html('<div class="position:absolute;top:50%;left:50%;color:var(--g-4e4e4e);font-size:25px;">importing</div>');
+     importpwdfromjson(jsonhh,0)
+      mes('The page will auto refresh after the import is done!')
+      
+    setTimeout(function() {
+ vrefresh()
+},10000);
+    
+      
+  }
   /*
   $(document).ready(function() {
 var odsha = String(localStorage.getItem('pw_github_sha'))
