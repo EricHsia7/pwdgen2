@@ -277,10 +277,13 @@ align-items: center;
 .impbk {
 width:clamp(180px,90%,350px);
   height:140px;
-  background:#f2f2f2;
-  position:relative;
+  background:var(--g-f4f4f4);
+  position:fixed;
   border-radius:15px;
   display:none;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 .impbk .impbktitle {
   position:absolute;
@@ -293,18 +296,20 @@ width:clamp(180px,90%,350px);
 justify-content: center;
 align-items: center;
   text-align: center;
+  color:var(--g-4e4e4e)
 }
 .impbk .btn8 {
   position:absolute;
   top:calc(15px + 55px + 5px + 5px);
   left:15px;
-  background:#fafafa;
+  background:var(--g-e3e3e3);
   height:45px;
   width:calc(50% - 20px);
   border-radius:15px;
   display: flex;
 justify-content: center;
 align-items: center;
+  color:var(--g-4e4e4e)
 }
 </style>
   <style id="iphonesafearea">
