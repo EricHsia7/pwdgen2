@@ -2278,7 +2278,7 @@ var scale = 2.5
 var radius = 25*scale;
 var w = 180*scale
 var h = 40*scale
-var color = '#e3e3e3'
+var color = getComputedStyle(document.body).getPropertyValue('--g-e3e3e3')
 canvas.width = w
 canvas.height = h
 
@@ -2310,7 +2310,7 @@ context.fill();
 
 
 context.font = 20*scale + "px Arial";
-context.fillStyle = '#4e4e4e' ;
+context.fillStyle = getComputedStyle(document.body).getPropertyValue('--g-4e4e4e') 
 context.fillText(str, 10*scale, 27*scale);
 
 //14-3
@@ -2322,7 +2322,11 @@ context.fillText(str, 10*scale, 27*scale);
     event.preventDefault();
 }
 function Drag(event){
-    event.dataTransfer.setData("text",$('input[u="' + $('#' + event.currentTarget.id).attr('f') + '"]').attr('value'));
+    var drgftxt = $('input[u="' + $('#' + event.currentTarget.id).attr('f') + '"]').attr('value')
+    event.dataTransfer.setData("text",drgftxt);
+    var img = new Image(); 
+    img.src = dragimgdturl(drgftxt);
+    event.dataTransfer.setDragImage(img, 10, 10);
 }
 function Drop(event){
     event.preventDefault();
