@@ -2192,8 +2192,29 @@ function importpwdfromjson(jsonstr,m) {
     
   }
 }
-  
-  
+
+document.getElementById("imbkpwd").addEventListener("change", handleFileSelect, false);
+
+    
+function handleFileSelect(evt) {
+  var f = evt.target.files[0]; // FileList object
+  var reader = new FileReader();
+  // Closure to capture the file information.
+  reader.onload = (function(theFile) {
+    return function(e) {
+      var binaryData = e.target.result;
+      //Converting Binary Data to base 64
+      //var base64String = window.btoa(binaryData);
+      //showing file converted to base64
+      
+
+      console.log(binaryData)
+      
+    };
+  })(f);
+  // Read in the image file as a data URL.
+  reader.readAsBinaryString(f);
+}
   
   /*
   $(document).ready(function() {
