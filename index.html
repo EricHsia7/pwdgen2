@@ -274,7 +274,38 @@ align-items: center;
     height:45px;
     display: block;
   }
-
+.impbk {
+width:clamp(180px,90%,350px);
+  height:140px;
+  background:#f2f2f2;
+  position:relative;
+  border-radius:15px;
+  display:none;
+}
+.impbk .impbktitle {
+  position:absolute;
+  top:15px;
+  left:15px;
+  width:calc(100% - 30px);
+  height:50px;
+  font-size:18px;
+  display: flex;
+justify-content: center;
+align-items: center;
+  text-align: center;
+}
+.impbk .btn8 {
+  position:absolute;
+  top:calc(15px + 55px + 5px + 5px);
+  left:15px;
+  background:#fafafa;
+  height:45px;
+  width:calc(50% - 20px);
+  border-radius:15px;
+  display: flex;
+justify-content: center;
+align-items: center;
+}
 </style>
   <style id="iphonesafearea">
     :root {
@@ -632,6 +663,14 @@ message
   <input type="text" class="confirminput" placeholder="Enter text here...">
   <div class="btn3" ripple-onclick="deleteallsavedpwds()">Confirm</div>
   <div class="btn3" style="left:calc(50% + 5px)" ripple-onclick="confirmcls()">Cancel</div>
+</div>
+  
+  <div class="impbk">
+  <div class="impbktitle">
+After confirming the import, you "cannot" cancel it
+  </div> 
+  <div class="btn8">Confirm</div>
+  <div class="btn8" style="left:calc(50% + 5px)">Cancel</div>
 </div>
   
 </body>
