@@ -313,6 +313,9 @@ align-items: center;
   -webkit-mask-image:-webkit-radial-gradient(white,black);
   -webkit-user-select:none;
 }
+  #canvas {
+  display:none;
+  }
 </style>
   <style id="iphonesafearea">
     :root {
@@ -389,6 +392,8 @@ align-items: center;
   </style>
   </head>
 <body>
+  <canvas id="canvas"></canvas>
+  
  <div class="t2">
   New Password
 </div>
@@ -2260,6 +2265,58 @@ setTimeout(function() {
     
       
   }
+  
+  
+function dragimgdturl(str) {
+if(String(str).length > 13) {
+  str = str.substring(0,13-3) + '...'
+}
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+
+var scale = 2.5
+var radius = 25*scale;
+var w = 180*scale
+var h = 40*scale
+var color = '#e3e3e3'
+canvas.width = w
+canvas.height = h
+
+context.clearRect(0, 0, canvas.width, canvas.height);
+context.fillStyle = color
+context.fillRect(radius/2,0,w-radius,h)
+context.fillRect(0,radius/2,w,h-radius)
+context.fill();
+
+context.beginPath();
+context.arc(radius/2, radius/2, radius/2, 0, 2 * Math.PI, false);
+context.fillStyle = color
+context.fill();
+
+context.beginPath();
+context.arc(w-radius/2, radius/2, radius/2, 0, 2 * Math.PI, false);
+context.fillStyle = color
+context.fill();
+
+context.beginPath();
+context.arc(radius/2, h-radius/2, radius/2, 0, 2 * Math.PI, false);
+context.fillStyle = color
+context.fill();
+
+context.beginPath();
+context.arc(w-radius/2, h-radius/2, radius/2, 0, 2 * Math.PI, false);
+context.fillStyle = color
+context.fill();
+
+
+context.font = 20*scale + "px Arial";
+context.fillStyle = '#4e4e4e' ;
+context.fillText(str, 10*scale, 27*scale);
+
+//14-3
+  return canvas.toDataURL()
+}
+
   
   function AllowDrop(event){
     event.preventDefault();
