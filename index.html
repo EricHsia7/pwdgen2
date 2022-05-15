@@ -526,6 +526,8 @@ After confirming the import, you "cannot" cancel it
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 <script>
+var t1 = new Date()
+
 var getUrlString = location.href;
 var url = new URL(getUrlString);
 
@@ -2189,5 +2191,15 @@ else {
 }
 });
 */
+  var t2 = new Date()
+  
+  var t3 = t2.getTime()-t1.getTime()
+  
+  if(localStorage.getItem('pwdgen2_t3') === null) {
+    localStorage.setItem('pwdgen2_t3',t3)
+  }
+  else {
+  localStorage.setItem('pwdgen2_t3',localStorage.getItem('pwdgen2_t3') + ',' + t3)
+  }
 </script>
 </html>
