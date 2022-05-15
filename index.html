@@ -1006,6 +1006,32 @@ gh.push(t)
 }
 return gh
 }
+function checkcsssupport() {
+  var style = String(document.querySelector("#mainstyle").innerHTML).split("\n");
+  var style1x = []
+  for (var i = 0; i < style.length; i++) {
+    var th = style[i].split('{')
+    for (var o = 0; o < th.length; o++) {
+      style1x.push(th[o].replaceAll('}'));
+    }
+  }
+  var style2x = [];
+  for (var i = 0; i < style1x.length; i++) {
+    if(!(String(style1x[i]).indexOf('{') > -1) && !(String(style1x[i]).indexOf('}') > -1) && (String(style1x[i]).indexOf(':') > -1) && !(String(style1x[i]).indexOf('after') > -1) && !(String(style1x[i]).indexOf('before') > -1) && !(String(style1x[i]).indexOf('placeholder') > -1)) {
+    style2x.push(style1x[i]);
+    }
+  }
+ var pt = 0
+  for (var i = 0; i < style2x.length; i++) {
+    var th = style2x[i].split(';');
+    for (var d = 0; d < th.length; d++) {
+      if(CSS.supports(String(th[d]))) {
+      pt += 1;
+    }
+    }
+  }
+  return pt / style2x.length;
+}
 
 // left: 37, up: 38, right: 39, down: 40,
 // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
