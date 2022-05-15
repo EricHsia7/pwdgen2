@@ -1022,15 +1022,17 @@ function checkcsssupport() {
     }
   }
  var pt = 0
+ var ft = 0
   for (var i = 0; i < style2x.length; i++) {
     var th = style2x[i].split(';');
     for (var d = 0; d < th.length; d++) {
+      ft += 1
       if(CSS.supports(String(th[d]))) {
       pt += 1;
     }
     }
   }
-  return pt / style2x.length;
+  return pt / ft
 }
 
 // left: 37, up: 38, right: 39, down: 40,
