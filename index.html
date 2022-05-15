@@ -578,7 +578,7 @@ ggww = $(this).height()*4 ;
  var xPos = (eee.pageX - $(this).offset().left)-(ggww/2);
  var yPos = (eee.pageY - $(this).offset().top)-(ggww/2);
 $('body').append('<style vgf="' + ppid + '">.rippleanimation' + ppid + ' {animation-name:ripple' + ppid + ';animation-duration:' + (time/1000) + 's;animation-fill-mode:forwards;animation-timing-function:ease-out}@keyframes ripple' + ppid + ' {0%{opacity:' + opacity + ';transform:scale(0)}60%{opacity:' + (0) + ';transform:scale(0.8)}100%{opacity:' + (0) + ';transform:scale(1)}}</style>');
-$(this).append('<div style="width:' + ggww + 'px;height:' + ggww + 'px;position: absolute;top:' + yPos + 'px;left:' + xPos + 'px;border-radius:99em;transform:scale(0);opacity:' + opacity + ';background:' + color + '; overflow:hidden; -webkit-user-select:none; outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0);" id="' + ppid + '"></div>');
+$(this).append('<div style="filter: blur(10px);width:' + ggww + 'px;height:' + ggww + 'px;position: absolute;top:' + yPos + 'px;left:' + xPos + 'px;border-radius:99em;transform:scale(0);opacity:' + opacity + ';background:' + color + '; overflow:hidden; -webkit-user-select:none; outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0);" id="' + ppid + '"></div>');
 
 setTimeout(function () {
                     $('#' + ppid).attr('class','rippleanimation' + ppid)
