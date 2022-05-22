@@ -978,7 +978,13 @@ function pwinfo(gid) {
   var phash = sha256(pwdstr + '_' + sttt)
   var psehash = 'pwdgen2_saved_a_' + phash
   var pse2hash = 'pwdgen2_saved_notes_cf_' + phash
-  var stog = String(localStorage.getItem(psehash)).length + psehash.length + pse2hash.length + String(localStorage.getItem(pse2hash)).length 
+  var xnt = localStorage.getItem(pse2hash) ;
+  var xntl = pse2hash.length
+  if(xnt === null) {
+    xnt = ''
+    xntl = 0
+  }
+  var stog = String(localStorage.getItem(psehash)).length + psehash.length + xntl + String(xnt).length 
   if(!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)) > -1)) {
     stog = 0
   }
