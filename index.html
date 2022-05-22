@@ -975,8 +975,10 @@ function pwinfo(gid) {
   var stch = checkpwd(pwdstr,true,gid)
   var stcc = stch.str
   var sttt = $('.box[f="' + gid + '"]').attr('t')
-  var psehash = 'pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)
-  var stog = String(localStorage.getItem(psehash)).length + psehash.length
+  var phash = sha256(pwdstr + '_' + sttt)
+  var psehash = 'pwdgen2_saved_a_' + phash
+  var pse2hash = 'pwdgen2_saved_notes_cf_' + phash
+  var stog = String(localStorage.getItem(psehash)).length + psehash.length + pse2hash.length + String(localStorage.getItem(pse2hash)).length 
   if(!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)) > -1)) {
     stog = 0
   }
