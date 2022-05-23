@@ -617,7 +617,7 @@ setTimeout(function () {
         );
 
         return this.each(function () {
-            $(".prompt").remove();
+            $('.prompt,style[promptanimation="promptanimation"]').remove();
             var promptchars = "0123456789abcdefghijklmnopqrstuvwxyz";
             var promptid = "";
             for (var i = 0; i < 10; i++) {
@@ -626,19 +626,12 @@ setTimeout(function () {
             }
 
             if (settings.animate === "slide") {
-                $(this).append('<div class="prompt" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
+                $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time+400*2) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-out}@keyframes prompt' + promptid + '{0%{opacity:0;bottom:-80px}' + Math.floor((400)/(settings.time+400*2)*100) + '%{opacity:1;bottom:30px}' + Math.floor((400+settings.time)/(settings.time+400*2)*100) + '%{opacity:1;bottom:30px}100%{opacity:0;bottom:-80px}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
 
+                
                 setTimeout(function () {
-                    $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: (30) + 'px'});
-                }, 100);
-
-                setTimeout(function () {
-                    $("#" + promptid).css({ opacity: "0", transition: "0.4s", bottom: "-80px" });
-                }, settings.time + 100);
-
-                setTimeout(function () {
-                    $("#" + promptid).remove();
-                }, settings.time + 400);
+                    $("#" + promptid + ',style[qix="promptanimation' + promptid + '"]').remove();
+                }, settings.time+400*2+50);
             }
 
             if (settings.animate === "fade") {
