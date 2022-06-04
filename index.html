@@ -1318,7 +1318,19 @@ for (var r = 0; r < $('.history .box').length; r++) {
   $('.history .box').attr('search','0').attr('ksearch','0')
   for(var f in searchindexjson) {
     if((eval('searchindexjson.' + f).join(' ')).indexOf(keywd) > -1) {
-      $('.box[f="' + String(f).split('_')[3] + '"]').attr('search','1').attr('ksearch','1')
+      var hbbid = String(f).split('_')[3]
+      $('.box[f="' + hbbid + '"]').attr('search','1').attr('ksearch','1')
+      
+      if($('.box[f="' + hbbid + '"]').attr('iconload') === '0') {
+      $('.box[f="' + hbbid + '"] .dspoo').html(eyeicon + eyeicon2)
+       $('.box[f="' + hbbid + '"] .copyoo').html(copyicon)
+       $('.box[f="' + hbbid + '"] .saveoo').html(saveicon + savedicon)
+       $('.box[f="' + hbbid + '"] .noteoo').html(noteicon)
+       $('.box[f="' + hbbid + '"] .infooo').html(infoicon)
+       $('.box[f="' + hbbid + '"]').attr('iconload','1')
+      }
+      
+      
     }
     
   }
