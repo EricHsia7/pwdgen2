@@ -723,7 +723,7 @@ return decodeURIComponent(u)
 function gid() {
 var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
             var genid = "";
-            for (var i = 0; i < 64; i++) {
+            for (var i = 0; i < 17; i++) {
                 var genrandomNumber = Math.floor(Math.random() * genidchars.length);
                 genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
             }
