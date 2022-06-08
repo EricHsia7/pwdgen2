@@ -1108,7 +1108,7 @@ function setstorageusage() {
   var thtml = []
   var phlist = ['password','cache','other']
   for (var e = 0; e < phlist.length; e++) {
-  thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('Math.floor(tll.' + phlist[e] + '/tll.storagesize*100)') + '"></div>')
+  thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('Math.floor(tll.' + phlist[e] + '/tll.storagesize*100)') + '%;"></div>')
   }
   $('.storage-usage-bar-box').html(thtml.join(''))
 }
