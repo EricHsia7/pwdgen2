@@ -1127,7 +1127,7 @@ function setstorageusage() {
   var phlist = ['password','theme','options','cache','other']
   var opacityuu = (1-0.4)/phlist.length
   for (var e = 0; e < phlist.length; e++) {
-  thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('(tll.' + phlist[e] + '/tll.storagesize*100).toFixed(2)') + '%;background:var(--storage-' + (e+1) + ')"></div>')
+  thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('(tll.' + phlist[e] + '/tll.storagesize*100).toFixed(2)') + '%;background:var(--storage-' + (e+1) + ')" tp="' + phlist[e] + '"></div>')
   }
   $('.storage-usage-bar-box').html(thtml.join(''))
 }
