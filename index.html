@@ -1128,7 +1128,7 @@ for(var t in window.localStorage) {
     }
   }
   
-  if(yfa === typelist.length) {
+  if(yfa === (typelist.length-1)) {
       eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (strlengthtobytes(String(t))+strlengthtobytes(String(localStorage.getItem(t)))) + ')')
        }
     
