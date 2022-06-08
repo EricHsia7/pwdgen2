@@ -1049,9 +1049,17 @@ return gh
 }
 function getstorageusage() {
   var gi = []
+  var ta = []
+  var typelist = ['pwdgen2_saved_a_','pwch_cache_','pw_theme_','pw_options_','pwdgen2_saved_notes_cf_']
+  var typelistname = ['Password','Cache','Other','Other','Password']
 for(var t in window.localStorage) {
-gi.push(t)
+  for (var e = 0; e < typelist.length; e++) {
+    if(String(t).indexOf(typelist[e]) > -1) {
+      ta.push(typelistname[e])
+    }
+  }
 }
+  return ta
 }
 function checkcsssupport() {
   var style = String(document.querySelector("#mainstyle").innerHTML).split("\n");
