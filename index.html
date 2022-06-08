@@ -446,8 +446,6 @@ message
 </li>
 <li class="options_list merge-c options_list_center">
   <div class="storage-usage-bar-box">
-  <div class="storage-usage-bar" style="--st-width:"></div>
-  <div class="storage-usage-bar"></div>
 </div>
 </li>
 <li class="options_list merge-b">
@@ -1102,7 +1100,16 @@ for(var t in window.localStorage) {
     }
   }
 }
-  return [tl,stsize]
+  tl.storagesize = stsize
+  return [tl]
+}
+function setstorageusage() {
+  var thtml = []
+  var phlist = ['password','cache','other']
+  for (var e = 0; e < phlist.length; e++) {
+  thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('Math.floor(tl.' + phlist[e] + '/tl.storagesize*100)') + '">' + )
+  }
+  $('.storage-usage-bar-box').html(thtml.join(''))
 }
 function checkcsssupport() {
   var style = String(document.querySelector("#mainstyle").innerHTML).split("\n");
