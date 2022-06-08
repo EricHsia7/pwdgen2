@@ -8,6 +8,11 @@
     --d-switch-c: #888;
     --meta-theme-color-light:#fff;
     --meta-theme-color-dark:#1a1a1a;
+    --storage-1:#b3b3b3;
+    --storage-2:#808080;
+    --storage-3:#595959;
+    --storage-4:#3d3d3d;
+    --storage-5:#0e0e0e;
 }
 @media (prefers-color-scheme: dark) {
     :root {
@@ -20,6 +25,11 @@
         --d-switch-c: #111;
         --meta-theme-color-light:#fff;
         --meta-theme-color-dark:#1a1a1a;
+        --storage-1:#b3b3b3;
+        --storage-2:#808080;
+        --storage-3:#595959;
+        --storage-4:#3d3d3d;
+        --storage-5:#0e0e0e;
     }
     .title,
     .title2 {
