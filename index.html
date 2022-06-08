@@ -1088,7 +1088,9 @@ function getstorageusage() {
   var tl = {
   'password':0,
   'cache':0,
-  'other':0
+  'other':0,
+  'options':0,
+  'theme':0
   }
 for(var t in window.localStorage) {
   for (var e = 0; e < typelist.length; e++) {
@@ -1106,7 +1108,7 @@ for(var t in window.localStorage) {
 function setstorageusage() {
   var tll = getstorageusage()
   var thtml = []
-  var phlist = ['password','cache','other']
+  var phlist = ['password','theme','options','cache','other']
   var opacityuu = (1-0.4)/phlist.length
   for (var e = 0; e < phlist.length; e++) {
   thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('Math.floor(tll.' + phlist[e] + '/tll.storagesize*100)') + '%;opacity:' + (0.4+opacityuu*(e+1)) + '"></div>')
