@@ -1029,7 +1029,6 @@ function pwinfo(gid) {
   return {'len':stle,'check':stcc,'time':sttt,'storage':stog}
 }
   function strlengthtobytes(str) {
-    str = String(str)
   return new Blob([str]).size
 }
 function storagesize(bytes) {
