@@ -1108,15 +1108,22 @@ function getstorageusage() {
   'options':0,
   'theme':0
   }
+  var yfa = 0
 for(var t in window.localStorage) {
+  
   for (var e = 0; e < typelist.length; e++) {
     if(String(t).indexOf(typelist[e]) > -1) {
       eval('tl.' + typelistname[e] + ' = (parseInt(tl.' + typelistname[e] + ')+' + (String(t).length+String(localStorage.getItem(t)).length) + ')')
     }
     else {
-      eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (String(t).length+String(localStorage.getItem(t)).length) + ')')
+      yfa +=1
     }
   }
+  
+  if(yfa === typelist.length) {
+      eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (String(t).length+String(localStorage.getItem(t)).length) + ')')
+       }
+    
 }
   tl.storagesize = stsize
   return tl
