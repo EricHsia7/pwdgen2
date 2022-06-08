@@ -1021,7 +1021,7 @@ function pwinfo(gid) {
     xnt = ''
     xntl = 0
   }
-  var stog = strlengthtobytes(String(localStorage.getItem(psehash))) + strlengthtobytes(psehash) + xntl + strlengthtobytes(String(xnt)) 
+  var stog = strlengthtobytes(localStorage.getItem(psehash)) + strlengthtobytes(psehash) + xntl + strlengthtobytes(xnt) 
   if(!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)) > -1)) {
     stog = 0
   }
@@ -1120,7 +1120,7 @@ for(var t in window.localStorage) {
   var yfa = 0
   for (var e = 0; e < typelist.length; e++) {
     if(String(t).indexOf(typelist[e]) > -1) {
-      eval('tl.' + typelistname[e] + ' = (parseInt(tl.' + typelistname[e] + ')+' + (strlengthtobytes(String(t))+strlengthtobytes(String(localStorage.getItem(t)))) + ')')
+      eval('tl.' + typelistname[e] + ' = (parseInt(tl.' + typelistname[e] + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
     }
     else {
       yfa +=1
@@ -1128,7 +1128,7 @@ for(var t in window.localStorage) {
   }
   
   if(yfa === (typelist.length-1)) {
-      eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (strlengthtobytes(String(t))+strlengthtobytes(String(localStorage.getItem(t)))) + ')')
+      eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
        }
     
 }
