@@ -458,15 +458,15 @@ message
   </div>
 </li>
 
-<li class="options_list merge-t">
+<li class="options_list merge-t" style="display:none;">
   <div class="options_list_txt">Storage</div>
   <div class="options_list_txt" dy="storageusagetext">--</div>
 </li>
-<li class="options_list merge-c options_list_center">
+<li class="options_list merge-c options_list_center" style="display:none;">
   <div class="storage-usage-bar-box">
 </div>
 </li>
-<li class="options_list merge-b">
+<li class="options_list merge-b" style="display:none;">
   <div class="options_list_txt"></div>
 </li>
 
@@ -1116,7 +1116,7 @@ function getstorageusage() {
   'theme':0
   }
   
-for await (var t in window.localStorage) {
+for(var t in window.localStorage) {
   var yfa = 0
   for (var e = 0; e < typelist.length; e++) {
     if(String(t).indexOf(typelist[e]) > -1) {
@@ -1477,7 +1477,7 @@ $('.page2,.title2').css({'right':'0%','opacity':'0'});
   $('.title2').css({'display':'flex'});
 setTimeout(function() {
  $('.page2,.title2').css({'right':'0%','opacity':'1','transition':'0.3s'});
-  setstorageusage()
+  
 },1);
 }
 function clspage2() {
