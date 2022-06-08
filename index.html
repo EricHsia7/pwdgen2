@@ -225,27 +225,42 @@ label{padding:0;margin:0;height:45px;display:block}
 </style>
   <style id="themestyle">
   :root {
-  --g-f4f4f4:#f4f4f4;
-  --g-4e4e4e:#4e4e4e;
-  --g-e3e3e3:#e3e3e3;
-  --g-ffffff:#ffffff;
-  --d-switch-a:#e0e0e0;
-  --d-switch-b:#fff;
-  --d-switch-c:#888;
+    --g-f4f4f4: #f4f4f4;
+    --g-4e4e4e: #4e4e4e;
+    --g-e3e3e3: #e3e3e3;
+    --g-ffffff: #ffffff;
+    --d-switch-a: #e0e0e0;
+    --d-switch-b: #fff;
+    --d-switch-c: #888;
+    --meta-theme-color-light:#fff;
+    --meta-theme-color-dark:#1a1a1a;
+    --storage-1:#b3b3b3;
+    --storage-2:#808080;
+    --storage-3:#595959;
+    --storage-4:#3d3d3d;
+    --storage-5:#0e0e0e;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
-  --g-f4f4f4:#1f1f1f;
-  --g-4e4e4e:#fff;
-  --g-e3e3e3:#383838;
-  --g-ffffff:#1a1a1a;
-  --d-switch-a:#3b3b3b;
-  --d-switch-b:#4d4d4d;
-  --d-switch-c:#111;
-}
-  .title,.title2 {
-    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.12)
-  }
+    :root {
+        --g-f4f4f4: #1f1f1f;
+        --g-4e4e4e: #fff;
+        --g-e3e3e3: #383838;
+        --g-ffffff: #1a1a1a;
+        --d-switch-a: #3b3b3b;
+        --d-switch-b: #4d4d4d;
+        --d-switch-c: #111;
+        --meta-theme-color-light:#fff;
+        --meta-theme-color-dark:#1a1a1a;
+        --storage-1:#b3b3b3;
+        --storage-2:#808080;
+        --storage-3:#595959;
+        --storage-4:#3d3d3d;
+        --storage-5:#0e0e0e;
+    }
+    .title,
+    .title2 {
+        box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.12);
+    }
 }
   </style>
   </head>
@@ -1111,7 +1126,7 @@ function setstorageusage() {
   var phlist = ['password','theme','options','cache','other']
   var opacityuu = (1-0.4)/phlist.length
   for (var e = 0; e < phlist.length; e++) {
-  thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('(tll.' + phlist[e] + '/tll.storagesize*100).toFixed(2)') + '%;opacity:' + (0.4+opacityuu*(e+1)) + '"></div>')
+  thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('(tll.' + phlist[e] + '/tll.storagesize*100).toFixed(2)') + '%;background:var(--storage-' + (e+1) + ')"></div>')
   }
   $('.storage-usage-bar-box').html(thtml.join(''))
 }
