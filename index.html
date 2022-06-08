@@ -446,7 +446,7 @@ message
 </li>
 <li class="options_list merge-c options_list_center">
   <div class="storage-usage-bar-box">
-  <div class="storage-usage-bar"></div>
+  <div class="storage-usage-bar" style="--st-width:"></div>
   <div class="storage-usage-bar"></div>
 </div>
 </li>
@@ -1046,6 +1046,12 @@ gh.push(t)
 }
 }
 return gh
+}
+function getstorageusage() {
+  var gi = []
+for(var t in window.localStorage) {
+gi.push(t)
+}
 }
 function checkcsssupport() {
   var style = String(document.querySelector("#mainstyle").innerHTML).split("\n");
