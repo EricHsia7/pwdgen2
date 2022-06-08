@@ -8,6 +8,11 @@
     --d-switch-c: #ce6060;
     --meta-theme-color-light:#ffc5c5;
     --meta-theme-color-dark:#ffc5c5;
+    --storage-1:#d05555;
+    --storage-2:#be4141;
+    --storage-3:#cb3648;
+    --storage-4:#e85677;
+    --storage-5:#b91b20;
 }
 ::placeholder {
     color:rgba(206, 96, 96,0.4);
@@ -23,5 +28,10 @@
     --d-switch-c: #ce6060;
     --meta-theme-color-light:#ffc5c5;
     --meta-theme-color-dark:#ffc5c5;
+    --storage-1:#d05555;
+    --storage-2:#be4141;
+    --storage-3:#cb3648;
+    --storage-4:#e85677;
+    --storage-5:#b91b20;
     }
 }
