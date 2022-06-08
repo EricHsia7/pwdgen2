@@ -1029,11 +1029,8 @@ function pwinfo(gid) {
   return {'len':stle,'check':stcc,'time':sttt,'storage':stog}
 }
   function strlengthtobytes(str) {
-   str = String(str)
-  var m = encodeURIComponent(str).match(/%[89ABab]/g);
-  return str.length + (m ? m.length : 0);
-  
-  
+    str = String(str)
+  return new Blob([str]).size
 }
 function storagesize(bytes) {
  
