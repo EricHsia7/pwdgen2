@@ -1128,8 +1128,8 @@ for(var t in window.localStorage) {
   
   if(yfa === (typelist.length-1)) {
       eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
-       }
-    
+   }
+    console.log((strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))))
 }
   tl.storagesize = stsize
   return tl
