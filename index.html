@@ -1116,7 +1116,7 @@ function getstorageusage() {
   'theme':0
   }
   
-for(var t in window.localStorage) {
+for await (var t in window.localStorage) {
   var yfa = 0
   for (var e = 0; e < typelist.length; e++) {
     if(String(t).indexOf(typelist[e]) > -1) {
@@ -1127,7 +1127,7 @@ for(var t in window.localStorage) {
     }
   }
   
-  if(yfa === (typelist.length-1)) {
+  if(yfa >= (typelist.length-1)) {
       eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
    }
   gu += (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t)))
