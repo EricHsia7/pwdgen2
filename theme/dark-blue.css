@@ -8,6 +8,11 @@
     --d-switch-c: #4f628e;
     --meta-theme-color-light:#20283a;
     --meta-theme-color-dark:#20283a;
+    --storage-1:#6b70bc;
+    --storage-2:#5d61a3;
+    --storage-3:#929ef9;
+    --storage-4:#6174a7;
+    --storage-5:#6c80b6;
 }
 ::placeholder {
     color:rgba(112, 132, 179,0.4);
@@ -23,5 +28,10 @@
         --d-switch-c: #4f628e;
         --meta-theme-color-light:#20283a;
         --meta-theme-color-dark:#20283a;
+        --storage-1:#6b70bc;
+        --storage-2:#5d61a3;
+        --storage-3:#929ef9;
+        --storage-4:#6174a7;
+        --storage-5:#6c80b6;
     }
 }
