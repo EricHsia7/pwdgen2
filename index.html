@@ -1142,7 +1142,7 @@ function setstorageusage() {
   usedsize += eval('(tll.' + phlist[e] + ')')
   }
   $('.storage-usage-bar-box').html(thtml.join(''))
-  $('.options_list_txt[dy="storageusagetext"]').text(storagesize(usedsize) + ' of ' + storagesize(ssize) + ' Used')
+  $('.options_list_txt[dy="storageusagetext"]').html('<span>' + storagesize(usedsize) + ' of ' + storagesize(ssize) + ' Used</span>')
 }
 function checkcsssupport() {
   var style = String(document.querySelector("#mainstyle").innerHTML).split("\n");
