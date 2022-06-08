@@ -1047,8 +1047,39 @@ gh.push(t)
 }
 return gh
 }
+function testsessionStorage() {
+  if(localStorage.getItem('storage_size') === null) {
+  var genidchars = "0123456789";
+  var genid = "";
+  for (var i = 0; i < 50000; i++) {
+  var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+  genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+  }
+  if(sessionStorage.getItem('sizetest') === null) {
+    var char = genid ;
+  }
+  else {
+    var char = sessionStorage.getItem('sizetest') + genid
+  }
+  try {
+  sessionStorage.setItem('sizetest',char);
+  setTimeout(testsessionStorage,1)
+} catch (error) {
+  localStorage.setItem('storage_size',String(sessionStorage.getItem('sizetest')).length)
+  return String(sessionStorage.getItem('sizetest')).length
+}
+
+}
+  else {
+return parseInt(localStorage.getItem('storage_size'))
+  }
+  
+  
+}
+  
 function getstorageusage() {
   var gi = []
+  var stsize = testsessionStorage()
   //var ta = []
   var typelist = ['pwdgen2_saved_a_','pwch_cache_','pw_theme_','pw_options_','pwdgen2_saved_notes_cf_']
   var typelistname = ['password','cache','other','other','password']
@@ -1067,7 +1098,7 @@ for(var t in window.localStorage) {
     }
   }
 }
-  return tl
+  return [tl,stsize]
 }
 function checkcsssupport() {
   var style = String(document.querySelector("#mainstyle").innerHTML).split("\n");
