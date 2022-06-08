@@ -8,6 +8,11 @@
     --d-switch-c: #45a4bc;
     --meta-theme-color-light:#2a869b;
     --meta-theme-color-dark:#2a869b;
+    --storage-1:#6ec0cf;
+    --storage-2:#4997ab;
+    --storage-3:#46b6d2;
+    --storage-4:#7dd9e8;
+    --storage-5:#56cfe0;
 }
 ::placeholder {
     color:rgba(142, 204, 219,0.4);
@@ -23,5 +28,10 @@
         --d-switch-c: #45a4bc;
         --meta-theme-color-light:#2a869b;
         --meta-theme-color-dark:#2a869b;
+        --storage-1:#6ec0cf;
+        --storage-2:#4997ab;
+        --storage-3:#46b6d2;
+        --storage-4:#7dd9e8;
+        --storage-5:#56cfe0;
     }
 }
