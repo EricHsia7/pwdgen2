@@ -151,6 +151,21 @@ label{padding:0;margin:0;height:45px;display:block}
 .impbk .impbktitle{position:absolute;top:15px;left:15px;width:calc(100% - 30px);height:50px;font-size:18px;display:flex;justify-content:center;align-items:center;text-align:center;color:var(--g-4e4e4e)}
 .impbk .btn8{position:absolute;top:calc(15px + 55px + 5px + 5px);left:15px;background:var(--g-e3e3e3);height:45px;width:calc(50% - 20px);border-radius:15px;display:flex;justify-content:center;align-items:center;color:var(--g-4e4e4e);-webkit-mask-image:-webkit-radial-gradient(white,black);-webkit-user-select:none}
 #canvas{display:none;background:transparent}
+.storage-usage-bar-box {
+  width:calc(100% - 20px);
+  height:35px;
+  background:#e3e3e3;
+  border-radius:15px;
+  position:relative;
+  overflow:hidden;
+  display: flex;
+  align-items: center;
+}
+.storage-usage-bar {
+  width:calc(--st-width);
+  height:100%;
+  background:#f5f5f5;
+}
 @media (min-width: 600px) {
 .bottom-bx {
   width:clamp(180px,90%,350px);
@@ -429,7 +444,10 @@ message
   <div class="options_list_txt">Storage</div>
 </li>
 <li class="options_list merge-c">
-  <div class="options_list_txt"></div>
+  <div class="storage-usage-bar-box">
+  <div class="storage-usage-bar"></div>
+  <div class="storage-usage-bar"></div>
+</div>
 </li>
 <li class="options_list merge-b">
   <div class="options_list_txt"></div>
