@@ -1060,10 +1060,10 @@ function getstorageusage() {
 for(var t in window.localStorage) {
   for (var e = 0; e < typelist.length; e++) {
     if(String(t).indexOf(typelist[e]) > -1) {
-      eval('tl.' + typelistname[e] + ' = (parseInt(tl.' + typelistname[e] + ')+' + String(localStorage.getItem(t)).length + ')')
+      eval('tl.' + typelistname[e] + ' = (parseInt(tl.' + typelistname[e] + ')+' + (String(t).length+String(localStorage.getItem(t)).length) + ')')
     }
     else {
-      eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + String(localStorage.getItem(t)).length + ')')
+      eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (String(t).length+String(localStorage.getItem(t)).length) + ')')
     }
   }
 }
