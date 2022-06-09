@@ -1134,7 +1134,6 @@ return parseInt(localStorage.getItem('storage_size'))
 
   
 function setstorageusage() {
-  var gu = 0 
   var gi = []
   var stsize = testsessionStorage()
   //var ta = []
@@ -1165,8 +1164,7 @@ if (!localStorage.hasOwnProperty(t)) {
   if(yfa >= (typelist.length-1)) {
       eval('tll.' + 'other' + ' = (parseInt(tll.' + 'other' + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
    }
-  gu += (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t)))
-    console.log(gu)
+  
 }
   tll.storagesize = stsize
   
