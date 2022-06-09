@@ -1116,7 +1116,8 @@ function testsessionStorage() {
   }
   try {
   sessionStorage.setItem('sizetest',char);
-  setTimeout(testsessionStorage,1)
+  setTimeout(testsessionStorage,1);
+  return ''
 } catch (error) {
   localStorage.setItem('storage_size',String(sessionStorage.getItem('sizetest')).length)
   
