@@ -1119,6 +1119,9 @@ function setstorageusage() {
   }
   
 for(var t in window.localStorage) {
+if (!localStorage.hasOwnProperty(t)) {
+        continue;
+    }
   var yfa = 0
   for (var e = 0; e < typelist.length; e++) {
     if(String(t).indexOf(typelist[e]) > -1) {
