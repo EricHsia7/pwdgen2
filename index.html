@@ -804,7 +804,7 @@ var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
                 var genrandomNumber = Math.floor(Math.random() * genidchars.length);
                 genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
             }
-  return genid + '-' + new Date().getTime();
+  return genid + '' + new Date().getTime();
 }
 function shuffleSelf(array, size) {
         var index = -1,
