@@ -1033,9 +1033,9 @@ function pwinfo(gid) {
 }
 function storagesize(bytes) {
  
-  var tokb = 0.001 
-  var tomb = 0.000001
-  var togb = 0.000000001
+  var tokb = (1/1024)
+  var tomb = (1/1024000)
+  var togb = (1/1024000000)
   
   if(bytes > 1000000000) {
    return (bytes*togb).toFixed(0) + ' GB'
