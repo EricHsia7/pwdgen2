@@ -169,6 +169,24 @@ label{padding:0;margin:0;height:45px;display:block}
   height:100%;
   background:var(--g-4e4e4e);
 }
+.storage-type-color {
+  height:25px;
+  width:25px;
+  background:#e3e3e3;
+  border-radius:8px;
+}
+.storage-type-name {
+  display:inline;
+  height:25px;
+  color:var(--g-4e4e4e);
+}
+.storage-type-floatleft {
+  float:left
+}
+.storage-type {
+  height:25px;
+  white-space:nowrap;
+}
 @media (min-width: 600px) {
 .bottom-bx {
   width:clamp(180px,90%,350px);
@@ -467,7 +485,9 @@ message
 </div>
 </li>
 <li class="options_list merge-b" >
-  <div class="options_list_txt"></div>
+  <div class="options_list_txt" dy="storageusagetype">
+  
+  </div>
 </li>
 
 <li class="options_list" dy="refresh" ripple-onclick="vrefresh()">
@@ -1142,16 +1162,19 @@ if (!localStorage.hasOwnProperty(t)) {
   
 
   var thtml = []
+  var tthtml = []
   var phlist = ['password','theme','options','cache','other']
   var usedsize =  0 ;
   var ssize = tll.storagesize ;
   var opacityuu = (1-0.4)/phlist.length
   for (var e = 0; e < phlist.length; e++) {
+  tthtml.push('<div class="storage-type"><div class="storage-type-color storage-type-floatleft" style="background:var(--storage-' + (e+1) + ');"></div><div class="storage-type-name storage-type-floatleft">' + phlist[e] + '</div></div>')
   thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('(tll.' + phlist[e] + '/tll.storagesize*100).toFixed(2)') + '%;background:var(--storage-' + (e+1) + ')" tp="' + phlist[e] + '"></div>')
   usedsize += eval('(tll.' + phlist[e] + ')')
   }
   $('.storage-usage-bar-box').html(thtml.join(''))
   $('.options_list_txt[dy="storageusagetext"]').html('<span>' + storagesize(usedsize) + ' of ' + storagesize(ssize) + ' Used</span>')
+  $('.options_list_txt[dy="storageusagetype"]').html(tthtml.join(''))
 }
 function checkcsssupport() {
   var style = String(document.querySelector("#mainstyle").innerHTML).split("\n");
