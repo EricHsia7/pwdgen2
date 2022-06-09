@@ -1124,14 +1124,11 @@ function testsessionStorage() {
 } /*finally { 
   return String(sessionStorage.getItem('sizetest')).length  
  } */
-   
-
+    return testsessionStorage()
 }
   else {
 return parseInt(localStorage.getItem('storage_size'))
   }
-  
-  
 }
   
 
