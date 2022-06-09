@@ -499,7 +499,7 @@ message
 </li>
 <li class="options_list merge-b" >
   <div class="options_list_txt" dy="storageusagetype">
-  
+  --
   </div>
 </li>
 
@@ -1509,13 +1509,16 @@ function page2() {
 $('.page2,.title2').css({'right':'0%','opacity':'0'});
   $('.page2').css({'display':'block'});
   $('.title2').css({'display':'flex'});
-  testsessionStorage()
+  
 setTimeout(function() {
  $('.page2,.title2').css({'right':'0%','opacity':'1','transition':'0.3s'});
 },1);
+  
+  
   setTimeout(function() {
+    testsessionStorage()
     setstorageusage()
-  },150);
+  },350);
   
 }
 function clspage2() {
