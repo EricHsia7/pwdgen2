@@ -1100,7 +1100,9 @@ return parseInt(localStorage.getItem('storage_size'))
   
 }
   
-function getstorageusage() {
+
+  
+function setstorageusage() {
   var gu = 0 
   var gi = []
   testsessionStorage()
@@ -1108,7 +1110,7 @@ function getstorageusage() {
   //var ta = []
   var typelist = ['pwdgen2_saved_a_','pwch_cache_','pw_theme_','pw_options_','pwdgen2_saved_notes_cf_']
   var typelistname = ['password','cache','theme','options','password']
-  var tl = {
+  var tll = {
   'password':0,
   'cache':0,
   'other':0,
@@ -1120,7 +1122,7 @@ for(var t in window.localStorage) {
   var yfa = 0
   for (var e = 0; e < typelist.length; e++) {
     if(String(t).indexOf(typelist[e]) > -1) {
-      eval('tl.' + typelistname[e] + ' = (parseInt(tl.' + typelistname[e] + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
+      eval('tll.' + typelistname[e] + ' = (parseInt(tll.' + typelistname[e] + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
     }
     else {
       yfa +=1
@@ -1128,16 +1130,14 @@ for(var t in window.localStorage) {
   }
   
   if(yfa >= (typelist.length-1)) {
-      eval('tl.' + 'other' + ' = (parseInt(tl.' + 'other' + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
+      eval('tll.' + 'other' + ' = (parseInt(tll.' + 'other' + ')+' + (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t))) + ')')
    }
   gu += (strlengthtobytes(t)+strlengthtobytes(localStorage.getItem(t)))
     console.log(gu)
 }
-  tl.storagesize = stsize
-  return tl
-}
-function setstorageusage() {
-  var tll = getstorageusage()
+  tll.storagesize = stsize
+  
+
   var thtml = []
   var phlist = ['password','theme','options','cache','other']
   var usedsize =  0 ;
