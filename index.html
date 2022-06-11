@@ -2348,10 +2348,20 @@ setTimeout(function() {
       
   }
   
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
   
+
+
 function dragimgdturl(str) {
-if(String(str).length > 13) {
-  str = str.substring(0,13-3) + '...'
+if(String(str).length > 32) {
+  str = str.substring(0,32)
 }
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
@@ -2361,18 +2371,19 @@ var radius = 25*scale;
 var w = 180*scale
 var h = 40*scale
 var color = getComputedStyle(document.body).getPropertyValue('--g-e3e3e3')
+var colorrgb = hexToRgb(color)
+var colorr = colorrgb.r
+var colorg = colorrgb.g
+var colorb = colorrgb.b
 canvas.width = w
 canvas.height = h
 
 context.clearRect(0, 0, canvas.width, canvas.height);
-context.fillStyle = color
-context.fillRect(radius/2,0,w-radius,h)
-context.fillRect(0,radius/2,w,h-radius)
-context.fill();
-
+  
 context.beginPath();
 context.arc(radius/2, radius/2, radius/2, 0, 2 * Math.PI, false);
 context.fillStyle = color
+context.closePath()
 context.fill();
 
 context.beginPath();
@@ -2389,16 +2400,34 @@ context.beginPath();
 context.arc(w-radius/2, h-radius/2, radius/2, 0, 2 * Math.PI, false);
 context.fillStyle = color
 context.fill();
+  
+context.beginPath();
+context.fillStyle = color
+context.fillRect(radius/2,0,w-radius,h)
+context.fillRect(0,radius/2,w,h-radius)
+context.fill();
 
-
-context.font = 20*scale + "px Arial";
+context.font = 17*scale + "px Arial";
 context.fillStyle = getComputedStyle(document.body).getPropertyValue('--g-4e4e4e') 
-context.fillText(str, 10*scale, 27*scale);
+context.fillText(str, 10*scale, 26*scale);
+
+context.beginPath();
+var grd = context.createLinearGradient(w-15*scale,radius/2,w,radius/2);
+
+grd.addColorStop(0,"rgba(' + colorr + ',' + colorg + ',' + colorb + ',0)");
+grd.addColorStop(0.4,"rgba(' + colorr + ',' + colorg + ',' + colorb + ',0.9)");
+grd.addColorStop(1, "rgba(' + colorr + ',' + colorg + ',' + colorb + ',1)");
+  
+context.fillStyle = grd
+context.fillRect(w-15*scale,radius/2,15*scale,h-radius)
+context.fill();
+  
+
 
 //14-3
   return canvas.toDataURL("image/png")
+  
 }
-
   
   function AllowDrop(event){
     event.preventDefault();
