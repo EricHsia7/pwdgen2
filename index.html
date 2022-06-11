@@ -2414,9 +2414,9 @@ context.fillText(str, 10*scale, 26*scale);
 context.beginPath();
 var grd = context.createLinearGradient(w-15*scale,radius/2,w,radius/2);
 
-grd.addColorStop(0,"rgba(' + colorr + ',' + colorg + ',' + colorb + ',0)");
-grd.addColorStop(0.4,"rgba(' + colorr + ',' + colorg + ',' + colorb + ',0.9)");
-grd.addColorStop(1, "rgba(' + colorr + ',' + colorg + ',' + colorb + ',1)");
+grd.addColorStop(0,'rgba(' + colorr + ',' + colorg + ',' + colorb + ',0)');
+grd.addColorStop(0.4,'rgba(' + colorr + ',' + colorg + ',' + colorb + ',0.9)');
+grd.addColorStop(1, 'rgba(' + colorr + ',' + colorg + ',' + colorb + ',1)');
   
 context.fillStyle = grd
 context.fillRect(w-15*scale,radius/2,15*scale,h-radius)
