@@ -3353,6 +3353,8 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
       $('.box').attr('search', 'n')
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' ,'display':'block'});
+
       $('.input').css({ 'height': '45px' });
     }
     if (page === 'b') {
@@ -3376,7 +3378,7 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
 
       $('.input').css({ 'height': '45px' });
       $('.history').css({ 'transform': 'translateX(-50%) translateY(-45px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' });
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' ,'display':'none'});
       $('.btn5 svg').css({ 'transform': 'rotate(0deg)' });
       $('.btn5').attr('uj', '0')
       showsearchresult()
