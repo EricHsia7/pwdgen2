@@ -2172,11 +2172,11 @@
 
     for (var e = 0; e < rrea.length; e++) {
       var rrajsonname = btoa(encodeURIComponent(rrea[e])).replaceAll('=', '_')
-      if (eval('rreajson.' + rrajsonname) === undefined) {
-        eval('rreajson.' + rrajsonname + ' = 1')
+      if (rreajson[rrajsonname] === undefined) {
+        rreajson[rrajsonname] = 1
       }
       else {
-        eval('rreajson.' + rrajsonname + ' = parseInt(rreajson.' + rrajsonname + ')+1')
+        rreajson[rrajsonname] = parseInt(rreajson[rrajsonname]) + 1
       }
     }
     var rreaal = 0
