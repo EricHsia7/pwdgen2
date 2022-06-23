@@ -1550,7 +1550,7 @@
   </div>
 
   <div class="history-filter">
-    <li o="1" pl="all" >
+    <li o="1" pl="all" ripple-onclick="filter_showall()">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -3350,6 +3350,7 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
       $('.checkpwdp,.input2,.input3').css({ 'display': 'none' });
       $('.input,.history').css({ 'display': 'block' });
       $('.box').attr('search', 'n')
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     }
     if (page === 'b') {
       $('#bottom-btn-svg-fill-a').attr('fill', 'var(--g-ffffff)').attr('stroke', 'var(--g-ffffff)')
@@ -3375,6 +3376,9 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
       $('.btn5 svg').css({ 'transform': 'rotate(0deg)' });
       $('.btn5').attr('uj', '0')
       showsearchresult()
+      $('#historyfiltercss').html('')
+
+      
     }
 
   }
