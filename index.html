@@ -2625,6 +2625,20 @@
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
+  function showrecentaccess() {
+    var list = searchItemsbyname('pwdgen2_recent_access_')
+    var nlist = []
+    $('.box').attr('ar', '0')
+    for (var f = 0; f < list.length; f++) {
+      var time = parseInt(String(localStorage.getItem(list[f])))
+      var dt = new Date()
+      if ((dt - time) < 60 * 60 * 24 * 3 * 1000) {
+        var hash = String(list[f]).split('_')[3]
+        nlist.push(hash)
+        $('.box[hash="' + hash + '"]').attr('ar', '1')
+      }
+    }
+  }
   function dsp(gid) {
     markasrecentaccess(0, gid)
     if (String($('.dspoo[h="' + gid + '"]').attr('c')) === '0') {
@@ -2681,7 +2695,7 @@
     textArea.select();
     document.execCommand("Copy");
     textArea.remove();
-     markasrecentaccess(0, gid);
+    markasrecentaccess(0, gid);
     mes('notes copied')
 
   }
@@ -2698,7 +2712,7 @@
   }
   function pwnotes_a(gide) {
     delboxmnuli(gide)
-    markasrecentaccess(0,gide)
+    markasrecentaccess(0, gide)
 
     var ddt = $('.box[f="' + gide + '"]').attr('t')
     var psehash = 'pwdgen2_saved_notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt)
@@ -2778,7 +2792,7 @@
   function showpwdinfo(gid) {
     var datt = pwinfo(gid)
     delboxmnuli(gid)
-    markasrecentaccess(0,gid)
+    markasrecentaccess(0, gid)
     var shhtm = '<div class="box_nf" style="transition:0.15s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" ripple-onclick="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
     if ($('.box[f="' + gid + '"] .box_nf').length === 0) {
       $('.box[f="' + gid + '"]').append(shhtm)
@@ -3074,7 +3088,9 @@
         pwdvisible_type = 'text'
       }
       var thspt = checkpwd(pw)
-      $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="1"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
+      var hash = sha256(pw + '_' + pwtime.getTime())
+
+      $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="1" hash="' + hash + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
       ripple('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       ripple('.checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       mes('generated')
@@ -3256,7 +3272,9 @@
                 var icon_infooo = ''
                 var iconloadattr = '0'
               }
-              $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="' + iconloadattr + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
+              var hash = sha256(pw + '_' + pwtime.getTime())
+
+              $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="' + iconloadattr + '" hash="' + hash + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
               ripple('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
               ripple('.checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
             }
