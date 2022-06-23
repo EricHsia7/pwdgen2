@@ -2182,7 +2182,7 @@
     var rreaal = 0
     var rreatp = 0
     for (var x in rreajson) {
-      rreaal += eval('rreajson.' + x)
+      rreaal += rreajson[x]
       rreatp += 1
     }
     var lenT = 64
@@ -2380,7 +2380,7 @@
       var yfa = 0
       for (var e = 0; e < typelist.length; e++) {
         if (String(t).indexOf(typelist[e]) > -1) {
-          eval('tll.' + typelistname[e] + ' = (parseInt(tll.' + typelistname[e] + ')+' + (strlengthtobytes(t) + strlengthtobytes(localStorage.getItem(t))) + ')')
+          tll[typelistname[e]] = parseInt(tll[typelistname[e]])+(strlengthtobytes(t) + strlengthtobytes(localStorage.getItem(t)))
         }
         else {
           yfa += 1
@@ -2388,7 +2388,7 @@
       }
 
       if (yfa >= (typelist.length - 1)) {
-        eval('tll.' + 'other' + ' = (parseInt(tll.' + 'other' + ')+' + (strlengthtobytes(t) + strlengthtobytes(localStorage.getItem(t))) + ')')
+      tll.other = (parseInt(tll.other)+(strlengthtobytes(t) + strlengthtobytes(localStorage.getItem(t))))
       }
 
     }
@@ -2403,8 +2403,8 @@
     var opacityuu = (1 - 0.4) / phlist.length
     for (var e = 0; e < phlist.length; e++) {
       tthtml.push('<div class="storage-type"><div class="storage-type-color storage-type-floatleft" style="background:var(--storage-' + (e + 1) + ');"></div><div class="storage-type-name storage-type-floatleft">' + phlist[e] + '</div></div>')
-      thtml.push('<div class="storage-usage-bar" style="--st-width:' + eval('(tll.' + phlist[e] + '/tll.storagesize*100).toFixed(2)') + '%;background:var(--storage-' + (e + 1) + ')" tp="' + phlist[e] + '"></div>')
-      usedsize += eval('(tll.' + phlist[e] + ')')
+      thtml.push('<div class="storage-usage-bar" style="--st-width:' + (tll[phlist[e]]/tll.storagesize*100).toFixed(2) + '%;background:var(--storage-' + (e + 1) + ')" tp="' + phlist[e] + '"></div>')
+      usedsize += tll[phlist[e]]
     }
     $('.storage-usage-bar-box').html(thtml.join(''))
     $('.options_list_txt[dy="storageusagetext"]').html('<span>' + storagesize(usedsize) + ' of ' + storagesize(ssize) + ' Used</span>')
@@ -2695,7 +2695,7 @@
 
       //if(saved) {}
 
-      eval('searchindexjson.f_' + r + '_s_' + thw_bxf + ' = ["' + thw_pwd + '","' + pwtimestr + '",' + thw_notes + ',' + thw_saved + ',' + thw_time + ']')
+      searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd,pwtimestr,thw_notes,thw_saved,thw_time]
 
     }
 
@@ -2708,7 +2708,7 @@
     var tsr = []
     $('.history .box').attr('search', '0').attr('ksearch', '0')
     for (var f in searchindexjson) {
-      if ((eval('searchindexjson.' + f).join(' ')).indexOf(keywd) > -1) {
+      if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
         var hbbid = String(f).split('_')[3]
         $('.box[f="' + hbbid + '"]').attr('search', '1').attr('ksearch', '1')
 
@@ -3052,11 +3052,11 @@
     var notesjson = {}
 
     for (var i = 0; i < noteslist.length; i++) {
-      eval('notesjson.' + noteslist[i] + ' = "0"')
+      notesjson[noteslist[i]] = "0"
     }
 
     for (var i = 0; i < savedlist.length; i++) {
-      eval('notesjson.pwdgen2_saved_notes_cf_' + String(savedlist[i]).split('_')[3] + ' = "1"')
+      notesjson['pwdgen2_saved_notes_cf_' + String(savedlist[i]).split('_')[3]] = "1"
     }
     for (var i = 0; i < pwdhlist.length; i++) {
       var pwhhhcc = String(localStorage.getItem(pwdhlist[i])).split(':')
@@ -3066,7 +3066,7 @@
     }
 
     for (var t in notesjson) {
-      if (eval('notesjson.' + t) === "0") {
+      if (notesjson[t] === "0") {
         localStorage.removeItem(t)
       }
     }
