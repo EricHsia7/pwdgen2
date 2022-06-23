@@ -2643,6 +2643,28 @@
         var hash = String(list[f]).split('_')[3]
         nlist.push(hash)
         $('.box[hash="' + hash + '"]').attr('ar', '1')
+
+        if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
+            $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+            $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
+            $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+            $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
+            $('.box[hash="' + hash + '"] .infooo').html(infoicon)
+            $('.box[hash="' + hash + '"]').attr('iconload', '1')
+          }
+          if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
+            $('.box[f="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
+            var thsstr = $('input[u="' + hash + '"]').val()
+            var thspt = checkpwd(thsstr, false, '0',thstime)
+            var pwtime = new Date()
+            pwtime.setTime(thstime)
+            var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+            $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+          }
+
+
+
       }
     }
   }
@@ -3309,10 +3331,6 @@
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
-  $(document).scroll(function () {
-    $('.boxmnuli').remove()
-    $('.boxmnulibgjj').remove()
-  });
 
   document.querySelector('.input3 input').addEventListener("paste", function (e) {
     showsearchresult()
