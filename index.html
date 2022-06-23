@@ -2627,7 +2627,7 @@
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
   function filter_switch(pl) {
-    $('.history-filter li').attr('o', '0').css({'transition':'0.3s'})
+    $('.history-filter li').attr('o', '0').css({ 'transition': '0.3s' })
     $('.history-filter li[pl="' + pl + '"]').attr('o', '1')
   }
   function filter_showrecentaccess() {
@@ -3351,7 +3351,12 @@
       $('.checkpwdp,.input2,.input3').css({ 'display': 'none' });
       $('.input,.history').css({ 'display': 'block' });
       $('.box').attr('search', 'n')
-      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+      if ($('.history-fliter li[pl="all"]').attr('o') === '0') {
+        $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+      }
+      else {
+        $('#historyfiltercss').html('')
+      }
       $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'block' });
 
