@@ -2655,7 +2655,7 @@
           if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
             $('.box[f="' + hash + '"]').attr('stch', '1')
             var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
-            var thsstr = $('input[u="' + hash + '"]').val()
+            var thsstr = $('.box[hash="' + hash + '"] input').val()
             var thspt = checkpwd(thsstr, false, '0',thstime)
             var pwtime = new Date()
             pwtime.setTime(thstime)
