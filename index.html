@@ -3413,7 +3413,7 @@
       $('.input').css({ 'height': '45px' });
       bpage_home_click += 1
       if (bpage_home_click >= 2) {
-        bpage_home_click = 0
+        bpage_home_click = 1
         if ($('html,body').scrollTop() > 2000) {
           $('html,body').animate({ 'scrollTop': ($('html,body').scrollTop() - 2000 - 500) }, 625)
           setTimeout(function () {
