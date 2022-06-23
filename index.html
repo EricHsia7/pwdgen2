@@ -3250,6 +3250,7 @@
     var pwdhlist = searchItemsbyname('pwch_cache_');
     var savedlist = searchItemsbyname('pwdgen2_saved_a_');
     var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
+    var recentaccesslist = searchItemsbyname('pwdgen2_recent_access_')
     var notesjson = {}
 
     for (var i = 0; i < noteslist.length; i++) {
@@ -3269,6 +3270,12 @@
     for (var t in notesjson) {
       if (notesjson[t] === "0") {
         localStorage.removeItem(t)
+      }
+    }
+
+    for (var d = 0; d < recentaccesslist; d++) {
+      if (pwnwtt - parseInt(String(localStorage.getItem(recentaccesslist[d]))) > 60 * 60 * 24 * 3 * 1000) {
+        localStorage.removeItem(recentaccesslist[d])
       }
     }
 
