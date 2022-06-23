@@ -2647,6 +2647,7 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
     }
   }
   function filter_showall() {
+    filter_switch('all')
     $('#historyfiltercss').html('')
   }
   function dsp(gid) {
@@ -3351,6 +3352,8 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
       $('.input,.history').css({ 'display': 'block' });
       $('.box').attr('search', 'n')
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+      $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
+      $('.input').css({ 'height': '45px' });
     }
     if (page === 'b') {
       $('#bottom-btn-svg-fill-a').attr('fill', 'var(--g-ffffff)').attr('stroke', 'var(--g-ffffff)')
@@ -3372,7 +3375,8 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
       $('.input,.checkpwdp,.input2').css({ 'display': 'none' });
 
       $('.input').css({ 'height': '45px' });
-      $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
+      $('.history').css({ 'transform': 'translateX(-50%) translateY(-45px)' });
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' });
       $('.btn5 svg').css({ 'transform': 'rotate(0deg)' });
       $('.btn5').attr('uj', '0')
       showsearchresult()
