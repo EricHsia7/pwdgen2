@@ -1352,7 +1352,7 @@
       height: 35px;
       margin-right: 5px;
       overflow: hidden;
-
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
     }
 
     .history-filter li span {
@@ -1475,6 +1475,7 @@
       }
     }
   </style>
+  <style id="historyfiltercss"></style>
 </head>
 
 <body>
@@ -2625,7 +2626,13 @@
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
+  function filter_switch(pl) {
+$('.history-filter li').attr('o','0')
+$('.history-filter li[pl="' + pl + '"]').attr('o','1')
+  }
   function filter_showrecentaccess() {
+    filter_switch('recentaccess')
+    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     var list = searchItemsbyname('pwdgen2_recent_access_')
     var nlist = []
     $('.box').attr('ar', '0')
@@ -2640,7 +2647,7 @@
     }
   }
   function filter_showall() {
-    $('.box').attr('ar', '1')
+    $('#historyfiltercss').html('')
   }
   function dsp(gid) {
     markasrecentaccess(0, gid)
