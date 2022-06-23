@@ -2627,7 +2627,7 @@
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
   function filter_switch(pl) {
-    $('.history-filter li').attr('o', '0')
+    $('.history-filter li').attr('o', '0').css({'transition':'0.3s'})
     $('.history-filter li[pl="' + pl + '"]').attr('o', '1')
   }
   function filter_showrecentaccess() {
@@ -3364,7 +3364,7 @@
       $('#bottom-btn-svg-fill-s').attr('stroke', 'var(--g-ffffff)').attr('stroke-width', '0')
       $('.t2').text('Check Password')
       $('.checkpwdp,.input2').css({ 'display': 'block' });
-      $('.input,.history,.input3').css({ 'display': 'none' });
+      $('.input,.history,.input3,.history-filter').css({ 'display': 'none' });
       $('.box').attr('search', 'n')
     }
     if (page === 's') {
