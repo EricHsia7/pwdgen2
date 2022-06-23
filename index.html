@@ -1549,7 +1549,7 @@
   </div>
 
   <div class="history-filter">
-    <li o="1" pl="all">
+    <li o="1" pl="all" >
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -1562,7 +1562,7 @@
       </div>
       <span>All</span>
     </li>
-    <li o="0" pl="recentaccess">
+    <li o="0" pl="recentaccess" ripple-onclick="filter_showrecentaccess()">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2079,7 +2079,7 @@
     };
   })(jQuery);
 
-  ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.btn,.btn5,.btn6,.history-filter li', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
 
@@ -2625,7 +2625,7 @@
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
-  function showrecentaccess() {
+  function filter_showrecentaccess() {
     var list = searchItemsbyname('pwdgen2_recent_access_')
     var nlist = []
     $('.box').attr('ar', '0')
@@ -2638,6 +2638,9 @@
         $('.box[hash="' + hash + '"]').attr('ar', '1')
       }
     }
+  }
+  function filter_showall() {
+    $('.box').attr('ar', '1')
   }
   function dsp(gid) {
     markasrecentaccess(0, gid)
