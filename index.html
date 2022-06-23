@@ -313,7 +313,7 @@
     .history {
       width: clamp(180px, 90%, 350px);
       position: absolute;
-      top: calc(35% + 45px + 0px);
+      top: calc(35% + 45px + 0px + 45px);
       left: 50%;
       transform: translateX(-50%);
       padding-bottom: 130px;
@@ -1330,6 +1330,72 @@
       align-items: center;
     }
 
+    .history-filter {
+      height: 35px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      width: clamp(180px, 90%, 350px);
+      top: calc(35% + 45px);
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute;
+    }
+
+    .history-filter li {
+      list-style: none;
+      background: var(--g-f4f4f4);
+      display: inline-block;
+      padding: 0px;
+      border-radius: 15px;
+      box-sizing: border-box;
+      height: 35px;
+      margin-right: 5px;
+      overflow: hidden;
+
+    }
+
+    .history-filter li span {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      padding-right: 10px;
+      color: var(--g-4e4e4e)
+    }
+
+    .history-filter-icon {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .history-filter-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .history-filter li div,
+    .history-filter li span {
+      float: left;
+    }
+
+    .history-filter li[o="1"] span,
+    .history-filter li[o="1"] .history-filter-icon {
+      opacity: 1
+    }
+
+    .history-filter li[o="1"] {
+      background: var(--g-e3e3e3);
+    }
+
+    .history-filter li[o="0"] span,
+    .history-filter li[o="0"] .history-filter-icon {
+      opacity: 0.5
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: clamp(180px, 90%, 350px);
@@ -1481,6 +1547,50 @@
       </div>
     </div>
   </div>
+
+  <div class="history-filter">
+    <li o="1" pl="all">
+      <div class="history-filter-icon">
+        <svg stroke-miterlimit="10"
+          style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+          viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path
+            d="M41.5426 29.132L57.3601 29.132C59.5618 29.132 61.2189 28.57 62.3313 27.446C63.4438 26.3219 64 24.6127 64 22.3183L64 6.77892C64 4.48452 63.4438 2.7811 62.3313 1.66866C61.2189 0.556219 59.5618-3.55271e-15 57.3601-3.55271e-15L41.5426-3.55271e-15C39.3178-3.55271e-15 37.6491 0.556219 36.5367 1.66866C35.4242 2.7811 34.868 4.48452 34.868 6.77892L34.868 22.3183C34.868 24.6127 35.4242 26.3219 36.5367 27.446C37.6491 28.57 39.3178 29.132 41.5426 29.132ZM6.63987 64L22.4921 64C24.6938 64 26.3509 63.4438 27.4633 62.3313C28.5758 61.2189 29.132 59.5155 29.132 57.2211L29.132 41.6469C29.132 39.3757 28.5758 37.6781 27.4633 36.554C26.3509 35.43 24.6938 34.868 22.4921 34.868L6.63987 34.868C4.43817 34.868 2.7811 35.43 1.66866 36.554C0.556219 37.6781 3.55271e-15 39.3757 3.55271e-15 41.6469L3.55271e-15 57.2211C3.55271e-15 59.5155 0.556219 61.2189 1.66866 62.3313C2.7811 63.4438 4.43817 64 6.63987 64ZM6.63987 29.132L22.4921 29.132C24.6938 29.132 26.3509 28.57 27.4633 27.446C28.5758 26.3219 29.132 24.6127 29.132 22.3183L29.132 6.77892C29.132 4.48452 28.5758 2.7811 27.4633 1.66866C26.3509 0.556219 24.6938-3.55271e-15 22.4921-3.55271e-15L6.63987-3.55271e-15C4.43817-3.55271e-15 2.7811 0.556219 1.66866 1.66866C0.556219 2.7811 3.55271e-15 4.48452 3.55271e-15 6.77892L3.55271e-15 22.3183C3.55271e-15 24.6127 0.556219 26.3219 1.66866 27.446C2.7811 28.57 4.43817 29.132 6.63987 29.132ZM41.5426 64L57.3601 64C59.5618 64 61.2189 63.4438 62.3313 62.3313C63.4438 61.2189 64 59.5155 64 57.2211L64 41.6469C64 39.3757 63.4438 37.6781 62.3313 36.554C61.2189 35.43 59.5618 34.868 57.3601 34.868L41.5426 34.868C39.3178 34.868 37.6491 35.43 36.5367 36.554C35.4242 37.6781 34.868 39.3757 34.868 41.6469L34.868 57.2211C34.868 59.5155 35.4242 61.2189 36.5367 62.3313C37.6491 63.4438 39.3178 64 41.5426 64Z"
+            fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+        </svg>
+      </div>
+      <span>All</span>
+    </li>
+    <li o="0" pl="recentaccess">
+      <div class="history-filter-icon">
+        <svg stroke-miterlimit="10"
+          style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+          viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path
+            d="M34.7835 2.75189C30.7909 2.75189 27.0515 3.56346 23.5269 5.09174C20.0023 6.62002 16.8611 8.66837 14.1675 11.3524C11.4739 14.0365 9.3719 17.1872 7.84362 20.7118C7.03835 22.569 6.51713 24.4795 6.13617 26.4666L2.02562 26.4666C1.3379 26.4666 0.788506 26.6322 0.444643 26.9092C0.10078 27.1862-0.017135 27.5258 0.00196845 27.9843C0.0210719 28.4428 0.208154 28.9672 0.571121 29.5021L6.95828 38.6085C7.43586 39.2771 7.99118 39.5666 8.60249 39.5571C9.21381 39.5475 9.78823 39.258 10.2467 38.6085L16.6339 29.4388C16.9968 28.9039 17.1935 28.4332 17.203 27.9843C17.2126 27.5354 17.041 27.1862 16.6971 26.9092C16.3532 26.6322 15.848 26.4666 15.1794 26.4666L11.5115 26.4666C11.8163 25.1542 11.7451 23.7175 12.2704 22.4825C13.5216 19.5406 15.2841 16.9833 17.5192 14.7673C19.7543 12.5513 22.3557 10.7698 25.2976 9.51848C28.2396 8.2672 31.4022 7.68454 34.7835 7.68454C38.1648 7.68454 41.3274 8.2672 44.2694 9.51848C47.2113 10.7698 49.759 12.5418 51.9846 14.7673C54.2101 16.9929 55.9726 19.5406 57.2334 22.4825C58.4942 25.4244 59.1306 28.5871 59.1306 31.9684C59.1306 35.3497 58.4942 38.566 57.2334 41.5175C55.9726 44.469 54.2101 47.0071 51.9846 49.2327C49.759 51.4582 47.2113 53.2207 44.2694 54.4815C41.3274 55.7424 38.1648 56.3978 34.7835 56.3787C32.0517 56.3596 29.4503 55.8817 27.0051 55.0507C24.5598 54.2197 22.3363 53.0817 20.3017 51.5725C18.2672 50.0633 16.5048 48.2854 15.0529 46.2604C14.6135 45.6682 14.0928 45.2845 13.4719 45.1221C12.851 44.9597 12.2493 45.0754 11.638 45.4383C11.0649 45.8013 10.6871 46.3316 10.5629 47.0193C10.4387 47.707 10.6354 48.3493 11.1321 48.9797C12.9469 51.4059 15.074 53.5234 17.5192 55.3669C19.9645 57.2104 22.6278 58.6451 25.5506 59.6671C28.4734 60.6892 31.5741 61.2481 34.7835 61.2481C38.7761 61.2481 42.5155 60.4365 46.0401 58.9083C49.5647 57.38 52.7059 55.2779 55.3995 52.5843C58.0931 49.8908 60.1951 46.8128 61.7234 43.2882C63.2517 39.7636 64 35.961 64 31.9684C64 27.9757 63.2517 24.2364 61.7234 20.7118C60.1951 17.1872 58.0931 14.1092 55.3995 11.4157C52.7059 8.72206 49.5647 6.62002 46.0401 5.09174C42.5155 3.56346 38.7761 2.75189 34.7835 2.75189ZM33.7084 15.21C33.078 15.21 32.5132 15.403 32.0642 15.8424C31.6153 16.2818 31.3686 16.8562 31.3686 17.4866L31.3686 33.4861C31.3686 33.83 31.4437 34.1386 31.5583 34.4347C31.6729 34.7308 31.835 35.0144 32.0642 35.3201L39.147 44.6795C39.6246 45.2908 40.1704 45.6494 40.7912 45.7545C41.4121 45.8596 42.0521 45.713 42.6252 45.3118C43.1601 44.9489 43.3995 44.415 43.4473 43.7941C43.495 43.1732 43.3175 42.5965 42.8781 42.0234L35.9218 32.664L35.9218 17.4866C35.9218 16.8562 35.7288 16.2818 35.2894 15.8424C34.85 15.403 34.3389 15.21 33.7084 15.21Z"
+            fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+        </svg>
+      </div>
+      <span>Recent access</span>
+    </li>
+    <li o="0" pl="containnote">
+      <div class="history-filter-icon">
+        <svg stroke-miterlimit="10"
+          style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+          viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path
+            d="M10.08 2.36C6.7145 2.36 4.16274 3.3787 2.48 5.04C0.797261 6.70131 0 9.11738 0 12.44L0 51.76C0 55.0826 0.797261 57.4987 2.48 59.16C4.16274 60.8213 6.7145 61.64 10.08 61.64L53.92 61.64C57.2855 61.64 59.8481 60.8213 61.52 59.16C63.1921 57.4987 64 55.0826 64 51.76L64 12.44C64 9.11738 63.1921 6.70132 61.52 5.04C59.8481 3.3787 57.2855 2.36 53.92 2.36L10.08 2.36ZM9.48 17.2L54.32 17.2C55.7563 17.2 56.8683 17.439 57.64 18.2C58.4117 18.961 58.84 20.241 58.84 21.72L58.84 51.96C58.84 53.439 58.4117 54.4791 57.64 55.24C56.8683 56.001 55.7563 56.48 54.32 56.48L9.48 56.48C8.06522 56.48 7.13172 56.001 6.36 55.24C5.58829 54.479 5.16 53.439 5.16 51.96L5.16 21.72C5.16 20.241 5.58829 18.961 6.36 18.2C7.13171 17.439 8.06521 17.2 9.48 17.2ZM15.24 25.2C14.6612 25.2 13.9859 25.2648 13.6 25.64C13.2142 26.0152 13.16 26.5441 13.16 27.08C13.16 27.6373 13.2142 28.1235 13.6 28.52C13.9859 28.9165 14.6612 29.12 15.24 29.12L48.96 29.12C49.5387 29.12 50.0248 28.9165 50.4 28.52C50.775 28.1235 50.84 27.6373 50.84 27.08C50.84 26.5441 50.775 26.0152 50.4 25.64C50.0248 25.2648 49.5387 25.2 48.96 25.2L15.24 25.2ZM15.24 34.88C14.6612 34.88 13.9859 35.0942 13.6 35.48C13.2142 35.8659 13.16 36.3413 13.16 36.92C13.16 37.4559 13.2142 37.7848 13.6 38.16C13.9859 38.535 14.6612 38.8 15.24 38.8L48.96 38.8C49.5387 38.8 50.0248 38.535 50.4 38.16C50.775 37.7848 50.84 37.4559 50.84 36.92C50.84 36.3413 50.775 35.8659 50.4 35.48C50.0248 35.0942 49.5387 34.88 48.96 34.88L15.24 34.88ZM15.24 44.56C14.6612 44.56 13.9859 44.7635 13.6 45.16C13.2142 45.5565 13.16 46.0427 13.16 46.6C13.16 47.1359 13.2142 47.4648 13.6 47.84C13.9859 48.2152 14.6612 48.48 15.24 48.48L36.64 48.48C37.2187 48.48 37.7048 48.2152 38.08 47.84C38.455 47.4648 38.48 47.1359 38.48 46.6C38.48 46.0427 38.455 45.5565 38.08 45.16C37.7048 44.7635 37.2187 44.56 36.64 44.56L15.24 44.56Z"
+            fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+        </svg>
+      </div>
+      <span>Contain Note</span>
+    </li>
+  </div>
+
+
   <div class="history">
   </div>
 
@@ -2380,7 +2490,7 @@
       var yfa = 0
       for (var e = 0; e < typelist.length; e++) {
         if (String(t).indexOf(typelist[e]) > -1) {
-          tll[typelistname[e]] = parseInt(tll[typelistname[e]])+(strlengthtobytes(t) + strlengthtobytes(localStorage.getItem(t)))
+          tll[typelistname[e]] = parseInt(tll[typelistname[e]]) + (strlengthtobytes(t) + strlengthtobytes(localStorage.getItem(t)))
         }
         else {
           yfa += 1
@@ -2388,7 +2498,7 @@
       }
 
       if (yfa >= (typelist.length - 1)) {
-      tll.other = (parseInt(tll.other)+(strlengthtobytes(t) + strlengthtobytes(localStorage.getItem(t))))
+        tll.other = (parseInt(tll.other) + (strlengthtobytes(t) + strlengthtobytes(localStorage.getItem(t))))
       }
 
     }
@@ -2403,7 +2513,7 @@
     var opacityuu = (1 - 0.4) / phlist.length
     for (var e = 0; e < phlist.length; e++) {
       tthtml.push('<div class="storage-type"><div class="storage-type-color storage-type-floatleft" style="background:var(--storage-' + (e + 1) + ');"></div><div class="storage-type-name storage-type-floatleft">' + phlist[e] + '</div></div>')
-      thtml.push('<div class="storage-usage-bar" style="--st-width:' + (tll[phlist[e]]/tll.storagesize*100).toFixed(2) + '%;background:var(--storage-' + (e + 1) + ')" tp="' + phlist[e] + '"></div>')
+      thtml.push('<div class="storage-usage-bar" style="--st-width:' + (tll[phlist[e]] / tll.storagesize * 100).toFixed(2) + '%;background:var(--storage-' + (e + 1) + ')" tp="' + phlist[e] + '"></div>')
       usedsize += tll[phlist[e]]
     }
     $('.storage-usage-bar-box').html(thtml.join(''))
@@ -2695,7 +2805,7 @@
 
       //if(saved) {}
 
-      searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd,pwtimestr,thw_notes,thw_saved,thw_time]
+      searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd, pwtimestr, thw_notes, thw_saved, thw_time]
 
     }
 
@@ -2907,13 +3017,16 @@
 
     if ($('.btn5').attr('uj') === '0') {
       $('.input').css({ 'height': '208px' });
-      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (208 - 45) + 'px)' });
+      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (208 - 45 + 45) + 'px)' });
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (208 - 45) + 'px)' });
+
       //$('.btn5 svg').css({'transform':'rotate(180deg)'});
       $('.btn5').attr('uj', '1')
     }
     else {
       $('.input').css({ 'height': '45px' });
       $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' });
       //$('.btn5 svg').css({'transform':'rotate(0deg)'});
       $('.btn5').attr('uj', '0')
     }
