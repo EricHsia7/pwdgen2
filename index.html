@@ -3414,14 +3414,14 @@
       bpage_home_click += 1
       if (bpage_home_click >= 2) {
         bpage_home_click = 0
-        if ($(document).scrollTop() > 2000) {
-          $(document).animate({ 'scrollTop': ($(document).scrollTop() - 2000 - 500) }, 625)
+        if ($('html,body').scrollTop() > 2000) {
+          $('html,body').animate({ 'scrollTop': ($('html,body').scrollTop() - 2000 - 500) }, 625)
           setTimeout(function () {
-            $(document).scrollTop(0)
+            $('html,body').scrollTop(0)
           }, 500);
         }
         else {
-          $(document).animate({ 'scrollTop': 0 }, 500)
+          $('html,body').animate({ 'scrollTop': 0 }, 500)
         }
       }
     }
