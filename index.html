@@ -1336,7 +1336,7 @@
       overflow-y: hidden;
       white-space: nowrap;
       width: clamp(180px, 90%, 350px);
-      top: calc(35% + 45px);
+      top: calc(35% + 45px + 10px);
       left: 50%;
       transform: translateX(-50%);
       position: absolute;
@@ -3017,7 +3017,7 @@
 
     if ($('.btn5').attr('uj') === '0') {
       $('.input').css({ 'height': '208px' });
-      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (208 - 45 + 45) + 'px)' });
+      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (208 - 45) + 'px)' });
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (208 - 45) + 'px)' });
 
       //$('.btn5 svg').css({'transform':'rotate(180deg)'});
