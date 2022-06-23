@@ -1340,6 +1340,8 @@
       left: 50%;
       transform: translateX(-50%);
       position: absolute;
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     .history-filter li {
@@ -1353,6 +1355,8 @@
       margin-right: 5px;
       overflow: hidden;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .history-filter li span {
@@ -1361,7 +1365,9 @@
       justify-content: center;
       align-items: center;
       padding-right: 10px;
-      color: var(--g-4e4e4e)
+      color: var(--g-4e4e4e);
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     .history-filter-icon {
@@ -1370,11 +1376,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .history-filter-icon svg {
       width: 18px;
       height: 18px;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .history-filter li div,
