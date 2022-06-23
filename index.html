@@ -2619,7 +2619,7 @@
     $('body').prompt({ 'message': mess, 'time': 1200, 'animate': 'slide' });
   }
   function markasrecentaccess(mode, key) {
-    var hash = ''
+    var hash = key
     if (mode === 0) {
       var ddt = $('.box[f="' + key + '"]').attr('t')
       var hash = sha256($('input[u="' + key + '"]').attr('value') + '_' + ddt)
@@ -2627,8 +2627,8 @@
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
   function filter_switch(pl) {
-$('.history-filter li').attr('o','0')
-$('.history-filter li[pl="' + pl + '"]').attr('o','1')
+    $('.history-filter li').attr('o', '0')
+    $('.history-filter li[pl="' + pl + '"]').attr('o', '1')
   }
   function filter_showrecentaccess() {
     filter_switch('recentaccess')
@@ -3100,7 +3100,7 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
       }
       var thspt = checkpwd(pw)
       var hash = sha256(pw + '_' + pwtime.getTime())
-
+      markasrecentaccess(1, hash)
       $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="1" hash="' + hash + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
       ripple('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       ripple('.checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
@@ -3353,7 +3353,7 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
       $('.box').attr('search', 'n')
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' ,'display':'block'});
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'block' });
 
       $('.input').css({ 'height': '45px' });
     }
@@ -3378,13 +3378,13 @@ $('.history-filter li[pl="' + pl + '"]').attr('o','1')
 
       $('.input').css({ 'height': '45px' });
       $('.history').css({ 'transform': 'translateX(-50%) translateY(-45px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' ,'display':'none'});
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'none' });
       $('.btn5 svg').css({ 'transform': 'rotate(0deg)' });
       $('.btn5').attr('uj', '0')
       showsearchresult()
       $('#historyfiltercss').html('')
 
-      
+
     }
 
   }
