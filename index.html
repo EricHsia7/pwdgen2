@@ -3318,6 +3318,7 @@
     }
 
     if (savedlist.length > 0) {
+      $('.history-filter').css({ 'display': 'block' })
       setTimeout(function () {
         for (var i = 0; i < savedlist.length; i++) {
           if (!(savedlist[i] === 'null')) {
@@ -3369,7 +3370,6 @@
 
 
         $('.history .loading').remove()
-        $('.history-filter').css({ 'display': 'block' })
         scrollcheckpwd()
         deletepwcache()
         searchindex()
