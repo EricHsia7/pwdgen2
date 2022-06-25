@@ -2733,7 +2733,7 @@
     for (var g = 0; g < $('.history .box').length; g++) {
       var hash = $('.history .box').eq(g).attr('hash')
 
-      if (String($('.box[hash="' + hash + '"]').attr('hashtag')).indexOf(r_hashtag + ',') > -1) {
+      if (String($('.box[hash="' + hash + '"]').attr('hashtag')).split(',').indexOf(r_hashtag) > -1) {
         $('.box[hash="' + hash + '"]').attr('ar', '1')
 
         if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
