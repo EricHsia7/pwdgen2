@@ -1409,6 +1409,14 @@
       opacity: 0.5
     }
 
+    .history-filter[loading="1"] {
+      background: var(--g-f4f4f4);
+    }
+
+    .history-filter[loading="1"] * {
+      opacity: 0;
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: clamp(180px, 90%, 350px);
@@ -1563,7 +1571,7 @@
   </div>
 
   <div class="history-filter">
-    <li o="1" pl="all" ripple-onclick="filter_showall()">
+    <li o="1" pl="all" ripple-onclick="filter_showall()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -1576,7 +1584,7 @@
       </div>
       <span>All</span>
     </li>
-    <li o="0" pl="recentaccess" ripple-onclick="filter_showrecentaccess()">
+    <li o="0" pl="recentaccess" ripple-onclick="filter_showrecentaccess()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -1589,7 +1597,7 @@
       </div>
       <span>Recent access</span>
     </li>
-    <li o="0" pl="containnote" ripple-onclick="filter_showcontainnote()">
+    <li o="0" pl="containnote" ripple-onclick="filter_showcontainnote()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2093,7 +2101,7 @@
     };
   })(jQuery);
 
-  ripple('.btn,.btn5,.btn6,.history-filter li', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
 
@@ -2716,7 +2724,7 @@
 
   function filter_showhashtag(hashtag_name) {
     filter_switch(hashtag_name)
-var r_hashtag = allhashtag[hashtag_name]
+    var r_hashtag = allhashtag[hashtag_name]
 
     $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     $('.box').attr('ar', '0')
@@ -3438,10 +3446,12 @@ var r_hashtag = allhashtag[hashtag_name]
 
         for (var z in allhashtag) {
           var thishashtag = allhashtag[z]
-          $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + thishashtag.replaceAll('#','') + '</span></li>')
+          $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + thishashtag.replaceAll('#', '') + '</span></li>')
           ripple('.history-filter li[pl="' + z + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
         $('.history .loading').remove()
+        ripple('.hitory-filter li[pl="all"],.history-filter li[p="recentaccess"],.history-filter li[p="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        $('.history-filter li[loading="1"]').attr('loading','0')
         scrollcheckpwd()
         deletepwcache()
         searchindex()
