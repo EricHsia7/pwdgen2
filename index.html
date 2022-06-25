@@ -2834,7 +2834,7 @@
       var pseb = btoa(enur($('textarea[j="' + txthash + '"]').val()))
       localStorage.setItem(psehash, pseb)
       var notehashtags = gethashtags($('textarea[j="' + txthash + '"]').val())
-      $('.box[f="' + gide + '"]').attr('hashtag',notehashtags.join(','))
+      $('.box[f="' + gide + '"]').attr('hashtag', notehashtags.join(','))
     }
   }
   function pwnotes_a(gide) {
@@ -3347,6 +3347,7 @@
   function gethashtags(str) {
     var hashtag_regex = /\B#([A-Za-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
     var hashtags = str.match(hashtag_regex)
+    /*
     if (hashtags.length < 1) {
       return []
     }
@@ -3357,6 +3358,11 @@
       }
       return hashtag2
     }
+    */
+    if (hashtags === null) {
+      return []
+    }
+    return hashtags
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
