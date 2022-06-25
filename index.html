@@ -1415,7 +1415,7 @@
 
     .history-filter li[loading="1"] * {
       opacity: 0;
-      color:transparent;
+      color: transparent;
     }
 
     @media (min-width: 600px) {
@@ -2830,6 +2830,7 @@
     setTimeout(function () {
       $('.box[f="' + gide + '"] .bxnotesaa').remove()
     }, 180);
+    refresh_hashtag()
   }
   function pwnotes_ev(e, psehash, txthash, gide) {
     if ($('textarea[j="' + txthash + '"]').length > 0) {
@@ -3219,12 +3220,12 @@
       var thspt = checkpwd(pw)
       var hash = sha256(pw + '_' + pwtime.getTime())
       markasrecentaccess(1, hash)
-      $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="1" hash="' + hash + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
+      $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
       $('.history-filter').css({ 'display': 'block' })
       ripple('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       ripple('.checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       mes('generated')
-
+      refresh_hashtag()
       if (localStorage.getItem('pw_options_autosavepwd') === '1') {
         save(pwgid, false)
       }
@@ -3360,8 +3361,35 @@
     return hashtags
   }
   function refresh_hashtag() {
+    var hashtag_regex = /\B#([A-Za-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
+    var newallhashtag = {}
     var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
+    for (var d = 0; d < noteslist; d++) {
+      var notetext = deur(atob(String(localStorage.getItem(noteslist[d]))))
+      var hashtags = notetext.match(hashtag_regex)
+      if (hashtags === null) {
+        continue;
+      }
 
+      for (var s = 0; s < hashtags.length; s++) {
+        var hashtagkey = hashtags[s].replaceAll('#', '').toLowerCase()
+        newallhashtag[hashtagkey] = hashtags[s]
+        if (allhashtag[hashtagkey] === undefined) {
+          allhashtag[hashtagkey] = hashtags[s]
+          $('.history-filter').append('<li pl="' + hashtagkey + '" ripple-onclick="filter_showhashtag(' + "'" + hashtagkey + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtags[s].replaceAll('#', '') + '</span></li>')
+          ripple('.history-filter li[pl="' + hashtagkey + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        }
+      }
+      //deleted hashtag
+      for (var g in allhashtag) {
+        if (newallhashtag[g] === undefined) {
+          allhashtag[x] = false
+          $('.history-filter li[pl="' + x + '"]').remove()
+        }
+      }
+
+
+    }
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
