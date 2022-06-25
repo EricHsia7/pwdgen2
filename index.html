@@ -1409,11 +1409,11 @@
       opacity: 0.5
     }
 
-    .history-filter[loading="1"] {
+    .history-filter li[loading="1"] {
       background: var(--g-f4f4f4);
     }
 
-    .history-filter[loading="1"] * {
+    .history-filter li[loading="1"] * {
       opacity: 0;
     }
 
@@ -3451,7 +3451,7 @@
         }
         $('.history .loading').remove()
         ripple('.hitory-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
-        $('.history-filter li[loading="1"]').attr('loading','0')
+        $('.history-filter li[loading="1"]').attr('loading', '0')
         scrollcheckpwd()
         deletepwcache()
         searchindex()
