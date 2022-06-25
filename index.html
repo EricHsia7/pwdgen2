@@ -3355,7 +3355,7 @@
       return []
     }
     for (var s = 0; s < hashtags.length; s++) {
-      var hashtagkey = hashtags[s].replaceAll('#', '').toLowerCase()
+      var hashtagkey = String(hashtags[s]).replaceAll('#', '').toLowerCase()
       allhashtag[hashtagkey] = hashtags[s]
     }
     return hashtags
@@ -3372,7 +3372,7 @@
       }
 
       for (var s = 0; s < hashtags.length; s++) {
-        var hashtagkey = hashtags[s].replaceAll('#', '').toLowerCase()
+        var hashtagkey = String(hashtags[s]).replaceAll('#', '').toLowerCase()
         newallhashtag[hashtagkey] = hashtags[s]
         allhashtag[hashtagkey] = hashtags[s]
       }
