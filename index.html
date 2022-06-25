@@ -2660,6 +2660,7 @@
     for (var j = 0; j < $('.history-filter li').length; j++) {
       filterbox_content_width += $('.history-filter li').eq(j).width() + 5
     }
+    console.log([filterbox_width,pl_offset_left,pl_width,filterbox_content_width,plscrollleft])
     if (pl_offset_left > (filterbox_width - pl_width) / 2 && (filterbox_content_width - pl_offset_left - pl_width) > (filterbox_width - pl_width) / 2) {
       plscrollleft = ((filterbox_width - pl_width) / 2 - pl_offset_left)*(-1)
     }
