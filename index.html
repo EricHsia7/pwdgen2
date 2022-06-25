@@ -1420,7 +1420,8 @@
       color: transparent;
     }
 
-    .history-filter li[loading="1"] span {
+    .history-filter li[loading="1"] span,
+    .history-filter li[loading="1"] .history-filter-icon {
       opacity: 1;
     }
 
@@ -1428,8 +1429,8 @@
       content: '';
       position: absolute;
       top: 5px;
-      left: 5px;
-      width: calc(100% - 10px);
+      left: 0px;
+      width: calc(100% - 5px);
       height: calc(100% - 10px);
       background: var(--g-e3e3e3);
       border-radius: 15px;
