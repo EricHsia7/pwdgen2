@@ -2715,18 +2715,16 @@
   }
 
   function filter_showhashtag(hashtag_name) {
-
-
-
-
     filter_switch(hashtag_name)
+var r_hashtag = allhashtag[hashtag_name]
+
     $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     $('.box').attr('ar', '0')
+
     for (var g = 0; g < $('.history .box').length; g++) {
       var hash = $('.history .box').eq(g).attr('hash')
 
-      if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
-
+      if (String($('.box[hash="' + hash + '"]').attr('hashtag')).indexOf(r_hashtag) > -1) {
         $('.box[hash="' + hash + '"]').attr('ar', '1')
 
         if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
@@ -3440,7 +3438,7 @@
 
         for (var z in allhashtag) {
           var thishashtag = allhashtag[z]
-          $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + thishashtag + '</span></li>')
+          $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + thishashtag.replaceAll('#','') + '</span></li>')
           ripple('.history-filter li[pl="' + z + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
         $('.history .loading').remove()
