@@ -2694,7 +2694,8 @@
       var hash = $('.history .box').eq(g).attr('hash')
 
       if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
-
+notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
+if(notetext.length > 0) {
         $('.box[hash="' + hash + '"]').attr('ar', '1')
 
         if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
@@ -2719,6 +2720,7 @@
 
 
       }
+    }
     }
 
   }
