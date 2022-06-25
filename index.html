@@ -3364,7 +3364,7 @@
     var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
     var newallhashtag = {}
     var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
-    for (var d = 0; d < noteslist; d++) {
+    for (var d = 0; d < noteslist.length; d++) {
       var notetext = deur(atob(String(localStorage.getItem(noteslist[d]))))
       var hashtags = notetext.match(hashtag_regex)
       if (hashtags === null) {
