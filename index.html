@@ -3529,11 +3529,9 @@
         $('.history .loading').remove()
         scrollcheckpwd()
         deletepwcache()
-        searchindex()
         $('.history-filter li[loading="1"]').attr('loading', '0')
         ripple('.history-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         history_filter_load = 1
-
       }, 1200);
     }
     else {
