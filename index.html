@@ -2841,11 +2841,6 @@
       var notehashtags = gethashtags($('textarea[j="' + txthash + '"]').val())
       $('.box[f="' + gide + '"]').attr('hashtag', notehashtags.join(','))
     }
-    else {
-      if (localStorage.hasOwnProperty(psehash)) {
-        localStorage.removeItem(psehash)
-      }
-    }
   }
   function pwnotes_a(gide) {
     delboxmnuli(gide)
