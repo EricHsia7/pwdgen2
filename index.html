@@ -2652,7 +2652,7 @@
   function filter_switch(pl) {
     $('.history-filter li').attr('o', '0')
     $('.history-filter li[pl="' + pl + '"]').attr('o', '1')
-    var filterbox_width = $('.history-filter').width()
+    var filterbox_width = $('.history-filter').width()+5
     var pl_offset_left = $('.history-filter li[pl="' + pl + '"]').offset().left - $('.history-filter').offset().left - $(document).scrollLeft()
     var pl_width = $('.history-filter li[pl="' + pl + '"]').width()
     var filterbox_content_width = 0
