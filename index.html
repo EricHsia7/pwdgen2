@@ -3324,9 +3324,6 @@
 
     for (var i = 0; i < noteslist.length; i++) {
       notesjson[noteslist[i]] = "0"
-      if(String(localStorage.getItem(noteslist[i])).length < 1) {
-        localStorage.removeItem(noteslist[i])
-      }
     }
 
     for (var i = 0; i < savedlist.length; i++) {
@@ -3342,6 +3339,13 @@
     for (var t in notesjson) {
       if (notesjson[t] === "0") {
         localStorage.removeItem(t)
+      }
+    }
+    for (var e = 0; e < noteslist.length; e++) {
+      if (localStorage.hasOwnProperty(noteslist[e])) {
+        if (String(localStorage.getItem(noteslist[e])).length < 1) {
+          localStorage.removeItem(noteslist[e])
+        }
       }
     }
 
