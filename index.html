@@ -2712,6 +2712,54 @@
     }
 
   }
+
+  function filter_showhashtag(hashtag_name) {
+
+
+
+
+    filter_switch('containnote')
+    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+    $('.box').attr('ar', '0')
+    for (var g = 0; g < $('.history .box').length; g++) {
+      var hash = $('.history .box').eq(g).attr('hash')
+
+      if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
+
+        $('.box[hash="' + hash + '"]').attr('ar', '1')
+
+        if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
+          $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+          $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
+          $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+          $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
+          $('.box[hash="' + hash + '"] .infooo').html(infoicon)
+          $('.box[hash="' + hash + '"]').attr('iconload', '1')
+        }
+        if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
+          $('.box[f="' + hash + '"]').attr('stch', '1')
+          var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
+          var thsstr = $('.box[hash="' + hash + '"] input').val()
+          var thspt = checkpwd(thsstr, false, '0', thstime)
+          var pwtime = new Date()
+          pwtime.setTime(thstime)
+          var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+          $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+        }
+
+
+
+      }
+    }
+
+
+
+
+
+
+
+  }
+
   function filter_showall() {
     filter_switch('all')
     $('#historyfiltercss').html('')
@@ -3294,6 +3342,20 @@
     }
 
   }
+  function gethashtags(str) {
+    var hashtag_regex = /\B#([A-Za-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
+    var hashtags = str.match(hashtag_regex)
+    if (hashtags.length < 1) {
+      return []
+    }
+    else {
+      var hashtag2 = []
+      for (var u = 0; u < hashtags; u++) {
+        hashtag2.push(hashtags[u].substring(1, hashtags[u].length))
+      }
+      return hashtag2
+    }
+  }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
@@ -3359,8 +3421,14 @@
                 var iconloadattr = '0'
               }
               var hash = sha256(pw + '_' + pwtime.getTime())
+              var notetext = ''
+              var notehashtags = []
+              if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_')) {
+                notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
+                notehashtags = gethashtags(notetext)
+              }
 
-              $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="' + iconloadattr + '" hash="' + hash + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
+              $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
               ripple('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
               ripple('.checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
             }
