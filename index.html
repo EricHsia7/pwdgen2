@@ -3239,8 +3239,8 @@
       $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
       $('.history-filter').css({ 'display': 'block' })
       if (history_filter_load === 0) {
-        ripple('.history-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         $('.history-filter li[loading="1"]').attr('loading', '0')
+        ripple('.history-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         history_filter_load = 1
       }
       ripple('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
@@ -3530,8 +3530,8 @@
         scrollcheckpwd()
         deletepwcache()
         searchindex()
-        ripple('.history-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         $('.history-filter li[loading="1"]').attr('loading', '0')
+        ripple('.history-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         history_filter_load = 1
 
       }, 1200);
