@@ -2760,12 +2760,6 @@
       }
     }
 
-
-
-
-
-
-
   }
 
   function filter_showall() {
@@ -3365,6 +3359,10 @@
     }
     return hashtags
   }
+  function refresh_hashtag() {
+    var savedlist = searchItemsbyname('pwdgen2_saved_a_')
+
+  }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
@@ -3451,7 +3449,7 @@
           ripple('.history-filter li[pl="' + z + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
         $('.history .loading').remove()
-        ripple('.hitory-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        ripple('.hisory-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         $('.history-filter li[loading="1"]').attr('loading', '0')
         scrollcheckpwd()
         deletepwcache()
