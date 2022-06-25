@@ -2838,7 +2838,7 @@
     if ($('textarea[j="' + txthash + '"]').length > 0) {
       var pseb = btoa(enur($('textarea[j="' + txthash + '"]').val()))
       localStorage.setItem(psehash, pseb)
-      var notehashtags = gethashtags($('textarea[j="' + txthash + '"]').val(),false)
+      var notehashtags = gethashtags($('textarea[j="' + txthash + '"]').val(), false)
       $('.box[f="' + gide + '"]').attr('hashtag', notehashtags.join(','))
     }
   }
@@ -3357,22 +3357,23 @@
 
   }
   var allhashtag = {}
-  function gethashtags(str,k) {
+  function gethashtags(str, k) {
     var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
     var hashtags = str.match(hashtag_regex)
     if (hashtags === null) {
       return []
     }
-    if(k) {
-    for (var s = 0; s < hashtags.length; s++) {
-      var hashtagkey = String(hashtags[s]).replaceAll('#', '').toLowerCase()
-      allhashtag[hashtagkey] = hashtags[s]
+    if (k) {
+      for (var s = 0; s < hashtags.length; s++) {
+        var hashtagkey = String(hashtags[s]).replaceAll('#', '').toLowerCase()
+        allhashtag[hashtagkey] = hashtags[s]
+      }
     }
-  }
     return hashtags
   }
   function refresh_hashtag() {
     var deletecount = 0
+    var addcount = 0
     var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
     var newallhashtag = {}
     var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
@@ -3410,9 +3411,12 @@
         if ($('.history-filter li[pl="' + o + '"]').length < 1) {
           $('.history-filter').append('<li pl="' + o + '" ripple-onclick="filter_showhashtag(' + "'" + o + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + String(allhashtag[o]).replaceAll('#', '') + '</span></li>')
           ripple('.history-filter li[pl="' + o + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+          addcount += 1
         }
       }
     }
+    console.log(addcount)
+
     if (deletecount > 0) {
       filter_showall()
     }
@@ -3486,7 +3490,7 @@
               var notehashtags = []
               if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
                 notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
-                notehashtags = gethashtags(notetext,true)
+                notehashtags = gethashtags(notetext, true)
               }
 
               $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
