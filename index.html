@@ -3390,10 +3390,11 @@
         $('.history-filter li[pl="' + g + '"]').remove()
       }
       else {
+        if($('.history-filter li[pl="' + g + '"]').length < 1) {
         $('.history-filter').append('<li pl="' + g + '" ripple-onclick="filter_showhashtag(' + "'" + g + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + allhashtag[g].replaceAll('#', '') + '</span></li>')
         ripple('.history-filter li[pl="' + g + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
-
       }
+    }
     }
 
   }
