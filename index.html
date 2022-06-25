@@ -3344,23 +3344,16 @@
     }
 
   }
+  var allhashtag = {}
   function gethashtags(str) {
     var hashtag_regex = /\B#([A-Za-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
     var hashtags = str.match(hashtag_regex)
-    /*
-    if (hashtags.length < 1) {
-      return []
-    }
-    else {
-      var hashtag2 = []
-      for (var u = 0; u < hashtags; u++) {
-        hashtag2.push(hashtags[u].substring(1, hashtags[u].length))
-      }
-      return hashtag2
-    }
-    */
     if (hashtags === null) {
       return []
+    }
+    for (var s = 0; s < hashtags.length; s++) {
+      var hashtagkey = hashtags[s].replaceAll('#', '').toLowerCase()
+      allhashtag[hashtagkey] = hashtags[s]
     }
     return hashtags
   }
@@ -3442,9 +3435,12 @@
             }
           }
         }
-        //<div class="btn1 shareoo" h="' + pwgid + '" c="0" ripple-onclick="share(' + "'" + pwgid + "'" + ')" style="left:105px">' + shareicon + '</div>
+        var hashtags_list = []
 
-
+        for (var z in allhashtag) {
+          var thishashtag = allhashtag[z]
+          $('.history-filter').append('<li pl="' + z + '">' + thishashtag + '</li>')
+        }
         $('.history .loading').remove()
         scrollcheckpwd()
         deletepwcache()
