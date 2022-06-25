@@ -3374,22 +3374,28 @@
       for (var s = 0; s < hashtags.length; s++) {
         var hashtagkey = hashtags[s].replaceAll('#', '').toLowerCase()
         newallhashtag[hashtagkey] = hashtags[s]
-        if (allhashtag[hashtagkey] === undefined) {
-          allhashtag[hashtagkey] = hashtags[s]
-          $('.history-filter').append('<li pl="' + hashtagkey + '" ripple-onclick="filter_showhashtag(' + "'" + hashtagkey + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtags[s].replaceAll('#', '') + '</span></li>')
-          ripple('.history-filter li[pl="' + hashtagkey + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
-        }
-      }
-      //deleted hashtag
-      for (var g in allhashtag) {
-        if (newallhashtag[g] === undefined) {
-          allhashtag[g] = false
-          $('.history-filter li[pl="' + g + '"]').remove()
-        }
+        allhashtag[hashtagkey] = hashtags[s]
       }
 
 
     }
+
+    for (var g in allhashtag) {
+      if (newallhashtag[g] === undefined) {
+        allhashtag[g] = false
+      }
+    }
+    for (var o in allhashtag) {
+      if (allhashtag[o] === false) {
+        $('.history-filter li[pl="' + g + '"]').remove()
+      }
+      else {
+        $('.history-filter').append('<li pl="' + g + '" ripple-onclick="filter_showhashtag(' + "'" + g + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + allhashtag[g].replaceAll('#', '') + '</span></li>')
+        ripple('.history-filter li[pl="' + g + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+
+      }
+    }
+
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
