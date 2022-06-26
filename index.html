@@ -25,7 +25,8 @@
     }
 
     :root {
-      --b-size: 150px
+      --b-size: 150px;
+      --u-width: clamp(180px, 90%, 350px)
     }
 
     body {
@@ -99,7 +100,7 @@
     .input,
     .input2,
     .input3 {
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       height: 45px;
       background: var(--g-f4f4f4);
       border-radius: 15px;
@@ -306,12 +307,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       white-space: nowrap
     }
 
     .history {
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       position: absolute;
       top: calc(35% + 45px + 0px + 45px);
       left: 50%;
@@ -442,7 +443,7 @@
 
     .mes {
       background: var(--g-e3e3e3);
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       height: 45px;
       border-radius: 15px;
       position: fixed;
@@ -518,7 +519,7 @@
     }
 
     .prompt {
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       height: 60px;
       border-radius: 15px;
       position: fixed;
@@ -595,7 +596,7 @@
       margin-top: 10px;
       padding: 0;
       height: 45px;
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       background: var(--g-f4f4f4);
       position: relative;
       border-radius: 15px;
@@ -764,7 +765,7 @@
     }
 
     .confirm {
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       height: 170px;
       background: var(--g-f4f4f4);
       position: fixed;
@@ -956,7 +957,7 @@
 
     .checkpwdp {
       position: absolute;
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       top: calc(35% + 45px + 0px);
       left: 50%;
       transform: translateX(-50%);
@@ -1235,7 +1236,7 @@
     }
 
     .impbk {
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       height: 140px;
       background: var(--g-f4f4f4);
       position: fixed;
@@ -1335,7 +1336,7 @@
       overflow-x: scroll;
       overflow-y: hidden;
       white-space: nowrap;
-      width: clamp(180px, 90%, 350px);
+      width: var(--u-width);
       top: calc(35% + 45px + 10px);
       left: 50%;
       transform: translateX(-50%);
@@ -1460,7 +1461,7 @@
 
     @media (min-width: 600px) {
       .bottom-bx {
-        width: clamp(180px, 90%, 350px);
+        width: var(--u-width);
         left: 50%;
         transform: translateX(-50%);
       }
