@@ -3620,7 +3620,9 @@
         $('#historyfiltercss').html('')
       }
       $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'block' });
+      if ($('.history .box').length > 0) {
+        $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'block' });
+      }
       $('.btn5').attr('uj', '0')
 
       $('.input').css({ 'height': '45px' });
