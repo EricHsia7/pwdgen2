@@ -3464,7 +3464,13 @@
       }
       else {
         if ($('.history-filter li[pl="' + o + '"]').length < 1) {
-          $('.history-filter').append('<li pl="' + o + '" ripple-onclick="filter_showhashtag(' + "'" + o + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + String(allhashtag[o]).replaceAll('#', '') + '</span></li>')
+
+          var hashtagstr = String(allhashtag[o])
+          if (hashtagstr.length >= 25) {
+            hashtagstr = hashtagstr.substring(0, 22) + '...'
+          }
+
+          $('.history-filter').append('<li pl="' + o + '" ripple-onclick="filter_showhashtag(' + "'" + o + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
           ripple('.history-filter li[pl="' + o + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
           addcount += 1
         }
@@ -3559,7 +3565,11 @@
 
         for (var z in allhashtag) {
           var thishashtag = allhashtag[z]
-          $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + thishashtag.replaceAll('#', '') + '</span></li>')
+          var hashtagstr = String(thishashtag)
+          if (hashtagstr.length >= 25) {
+            hashtagstr = hashtagstr.substring(0, 22) + '...'
+          }
+          $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
           ripple('.history-filter li[pl="' + z + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
         $('.history .loading').remove()
