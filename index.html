@@ -2691,7 +2691,7 @@
     var filterbox_width = $('.history-filter').width() + 5
     var pl_offset_left = $('.history-filter li[pl="' + pl + '"]').offset().left - $('.history-filter').offset().left - $(document).scrollLeft() + $('.history-filter').scrollLeft()
     var pl_width = $('.history-filter li[pl="' + pl + '"]').width()
-    var filterbox_content_width = document.querySelector('.history-filter').scrollWidth
+    var filterbox_content_width = document.querySelector('.history-filter').scrollWidth+5
     var plscrollleft = 0
     if (pl_offset_left > (filterbox_width - pl_width) / 2 && (filterbox_content_width - pl_offset_left - pl_width) > (filterbox_width - pl_width) / 2) {
       plscrollleft = ((filterbox_width - pl_width) / 2 - pl_offset_left) * (-1)
