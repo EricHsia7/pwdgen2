@@ -2086,42 +2086,15 @@
         }
 
         if (settings.animate === "slide") {
-          $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time + 300 * 2) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt' + promptid + '{0%{opacity:0;transform:translateX(-50%) translateY(80px);}' + Math.floor((300) / (settings.time + 300 * 2) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(-30px);}' + Math.floor((300 + settings.time) / (settings.time + 300 * 2) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(-30px);}100%{opacity:0;transform:translateX(-50%) translateY(80px);}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
-
+          var translateX = -1 * (document.querySelector('.bottom').clientHeight + 20)
+          $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time + 300 * 2) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt' + promptid + '{0%{opacity:0;transform:translateX(-50%) translateY(80px);}' + Math.floor((300) / (settings.time + 300 * 2) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateX + 'px);}' + Math.floor((300 + settings.time) / (settings.time + 300 * 2) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateX + 'px);}100%{opacity:0;transform:translateX(-50%) translateY(80px);}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
 
           setTimeout(function () {
             $("#" + promptid + ',style[qix="promptanimation' + promptid + '"]').remove();
           }, settings.time + 400 * 2 + 50);
         }
 
-        if (settings.animate === "fade") {
-          $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
 
-          setTimeout(function () {
-            $("#" + promptid).css({ opacity: "1", transition: "0.4s", bottom: "10px" });
-          }, 100);
-
-          setTimeout(function () {
-            $("#" + promptid).css({ opacity: "0", transition: "0.4s" });
-          }, settings.time + 100);
-
-          setTimeout(function () {
-            $("#" + promptid).remove();
-          }, settings.time + 400);
-        }
-
-        if (settings.animate === "show") {
-          $(this).append('<div class="prompt" id="' + promptid + '" style="bottom:10px;"><span class="promptcenter">' + settings.message + "</span></div>");
-          setTimeout(function () {
-            $("#" + promptid).css({ opacity: "1", transition: "0s", bottom: "10px" });
-          }, 100);
-          setTimeout(function () {
-            $("#" + promptid).css({ opacity: "0", transition: "0s" });
-          }, settings.time + 100);
-          setTimeout(function () {
-            $("#" + promptid).remove();
-          }, settings.time + 400);
-        }
       });
     };
   })(jQuery);
@@ -3805,7 +3778,7 @@
     $('meta[kji="dark"]').attr('content', getComputedStyle(document.body).getPropertyValue('--meta-theme-color-dark'));
   }
   function switchthemecss(od, showmes) {
-    let themenamelist = ['white', 'green', 'pink', 'cyan-blue', 'blue', 'dark-blue','purple']
+    let themenamelist = ['white', 'green', 'pink', 'cyan-blue', 'blue', 'dark-blue', 'purple']
     var themenamelisth = 0;
     var theme_css = '';
     var theme_version = 'x6gp650dum8228pt';
