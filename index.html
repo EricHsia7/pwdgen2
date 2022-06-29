@@ -1472,13 +1472,13 @@
     .filter-date-picker-box {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 5px;
-      padding: 0px 10px;
+      grid-gap: 1px;
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
       top: 45px;
-      left: 0px;
+      left: 10px;
+      background: var(--g-e3e3e3);
     }
 
     .filter-date-picker-year,
@@ -1492,15 +1492,14 @@
     .filter-date-picker li {
       display: none;
       list-style: none;
-      width: clac(100% - 10px);
+      width: calc(100% - 10px);
       height: 40px;
-      background: var(--g-e3e3e3);
-      border-radius: 15px;
-      margin-bottom: 5px;
       padding-left: 10px;
       align-items: center;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
-      color: var(--g-4e4e4e)
+      color: var(--g-4e4e4e);
+      border-bottom: var(--g-e3e3e3);
+      background: var(--g-ffffff);
     }
 
     .filter-date-picker li[e="0"] {
@@ -2944,7 +2943,7 @@
     }
   }
   function initialize_picker() {
-    var month_name = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    //var month_name = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     var yyyy = date_picker_all.year.length - 1
     var mmmm = date_picker_all.month[yyyy].length - 1
     var dddd = date_picker_all.date[yyyy][mmmm].length - 1
@@ -2954,10 +2953,10 @@
       $('.filter-date-picker-year').append('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" ripple-onclick="date_picker_setyear(' + y + ')"><span>' + date_picker_all.year[y] + '</span></li>')
       ripple('.filter-date-picker-year li[r="' + ffid + '-' + y + '"]', '#4e4e4e', '0.3', 888, 'true');
       for (var m = 0; m < date_picker_all.month[y].length; m++) {
-        $('.filter-date-picker-month').prepend('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')"><span>' + month_name[(date_picker_all.month[y][m] + 1)] + '</span></li>')
+        $('.filter-date-picker-month').prepend('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')"><span>' + che(date_picker_all.month[y][m] + 1) + '</span></li>')
         ripple('.filter-date-picker-month li[r="' + ffid + '-' + y + '-' + m + '"]', '#4e4e4e', '0.3', 888, 'true');
         for (var d = 0; d < date_picker_all.date[y][m].length; d++) {
-          $('.filter-date-picker-date').prepend('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')"><span>' + date_picker_all.date[y][m][d] + '</span></li>')
+          $('.filter-date-picker-date').prepend('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')"><span>' + che(date_picker_all.date[y][m][d]) + '</span></li>')
           ripple('.filter-date-picker-date li[r="' + ffid + '-' + y + '-' + m + '-' + d + '"]', '#4e4e4e', '0.3', 888, 'true');
         }
       }
