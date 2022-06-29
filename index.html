@@ -1472,7 +1472,7 @@
     .filter-date-picker-box {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 2px;
+      grid-gap: 8px;
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
@@ -1500,6 +1500,23 @@
       color: var(--g-4e4e4e);
       border-bottom: 1px solid var(--g-e3e3e3);
       background: var(--g-ffffff);
+      position: relative;
+    }
+
+    .filter-date-picker-year li::after,
+    .filter-date-picker-month li::after {
+      content: '>';
+      color: var(--g-e3e3e3);
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
     }
 
     .filter-date-picker li[e="0"] {
