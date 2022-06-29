@@ -1444,19 +1444,19 @@
 
     }
 
-    .filter_date_picker {
-      position: absolute;
-      top: 0px;
-      left: 0px;
+    .filter-date-picker {
+      position: fixed;
+      top: 50%;
+      left: 50%;
       width: clamp(180px, 90%, 450px);
       height: 350px;
       background: var(--g-ffffff);
       border-radius: 15px;
       display: none;
-
+transform: translate(-50%,-50%);
     }
 
-    .filter_date_picker_title {
+    .filter-date-picker-title {
       height: 45px;
       width: calc(100% - 20px);
       position: absolute;
@@ -1467,7 +1467,7 @@
       color: var(--g-4e4e4e)
     }
 
-    .filter_date_picker_box {
+    .filter-date-picker-box {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 5px;
@@ -1479,15 +1479,15 @@
       left: 0px;
     }
 
-    .filter_date_picker_year,
-    .filter_date_picker_month,
-    .filter_date_picker_date {
+    .filter-date-picker-year,
+    .filter-date-picker-month,
+    .filter-date-picker-date {
       height: 100%;
       overflow: scroll;
       border-radius: 15px;
     }
 
-    .filter_date_picker li {
+    .filter-date-picker li {
       display: none;
       list-style: none;
       width: clac(100% - 10px);
@@ -1501,32 +1501,32 @@
       color: var(--g-4e4e4e)
     }
 
-    .filter_date_picker li[e="0"] {
+    .filter-date-picker li[e="0"] {
       background: var(--g-f4f4f4);
     }
 
-    .filter_date_picker li[e="0"] span {
+    .filter-date-picker li[e="0"] span {
       opacity: 0.5
     }
 
-    .filter_date_picker li[e="1"] {
+    .filter-date-picker li[e="1"] {
       background: var(--g-e3e3e3);
     }
 
-    .filter_date_picker li[e="1"] span {
+    .filter-date-picker li[e="1"] span {
       opacity: 1
     }
 
-    .filter_date_picker li:nth-last-child(1) {
+    .filter-date-picker li:nth-last-child(1) {
       margin-bottom: 0px
     }
 
-    .filter_date_picker_year li {
+    .filter-date-picker-year li {
       display: flex;
     }
 
-    .filter_date_picker_cancel,
-    .filter_date_picker_apply {
+    .filter-date-picker-cancel,
+    .filter-date-picker-apply {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -1541,7 +1541,7 @@
       color: var(--g-4e4e4e)
     }
 
-    .filter_date_picker_apply {
+    .filter-date-picker-apply {
       left: calc(50% + 5px)
     }
 
@@ -1758,29 +1758,29 @@
   <div class="history">
   </div>
 
-  <style id="filter_date_picker_css">
-    .filter_date_picker_month li[index="2"] {
+  <style id="filter-date-picker-css">
+    .filter-date-picker-month li[index="2"] {
       display: flex;
     }
 
-    .filter_date_picker_date li[index="2-0"] {
+    .filter-date-picker-date li[index="2-0"] {
       display: flex;
     }
   </style>
-  <div class="filter_date_picker">
+  <div class="filter-date-picker">
 
-    <div class="filter_date_picker_title">
+    <div class="filter-date-picker-title">
       Select date
     </div>
-    <div class="filter_date_picker_box">
-      <div class="filter_date_picker_year"></div>
-      <div class="filter_date_picker_month"></div>
-      <div class="filter_date_picker_date"></div>
+    <div class="filter-date-picker-box">
+      <div class="filter-date-picker-year"></div>
+      <div class="filter-date-picker-month"></div>
+      <div class="filter-date-picker-date"></div>
     </div>
-    <div class="filter_date_picker_cancel">
+    <div class="filter-date-picker-cancel">
       Cancel
     </div>
-    <div class="filter_date_picker_apply" ripple-onclick="filter_showdate()">
+    <div class="filter-date-picker-apply" ripple-onclick="filter_showdate()">
       Apply
     </div>
   </div>
@@ -2946,21 +2946,21 @@
     var ffid = gid()
 
     for (var y = 0; y < date_picker_all.year.length; y++) {
-      $('.filter_date_picker_year').prepend('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" ripple-onclick="date_picker_setyear(' + y + ')"><span>' + date_picker_all.year[y] + '</span></li>')
+      $('.filter-date-picker-year').prepend('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" ripple-onclick="date_picker_setyear(' + y + ')"><span>' + date_picker_all.year[y] + '</span></li>')
 
-      ripple('.filter_date_picker_year li[r="' + ffid + '-' + y + '"]', '#4e4e4e', '0.3', 888, 'true');
+      ripple('.filter-date-picker-year li[r="' + ffid + '-' + y + '"]', '#4e4e4e', '0.3', 888, 'true');
 
 
       for (var m = 0; m < date_picker_all.month[y].length; m++) {
 
-        $('.filter_date_picker_month').append('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')"><span>' + month_name[date_picker_all.month[y][m]] + '</span></li>')
+        $('.filter-date-picker-month').append('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')"><span>' + month_name[date_picker_all.month[y][m]] + '</span></li>')
 
-        ripple('.filter_date_picker_month li[r="' + ffid + '-' + y + '-' + m + '"]', '#4e4e4e', '0.3', 888, 'true');
+        ripple('.filter-date-picker-month li[r="' + ffid + '-' + y + '-' + m + '"]', '#4e4e4e', '0.3', 888, 'true');
 
         for (var d = 0; d < date_picker_all.date[y][m].length; d++) {
-          $('.filter_date_picker_date').append('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')"><span>' + date_picker_all.date[y][m][d] + '</span></li>')
+          $('.filter-date-picker-date').append('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')"><span>' + date_picker_all.date[y][m][d] + '</span></li>')
 
-          ripple('.filter_date_picker_date li[r="' + ffid + '-' + y + '-' + m + '-' + d + '"]', '#4e4e4e', '0.3', 888, 'true');
+          ripple('.filter-date-picker-date li[r="' + ffid + '-' + y + '-' + m + '-' + d + '"]', '#4e4e4e', '0.3', 888, 'true');
 
         }
 
@@ -2970,21 +2970,21 @@
     }
 
 
-    $('.filter_date_picker_year li[index="' + yyyy + '"]').attr('e', '1')
+    $('.filter-date-picker-year li[index="' + yyyy + '"]').attr('e', '1')
 
-    $('.filter_date_picker_month li[m="' + yyyy + '-' + mmmm + '"]').attr('e', '1')
+    $('.filter-date-picker-month li[m="' + yyyy + '-' + mmmm + '"]').attr('e', '1')
 
-    $('.filter_date_picker_date li[m="' + yyyy + '-' + mmmm + '-' + dddd + '"]').attr('e', '1')
+    $('.filter-date-picker-date li[m="' + yyyy + '-' + mmmm + '-' + dddd + '"]').attr('e', '1')
     date_picker.year = yyyy
     date_picker.month = mmmm
     date_picker.date = dddd
   }
   function date_picker_setcss() {
-    $('#filter_date_picker_css').html('.filter_date_picker_month li[index="' + date_picker.year + '"] {display:flex;}.filter_date_picker_date li[index="' + date_picker.year + '-' + date_picker.month + '"] {display:flex;}')
+    $('#filter-date-picker-css').html('.filter-date-picker-month li[index="' + date_picker.year + '"] {display:flex;}.filter-date-picker-date li[index="' + date_picker.year + '-' + date_picker.month + '"] {display:flex;}')
   }
   function date_picker_setyear(y) {
-    $('.filter_date_picker li').attr('e', '0')
-    $('.filter_date_picker_year li[index="' + y + '"]').attr('e', '1')
+    $('.filter-date-picker li').attr('e', '0')
+    $('.filter-date-picker-year li[index="' + y + '"]').attr('e', '1')
     date_picker.year = y
     date_picker.month = undefined
     date_picker.date = undefined
@@ -2992,10 +2992,10 @@
   }
 
   function date_picker_setmonth(m) {
-    $('.filter_date_picker_month li').attr('e', '0')
-    $('.filter_date_picker_date li').attr('e', '0')
+    $('.filter-date-picker-month li').attr('e', '0')
+    $('.filter-date-picker-date li').attr('e', '0')
 
-    $('.filter_date_picker_month li[m="' + date_picker.year + '-' + m + '"]').attr('e', '1')
+    $('.filter-date-picker-month li[m="' + date_picker.year + '-' + m + '"]').attr('e', '1')
 
 
     date_picker.month = m
@@ -3005,9 +3005,9 @@
 
 
   function date_picker_setdate(d) {
-    $('.filter_date_picker_date li').attr('e', '0')
+    $('.filter-date-picker-date li').attr('e', '0')
 
-    $('.filter_date_picker_date li[m="' + date_picker.year + '-' + date_picker.month + '-' + d + '"]').attr('e', '1')
+    $('.filter-date-picker-date li[m="' + date_picker.year + '-' + date_picker.month + '-' + d + '"]').attr('e', '1')
 
 
     date_picker.date = d
@@ -3018,7 +3018,7 @@
     var searchtxt = date_picker.getStr()
     console.log(searchtxt)
   }
-  ripple('.filter_date_picker_apply,.filter_date_picker_cancel', '#4e4e4e', '0.3', 888, 'true');
+  ripple('.filter-date-picker-apply,.filter-date-picker-cancel', '#4e4e4e', '0.3', 888, 'true');
 
   initialize_picker()
   console.log(date_picker.getStr())
