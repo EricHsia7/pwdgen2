@@ -1593,7 +1593,7 @@
   </div>
 
   <div class="history-filter">
-    <li o="1" pl="all" ripple-onclick="filter_showall()" loading="1">
+    <li o="1" pl="default_all" ripple-onclick="filter_showall()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -1606,7 +1606,7 @@
       </div>
       <span>All</span>
     </li>
-    <li o="0" pl="recentaccess" ripple-onclick="filter_showrecentaccess()" loading="1">
+    <li o="0" pl="default_recentaccess" ripple-onclick="filter_showrecentaccess()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -1619,7 +1619,7 @@
       </div>
       <span>Recent access</span>
     </li>
-    <li o="0" pl="containnote" ripple-onclick="filter_showcontainnote()" loading="1">
+    <li o="0" pl="default_containnote" ripple-onclick="filter_showcontainnote()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -1632,6 +1632,20 @@
       </div>
       <span>Contain Note</span>
     </li>
+    <li o="0" pl="default_datefilter" ripple-onclick="filter_showcontainnote()" loading="1">
+      <div class="history-filter-icon">
+        <svg stroke-miterlimit="10"
+          style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+          viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path
+            d="M10.08 2.36C6.7145 2.36 4.16274 3.3787 2.48 5.04C0.797261 6.70131 0 9.11738 0 12.44L0 51.76C0 55.0826 0.797261 57.4987 2.48 59.16C4.16274 60.8213 6.7145 61.64 10.08 61.64L53.92 61.64C57.2855 61.64 59.8481 60.8213 61.52 59.16C63.1921 57.4987 64 55.0826 64 51.76L64 12.44C64 9.11738 63.1921 6.70132 61.52 5.04C59.8481 3.3787 57.2855 2.36 53.92 2.36L10.08 2.36ZM9.48 17.2L54.32 17.2C55.7563 17.2 56.8683 17.439 57.64 18.2C58.4117 18.961 58.84 20.241 58.84 21.72L58.84 51.96C58.84 53.439 58.4117 54.4791 57.64 55.24C56.8683 56.001 55.7563 56.48 54.32 56.48L9.48 56.48C8.06522 56.48 7.13172 56.001 6.36 55.24C5.58829 54.479 5.16 53.439 5.16 51.96L5.16 21.72C5.16 20.241 5.58829 18.961 6.36 18.2C7.13171 17.439 8.06521 17.2 9.48 17.2ZM15.24 25.2C14.6612 25.2 13.9859 25.2648 13.6 25.64C13.2142 26.0152 13.16 26.5441 13.16 27.08C13.16 27.6373 13.2142 28.1235 13.6 28.52C13.9859 28.9165 14.6612 29.12 15.24 29.12L48.96 29.12C49.5387 29.12 50.0248 28.9165 50.4 28.52C50.775 28.1235 50.84 27.6373 50.84 27.08C50.84 26.5441 50.775 26.0152 50.4 25.64C50.0248 25.2648 49.5387 25.2 48.96 25.2L15.24 25.2ZM15.24 34.88C14.6612 34.88 13.9859 35.0942 13.6 35.48C13.2142 35.8659 13.16 36.3413 13.16 36.92C13.16 37.4559 13.2142 37.7848 13.6 38.16C13.9859 38.535 14.6612 38.8 15.24 38.8L48.96 38.8C49.5387 38.8 50.0248 38.535 50.4 38.16C50.775 37.7848 50.84 37.4559 50.84 36.92C50.84 36.3413 50.775 35.8659 50.4 35.48C50.0248 35.0942 49.5387 34.88 48.96 34.88L15.24 34.88ZM15.24 44.56C14.6612 44.56 13.9859 44.7635 13.6 45.16C13.2142 45.5565 13.16 46.0427 13.16 46.6C13.16 47.1359 13.2142 47.4648 13.6 47.84C13.9859 48.2152 14.6612 48.48 15.24 48.48L36.64 48.48C37.2187 48.48 37.7048 48.2152 38.08 47.84C38.455 47.4648 38.48 47.1359 38.48 46.6C38.48 46.0427 38.455 45.5565 38.08 45.16C37.7048 44.7635 37.2187 44.56 36.64 44.56L15.24 44.56Z"
+            fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+        </svg>
+      </div>
+      <span>Contain Note</span>
+    </li>
+
     <li o="0" gx="hashtag-loading" loading="1">
       <div class="history-filter-icon">
       </div>
@@ -2656,7 +2670,7 @@
     $('.history-filter').animate({ 'scrollLeft': plscrollleft }, 300)
   }
   function filter_showrecentaccess() {
-    filter_switch('recentaccess')
+    filter_switch('default_recentaccess')
     $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     var list = searchItemsbyname('pwdgen2_recent_access_')
     $('.box').attr('ar', '0')
@@ -2689,7 +2703,7 @@
     }
   }
   function filter_showcontainnote() {
-    filter_switch('containnote')
+    filter_switch('default_containnote')
     $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     $('.box').attr('ar', '0')
     for (var g = 0; g < $('.history .box').length; g++) {
@@ -2767,7 +2781,7 @@
   }
 
   function filter_showall() {
-    filter_switch('all')
+    filter_switch('default_all')
     $('#historyfiltercss').html('')
   }
   function dsp(gid) {
@@ -3229,7 +3243,7 @@
       if (history_filter_load === 0) {
         $('.history-filter li[loading="1"]').attr('loading', '0')
         $('.history-filter li[gx="hashtag-loading"]').remove()
-        ripple('.history-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        ripple('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         history_filter_load = 1
       }
       ripple('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
@@ -3530,7 +3544,7 @@
         deletepwcache()
         $('.history-filter li[loading="1"]').attr('loading', '0')
         $('.history-filter li[gx="hashtag-loading"]').remove()
-        ripple('.history-filter li[pl="all"],.history-filter li[pl="recentaccess"],.history-filter li[pl="containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        ripple('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         history_filter_load = 1
       }, 1200);
     }
@@ -3582,7 +3596,7 @@
       $('.checkpwdp,.input2,.input3').css({ 'display': 'none' });
       $('.input,.history').css({ 'display': 'block' });
       $('.box').attr('search', 'n')
-      if ($('.history-filter li[pl="all"]').attr('o') === '0') {
+      if ($('.history-filter li[pl="default_all"]').attr('o') === '0') {
         $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       }
       else {
