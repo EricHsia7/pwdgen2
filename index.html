@@ -2949,11 +2949,12 @@
     var mmmm = date_picker_all.month[yyyy].length - 1
     var dddd = date_picker_all.date[yyyy][mmmm].length - 1
     var ffid = gid()
+    $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('')
     for (var y = 0; y < date_picker_all.year.length; y++) {
       $('.filter-date-picker-year').prepend('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" ripple-onclick="date_picker_setyear(' + y + ')"><span>' + date_picker_all.year[y] + '</span></li>')
       ripple('.filter-date-picker-year li[r="' + ffid + '-' + y + '"]', '#4e4e4e', '0.3', 888, 'true');
       for (var m = 0; m < date_picker_all.month[y].length; m++) {
-        $('.filter-date-picker-month').append('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')"><span>' + (month_name[date_picker_all.month[y][m]] + 1) + '</span></li>')
+        $('.filter-date-picker-month').append('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')"><span>' + month_name[(date_picker_all.month[y][m] + 1)] + '</span></li>')
         ripple('.filter-date-picker-month li[r="' + ffid + '-' + y + '-' + m + '"]', '#4e4e4e', '0.3', 888, 'true');
         for (var d = 0; d < date_picker_all.date[y][m].length; d++) {
           $('.filter-date-picker-date').append('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')"><span>' + date_picker_all.date[y][m][d] + '</span></li>')
