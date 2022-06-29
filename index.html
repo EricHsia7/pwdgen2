@@ -2928,16 +2928,16 @@
     'getStr': function () {
       var strarr = []
       if (!(date_picker.year === undefined)) {
-        strarr.push('year:' + date_picker_all[date_picker.year])
+        strarr.push('year:' + date_picker_all.year[date_picker.year])
       }
       else {
         return false
       }
       if (!(date_picker.month === undefined)) {
-        strarr.push('month:' + (date_picker_all[date_picker.year][date_picker.month] + 1))
+        strarr.push('month:' + (date_picker_all.month[date_picker.year][date_picker.month] + 1))
       }
       if (!(date_picker.date === undefined)) {
-        strarr.push('date:' + (date_picker_all[date_picker.year][date_picker.month][date_picker.date]))
+        strarr.push('date:' + (date_picker_all.date[date_picker.year][date_picker.month][date_picker.date]))
       }
 
       return strarr.join(',')
