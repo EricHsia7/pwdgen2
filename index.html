@@ -1444,6 +1444,107 @@
 
     }
 
+    .filter_date_picker {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: clamp(180px, 90%, 450px);
+      height: 350px;
+      background: var(--g-ffffff);
+      border-radius: 15px;
+      display: none;
+
+    }
+
+    .filter_date_picker_title {
+      height: 45px;
+      width: calc(100% - 20px);
+      position: absolute;
+      top: 0px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      color: var(--g-4e4e4e)
+    }
+
+    .filter_date_picker_box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 5px;
+      padding: 0px 10px;
+      height: calc(100% - 45px - 10px - 5px - 45px - 10px);
+      width: calc(100% - 20px);
+      position: absolute;
+      top: 45px;
+      left: 0px;
+    }
+
+    .filter_date_picker_year,
+    .filter_date_picker_month,
+    .filter_date_picker_date {
+      height: 100%;
+      overflow: scroll;
+      border-radius: 15px;
+    }
+
+    .filter_date_picker li {
+      display: none;
+      list-style: none;
+      width: clac(100% - 10px);
+      height: 40px;
+      background: var(--g-e3e3e3);
+      border-radius: 15px;
+      margin-bottom: 5px;
+      padding-left: 10px;
+      align-items: center;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      color: var(--g-4e4e4e)
+    }
+
+    .filter_date_picker li[e="0"] {
+      background: var(--g-f4f4f4);
+    }
+
+    .filter_date_picker li[e="0"] span {
+      opacity: 0.5
+    }
+
+    .filter_date_picker li[e="1"] {
+      background: var(--g-e3e3e3);
+    }
+
+    .filter_date_picker li[e="1"] span {
+      opacity: 1
+    }
+
+    .filter_date_picker li:nth-last-child(1) {
+      margin-bottom: 0px
+    }
+
+    .filter_date_picker_year li {
+      display: flex;
+    }
+
+    .filter_date_picker_cancel,
+    .filter_date_picker_apply {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: calc(50% - 10px - 5px);
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--g-e3e3e3);
+      border-radius: 15px;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      color: var(--g-4e4e4e)
+    }
+
+    .filter_date_picker_apply {
+      left: calc(50% + 5px)
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -1655,6 +1756,33 @@
 
 
   <div class="history">
+  </div>
+
+  <style id="filter_date_picker_css">
+    .filter_date_picker_month li[index="2"] {
+      display: flex;
+    }
+
+    .filter_date_picker_date li[index="2-0"] {
+      display: flex;
+    }
+  </style>
+  <div class="filter_date_picker">
+
+    <div class="filter_date_picker_title">
+      Select date
+    </div>
+    <div class="filter_date_picker_box">
+      <div class="filter_date_picker_year"></div>
+      <div class="filter_date_picker_month"></div>
+      <div class="filter_date_picker_date"></div>
+    </div>
+    <div class="filter_date_picker_cancel">
+      Cancel
+    </div>
+    <div class="filter_date_picker_apply" ripple-onclick="filter_showdate()">
+      Apply
+    </div>
   </div>
 
   <div class="input2">
@@ -2779,7 +2907,123 @@
     }
 
   }
+  //date filter 
 
+  var date_picker_all = {
+    'year': [2020, 2021, 2022],
+    'month': [[0, 2, 5, 8], [0, 1, 2, 3], [0, 2, 6, 8, 11]],
+    'date': [[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 31], [2, 5], [7, 10], [2, 21]], [[1], [5], [2], [3]], [[0], [2], [6], [8], [11]]]
+  }
+  var date_picker_default_date = new Date()
+  var date_picker = {
+    'year': undefined,
+    'month': undefined,
+    'date': undefined,
+    'getStr': function () {
+      var strarr = []
+      if (!(date_picker.year === undefined)) {
+        strarr.push('year:' + date_picker.year)
+      }
+      else {
+        return false
+      }
+      if (!(date_picker.month === undefined)) {
+        strarr.push('month:' + date_picker.month)
+      }
+      if (!(date_picker.date === undefined)) {
+        strarr.push('date:' + date_picker.date)
+      }
+
+      return strarr.join(',')
+    }
+  }
+  function initialize_picker() {
+    var month_name = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+    var yyyy = date_picker_all.year.length - 1
+    var mmmm = date_picker_all.month[yyyy].length - 1
+    var dddd = date_picker_all.date[yyyy][mmmm].length - 1
+    var ffid = gid()
+
+    for (var y = 0; y < date_picker_all.year.length; y++) {
+      $('.filter_date_picker_year').prepend('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" ripple-onclick="date_picker_setyear(' + y + ')"><span>' + date_picker_all.year[y] + '</span></li>')
+
+      ripple('.filter_date_picker_year li[r="' + ffid + '-' + y + '"]', '#4e4e4e', '0.3', 888, 'true');
+
+
+      for (var m = 0; m < date_picker_all.month[y].length; m++) {
+
+        $('.filter_date_picker_month').append('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')"><span>' + month_name[date_picker_all.month[y][m]] + '</span></li>')
+
+        ripple('.filter_date_picker_month li[r="' + ffid + '-' + y + '-' + m + '"]', '#4e4e4e', '0.3', 888, 'true');
+
+        for (var d = 0; d < date_picker_all.date[y][m].length; d++) {
+          $('.filter_date_picker_date').append('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')"><span>' + date_picker_all.date[y][m][d] + '</span></li>')
+
+          ripple('.filter_date_picker_date li[r="' + ffid + '-' + y + '-' + m + '-' + d + '"]', '#4e4e4e', '0.3', 888, 'true');
+
+        }
+
+        //gg
+      }
+      //ggggg
+    }
+
+
+    $('.filter_date_picker_year li[index="' + yyyy + '"]').attr('e', '1')
+
+    $('.filter_date_picker_month li[m="' + yyyy + '-' + mmmm + '"]').attr('e', '1')
+
+    $('.filter_date_picker_date li[m="' + yyyy + '-' + mmmm + '-' + dddd + '"]').attr('e', '1')
+    date_picker.year = yyyy
+    date_picker.month = mmmm
+    date_picker.date = dddd
+  }
+  function date_picker_setcss() {
+    $('#filter_date_picker_css').html('.filter_date_picker_month li[index="' + date_picker.year + '"] {display:flex;}.filter_date_picker_date li[index="' + date_picker.year + '-' + date_picker.month + '"] {display:flex;}')
+  }
+  function date_picker_setyear(y) {
+    $('.filter_date_picker li').attr('e', '0')
+    $('.filter_date_picker_year li[index="' + y + '"]').attr('e', '1')
+    date_picker.year = y
+    date_picker.month = undefined
+    date_picker.date = undefined
+    date_picker_setcss()
+  }
+
+  function date_picker_setmonth(m) {
+    $('.filter_date_picker_month li').attr('e', '0')
+    $('.filter_date_picker_date li').attr('e', '0')
+
+    $('.filter_date_picker_month li[m="' + date_picker.year + '-' + m + '"]').attr('e', '1')
+
+
+    date_picker.month = m
+    date_picker.date = undefined
+    date_picker_setcss()
+  }
+
+
+  function date_picker_setdate(d) {
+    $('.filter_date_picker_date li').attr('e', '0')
+
+    $('.filter_date_picker_date li[m="' + date_picker.year + '-' + date_picker.month + '-' + d + '"]').attr('e', '1')
+
+
+    date_picker.date = d
+    date_picker_setcss()
+  }
+
+  function filter_showdate() {
+    var searchtxt = date_picker.getStr()
+    console.log(searchtxt)
+  }
+  ripple('.filter_date_picker_apply,.filter_date_picker_cancel', '#4e4e4e', '0.3', 888, 'true');
+
+  initialize_picker()
+  console.log(date_picker.getStr())
+
+  //date filter end
   function filter_showall() {
     filter_switch('default_all')
     $('#historyfiltercss').html('')
