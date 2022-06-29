@@ -3067,11 +3067,11 @@
     $('.box').attr('ar', '0')
     for (var g = 0; g < $('.history .box').length; g++) {
       var hash = $('.history .box').eq(g).attr('hash')
-      var thstime = parseInt($('.box[hash="' + hash + '"]').attr('t'))
-      var pwtime = new Date()
-      pwtime.setTime(thstime)
-      var pwtimestr = 'year:' + pwtime.getFullYear() + ',month:' + che(pwtime.getMonth() + 1) + ',date:' + che(pwtime.getDate())
-      if (pwtimestr.indexOf(searchtxt) > -1) {
+      var zthstime = parseInt($('.box[hash="' + hash + '"]').attr('t'))
+      var zpwtime = new Date()
+      zpwtime.setTime(zthstime)
+      var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
+      if (zpwtimestr.indexOf(searchtxt) > -1) {
         $('.box[hash="' + hash + '"]').attr('ar', '1')
         if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
           $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
