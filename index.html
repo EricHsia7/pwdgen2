@@ -3052,14 +3052,19 @@
       xy_index += 1
     }
     initialize_picker()
-    close_date_picker()
-  }
-  function close_date_picker() {
     $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'block', 'transition': '0.5s' })
     setTimeout(function () {
       $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
       $('.filter-date-picker-mask').css({ 'opacity': '1' })
     }, 1)
+  }
+  function close_date_picker() {
+    $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.filter-date-picker-mask').css({ 'opacity': '0' })
+    setTimeout(function () {
+      $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'none' })
+    }, 500)
+
   }
 
   function filter_showdate() {
@@ -3095,12 +3100,7 @@
         }
       }
     }
-
-    $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
-    $('.filter-date-picker-mask').css({ 'opacity': '0' })
-    setTimeout(function () {
-      $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'none' })
-    }, 500)
+close_date_picker()
   }
 
   //date filter end
