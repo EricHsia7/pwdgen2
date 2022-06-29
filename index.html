@@ -47,12 +47,13 @@
       -webkit-user-select: none;
       user-select: none;
       background: var(--g-ffffff);
-      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.045);
+      /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.045);*/
       display: flex;
       justify-content: center;
       align-items: center;
       background-size: var(--b-size);
-      background-repeat: repeat
+      background-repeat: repeat;
+      border-bottom: 1px solid var(--g-f4f4f4);
     }
 
     .bottom {
@@ -62,11 +63,12 @@
       left: 0;
       bottom: 0;
       background: var(--g-ffffff);
-      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.045);
+      /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.045);*/
       background-size: var(--b-size);
       background-repeat: repeat;
       -webkit-user-select: none;
       user-select: none;
+      border-top: 1px solid var(--g-f4f4f4);
     }
 
     .bottom-btn {
@@ -2083,12 +2085,12 @@
           var randomNumber = Math.floor(Math.random() * promptchars.length);
           promptid += promptchars.substring(randomNumber, randomNumber + 1);
         }
-          var translateY = -1 * (document.querySelector('.bottom').clientHeight + 20)
-          $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time + 300 * 2) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt' + promptid + '{0%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(0.75);}' + Math.floor((300) / (settings.time + 300 * 2) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}' + Math.floor((300 + settings.time) / (settings.time + 300 * 2) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(0.75);}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
+        var translateY = -1 * (document.querySelector('.bottom').clientHeight + 20)
+        $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time + 300 * 2) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt' + promptid + '{0%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(0.75);}' + Math.floor((300) / (settings.time + 300 * 2) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}' + Math.floor((300 + settings.time) / (settings.time + 300 * 2) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(0.75);}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
 
-          setTimeout(function () {
-            $("#" + promptid + ',style[qix="promptanimation' + promptid + '"]').remove();
-          }, settings.time + 400 * 2 + 50);
+        setTimeout(function () {
+          $("#" + promptid + ',style[qix="promptanimation' + promptid + '"]').remove();
+        }, settings.time + 400 * 2 + 50);
       });
     };
   })(jQuery);
@@ -3195,7 +3197,7 @@
     var pwlen = parseInt($('.input input').val())
     if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
 
-      $('body').prompt({ 'message': 'Please enter a value between 8 and 32768', 'time': 3000});
+      $('body').prompt({ 'message': 'Please enter a value between 8 and 32768', 'time': 3000 });
     }
     else {
       var pwtime = new Date()
