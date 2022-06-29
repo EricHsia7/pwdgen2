@@ -1472,7 +1472,7 @@
     .filter-date-picker-box {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 8px;
+      grid-gap: 0.8px;
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
@@ -2931,11 +2931,7 @@
   }
   //date filter 
 
-  var date_picker_all = {
-    'year': [2020, 2021, 2022],
-    'month': [[0, 2, 5, 8], [0, 1, 2, 3], [0, 2, 6, 8, 11]],
-    'date': [[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 31], [2, 5], [7, 10], [2, 21]], [[1], [5], [2], [3]], [[0], [2], [6], [8], [11]]]
-  }
+  var date_picker_all = {}
   var date_picker_default_date = new Date()
   var date_picker = {
     'year': undefined,
@@ -3066,6 +3062,38 @@
 
   function filter_showdate() {
     var searchtxt = date_picker.getStr()
+    filter_switch('default_datefilter')
+    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+    $('.box').attr('ar', '0')
+    for (var g = 0; g < $('.history .box').length; g++) {
+      var hash = $('.history .box').eq(g).attr('hash')
+      var thstime = parseInt($('.box[hash="' + hash + '"]').attr('t'))
+      var pwtime = new Date()
+      pwtime.setTime(thstime)
+      var pwtimestr = 'year:' + pwtime.getFullYear() + ',month:' + che(pwtime.getMonth() + 1) + ',date:' + che(pwtime.getDate())
+      if (pwtimestr.indexOf(searchtxt) > -1) {
+        $('.box[hash="' + hash + '"]').attr('ar', '1')
+        if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
+          $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+          $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
+          $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+          $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
+          $('.box[hash="' + hash + '"] .infooo').html(infoicon)
+          $('.box[hash="' + hash + '"]').attr('iconload', '1')
+        }
+        if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
+          $('.box[f="' + hash + '"]').attr('stch', '1')
+          var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
+          var thsstr = $('.box[hash="' + hash + '"] input').val()
+          var thspt = checkpwd(thsstr, false, '0', thstime)
+          var pwtime = new Date()
+          pwtime.setTime(thstime)
+          var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+          $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+        }
+      }
+    }
+
     $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
     $('.filter-date-picker-mask').css({ 'opacity': '0' })
     setTimeout(function () {
