@@ -1760,34 +1760,6 @@
   <div class="history">
   </div>
 
-  <style id="filter-date-picker-css">
-    .filter-date-picker-month li[index="2"] {
-      display: flex;
-    }
-
-    .filter-date-picker-date li[index="2-0"] {
-      display: flex;
-    }
-  </style>
-  <div class="filter-date-picker-mask"></div>
-  <div class="filter-date-picker">
-
-    <div class="filter-date-picker-title">
-      Select date
-    </div>
-    <div class="filter-date-picker-box">
-      <div class="filter-date-picker-year"></div>
-      <div class="filter-date-picker-month"></div>
-      <div class="filter-date-picker-date"></div>
-    </div>
-    <div class="filter-date-picker-cancel">
-      Cancel
-    </div>
-    <div class="filter-date-picker-apply" ripple-onclick="filter_showdate()">
-      Apply
-    </div>
-  </div>
-
   <div class="input2">
     <input type="password" placeholder="password" autocomplete="off">
     <div class="btn6" id="checkpw" ripple-onclick="checkpwfv()">
@@ -1926,6 +1898,36 @@
 
     </div>
   </div>
+
+  <style id="filter-date-picker-css">
+    .filter-date-picker-month li[index="2"] {
+      display: flex;
+    }
+
+    .filter-date-picker-date li[index="2-0"] {
+      display: flex;
+    }
+  </style>
+  <div class="filter-date-picker-mask"></div>
+  <div class="filter-date-picker">
+
+    <div class="filter-date-picker-title">
+      Select date
+    </div>
+    <div class="filter-date-picker-box">
+      <div class="filter-date-picker-year"></div>
+      <div class="filter-date-picker-month"></div>
+      <div class="filter-date-picker-date"></div>
+    </div>
+    <div class="filter-date-picker-cancel">
+      Cancel
+    </div>
+    <div class="filter-date-picker-apply" ripple-onclick="filter_showdate()">
+      Apply
+    </div>
+  </div>
+
+
   <div class="page2">
 
     <li class="options_list">
@@ -2996,18 +2998,37 @@
     date_picker_setcss()
   }
   function filter_date_picker() {
+    date_picker_all = {
+'year':[],
+'month':[],
+'date':[]
+    }
+    var dtjson = {}
+    for (var f = 0; f < $('.history .box').length; f++) {
+      var ths_time = parseInt($('.box').eq(f).attr('t'))
+      var ths_dt = new Date()
+      ths_dt.setTime(ths_time)
+      dtjson['y' + ths_dt.getFullYear()] = {}
+      dtjson['y' + ths_dt.getFullYear()]['m' + ths_dt.getMonth()] = {}
+      dtjson['y' + ths_dt.getFullYear()]['m' + ths_dt.getMonth()]['d' + ths_dt.getDate()] = {}
+    }
+    console.log(dtjson)
     initialize_picker()
-    $('.filter-date-picker,.filter-date-picker-mask').css({'display':'block','transition':'0.5s'})
-    setTimeout(function() {
-      $('.filter-date-picker').css({'transform':'translate(-50%,-50%) scale(1)','opacity':'1'})
-      $('.filter-date-picker-mask').css({'opacity':'1'})
-    },1)
+    $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'block', 'transition': '0.5s' })
+    setTimeout(function () {
+      $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+      $('.filter-date-picker-mask').css({ 'opacity': '1' })
+    }, 1)
   }
 
 
   function filter_showdate() {
     var searchtxt = date_picker.getStr()
-    console.log(searchtxt)
+    $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.filter-date-picker-mask').css({ 'opacity': '0' })
+    setTimeout(function () {
+      $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'none' })
+    }, 500)
   }
 
   //date filter end
