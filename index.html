@@ -2999,18 +2999,24 @@
   }
   function filter_date_picker() {
     date_picker_all = {
-'year':[],
-'month':[],
-'date':[]
+      'year': [],
+      'month': [],
+      'date': []
     }
     var dtjson = {}
     for (var f = 0; f < $('.history .box').length; f++) {
       var ths_time = parseInt($('.box').eq(f).attr('t'))
       var ths_dt = new Date()
       ths_dt.setTime(ths_time)
-      dtjson['y' + ths_dt.getFullYear()] = {}
-      dtjson['y' + ths_dt.getFullYear()]['m' + ths_dt.getMonth()] = {}
-      dtjson['y' + ths_dt.getFullYear()]['m' + ths_dt.getMonth()]['d' + ths_dt.getDate()] = {}
+      if (dtjson['y' + ths_dt.getFullYear()] === undefined) {
+        dtjson['y' + ths_dt.getFullYear()] = {}
+      }
+      if (dtjson['y' + ths_dt.getFullYear()]['m' + ths_dt.getMonth()] === undefined) {
+        dtjson['y' + ths_dt.getFullYear()]['m' + ths_dt.getMonth()] = {}
+      }
+      if (dtjson['y' + ths_dt.getFullYear()]['m' + ths_dt.getMonth()]['d' + ths_dt.getDate()] === undefined) {
+        dtjson['y' + ths_dt.getFullYear()]['m' + ths_dt.getMonth()]['d' + ths_dt.getDate()] = {}
+      }
     }
     console.log(dtjson)
     initialize_picker()
