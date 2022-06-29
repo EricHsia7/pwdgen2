@@ -1472,13 +1472,14 @@
     .filter-date-picker-box {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: 0.8px;
+      grid-gap: 0.5px;
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
       top: 45px;
       left: 10px;
       background: var(--g-e3e3e3);
+      border-radius: 5px;
     }
 
     .filter-date-picker-year,
@@ -1935,7 +1936,7 @@
       <div class="filter-date-picker-month"></div>
       <div class="filter-date-picker-date"></div>
     </div>
-    <div class="filter-date-picker-cancel">
+    <div class="filter-date-picker-cancel" ripple-onclick="close_date_picker()">
       Cancel
     </div>
     <div class="filter-date-picker-apply" ripple-onclick="filter_showdate()">
@@ -3050,15 +3051,16 @@
       }
       xy_index += 1
     }
-    console.log(date_picker_all)
     initialize_picker()
+    close_date_picker()
+  }
+  function close_date_picker() {
     $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'block', 'transition': '0.5s' })
     setTimeout(function () {
       $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
       $('.filter-date-picker-mask').css({ 'opacity': '1' })
     }, 1)
   }
-
 
   function filter_showdate() {
     var searchtxt = date_picker.getStr()
