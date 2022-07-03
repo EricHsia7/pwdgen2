@@ -3056,10 +3056,11 @@
       date_picker_all.year.push(parseInt(String(xy).substring(1, String(xy).length)))
       date_picker_all.month.push([])
       date_picker_all.date.push([])
-
+      xm_index = 0
       for (var xm in dtjson[xy]) {
         date_picker_all.month[xy_index].push(parseInt(String(xm).substring(1, String(xm).length)))
         date_picker_all.date[xy_index].push([])
+        xd_index = 0
         for (var xd in dtjson[xy][xm]) {
           date_picker_all.date[xy_index][xm_index].push(parseInt(String(xd).substring(1, String(xd).length)))
           xd_index += 1
