@@ -53,7 +53,6 @@
       -webkit-user-select: none;
       user-select: none;
       background: var(--g-ffffff);
-      /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.045);*/
       display: flex;
       justify-content: center;
       align-items: center;
@@ -69,7 +68,6 @@
       left: 0;
       bottom: 0;
       background: var(--g-ffffff);
-      /*box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.045);*/
       background-size: var(--b-size);
       background-repeat: repeat;
       -webkit-user-select: none;
@@ -2659,10 +2657,7 @@
 
       } catch (error) {
         localStorage.setItem('storage_size', String(sessionStorage.getItem('sizetest')).length)
-
-      } /*finally { 
-  return String(sessionStorage.getItem('sizetest')).length  
- } */
+      }
       return testsessionStorage()
     }
     else {
@@ -4413,32 +4408,8 @@
     var data = event.dataTransfer.getData("text");
     event.currentTarget.appendChild(document.getElementById(data));
   }
-  /*
-  $(document).ready(function() {
-var odsha = String(localStorage.getItem('pw_github_sha'))
-var gitshaurl = 'https://api.github.com/repos/EricHsia7/pwdgen2/commits?per_page=1&' + new Date().getTime()
-var pw_github_sha_time = new Date().getTime() ;
- if(pw_github_sha_time-parseInt(localStorage.getItem('pw_github_sha_time')) < 86400000) {
-  console.log(localStorage.getItem('pw_github_sha'))
-}
-else {
- $.ajax({type:'get',url:gitshaurl,dataType:'json',success:function(e) {
-  var pw_github_sha_time = new Date().getTime() ;
-   if(!(odsha === e[0].sha)) {
-   $('body').prompt({'message':'There is a new version, need to refresh.','time':15000,'animate':'slide'});
-   }
-  localStorage.setItem('pw_github_sha', e[0].sha);
-   localStorage.setItem('pw_github_sha_time', pw_github_sha_time);
-   console.log(e[0].sha)
-   }
-}); 
-}
-});
-*/
   var t2 = new Date()
-
   var t3 = t2.getTime() - t1.getTime()
-
   if (localStorage.getItem('pwdgen2_t3') === null) {
     //localStorage.setItem('pwdgen2_t3',t3)
   }
