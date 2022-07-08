@@ -3851,6 +3851,7 @@
 
       var this_html = '<li o="0" fd="' + th.fd + '" loading="0"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
       $('.customs-presets').append(this_html)
+      ripple('.customs-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
     }
 
 
