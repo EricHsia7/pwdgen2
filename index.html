@@ -3854,21 +3854,34 @@
         //this_icon = customs_presets_default
       }
 
-      var this_html = '<li o="0" fd="' + th.fd + '" loading="0"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
+      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustomspreset(' + "'" + th.fd + "'" + ')"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
       $('.customs-presets').append(this_html)
       ripple('.customs-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
     }
 
 
     //add,manager
-    var add_li_html = '<li o="0" td="addcustompreset" loading="0"><div class="customs-presets-icon">' + plusicon + '</div><span>Add</span</li>'
-    var manager_html = '<li o="0" td="managercustompreset" loading="0"><div class="customs-presets-icon">' + customs_presets_manager + '</div><span>Manager</span</li>'
+    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'addcustompreset' + "'" + ')"><div class="customs-presets-icon">' + plusicon + '</div><span>Add</span</li>'
+    var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="customs-presets-icon">' + customs_presets_manager + '</div><span>Manager</span</li>'
     $('.customs-presets').append(add_li_html + ' ' + manager_html)
     ripple('.customs-presets li[td="addcustompreset"],.customs-presets li[td="managercustompreset"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
     //print end
   }
+  function applycustomspreset(g) {
+    var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
+    if (od === '1') {
+      if (g === 'addcustompreset') {
 
+      }
+      if (g === 'managercustompreset') {
+
+      }
+    }
+    else {
+
+    }
+  }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
