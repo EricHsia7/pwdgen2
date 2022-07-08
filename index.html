@@ -3887,6 +3887,7 @@
 
   function applycustomspreset(g) {
     var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
+    customs_presets_switch(g)
     if (od === '1') {
       if (g === 'addcustompreset') {
 
@@ -3899,7 +3900,6 @@
       $('.customs-presets li').attr('o', '0')
       $('.customs-presets li[fd="' + g + '"]').attr('o', '1')
     }
-    custom_spresets_switch(g)
   }
 
   function showsavedhistory() {
