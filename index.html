@@ -1342,9 +1342,11 @@
       top: 46px;
       left: 0px;
       transform: none;
+      width: 100%;
     }
 
-    .history-filter::-webkit-scrollbar {
+    .history-filter::-webkit-scrollbar,
+    .customs-presets::-webkit-scrollbar {
       display: none;
     }
 
@@ -1418,7 +1420,8 @@
       opacity: 1
     }
 
-    .history-filter li[o="1"] .customs-presets li[o="1"] {
+    .history-filter li[o="1"],
+    .customs-presets li[o="1"] {
       background: var(--g-e3e3e3);
     }
 
@@ -3515,9 +3518,12 @@
     e.preventDefault()
     cgbwfn(2, e)
   }, { passive: true })
-
+  var customs_presets_print = 0
   function pwdcustom() {
-
+    if (customs_presets_print === 0) {
+      customspresets()
+      customs_presets_print = 1
+    }
     if ($('.btn5').attr('uj') === '0') {
       $('.input').css({ 'height': '243px' });
       $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (243 - 45) + 'px)' });
@@ -3840,8 +3846,7 @@
         //this_icon = customs_presets_default
       }
 
-      var this_html = '<li o="0" fd="' + th.fd + '" loading="1"><div class="history-filter-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
-
+      var this_html = '<li o="0" fd="' + th.fd + '" loading="0"><div class="history-filter-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
       $('.customs-presets').append(this_html)
     }
 
@@ -3849,6 +3854,7 @@
     //add,manager
     //print end
   }
+
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
