@@ -203,10 +203,10 @@
 
     .input .customs {
       position: absolute;
-      top: calc(46px + 35px + 5px);
+      top: calc(46px + 35px + 10px);
       left: 0;
       width: 100%;
-      height: calc(100% - 46px - 35px - 5px)
+      height: calc(100% - 46px - 35px - 10px)
     }
 
     .input .customs .customlist {
@@ -3849,7 +3849,7 @@
         //this_icon = customs_presets_default
       }
 
-      var this_html = '<li o="0" fd="' + th.fd + '" loading="0"><div class="history-filter-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
+      var this_html = '<li o="0" fd="' + th.fd + '" loading="0"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
       $('.customs-presets').append(this_html)
     }
 
