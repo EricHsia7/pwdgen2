@@ -3864,7 +3864,7 @@
     var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'addcustompreset' + "'" + ')"><div class="customs-presets-icon">' + plusicon + '</div><span>Add</span</li>'
     var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="customs-presets-icon">' + customs_presets_manager + '</div><span>Manager</span</li>'
     $('.customs-presets').append(add_li_html + ' ' + manager_html)
-    ripple('.customs-presets li[td="addcustompreset"],.customs-presets li[td="managercustompreset"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+    ripple('.customs-presets li[fd="addcustompreset"],.customs-presets li[fd="managercustompreset"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
     //print end
   }
