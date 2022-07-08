@@ -203,10 +203,10 @@
 
     .input .customs {
       position: absolute;
-      top: calc(46px + 35px);
+      top: calc(46px + 35px + 5px);
       left: 0;
       width: 100%;
-      height: calc(100% - 46px - 35px)
+      height: calc(100% - 46px - 35px - 5px)
     }
 
     .input .customs .customlist {
@@ -1339,7 +1339,7 @@
     }
 
     .customs-presets {
-      top: 46px;
+      top: 52px;
       left: 0px;
       transform: none;
       width: 100%;
@@ -3524,9 +3524,9 @@
       customs_presets_print = 1
     }
     if ($('.btn5').attr('uj') === '0') {
-      $('.input').css({ 'height': '243px' });
-      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (243 - 45) + 'px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (243 - 45) + 'px)' });
+      $('.input').css({ 'height': '248px' });
+      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (248 - 45) + 'px)' });
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (248 - 45) + 'px)' });
 
       //$('.btn5 svg').css({'transform':'rotate(180deg)'});
       $('.btn5').attr('uj', '1')
