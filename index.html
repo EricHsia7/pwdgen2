@@ -3872,9 +3872,9 @@
     $('.customs-presets li').attr('o', '0')
     $('.customs-presets li[fd="' + fd + '"]').attr('o', '1')
     var filterbox_width = $('.customs-presets').width()
-    var fd_offset_left = $('.customs-preset li[fd="' + fd + '"]').offset().left - $('.customs-preset').offset().left - $(document).scrollLeft() + $('.customs-preset').scrollLeft()
+    var fd_offset_left = $('.customs-preset li[fd="' + fd + '"]').offset().left - $('.customs-presets').offset().left - $(document).scrollLeft() + $('.customs-presets').scrollLeft()
     var fd_width = $('.customs-presets li[fd="' + fd + '"]').width()
-    var filterbox_content_width = document.querySelector('.customs-preset').scrollWidth
+    var filterbox_content_width = document.querySelector('.customs-presets').scrollWidth
     var fdscrollleft = 0
     if (fd_offset_left > (filterbox_width - fd_width) / 2 && (filterbox_content_width - fd_offset_left - fd_width) > (filterbox_width - fd_width) / 2) {
       fdscrollleft = ((filterbox_width - fd_width) / 2 - fd_offset_left) * (-1)
