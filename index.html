@@ -3868,6 +3868,25 @@
 
     //print end
   }
+  function custom_spresets_switch(fd) {
+    $('.customs-presets li').attr('o', '0')
+    $('.customs-presets li[fd="' + fd + '"]').attr('o', '1')
+    var filterbox_width = $('.customs-presets').width()
+    var fd_offset_left = $('.customs-preset li[fd="' + fd + '"]').offset().left - $('.customs-preset').offset().left - $(document).scrollLeft() + $('.customs-preset').scrollLeft()
+    var fd_width = $('.customs-presets li[fd="' + fd + '"]').width()
+    var filterbox_content_width = document.querySelector('.customs-preset').scrollWidth
+    var fdscrollleft = 0
+    if (fd_offset_left > (filterbox_width - fd_width) / 2 && (filterbox_content_width - fd_offset_left - fd_width) > (filterbox_width - fd_width) / 2) {
+      fdscrollleft = ((filterbox_width - fd_width) / 2 - fd_offset_left) * (-1)
+    }
+    else {
+      if (fd_offset_left > (filterbox_content_width - fd_offset_left - fd_width)) {
+        fdscrollleft = filterbox_content_width - filterbox_width
+      }
+    }
+    $('.customs-presets').animate({ 'scrollLeft': fdscrollleft }, 300)
+  }
+
   function applycustomspreset(g) {
     var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
     if (od === '1') {
@@ -3879,9 +3898,10 @@
       }
     }
     else {
-
+      custom_spresets_switch(g)
     }
   }
+
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
