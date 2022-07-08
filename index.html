@@ -3795,14 +3795,15 @@
       filter_showall()
     }
   }
+  var customs_presets_j
   function customspresets() {
-    var customs_presets_j = [
+    customs_presets_j = [
       {
         'icon': 'default',
         'name': 'Easily',
         'fd': 'easily',
         'customs': {
-          'length': 20,
+          'r_length': 20,
           'dontusesimilarcharsg': true,
           'cuschaprop': true,
           'capital': 0.3,
@@ -3816,7 +3817,7 @@
         'name': 'Strong',
         'fd': 'strong',
         'customs': {
-          'length': 128,
+          'r_length': 128,
           'dontusesimilarcharsg': false,
           'cuschaprop': true,
           'capital': 0.25,
@@ -3830,7 +3831,7 @@
         'name': 'Username',
         'fd': 'username',
         'customs': {
-          'length': 16,
+          'r_length': 16,
           'dontusesimilarcharsg': true,
           'cuschaprop': true,
           'capital': 0,
@@ -3897,6 +3898,31 @@
       }
     }
     else {
+      var jindex = parseInt($('.customs-presets li[fd="' + g + '"]').attr('j-index'))
+      var jcustoms = customs_presets_j[jindex].customs
+
+      $('#cuschaprop').prop('checked',jcustoms.cuschaprop)
+      $('#dontusesimilarchars').prop('checked',jcustoms.dontusesimilarcharsg)
+      $('.input input').val(jcustoms.r_length)
+      if (jcustoms.cushapropg) {
+        $('.cgbw').eq(0).css({ 'left': ((jcustoms.capital)*100) + '%'}).attr('kp', (jcustoms.capital)).attr('gh', '0')
+        $('.cgbw').eq(1).css({ 'left': ((jcustoms.capital+jcustoms.lowercase)*100) + '%'}).attr('kp', (jcustoms.capital+jcustoms.lowercase)).attr('gh', '0')
+        $('.cgbw').eq(2).css({ 'left': ((jcustoms.capital+jcustoms.lowercase+jcustoms.number)*100) + '%'}).attr('kp', (jcustoms.capital+jcustoms.lowercase+jcustoms.number)).attr('gh', '0')
+        $('.cgbw').eq(3).css({ 'left': ((jcustoms.capital+jcustoms.lowercase+jcustoms.number+jcustoms.symbol)*100) + '%'}).attr('kp', (jcustoms.capital+jcustoms.lowercase+jcustoms.number+jcustoms.symbol)).attr('gh', '0')
+      }
+      var pw = pwd(pwlen, dontusesimilarcharsg, cushapropg, pw_a, pw_b, pw_c, pw_d).str
+      var pwgid = gid()
+/*
+      'customs': {
+        'r_length': 16,
+          'dontusesimilarcharsg': true,
+            'cuschaprop': true,
+              'capital': 0,
+                'lowercase': 0.5,
+                  'number': 0.5,
+                    'symbol': 0
+      }
+*/
       $('.customs-presets li').attr('o', '0')
       $('.customs-presets li[fd="' + g + '"]').attr('o', '1')
     }
