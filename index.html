@@ -203,10 +203,10 @@
 
     .input .customs {
       position: absolute;
-      top: 46px;
+      top: calc(46px + 35px);
       left: 0;
       width: 100%;
-      height: calc(100% - 46px)
+      height: calc(100% - 46px - 35px)
     }
 
     .input .customs .customlist {
@@ -1320,7 +1320,8 @@
       align-items: center;
     }
 
-    .history-filter {
+    .history-filter,
+    .customs-presets {
       height: 35px;
       overflow-x: scroll;
       overflow-y: hidden;
@@ -1337,11 +1338,18 @@
       display: none;
     }
 
+    .customs-presets {
+      top: 46px;
+      left: 0px;
+      transform: none;
+    }
+
     .history-filter::-webkit-scrollbar {
       display: none;
     }
 
-    .history-filter li {
+    .history-filter li,
+    .customs-presets li {
       list-style: none;
       background: var(--g-f4f4f4);
       display: inline-block;
@@ -1356,11 +1364,13 @@
       -webkit-user-select: none;
     }
 
-    .history-filter li:nth-last-child(1) {
+    .history-filter li:nth-last-child(1),
+    .customs-presets li:nth-last-child(1) {
       margin-right: 0px;
     }
 
-    .history-filter li span {
+    .history-filter li span,
+    .customs-presets li span {
       display: flex;
       height: 100%;
       justify-content: center;
@@ -1374,7 +1384,8 @@
       word-break: keep-all;
     }
 
-    .history-filter-icon {
+    .history-filter-icon,
+    .customs-presets-icon {
       width: 35px;
       height: 35px;
       display: flex;
@@ -1385,7 +1396,8 @@
       position: relative;
     }
 
-    .history-filter-icon svg {
+    .history-filter-icon svg,
+    .customs-presets-icon svg {
       width: 18px;
       height: 18px;
       user-select: none;
@@ -1393,39 +1405,50 @@
     }
 
     .history-filter li div,
-    .history-filter li span {
+    .history-filter li span,
+    .customs-presets li div,
+    .customs-presets li span {
       float: left;
     }
 
     .history-filter li[o="1"] span,
-    .history-filter li[o="1"] .history-filter-icon {
+    .history-filter li[o="1"] .history-filter-icon,
+    .customs-presets li[o="1"] span,
+    .customs-presets li[o="1"] .customs-presets-icon {
       opacity: 1
     }
 
-    .history-filter li[o="1"] {
+    .history-filter li[o="1"] .customs-presets li[o="1"] {
       background: var(--g-e3e3e3);
     }
 
     .history-filter li[o="0"] span,
-    .history-filter li[o="0"] .history-filter-icon {
+    .history-filter li[o="0"] .history-filter-icon,
+    .customs-presets li[o="0"] span,
+    .customs-presets li[o="0"] .customs-presets-icon {
       opacity: 0.5
     }
 
-    .history-filter li[loading="1"] {
+    .history-filter li[loading="1"],
+    .customs-presets li[loading="1"] {
       background: var(--g-f4f4f4);
     }
 
-    .history-filter li[loading="1"] * {
+    .history-filter li[loading="1"] *,
+    .customs-presets li[loading="1"] * {
       opacity: 0;
       color: transparent;
     }
 
     .history-filter li[loading="1"] span,
-    .history-filter li[loading="1"] .history-filter-icon {
+    .history-filter li[loading="1"] .history-filter-icon,
+    .customs-presets li[loading="1"] span,
+    .customs-presets li[loading="1"] .customs-presets-icon {
       opacity: 1;
     }
 
-    .history-filter li[loading="1"] span::after {
+    .history-filter li[loading="1"] span::after,
+    .customs-presets li[loading="1"] span::after {
       content: '';
       position: absolute;
       top: 5px;
@@ -1438,7 +1461,8 @@
       -webkit-user-select: none;
     }
 
-    .history-filter li[loading="1"] .history-filter-icon::after {
+    .history-filter li[loading="1"] .history-filter-icon::after,
+    .customs-presets li[loading="1"] .customs-presets-icon::after {
       content: '';
       position: absolute;
       top: 5px;
@@ -1718,6 +1742,9 @@
       </svg>
     </div>
     <div class="border"></div>
+    <div class="customs-presets">
+
+    </div>
     <div class="customs">
       <li class="customlist"><input type="checkbox" id="dontusesimilarchars">
         <div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div>
@@ -3491,9 +3518,9 @@
   function pwdcustom() {
 
     if ($('.btn5').attr('uj') === '0') {
-      $('.input').css({ 'height': '208px' });
-      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (208 - 45) + 'px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (208 - 45) + 'px)' });
+      $('.input').css({ 'height': '243px' });
+      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (243 - 45) + 'px)' });
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (243 - 45) + 'px)' });
 
       //$('.btn5 svg').css({'transform':'rotate(180deg)'});
       $('.btn5').attr('uj', '1')
