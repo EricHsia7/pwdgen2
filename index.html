@@ -2130,14 +2130,6 @@
         </svg>
       </div>
     </li>
-
-
-
-
-
-
-
-
   </div>
   <div class="title2" style="display:none;">
     Options
@@ -2306,18 +2298,12 @@
       eeid += eechars.substring(eerandomNumber, eerandomNumber + 1);
     }
     var ivqu = parseInt(eeid);
-
     var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-
     var textBytesu = aesjs.utils.utf8.toBytes(textu);
-
     var aesCtru = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(ivqu));
     var encryptedBytesu = aesCtru.encrypt(textBytesu);
-
     var encryptedHexu = aesjs.utils.hex.fromBytes(encryptedBytesu);
-    //console.log(encryptedHexu);
     return [encryptedHexu, ivqu]
-
   }
 
   function decu(juy, oik) {
@@ -2325,17 +2311,10 @@
     var gbu = juy;
     var kiu = oik;
     var encryptedBytese = aesjs.utils.hex.toBytes(gbu);
-
-    // The counter mode of operation maintains internal state, so to
-    // decrypt a new instance must be instantiated.
     var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(kiu)));
     var decryptedBytese = aesCtre.decrypt(encryptedBytese);
-
-    // Convert our bytes back into text
     var decryptedTexte = aesjs.utils.utf8.fromBytes(decryptedBytese);
-    //console.log(decryptedTexte);
     return decryptedTexte;
-
   }
   function enur(u) {
     return encodeURIComponent(u)
@@ -2359,7 +2338,6 @@
       lastIndex = length - 1;
     size = size === undefined ? length : size;
     while (++index < size) {
-      // var rand = baseRandom(index, lastIndex),
       var rand = index + Math.floor(Math.random() * (lastIndex - index + 1))
       value = array[rand];
       array[rand] = array[index];
@@ -2680,7 +2658,6 @@
   function setstorageusage() {
     var gi = []
     var stsize = testsessionStorage()
-    //var ta = []
     var typelist = ['pwdgen2_saved_a_', 'pwch_cache_', 'pw_theme_', 'pw_options_', 'pwdgen2_saved_notes_cf_']
     var typelistname = ['password', 'cache', 'theme', 'options', 'password']
     var tll = {
@@ -2954,7 +2931,6 @@
     }
   }
   function initialize_picker() {
-    //var month_name = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     var yyyy = date_picker_all.year.length - 1
     var mmmm = date_picker_all.month[yyyy].length - 1
     var dddd = date_picker_all.date[yyyy][mmmm].length - 1
@@ -3128,7 +3104,6 @@
     markasrecentaccess(0, gid)
     if (String($('.saveoo[h="' + gid + '"]').attr('g')) === '0') {
       $('.saveoo[h="' + gid + '"]').attr('g', '1')
-      //$('input[u="' + gid + '"]').attr('type','text')
       if (shwmes) {
         mes('saved')
       }
@@ -3301,7 +3276,6 @@
 
     }
 
-    //seapr = $('.history .box').length+Object.keys(searchindexjson).length
     var keywd = $('.input3 input').val()
     if (keywd === ' ' || keywd === '') {
       keywd = gid() + '#' + gid()
@@ -4292,22 +4266,15 @@
   function handleFileSelect(evt) {
     var f = evt.target.files[0]; // FileList object
     var reader = new FileReader();
-    // Closure to capture the file information.
     reader.onload = (function (theFile) {
       return function (e) {
         var binaryData = e.target.result;
-        //Converting Binary Data to base 64
-        //var base64String = window.btoa(binaryData);
-        //showing file converted to base64
-
-
         sessionStorage.setItem('pwdgen2_import', binaryData)
         mes('Loading JSON')
         imbkpp()
         mes('Loaded JSON')
       };
     })(f);
-    // Read in the image file as a data URL.
     reader.readAsBinaryString(f);
   }
 
