@@ -3925,7 +3925,9 @@
     ]
     //customs-presets custom 
     var customspresets_arr = searchItemsbyname('pwdgen2_customs_presets_custom_d_')
-    //customs_presets_j.push()
+    for (var i = 0; i < customspresets_arr.length; i++) {
+      customs_presets_j.push(JSON.parse(customspresets_arr[i]))
+    }
 
     //customs-presets custom end
 
