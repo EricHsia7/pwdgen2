@@ -1606,7 +1606,8 @@
 
     .filter-date-picker-cancel,
     .filter-date-picker-apply,
-    .customs-presets-add-close {
+    .customs-presets-add-close,
+    .customs-presets-add-add {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -1623,9 +1624,6 @@
       -webkit-user-select: none;
     }
 
-    .customs-presets-add-close {
-      width: calc(100% - 20px)
-    }
 
     .filter-date-picker-apply {
       left: calc(50% + 5px)
@@ -2017,9 +2015,13 @@
     <div class="customs-presets-add-title">
       Add Customs Presets
     </div>
+    <div class="customs-presets-add-add" ripple-onclick="addcustomspresetsadd()">
+      Add
+    </div>
     <div class="customs-presets-add-close" ripple-onclick="closecustomspresetsadd()">
       Close
     </div>
+
   </div>
 
   <div class="page2">
@@ -2337,7 +2339,7 @@
   ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
-  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-close,.customs-presets-add-add', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
