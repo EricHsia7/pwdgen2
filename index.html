@@ -4024,7 +4024,7 @@
     }, 500)
   }
   function addcustomspresetsadd() {
-    var p_name = $('#name_customs_presets').val()
+    var p_name = ($('#name_customs_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
     var p_length = parseInt($('#length_customs_presets').val())
     var dontusesimilarchars = $('#dontusesimilarchars_customs_presets').prop('checked')
     var cuschaprop = $('#cuschaprop_customs_presets').prop('checked')
@@ -4033,7 +4033,23 @@
     var p_lowercase = parseFloat($('#lowercase_customs_presets'))
     var p_number = parseFloat($('#number_customs_presets'))
     var p_symbol = parseFloat($('#symbol_customs_presets'))
+    var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(p_name)
+    var p_json = {
+      'icon': p_icon,
+      'name': p_name,
+      'fd': String(p_name).toLowerCase(),
+      'customs': {
+        'r_length': p_length,
+        'dontusesimilarcharsg': dontusesimilarchars,
+        'cuschaprop': cuschaprop,
+        'capital': p_capital,
+        'lowercase': p_lowercase,
+        'number': p_number,
+        'symbol': p_symbol
+      }
+    }
 
+    localStorage.setItem(p_hx, JSON.stringify(p_json))
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
