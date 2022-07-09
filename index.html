@@ -1625,8 +1625,23 @@
     }
 
 
-    .filter-date-picker-apply,.customs-presets-add-close {
+    .filter-date-picker-apply,
+    .customs-presets-add-close {
       left: calc(50% + 5px)
+    }
+
+    .customs-presets-add-box {
+      height: calc(100% - 45px - 10px - 5px - 45px - 10px);
+      width: calc(100% - 20px);
+      position: absolute;
+      top: 45px;
+      left: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      user-select: none;
+      -webkit-user-select: none;
+
     }
 
     @media (min-width: 600px) {
