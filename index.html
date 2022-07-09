@@ -1643,7 +1643,7 @@
       top: 45px;
       left: 10px;
       border-radius: 5px;
-      overflow: hidden;
+      overflow: scroll;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       user-select: none;
       -webkit-user-select: none;
@@ -1662,7 +1662,9 @@
       width: 100%;
       height: 35px;
     }
-
+.customs-presets-add-b10 {
+  margin-bottom:10px;
+}
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -2050,11 +2052,11 @@
       Add Customs Presets
     </div>
     <div class="customs-presets-add-box">
-      <input type="text" placeholder="name">
+      <input type="text" placeholder="name" class="customs-presets-add-b10">
       <div class="customs-presets-add-icon-picker">
 
       </div>
-      <input type="text" placeholder="length">
+      <input type="text" placeholder="length" class="customs-presets-add-b10">
       <li class="customs-presets-add-list">
         <input type="checkbox" id="dontusesimilarchars_customs_presets">
         <div class="customs-presets-add-list-txt">Don't use similar characters (|1iIjJlL0Oo)</div>
