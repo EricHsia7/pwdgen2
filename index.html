@@ -1612,7 +1612,7 @@
 
     .filter-date-picker-cancel,
     .filter-date-picker-apply,
-    .customs-presets-add-close,
+    .customs-presets-add-cancel,
     .customs-presets-add-add {
       position: absolute;
       bottom: 10px;
@@ -1662,9 +1662,11 @@
       width: 100%;
       height: 35px;
     }
-.customs-presets-add-b10 {
-  margin-bottom:10px;
-}
+
+    .customs-presets-add-b10 {
+      margin-bottom: 10px;
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -2066,17 +2068,17 @@
         <div class="customs-presets-add-list-txt">Custom chars proportion(The default is 4 equal parts)</div>
       </li>
       <div class="customs-presets-add-p-box">
-        <input type="text" placeholder="Capital">
-        <input type="text" placeholder="Lowercase">
-        <input type="text" placeholder="Number">
+        <input type="text" placeholder="Capital" class="customs-presets-add-b10">
+        <input type="text" placeholder="Lowercase" class="customs-presets-add-b10">
+        <input type="text" placeholder="Number" class="customs-presets-add-b10">
         <input type="text" placeholder="Symbol">
       </div>
     </div>
     <div class="customs-presets-add-add" ripple-onclick="addcustomspresetsadd()">
       Add
     </div>
-    <div class="customs-presets-add-close" ripple-onclick="closecustomspresetsadd()">
-      Close
+    <div class="customs-presets-add-cancel" ripple-onclick="closecustomspresetsadd()">
+      Cancel
     </div>
 
   </div>
@@ -2396,7 +2398,7 @@
   ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
-  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-close,.customs-presets-add-add', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-cancel,.customs-presets-add-add', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
