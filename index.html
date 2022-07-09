@@ -736,7 +736,8 @@
     }
 
     .confirm_mask,
-    .filter-date-picker-mask {
+    .filter-date-picker-mask,
+    .customs-presets-add-mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -1486,7 +1487,8 @@
 
     }
 
-    .filter-date-picker {
+    .filter-date-picker,
+    .customs-presets-add {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -1501,7 +1503,8 @@
       -webkit-user-select: none;
     }
 
-    .filter-date-picker-title {
+    .filter-date-picker-title,
+    .customs-presets-add-title {
       height: 45px;
       width: calc(100% - 20px);
       position: absolute;
@@ -2004,6 +2007,12 @@
     </div>
   </div>
 
+  <div class="customs-presets-add-mask"></div>
+  <div class="customs-presets-add">
+    <div class="customs-presets-add-title">
+      Add Customs Presets
+    </div>
+  </div>
 
   <div class="page2">
 
@@ -3908,6 +3917,11 @@
     if (od === '1') {
       if (g === 'addcustompreset') {
 
+        $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
+        setTimeout(function () {
+          $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+          $('.customs-presets-add-mask').css({ 'opacity': '1' })
+        }, 1)
       }
       if (g === 'managercustompreset') {
 
@@ -3928,7 +3942,13 @@
       $('.customs-presets li[fd="' + g + '"]').attr('o', '1')
     }
   }
-
+  function closecustomspresetsadd() {
+    $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.customs-presets-add-mask').css({ 'opacity': '0' })
+    setTimeout(function () {
+      $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'none' })
+    }, 500)
+  }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
