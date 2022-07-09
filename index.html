@@ -4029,10 +4029,10 @@
     var dontusesimilarchars = $('#dontusesimilarchars_customs_presets').prop('checked')
     var cuschaprop = $('#cuschaprop_customs_presets').prop('checked')
     var p_icon = $('.customs-presets-add-icon-picker').attr('v')
-    var p_capital = parseFloat($('#capital_customs_presets'))
-    var p_lowercase = parseFloat($('#lowercase_customs_presets'))
-    var p_number = parseFloat($('#number_customs_presets'))
-    var p_symbol = parseFloat($('#symbol_customs_presets'))
+    var p_capital = parseFloat($('#capital_customs_presets').val())
+    var p_lowercase = parseFloat($('#lowercase_customs_presets').val())
+    var p_number = parseFloat($('#number_customs_presets').val())
+    var p_symbol = parseFloat($('#symbol_customs_presets').val())
     var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(p_name)
     var p_json = {
       'icon': p_icon,
