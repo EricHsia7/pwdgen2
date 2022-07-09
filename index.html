@@ -124,7 +124,7 @@
       display: none
     }
 
-    .input input,
+    .input input[type="text"],
     .input2 input,
     .input3 input {
       border: none;
@@ -3453,6 +3453,7 @@
   }
   function cgbwfn(l, e) {
     e.preventDefault()
+    $('.customs-presets li').attr('o', '0')
     if (cgbwtd) {
 
 
@@ -3535,21 +3536,18 @@
       $('.input').css({ 'height': '253px' });
       $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (253 - 45) + 'px)' });
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (253 - 45) + 'px)' });
-
-      //$('.btn5 svg').css({'transform':'rotate(180deg)'});
       $('.btn5').attr('uj', '1')
     }
     else {
       $('.input').css({ 'height': '45px' });
       $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' });
-      //$('.btn5 svg').css({'transform':'rotate(0deg)'});
       $('.btn5').attr('uj', '0')
     }
 
   }
   function gen() {
-    var pwlen = parseInt($('.input input').val())
+    var pwlen = parseInt($('.input input[type="text"]').val())
     if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
 
       $('body').prompt({ 'message': 'Please enter a value between 8 and 32768', 'time': 3000 });
@@ -3858,6 +3856,23 @@
       var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustomspreset(' + "'" + th.fd + "'" + ')"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
       $('.customs-presets').append(this_html)
       ripple('.customs-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+
+      document.querySelector('.input input[type="text"]').addEventListener("paste", function (e) {
+        $('.customs-presets li').attr('o', '0')
+      });
+      document.querySelector('.input input[type="text"]').addEventListener("cut", function (e) {
+        $('.customs-presets li').attr('o', '0')
+      });
+      document.querySelector('.input input[type="text"]').addEventListener("selectionchange", function (e) {
+        $('.customs-presets li').attr('o', '0')
+      });
+      document.querySelector('.input input[type="text"]').addEventListener("keyup", function (e) {
+        $('.customs-presets li').attr('o', '0')
+      });
+      document.querySelector('.input .customs input[type="checkbox"]').addEventListener("click", function (e) {
+        $('.customs-presets li').attr('o', '0')
+      });
+
     }
 
 
@@ -3903,7 +3918,7 @@
 
       $('#cuschaprop').prop('checked', jcustoms.cuschaprop)
       $('#dontusesimilarchars').prop('checked', jcustoms.dontusesimilarcharsg)
-      $('.input input').val(jcustoms.r_length)
+      $('.input input[type="text"]').val(jcustoms.r_length)
       $('.cgbw').eq(0).css({ 'left': ((jcustoms.capital) * 100) + '%' }).attr('kp', (jcustoms.capital)).attr('gh', '0')
       $('.cgbw').eq(1).css({ 'left': ((jcustoms.capital + jcustoms.lowercase) * 100) + '%' }).attr('kp', (jcustoms.capital + jcustoms.lowercase)).attr('gh', '0')
       $('.cgbw').eq(2).css({ 'left': 'calc(' + ((jcustoms.capital + jcustoms.lowercase + jcustoms.number) * 100) + '% - 3px)' }).attr('kp', (jcustoms.capital + jcustoms.lowercase + jcustoms.number)).attr('gh', '0')
