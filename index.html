@@ -209,7 +209,8 @@
       height: calc(100% - 46px - 35px - 10px)
     }
 
-    .input .customs .customlist {
+    .input .customs .customlist,
+    .customs-presets-add-list {
       margin: 0;
       padding: 0;
       list-style: none;
@@ -243,7 +244,8 @@
       padding: 0 3px
     }
 
-    .input .customs input[type="checkbox"] {
+    .input .customs input[type="checkbox"],
+    .customs-presets-add input[type="checkbox"] {
       position: absolute;
       width: 0;
       height: 0;
@@ -255,7 +257,8 @@
       background: rgba(0, 0, 0, 0)
     }
 
-    .input .customs input[type="checkbox"]::before {
+    .input .customs input[type="checkbox"]::before,
+    .customs-presets-add input[type="checkbox"]::before {
       content: '';
       position: absolute;
       top: 0;
@@ -266,7 +269,8 @@
       background: var(--g-e3e3e3)
     }
 
-    .input .customs input[type="checkbox"]::after {
+    .input .customs input[type="checkbox"]::after,
+    .customs-presets-add input[type="checkbox"]::after {
       content: '';
       position: absolute;
       top: 2.5px;
@@ -278,11 +282,13 @@
       opacity: 0
     }
 
-    .input .customs input[type="checkbox"]:checked::after {
+    .input .customs input[type="checkbox"]:checked::after,
+    .customs-presets-add input[type="checkbox"]:checked::after {
       opacity: 1
     }
 
-    .input .customlist .customlisttxt {
+    .input .customlist .customlisttxt,
+    .customs-presets-add-list .customs-presets-add-list-txt {
       position: absolute;
       top: 5px;
       left: 35px;
