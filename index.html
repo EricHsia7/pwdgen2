@@ -2062,9 +2062,7 @@
     </div>
     <div class="customs-presets-add-box">
       <input type="text" placeholder="name" class="customs-presets-add-b10" id="name_customs_presets">
-      <div class="customs-presets-add-icon-picker">
-
-      </div>
+      <div class="customs-presets-add-icon-picker" v="default"></div>
       <input type="text" placeholder="length" class="customs-presets-add-b10" id="length_customs_presets">
       <li class="customs-presets-add-list">
         <input type="checkbox" id="dontusesimilarchars_customs_presets">
@@ -4026,6 +4024,15 @@
     }, 500)
   }
   function addcustomspresetsadd() {
+    var p_name = $('#name_customs_presets').val()
+    var p_length = parseInt($('#length_customs_presets').val())
+    var dontusesimilarchars = $('#dontusesimilarchars_customs_presets').prop('checked')
+    var cuschaprop = $('#cuschaprop_customs_presets').prop('checked')
+    var p_icon = $('.customs-presets-add-icon-picker').attr('v')
+    var p_capital = parseFloat($('#capital_customs_presets'))
+    var p_lowercase = parseFloat($('#lowercase_customs_presets'))
+    var p_number = parseFloat($('#number_customs_presets'))
+    var p_symbol = parseFloat($('#symbol_customs_presets'))
 
   }
   function showsavedhistory() {
