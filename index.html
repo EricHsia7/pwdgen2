@@ -1671,7 +1671,7 @@
       position: relative;
       width: 100%;
       height: 45px;
-      baclground: var(--g-e3e3e3)
+      background: var(--g-e3e3e3)
     }
 
     @media (min-width: 600px) {
@@ -2061,11 +2061,11 @@
       Add Customs Presets
     </div>
     <div class="customs-presets-add-box">
-      <input type="text" placeholder="name" class="customs-presets-add-b10">
+      <input type="text" placeholder="name" class="customs-presets-add-b10" id="name_customs_presets">
       <div class="customs-presets-add-icon-picker">
 
       </div>
-      <input type="text" placeholder="length" class="customs-presets-add-b10">
+      <input type="text" placeholder="length" class="customs-presets-add-b10" id="length_customs_presets">
       <li class="customs-presets-add-list">
         <input type="checkbox" id="dontusesimilarchars_customs_presets">
         <div class="customs-presets-add-list-txt">Don't use similar characters (|1iIjJlL0Oo)</div>
@@ -2075,10 +2075,10 @@
         <div class="customs-presets-add-list-txt">Custom chars proportion(The default is 4 equal parts)</div>
       </li>
       <div class="customs-presets-add-p-box">
-        <input type="text" placeholder="Capital" class="customs-presets-add-b10">
-        <input type="text" placeholder="Lowercase" class="customs-presets-add-b10">
-        <input type="text" placeholder="Number" class="customs-presets-add-b10">
-        <input type="text" placeholder="Symbol">
+        <input type="text" placeholder="Capital" class="customs-presets-add-b10" id="capital_customs_presets">
+        <input type="text" placeholder="Lowercase" class="customs-presets-add-b10" id="lowercase_customs_presets">
+        <input type="text" placeholder="Number" class="customs-presets-add-b10" id="number_customs_presets">
+        <input type="text" placeholder="Symbol" id="symbol_customs_presets">
       </div>
     </div>
     <div class="customs-presets-add-add" ripple-onclick="addcustomspresetsadd()">
@@ -4024,6 +4024,9 @@
     setTimeout(function () {
       $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'none' })
     }, 500)
+  }
+  function addcustomspresetsadd() {
+
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
