@@ -3646,6 +3646,7 @@
       });
       customs_presets_evt = 1
       //load icon
+      var q_min = 10
       var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
       var f_iconlist = []
       if (!(localStorage.hasOwnProperty('material_design_icons_list_update'))) {
@@ -3653,7 +3654,6 @@
       }
       if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 604800000) {
         f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
-        var q_min = $('.customs-presets-add-icon-picker').width() / 45 + 3
         for (var q = 0; q < f_iconlist.length; q++) {
           var idddd = gid()
           $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + f_iconlist[q] + '/materialsymbolsoutlined/' + f_iconlist[q] + '_48px.svg" load="0" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"></div>')
@@ -3678,7 +3678,6 @@
                       if (e2.tree[r].path === 'web') {
                         $.ajax({
                           type: 'get', url: e2.tree[r].url + '?' + new Date().getTime(), dataType: 'json', success: function (e3) {
-                            var q_min = $('.customs-presets-add-icon-picker').width() / 45 + 3
                             for (var s = 0; s < e3.tree.length; s++) {
                               f_iconlist.push(e3.tree[s].path)
                               var idddd = gid()
