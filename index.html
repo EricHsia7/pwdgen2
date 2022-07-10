@@ -3633,7 +3633,10 @@
       if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 604800000) {
         f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
         for (var q = 0; q < f_iconlist.length; q++) {
-          $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + f_iconlist[q] + '/materialsymbolsoutlined/' + f_iconlist[q] + '_48px.svg" load="0"></div>')
+          var idddd = gid()
+          $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[s] + '" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + f_iconlist[s] + '/materialsymbolsoutlined/' + f_iconlist[s] + '_48px.svg" load="0" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"></div>')
+          ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+
         }
       }
 
@@ -3651,7 +3654,10 @@
                           type: 'get', url: e2.tree[r].url + '?' + new Date().getTime(), dataType: 'json', success: function (e3) {
                             for (var s = 0; s < e3.tree.length; s++) {
                               f_iconlist.push(e3.tree[s].path)
-                              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + e3.tree[s].path + '/materialsymbolsoutlined/' + e3.tree[s].path + '_48px.svg" load="0"></div>')
+                              var idddd = gid()
+                              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + e3.tree[s].path + '/materialsymbolsoutlined/' + e3.tree[s].path + '_48px.svg" load="0" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"></div>')
+                              ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+
                             }
                             localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
                             localStorage.setItem('material_design_icons_list_update', new Date().getTime())
@@ -4037,7 +4043,9 @@
     }
     $('.customs-presets').animate({ 'scrollLeft': fdscrollleft }, 300)
   }
-
+  function customspresetsiconpickerchange(icon_d) {
+    $('.customs-presets-add-icon-picker').attr('v', $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
+  }
   function applycustomspreset(g) {
     var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
     customs_presets_switch(g)
