@@ -1692,17 +1692,20 @@
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       overflow: hidden;
       box-sizing: border-box;
+      border: 1px solid rgba(0, 0, 0, 0);
     }
+
     .customs_presets_add_icon_picker_icon[se="1"] {
-border: 1px solid var(--g-4e4e4e);
+      border: 1px solid var(--g-4e4e4e);
     }
+
     .customs_presets_add_icon_picker_icon[load="0"] {
       background: var(--g-e3e3e3);
     }
 
     .customs_presets_add_icon_picker_icon_svg {
-      height: 40px;
-      width: 40px;
+      height: 38px;
+      width: 38px;
       border-radius: 8px;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       overflow: hidden;
@@ -4057,8 +4060,8 @@ border: 1px solid var(--g-4e4e4e);
   }
   function customspresetsiconpickerchange(icon_d) {
     $('.customs-presets-add-icon-picker').attr('v', $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
-    $('.customs_presets_add_icon_picker_icon').attr('se','0')
-    $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se','1')
+    $('.customs_presets_add_icon_picker_icon').attr('se', '0')
+    $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se', '1')
   }
   function applycustomspreset(g) {
     var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
@@ -4109,6 +4112,10 @@ border: 1px solid var(--g-4e4e4e);
     var p_number = parseFloat($('#number_customs_presets').val())
     var p_symbol = parseFloat($('#symbol_customs_presets').val())
     var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(p_name)
+    if(p_name === '') {
+      mes('Name is required.')
+      return '' ;
+    }
     var p_json = {
       'icon': p_icon,
       'name': p_name,
