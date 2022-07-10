@@ -1675,15 +1675,30 @@
       overflow-x: scroll;
       overflow-y: hidden;
       white-space: nowrap;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      border-radius: 8px;
+    }
+
+    .customs-presets-add-icon-picker::-webkit-scrollbar {
+      display: none;
     }
 
     .customs_presets_add_icon_picker_icon {
       height: 40px;
       width: 40px;
       margin: 2.5px;
-      background: var(--g-e3e3e3);
       border-radius: 8px;
       display: inline-block;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      overflow: hidden;
+    }
+
+    .customs_presets_add_icon_picker_icon[load="0"] {
+      background: var(--g-e3e3e3);
+    }
+
+    .customs_presets_add_icon_picker_icon[load="1"] {
+      background: var(--g-4e4e4e);
     }
 
     @media (min-width: 600px) {
@@ -3655,6 +3670,17 @@
     }
 
     //load icon end
+
+    $('.customs-presets-add-icon-picker').scroll(function () {
+      for (var d = 0; d < $('.customs_presets_add_icon_picker_icon').length; d++) {
+        var thisdd = $('.customs_presets_add_icon_picker_icon').eq(d)
+        if ((thisdd.offset().left - $('.customs-presets-add-icon-picker').scrollLeft()) <= ($('.customs-presets-add-icon-picker').width() + 50) && thisdd.attr('load') === '0') {
+          thisdd.attr('load', '1')
+          thisdd.css({ 'mask': 'url(' + thisdd.attr('u') + ') no-repeat center / contain', '-webkit-mask': 'url(' + thisdd.attr('u') + ') no-repeat center / contain' })
+        }
+      }
+    })
+
 
     customspresets()
     if ($('.btn5').attr('uj') === '0') {
