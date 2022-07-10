@@ -1716,6 +1716,12 @@
       background: var(--g-4e4e4e);
     }
 
+    .customs_presets_li_svg {
+      width: 18px;
+      height: 18px;
+      background: var(--g-4e4e4e);
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -4027,6 +4033,10 @@
       if (th.icon === 'default') {
         //this_icon = customs_presets_default
       }
+      else {
+        var th_svg = 'https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + th.icon + '/materialsymbolsoutlined/' + th.icon + '_48px.svg'
+        var this_icon = '<div class="customs_presets_li_svg" style="mask:url(' + th_svg + ') no-repeat center / contain;-webkit-mask:url(' + th_svg + ') no-repeat center / contain;"></div>'
+      }
 
       var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustomspreset(' + "'" + th.fd + "'" + ')"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
       $('.customs-presets').append(this_html)
@@ -4112,9 +4122,9 @@
     var p_number = parseFloat($('#number_customs_presets').val())
     var p_symbol = parseFloat($('#symbol_customs_presets').val())
     var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(p_name)
-    if(p_name === '') {
+    if (p_name === '') {
       mes('Name is required.')
-      return '' ;
+      return '';
     }
     var p_json = {
       'icon': p_icon,
