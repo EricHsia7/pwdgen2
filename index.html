@@ -1671,8 +1671,19 @@
       position: relative;
       width: 100%;
       height: 45px;
-      background: var(--g-e3e3e3);
       margin-bottom: 10px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+    }
+
+    .customs_presets_add_icon_picker_icon {
+      height: 40px;
+      width: 40px;
+      margin: 2.5px;
+      background: var(--g-e3e3e3);
+      border-radius: 8px;
+      display: inline-block;
     }
 
     @media (min-width: 600px) {
@@ -3607,10 +3618,10 @@
       if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 604800000) {
         f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
         for (var q = 0; q < f_iconlist.length; q++) {
-          $('.customs-presets-add-icon-picker').append('<div u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + f_iconlist[q] + '/materialsymbolsoutlined/' + f_iconlist[q] + '_48px.svg" load="0"></div>')
+          $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + f_iconlist[q] + '/materialsymbolsoutlined/' + f_iconlist[q] + '_48px.svg" load="0"></div>')
         }
       }
-       
+
 
       else {
         $.ajax({
@@ -3625,7 +3636,7 @@
                           type: 'get', url: e2.tree[r].url + '?' + new Date().getTime(), dataType: 'json', success: function (e3) {
                             for (var s = 0; s < e3.tree.length; s++) {
                               f_iconlist.push(e3.tree[s].path)
-                              $('.customs-presets-add-icon-picker').append('<div u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + e3.tree[s].path + '/materialsymbolsoutlined/' + e3.tree[s].path + '_48px.svg" load="0"></div>')
+                              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + e3.tree[s].path + '/materialsymbolsoutlined/' + e3.tree[s].path + '_48px.svg" load="0"></div>')
                             }
                             localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
                             localStorage.setItem('material_design_icons_list_update', new Date().getTime())
