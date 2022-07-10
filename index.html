@@ -1691,8 +1691,11 @@
       display: inline-block;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       overflow: hidden;
+      box-sizing: border-box;
     }
-
+    .customs_presets_add_icon_picker_icon[se="1"] {
+border: 1px solid var(--g-4e4e4e);
+    }
     .customs_presets_add_icon_picker_icon[load="0"] {
       background: var(--g-e3e3e3);
     }
@@ -4054,6 +4057,8 @@
   }
   function customspresetsiconpickerchange(icon_d) {
     $('.customs-presets-add-icon-picker').attr('v', $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
+    $('.customs_presets_add_icon_picker_icon').attr('se','0')
+    $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se','1')
   }
   function applycustomspreset(g) {
     var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
