@@ -2091,7 +2091,7 @@
   <div class="customs-presets-add-mask"></div>
   <div class="customs-presets-add">
     <div class="customs-presets-add-title">
-      Add Customs Presets
+      Add Customs Preset
     </div>
     <div class="customs-presets-add-box">
       <input type="text" placeholder="name" class="customs-presets-add-b10" id="name_customs_presets">
@@ -4113,6 +4113,7 @@
     localStorage.setItem(p_hx, JSON.stringify(p_json))
     closecustomspresetsadd()
     customspresets()
+    mes('Preset added')
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
