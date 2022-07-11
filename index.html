@@ -1696,8 +1696,8 @@
     }
 
     .customs_presets_add_icon_picker_icon svg {
-      width: 38px;
-      height: 38px;
+      width: 25px;
+      height: 25px;
     }
 
     .customs_presets_add_icon_picker_icon[se="1"] {
@@ -3653,6 +3653,7 @@
       //load icon
       var odddd = gid()
       $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + odddd + "'" + ')">' + customs_presets_default + '</div>')
+      ripple('.customs_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
 
       var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
       var f_iconlist = []
