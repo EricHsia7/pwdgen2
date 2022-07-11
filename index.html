@@ -1410,8 +1410,8 @@
       user-select: none;
       -webkit-user-select: none;
       position: relative;
-      color:var(--g-4e4e4e);
-      font-size:23px;
+      color: var(--g-4e4e4e);
+      font-size: 23px;
     }
 
     .history-filter-icon svg,
@@ -3655,59 +3655,7 @@
         $('.customs-presets li').attr('o', '0')
       });
       customs_presets_evt = 1
-
-      //load icon
-      $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
-      var odddd = gid()
-      $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="customs_presets_add_icon_picker_icon_svgbox">' + customs_presets_default + '</div></div>')
-      ripple('.customs_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
-
-      var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
-      var f_iconlist = []
-      if (!(localStorage.hasOwnProperty('material_design_icons_list_update'))) {
-        localStorage.setItem('material_design_icons_list_update', '0')
-      }
-      if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 2592000000) {
-        f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
-        for (var q = 0; q < f_iconlist.length; q++) {
-          var idddd = gid()
-          $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + f_iconlist[q] + '</span></div></div>')
-          ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
-        }
-      }
-      else {
-        $.ajax({
-          type: 'get', url: icons_url + '?' + new Date().getTime(), dataType: 'json', success: function (e) {
-            for (var i = 0; i < e.tree.length; i++) {
-              if (e.tree[i].path === 'symbols') {
-                $.ajax({
-                  type: 'get', url: e.tree[i].url + '?' + new Date().getTime(), dataType: 'json', success: function (e2) {
-                    for (var r = 0; r < e2.tree.length; r++) {
-                      if (e2.tree[r].path === 'web') {
-                        $.ajax({
-                          type: 'get', url: e2.tree[r].url + '?' + new Date().getTime(), dataType: 'json', success: function (e3) {
-                            for (var s = 0; s < e3.tree.length; s++) {
-                              f_iconlist.push(e3.tree[s].path)
-                              var idddd = gid()
-                              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + e3.tree[s].path + '</span></div></div>')
-                              ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
-                            }
-                            localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
-                            localStorage.setItem('material_design_icons_list_update', new Date().getTime())
-                          }
-                        });
-                      }
-                    }
-                  }
-                });
-              }
-            }
-          }
-        });
-      }
     }
-
-    //load icon end
 
     customspresets()
     if ($('.btn5').attr('uj') === '0') {
@@ -4044,12 +3992,63 @@
     $('.customs_presets_add_icon_picker_icon').attr('se', '0')
     $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se', '1')
   }
+  var customs_presets_icon_load = 0
   function applycustomspreset(g) {
     var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
     customs_presets_switch(g)
     if (od === '1') {
       if (g === 'addcustompreset') {
+        if (customs_presets_icon_load === '0') {
+          customs_presets_icon_load = 1
+          $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
+          var odddd = gid()
+          $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="customs_presets_add_icon_picker_icon_svgbox">' + customs_presets_default + '</div></div>')
+          ripple('.customs_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
 
+          var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
+          var f_iconlist = []
+          if (!(localStorage.hasOwnProperty('material_design_icons_list_update'))) {
+            localStorage.setItem('material_design_icons_list_update', '0')
+          }
+          if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 2592000000) {
+            f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
+            for (var q = 0; q < f_iconlist.length; q++) {
+              var idddd = gid()
+              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + f_iconlist[q] + '</span></div></div>')
+              ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+            }
+          }
+          else {
+            $.ajax({
+              type: 'get', url: icons_url + '?' + new Date().getTime(), dataType: 'json', success: function (e) {
+                for (var i = 0; i < e.tree.length; i++) {
+                  if (e.tree[i].path === 'symbols') {
+                    $.ajax({
+                      type: 'get', url: e.tree[i].url + '?' + new Date().getTime(), dataType: 'json', success: function (e2) {
+                        for (var r = 0; r < e2.tree.length; r++) {
+                          if (e2.tree[r].path === 'web') {
+                            $.ajax({
+                              type: 'get', url: e2.tree[r].url + '?' + new Date().getTime(), dataType: 'json', success: function (e3) {
+                                for (var s = 0; s < e3.tree.length; s++) {
+                                  f_iconlist.push(e3.tree[s].path)
+                                  var idddd = gid()
+                                  $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + e3.tree[s].path + '</span></div></div>')
+                                  ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+                                }
+                                localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
+                                localStorage.setItem('material_design_icons_list_update', new Date().getTime())
+                              }
+                            });
+                          }
+                        }
+                      }
+                    });
+                  }
+                }
+              }
+            });
+          }
+        }
         $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
         setTimeout(function () {
           $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
