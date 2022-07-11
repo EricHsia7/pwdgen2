@@ -2122,7 +2122,7 @@
     </div>
     <div class="customs-presets-add-box">
       <input type="text" placeholder="name" class="customs-presets-add-b10" id="name_customs_presets">
-      <div class="customs-presets-add-icon-picker" v="default"></div>
+      <div class="customs-presets-add-icon-picker" v="default" translate="no"></div>
       <input type="text" placeholder="length" class="customs-presets-add-b10" id="length_customs_presets">
       <li class="customs-presets-add-list">
         <input type="checkbox" id="dontusesimilarchars_customs_presets">
@@ -4050,7 +4050,7 @@
               f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
               for (var q = 0; q < f_iconlist.length; q++) {
                 var idddd = gid()
-                $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + f_iconlist[q] + '</span></div></div>')
+                $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + f_iconlist[q] + '</span></div></div>')
                 ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
               }
               $('.customs_presets_add_icon_picker_icon[load="0"]').remove()
@@ -4070,7 +4070,7 @@
                                 for (var s = 0; s < e3.tree.length; s++) {
                                   f_iconlist.push(e3.tree[s].path)
                                   var idddd = gid()
-                                  $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + e3.tree[s].path + '</span></div></div>')
+                                  $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + e3.tree[s].path + '</span></div></div>')
                                   ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
                                 }
                                 localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
