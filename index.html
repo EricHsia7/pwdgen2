@@ -1695,6 +1695,11 @@
       border: 1px solid rgba(0, 0, 0, 0);
     }
 
+    .customs_presets_add_icon_picker_icon svg {
+      width: 38px;
+      height: 38px;
+    }
+
     .customs_presets_add_icon_picker_icon[se="1"] {
       border: 1px solid var(--g-4e4e4e);
     }
@@ -3646,19 +3651,21 @@
       });
       customs_presets_evt = 1
       //load icon
-      var q_min = 10
+      var odddd = gid()
+      $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + odddd + "'" + ')">' + customs_presets_default + '</div>')
+
       var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
       var f_iconlist = []
       if (!(localStorage.hasOwnProperty('material_design_icons_list_update'))) {
         localStorage.setItem('material_design_icons_list_update', '0')
       }
-      if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 604800000) {
+      if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 2592000000) {
         f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
         for (var q = 0; q < f_iconlist.length; q++) {
           var idddd = gid()
           $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + f_iconlist[q] + '/materialsymbolsoutlined/' + f_iconlist[q] + '_48px.svg" load="0" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"></div>')
           ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
-          if (q < q_min) {
+          if (q < 10) {
             var thisdd = $('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]')
             thisdd.attr('load', '1')
             thisdd.html('<div class="customs_presets_add_icon_picker_icon_svg" style="mask:url(' + thisdd.attr('u') + ') no-repeat center / contain;-webkit-mask:url(' + thisdd.attr('u') + ') no-repeat center / contain;"></div>')
@@ -3683,7 +3690,7 @@
                               var idddd = gid()
                               $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" u="https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/' + e3.tree[s].path + '/materialsymbolsoutlined/' + e3.tree[s].path + '_48px.svg" load="0" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"></div>')
                               ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
-                              if (q < q_min) {
+                              if (q < 10) {
                                 var thisdd = $('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]')
                                 thisdd.attr('load', '1')
                                 thisdd.html('<div class="customs_presets_add_icon_picker_icon_svg" style="mask:url(' + thisdd.attr('u') + ') no-repeat center / contain;-webkit-mask:url(' + thisdd.attr('u') + ') no-repeat center / contain;"></div>')
