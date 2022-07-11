@@ -3654,6 +3654,7 @@
       document.querySelector('.input .customs input[type="checkbox"]').addEventListener("click", function (e) {
         $('.customs-presets li').attr('o', '0')
       });
+      $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
       customs_presets_evt = 1
     }
 
@@ -3998,9 +3999,8 @@
     customs_presets_switch(g)
     if (od === '1') {
       if (g === 'addcustompreset') {
-        if (customs_presets_icon_load === '0') {
+        if (customs_presets_icon_load === 0) {
           customs_presets_icon_load = 1
-          $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
           var odddd = gid()
           $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="customs_presets_add_icon_picker_icon_svgbox">' + customs_presets_default + '</div></div>')
           ripple('.customs_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
