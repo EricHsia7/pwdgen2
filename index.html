@@ -1692,8 +1692,16 @@
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       overflow: hidden;
       border: 1px solid rgba(0, 0, 0, 0);
-      font-size: 25px;
-      color:var(--g-4e4e4e)
+      font-size: 30px;
+      color: var(--g-4e4e4e);
+    }
+
+    .customs_presets_add_icon_picker_icon_spanbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
     }
 
     .customs_presets_add_icon_picker_icon_svgbox {
@@ -3662,7 +3670,7 @@
         f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
         for (var q = 0; q < f_iconlist.length; q++) {
           var idddd = gid()
-          $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><span class="material-symbols-outlined">' + f_iconlist[q] + '</span></div>')
+          $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + f_iconlist[q] + '</span></div></div>')
           ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
         }
       }
@@ -3680,7 +3688,7 @@
                             for (var s = 0; s < e3.tree.length; s++) {
                               f_iconlist.push(e3.tree[s].path)
                               var idddd = gid()
-                              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><span class="material-symbols-outlined">' + e3.tree[s].path + '</span></div>')
+                              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + e3.tree[s].path + '</span></div></div>')
                               ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
                             }
                             localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
