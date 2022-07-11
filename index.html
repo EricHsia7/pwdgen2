@@ -3999,12 +3999,16 @@
     customs_presets_switch(g)
     if (od === '1') {
       if (g === 'addcustompreset') {
+        $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
+        setTimeout(function () {
+          $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+          $('.customs-presets-add-mask').css({ 'opacity': '1' })
+        }, 1)
         if (customs_presets_icon_load === 0) {
           customs_presets_icon_load = 1
           var odddd = gid()
           $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="customs_presets_add_icon_picker_icon_svgbox">' + customs_presets_default + '</div></div>')
           ripple('.customs_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
-
           var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
           var f_iconlist = []
           if (!(localStorage.hasOwnProperty('material_design_icons_list_update'))) {
@@ -4049,11 +4053,6 @@
             });
           }
         }
-        $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
-        setTimeout(function () {
-          $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
-          $('.customs-presets-add-mask').css({ 'opacity': '1' })
-        }, 1)
       }
       if (g === 'managercustompreset') {
 
