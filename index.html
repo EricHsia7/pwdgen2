@@ -4007,6 +4007,9 @@
         }, 1)
         if (customs_presets_icon_load === 0) {
           customs_presets_icon_load = 1
+          for (var y = 0; y < 20; y++) {
+            $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" load="0"></div>')
+          }
           var odddd = gid()
           $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="customs_presets_add_icon_picker_icon_svgbox">' + customs_presets_default + '</div></div>')
           ripple('.customs_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
@@ -4016,17 +4019,17 @@
             localStorage.setItem('material_design_icons_list_update', '0')
           }
           if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 15778463000) {
-            f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
-            for (var q = 0; q < f_iconlist.length; q++) {
-              var idddd = gid()
-              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + f_iconlist[q] + '</span></div></div>')
-              ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
-            }
+            setTimeout(function () {
+              f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
+              for (var q = 0; q < f_iconlist.length; q++) {
+                var idddd = gid()
+                $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ')"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined">' + f_iconlist[q] + '</span></div></div>')
+                ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+              }
+              $('.customs_presets_add_icon_picker_icon[load="0"]').remove()
+            }, 500);
           }
           else {
-            for (var y = 0; y < 20; y++) {
-              $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" load="0"></div>')
-            }
             $.ajax({
               type: 'get', url: icons_url + '?' + new Date().getTime(), dataType: 'json', success: function (e) {
                 for (var i = 0; i < e.tree.length; i++) {
