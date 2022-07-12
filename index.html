@@ -1669,7 +1669,8 @@
       width: calc(100% - 20px)
     }
 
-    .customs-presets-add-box {
+    .customs-presets-add-box,
+    .customs-presets-manager-box {
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
@@ -2160,11 +2161,12 @@
     <div class="customs-presets-manager-title">
       Manage Customs Presets
     </div>
+    <div class="customs-presets-manager-box">
 
+    </div>
     <div class="customs-presets-manager-close" ripple-onclick="closecustomspresetsmanager()">
       Close
     </div>
-
   </div>
 
 
@@ -4005,7 +4007,7 @@
         var this_icon = '<div class="material-symbols-outlined" translate="no">' + th.icon + '</div>'
       }
 
-      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustomspreset(' + "'" + th.fd + "'" + ')"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
+      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustomspreset(' + "'" + th.fd + "'" + ')"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span></li>'
       $('.customs-presets').append(this_html)
       ripple('.customs-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
     }
@@ -4115,6 +4117,29 @@
           $('.customs-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
           $('.customs-presets-manager-mask').css({ 'opacity': '1' })
         }, 1)
+
+        $('.customs-presets-manager-box').html('')
+
+        var customs_presets_manager_j = []
+        var customspresets_arr = searchItemsbyname('pwdgen2_customs_presets_custom_d_')
+        for (var i = 0; i < customspresets_arr.length; i++) {
+          customs_presets_manager_j.push(JSON.parse(String(localStorage.getItem(customspresets_arr[i]))))
+        }
+        //print
+        for (var i = 0; i < customs_presets_manager_j.length; i++) {
+          var th = customs_presets_manager_j[i]
+          var this_icon = customs_presets_default
+          if (th.icon === 'default') {
+            //this_icon = customs_presets_default
+          }
+          else {
+            var this_icon = '<div class="material-symbols-outlined" translate="no">' + th.icon + '</div>'
+          }
+
+          var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><span>' + th.name + '</span></li>'
+          $('.customs-presets-manager-box').append(this_html)
+          //ripple('.customs-presets-manager-box li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        }
 
 
       }
