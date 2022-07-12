@@ -4106,7 +4106,7 @@
     $('.customs-presets').animate({ 'scrollLeft': fdscrollleft }, 300)
   }
   function customspresetsiconpickerscroll(icon_d) {
-    var filterbox_width =$('.customs_presets_add_icon_picker').width()
+    var filterbox_width = $('.customs_presets_add_icon_picker').width()
     var pl_offset_left = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').offset().left - $('.customs_presets_add_icon_picker').offset().left - $(document).scrollLeft() + $('.customs_presets_add_icon_picker').scrollLeft()
     var pl_width = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').width()
     var filterbox_content_width = document.querySelector('.customs_presets_add_icon_picker').scrollWidth
@@ -4122,13 +4122,15 @@
     $('.customs_presets_add_icon_picker').animate({ 'scrollLeft': plscrollleft }, 300)
 
   }
-  function customspresetsiconpickerchange(icon_d) {
-    $('.customs-presets-add-icon-picker').attr('v', $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
-    $('.customs_presets_add_icon_picker_icon').attr('se', '0')
-    $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se', '1')
-    customspresetsiconpickerscroll(icon_d)
-  }
   var customs_presets_icon_load = 0
+  function customspresetsiconpickerchange(icon_d) {
+    if (customs_presets_icon_load === 1) {
+      $('.customs-presets-add-icon-picker').attr('v', $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
+      $('.customs_presets_add_icon_picker_icon').attr('se', '0')
+      $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se', '1')
+      customspresetsiconpickerscroll(icon_d)
+    }
+  }
   function applycustomspreset(g, clearval) {
     var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
     customs_presets_switch(g)
@@ -4376,12 +4378,11 @@
     $('#dontusesimilarchars_customs_presets').prop('checked', false)
     $('#cuschaprop_customs_presets').prop('checked', false)
     $('.customs-presets-add-icon-picker').attr('v', 'default')
-    customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="default"]').attr('icon-d'))
     $('#capital_customs_presets').val('0.25')
     $('#lowercase_customs_presets').val('0.25')
     $('#number_customs_presets').val('0.25')
     $('#symbol_customs_presets').val('0.25')
-
+    customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="default"]').attr('icon-d'))
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
