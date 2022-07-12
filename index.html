@@ -1807,7 +1807,7 @@
       top: 5px;
       left: 35px;
       height: 25px;
-      width: calc(100% - 35px - 35px);
+      width: calc(100% - 35px - 35px - 35px);
       display: flex;
       align-items: center;
       color: var(--g-4e4e4e);
@@ -1828,6 +1828,10 @@
       overflow: hidden;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       mask-image: -webkit-radial-gradient(white, black);
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-edit {
+      right: 35px;
     }
 
     @media (min-width: 600px) {
@@ -4205,10 +4209,10 @@
 
           var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(th.name)
           var p_id = gid()
-          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '" dd="' + p_id + '" hx="' + p_hx + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><div class="customs-presets-manager-name">' + th.name + '</div><div class="customs-presets-manager-delete" ripple-onclick="delcustomspresets(' + "'" + p_id + "'" + ')">' + trashicon + '</div><div class="customs-presets-manager-edit" ripple-onclick="editcustomspresets(' + "'" + p_id + "'" + ')">' + editicon + '</div></li>'
+          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '" dd="' + p_id + '" hx="' + p_hx + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><div class="customs-presets-manager-name">' + th.name + '</div><div class="customs-presets-manager-edit" ripple-onclick="editcustomspresets(' + "'" + p_id + "'" + ')">' + editicon + '</div><div class="customs-presets-manager-delete" ripple-onclick="delcustomspresets(' + "'" + p_id + "'" + ')">' + trashicon + '</div></li>'
 
           $('.customs-presets-manager-box').append(this_html)
-          ripple('.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-delete', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+          ripple('.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-delete,.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-edit', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
       }
     }
