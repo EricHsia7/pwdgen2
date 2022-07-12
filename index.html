@@ -4202,6 +4202,9 @@
                                 localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
                                 localStorage.setItem('material_design_icons_list_update', new Date().getTime())
                                 $('.customs_presets_add_icon_picker_icon[load="0"]').remove()
+                                if (custom_presets_icon_picker_scrolled === 0) {
+                                  customspresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
+                                }
                               }
                             });
                           }
