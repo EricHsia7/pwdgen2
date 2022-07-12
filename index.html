@@ -202,7 +202,7 @@
       left: 0
     }
 
-    .input .customs {
+    .input .custom {
       position: absolute;
       top: calc(46px + 35px + 10px);
       left: 0;
@@ -210,8 +210,8 @@
       height: calc(100% - 46px - 35px - 10px)
     }
 
-    .input .customs .customlist,
-    .customs-presets-add-list {
+    .input .custom .customlist,
+    .custom-presets-add-list {
       margin: 0;
       padding: 0;
       list-style: none;
@@ -221,7 +221,7 @@
       font-size: 12px
     }
 
-    .input .customs .customlist .customslisttxt2 {
+    .input .custom .customlist .customlisttxt2 {
       position: absolute;
       top: 5px;
       left: 10px;
@@ -233,7 +233,7 @@
       font-size: 15px
     }
 
-    .customs input[type="text"] {
+    .custom input[type="text"] {
       height: 25px;
       width: 100px;
       font-size: 15px;
@@ -245,8 +245,8 @@
       padding: 0 3px
     }
 
-    .input .customs input[type="checkbox"],
-    .customs-presets-add input[type="checkbox"] {
+    .input .custom input[type="checkbox"],
+    .custom-presets-add input[type="checkbox"] {
       position: absolute;
       width: 0;
       height: 0;
@@ -258,8 +258,8 @@
       background: rgba(0, 0, 0, 0)
     }
 
-    .input .customs input[type="checkbox"]::before,
-    .customs-presets-add input[type="checkbox"]::before {
+    .input .custom input[type="checkbox"]::before,
+    .custom-presets-add input[type="checkbox"]::before {
       content: '';
       position: absolute;
       top: 0;
@@ -270,8 +270,8 @@
       background: var(--g-e3e3e3)
     }
 
-    .input .customs input[type="checkbox"]::after,
-    .customs-presets-add input[type="checkbox"]::after {
+    .input .custom input[type="checkbox"]::after,
+    .custom-presets-add input[type="checkbox"]::after {
       content: '';
       position: absolute;
       top: 2.5px;
@@ -283,13 +283,13 @@
       opacity: 0
     }
 
-    .input .customs input[type="checkbox"]:checked::after,
-    .customs-presets-add input[type="checkbox"]:checked::after {
+    .input .custom input[type="checkbox"]:checked::after,
+    .custom-presets-add input[type="checkbox"]:checked::after {
       opacity: 1
     }
 
     .input .customlist .customlisttxt,
-    .customs-presets-add-list .customs-presets-add-list-txt {
+    .custom-presets-add-list .custom-presets-add-list-txt {
       position: absolute;
       top: 5px;
       left: 35px;
@@ -748,8 +748,8 @@
 
     .confirm_mask,
     .filter-date-picker-mask,
-    .customs-presets-add-mask,
-    .customs-presets-manager-mask {
+    .custom-presets-add-mask,
+    .custom-presets-manager-mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -1344,7 +1344,7 @@
     }
 
     .history-filter,
-    .customs-presets {
+    .custom-presets {
       height: 35px;
       overflow-x: scroll;
       overflow-y: hidden;
@@ -1362,7 +1362,7 @@
       display: none;
     }
 
-    .customs-presets {
+    .custom-presets {
       top: 57px;
       left: 10px;
       transform: none;
@@ -1371,12 +1371,12 @@
     }
 
     .history-filter::-webkit-scrollbar,
-    .customs-presets::-webkit-scrollbar {
+    .custom-presets::-webkit-scrollbar {
       display: none;
     }
 
     .history-filter li,
-    .customs-presets li {
+    .custom-presets li {
       list-style: none;
       background: var(--g-f4f4f4);
       display: inline-block;
@@ -1392,7 +1392,7 @@
       -webkit-user-select: none;
     }
 
-    .customs-presets li {
+    .custom-presets li {
       /*
       height: 32px;
       border: 1px solid var(--g-e3e3e3);
@@ -1402,12 +1402,12 @@
     }
 
     .history-filter li:nth-last-child(1),
-    .customs-presets li:nth-last-child(1) {
+    .custom-presets li:nth-last-child(1) {
       margin-right: 0px;
     }
 
     .history-filter li span,
-    .customs-presets li span {
+    .custom-presets li span {
       display: flex;
       height: 100%;
       justify-content: center;
@@ -1422,7 +1422,7 @@
     }
 
     .history-filter-icon,
-    .customs-presets-icon {
+    .custom-presets-icon {
       width: 35px;
       height: 35px;
       display: flex;
@@ -1436,7 +1436,7 @@
     }
 
     .history-filter-icon svg,
-    .customs-presets-icon svg {
+    .custom-presets-icon svg {
       width: 18px;
       height: 18px;
       user-select: none;
@@ -1445,50 +1445,50 @@
 
     .history-filter li div,
     .history-filter li span,
-    .customs-presets li div,
-    .customs-presets li span {
+    .custom-presets li div,
+    .custom-presets li span {
       float: left;
     }
 
     .history-filter li[o="1"] span,
     .history-filter li[o="1"] .history-filter-icon,
-    .customs-presets li[o="1"] span,
-    .customs-presets li[o="1"] .customs-presets-icon {
+    .custom-presets li[o="1"] span,
+    .custom-presets li[o="1"] .custom-presets-icon {
       opacity: 1
     }
 
     .history-filter li[o="1"],
-    .customs-presets li[o="1"] {
+    .custom-presets li[o="1"] {
       background: var(--g-e3e3e3);
     }
 
     .history-filter li[o="0"] span,
     .history-filter li[o="0"] .history-filter-icon,
-    .customs-presets li[o="0"] span,
-    .customs-presets li[o="0"] .customs-presets-icon {
+    .custom-presets li[o="0"] span,
+    .custom-presets li[o="0"] .custom-presets-icon {
       opacity: 0.5
     }
 
     .history-filter li[loading="1"],
-    .customs-presets li[loading="1"] {
+    .custom-presets li[loading="1"] {
       background: var(--g-f4f4f4);
     }
 
     .history-filter li[loading="1"] *,
-    .customs-presets li[loading="1"] * {
+    .custom-presets li[loading="1"] * {
       opacity: 0;
       color: transparent;
     }
 
     .history-filter li[loading="1"] span,
     .history-filter li[loading="1"] .history-filter-icon,
-    .customs-presets li[loading="1"] span,
-    .customs-presets li[loading="1"] .customs-presets-icon {
+    .custom-presets li[loading="1"] span,
+    .custom-presets li[loading="1"] .custom-presets-icon {
       opacity: 1;
     }
 
     .history-filter li[loading="1"] span::after,
-    .customs-presets li[loading="1"] span::after {
+    .custom-presets li[loading="1"] span::after {
       content: '';
       position: absolute;
       top: 5px;
@@ -1502,7 +1502,7 @@
     }
 
     .history-filter li[loading="1"] .history-filter-icon::after,
-    .customs-presets li[loading="1"] .customs-presets-icon::after {
+    .custom-presets li[loading="1"] .custom-presets-icon::after {
       content: '';
       position: absolute;
       top: 5px;
@@ -1517,8 +1517,8 @@
     }
 
     .filter-date-picker,
-    .customs-presets-add,
-    .customs-presets-manager {
+    .custom-presets-add,
+    .custom-presets-manager {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -1534,8 +1534,8 @@
     }
 
     .filter-date-picker-title,
-    .customs-presets-add-title,
-    .customs-presets-manager-title {
+    .custom-presets-add-title,
+    .custom-presets-manager-title {
       height: 45px;
       width: calc(100% - 20px);
       position: absolute;
@@ -1639,9 +1639,9 @@
 
     .filter-date-picker-cancel,
     .filter-date-picker-apply,
-    .customs-presets-add-cancel,
-    .customs-presets-add-add,
-    .customs-presets-manager-close {
+    .custom-presets-add-cancel,
+    .custom-presets-add-add,
+    .custom-presets-manager-close {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -1661,16 +1661,16 @@
 
 
     .filter-date-picker-cancel,
-    .customs-presets-add-cancel {
+    .custom-presets-add-cancel {
       left: calc(50% + 5px)
     }
 
-    .customs-presets-manager-close {
+    .custom-presets-manager-close {
       width: calc(100% - 20px)
     }
 
-    .customs-presets-add-box,
-    .customs-presets-manager-box {
+    .custom-presets-add-box,
+    .custom-presets-manager-box {
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
@@ -1684,7 +1684,7 @@
       -webkit-user-select: none;
     }
 
-    .customs-presets-add-box input[type="text"] {
+    .custom-presets-add-box input[type="text"] {
       position: relative;
       box-sizing: border-box;
       padding: 5px;
@@ -1699,11 +1699,11 @@
       font-size: 18px;
     }
 
-    .customs-presets-add-b10 {
+    .custom-presets-add-b10 {
       margin-bottom: 10px;
     }
 
-    .customs-presets-add-icon-picker {
+    .custom-presets-add-icon-picker {
       position: relative;
       width: 100%;
       height: 45px;
@@ -1716,11 +1716,11 @@
       border-radius: 8px;
     }
 
-    .customs-presets-add-icon-picker::-webkit-scrollbar {
+    .custom-presets-add-icon-picker::-webkit-scrollbar {
       display: none;
     }
 
-    .customs_presets_add_icon_picker_icon {
+    .custom_presets_add_icon_picker_icon {
       height: 38px;
       width: 38px;
       margin: 2.5px;
@@ -1733,7 +1733,7 @@
       color: var(--g-4e4e4e);
     }
 
-    .customs_presets_add_icon_picker_icon_spanbox {
+    .custom_presets_add_icon_picker_icon_spanbox {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1741,7 +1741,7 @@
       height: 38px;
     }
 
-    .customs_presets_add_icon_picker_icon_svgbox {
+    .custom_presets_add_icon_picker_icon_svgbox {
       width: 38px;
       height: 38px;
       display: flex;
@@ -1749,26 +1749,26 @@
       align-items: center;
     }
 
-    .customs_presets_add_icon_picker_icon_svgbox svg {
+    .custom_presets_add_icon_picker_icon_svgbox svg {
       width: 20px;
       height: 20px;
     }
 
-    .customs_presets_add_icon_picker_icon[se="1"] {
+    .custom_presets_add_icon_picker_icon[se="1"] {
       border: 1px solid var(--g-4e4e4e);
     }
 
-    .customs_presets_add_icon_picker_icon[load="0"] {
+    .custom_presets_add_icon_picker_icon[load="0"] {
       background: var(--g-f4f4f4);
     }
 
-    .customs_presets_li_svg {
+    .custom_presets_li_svg {
       width: 18px;
       height: 18px;
       background: var(--g-4e4e4e);
     }
 
-    .customs-presets-manager-box li {
+    .custom-presets-manager-box li {
       width: 100%;
       height: 35px;
       position: relative;
@@ -1778,11 +1778,11 @@
       border-bottom: 1px solid var(--g-f4f4f4);
     }
 
-    .customs-presets-manager-box li:nth-last-child(1) {
+    .custom-presets-manager-box li:nth-last-child(1) {
       border: none;
     }
 
-    .customs-presets-manager-box .customs-presets-manager-icon {
+    .custom-presets-manager-box .custom-presets-manager-icon {
       position: absolute;
       top: 5px;
       left: 5px;
@@ -1795,14 +1795,14 @@
       border-radius: 3px;
     }
 
-    .customs-presets-manager-box .customs-presets-manager-icon svg,
-    .customs-presets-manager-box .customs-presets-manager-delete svg,
-    .customs-presets-manager-box .customs-presets-manager-edit svg {
+    .custom-presets-manager-box .custom-presets-manager-icon svg,
+    .custom-presets-manager-box .custom-presets-manager-delete svg,
+    .custom-presets-manager-box .custom-presets-manager-edit svg {
       width: 18px;
       height: 18px;
     }
 
-    .customs-presets-manager-box .customs-presets-manager-name {
+    .custom-presets-manager-box .custom-presets-manager-name {
       position: absolute;
       top: 5px;
       left: 35px;
@@ -1814,8 +1814,8 @@
       overflow: hidden;
     }
 
-    .customs-presets-manager-box .customs-presets-manager-delete,
-    .customs-presets-manager-box .customs-presets-manager-edit {
+    .custom-presets-manager-box .custom-presets-manager-delete,
+    .custom-presets-manager-box .custom-presets-manager-edit {
       position: absolute;
       top: 5px;
       right: 5px;
@@ -1830,7 +1830,7 @@
       mask-image: -webkit-radial-gradient(white, black);
     }
 
-    .customs-presets-manager-box .customs-presets-manager-edit {
+    .custom-presets-manager-box .custom-presets-manager-edit {
       right: 35px;
     }
 
@@ -1942,8 +1942,8 @@
 
     </div>
     <div class="border"></div>
-    <div class="customs-presets"></div>
-    <div class="customs">
+    <div class="custom-presets"></div>
+    <div class="custom">
       <li class="customlist"><input type="checkbox" id="dontusesimilarchars">
         <div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div>
       </li>
@@ -2190,47 +2190,47 @@
     </div>
   </div>
 
-  <div class="customs-presets-add-mask"></div>
-  <div class="customs-presets-add">
-    <div class="customs-presets-add-title">
+  <div class="custom-presets-add-mask"></div>
+  <div class="custom-presets-add">
+    <div class="custom-presets-add-title">
       Add Custom Preset
     </div>
-    <div class="customs-presets-add-box">
-      <input type="text" placeholder="name" class="customs-presets-add-b10" id="name_customs_presets">
-      <div class="customs-presets-add-icon-picker" v="default" translate="no"></div>
-      <input type="text" placeholder="length" class="customs-presets-add-b10" id="length_customs_presets">
-      <li class="customs-presets-add-list">
-        <input type="checkbox" id="dontusesimilarchars_customs_presets">
-        <div class="customs-presets-add-list-txt">Don't use similar characters (|1iIjJlL0Oo)</div>
+    <div class="custom-presets-add-box">
+      <input type="text" placeholder="name" class="custom-presets-add-b10" id="name_custom_presets">
+      <div class="custom-presets-add-icon-picker" v="default" translate="no"></div>
+      <input type="text" placeholder="length" class="custom-presets-add-b10" id="length_custom_presets">
+      <li class="custom-presets-add-list">
+        <input type="checkbox" id="dontusesimilarchars_custom_presets">
+        <div class="custom-presets-add-list-txt">Don't use similar characters (|1iIjJlL0Oo)</div>
       </li>
-      <li class="customs-presets-add-list">
-        <input type="checkbox" id="cuschaprop_customs_presets">
-        <div class="customs-presets-add-list-txt">Custom chars proportion(The default is 4 equal parts)</div>
+      <li class="custom-presets-add-list">
+        <input type="checkbox" id="cuschaprop_custom_presets">
+        <div class="custom-presets-add-list-txt">Custom chars proportion(The default is 4 equal parts)</div>
       </li>
-      <div class="customs-presets-add-p-box">
-        <input type="text" placeholder="Capital" class="customs-presets-add-b10" id="capital_customs_presets">
-        <input type="text" placeholder="Lowercase" class="customs-presets-add-b10" id="lowercase_customs_presets">
-        <input type="text" placeholder="Number" class="customs-presets-add-b10" id="number_customs_presets">
-        <input type="text" placeholder="Symbol" id="symbol_customs_presets">
+      <div class="custom-presets-add-p-box">
+        <input type="text" placeholder="Capital" class="custom-presets-add-b10" id="capital_custom_presets">
+        <input type="text" placeholder="Lowercase" class="custom-presets-add-b10" id="lowercase_custom_presets">
+        <input type="text" placeholder="Number" class="custom-presets-add-b10" id="number_custom_presets">
+        <input type="text" placeholder="Symbol" id="symbol_custom_presets">
       </div>
     </div>
-    <div class="customs-presets-add-add" ripple-onclick="addcustomspresetsadd()">
+    <div class="custom-presets-add-add" ripple-onclick="addcustompresetsadd()">
       Add
     </div>
-    <div class="customs-presets-add-cancel" ripple-onclick="closecustomspresetsadd()">
+    <div class="custom-presets-add-cancel" ripple-onclick="closecustompresetsadd()">
       Cancel
     </div>
   </div>
 
-  <div class="customs-presets-manager-mask"></div>
-  <div class="customs-presets-manager">
-    <div class="customs-presets-manager-title">
+  <div class="custom-presets-manager-mask"></div>
+  <div class="custom-presets-manager">
+    <div class="custom-presets-manager-title">
       Manage Custom Presets
     </div>
-    <div class="customs-presets-manager-box">
+    <div class="custom-presets-manager-box">
 
     </div>
-    <div class="customs-presets-manager-close" ripple-onclick="closecustomspresetsmanager()">
+    <div class="custom-presets-manager-close" ripple-onclick="closecustompresetsmanager()">
       Close
     </div>
   </div>
@@ -2546,7 +2546,7 @@
   ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
-  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-cancel,.customs-presets-add-add,.customs-presets-manager-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
@@ -2667,7 +2667,7 @@
       }
       var pwdstr = shuffleSelf(pwdarr, pwdarr.length).join('');
     }
-    return { 'str': pwdstr, 'customs': { 'length': len, 'nosimilar': nosimilar, 'custom_proportion': custom_proportion, 'capital': capital, 'lowercase': lowercase, 'number': number, 'symbol': symbol } };
+    return { 'str': pwdstr, 'custom': { 'length': len, 'nosimilar': nosimilar, 'custom_proportion': custom_proportion, 'capital': capital, 'lowercase': lowercase, 'number': number, 'symbol': symbol } };
   }
   function checkpwd(pwdstr, cache, gid, tt) {
     if (cache) {
@@ -3025,9 +3025,9 @@
   let xmarkicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M4.92308 64L0 59.0769L27.0769 32L1.11786e-06 4.92308L4.92308-5.5893e-07L32 27.0769L59.0769-1.67679e-06L64 4.92307L36.9231 32L64 59.0769L59.0769 64L32 36.9231L4.92308 64Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" /></svg>'
   let noteicon = '<svg stroke-miterlimit="10"style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.33333 58.6667L40.8889 58.6667L40.8889 40.8889L58.6667 40.8889L58.6667 5.33333L5.33333 5.33333L5.33333 58.6667ZM5.33333 64C3.85185 64 2.59259 63.4815 1.55556 62.4444C0.518518 61.4074 7.10543e-15 60.1481 7.10543e-15 58.6667L7.10543e-15 5.33333C7.10543e-15 3.85185 0.518518 2.59259 1.55556 1.55556C2.59259 0.518518 3.85185 0 5.33333 0L58.6667 0C60.1481 0 61.4074 0.518518 62.4444 1.55556C63.4815 2.59259 64 3.85185 64 5.33333L64 42.6667L42.6667 64L5.33333 64ZM16 37.3333L16 32L31.1111 32L31.1111 37.3333L16 37.3333ZM16 23.1111L16 17.7778L48 17.7778L48 23.1111L16 23.1111ZM5.33333 58.6667L5.33333 5.33333L5.33333 58.6667Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" /></svg>'
   let hashatagicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M10.3529 62.1176L14.4 46.1176L0 46.1176L1.41176 40.4706L15.8118 40.4706L20.0471 23.5294L3.76471 23.5294L5.17647 17.8824L21.4588 17.8824L25.4118 1.88235L30.9647 1.88235L27.0118 17.8824L44.0471 17.8824L48 1.88235L53.5529 1.88235L49.6 17.8824L64 17.8824L62.5882 23.5294L48.1882 23.5294L43.9529 40.4706L60.2353 40.4706L58.8235 46.1176L42.5412 46.1176L38.5882 62.1176L32.9412 62.1176L36.9882 46.1176L19.9529 46.1176L16 62.1176L10.3529 62.1176ZM21.3647 40.4706L38.4 40.4706L42.6353 23.5294L25.6 23.5294L21.3647 40.4706Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
-  let customs_presets_default = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M53.2486 20.7764L50.1249 13.5119L42.5698 10.1703L50.1249 6.90125L53.2486 7.10543e-15L56.3723 6.90125L63.9274 10.1703L56.3723 13.5119L53.2486 20.7764ZM53.2486 64L50.1249 57.0261L42.5698 53.7571L50.1249 50.4881L53.2486 43.151L56.3723 50.4881L63.9274 53.7571L56.3723 57.0261L53.2486 64ZM21.3575 52.8127L14.6742 38.5017L0.0726459 31.9637L14.6742 25.4257L21.3575 11.1873L28.1135 25.4257L42.6425 31.9637L28.1135 38.5017L21.3575 52.8127ZM21.3575 42.0613L24.8445 35.0874L31.9637 31.9637L24.8445 28.84L21.3575 21.8661L17.9432 28.84L10.7514 31.9637L17.9432 35.0874L21.3575 42.0613Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
+  let custom_presets_default = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M53.2486 20.7764L50.1249 13.5119L42.5698 10.1703L50.1249 6.90125L53.2486 7.10543e-15L56.3723 6.90125L63.9274 10.1703L56.3723 13.5119L53.2486 20.7764ZM53.2486 64L50.1249 57.0261L42.5698 53.7571L50.1249 50.4881L53.2486 43.151L56.3723 50.4881L63.9274 53.7571L56.3723 57.0261L53.2486 64ZM21.3575 52.8127L14.6742 38.5017L0.0726459 31.9637L14.6742 25.4257L21.3575 11.1873L28.1135 25.4257L42.6425 31.9637L28.1135 38.5017L21.3575 52.8127ZM21.3575 42.0613L24.8445 35.0874L31.9637 31.9637L24.8445 28.84L21.3575 21.8661L17.9432 28.84L10.7514 31.9637L17.9432 35.0874L21.3575 42.0613Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
   let plusicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.5714 64L28.5714 35.4286L0 35.4286L0 28.5714L28.5714 28.5714L28.5714 7.10543e-15L35.4286 7.10543e-15L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
-  let customs_presets_manager = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12.56 34.08L41.44 34.08L41.44 29.28L12.56 29.28L12.56 34.08ZM12.56 23.76L41.44 23.76L41.44 18.96L12.56 18.96L12.56 23.76ZM4.8 57.6C3.52 57.6 2.4 57.12 1.44 56.16C0.48 55.2 0 54.08 0 52.8L0 11.2C0 9.92 0.48 8.8 1.44 7.84C2.4 6.88 3.52 6.4 4.8 6.4L59.2 6.4C60.48 6.4 61.6 6.88 62.56 7.84C63.52 8.8 64 9.92 64 11.2L64 52.8C64 54.08 63.52 55.2 62.56 56.16C61.6 57.12 60.48 57.6 59.2 57.6L4.8 57.6ZM4.8 52.8L59.2 52.8L59.2 11.2L4.8 11.2L4.8 52.8ZM4.8 52.8L4.8 11.2L4.8 52.8Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
+  let custom_presets_manager = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12.56 34.08L41.44 34.08L41.44 29.28L12.56 29.28L12.56 34.08ZM12.56 23.76L41.44 23.76L41.44 18.96L12.56 18.96L12.56 23.76ZM4.8 57.6C3.52 57.6 2.4 57.12 1.44 56.16C0.48 55.2 0 54.08 0 52.8L0 11.2C0 9.92 0.48 8.8 1.44 7.84C2.4 6.88 3.52 6.4 4.8 6.4L59.2 6.4C60.48 6.4 61.6 6.88 62.56 7.84C63.52 8.8 64 9.92 64 11.2L64 52.8C64 54.08 63.52 55.2 62.56 56.16C61.6 57.12 60.48 57.6 59.2 57.6L4.8 57.6ZM4.8 52.8L59.2 52.8L59.2 11.2L4.8 11.2L4.8 52.8ZM4.8 52.8L4.8 11.2L4.8 52.8Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
   let trashicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12.5333 64C11.1111 64 9.86667 63.4667 8.8 62.4C7.73333 61.3333 7.2 60.0889 7.2 58.6667L7.2 8L3.55556 8L3.55556 2.66667L20.2667 2.66667L20.2667 7.10543e-15L43.7333 7.10543e-15L43.7333 2.66667L60.4444 2.66667L60.4444 8L56.8 8L56.8 58.6667C56.8 60.0889 56.2667 61.3333 55.2 62.4C54.1333 63.4667 52.8889 64 51.4667 64L12.5333 64ZM51.4667 8L12.5333 8L12.5333 58.6667L51.4667 58.6667L51.4667 8ZM21.9556 51.0222L27.2889 51.0222L27.2889 15.5556L21.9556 15.5556L21.9556 51.0222ZM36.7111 51.0222L42.0444 51.0222L42.0444 15.5556L36.7111 15.5556L36.7111 51.0222ZM12.5333 8L12.5333 58.6667L12.5333 8Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" /></svg>'
   let editicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.23874 58.7613L9.08049 58.7613L47.7599 20.0819L43.9181 16.2401L5.23874 54.9195L5.23874 58.7613ZM58.8486 16.3274L47.6726 5.15143L51.3397 1.48431C52.3292 0.494771 53.5516 6.45324e-07 55.0068 6.45324e-07C56.462 6.45324e-07 57.6844 0.494771 58.6739 1.48431L62.5157 5.32606C63.5052 6.3156 64 7.53797 64 8.99318C64 10.4484 63.5052 11.6708 62.5157 12.6603L58.8486 16.3274ZM55.1814 19.9945L11.176 64L7.10543e-15 64L7.10543e-15 52.824L44.0055 8.81855L55.1814 19.9945ZM45.839 18.161L43.9181 16.2401L47.7599 20.0819L45.839 18.161Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
   function mes(mess) {
@@ -3680,7 +3680,7 @@
   }
   function cgbwfn(l, e) {
     e.preventDefault()
-    $('.customs-presets li').attr('o', '0')
+    $('.custom-presets li').attr('o', '0')
     if (cgbwtd) {
 
 
@@ -3753,29 +3753,29 @@
     e.preventDefault()
     cgbwfn(2, e)
   }, { passive: true })
-  var customs_presets_evt = 0
+  var custom_presets_evt = 0
   function pwdcustom() {
-    if (customs_presets_evt === 0) {
+    if (custom_presets_evt === 0) {
       document.querySelector('.input input[type="text"]').addEventListener("paste", function (e) {
-        $('.customs-presets li').attr('o', '0')
+        $('.custom-presets li').attr('o', '0')
       });
       document.querySelector('.input input[type="text"]').addEventListener("cut", function (e) {
-        $('.customs-presets li').attr('o', '0')
+        $('.custom-presets li').attr('o', '0')
       });
       document.querySelector('.input input[type="text"]').addEventListener("selectionchange", function (e) {
-        $('.customs-presets li').attr('o', '0')
+        $('.custom-presets li').attr('o', '0')
       });
       document.querySelector('.input input[type="text"]').addEventListener("keyup", function (e) {
-        $('.customs-presets li').attr('o', '0')
+        $('.custom-presets li').attr('o', '0')
       });
-      document.querySelector('.input .customs input[type="checkbox"]').addEventListener("click", function (e) {
-        $('.customs-presets li').attr('o', '0')
+      document.querySelector('.input .custom input[type="checkbox"]').addEventListener("click", function (e) {
+        $('.custom-presets li').attr('o', '0')
       });
       $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
-      customs_presets_evt = 1
+      custom_presets_evt = 1
     }
 
-    customspresets()
+    custompresets()
     if ($('.btn5').attr('uj') === '0') {
       $('.input').css({ 'height': '253px' });
       $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (253 - 45) + 'px)' });
@@ -4037,15 +4037,15 @@
       filter_showall()
     }
   }
-  var customs_presets_j
-  function customspresets() {
-    $('.customs-presets').html('')
-    customs_presets_j = [
+  var custom_presets_j
+  function custompresets() {
+    $('.custom-presets').html('')
+    custom_presets_j = [
       {
         'icon': 'default',
         'name': 'Strong',
         'fd': 'strong',
-        'customs': {
+        'custom': {
           'r_length': 128,
           'dontusesimilarcharsg': false,
           'cuschaprop': true,
@@ -4056,44 +4056,44 @@
         }
       }
     ]
-    //customs-presets custom 
-    var customspresets_arr = searchItemsbyname('pwdgen2_customs_presets_custom_d_')
-    for (var i = 0; i < customspresets_arr.length; i++) {
-      customs_presets_j.push(JSON.parse(String(localStorage.getItem(customspresets_arr[i]))))
+    //custom-presets custom 
+    var custompresets_arr = searchItemsbyname('pwdgen2_custom_presets_custom_d_')
+    for (var i = 0; i < custompresets_arr.length; i++) {
+      custom_presets_j.push(JSON.parse(String(localStorage.getItem(custompresets_arr[i]))))
     }
 
-    //customs-presets custom end
+    //custom-presets custom end
 
     //print
-    for (var i = 0; i < customs_presets_j.length; i++) {
-      var th = customs_presets_j[i]
-      var this_icon = customs_presets_default
+    for (var i = 0; i < custom_presets_j.length; i++) {
+      var th = custom_presets_j[i]
+      var this_icon = custom_presets_default
       if (th.icon === 'default') {
-        //this_icon = customs_presets_default
+        //this_icon = custom_presets_default
       }
       else {
         var this_icon = '<div class="material-symbols-outlined" translate="no">' + th.icon + '</div>'
       }
 
-      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustomspreset(' + "'" + th.fd + "'" + ')"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span></li>'
-      $('.customs-presets').append(this_html)
-      ripple('.customs-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustompreset(' + "'" + th.fd + "'" + ')"><div class="custom-presets-icon">' + this_icon + '</div><span>' + th.name + '</span></li>'
+      $('.custom-presets').append(this_html)
+      ripple('.custom-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
     }
 
 
     //add,manager
-    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="customs-presets-icon">' + plusicon + '</div><span>Add</span</li>'
-    var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="customs-presets-icon">' + customs_presets_manager + '</div><span>Manager</span</li>'
-    $('.customs-presets').append(add_li_html + ' ' + manager_html)
-    ripple('.customs-presets li[fd="addcustompreset"],.customs-presets li[fd="managercustompreset"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" ripple-onclick="applycustompreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="custom-presets-icon">' + plusicon + '</div><span>Add</span</li>'
+    var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" ripple-onclick="applycustompreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="custom-presets-icon">' + custom_presets_manager + '</div><span>Manager</span</li>'
+    $('.custom-presets').append(add_li_html + ' ' + manager_html)
+    ripple('.custom-presets li[fd="addcustompreset"],.custom-presets li[fd="managercustompreset"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
     //print end
   }
-  function customs_presets_switch(fd) {
-    var filterbox_width = $('.customs-presets').width()
-    var fd_offset_left = $('.customs-presets li[fd="' + fd + '"]').offset().left - $('.customs-presets').offset().left - $(document).scrollLeft() + $('.customs-presets').scrollLeft()
-    var fd_width = $('.customs-presets li[fd="' + fd + '"]').width()
-    var filterbox_content_width = document.querySelector('.customs-presets').scrollWidth
+  function custom_presets_switch(fd) {
+    var filterbox_width = $('.custom-presets').width()
+    var fd_offset_left = $('.custom-presets li[fd="' + fd + '"]').offset().left - $('.custom-presets').offset().left - $(document).scrollLeft() + $('.custom-presets').scrollLeft()
+    var fd_width = $('.custom-presets li[fd="' + fd + '"]').width()
+    var filterbox_content_width = document.querySelector('.custom-presets').scrollWidth
     var fdscrollleft = 0
     if (fd_offset_left > (filterbox_width - fd_width) / 2 && (filterbox_content_width - fd_offset_left - fd_width) > (filterbox_width - fd_width) / 2) {
       fdscrollleft = ((filterbox_width - fd_width) / 2 - fd_offset_left) * (-1)
@@ -4103,23 +4103,23 @@
         fdscrollleft = filterbox_content_width - filterbox_width
       }
     }
-    $('.customs-presets').animate({ 'scrollLeft': fdscrollleft }, 300)
+    $('.custom-presets').animate({ 'scrollLeft': fdscrollleft }, 300)
   }
-  var customs_presets_icon_load = 0
+  var custom_presets_icon_load = 0
   var custom_presets_icon_picker_scrolled = 1
   var custom_presets_icon_picker_scroll_name = ''
-  function customspresetsiconpickerscroll(icon_d, name) {
+  function custompresetsiconpickerscroll(icon_d, name) {
     console.log(icon_d)
     if (icon_d === 'no') {
-      icon_d = $('.customs_presets_add_icon_picker_icon[n="' + name + '"]').attr('icon-d')
-      customspresetsiconpickerchange(icon_d, false)
+      icon_d = $('.custom_presets_add_icon_picker_icon[n="' + name + '"]').attr('icon-d')
+      custompresetsiconpickerchange(icon_d, false)
     }
     console.log(name)
-    if ($('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').length > 0) {
-      var filterbox_width = $('.customs-presets-add-icon-picker').width()
-      var pl_offset_left = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').offset().left - $('.customs-presets-add-icon-picker').offset().left - $(document).scrollLeft() + $('.customs-presets-add-icon-picker').scrollLeft()
-      var pl_width = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').width()
-      var filterbox_content_width = document.querySelector('.customs-presets-add-icon-picker').scrollWidth
+    if ($('.custom_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').length > 0) {
+      var filterbox_width = $('.custom-presets-add-icon-picker').width()
+      var pl_offset_left = $('.custom_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').offset().left - $('.custom-presets-add-icon-picker').offset().left - $(document).scrollLeft() + $('.custom-presets-add-icon-picker').scrollLeft()
+      var pl_width = $('.custom_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').width()
+      var filterbox_content_width = document.querySelector('.custom-presets-add-icon-picker').scrollWidth
       var plscrollleft = 0
       if (pl_offset_left > (filterbox_width - pl_width) / 2 && (filterbox_content_width - pl_offset_left - pl_width) > (filterbox_width - pl_width) / 2) {
         plscrollleft = ((filterbox_width - pl_width) / 2 - pl_offset_left) * (-1)
@@ -4129,42 +4129,42 @@
           plscrollleft = filterbox_content_width - filterbox_width
         }
       }
-      $('.customs-presets-add-icon-picker').animate({ 'scrollLeft': plscrollleft }, 300)
+      $('.custom-presets-add-icon-picker').animate({ 'scrollLeft': plscrollleft }, 300)
     }
     else {
       custom_presets_icon_picker_scrolled = 0
       custom_presets_icon_picker_scroll_name = name
     }
   }
-  function customspresetsiconpickerchange(icon_d, scroll_o) {
-    $('.customs-presets-add-icon-picker').attr('v', $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
-    $('.customs_presets_add_icon_picker_icon').attr('se', '0')
-    $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se', '1')
+  function custompresetsiconpickerchange(icon_d, scroll_o) {
+    $('.custom-presets-add-icon-picker').attr('v', $('.custom_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
+    $('.custom_presets_add_icon_picker_icon').attr('se', '0')
+    $('.custom_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se', '1')
     if (scroll_o) {
-      customspresetsiconpickerscroll(icon_d, $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
+      custompresetsiconpickerscroll(icon_d, $('.custom_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
     }
   }
-  function applycustomspreset(g, clearval) {
-    var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
-    customs_presets_switch(g)
+  function applycustompreset(g, clearval) {
+    var od = $('.custom-presets li[fd="' + g + '"]').attr('od')
+    custom_presets_switch(g)
     if (od === '1') {
       if (g === 'addcustompreset') {
         if (clearval) {
-          clearcustomspresetsadd()
+          clearcustompresetsadd()
         }
-        $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
+        $('.custom-presets-add,.custom-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
         setTimeout(function () {
-          $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
-          $('.customs-presets-add-mask').css({ 'opacity': '1' })
+          $('.custom-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+          $('.custom-presets-add-mask').css({ 'opacity': '1' })
         }, 1)
-        if (customs_presets_icon_load === 0) {
-          customs_presets_icon_load = 1
+        if (custom_presets_icon_load === 0) {
+          custom_presets_icon_load = 1
           for (var y = 0; y < 20; y++) {
-            $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" load="0"></div>')
+            $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" load="0"></div>')
           }
           var odddd = gid()
-          $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="customs_presets_add_icon_picker_icon_svgbox">' + customs_presets_default + '</div></div>')
-          ripple('.customs_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+          $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="custompresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="custom_presets_add_icon_picker_icon_svgbox">' + custom_presets_default + '</div></div>')
+          ripple('.custom_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
 
           var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
           var f_iconlist = []
@@ -4176,12 +4176,12 @@
               f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
               for (var q = 0; q < f_iconlist.length; q++) {
                 var idddd = gid()
-                $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + f_iconlist[q] + '</span></div></div>')
-                ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+                $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="custompresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="custom_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + f_iconlist[q] + '</span></div></div>')
+                ripple('.custom_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
               }
-              $('.customs_presets_add_icon_picker_icon[load="0"]').remove()
+              $('.custom_presets_add_icon_picker_icon[load="0"]').remove()
               if (custom_presets_icon_picker_scrolled === 0) {
-                customspresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
+                custompresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
                 custom_presets_icon_picker_scrolled = 1
               }
             }, 500);
@@ -4200,14 +4200,14 @@
                                 for (var s = 0; s < e3.tree.length; s++) {
                                   f_iconlist.push(e3.tree[s].path)
                                   var idddd = gid()
-                                  $('.customs-presets-add-icon-picker').append('<div class="customs_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="customspresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="customs_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + e3.tree[s].path + '</span></div></div>')
-                                  ripple('.customs_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+                                  $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="custompresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="custom_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + e3.tree[s].path + '</span></div></div>')
+                                  ripple('.custom_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
                                 }
                                 localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
                                 localStorage.setItem('material_design_icons_list_update', new Date().getTime())
-                                $('.customs_presets_add_icon_picker_icon[load="0"]').remove()
+                                $('.custom_presets_add_icon_picker_icon[load="0"]').remove()
                                 if (custom_presets_icon_picker_scrolled === 0) {
-                                  customspresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
+                                  custompresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
                                   custom_presets_icon_picker_scrolled === 1
                                 }
                               }
@@ -4224,74 +4224,74 @@
         }
       }
       if (g === 'managercustompreset') {
-        $('.customs-presets-manager,.customs-presets-manager-mask').css({ 'display': 'block', 'transition': '0.3s' })
+        $('.custom-presets-manager,.custom-presets-manager-mask').css({ 'display': 'block', 'transition': '0.3s' })
         setTimeout(function () {
-          $('.customs-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
-          $('.customs-presets-manager-mask').css({ 'opacity': '1' })
+          $('.custom-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+          $('.custom-presets-manager-mask').css({ 'opacity': '1' })
         }, 1)
 
-        $('.customs-presets-manager-box').html('')
+        $('.custom-presets-manager-box').html('')
 
-        var customs_presets_manager_j = []
-        var customspresets_arr = searchItemsbyname('pwdgen2_customs_presets_custom_d_')
-        for (var i = 0; i < customspresets_arr.length; i++) {
-          customs_presets_manager_j.push(JSON.parse(String(localStorage.getItem(customspresets_arr[i]))))
+        var custom_presets_manager_j = []
+        var custompresets_arr = searchItemsbyname('pwdgen2_custom_presets_custom_d_')
+        for (var i = 0; i < custompresets_arr.length; i++) {
+          custom_presets_manager_j.push(JSON.parse(String(localStorage.getItem(custompresets_arr[i]))))
         }
         //print
-        for (var i = 0; i < customs_presets_manager_j.length; i++) {
-          var th = customs_presets_manager_j[i]
-          var this_icon = customs_presets_default
+        for (var i = 0; i < custom_presets_manager_j.length; i++) {
+          var th = custom_presets_manager_j[i]
+          var this_icon = custom_presets_default
           if (th.icon === 'default') {
-            //this_icon = customs_presets_default
+            //this_icon = custom_presets_default
           }
           else {
             var this_icon = '<div class="material-symbols-outlined" translate="no">' + th.icon + '</div>'
           }
 
-          var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(th.name)
+          var p_hx = 'pwdgen2_custom_presets_custom_d_' + sha256(th.name)
           var p_id = gid()
-          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '" dd="' + p_id + '" hx="' + p_hx + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><div class="customs-presets-manager-name">' + th.name + '</div><div class="customs-presets-manager-edit" ripple-onclick="editcustomspresets(' + "'" + p_id + "'" + ')">' + editicon + '</div><div class="customs-presets-manager-delete" ripple-onclick="delcustomspresets(' + "'" + p_id + "'" + ')">' + trashicon + '</div></li>'
+          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '" dd="' + p_id + '" hx="' + p_hx + '"><div class="custom-presets-manager-icon">' + this_icon + '</div><div class="custom-presets-manager-name">' + th.name + '</div><div class="custom-presets-manager-edit" ripple-onclick="editcustompresets(' + "'" + p_id + "'" + ')">' + editicon + '</div><div class="custom-presets-manager-delete" ripple-onclick="delcustompresets(' + "'" + p_id + "'" + ')">' + trashicon + '</div></li>'
 
-          $('.customs-presets-manager-box').append(this_html)
-          ripple('.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-delete,.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-edit', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+          $('.custom-presets-manager-box').append(this_html)
+          ripple('.custom-presets-manager-box li[dd="' + p_id + '"] .custom-presets-manager-delete,.custom-presets-manager-box li[dd="' + p_id + '"] .custom-presets-manager-edit', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
       }
     }
     else {
-      var jindex = parseInt($('.customs-presets li[fd="' + g + '"]').attr('j-index'))
-      var jcustoms = customs_presets_j[jindex].customs
+      var jindex = parseInt($('.custom-presets li[fd="' + g + '"]').attr('j-index'))
+      var jcustom = custom_presets_j[jindex].custom
 
-      $('#cuschaprop').prop('checked', jcustoms.cuschaprop)
-      $('#dontusesimilarchars').prop('checked', jcustoms.dontusesimilarcharsg)
-      $('.input input[type="text"]').val(jcustoms.r_length)
-      $('.cgbw').eq(0).css({ 'left': ((jcustoms.capital) * 100) + '%' }).attr('kp', (jcustoms.capital)).attr('gh', '0')
-      $('.cgbw').eq(1).css({ 'left': ((jcustoms.capital + jcustoms.lowercase) * 100) + '%' }).attr('kp', (jcustoms.capital + jcustoms.lowercase)).attr('gh', '0')
-      $('.cgbw').eq(2).css({ 'left': 'calc(' + ((jcustoms.capital + jcustoms.lowercase + jcustoms.number) * 100) + '% - 3px)' }).attr('kp', (jcustoms.capital + jcustoms.lowercase + jcustoms.number)).attr('gh', '0')
-      $('#cgbwprop').html('Capital:' + parseInt(jcustoms.capital * 100) + '%&nbsp;Lowercase:' + parseInt(jcustoms.lowercase * 100) + '%&nbsp;Number:' + parseInt(jcustoms.number * 100) + '%&nbsp;Symbol:' + parseInt(jcustoms.symbol * 100) + '%')
-      $('.customs-presets li').attr('o', '0')
-      $('.customs-presets li[fd="' + g + '"]').attr('o', '1')
+      $('#cuschaprop').prop('checked', jcustom.cuschaprop)
+      $('#dontusesimilarchars').prop('checked', jcustom.dontusesimilarcharsg)
+      $('.input input[type="text"]').val(jcustom.r_length)
+      $('.cgbw').eq(0).css({ 'left': ((jcustom.capital) * 100) + '%' }).attr('kp', (jcustom.capital)).attr('gh', '0')
+      $('.cgbw').eq(1).css({ 'left': ((jcustom.capital + jcustom.lowercase) * 100) + '%' }).attr('kp', (jcustom.capital + jcustom.lowercase)).attr('gh', '0')
+      $('.cgbw').eq(2).css({ 'left': 'calc(' + ((jcustom.capital + jcustom.lowercase + jcustom.number) * 100) + '% - 3px)' }).attr('kp', (jcustom.capital + jcustom.lowercase + jcustom.number)).attr('gh', '0')
+      $('#cgbwprop').html('Capital:' + parseInt(jcustom.capital * 100) + '%&nbsp;Lowercase:' + parseInt(jcustom.lowercase * 100) + '%&nbsp;Number:' + parseInt(jcustom.number * 100) + '%&nbsp;Symbol:' + parseInt(jcustom.symbol * 100) + '%')
+      $('.custom-presets li').attr('o', '0')
+      $('.custom-presets li[fd="' + g + '"]').attr('o', '1')
     }
   }
-  function closecustomspresetsadd() {
-    $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
-    $('.customs-presets-add-mask').css({ 'opacity': '0' })
+  function closecustompresetsadd() {
+    $('.custom-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.custom-presets-add-mask').css({ 'opacity': '0' })
     setTimeout(function () {
-      $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'none' })
-      $('.customs-presets-add-title').text('Add Custom Preset')
-      $('.customs-presets-add-add').text('Add').attr('ripple-onclick', 'addcustomspresetsadd()')
+      $('.custom-presets-add,.custom-presets-add-mask').css({ 'display': 'none' })
+      $('.custom-presets-add-title').text('Add Custom Preset')
+      $('.custom-presets-add-add').text('Add').attr('ripple-onclick', 'addcustompresetsadd()')
     }, 500)
-    clearcustomspresetsadd()
+    clearcustompresetsadd()
   }
-  function closecustomspresetsmanager() {
-    $('.customs-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
-    $('.customs-presets-manager-mask').css({ 'opacity': '0' })
+  function closecustompresetsmanager() {
+    $('.custom-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.custom-presets-manager-mask').css({ 'opacity': '0' })
     setTimeout(function () {
-      $('.customs-presets-manager,.customs-presets-manager-mask').css({ 'display': 'none' })
+      $('.custom-presets-manager,.custom-presets-manager-mask').css({ 'display': 'none' })
     }, 500)
-    customspresets()
+    custompresets()
   }
-  function delcustomspresets(dd) {
-    var thdd = $('.customs-presets-manager-box li[dd="' + dd + '"]')
+  function delcustompresets(dd) {
+    var thdd = $('.custom-presets-manager-box li[dd="' + dd + '"]')
     var th_hx = thdd.attr('hx')
     if (localStorage.hasOwnProperty(th_hx)) {
       localStorage.removeItem(th_hx)
@@ -4299,46 +4299,46 @@
     thdd.remove()
     mes('Custom preset deleted')
   }
-  function editcustomspresets(dd) {
-    var thdd = $('.customs-presets-manager-box li[dd="' + dd + '"]')
+  function editcustompresets(dd) {
+    var thdd = $('.custom-presets-manager-box li[dd="' + dd + '"]')
     var th_hx = thdd.attr('hx')
     if (localStorage.hasOwnProperty(th_hx)) {
-      closecustomspresetsmanager()
-      applycustomspreset('addcustompreset', false)
-      $('.customs-presets-add-title').text('Edit Custom Preset')
-      $('.customs-presets-add-add').text('Save').attr('ripple-onclick', 'savecustomspresetsedit(' + "'" + th_hx + "'" + ')')
+      closecustompresetsmanager()
+      applycustompreset('addcustompreset', false)
+      $('.custom-presets-add-title').text('Edit Custom Preset')
+      $('.custom-presets-add-add').text('Save').attr('ripple-onclick', 'savecustompresetsedit(' + "'" + th_hx + "'" + ')')
       var th_j = JSON.parse(String(localStorage.getItem(th_hx)))
-      $('#name_customs_presets').val(th_j.name)
-      $('#length_customs_presets').val(th_j.customs.r_length)
-      $('#dontusesimilarchars_customs_presets').prop('checked', th_j.customs.dontusesimilarcharsg)
-      $('#cuschaprop_customs_presets').prop('checked', th_j.customs.cuschaprop)
-      $('.customs-presets-add-icon-picker').attr('v', th_j.icon)
-      var icon_e = $('.customs_presets_add_icon_picker_icon[n="' + th_j.icon + '"]')
+      $('#name_custom_presets').val(th_j.name)
+      $('#length_custom_presets').val(th_j.custom.r_length)
+      $('#dontusesimilarchars_custom_presets').prop('checked', th_j.custom.dontusesimilarcharsg)
+      $('#cuschaprop_custom_presets').prop('checked', th_j.custom.cuschaprop)
+      $('.custom-presets-add-icon-picker').attr('v', th_j.icon)
+      var icon_e = $('.custom_presets_add_icon_picker_icon[n="' + th_j.icon + '"]')
       var icon_d = icon_e.attr('icon-d')
       if (icon_e.length < 1) {
         icon_d = 'no'
       }
-      customspresetsiconpickerchange(icon_d, false)
+      custompresetsiconpickerchange(icon_d, false)
       setTimeout(function () {
-        customspresetsiconpickerscroll(icon_d, th_j.icon)
+        custompresetsiconpickerscroll(icon_d, th_j.icon)
       }, 500)
-      $('#capital_customs_presets').val(th_j.customs.capital)
-      $('#lowercase_customs_presets').val(th_j.customs.lowercase)
-      $('#number_customs_presets').val(th_j.customs.number)
-      $('#symbol_customs_presets').val(th_j.customs.symbol)
+      $('#capital_custom_presets').val(th_j.custom.capital)
+      $('#lowercase_custom_presets').val(th_j.custom.lowercase)
+      $('#number_custom_presets').val(th_j.custom.number)
+      $('#symbol_custom_presets').val(th_j.custom.symbol)
     }
   }
-  function addcustomspresetsadd() {
-    var p_name = ($('#name_customs_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
-    var p_length = parseInt($('#length_customs_presets').val())
-    var dontusesimilarchars = $('#dontusesimilarchars_customs_presets').prop('checked')
-    var cuschaprop = $('#cuschaprop_customs_presets').prop('checked')
-    var p_icon = $('.customs-presets-add-icon-picker').attr('v')
-    var p_capital = parseFloat($('#capital_customs_presets').val())
-    var p_lowercase = parseFloat($('#lowercase_customs_presets').val())
-    var p_number = parseFloat($('#number_customs_presets').val())
-    var p_symbol = parseFloat($('#symbol_customs_presets').val())
-    var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(p_name)
+  function addcustompresetsadd() {
+    var p_name = ($('#name_custom_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
+    var p_length = parseInt($('#length_custom_presets').val())
+    var dontusesimilarchars = $('#dontusesimilarchars_custom_presets').prop('checked')
+    var cuschaprop = $('#cuschaprop_custom_presets').prop('checked')
+    var p_icon = $('.custom-presets-add-icon-picker').attr('v')
+    var p_capital = parseFloat($('#capital_custom_presets').val())
+    var p_lowercase = parseFloat($('#lowercase_custom_presets').val())
+    var p_number = parseFloat($('#number_custom_presets').val())
+    var p_symbol = parseFloat($('#symbol_custom_presets').val())
+    var p_hx = 'pwdgen2_custom_presets_custom_d_' + sha256(p_name)
     if (p_name === '') {
       mes('Name is required.')
       return '';
@@ -4347,7 +4347,7 @@
       'icon': p_icon,
       'name': p_name,
       'fd': String(p_name).toLowerCase(),
-      'customs': {
+      'custom': {
         'r_length': p_length,
         'dontusesimilarcharsg': dontusesimilarchars,
         'cuschaprop': cuschaprop,
@@ -4359,21 +4359,21 @@
     }
 
     localStorage.setItem(p_hx, JSON.stringify(p_json))
-    closecustomspresetsadd()
-    customspresets()
+    closecustompresetsadd()
+    custompresets()
     mes('Custom preset added')
   }
-  function savecustomspresetsedit(oldhx) {
-    var p_name = ($('#name_customs_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
-    var p_length = parseInt($('#length_customs_presets').val())
-    var dontusesimilarchars = $('#dontusesimilarchars_customs_presets').prop('checked')
-    var cuschaprop = $('#cuschaprop_customs_presets').prop('checked')
-    var p_icon = $('.customs-presets-add-icon-picker').attr('v')
-    var p_capital = parseFloat($('#capital_customs_presets').val())
-    var p_lowercase = parseFloat($('#lowercase_customs_presets').val())
-    var p_number = parseFloat($('#number_customs_presets').val())
-    var p_symbol = parseFloat($('#symbol_customs_presets').val())
-    var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(p_name)
+  function savecustompresetsedit(oldhx) {
+    var p_name = ($('#name_custom_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
+    var p_length = parseInt($('#length_custom_presets').val())
+    var dontusesimilarchars = $('#dontusesimilarchars_custom_presets').prop('checked')
+    var cuschaprop = $('#cuschaprop_custom_presets').prop('checked')
+    var p_icon = $('.custom-presets-add-icon-picker').attr('v')
+    var p_capital = parseFloat($('#capital_custom_presets').val())
+    var p_lowercase = parseFloat($('#lowercase_custom_presets').val())
+    var p_number = parseFloat($('#number_custom_presets').val())
+    var p_symbol = parseFloat($('#symbol_custom_presets').val())
+    var p_hx = 'pwdgen2_custom_presets_custom_d_' + sha256(p_name)
     if (p_name === '') {
       mes('Name is required.')
       return '';
@@ -4382,7 +4382,7 @@
       'icon': p_icon,
       'name': p_name,
       'fd': String(p_name).toLowerCase(),
-      'customs': {
+      'custom': {
         'r_length': p_length,
         'dontusesimilarcharsg': dontusesimilarchars,
         'cuschaprop': cuschaprop,
@@ -4396,23 +4396,23 @@
       localStorage.removeItem(oldhx)
     }
     localStorage.setItem(p_hx, JSON.stringify(p_json))
-    closecustomspresetsadd()
-    customspresets()
+    closecustompresetsadd()
+    custompresets()
     mes('Custom preset edited')
 
   }
-  function clearcustomspresetsadd() {
-    $('#name_customs_presets').val('')
-    $('#length_customs_presets').val('')
-    $('#dontusesimilarchars_customs_presets').prop('checked', false)
-    $('#cuschaprop_customs_presets').prop('checked', false)
-    $('.customs-presets-add-icon-picker').attr('v', 'default')
-    $('#capital_customs_presets').val('0.25')
-    $('#lowercase_customs_presets').val('0.25')
-    $('#number_customs_presets').val('0.25')
-    $('#symbol_customs_presets').val('0.25')
-    customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="default"]').attr('icon-d'), false)
-    $('.customs-presets-add-icon-picker').scrollLeft(0)
+  function clearcustompresetsadd() {
+    $('#name_custom_presets').val('')
+    $('#length_custom_presets').val('')
+    $('#dontusesimilarchars_custom_presets').prop('checked', false)
+    $('#cuschaprop_custom_presets').prop('checked', false)
+    $('.custom-presets-add-icon-picker').attr('v', 'default')
+    $('#capital_custom_presets').val('0.25')
+    $('#lowercase_custom_presets').val('0.25')
+    $('#number_custom_presets').val('0.25')
+    $('#symbol_custom_presets').val('0.25')
+    custompresetsiconpickerchange($('.custom_presets_add_icon_picker_icon[n="default"]').attr('icon-d'), false)
+    $('.custom-presets-add-icon-picker').scrollLeft(0)
   }
   function showsavedhistory() {
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
