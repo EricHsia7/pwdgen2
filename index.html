@@ -770,7 +770,7 @@
       display: none;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(0.8);
       -webkit-user-select: none;
       user-select: none;
     }
@@ -1255,7 +1255,7 @@
       display: none;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%)
+      transform: translate(-50%, -50%) scale(0.8)
     }
 
     .impbk .impbktitle {
@@ -4702,29 +4702,29 @@
     $('#confirmcftxt').text(confirmtxt).attr('cftxt', confirmtxt)
     $('.confirminput').val('')
     $('body').css({ 'overflow': 'hidden' });
-    $('.confirm_mask,.confirm').css({ 'opacity': '0', 'display': 'block' });
+    $('.confirm_mask,.confirm').css({ 'opacity': '0', 'display': 'block', 'transform': 'translate(-50%,-50%) scale(0.8)' });
 
     setTimeout(function () {
-      $('.confirm_mask,.confirm').css({ 'opacity': '1', 'transition': '0.3s' });
+      $('.confirm_mask,.confirm').css({ 'opacity': '1', 'transition': '0.3s', 'transform': 'translate(-50%,-50%) scale(1)' });
     }, 1);
   }
   function confirmcls() {
     $('body').css({ 'overflow': 'scroll' });
-    $('.confirm_mask,.confirm').css({ 'opacity': '0' });
+    $('.confirm_mask,.confirm').css({ 'opacity': '0', 'transform': 'translate(-50%,-50%) scale(0.8)' });
     setTimeout(function () {
       $('.confirm_mask,.confirm').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
   }
   function imbkpp() {
 
-    $('.confirm_mask,.impbk').css({ 'opacity': '0', 'display': 'block' });
+    $('.confirm_mask,.impbk').css({ 'opacity': '0', 'display': 'block', 'transform': 'translate(-50%,-50%) scale(0.8)' });
 
     setTimeout(function () {
-      $('.confirm_mask,.impbk').css({ 'opacity': '1', 'transition': '0.3s' });
+      $('.confirm_mask,.impbk').css({ 'opacity': '1', 'transition': '0.3s', 'transform': 'translate(-50%,-50%) scale(1)' });
     }, 1);
   }
   function clsimbkpp() {
-    $('.confirm_mask,.impbk').css({ 'opacity': '0' });
+    $('.confirm_mask,.impbk').css({ 'opacity': '0', 'transform': 'translate(-50%,-50%) scale(0.8)' });
     setTimeout(function () {
       $('.confirm_mask,.impbk').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
