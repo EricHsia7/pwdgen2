@@ -748,7 +748,8 @@
 
     .confirm_mask,
     .filter-date-picker-mask,
-    .customs-presets-add-mask {
+    .customs-presets-add-mask,
+    .customs-presets-manager-mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -1516,7 +1517,8 @@
     }
 
     .filter-date-picker,
-    .customs-presets-add {
+    .customs-presets-add,
+    .customs-presets-manager {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -1532,7 +1534,8 @@
     }
 
     .filter-date-picker-title,
-    .customs-presets-add-title {
+    .customs-presets-add-title,
+    .customs-presets-manager-title {
       height: 45px;
       width: calc(100% - 20px);
       position: absolute;
@@ -1637,7 +1640,8 @@
     .filter-date-picker-cancel,
     .filter-date-picker-apply,
     .customs-presets-add-cancel,
-    .customs-presets-add-add {
+    .customs-presets-add-add,
+    .customs-presets-manager-close {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -1659,6 +1663,10 @@
     .filter-date-picker-cancel,
     .customs-presets-add-cancel {
       left: calc(50% + 5px)
+    }
+
+    .customs-presets-manager-close {
+      width: calc(100% - 20px)
     }
 
     .customs-presets-add-box {
@@ -2145,8 +2153,20 @@
     <div class="customs-presets-add-cancel" ripple-onclick="closecustomspresetsadd()">
       Cancel
     </div>
+  </div>
+
+  <div class="customs-presets-manager-mask"></div>
+  <div class="customs-presets-manager">
+    <div class="customs-presets-manager-title">
+      Manage Customs Presets
+    </div>
+
+    <div class="customs-presets-manager-close" ripple-onclick="closecustomspresetsmanager()">
+      Close
+    </div>
 
   </div>
+
 
   <div class="page2">
 
@@ -2458,7 +2478,7 @@
   ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
-  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-cancel,.customs-presets-add-add', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-cancel,.customs-presets-add-add,.customs-presets-manager-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
@@ -4090,6 +4110,12 @@
         }
       }
       if (g === 'managercustompreset') {
+        $('.customs-presets-manager,.customs-presets-manager-mask').css({ 'display': 'block', 'transition': '0.3s' })
+        setTimeout(function () {
+          $('.customs-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+          $('.customs-presets-manager-mask').css({ 'opacity': '1' })
+        }, 1)
+
 
       }
     }
@@ -4113,6 +4139,13 @@
     $('.customs-presets-add-mask').css({ 'opacity': '0' })
     setTimeout(function () {
       $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'none' })
+    }, 500)
+  }
+  function closecustomspresetsmanager() {
+    $('.customs-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.customs-presets-manager-mask').css({ 'opacity': '0' })
+    setTimeout(function () {
+      $('.customs-presets-manager,.customs-presets-manager-mask').css({ 'display': 'none' })
     }, 500)
   }
   function addcustomspresetsadd() {
