@@ -4262,6 +4262,7 @@
     var thdd = $('.customs-presets-manager-box li[dd="' + dd + '"]')
     var th_hx = thdd.attr('hx')
     if (localStorage.hasOwnProperty(th_hx)) {
+      closecustomspresetsmanager()
       applycustomspreset('addcustompreset', false)
       $('.customs-presets-add-title').text('Edit Customs Preset')
       $('.customs-presets-add-add').text('Save').attr('ripple-onclick', 'savecustomspresetsedit(' + "'" + th_hx + "'" + ')')
