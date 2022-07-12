@@ -1790,7 +1790,8 @@
       color: var(--g-4e4e4e)
     }
 
-    .customs-presets-manager-box .customs-presets-manager-icon svg {
+    .customs-presets-manager-box .customs-presets-manager-icon svg,
+    .customs-presets-manager-box .customs-presets-manager-delete svg {
       width: 18px;
       height: 18px;
     }
@@ -1804,6 +1805,18 @@
       display: flex;
       align-items: center;
       color: var(--g-4e4e4e);
+      overflow: hidden;
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-delete {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     @media (min-width: 600px) {
@@ -4175,10 +4188,11 @@
           }
 
           var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(th.name)
-          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><div class="customs-presets-manager-name">' + th.name + '</div><div class="customs-presets-manager-delete"></div></li>'
+          var p_id = gid()
+          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '" dd="' + p_id + '" hx="' + p_hx + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><div class="customs-presets-manager-name">' + th.name + '</div><div class="customs-presets-manager-delete" ripple-onclick="delcustomspresets(' + "'" + p_id + "'" + ')"></div></li>'
 
           $('.customs-presets-manager-box').append(this_html)
-          //ripple('.customs-presets-manager-box li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+          ripple('.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-delete', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
 
 
@@ -4212,6 +4226,16 @@
     setTimeout(function () {
       $('.customs-presets-manager,.customs-presets-manager-mask').css({ 'display': 'none' })
     }, 500)
+    customspresets()
+  }
+  function delcustomspresets(dd) {
+    var thdd = $('.customs-presets-manager-box li[dd="' + p_id + '"]')
+    var th_fd = thdd.attr('fd')
+    var th_hx = thdd.attr('hx')
+    if (localStorage.hasOwnProperty(th_hx)) {
+      localStorage.removeItem(th_hx)
+    }
+    thdd.remove()
   }
   function addcustomspresetsadd() {
     var p_name = ($('#name_customs_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
