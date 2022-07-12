@@ -4112,6 +4112,7 @@
     console.log(icon_d)
     if (icon_d === 'no') {
       icon_d = $('.customs_presets_add_icon_picker_icon[n="' + name + '"]').attr('icon-d')
+      customspresetsiconpickerchange(icon_d,false)
     }
     console.log(name)
     if ($('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').length > 0) {
@@ -4312,8 +4313,9 @@
       $('#dontusesimilarchars_customs_presets').prop('checked', th_j.customs.dontusesimilarcharsg)
       $('#cuschaprop_customs_presets').prop('checked', th_j.customs.cuschaprop)
       $('.customs-presets-add-icon-picker').attr('v', th_j.icon)
+
       var icon_d = $('.customs_presets_add_icon_picker_icon[n="' + th_j.icon + '"]').attr('icon-d')
-      customspresetsiconpickerchange(icon_d)
+      customspresetsiconpickerchange(icon_d,false)
       setTimeout(function () {
         customspresetsiconpickerscroll(icon_d, th_j.icon)
       }, 500)
