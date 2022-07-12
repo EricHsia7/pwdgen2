@@ -4100,6 +4100,7 @@
     customs_presets_switch(g)
     if (od === '1') {
       if (g === 'addcustompreset') {
+        clearcustomspresetsadd()
         $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
         setTimeout(function () {
           $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
@@ -4195,8 +4196,6 @@
           $('.customs-presets-manager-box').append(this_html)
           ripple('.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-delete', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
-
-
       }
     }
     else {
@@ -4220,6 +4219,7 @@
     setTimeout(function () {
       $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'none' })
     }, 500)
+    clearcustomspresetsadd()
   }
   function closecustomspresetsmanager() {
     $('.customs-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
@@ -4237,6 +4237,7 @@
       localStorage.removeItem(th_hx)
     }
     thdd.remove()
+    mes('Customs preset deleted')
   }
   function addcustomspresetsadd() {
     var p_name = ($('#name_customs_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
@@ -4271,7 +4272,21 @@
     localStorage.setItem(p_hx, JSON.stringify(p_json))
     closecustomspresetsadd()
     customspresets()
-    mes('Preset added')
+    mes('Customs preset added')
+  }
+  function clearcustomspresetsadd() {
+    $('#name_customs_presets').val('')
+    $('#length_customs_presets').val('')
+    $('#dontusesimilarchars_customs_presets').prop('checked', false)
+    $('#cuschaprop_customs_presets').prop('checked', false)
+    $('.customs-presets-add-icon-picker').attr('v', 'default')
+    $('.customs-presets-add-icon-picker').scrollLeft(0)
+    customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="default]').attr('icon-d'))
+    $('#capital_customs_presets').val('0.25')
+    $('#lowercase_customs_presets').val('0.25')
+    $('#number_customs_presets').val('0.25')
+    $('#symbol_customs_presets').val('0.25')
+
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
