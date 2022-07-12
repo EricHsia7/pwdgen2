@@ -4107,10 +4107,10 @@
   }
   function customspresetsiconpickerscroll(icon_d) {
     if ($('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').length > 0) {
-      var filterbox_width = $('.customs_presets_add_icon_picker').width()
-      var pl_offset_left = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').offset().left - $('.customs_presets_add_icon_picker').offset().left - $(document).scrollLeft() + $('.customs_presets_add_icon_picker').scrollLeft()
+      var filterbox_width = $('.customs-presets-add-icon-picker').width()
+      var pl_offset_left = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').offset().left - $('.customs-presets-add-icon-picker').offset().left - $(document).scrollLeft() + $('.customs-presets-add-icon-picker').scrollLeft()
       var pl_width = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').width()
-      var filterbox_content_width = document.querySelector('.customs_presets_add_icon_picker').scrollWidth
+      var filterbox_content_width = document.querySelector('.customs-presets-add-icon-picker').scrollWidth
       var plscrollleft = 0
       if (pl_offset_left > (filterbox_width - pl_width) / 2 && (filterbox_content_width - pl_offset_left - pl_width) > (filterbox_width - pl_width) / 2) {
         plscrollleft = ((filterbox_width - pl_width) / 2 - pl_offset_left) * (-1)
@@ -4120,7 +4120,7 @@
           plscrollleft = filterbox_content_width - filterbox_width
         }
       }
-      $('.customs_presets_add_icon_picker').animate({ 'scrollLeft': plscrollleft }, 300)
+      $('.customs-presets-add-icon-picker').animate({ 'scrollLeft': plscrollleft }, 300)
     }
   }
   var customs_presets_icon_load = 0
