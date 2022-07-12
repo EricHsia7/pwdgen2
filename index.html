@@ -4729,7 +4729,8 @@
     }, 1);
   }
   function clsimbkpp() {
-    $('.confirm_mask,.impbk').css({ 'opacity': '0', 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    $('.confirm_mask,.impbk').css({ 'opacity': '0' })
+    $('.impbk').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
     setTimeout(function () {
       $('.confirm_mask,.impbk').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
