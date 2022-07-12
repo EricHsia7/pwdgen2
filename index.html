@@ -2193,7 +2193,7 @@
   <div class="customs-presets-add-mask"></div>
   <div class="customs-presets-add">
     <div class="customs-presets-add-title">
-      Add Customs Preset
+      Add Custom Preset
     </div>
     <div class="customs-presets-add-box">
       <input type="text" placeholder="name" class="customs-presets-add-b10" id="name_customs_presets">
@@ -2225,7 +2225,7 @@
   <div class="customs-presets-manager-mask"></div>
   <div class="customs-presets-manager">
     <div class="customs-presets-manager-title">
-      Manage Customs Presets
+      Manage Custom Presets
     </div>
     <div class="customs-presets-manager-box">
 
@@ -4277,7 +4277,7 @@
     $('.customs-presets-add-mask').css({ 'opacity': '0' })
     setTimeout(function () {
       $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'none' })
-      $('.customs-presets-add-title').text('Add Customs Preset')
+      $('.customs-presets-add-title').text('Add Custom Preset')
       $('.customs-presets-add-add').text('Add').attr('ripple-onclick', 'addcustomspresetsadd()')
     }, 500)
     clearcustomspresetsadd()
@@ -4297,7 +4297,7 @@
       localStorage.removeItem(th_hx)
     }
     thdd.remove()
-    mes('Customs preset deleted')
+    mes('Custom preset deleted')
   }
   function editcustomspresets(dd) {
     var thdd = $('.customs-presets-manager-box li[dd="' + dd + '"]')
@@ -4305,7 +4305,7 @@
     if (localStorage.hasOwnProperty(th_hx)) {
       closecustomspresetsmanager()
       applycustomspreset('addcustompreset', false)
-      $('.customs-presets-add-title').text('Edit Customs Preset')
+      $('.customs-presets-add-title').text('Edit Custom Preset')
       $('.customs-presets-add-add').text('Save').attr('ripple-onclick', 'savecustomspresetsedit(' + "'" + th_hx + "'" + ')')
       var th_j = JSON.parse(String(localStorage.getItem(th_hx)))
       $('#name_customs_presets').val(th_j.name)
@@ -4361,7 +4361,7 @@
     localStorage.setItem(p_hx, JSON.stringify(p_json))
     closecustomspresetsadd()
     customspresets()
-    mes('Customs preset added')
+    mes('Custom preset added')
   }
   function savecustomspresetsedit(oldhx) {
     var p_name = ($('#name_customs_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
@@ -4398,7 +4398,7 @@
     localStorage.setItem(p_hx, JSON.stringify(p_json))
     closecustomspresetsadd()
     customspresets()
-    mes('Customs preset edited')
+    mes('Custom preset edited')
 
   }
   function clearcustomspresetsadd() {
