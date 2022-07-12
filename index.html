@@ -748,7 +748,8 @@
 
     .confirm_mask,
     .filter-date-picker-mask,
-    .customs-presets-add-mask {
+    .customs-presets-add-mask,
+    .customs-presets-manager-mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -1516,7 +1517,8 @@
     }
 
     .filter-date-picker,
-    .customs-presets-add {
+    .customs-presets-add,
+    .customs-presets-manager {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -1532,7 +1534,8 @@
     }
 
     .filter-date-picker-title,
-    .customs-presets-add-title {
+    .customs-presets-add-title,
+    .customs-presets-manager-title {
       height: 45px;
       width: calc(100% - 20px);
       position: absolute;
@@ -1637,7 +1640,8 @@
     .filter-date-picker-cancel,
     .filter-date-picker-apply,
     .customs-presets-add-cancel,
-    .customs-presets-add-add {
+    .customs-presets-add-add,
+    .customs-presets-manager-close {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -1661,7 +1665,12 @@
       left: calc(50% + 5px)
     }
 
-    .customs-presets-add-box {
+    .customs-presets-manager-close {
+      width: calc(100% - 20px)
+    }
+
+    .customs-presets-add-box,
+    .customs-presets-manager-box {
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
@@ -1757,6 +1766,72 @@
       width: 18px;
       height: 18px;
       background: var(--g-4e4e4e);
+    }
+
+    .customs-presets-manager-box li {
+      width: 100%;
+      height: 35px;
+      position: relative;
+      display: block;
+      margin: 0px;
+      padding: 0px;
+      border-bottom: 1px solid var(--g-f4f4f4);
+    }
+
+    .customs-presets-manager-box li:nth-last-child(1) {
+      border: none;
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-icon {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      height: 25px;
+      width: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--g-4e4e4e);
+      border-radius: 3px;
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-icon svg,
+    .customs-presets-manager-box .customs-presets-manager-delete svg,
+    .customs-presets-manager-box .customs-presets-manager-edit svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-name {
+      position: absolute;
+      top: 5px;
+      left: 35px;
+      height: 25px;
+      width: calc(100% - 35px - 35px - 35px);
+      display: flex;
+      align-items: center;
+      color: var(--g-4e4e4e);
+      overflow: hidden;
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-delete,
+    .customs-presets-manager-box .customs-presets-manager-edit {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      overflow: hidden;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: -webkit-radial-gradient(white, black);
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-edit {
+      right: 35px;
     }
 
     @media (min-width: 600px) {
@@ -2145,8 +2220,21 @@
     <div class="customs-presets-add-cancel" ripple-onclick="closecustomspresetsadd()">
       Cancel
     </div>
-
   </div>
+
+  <div class="customs-presets-manager-mask"></div>
+  <div class="customs-presets-manager">
+    <div class="customs-presets-manager-title">
+      Manage Customs Presets
+    </div>
+    <div class="customs-presets-manager-box">
+
+    </div>
+    <div class="customs-presets-manager-close" ripple-onclick="closecustomspresetsmanager()">
+      Close
+    </div>
+  </div>
+
 
   <div class="page2">
 
@@ -2458,7 +2546,7 @@
   ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
-  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-cancel,.customs-presets-add-add', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.customs-presets-add-cancel,.customs-presets-add-add,.customs-presets-manager-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
@@ -2940,6 +3028,8 @@
   let customs_presets_default = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M53.2486 20.7764L50.1249 13.5119L42.5698 10.1703L50.1249 6.90125L53.2486 7.10543e-15L56.3723 6.90125L63.9274 10.1703L56.3723 13.5119L53.2486 20.7764ZM53.2486 64L50.1249 57.0261L42.5698 53.7571L50.1249 50.4881L53.2486 43.151L56.3723 50.4881L63.9274 53.7571L56.3723 57.0261L53.2486 64ZM21.3575 52.8127L14.6742 38.5017L0.0726459 31.9637L14.6742 25.4257L21.3575 11.1873L28.1135 25.4257L42.6425 31.9637L28.1135 38.5017L21.3575 52.8127ZM21.3575 42.0613L24.8445 35.0874L31.9637 31.9637L24.8445 28.84L21.3575 21.8661L17.9432 28.84L10.7514 31.9637L17.9432 35.0874L21.3575 42.0613Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
   let plusicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.5714 64L28.5714 35.4286L0 35.4286L0 28.5714L28.5714 28.5714L28.5714 7.10543e-15L35.4286 7.10543e-15L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
   let customs_presets_manager = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12.56 34.08L41.44 34.08L41.44 29.28L12.56 29.28L12.56 34.08ZM12.56 23.76L41.44 23.76L41.44 18.96L12.56 18.96L12.56 23.76ZM4.8 57.6C3.52 57.6 2.4 57.12 1.44 56.16C0.48 55.2 0 54.08 0 52.8L0 11.2C0 9.92 0.48 8.8 1.44 7.84C2.4 6.88 3.52 6.4 4.8 6.4L59.2 6.4C60.48 6.4 61.6 6.88 62.56 7.84C63.52 8.8 64 9.92 64 11.2L64 52.8C64 54.08 63.52 55.2 62.56 56.16C61.6 57.12 60.48 57.6 59.2 57.6L4.8 57.6ZM4.8 52.8L59.2 52.8L59.2 11.2L4.8 11.2L4.8 52.8ZM4.8 52.8L4.8 11.2L4.8 52.8Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
+  let trashicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12.5333 64C11.1111 64 9.86667 63.4667 8.8 62.4C7.73333 61.3333 7.2 60.0889 7.2 58.6667L7.2 8L3.55556 8L3.55556 2.66667L20.2667 2.66667L20.2667 7.10543e-15L43.7333 7.10543e-15L43.7333 2.66667L60.4444 2.66667L60.4444 8L56.8 8L56.8 58.6667C56.8 60.0889 56.2667 61.3333 55.2 62.4C54.1333 63.4667 52.8889 64 51.4667 64L12.5333 64ZM51.4667 8L12.5333 8L12.5333 58.6667L51.4667 58.6667L51.4667 8ZM21.9556 51.0222L27.2889 51.0222L27.2889 15.5556L21.9556 15.5556L21.9556 51.0222ZM36.7111 51.0222L42.0444 51.0222L42.0444 15.5556L36.7111 15.5556L36.7111 51.0222ZM12.5333 8L12.5333 58.6667L12.5333 8Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" /></svg>'
+  let editicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.23874 58.7613L9.08049 58.7613L47.7599 20.0819L43.9181 16.2401L5.23874 54.9195L5.23874 58.7613ZM58.8486 16.3274L47.6726 5.15143L51.3397 1.48431C52.3292 0.494771 53.5516 6.45324e-07 55.0068 6.45324e-07C56.462 6.45324e-07 57.6844 0.494771 58.6739 1.48431L62.5157 5.32606C63.5052 6.3156 64 7.53797 64 8.99318C64 10.4484 63.5052 11.6708 62.5157 12.6603L58.8486 16.3274ZM55.1814 19.9945L11.176 64L7.10543e-15 64L7.10543e-15 52.824L44.0055 8.81855L55.1814 19.9945ZM45.839 18.161L43.9181 16.2401L47.7599 20.0819L45.839 18.161Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
   function mes(mess) {
     $('body').prompt({ 'message': mess, 'time': 1200 });
   }
@@ -3985,14 +4075,14 @@
         var this_icon = '<div class="material-symbols-outlined" translate="no">' + th.icon + '</div>'
       }
 
-      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustomspreset(' + "'" + th.fd + "'" + ')"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span</li>'
+      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustomspreset(' + "'" + th.fd + "'" + ')"><div class="customs-presets-icon">' + this_icon + '</div><span>' + th.name + '</span></li>'
       $('.customs-presets').append(this_html)
       ripple('.customs-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
     }
 
 
     //add,manager
-    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'addcustompreset' + "'" + ')"><div class="customs-presets-icon">' + plusicon + '</div><span>Add</span</li>'
+    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="customs-presets-icon">' + plusicon + '</div><span>Add</span</li>'
     var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" ripple-onclick="applycustomspreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="customs-presets-icon">' + customs_presets_manager + '</div><span>Manager</span</li>'
     $('.customs-presets').append(add_li_html + ' ' + manager_html)
     ripple('.customs-presets li[fd="addcustompreset"],.customs-presets li[fd="managercustompreset"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
@@ -4021,11 +4111,14 @@
     $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se', '1')
   }
   var customs_presets_icon_load = 0
-  function applycustomspreset(g) {
+  function applycustomspreset(g, clearval) {
     var od = $('.customs-presets li[fd="' + g + '"]').attr('od')
     customs_presets_switch(g)
     if (od === '1') {
       if (g === 'addcustompreset') {
+        if (clearval) {
+          clearcustomspresetsadd()
+        }
         $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
         setTimeout(function () {
           $('.customs-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
@@ -4090,7 +4183,37 @@
         }
       }
       if (g === 'managercustompreset') {
+        $('.customs-presets-manager,.customs-presets-manager-mask').css({ 'display': 'block', 'transition': '0.3s' })
+        setTimeout(function () {
+          $('.customs-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+          $('.customs-presets-manager-mask').css({ 'opacity': '1' })
+        }, 1)
 
+        $('.customs-presets-manager-box').html('')
+
+        var customs_presets_manager_j = []
+        var customspresets_arr = searchItemsbyname('pwdgen2_customs_presets_custom_d_')
+        for (var i = 0; i < customspresets_arr.length; i++) {
+          customs_presets_manager_j.push(JSON.parse(String(localStorage.getItem(customspresets_arr[i]))))
+        }
+        //print
+        for (var i = 0; i < customs_presets_manager_j.length; i++) {
+          var th = customs_presets_manager_j[i]
+          var this_icon = customs_presets_default
+          if (th.icon === 'default') {
+            //this_icon = customs_presets_default
+          }
+          else {
+            var this_icon = '<div class="material-symbols-outlined" translate="no">' + th.icon + '</div>'
+          }
+
+          var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(th.name)
+          var p_id = gid()
+          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '" dd="' + p_id + '" hx="' + p_hx + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><div class="customs-presets-manager-name">' + th.name + '</div><div class="customs-presets-manager-edit" ripple-onclick="editcustomspresets(' + "'" + p_id + "'" + ')">' + editicon + '</div><div class="customs-presets-manager-delete" ripple-onclick="delcustomspresets(' + "'" + p_id + "'" + ')">' + trashicon + '</div></li>'
+
+          $('.customs-presets-manager-box').append(this_html)
+          ripple('.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-delete,.customs-presets-manager-box li[dd="' + p_id + '"] .customs-presets-manager-edit', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        }
       }
     }
     else {
@@ -4113,7 +4236,48 @@
     $('.customs-presets-add-mask').css({ 'opacity': '0' })
     setTimeout(function () {
       $('.customs-presets-add,.customs-presets-add-mask').css({ 'display': 'none' })
+      $('.customs-presets-add-title').text('Add Customs Preset')
+      $('.customs-presets-add-add').text('Add').attr('ripple-onclick', 'addcustomspresetsadd()')
     }, 500)
+    clearcustomspresetsadd()
+  }
+  function closecustomspresetsmanager() {
+    $('.customs-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.customs-presets-manager-mask').css({ 'opacity': '0' })
+    setTimeout(function () {
+      $('.customs-presets-manager,.customs-presets-manager-mask').css({ 'display': 'none' })
+    }, 500)
+    customspresets()
+  }
+  function delcustomspresets(dd) {
+    var thdd = $('.customs-presets-manager-box li[dd="' + dd + '"]')
+    var th_hx = thdd.attr('hx')
+    if (localStorage.hasOwnProperty(th_hx)) {
+      localStorage.removeItem(th_hx)
+    }
+    thdd.remove()
+    mes('Customs preset deleted')
+  }
+  function editcustomspresets(dd) {
+    var thdd = $('.customs-presets-manager-box li[dd="' + dd + '"]')
+    var th_hx = thdd.attr('hx')
+    if (localStorage.hasOwnProperty(th_hx)) {
+      closecustomspresetsmanager()
+      applycustomspreset('addcustompreset', false)
+      $('.customs-presets-add-title').text('Edit Customs Preset')
+      $('.customs-presets-add-add').text('Save').attr('ripple-onclick', 'savecustomspresetsedit(' + "'" + th_hx + "'" + ')')
+      var th_j = JSON.parse(String(localStorage.getItem(th_hx)))
+      $('#name_customs_presets').val(th_j.name)
+      $('#length_customs_presets').val(th_j.customs.r_length)
+      $('#dontusesimilarchars_customs_presets').prop('checked', th_j.customs.dontusesimilarcharsg)
+      $('#cuschaprop_customs_presets').prop('checked', th_j.customs.cuschaprop)
+      $('.customs-presets-add-icon-picker').attr('v', th_j.icon)
+      customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="' + th_j.icon + '"]').attr('icon-d'))
+      $('#capital_customs_presets').val(th_j.customs.capital)
+      $('#lowercase_customs_presets').val(th_j.customs.lowercase)
+      $('#number_customs_presets').val(th_j.customs.number)
+      $('#symbol_customs_presets').val(th_j.customs.symbol)
+    }
   }
   function addcustomspresetsadd() {
     var p_name = ($('#name_customs_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
@@ -4148,7 +4312,59 @@
     localStorage.setItem(p_hx, JSON.stringify(p_json))
     closecustomspresetsadd()
     customspresets()
-    mes('Preset added')
+    mes('Customs preset added')
+  }
+  function savecustomspresetsedit(oldhx) {
+    var p_name = ($('#name_customs_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
+    var p_length = parseInt($('#length_customs_presets').val())
+    var dontusesimilarchars = $('#dontusesimilarchars_customs_presets').prop('checked')
+    var cuschaprop = $('#cuschaprop_customs_presets').prop('checked')
+    var p_icon = $('.customs-presets-add-icon-picker').attr('v')
+    var p_capital = parseFloat($('#capital_customs_presets').val())
+    var p_lowercase = parseFloat($('#lowercase_customs_presets').val())
+    var p_number = parseFloat($('#number_customs_presets').val())
+    var p_symbol = parseFloat($('#symbol_customs_presets').val())
+    var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(p_name)
+    if (p_name === '') {
+      mes('Name is required.')
+      return '';
+    }
+    var p_json = {
+      'icon': p_icon,
+      'name': p_name,
+      'fd': String(p_name).toLowerCase(),
+      'customs': {
+        'r_length': p_length,
+        'dontusesimilarcharsg': dontusesimilarchars,
+        'cuschaprop': cuschaprop,
+        'capital': p_capital,
+        'lowercase': p_lowercase,
+        'number': p_number,
+        'symbol': p_symbol
+      }
+    }
+    if (localStorage.hasOwnProperty(oldhx)) {
+      localStorage.removeItem(oldhx)
+    }
+    localStorage.setItem(p_hx, JSON.stringify(p_json))
+    closecustomspresetsadd()
+    customspresets()
+    mes('Customs preset edited')
+
+  }
+  function clearcustomspresetsadd() {
+    $('#name_customs_presets').val('')
+    $('#length_customs_presets').val('')
+    $('#dontusesimilarchars_customs_presets').prop('checked', false)
+    $('#cuschaprop_customs_presets').prop('checked', false)
+    $('.customs-presets-add-icon-picker').attr('v', 'default')
+    $('.customs-presets-add-icon-picker').scrollLeft(0)
+    customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="default"]').attr('icon-d'))
+    $('#capital_customs_presets').val('0.25')
+    $('#lowercase_customs_presets').val('0.25')
+    $('#number_customs_presets').val('0.25')
+    $('#symbol_customs_presets').val('0.25')
+
   }
   function showsavedhistory() {
     //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
