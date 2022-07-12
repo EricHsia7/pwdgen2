@@ -13,9 +13,6 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" kji="light">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" kji="dark">
   <link rel="manifest" href="https://erichsia7.github.io/pwdgen2/manifest.json?e1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400&display=swap" rel="stylesheet">
   <style id="mainstyle">
     * {
       -webkit-appearance: none;
@@ -4399,6 +4396,9 @@
     custompresetsiconpickerchange($('.custom_presets_add_icon_picker_icon[n="default"]').attr('icon-d'), false)
     $('.custom-presets-add-icon-picker').scrollLeft(0)
   }
+  function loadgooglefont() {
+    $('head').append('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400&display=swap" rel="stylesheet">')
+  }
   function showsavedhistory() {
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var savedlist_t = []
@@ -4494,11 +4494,15 @@
         $('.history-filter li[gx="hashtag-loading"]').remove()
         ripple('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         history_filter_load = 1
+        loadgooglefont()
       }, 1200);
     }
     else {
       $('.history .loading').remove()
       deletepwcache()
+      $(document).ready(function() {
+        loadgooglefont()
+      })
     }
   }
 
