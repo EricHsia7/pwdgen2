@@ -4303,9 +4303,10 @@
       $('#cuschaprop_customs_presets').prop('checked', th_j.customs.cuschaprop)
       $('.customs-presets-add-icon-picker').attr('v', th_j.icon)
       var icon_d = $('.customs_presets_add_icon_picker_icon[n="' + th_j.icon + '"]').attr('icon-d')
-      customspresetsiconpickerchange(icon_d, th_j.icon)
+      customspresetsiconpickerchange(icon_d)
       setTimeout(function () {
-        customspresetsiconpickerscroll(icon_d)
+        customspresetsiconpickerscroll(icon_d, th_j.icon)
+
       }, 500)
       $('#capital_customs_presets').val(th_j.customs.capital)
       $('#lowercase_customs_presets').val(th_j.customs.lowercase)
