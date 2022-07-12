@@ -1768,6 +1768,44 @@
       background: var(--g-4e4e4e);
     }
 
+    .customs-presets-manager-box li {
+      width: 100%;
+      height: 35px;
+      position: relative;
+      display: block;
+      margin: 0px;
+      padding: 0px;
+      border-bottom: 1px solid var(--g-f4f4f4);
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-icon {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      height: 25px;
+      width: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--g-4e4e4e)
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .customs-presets-manager-box .customs-presets-manager-name {
+      position: absolute;
+      top: 5px;
+      left: 35px;
+      height: 25px;
+      width: calc(100% - 35px - 35px);
+      display: flex;
+      align-items: center;
+      color: var(--g-4e4e4e);
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -4136,7 +4174,9 @@
             var this_icon = '<div class="material-symbols-outlined" translate="no">' + th.icon + '</div>'
           }
 
-          var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><span>' + th.name + '</span></li>'
+          var p_hx = 'pwdgen2_customs_presets_custom_d_' + sha256(th.name)
+          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '"><div class="customs-presets-manager-icon">' + this_icon + '</div><div class="customs-presets-manager-name">' + th.name + '</div><div class="customs-presets-manager-delete"></div></li>'
+
           $('.customs-presets-manager-box').append(this_html)
           //ripple('.customs-presets-manager-box li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
