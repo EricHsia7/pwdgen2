@@ -4179,6 +4179,7 @@
               $('.customs_presets_add_icon_picker_icon[load="0"]').remove()
               if (custom_presets_icon_picker_scrolled === 0) {
                 customspresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
+                custom_presets_icon_picker_scrolled = 1
               }
             }, 500);
           }
@@ -4204,6 +4205,7 @@
                                 $('.customs_presets_add_icon_picker_icon[load="0"]').remove()
                                 if (custom_presets_icon_picker_scrolled === 0) {
                                   customspresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
+                                  custom_presets_icon_picker_scrolled === 1
                                 }
                               }
                             });
@@ -4312,7 +4314,6 @@
       customspresetsiconpickerchange(icon_d)
       setTimeout(function () {
         customspresetsiconpickerscroll(icon_d, th_j.icon)
-
       }, 500)
       $('#capital_customs_presets').val(th_j.customs.capital)
       $('#lowercase_customs_presets').val(th_j.customs.lowercase)
