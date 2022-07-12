@@ -4109,6 +4109,9 @@
   var custom_presets_icon_picker_scrolled = 1
   var custom_presets_icon_picker_scroll_name = ''
   function customspresetsiconpickerscroll(icon_d, name) {
+    if (icon_d === 'no') {
+      icon_d = $('.customs_presets_add_icon_picker_icon[n="' + name + '"]').attr('icon-d')
+    }
     if ($('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').length > 0) {
       var filterbox_width = $('.customs-presets-add-icon-picker').width()
       var pl_offset_left = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').offset().left - $('.customs-presets-add-icon-picker').offset().left - $(document).scrollLeft() + $('.customs-presets-add-icon-picker').scrollLeft()
@@ -4175,7 +4178,7 @@
               }
               $('.customs_presets_add_icon_picker_icon[load="0"]').remove()
               if (custom_presets_icon_picker_scrolled === 0) {
-                customspresetsiconpickerscroll()
+                customspresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
               }
             }, 500);
           }
