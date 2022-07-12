@@ -4411,11 +4411,10 @@
     $('#lowercase_customs_presets').val('0.25')
     $('#number_customs_presets').val('0.25')
     $('#symbol_customs_presets').val('0.25')
-    customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="default"]').attr('icon-d'))
+    customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="default"]').attr('icon-d'), false)
     $('.customs-presets-add-icon-picker').scrollLeft(0)
   }
   function showsavedhistory() {
-    //var savedlist = String(localStorage.getItem('pwdgen2_saved_list')).split(',')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var savedlist_t = []
     var savedlist_d = []
