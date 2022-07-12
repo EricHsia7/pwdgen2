@@ -4105,10 +4105,28 @@
     }
     $('.customs-presets').animate({ 'scrollLeft': fdscrollleft }, 300)
   }
+  function customspresetsiconpickerscroll(icon_d) {
+    var filterbox_width =$('.customs_presets_add_icon_picker').width()
+    var pl_offset_left = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').offset().left - $('.customs_presets_add_icon_picker').offset().left - $(document).scrollLeft() + $('.customs_presets_add_icon_picker').scrollLeft()
+    var pl_width = $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').width()
+    var filterbox_content_width = document.querySelector('.customs_presets_add_icon_picker').scrollWidth
+    var plscrollleft = 0
+    if (pl_offset_left > (filterbox_width - pl_width) / 2 && (filterbox_content_width - pl_offset_left - pl_width) > (filterbox_width - pl_width) / 2) {
+      plscrollleft = ((filterbox_width - pl_width) / 2 - pl_offset_left) * (-1)
+    }
+    else {
+      if (pl_offset_left > (filterbox_content_width - pl_offset_left - pl_width)) {
+        plscrollleft = filterbox_content_width - filterbox_width
+      }
+    }
+    $('.customs_presets_add_icon_picker').animate({ 'scrollLeft': plscrollleft }, 300)
+
+  }
   function customspresetsiconpickerchange(icon_d) {
     $('.customs-presets-add-icon-picker').attr('v', $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('n'))
     $('.customs_presets_add_icon_picker_icon').attr('se', '0')
     $('.customs_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').attr('se', '1')
+    customspresetsiconpickerscroll(icon_d)
   }
   var customs_presets_icon_load = 0
   function applycustomspreset(g, clearval) {
@@ -4358,7 +4376,6 @@
     $('#dontusesimilarchars_customs_presets').prop('checked', false)
     $('#cuschaprop_customs_presets').prop('checked', false)
     $('.customs-presets-add-icon-picker').attr('v', 'default')
-    $('.customs-presets-add-icon-picker').scrollLeft(0)
     customspresetsiconpickerchange($('.customs_presets_add_icon_picker_icon[n="default"]').attr('icon-d'))
     $('#capital_customs_presets').val('0.25')
     $('#lowercase_customs_presets').val('0.25')
