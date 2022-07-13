@@ -1627,7 +1627,7 @@
     .filter-date-picker-date li::after {
       content: var(--date-picker-result-preview);
       color: var(--g-4e4e4e);
-      height: 10px;
+      height: 15px;
       position: absolute;
       top: 50%;
       right: 5px;
@@ -3266,6 +3266,7 @@
         searchresultcount += 1
       }
     }
+    return searchresultcount
   }
   function initialize_picker() {
     var yyyy = date_picker_all.year.length - 1
