@@ -11,8 +11,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
   <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico" rel="icon" />
-  <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico" rel="bookmark" />
-  <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico" rel="shortcut icon" />
+  <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico"
+    rel="bookmark" />
+  <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico"
+    rel="shortcut icon" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" kji="light">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" kji="dark">
   <link rel="manifest" href="https://erichsia7.github.io/pwdgen2/manifest.json?e1">
@@ -1307,7 +1309,7 @@
       display: block
     }
 
-    .impbk {
+    .restoredata {
       width: var(--u-width);
       height: 140px;
       background: var(--g-f4f4f4);
@@ -1319,7 +1321,7 @@
       transform: translate(-50%, -50%) scale(0.8)
     }
 
-    .impbk .impbktitle {
+    .restoredata .restoredatatitle {
       position: absolute;
       top: 15px;
       left: 15px;
@@ -1333,7 +1335,7 @@
       color: var(--g-4e4e4e)
     }
 
-    .impbk .btn8 {
+    .restoredata .btn8 {
       position: absolute;
       top: calc(15px + 55px + 5px + 5px);
       left: 15px;
@@ -2418,8 +2420,8 @@
       </div>
     </li>
 
-    <li class="options_list" dy="backuppwd" ripple-onclick="backuppwdzip()">
-      <div class="options_list_txt">Backup all saved passwords</div>
+    <li class="options_list" dy="backuppwd" ripple-onclick="backupzip()">
+      <div class="options_list_txt">Backup</div>
       <div class="options_list_icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2436,8 +2438,8 @@
     <label for="imbkpwd">
       <input type="file" id="imbkpwd" name="imbkpwd" accept="application/json">
 
-      <li class="options_list" dy="importbackuppwd">
-        <div class="options_list_txt">Import passwords from backup(JSON)</div>
+      <li class="options_list" dy="restorebackuppwd">
+        <div class="options_list_txt">Restoring data from backup(JSON)</div>
         <div class="options_list_icon">
           <svg stroke-miterlimit="10"
             style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2519,12 +2521,12 @@
     <div class="btn3" style="left:calc(50% + 5px)" ripple-onclick="confirmcls()">Cancel</div>
   </div>
 
-  <div class="impbk">
-    <div class="impbktitle">
-      After confirming the import, you "cannot" cancel it
+  <div class="restoredata">
+    <div class="restoredatatitle">
+      After confirming the restore, you "cannot" cancel it
     </div>
-    <div class="btn8" ripple-onclick="cifimport()">Confirm</div>
-    <div class="btn8" style="left:calc(50% + 5px)" ripple-onclick="clsimbkpp()">Cancel</div>
+    <div class="btn8" ripple-onclick="cifrestore()">Confirm</div>
+    <div class="btn8" style="left:calc(50% + 5px)" ripple-onclick="clsrestoredata_s()">Cancel</div>
   </div>
 
   <div
@@ -4792,7 +4794,7 @@
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
 
-  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="importbackuppwd"]', 'var(--g-4e4e4e)', '0.3', 1300, 'true');
+  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"]', 'var(--g-4e4e4e)', '0.3', 1300, 'true');
   ripple('.confirm .btn3,.btn8', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function deleteallsavedpwds() {
@@ -4845,21 +4847,21 @@
       $('.confirm_mask,.confirm').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
   }
-  function imbkpp() {
+  function restoredata_s() {
 
-    $('.confirm_mask,.impbk').css({ 'opacity': '0', 'display': 'block' });
-    $('.impbk').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    $('.confirm_mask,.restoredata').css({ 'opacity': '0', 'display': 'block' });
+    $('.restoredata').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
 
     setTimeout(function () {
-      $('.confirm_mask,.impbk').css({ 'opacity': '1', 'transition': '0.3s' });
-      $('.impbk').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+      $('.confirm_mask,.restoredata').css({ 'opacity': '1', 'transition': '0.3s' });
+      $('.restoredata').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
     }, 1);
   }
-  function clsimbkpp() {
-    $('.confirm_mask,.impbk').css({ 'opacity': '0' })
-    $('.impbk').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+  function clsrestoredata_s() {
+    $('.confirm_mask,.restoredata').css({ 'opacity': '0' })
+    $('.restoredata').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
     setTimeout(function () {
-      $('.confirm_mask,.impbk').css({ 'display': 'none', 'transition': '0s' });
+      $('.confirm_mask,.restoredata').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
   }
   function viewongithub() {
@@ -4942,17 +4944,17 @@
 
 
 
-  function backuppwdzip() {
+  function backupzip() {
     mes('File processing')
     var bktime = new Date()
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var pwddatalist = [];
     var pwddataliststr = [];
-    var pwddatalistcsv = []
+    var pwddatalistcsv = [];
+    var localstorage_j = [];
     for (var i = 0; i < savedlist.length; i++) {
       if (!(savedlist[i] === 'null')) {
         if (!(localStorage.getItem(savedlist[i]) === null)) {
-
           var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
           var thpwnote = localStorage.getItem('pwdgen2_saved_notes_cf_' + String(savedlist[i]).split('_')[3])
           if (thpwnote === null) {
@@ -4972,21 +4974,22 @@
           }
           var jsonobjgg = { 'pwd_aes': thpwdd[0], 'pwd_iv': thpwdd[1], 'notes': thpwnote, 'time': pwtime.getTime() }
           pwddatalist.push(jsonobjgg)
-          pwddataliststr.push(JSON.stringify(jsonobjgg))
           pwddatalistcsv.push('"' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds()) + '","' + deur(decu(thpwdd[0], thpwdd[1])) + '","' + deur(atob(String(thpwnote))).replaceAll('"', ' ').replaceAll("'", ' ') + '","' + pwtime.getTime() + '"')
-
-
         }
-
       }
     }
-
+    for (var g in localStorage) {
+      if (localStorage.hasOwnProperty(g)) {
+        var lsjson = { 'key': g, 'content': String(localStorage.getItem(g)) }
+        localstorage_j.push(JSON.stringify(lsjson))
+      }
+    }
     //ggg
 
     var zip = new JSZip();
-    zip.file('password_backup_' + bktime.getTime() + '_json.json', '{"time":"' + bktime.getTime() + '","data":[' + pwddataliststr.join(',') + ']}')
-    zip.file('password_backup_' + bktime.getTime() + '_csv.csv', '"Time","password","notes","Time(ms)"\n' + pwddatalistcsv.join('\n'))
-    var txtfolder = zip.folder("Text");
+    zip.file('pwdgen2_backup_full_data_' + bktime.getTime() + '_json.json', '{"time":"' + bktime.getTime() + '","data":[' + localstorage_j.join(',') + ']}')
+    zip.file('pwdgen2_backup_password_only_' + bktime.getTime() + '_csv.csv', '"Time","password","notes","Time(ms)"\n' + pwddatalistcsv.join('\n'))
+    var txtfolder = zip.folder("Passwords(Text)");
 
     for (var w = 0; w < pwddatalist.length; w++) {
       txtfolder.file('#' + w + '_' + pwddatalist[w].time + '.txt', deur(decu(pwddatalist[w].pwd_aes, pwddatalist[w].pwd_iv)), { base64: false });
@@ -4997,23 +5000,20 @@
       .then(function (content) {
         // see FileSaver.js
         mes('File processing completed')
-        saveAs(content, 'password_backup_' + bktime.getTime() + '.zip');
+        saveAs(content, 'pwdgen2_backup_' + bktime.getTime() + '.zip');
       });
   }
 
-  function importpwdfromjson(jsonstr, m) {
+  function restorepwdfromjson(jsonstr, m) {
     jsonstr = String(jsonstr)
     var gjson = JSON.parse(jsonstr)
     var gtime = gjson.time
     var gdata = gjson.data
     for (var w = 0; w < gdata.length; w++) {
       var wpw = gdata[w]
-      var waes = wpw.pwd_aes
-      var wiv = wpw.pwd_iv
-      var wnt = wpw.notes
-      var wtt = wpw.time
-      var wpwd = deur(decu(waes, wiv))
-      var whash = sha256(wpwd + '_' + wtt)
+      if (gtime <= 1657728000900) {
+        m = 1
+      }
       if (m === 0) {
         //overwrite
         //localStorage start
@@ -5024,6 +5024,13 @@
       if (m === 1) {
         //repeat duplicate
         //localStorage start
+        var waes = wpw.pwd_aes
+        var wiv = wpw.pwd_iv
+        var wnt = wpw.notes
+        var wtt = wpw.time
+        var wpwd = deur(decu(waes, wiv))
+        var whash = sha256(wpwd + '_' + wtt)
+
         if (!(localStorage.getItem('pwdgen2_saved_a_' + whash) === null)) {
 
           for (var i = 0; i < 10; i++) {
@@ -5048,48 +5055,42 @@
 
         //localStorage end
       }
-
+      if (m === 2) {
+        localStorage.setItem(wpw.key, wpw.content)
+      }
     }
   }
 
   document.getElementById("imbkpwd").addEventListener("change", handleFileSelect, false);
-
-
   function handleFileSelect(evt) {
+    if (sessionStorage.hasOwnProperty('sizetest')) {
+      sessionStorage.clear()
+    }
     var f = evt.target.files[0];
     var reader = new FileReader();
     reader.onload = (function (theFile) {
       return function (e) {
         var binaryData = e.target.result;
-        sessionStorage.setItem('pwdgen2_import', binaryData)
+        sessionStorage.setItem('pwdgen2_restore', binaryData)
         mes('Loading JSON')
-        imbkpp()
+        restoredata_s()
         mes('Loaded JSON')
       };
     })(f);
     reader.readAsBinaryString(f);
   }
 
-  function cifimport() {
-
-    var jsonhh = sessionStorage.getItem('pwdgen2_import')
-
-    $('.confirm_mask').css({ 'display': 'block', 'opacity': '1', 'background': 'var(--g-ffffff)', 'transition': '0s' }).html('<div style="position:absolute;top:50%;left:50%;color:var(--g-4e4e4e);font-size:25px;transform:translate(-50%,-50%)">importing</div>');
-
-    $('.impbk').css({ 'opacity': '0' });
+  function cifrestore() {
+    var jsonhh = sessionStorage.getItem('pwdgen2_restore')
+    $('.confirm_mask').css({ 'display': 'block', 'opacity': '1', 'background': 'var(--g-ffffff)', 'transition': '0s' }).html('<div style="position:absolute;top:50%;left:50%;color:var(--g-4e4e4e);font-size:25px;transform:translate(-50%,-50%)">Restoring data.</div>');
+    $('.restoredata').css({ 'opacity': '0' });
     setTimeout(function () {
-      $('.impbk').css({ 'display': 'none', 'transition': '0s' });
+      $('.restoredata').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
-
-
-    importpwdfromjson(jsonhh, 0)
-    mes('The page will auto refresh after the import is done!')
-
+    restorepwdfromjson(jsonhh, 2)
     setTimeout(function () {
       vrefresh()
     }, 10000);
-
-
   }
 
   function hexToRgb(hex) {
