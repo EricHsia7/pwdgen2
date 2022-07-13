@@ -34,7 +34,7 @@
       }
 
       50% {
-        filter: brightness(1.1);
+        filter: brightness(1.05);
       }
     }
 
@@ -428,6 +428,13 @@
       height: 20px;
       -webkit-user-select: none;
       user-select: none;
+    }
+
+    .box.loading .btn1 {
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .box.loading .boxtitle,
@@ -1781,6 +1788,10 @@
 
     .custom_presets_add_icon_picker_icon[load="0"] {
       background: var(--g-f4f4f4);
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .custom_presets_li_svg {
@@ -1933,7 +1944,7 @@
   <style id="skeleton-screen-animation">
     :root {
       --e-animation-name: skeletonscreen;
-      --e-animation-duration: 1500ms;
+      --e-animation-duration: 3000ms;
       --e-animation-iteration-count: infinite;
       --e-animation-timing-function: ease-in-out
     }
