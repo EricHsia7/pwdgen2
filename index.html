@@ -4974,10 +4974,8 @@
           }
           var jsonobjgg = { 'pwd_aes': thpwdd[0], 'pwd_iv': thpwdd[1], 'notes': thpwnote, 'time': pwtime.getTime() }
           pwddatalist.push(jsonobjgg)
-          //pwddataliststr.push(JSON.stringify(jsonobjgg))
           pwddatalistcsv.push('"' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds()) + '","' + deur(decu(thpwdd[0], thpwdd[1])) + '","' + deur(atob(String(thpwnote))).replaceAll('"', ' ').replaceAll("'", ' ') + '","' + pwtime.getTime() + '"')
         }
-
       }
     }
     for (var g in localStorage) {
@@ -5064,8 +5062,6 @@
   }
 
   document.getElementById("imbkpwd").addEventListener("change", handleFileSelect, false);
-
-
   function handleFileSelect(evt) {
     if (sessionStorage.hasOwnProperty('sizetest')) {
       sessionStorage.clear()
@@ -5085,25 +5081,16 @@
   }
 
   function cifrestore() {
-
     var jsonhh = sessionStorage.getItem('pwdgen2_restore')
-
     $('.confirm_mask').css({ 'display': 'block', 'opacity': '1', 'background': 'var(--g-ffffff)', 'transition': '0s' }).html('<div style="position:absolute;top:50%;left:50%;color:var(--g-4e4e4e);font-size:25px;transform:translate(-50%,-50%)">Restoring data.</div>');
-
     $('.restoredata').css({ 'opacity': '0' });
     setTimeout(function () {
       $('.restoredata').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
-
-
     restorepwdfromjson(jsonhh, 2)
-    // mes('The page will auto refresh after the restore is done!')
-
     setTimeout(function () {
       vrefresh()
     }, 10000);
-
-
   }
 
   function hexToRgb(hex) {
