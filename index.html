@@ -5013,14 +5013,9 @@
     var gdata = gjson.data
     for (var w = 0; w < gdata.length; w++) {
       var wpw = gdata[w]
-      /*
-      var waes = wpw.pwd_aes
-      var wiv = wpw.pwd_iv
-      var wnt = wpw.notes
-      var wtt = wpw.time
-      var wpwd = deur(decu(waes, wiv))
-      var whash = sha256(wpwd + '_' + wtt)
-      */
+      if (gtime <= 1657728000900) {
+        m = 1
+      }
       if (m === 0) {
         //overwrite
         //localStorage start
@@ -5031,6 +5026,13 @@
       if (m === 1) {
         //repeat duplicate
         //localStorage start
+        var waes = wpw.pwd_aes
+        var wiv = wpw.pwd_iv
+        var wnt = wpw.notes
+        var wtt = wpw.time
+        var wpwd = deur(decu(waes, wiv))
+        var whash = sha256(wpwd + '_' + wtt)
+
         if (!(localStorage.getItem('pwdgen2_saved_a_' + whash) === null)) {
 
           for (var i = 0; i < 10; i++) {
