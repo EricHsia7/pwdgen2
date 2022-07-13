@@ -1623,21 +1623,24 @@
     }
 
     .filter-date-picker-year li::after,
-    .filter-date-picker-month li::after {
-      content: '>';
-      color: var(--g-e3e3e3);
-      width: 10px;
+    .filter-date-picker-month li::after,
+    .filter-date-picker-date li::after {
+      content: var(--date-picker-result-preview);
+      color: var(--g-4e4e4e);
       height: 10px;
       position: absolute;
       top: 50%;
       right: 5px;
       transform: translateY(-50%);
-      display: flex;
+      display: inline-flex;
       justify-content: center;
       align-items: center;
       font-size: 12px;
       user-select: none;
       -webkit-user-select: none;
+      padding: 0px 5px;
+      border-radius: 10px;
+      background: var(--g-e3e3e3);
     }
 
     .filter-date-picker li[e="0"] {
@@ -3237,6 +3240,33 @@
       return strarr.join(',')
     }
   }
+  function date_picker_result_preview(y, m, d) {
+    var strarr = []
+    if (!(y === undefined)) {
+      strarr.push('year:' + date_picker_all.year[y])
+    }
+    else {
+      return false
+    }
+    if (!(m === undefined)) {
+      strarr.push('month:' + (date_picker_all.month[y][m] + 1))
+    }
+    if (!(d === undefined)) {
+      strarr.push('date:' + (date_picker_all.date[y][m][d]))
+    }
+    var searchresultcount = 0
+    var searchtxt = strarr.join(',')
+    for (var g = 0; g < $('.history .box').length; g++) {
+      var hash = $('.history .box').eq(g).attr('hash')
+      var zthstime = parseInt($('.box[hash="' + hash + '"]').attr('t'))
+      var zpwtime = new Date()
+      zpwtime.setTime(zthstime)
+      var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
+      if (zpwtimestr.indexOf(searchtxt) > -1) {
+        searchresultcount += 1
+      }
+    }
+  }
   function initialize_picker() {
     var yyyy = date_picker_all.year.length - 1
     var mmmm = date_picker_all.month[yyyy].length - 1
@@ -3244,13 +3274,13 @@
     var ffid = gid()
     $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('')
     for (var y = 0; y < date_picker_all.year.length; y++) {
-      $('.filter-date-picker-year').append('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" ripple-onclick="date_picker_setyear(' + y + ')"><span>' + date_picker_all.year[y] + '</span></li>')
+      $('.filter-date-picker-year').append('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" ripple-onclick="date_picker_setyear(' + y + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, undefined, undefined) + "'" + '"><span>' + date_picker_all.year[y] + '</span></li>')
       ripple('.filter-date-picker-year li[r="' + ffid + '-' + y + '"]', '#4e4e4e', '0.3', 888, 'true');
       for (var m = 0; m < date_picker_all.month[y].length; m++) {
-        $('.filter-date-picker-month').prepend('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')"><span>' + che(date_picker_all.month[y][m] + 1) + '</span></li>')
+        $('.filter-date-picker-month').prepend('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, m, undefined) + "'" + '"><span>' + che(date_picker_all.month[y][m] + 1) + '</span></li>')
         ripple('.filter-date-picker-month li[r="' + ffid + '-' + y + '-' + m + '"]', '#4e4e4e', '0.3', 888, 'true');
         for (var d = 0; d < date_picker_all.date[y][m].length; d++) {
-          $('.filter-date-picker-date').prepend('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')"><span>' + che(date_picker_all.date[y][m][d]) + '</span></li>')
+          $('.filter-date-picker-date').prepend('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, m, d) + "'" + '"><span>' + che(date_picker_all.date[y][m][d]) + '</span></li>')
           ripple('.filter-date-picker-date li[r="' + ffid + '-' + y + '-' + m + '-' + d + '"]', '#4e4e4e', '0.3', 888, 'true');
         }
       }
