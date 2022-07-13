@@ -1309,7 +1309,7 @@
       display: block
     }
 
-    .impbk {
+    .restoredata {
       width: var(--u-width);
       height: 140px;
       background: var(--g-f4f4f4);
@@ -1321,7 +1321,7 @@
       transform: translate(-50%, -50%) scale(0.8)
     }
 
-    .impbk .impbktitle {
+    .restoredata .restoredatatitle {
       position: absolute;
       top: 15px;
       left: 15px;
@@ -1335,7 +1335,7 @@
       color: var(--g-4e4e4e)
     }
 
-    .impbk .btn8 {
+    .restoredata .btn8 {
       position: absolute;
       top: calc(15px + 55px + 5px + 5px);
       left: 15px;
@@ -2438,7 +2438,7 @@
     <label for="imbkpwd">
       <input type="file" id="imbkpwd" name="imbkpwd" accept="application/json">
 
-      <li class="options_list" dy="importbackuppwd">
+      <li class="options_list" dy="restorebackuppwd">
         <div class="options_list_txt">Restoring data from backup(JSON)</div>
         <div class="options_list_icon">
           <svg stroke-miterlimit="10"
@@ -2521,12 +2521,12 @@
     <div class="btn3" style="left:calc(50% + 5px)" ripple-onclick="confirmcls()">Cancel</div>
   </div>
 
-  <div class="impbk">
-    <div class="impbktitle">
+  <div class="restoredata">
+    <div class="restoredatatitle">
       After confirming the restore, you "cannot" cancel it
     </div>
-    <div class="btn8" ripple-onclick="cifimport()">Confirm</div>
-    <div class="btn8" style="left:calc(50% + 5px)" ripple-onclick="clsimbkpp()">Cancel</div>
+    <div class="btn8" ripple-onclick="cifrestore()">Confirm</div>
+    <div class="btn8" style="left:calc(50% + 5px)" ripple-onclick="clsrestoredata_s()">Cancel</div>
   </div>
 
   <div
@@ -4794,7 +4794,7 @@
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
 
-  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="importbackuppwd"]', 'var(--g-4e4e4e)', '0.3', 1300, 'true');
+  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"]', 'var(--g-4e4e4e)', '0.3', 1300, 'true');
   ripple('.confirm .btn3,.btn8', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function deleteallsavedpwds() {
@@ -4847,21 +4847,21 @@
       $('.confirm_mask,.confirm').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
   }
-  function imbkpp() {
+  function restoredata_s() {
 
-    $('.confirm_mask,.impbk').css({ 'opacity': '0', 'display': 'block' });
-    $('.impbk').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    $('.confirm_mask,.restoredata').css({ 'opacity': '0', 'display': 'block' });
+    $('.restoredata').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
 
     setTimeout(function () {
-      $('.confirm_mask,.impbk').css({ 'opacity': '1', 'transition': '0.3s' });
-      $('.impbk').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+      $('.confirm_mask,.restoredata').css({ 'opacity': '1', 'transition': '0.3s' });
+      $('.restoredata').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
     }, 1);
   }
-  function clsimbkpp() {
-    $('.confirm_mask,.impbk').css({ 'opacity': '0' })
-    $('.impbk').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+  function clsrestoredata_s() {
+    $('.confirm_mask,.restoredata').css({ 'opacity': '0' })
+    $('.restoredata').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
     setTimeout(function () {
-      $('.confirm_mask,.impbk').css({ 'display': 'none', 'transition': '0s' });
+      $('.confirm_mask,.restoredata').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
   }
   function viewongithub() {
@@ -5006,7 +5006,7 @@
       });
   }
 
-  function importpwdfromjson(jsonstr, m) {
+  function restorepwdfromjson(jsonstr, m) {
     jsonstr = String(jsonstr)
     var gjson = JSON.parse(jsonstr)
     var gtime = gjson.time
@@ -5073,29 +5073,29 @@
     reader.onload = (function (theFile) {
       return function (e) {
         var binaryData = e.target.result;
-        sessionStorage.setItem('pwdgen2_import', binaryData)
+        sessionStorage.setItem('pwdgen2_restore', binaryData)
         mes('Loading JSON')
-        imbkpp()
+        restoredata_s()
         mes('Loaded JSON')
       };
     })(f);
     reader.readAsBinaryString(f);
   }
 
-  function cifimport() {
+  function cifrestore() {
 
-    var jsonhh = sessionStorage.getItem('pwdgen2_import')
+    var jsonhh = sessionStorage.getItem('pwdgen2_restore')
 
     $('.confirm_mask').css({ 'display': 'block', 'opacity': '1', 'background': 'var(--g-ffffff)', 'transition': '0s' }).html('<div style="position:absolute;top:50%;left:50%;color:var(--g-4e4e4e);font-size:25px;transform:translate(-50%,-50%)">Restoring data.</div>');
 
-    $('.impbk').css({ 'opacity': '0' });
+    $('.restoredata').css({ 'opacity': '0' });
     setTimeout(function () {
-      $('.impbk').css({ 'display': 'none', 'transition': '0s' });
+      $('.restoredata').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
 
 
-    importpwdfromjson(jsonhh, 2)
-    // mes('The page will auto refresh after the import is done!')
+    restorepwdfromjson(jsonhh, 2)
+    // mes('The page will auto refresh after the restore is done!')
 
     setTimeout(function () {
       vrefresh()
