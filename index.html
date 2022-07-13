@@ -11,8 +11,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
   <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico" rel="icon" />
-  <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico" rel="bookmark" />
-  <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico" rel="shortcut icon" />
+  <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico"
+    rel="bookmark" />
+  <link type="image/x-icon" href="https://erichsia7.github.io/pwdgen2/pwaicon2/256x256_corner_radius.ico"
+    rel="shortcut icon" />
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" kji="light">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" kji="dark">
   <link rel="manifest" href="https://erichsia7.github.io/pwdgen2/manifest.json?e1">
@@ -2418,8 +2420,8 @@
       </div>
     </li>
 
-    <li class="options_list" dy="backuppwd" ripple-onclick="backuppwdzip()">
-      <div class="options_list_txt">Backup all saved passwords</div>
+    <li class="options_list" dy="backuppwd" ripple-onclick="backupzip()">
+      <div class="options_list_txt">Backup</div>
       <div class="options_list_icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -4942,17 +4944,17 @@
 
 
 
-  function backuppwdzip() {
+  function backupzip() {
     mes('File processing')
     var bktime = new Date()
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var pwddatalist = [];
     var pwddataliststr = [];
-    var pwddatalistcsv = []
+    var pwddatalistcsv = [];
+    var localstorage_j = [];
     for (var i = 0; i < savedlist.length; i++) {
       if (!(savedlist[i] === 'null')) {
         if (!(localStorage.getItem(savedlist[i]) === null)) {
-
           var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
           var thpwnote = localStorage.getItem('pwdgen2_saved_notes_cf_' + String(savedlist[i]).split('_')[3])
           if (thpwnote === null) {
@@ -4972,20 +4974,23 @@
           }
           var jsonobjgg = { 'pwd_aes': thpwdd[0], 'pwd_iv': thpwdd[1], 'notes': thpwnote, 'time': pwtime.getTime() }
           pwddatalist.push(jsonobjgg)
-          pwddataliststr.push(JSON.stringify(jsonobjgg))
+          //pwddataliststr.push(JSON.stringify(jsonobjgg))
           pwddatalistcsv.push('"' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds()) + '","' + deur(decu(thpwdd[0], thpwdd[1])) + '","' + deur(atob(String(thpwnote))).replaceAll('"', ' ').replaceAll("'", ' ') + '","' + pwtime.getTime() + '"')
-
-
         }
 
       }
     }
-
+    for (var g in localStorage) {
+      if (localStorage.hasOwnProperty(g)) {
+        var lsjson = { 'key': g, 'content': String(localStorage.getItem(g)) }
+        localstorage_j.push(JSON.stringify(lsjson))
+      }
+    }
     //ggg
 
     var zip = new JSZip();
-    zip.file('password_backup_' + bktime.getTime() + '_json.json', '{"time":"' + bktime.getTime() + '","data":[' + pwddataliststr.join(',') + ']}')
-    zip.file('password_backup_' + bktime.getTime() + '_csv.csv', '"Time","password","notes","Time(ms)"\n' + pwddatalistcsv.join('\n'))
+    zip.file('pwdgen2_backup_full_' + bktime.getTime() + '_json.json', '{"time":"' + bktime.getTime() + '","data":[' + localstorage_j.join(',') + ']}')
+    zip.file('pwdgen2_backup_password_only_' + bktime.getTime() + '_csv.csv', '"Time","password","notes","Time(ms)"\n' + pwddatalistcsv.join('\n'))
     var txtfolder = zip.folder("Text");
 
     for (var w = 0; w < pwddatalist.length; w++) {
@@ -5008,12 +5013,14 @@
     var gdata = gjson.data
     for (var w = 0; w < gdata.length; w++) {
       var wpw = gdata[w]
+      /*
       var waes = wpw.pwd_aes
       var wiv = wpw.pwd_iv
       var wnt = wpw.notes
       var wtt = wpw.time
       var wpwd = deur(decu(waes, wiv))
       var whash = sha256(wpwd + '_' + wtt)
+      */
       if (m === 0) {
         //overwrite
         //localStorage start
@@ -5048,7 +5055,9 @@
 
         //localStorage end
       }
-
+      if (m === 2) {
+        localStorage.setItem(wpw.key, wpw.content)
+      }
     }
   }
 
@@ -5082,7 +5091,7 @@
     }, 300);
 
 
-    importpwdfromjson(jsonhh, 0)
+    importpwdfromjson(jsonhh, 2)
     mes('The page will auto refresh after the import is done!')
 
     setTimeout(function () {
