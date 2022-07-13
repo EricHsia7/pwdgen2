@@ -1032,8 +1032,8 @@
     }
 
     #pwdcheckscore-svg {
-      width: 80px;
-      height: 80px;
+      width: 75px;
+      height: 75px;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -4663,7 +4663,7 @@
     var chpwpt = checkpwd($('.input2 input').val(), false)
     $('.chpwfratxt').text('Your password is ' + String(chpwpt.str).toLowerCase() + '.')
     $('.pwdcheckscore-text').text(chpwpt.p)
-    $('#pwdcheckscore').css({ '--pwd-check-score': chpwpt.p })
+    $('#pwdcheckscore').css({ '--pwd-check-score': chpwpt.p, 'transition': '0.5s' })
     $('#chpwevdis').text(parseInt(chpwpt.details.evdis) + '/100')
     $('#chpwlen').text(parseInt(chpwpt.details.len) + '/100')
     $('#chpwrepeat').text(parseInt(chpwpt.details.repeat) + '/100')
