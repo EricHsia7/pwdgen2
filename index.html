@@ -26,6 +26,18 @@
       --u-width: clamp(180px, 90%, 450px)
     }
 
+    @keyframes skeletonscreen {
+
+      0%,
+      100% {
+        filter: brightness(1);
+      }
+
+      50% {
+        filter: brightness(1.25);
+      }
+    }
+
     body {
       background: var(--g-ffffff);
       background-size: var(--b-size);
@@ -421,7 +433,11 @@
     .box.loading .boxtitle,
     .box.loading input {
       background: var(--g-e3e3e3);
-      border-radius: 10px
+      border-radius: 10px;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .box .btn1[c="0"] #eyeicon {
@@ -1497,6 +1513,10 @@
       border-radius: 8px;
       user-select: none;
       -webkit-user-select: none;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .history-filter li[loading="1"] .history-filter-icon::after,
@@ -1511,7 +1531,10 @@
       border-radius: 8px;
       user-select: none;
       -webkit-user-select: none;
-
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .filter-date-picker,
@@ -1906,6 +1929,21 @@
         --storage-5: #0e0e0e;
       }
     }
+  </style>
+  <style id="skeleton-screen-animation">
+    :root {
+      --e-animation-name: skeletonscreen;
+      --e-animation-duration: 500ms;
+      --e-animation-iteration-count: infinite;
+      --e-animation-timing-function: ease-out;
+    }
+
+    /*
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
+*/
   </style>
   <style id="historyfiltercss"></style>
 </head>
