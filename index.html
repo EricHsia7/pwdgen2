@@ -4989,9 +4989,9 @@
     //ggg
 
     var zip = new JSZip();
-    zip.file('pwdgen2_backup_full_' + bktime.getTime() + '_json.json', '{"time":"' + bktime.getTime() + '","data":[' + localstorage_j.join(',') + ']}')
+    zip.file('pwdgen2_backup_full_data_' + bktime.getTime() + '_json.json', '{"time":"' + bktime.getTime() + '","data":[' + localstorage_j.join(',') + ']}')
     zip.file('pwdgen2_backup_password_only_' + bktime.getTime() + '_csv.csv', '"Time","password","notes","Time(ms)"\n' + pwddatalistcsv.join('\n'))
-    var txtfolder = zip.folder("Text");
+    var txtfolder = zip.folder("Passwords(Text)");
 
     for (var w = 0; w < pwddatalist.length; w++) {
       txtfolder.file('#' + w + '_' + pwddatalist[w].time + '.txt', deur(decu(pwddatalist[w].pwd_aes, pwddatalist[w].pwd_iv)), { base64: false });
@@ -5002,7 +5002,7 @@
       .then(function (content) {
         // see FileSaver.js
         mes('File processing completed')
-        saveAs(content, 'password_backup_' + bktime.getTime() + '.zip');
+        saveAs(content, 'pwdgen2_backup_' + bktime.getTime() + '.zip');
       });
   }
 
@@ -5065,6 +5065,9 @@
 
 
   function handleFileSelect(evt) {
+    if (sessionStorage.hasOwnProperty('sizetest')) {
+      sessionStorage.clear()
+    }
     var f = evt.target.files[0];
     var reader = new FileReader();
     reader.onload = (function (theFile) {
