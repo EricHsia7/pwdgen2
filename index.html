@@ -995,8 +995,6 @@
     .chpwfra {
       width: 100%;
       height: 100px;
-      justify-content: center;
-      align-items: center;
       position: relative;
       border-radius: 15px;
       margin-top: 10px;
@@ -1004,15 +1002,54 @@
       display: none
     }
 
-    .chpwfra svg {
-      width: 100%
-    }
-
     .chpwfra .chpwfratxt {
       -webkit-user-select: none;
       user-select: none;
       color: var(--g-4e4e4e);
-      font-size: 22px
+      font-size: 22px;
+      position: absolute;
+      top: 0px;
+      left: 100px;
+      width: calc(100% - 100px);
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pwdcheckscore {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    #pwdcheckscore {
+      stroke-dasharray: 377px;
+      stroke-dashoffset: calc(377px * (1 - (var(--pwd-check-score) / 100)));
+      /*p*/
+    }
+
+    #pwdcheckscore-svg {
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%)
+    }
+
+    .pwdcheckscore-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      color: var(--g-4e4e4e);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .chpw_details {
@@ -2085,6 +2122,22 @@
   </div>
   <div class="checkpwdp">
     <div class="chpwfra">
+      <div class="pwdcheckscore">
+        <svg stroke-miterlimit="10"
+          style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+          viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" id="pwdcheckscore-svg">
+          <path
+            d="M64 4L64 4C97.1371 4 124 30.8629 124 64L124 64C124 97.1371 97.1371 124 64 124L64 124C30.8629 124 4 97.1371 4 64L4 64C4 30.8629 30.8629 4 64 4Z"
+            fill="none" fill-rule="evenodd" opacity="1" stroke="var(--g-e3e3e3)" stroke-linecap="round"
+            stroke-linejoin="round" stroke-width="8" />
+          <path
+            d="M64 4L64 4C97.1371 4 124 30.8629 124 64L124 64C124 97.1371 97.1371 124 64 124L64 124C30.8629 124 4 97.1371 4 64L4 64C4 30.8629 30.8629 4 64 4Z"
+            fill="none" fill-rule="evenodd" opacity="1" stroke="var(--g-4e4e4e)" stroke-linecap="round"
+            stroke-linejoin="round" stroke-width="8" id="pwdcheckscore" style="--pwd-check-score:0" />
+        </svg>
+        <div class="pwdcheckscore-text">--</div>
+      </div>
       <div class="chpwfratxt"></div>
     </div>
 
@@ -4608,12 +4661,14 @@
 
   function checkpwfv() {
     var chpwpt = checkpwd($('.input2 input').val(), false)
-    $('.chpwfratxt').html(chpwpt.p + '/100<br>Your password is ' + String(chpwpt.str).toLowerCase() + '.')
+    $('.chpwfratxt').text('Your password is ' + String(chpwpt.str).toLowerCase() + '.')
+    $('.pwdcheckscore-text').text(chpwpt.p)
+    $('#pwdcheckscore').css({ '--pwd-check-score': chpwpt.p })
     $('#chpwevdis').text(parseInt(chpwpt.details.evdis) + '/100')
     $('#chpwlen').text(parseInt(chpwpt.details.len) + '/100')
     $('#chpwrepeat').text(parseInt(chpwpt.details.repeat) + '/100')
     $('.chpw_details').css({ 'display': 'block' });
-    $('.chpwfra').css({ 'display': 'flex' });
+    $('.chpwfra').css({ 'display': 'block' });
   }
   //end
 
