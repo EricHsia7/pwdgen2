@@ -3457,15 +3457,20 @@
     }
   }
   function copy(gid, messw) {
-    var textArea = document.createElement("textarea");
-    textArea.value = $('input[u="' + gid + '"]').attr('value');
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand("Copy");
-    textArea.remove();
-    markasrecentaccess(0, gid)
-    if (messw) {
-      mes('copied')
+    try {
+      var textArea = document.createElement("textarea");
+      textArea.value = $('input[u="' + gid + '"]').attr('value');
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("Copy");
+      textArea.remove();
+      markasrecentaccess(0, gid)
+      if (messw) {
+        mes('copied')
+      }
+    }
+    catch (e) {
+      mes('copy failed')
     }
   }
   function copynotes(gid, txthash) {
