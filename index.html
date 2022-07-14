@@ -3135,7 +3135,7 @@
   var historyloadingboxcc = Math.floor(window.innerHeight / 130) + 1;
   var history_filter_load = 0
   for (var j = 0; j < historyloadingboxcc; j++) {
-    historyloadingboxhtml.push('<div class="box loading" f="" t=""><div class="boxtitle"></div><input type="" u="" readonly autocomplete="off"><div class="btn1 dspoo" h="" c=""></div><div class="btn1 copyoo" h="" style="left:60px"></div><div class="btn1 shareoo" h="" c=0 style=left:105px></div><div class="btn1 saveoo" h="" c=0 style="left:150px" g="1"></div><div class="btn1 infooo" h="" c=0 style="left:195px" g="1"></div></div>');
+    historyloadingboxhtml.push('<div class="box loading" f="" t="" iconload="1"><div class="boxtitle"></div><input type="" u="" readonly autocomplete="off"><div class="btn1 dspoo" h="" c=""></div><div class="btn1 copyoo" h="" style="left:60px"></div><div class="btn1 shareoo" h="" c=0 style=left:105px></div><div class="btn1 saveoo" h="" c=0 style="left:150px" g="1"></div><div class="btn1 infooo" h="" c=0 style="left:195px" g="1"></div></div>');
   }
   $('.history').prepend(historyloadingboxhtml.join(''))
 
@@ -3168,6 +3168,12 @@
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
+  function filter_show_skeleton() {
+    $('.history .loading').css({ 'display': 'block' })
+  }
+  function filter_hide_skeleton() {
+    $('.history .loading').css({ 'display': 'block' })
+  }
   function filter_switch(pl) {
     $('.history-filter li').attr('o', '0')
     $('.history-filter li[pl="' + pl + '"]').attr('o', '1')
@@ -3189,35 +3195,39 @@
   function filter_showrecentaccess() {
     filter_switch('default_recentaccess')
     $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
-    var list = searchItemsbyname('pwdgen2_recent_access_')
-    $('.box').attr('ar', '0')
-    for (var f = 0; f < list.length; f++) {
-      var time = parseInt(String(localStorage.getItem(list[f])))
-      var dt = new Date()
-      if ((dt - time) < 60 * 60 * 24 * 3 * 1000) {
-        var hash = String(list[f]).split('_')[3]
-        $('.box[hash="' + hash + '"]').attr('ar', '1')
+    filter_show_skeleton()
+    setTimeout(function () {
+      var list = searchItemsbyname('pwdgen2_recent_access_')
+      $('.box').attr('ar', '0')
+      for (var f = 0; f < list.length; f++) {
+        var time = parseInt(String(localStorage.getItem(list[f])))
+        var dt = new Date()
+        if ((dt - time) < 60 * 60 * 24 * 3 * 1000) {
+          var hash = String(list[f]).split('_')[3]
+          $('.box[hash="' + hash + '"]').attr('ar', '1')
 
-        if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
-          $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
-          $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
-          $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
-          $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
-          $('.box[hash="' + hash + '"] .infooo').html(infoicon)
-          $('.box[hash="' + hash + '"]').attr('iconload', '1')
-        }
-        if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
-          $('.box[f="' + hash + '"]').attr('stch', '1')
-          var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
-          var thsstr = $('.box[hash="' + hash + '"] input').val()
-          var thspt = checkpwd(thsstr, false, '0', thstime)
-          var pwtime = new Date()
-          pwtime.setTime(thstime)
-          var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-          $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+          if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
+            $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+            $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
+            $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+            $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
+            $('.box[hash="' + hash + '"] .infooo').html(infoicon)
+            $('.box[hash="' + hash + '"]').attr('iconload', '1')
+          }
+          if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
+            $('.box[f="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
+            var thsstr = $('.box[hash="' + hash + '"] input').val()
+            var thspt = checkpwd(thsstr, false, '0', thstime)
+            var pwtime = new Date()
+            pwtime.setTime(thstime)
+            var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+            $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+          }
         }
       }
-    }
+      filter_hide_skeleton()
+    }, 1000);
   }
   function filter_showcontainnote() {
     filter_switch('default_containnote')
@@ -4662,7 +4672,7 @@
           $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
           ripple('.history-filter li[pl="' + z + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
-        $('.history .loading').remove()
+        $('.history .loading').css({ 'display': 'none' })
         scrollcheckpwd()
         deletepwcache()
         $('.history-filter li[loading="1"]').attr('loading', '0')
