@@ -1688,6 +1688,8 @@
       animation-duration: var(--e-animation-duration);
       animation-iteration-count: var(--e-animation-iteration-count);
       animation-timing-function: var(--e-animation-timing-function);
+      display: block;
+      width: 35px;
     }
 
     .filter-date-picker li[e="0"] {
@@ -1707,6 +1709,9 @@
     }
 
     .filter-date-picker li[loading="1"] span {
+      display: block;
+      height: 25px;
+      width: calc(100% - 50px);
       background: var(--g-e3e3e3);
       border-radius: 5px;
       animation-name: var(--e-animation-name);
@@ -3439,9 +3444,11 @@
   }
   function filter_date_picker() {
     $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('')
+    $('#filter-date-picker-css').html('')
     for (var i = 0; i < 10; i++) {
-      $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').prepend('<li e="1" style="--date-picker-result-preview:' + "'     '" + '" loading="1"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>')
+      $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').prepend('<li e="1" style="--date-picker-result-preview:' + "''" + '" loading="1"><span></span></li>')
     }
+
     $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'block', 'transition': '0.3s' })
     setTimeout(function () {
       $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
@@ -3449,7 +3456,7 @@
     }, 1)
     setTimeout(function () {
       filter_date_picker_l()
-    }, 500);
+    }, 1000);
   }
   function close_date_picker() {
     $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
