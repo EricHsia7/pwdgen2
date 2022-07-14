@@ -3170,7 +3170,7 @@
   }
   function filter_show_skeleton() {
     $('.history').prepend(historyloadingboxhtml.join(''))
-    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:none}')
+    $('#historyfiltercss').html('.box {display:none;}.loading{display:block}')
   }
   function filter_hide_skeleton() {
     $('.history .loading').remove()
