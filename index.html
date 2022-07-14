@@ -1711,13 +1711,14 @@
     .filter-date-picker li[loading="1"] span {
       display: block;
       height: 25px;
-      width: calc(100% - 50px);
+      width: calc(100% - 60px);
       background: var(--g-e3e3e3);
       border-radius: 5px;
       animation-name: var(--e-animation-name);
       animation-duration: var(--e-animation-duration);
       animation-iteration-count: var(--e-animation-iteration-count);
       animation-timing-function: var(--e-animation-timing-function);
+      border-radius: 5px;
     }
 
     .filter-date-picker li:nth-last-child(1) {
@@ -3444,7 +3445,7 @@
   }
   function filter_date_picker() {
     $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('')
-    $('#filter-date-picker-css').html('')
+    $('#filter-date-picker-css').html('.filter-date-picker li {display:flex;}')
     for (var i = 0; i < 10; i++) {
       $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').prepend('<li e="1" style="--date-picker-result-preview:' + "''" + '" loading="1"><span></span></li>')
     }
