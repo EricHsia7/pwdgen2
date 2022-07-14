@@ -3227,18 +3227,63 @@
         }
       }
       filter_hide_skeleton()
-    }, 1000);
+    }, 1500);
   }
   function filter_showcontainnote() {
     filter_switch('default_containnote')
     $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
-    $('.box').attr('ar', '0')
-    for (var g = 0; g < $('.history .box').length; g++) {
-      var hash = $('.history .box').eq(g).attr('hash')
+    filter_show_skeleton()
+    setTimeout(function () {
+      $('.box').attr('ar', '0')
+      for (var g = 0; g < $('.history .box').length; g++) {
+        var hash = $('.history .box').eq(g).attr('hash')
 
-      if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
-        var notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
-        if (notetext.length > 0) {
+        if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
+          var notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
+          if (notetext.length > 0) {
+            $('.box[hash="' + hash + '"]').attr('ar', '1')
+
+            if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
+              $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+              $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
+              $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+              $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
+              $('.box[hash="' + hash + '"] .infooo').html(infoicon)
+              $('.box[hash="' + hash + '"]').attr('iconload', '1')
+            }
+            if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
+              $('.box[f="' + hash + '"]').attr('stch', '1')
+              var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
+              var thsstr = $('.box[hash="' + hash + '"] input').val()
+              var thspt = checkpwd(thsstr, false, '0', thstime)
+              var pwtime = new Date()
+              pwtime.setTime(thstime)
+              var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+              $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            }
+
+
+
+          }
+        }
+      }
+      filter_hide_skeleton()
+    }, 1500);
+  }
+
+  function filter_showhashtag(hashtag_name) {
+    filter_switch(hashtag_name)
+    filter_show_skeleton()
+    setTimeout(function () {
+      var r_hashtag = allhashtag[hashtag_name]
+
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+      $('.box').attr('ar', '0')
+
+      for (var g = 0; g < $('.history .box').length; g++) {
+        var hash = $('.history .box').eq(g).attr('hash')
+
+        if (String($('.box[hash="' + hash + '"]').attr('hashtag')).split(',').indexOf(r_hashtag) > -1) {
           $('.box[hash="' + hash + '"]').attr('ar', '1')
 
           if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
@@ -3264,47 +3309,8 @@
 
         }
       }
-    }
-
-  }
-
-  function filter_showhashtag(hashtag_name) {
-    filter_switch(hashtag_name)
-    var r_hashtag = allhashtag[hashtag_name]
-
-    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
-    $('.box').attr('ar', '0')
-
-    for (var g = 0; g < $('.history .box').length; g++) {
-      var hash = $('.history .box').eq(g).attr('hash')
-
-      if (String($('.box[hash="' + hash + '"]').attr('hashtag')).split(',').indexOf(r_hashtag) > -1) {
-        $('.box[hash="' + hash + '"]').attr('ar', '1')
-
-        if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
-          $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
-          $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
-          $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
-          $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
-          $('.box[hash="' + hash + '"] .infooo').html(infoicon)
-          $('.box[hash="' + hash + '"]').attr('iconload', '1')
-        }
-        if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
-          $('.box[f="' + hash + '"]').attr('stch', '1')
-          var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
-          var thsstr = $('.box[hash="' + hash + '"] input').val()
-          var thspt = checkpwd(thsstr, false, '0', thstime)
-          var pwtime = new Date()
-          pwtime.setTime(thstime)
-          var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-          $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
-        }
-
-
-
-      }
-    }
-
+      filter_hide_skeleton()
+    }, 1500);
   }
   //date filter 
 
@@ -3487,39 +3493,44 @@
     var searchtxt = date_picker.getStr()
     filter_switch('default_datefilter')
     $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
-    $('.box').attr('ar', '0')
-    for (var g = 0; g < $('.history .box').length; g++) {
-      var hash = $('.history .box').eq(g).attr('hash')
-      var zthstime = parseInt($('.box[hash="' + hash + '"]').attr('t'))
-      var zpwtime = new Date()
-      zpwtime.setTime(zthstime)
-      var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
-      if (zpwtimestr.indexOf(searchtxt) > -1) {
-        $('.box[hash="' + hash + '"]').attr('ar', '1')
-        if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
-          $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
-          $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
-          $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
-          $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
-          $('.box[hash="' + hash + '"] .infooo').html(infoicon)
-          $('.box[hash="' + hash + '"]').attr('iconload', '1')
-        }
-        if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
-          $('.box[f="' + hash + '"]').attr('stch', '1')
-          var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
-          var thsstr = $('.box[hash="' + hash + '"] input').val()
-          var thspt = checkpwd(thsstr, false, '0', thstime)
-          var pwtime = new Date()
-          pwtime.setTime(thstime)
-          var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-          $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+    filter_show_skeleton()
+    close_date_picker()
+    setTimeout(function () {
+      $('.box').attr('ar', '0')
+      for (var g = 0; g < $('.history .box').length; g++) {
+        var hash = $('.history .box').eq(g).attr('hash')
+        var zthstime = parseInt($('.box[hash="' + hash + '"]').attr('t'))
+        var zpwtime = new Date()
+        zpwtime.setTime(zthstime)
+        var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
+        if (zpwtimestr.indexOf(searchtxt) > -1) {
+          $('.box[hash="' + hash + '"]').attr('ar', '1')
+          if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
+            $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+            $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
+            $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+            $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
+            $('.box[hash="' + hash + '"] .infooo').html(infoicon)
+            $('.box[hash="' + hash + '"]').attr('iconload', '1')
+          }
+          if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
+            $('.box[f="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
+            var thsstr = $('.box[hash="' + hash + '"] input').val()
+            var thspt = checkpwd(thsstr, false, '0', thstime)
+            var pwtime = new Date()
+            pwtime.setTime(thstime)
+            var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+            $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+          }
         }
       }
-    }
-    close_date_picker()
+      filter_hide_skeleton()
+    }, 1500);
   }
 
   //date filter end
+
   function filter_showall() {
     filter_switch('default_all')
     $('#historyfiltercss').html('')
