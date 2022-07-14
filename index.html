@@ -3453,7 +3453,6 @@
     for (var i = 0; i < 10; i++) {
       $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').prepend('<li style="--date-picker-result-preview:' + "''" + '" loading="1"><span></span></li>')
     }
-    $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').scrollTop(0)
 
     $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'block', 'transition': '0.3s' })
     setTimeout(function () {
@@ -3465,6 +3464,7 @@
     }, 1000);
   }
   function close_date_picker() {
+    $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').scrollTop(0)
     $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
     $('.filter-date-picker-mask').css({ 'opacity': '0' })
     setTimeout(function () {
