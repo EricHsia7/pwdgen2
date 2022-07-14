@@ -2028,7 +2028,6 @@
       display: flex;
     }
   </style>
-  <style id="box_skeleton_screen"></style>
 </head>
 
 <body>
@@ -3171,11 +3170,10 @@
   }
   function filter_show_skeleton() {
     $('.history').prepend(historyloadingboxhtml.join(''))
-    $('#box_skeleton_screen').html('.box{display:none;}.loading{display:block}')
+    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:none}')
   }
   function filter_hide_skeleton() {
     $('.history .loading').remove()
-    $('#box_skeleton_screen').html('')
   }
   function filter_switch(pl) {
     $('.history-filter li').attr('o', '0')
@@ -3197,9 +3195,9 @@
   }
   function filter_showrecentaccess() {
     filter_switch('default_recentaccess')
-    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     filter_show_skeleton()
     setTimeout(function () {
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       var list = searchItemsbyname('pwdgen2_recent_access_')
       $('.box').attr('ar', '0')
       for (var f = 0; f < list.length; f++) {
@@ -3234,9 +3232,9 @@
   }
   function filter_showcontainnote() {
     filter_switch('default_containnote')
-    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     filter_show_skeleton()
     setTimeout(function () {
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       $('.box').attr('ar', '0')
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
@@ -3279,7 +3277,6 @@
     filter_show_skeleton()
     setTimeout(function () {
       var r_hashtag = allhashtag[hashtag_name]
-
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       $('.box').attr('ar', '0')
 
@@ -3495,10 +3492,10 @@
   function filter_showdate() {
     var searchtxt = date_picker.getStr()
     filter_switch('default_datefilter')
-    $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     filter_show_skeleton()
     close_date_picker()
     setTimeout(function () {
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       $('.box').attr('ar', '0')
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
