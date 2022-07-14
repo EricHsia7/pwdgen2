@@ -3169,10 +3169,10 @@
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
   function filter_show_skeleton() {
-    $('.history .loading').css({ 'display': 'block' })
+    $('.history').prepend(historyloadingboxhtml.join(''))
   }
   function filter_hide_skeleton() {
-    $('.history .loading').css({ 'display': 'none' })
+    $('.history .loading').remove()
   }
   function filter_switch(pl) {
     $('.history-filter li').attr('o', '0')
@@ -3422,9 +3422,6 @@
     }
     var dtjson = {}
     for (var f = 0; f < $('.history .box').length; f++) {
-      if ($('.history .box').attr('class') === 'box loading') {
-        continue;
-      }
       var ths_time = parseInt($('.box').eq(f).attr('t'))
       var ths_dt = new Date()
       ths_dt.setTime(ths_time)
@@ -4675,7 +4672,7 @@
           $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
           ripple('.history-filter li[pl="' + z + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
-        $('.history .loading').css({ 'display': 'none' })
+        $('.history .loading').remove()
         scrollcheckpwd()
         deletepwcache()
         $('.history-filter li[loading="1"]').attr('loading', '0')
