@@ -3197,7 +3197,6 @@
     filter_switch('default_recentaccess')
     filter_show_skeleton()
     setTimeout(function () {
-      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       var list = searchItemsbyname('pwdgen2_recent_access_')
       $('.box').attr('ar', '0')
       for (var f = 0; f < list.length; f++) {
@@ -3228,13 +3227,13 @@
         }
       }
       filter_hide_skeleton()
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     }, 1500);
   }
   function filter_showcontainnote() {
     filter_switch('default_containnote')
     filter_show_skeleton()
     setTimeout(function () {
-      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       $('.box').attr('ar', '0')
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
@@ -3269,6 +3268,7 @@
         }
       }
       filter_hide_skeleton()
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     }, 1500);
   }
 
@@ -3277,9 +3277,7 @@
     filter_show_skeleton()
     setTimeout(function () {
       var r_hashtag = allhashtag[hashtag_name]
-      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       $('.box').attr('ar', '0')
-
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
 
@@ -3310,6 +3308,7 @@
         }
       }
       filter_hide_skeleton()
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     }, 1500);
   }
   //date filter 
@@ -3495,7 +3494,6 @@
     filter_show_skeleton()
     close_date_picker()
     setTimeout(function () {
-      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       $('.box').attr('ar', '0')
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
@@ -3526,6 +3524,7 @@
         }
       }
       filter_hide_skeleton()
+      $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     }, 1500);
   }
 
