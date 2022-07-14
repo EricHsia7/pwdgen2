@@ -39,7 +39,7 @@
       }
 
       50% {
-        filter: brightness(1.05);
+        filter: brightness(1.1);
       }
     }
 
@@ -2019,6 +2019,16 @@
     }
   </style>
   <style id="historyfiltercss"></style>
+  <style id="filter-date-picker-css">
+    .filter-date-picker-month li[index="2"] {
+      display: flex;
+    }
+
+    .filter-date-picker-date li[index="2-0"] {
+      display: flex;
+    }
+  </style>
+  <style id="box_skeleton_screen"></style>
 </head>
 
 <body>
@@ -2288,15 +2298,6 @@
     </div>
   </div>
 
-  <style id="filter-date-picker-css">
-    .filter-date-picker-month li[index="2"] {
-      display: flex;
-    }
-
-    .filter-date-picker-date li[index="2-0"] {
-      display: flex;
-    }
-  </style>
   <div class="filter-date-picker-mask"></div>
   <div class="filter-date-picker">
 
@@ -3170,9 +3171,11 @@
   }
   function filter_show_skeleton() {
     $('.history').prepend(historyloadingboxhtml.join(''))
+    $('#box_skeleton_screen').html('.box{display:none;}.loading{display:block}')
   }
   function filter_hide_skeleton() {
     $('.history .loading').remove()
+    $('#box_skeleton_screen').html('')
   }
   function filter_switch(pl) {
     $('.history-filter li').attr('o', '0')
