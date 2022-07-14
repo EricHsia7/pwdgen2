@@ -1664,9 +1664,7 @@
       -webkit-user-select: none;
     }
 
-    .filter-date-picker-year li::after,
-    .filter-date-picker-month li::after,
-    .filter-date-picker-date li::after {
+    .filter-date-picker li::after {
       content: var(--date-picker-result-preview);
       color: var(--g-4e4e4e);
       height: 20px;
@@ -1685,6 +1683,13 @@
       background: var(--g-e3e3e3);
     }
 
+    .filter-date-picker li[loading="1"]::after {
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
+    }
+
     .filter-date-picker li[e="0"] {
       background: var(--g-ffffff);
     }
@@ -1699,6 +1704,15 @@
 
     .filter-date-picker li[e="1"] span {
       opacity: 1
+    }
+
+    .filter-date-picker li[loading="1"] span {
+      background: var(--g-e3e3e3);
+      border-radius: 5px;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .filter-date-picker li:nth-last-child(1) {
@@ -3380,7 +3394,7 @@
     date_picker.date = d
     date_picker_setcss()
   }
-  function filter_date_picker() {
+  function filter_date_picker_l() {
     date_picker_all = {
       'year': [],
       'month': [],
@@ -3422,11 +3436,20 @@
       xy_index += 1
     }
     initialize_picker()
+  }
+  function filter_date_picker() {
+    $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('')
+    for (var i = 0; i < 10; i++) {
+      $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').prepend('<li e="1" style="--date-picker-result-preview:' + "'     '" + '" loading="1"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li>')
+    }
     $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'block', 'transition': '0.3s' })
     setTimeout(function () {
       $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
       $('.filter-date-picker-mask').css({ 'opacity': '1' })
     }, 1)
+    setTimeout(function () {
+      filter_date_picker_l()
+    }, 500);
   }
   function close_date_picker() {
     $('.filter-date-picker').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
