@@ -3422,6 +3422,9 @@
     }
     var dtjson = {}
     for (var f = 0; f < $('.history .box').length; f++) {
+      if ($('.history .box').attr('class') === 'box loading') {
+        continue;
+      }
       var ths_time = parseInt($('.box').eq(f).attr('t'))
       var ths_dt = new Date()
       ths_dt.setTime(ths_time)
@@ -4629,7 +4632,7 @@
                 pwdvisible_type = 'text'
               }
 
-              if (i >= (historyloadingboxcc)) {
+              if (i <= (historyloadingboxcc)) {
                 var thspt = checkpwd(pw, true, false, pwtime.getTime())
                 var icon_dspoo = eyeicon + eyeicon2
                 var icon_copyoo = copyicon
