@@ -1708,6 +1708,10 @@
       opacity: 1
     }
 
+    .filter-date-picker li[loading="1"] {
+      background: var(--g-ffffff);
+    }
+
     .filter-date-picker li[loading="1"] span {
       display: block;
       height: 25px;
@@ -3447,7 +3451,7 @@
     $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('')
     $('#filter-date-picker-css').html('.filter-date-picker li {display:flex;}')
     for (var i = 0; i < 10; i++) {
-      $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').prepend('<li e="1" style="--date-picker-result-preview:' + "''" + '" loading="1"><span></span></li>')
+      $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').prepend('<li style="--date-picker-result-preview:' + "''" + '" loading="1"><span></span></li>')
     }
 
     $('.filter-date-picker,.filter-date-picker-mask').css({ 'display': 'block', 'transition': '0.3s' })
