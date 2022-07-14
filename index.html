@@ -3533,7 +3533,11 @@
 
   function filter_showall() {
     filter_switch('default_all')
-    $('#historyfiltercss').html('')
+    filter_show_skeleton()
+    setTimeout(function () {
+      $('#historyfiltercss').html('')
+      filter_hide_skeleton()
+    }, 1500);
   }
   function dsp(gid) {
     markasrecentaccess(0, gid)
