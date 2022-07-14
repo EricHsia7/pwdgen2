@@ -3448,7 +3448,7 @@
     initialize_picker()
   }
   function filter_date_picker() {
-    $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('')
+    $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('').scrollTop(0)
     $('#filter-date-picker-css').html('.filter-date-picker li {display:flex;}')
     for (var i = 0; i < 10; i++) {
       $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').prepend('<li style="--date-picker-result-preview:' + "''" + '" loading="1"><span></span></li>')
