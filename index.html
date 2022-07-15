@@ -173,9 +173,15 @@
       overflow: hidden;
     }
 
-    .search_loading svg {
+    .search_loading .ld {
       width: 20px;
       height: 20px;
+      border-radius: 100%;
+      border-top: 4px solid var(--g-4e4e4e);
+      border-bottom: 4px solid var(--g-e3e3e3);
+      border-left: 4px solid var(--g-e3e3e3);
+      border-right: 4px solid var(--g-e3e3e3);
+      box-sizing: border-box;
       animation-name: searchloading;
       animation-duration: 550ms;
       animation-iteration-count: infinite;
@@ -2266,19 +2272,7 @@
   <div class="input3">
     <input type="text" placeholder="password,date,notes..." autocomplete="off">
     <div class="search_loading">
-      <svg stroke-miterlimit="10"
-        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path
-          d="M32 3L32 3C48.0163 3 61 15.9246 61 31.8679L61 32.1321C61 48.0754 48.0163 61 32 61L32 61C15.9837 61 3 48.0754 3 32.1321L3 31.8679C3 15.9246 15.9837 3 32 3Z"
-          fill="none" fill-rule="evenodd" opacity="1" stroke="var(--g-e3e3e3)" stroke-linecap="round"
-          stroke-linejoin="round" stroke-width="6" />
-        <path
-          d="M32 3L32 3C48.0163 3 61 15.9246 61 31.8679L61 32.1321C61 48.0754 48.0163 61 32 61L32 61C15.9837 61 3 48.0754 3 32.1321L3 31.8679C3 15.9246 15.9837 3 32 3Z"
-          fill="none" fill-rule="evenodd" opacity="1" stroke="var(--g-4e4e4e)" stroke-linecap="round"
-          stroke-linejoin="round" stroke-width="6" style="stroke-dasharray: 163px;stroke-dashoffset: 40.5px" />
-      </svg>
+      <div class="ld"></div>
     </div>
   </div>
 
