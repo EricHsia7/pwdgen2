@@ -191,6 +191,7 @@
       position: absolute;
       top: 0px;
       left: 0px;
+      opacity:0;
     }
 
     @keyframes searchloading {
@@ -3761,6 +3762,7 @@
   function showsearchresult(y) {
     var tplen = typing_arr.length
     if (tp[tplen - 1] - tp[tplen - 2] > 200 || y === true) {
+      $('.search_loading .ld').css({'opacity':'1'})
       searchindexjson = {}
       for (var r = 0; r < $('.history .box').length; r++) {
         var thw_bxf = $('.history .box').eq(r).attr('f')
@@ -3806,6 +3808,7 @@
           }
         }
       }
+      $('.search_loading .ld').css({'opacity':'0'})
     }
     else {
       clearTimeout(ty)
