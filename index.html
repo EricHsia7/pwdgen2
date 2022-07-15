@@ -161,7 +161,38 @@
     }
 
     .input3 input {
-      width: calc(100% - 5px - 10px)
+      width: calc(100% - 5px - 10px - 45px)
+    }
+
+    .search_loading {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .search_loading svg {
+      width: 20px;
+      height: 20px;
+      animation-name: searchloading;
+      animation-duration: 300ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes searchloading {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     .input .ipttxt {
@@ -2232,6 +2263,21 @@
 
   <div class="input3">
     <input type="text" placeholder="password,date,notes..." autocomplete="off">
+    <div class="search_loading">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path
+          d="M32 3L32 3C48.0163 3 61 15.9246 61 31.8679L61 32.1321C61 48.0754 48.0163 61 32 61L32 61C15.9837 61 3 48.0754 3 32.1321L3 31.8679C3 15.9246 15.9837 3 32 3Z"
+          fill="none" fill-rule="evenodd" opacity="1" stroke="var(--g-e3e3e3)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="6" />
+        <path
+          d="M32 3L32 3C48.0163 3 61 15.9246 61 31.8679L61 32.1321C61 48.0754 48.0163 61 32 61L32 61C15.9837 61 3 48.0754 3 32.1321L3 31.8679C3 15.9246 15.9837 3 32 3Z"
+          fill="none" fill-rule="evenodd" opacity="1" stroke="var(--g-4e4e4e)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="6" style="stroke-dasharray: 182px;stroke-dashoffset: 45.5px" />
+      </svg>
+    </div>
   </div>
 
   <div class="title">
@@ -3710,7 +3756,6 @@
   }
 
   function showsearchresult() {
-
     searchindexjson = {}
     for (var r = 0; r < $('.history .box').length; r++) {
       var thw_bxf = $('.history .box').eq(r).attr('f')
