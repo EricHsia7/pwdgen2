@@ -191,7 +191,7 @@
       position: absolute;
       top: 0px;
       left: 0px;
-      opacity:0;
+      opacity: 0;
     }
 
     @keyframes searchloading {
@@ -3752,7 +3752,7 @@
     }
   }
   var typing_arr = []
-  var ty = setTimeout(function() {},1)
+  var ty = setTimeout(function () { }, 1)
   function tp() {
     typing_arr.push(new Date().getTime())
     if (typing_arr.length > 10) {
@@ -3762,9 +3762,10 @@
   function showsearchresult(y) {
     var tplen = typing_arr.length
     if (tp[tplen - 1] - tp[tplen - 2] > 200 || y === true) {
-      $('.search_loading .ld').css({'opacity':'1'})
+      $('.search_loading .ld').css({ 'opacity': '1' })
       searchindexjson = {}
-      for (var r = 0; r < $('.history .box').length; r++) {
+      var boxlen = $('.history .box').length
+      for (var r = 0; r < boxlen; r++) {
         var thw_bxf = $('.history .box').eq(r).attr('f')
         var thw_pwd = $('input[u="' + thw_bxf + '"]').attr('value')
         var thw_time = $('.box[f="' + thw_bxf + '"]').attr('t')
@@ -3808,7 +3809,7 @@
           }
         }
       }
-      $('.search_loading .ld').css({'opacity':'0'})
+      $('.search_loading .ld').css({ 'opacity': '0' })
     }
     else {
       clearTimeout(ty)
