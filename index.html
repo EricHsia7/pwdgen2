@@ -3751,71 +3751,56 @@
       }, 1);
     }
   }
-  var typing_arr = []
-  var ty = setTimeout(function () { }, 1)
-  function tp() {
-    typing_arr.push(new Date().getTime())
-    if (typing_arr.length > 10) {
-      typing_arr.slice(0, 1)
-    }
-  }
   function showsearchresult(y) {
-    var tplen = typing_arr.length
-    if (tp[tplen - 1] - tp[tplen - 2] > 200 || y === true) {
+    if (y === true) {
       $('.search_loading .ld').css({ 'opacity': '1' })
-      searchindexjson = {}
-      var boxlen = $('.history .box').length
-      for (var r = 0; r < boxlen; r++) {
-        var thw_bxf = $('.history .box').eq(r).attr('f')
-        var thw_pwd = $('input[u="' + thw_bxf + '"]').attr('value')
-        var thw_time = $('.box[f="' + thw_bxf + '"]').attr('t')
-        var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
-        var thw_notes = 0
-        if (!(localStorage.getItem(thw_nhash) === null)) {
-          thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"', '').replaceAll("'", '') + '"'
-        }
-        var psehash = 'pwdgen2_saved_a_' + sha256(thw_pwd + '_' + thw_time)
-        var thw_saved = 0
-        if (!(localStorage.getItem(psehash) === null)) {
-          thw_saved = 1
-        }
-
-        var pwt = new Date()
-        pwt.setTime(thw_time)
-        var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
-        searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd, pwtimestr, thw_notes, thw_saved, thw_time]
-
-      }
-
-      var keywd = $('.input3 input').val()
-      if (keywd === ' ' || keywd === '') {
-        keywd = gid() + '#' + gid()
-      }
-      var rst = []
-      var tsr = []
-      $('.history .box').attr('search', '0').attr('ksearch', '0')
-      for (var f in searchindexjson) {
-        if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
-          var hbbid = String(f).split('_')[3]
-          $('.box[f="' + hbbid + '"]').attr('search', '1').attr('ksearch', '1')
-
-          if ($('.box[f="' + hbbid + '"]').attr('iconload') === '0') {
-            $('.box[f="' + hbbid + '"] .dspoo').html(eyeicon + eyeicon2)
-            $('.box[f="' + hbbid + '"] .copyoo').html(copyicon)
-            $('.box[f="' + hbbid + '"] .saveoo').html(saveicon + savedicon)
-            $('.box[f="' + hbbid + '"] .noteoo').html(noteicon)
-            $('.box[f="' + hbbid + '"] .infooo').html(infoicon)
-            $('.box[f="' + hbbid + '"]').attr('iconload', '1')
+      setTimeout(function () {
+        searchindexjson = {}
+        var boxlen = $('.history .box').length
+        for (var r = 0; r < boxlen; r++) {
+          var thw_bxf = $('.history .box').eq(r).attr('f')
+          var thw_pwd = $('input[u="' + thw_bxf + '"]').attr('value')
+          var thw_time = $('.box[f="' + thw_bxf + '"]').attr('t')
+          var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
+          var thw_notes = 0
+          if (!(localStorage.getItem(thw_nhash) === null)) {
+            thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"', '').replaceAll("'", '') + '"'
           }
+          var psehash = 'pwdgen2_saved_a_' + sha256(thw_pwd + '_' + thw_time)
+          var thw_saved = 0
+          if (!(localStorage.getItem(psehash) === null)) {
+            thw_saved = 1
+          }
+
+          var pwt = new Date()
+          pwt.setTime(thw_time)
+          var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
+          searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd, pwtimestr, thw_notes, thw_saved, thw_time]
+
+        }
+
+        $('.search_loading .ld').css({ 'opacity': '0' })
+      }, 1500);
+    }
+    var keywd = $('.input3 input').val()
+    if (keywd === ' ' || keywd === '') {
+      keywd = gid() + '#' + gid()
+    }
+    $('.history .box').attr('search', '0').attr('ksearch', '0')
+    for (var f in searchindexjson) {
+      if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
+        var hbbid = String(f).split('_')[3]
+        $('.box[f="' + hbbid + '"]').attr('search', '1').attr('ksearch', '1')
+
+        if ($('.box[f="' + hbbid + '"]').attr('iconload') === '0') {
+          $('.box[f="' + hbbid + '"] .dspoo').html(eyeicon + eyeicon2)
+          $('.box[f="' + hbbid + '"] .copyoo').html(copyicon)
+          $('.box[f="' + hbbid + '"] .saveoo').html(saveicon + savedicon)
+          $('.box[f="' + hbbid + '"] .noteoo').html(noteicon)
+          $('.box[f="' + hbbid + '"] .infooo').html(infoicon)
+          $('.box[f="' + hbbid + '"]').attr('iconload', '1')
         }
       }
-      $('.search_loading .ld').css({ 'opacity': '0' })
-    }
-    else {
-      clearTimeout(ty)
-      ty = setTimeout(function () {
-        showsearchresult(true)
-      }, 500)
     }
   }
 
@@ -4771,19 +4756,19 @@
   setoptions()
 
   document.querySelector('.input3 input').addEventListener("paste", function (e) {
-    tp()
+
     showsearchresult()
   });
   document.querySelector('.input3 input').addEventListener("cut", function (e) {
-    tp()
+
     showsearchresult()
   });
   document.querySelector('.input3 input').addEventListener("selectionchange", function (e) {
-    tp()
+
     showsearchresult()
   });
   document.querySelector('.input3 input').addEventListener("keyup", function (e) {
-    tp()
+
     showsearchresult()
   });
 
@@ -4867,7 +4852,7 @@
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'none' });
       $('.btn5 svg').css({ 'transform': 'rotate(0deg)' });
       $('.btn5').attr('uj', '0')
-      showsearchresult()
+      showsearchresult(true)
       $('#historyfiltercss').html('')
 
       bpage_home_click = 0
