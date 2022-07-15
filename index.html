@@ -166,23 +166,21 @@
 
     .search_loading {
       position: absolute;
-      top: 0px;
-      right: 0px;
-      width: 45px;
-      height: 45px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      top: 12.5px;
+      right: 12.5px;
+      width: 20px;
+      height: 20px;
     }
 
     .search_loading svg {
       width: 20px;
       height: 20px;
       animation-name: searchloading;
-      animation-duration: 500ms;
+      animation-duration: 550ms;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
       animation-fill-mode: forwards;
+      transform-origin: center center;
     }
 
     @keyframes searchloading {
@@ -191,7 +189,7 @@
       }
 
       100% {
-        transform: rotate(360deg);
+        transform: rotate(359deg);
       }
     }
 
