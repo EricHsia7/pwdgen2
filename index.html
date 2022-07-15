@@ -3754,6 +3754,7 @@
   function showsearchresult(y) {
     if (y === true) {
       $('.search_loading .ld').css({ 'opacity': '1' })
+      $('.input3 input').attr('disabled', 'disabled')
       setTimeout(function () {
         searchindexjson = {}
         var boxlen = $('.history .box').length
@@ -3778,8 +3779,8 @@
           searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd, pwtimestr, thw_notes, thw_saved, thw_time]
 
         }
-
         $('.search_loading .ld').css({ 'opacity': '0' })
+        $('.input3 input').removeAttr('disabled')
       }, 1500);
     }
     var keywd = $('.input3 input').val()
@@ -4854,7 +4855,6 @@
       $('.btn5').attr('uj', '0')
       showsearchresult(true)
       $('#historyfiltercss').html('')
-
       bpage_home_click = 0
     }
 
