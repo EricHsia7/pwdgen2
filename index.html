@@ -1946,6 +1946,7 @@
       border-radius: 3px;
     }
 
+
     .custom-presets-manager-box .custom-presets-manager-icon svg,
     .custom-presets-manager-box .custom-presets-manager-delete svg,
     .custom-presets-manager-box .custom-presets-manager-edit svg,
@@ -1965,6 +1966,12 @@
       align-items: center;
       color: var(--g-4e4e4e);
       overflow: hidden;
+    }
+
+    .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_icon,
+    .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_name {
+      background: var(--g-e3e3e3);
+      border-radius: 10px;
     }
 
     .custom-presets-manager-box .custom-presets-manager-delete,
@@ -3372,9 +3379,9 @@
     $('.history_filter_fulllist .history_filter_fulllist_box').html('')
     for (var y in newallhashtag) {
       var y_gid = gid()
-      var this_html = '<li o="0" yi="' + y_gid + '" rclick="filter_fulllist_apply(' + "'" + y + "'" + ')"><div class="history_filter_fulllist_icon">' + hashatagicon + '</div><div class="history_filter_fulllist_name">' + String(newallhashtag[y]).replaceAll('#','') + '</div></li>'
+      var this_html = '<li o="0" yi="' + y_gid + '" rclick="filter_fulllist_apply(' + "'" + y + "'" + ')"><div class="history_filter_fulllist_icon">' + hashatagicon + '</div><div class="history_filter_fulllist_name">' + String(newallhashtag[y]).replaceAll('#', '') + '</div></li>'
       $('.history_filter_fulllist .history_filter_fulllist_box').append(this_html)
-      rclick('.history_filter_fulllist .history_filter_fulllist_box li[yo="' + y_gid + '"]')
+      rclick('.history_filter_fulllist .history_filter_fulllist_box li[yi="' + y_gid + '"]')
     }
 
 
@@ -3385,6 +3392,11 @@
       $('.history_filter_fulllist').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
       $('.history_filter_fulllist_mask').css({ 'opacity': '1' })
     }, 1)
+    var jj = []
+    for (var i = 0; i < 10; i++) {
+      jj.push('<li o="0" loading="1"><div class="history_filter_fulllist_icon"></div><div class="history_filter_fulllist_name"></div></li>')
+    }
+    $('.history_filter_fulllist .history_filter_fulllist_box').html(jj.join(''))
     setTimeout(function () {
       openfulllist_l()
     }, 1000);
