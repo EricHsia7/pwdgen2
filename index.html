@@ -1335,18 +1335,6 @@
       opacity: .3
     }
 
-    .box[search="0"] {
-      display: none
-    }
-
-    .box[search="1"] {
-      display: block
-    }
-
-    .box[search="n"] {
-      display: block
-    }
-
     #imbkpwd {
       display: none
     }
@@ -2075,6 +2063,15 @@
 
     .filter-date-picker-date li[index="2-0"] {
       display: flex;
+    }
+  </style>
+  <style id="searchcss">
+    .box[search="0"] {
+      display: none
+    }
+
+    .box[search="1"] {
+      display: block
     }
   </style>
 </head>
@@ -3744,7 +3741,8 @@
       }
       var result = []
       var r_index = 0
-      $('.history .box').attr('search', '0').attr('ksearch', '0')
+      $('head #searchcss').html('.box[search="0"] {display: none}.box[search="1"] {display: block}')
+      $('.history .box').attr('search', '0')
       for (var f in searchindexjson) {
         if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
           var hbbid = String(f).split('_')[3]
@@ -3772,7 +3770,7 @@
           r_index += 1
         }
       }
-      $(result.join(',')).attr('search', '1').attr('ksearch', '1')
+      $(result.join(',')).attr('search', '1')
 
       $('.input3 input').removeAttr('disabled')
       $('.btn7').css({ 'opacity': '1' })
@@ -4768,7 +4766,7 @@
       $('.t2').text('New Password')
       $('.checkpwdp,.input2,.input3').css({ 'display': 'none' });
       $('.input,.history').css({ 'display': 'block' });
-      $('.box').attr('search', 'n')
+      $('head #searchcss').html('.box[search="0"] {display: block}.box[search="1"] {display: block}')
       if ($('.history-filter li[pl="default_all"]').attr('o') === '0') {
         $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       }
@@ -4804,7 +4802,7 @@
       $('.t2').text('Check Password')
       $('.checkpwdp,.input2').css({ 'display': 'block' });
       $('.input,.history,.input3,.history-filter').css({ 'display': 'none' });
-      $('.box').attr('search', 'n')
+      $('head #searchcss').html('.box[search="0"] {display: block}.box[search="1"] {display: block}')
       $('.btn5').attr('uj', '0')
       bpage_home_click = 0
     }
