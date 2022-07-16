@@ -4240,7 +4240,7 @@
       filter_showall()
     }
     if (origin_length > 5) {
-      for (var h = 5 + 4; h < origin_length + 4; h++) {
+      for (var h = 6 + 4; h < origin_length + 4; h++) {
         $('.history-filter li').eq(h).remove()
       }
     }
@@ -4698,7 +4698,7 @@
         var hashtags_list = []
         var hashtagindex = 0
         for (var z in allhashtag) {
-          if (hashtagindex < 5) {
+          if (hashtagindex <= 4) {
             var thishashtag = allhashtag[z]
             var hashtagstr = String(thishashtag)
             if (hashtagstr.length >= 25) {
