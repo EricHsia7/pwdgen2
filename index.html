@@ -4183,7 +4183,6 @@
     return hashtags
   }
   function refresh_hashtag() {
-    var origin_length = $('.history-filter li[hf-group="hashtag"]').length
     var deletecount = 0
     var addcount = 0
     var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
@@ -4215,7 +4214,6 @@
         $('.history-filter li[pl="' + o + '"]').remove()
         delete allhashtag[o]
         deletecount += 1
-        origin_length -= 1
       }
       else {
         if ($('.history-filter li[pl="' + o + '"]').length < 1) {
@@ -4228,7 +4226,6 @@
           $('.history-filter').append('<li pl="' + o + '" r-click="filter_showhashtag(' + "'" + o + "'" + ')" o="0" hf-group="hashtag"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
           rclick('.history-filter li[pl="' + o + '"]')
           addcount += 1
-          origin_length += 1
         }
       }
     }
@@ -4236,8 +4233,9 @@
     if (deletecount > 0) {
       filter_showall()
     }
-    if (origin_length > 5) {
-      for (var h = 5; h < origin_length; h++) {
+    var h_length = $('.history-filter li[hf-group="hashtag"]').length
+    if (h_length > 5) {
+      for (var h = 5; h < h_length; h++) {
         $('.history-filter li[hf-group="hashtag"]').eq(h).remove()
       }
     }
