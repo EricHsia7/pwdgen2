@@ -4183,7 +4183,7 @@
     return hashtags
   }
   function refresh_hashtag() {
-    var origin_length = $('.history-filter li').length
+    var origin_length = $('.history-filter li').length-4
     var deletecount = 0
     var addcount = 0
     var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
@@ -4240,7 +4240,7 @@
       filter_showall()
     }
     if (origin_length > 5) {
-      for (var h = 6 + 4; h < origin_length + 4; h++) {
+      for (var h = 5 + 4; h < origin_length + 4; h++) {
         $('.history-filter li').eq(h).remove()
       }
     }
