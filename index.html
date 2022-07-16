@@ -829,7 +829,8 @@
     .confirm_mask,
     .filter-date-picker-mask,
     .custom-presets-add-mask,
-    .custom-presets-manager-mask {
+    .custom-presets-manager-mask,
+    .history_filter_fulllist_mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -1623,9 +1624,14 @@
       animation-timing-function: var(--e-animation-timing-function);
     }
 
+    .history-filter li[o-hide="1"] {
+      display: none;
+    }
+
     .filter-date-picker,
     .custom-presets-add,
-    .custom-presets-manager {
+    .custom-presets-manager,
+    .history_filter_fulllist {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -1642,7 +1648,8 @@
 
     .filter-date-picker-title,
     .custom-presets-add-title,
-    .custom-presets-manager-title {
+    .custom-presets-manager-title,
+    .history_filter_fulllist_title {
       height: 45px;
       width: calc(100% - 20px);
       position: absolute;
@@ -1775,7 +1782,8 @@
     .filter-date-picker-apply,
     .custom-presets-add-cancel,
     .custom-presets-add-add,
-    .custom-presets-manager-close {
+    .custom-presets-manager-close,
+    .history_filter_fulllist_close {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -1799,12 +1807,14 @@
       left: calc(50% + 5px)
     }
 
-    .custom-presets-manager-close {
+    .custom-presets-manager-close,
+    .history_filter_fulllist_close {
       width: calc(100% - 20px)
     }
 
     .custom-presets-add-box,
-    .custom-presets-manager-box {
+    .custom-presets-manager-box,
+    .history_filter_fulllist_box {
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
@@ -1906,7 +1916,8 @@
       background: var(--g-4e4e4e);
     }
 
-    .custom-presets-manager-box li {
+    .custom-presets-manager-box li,
+    .history_filter_fulllist_box li {
       width: 100%;
       height: 45px;
       position: relative;
@@ -1916,11 +1927,13 @@
       border-bottom: 1px solid var(--g-f4f4f4);
     }
 
-    .custom-presets-manager-box li:nth-last-child(1) {
+    .custom-presets-manager-box li:nth-last-child(1),
+    .history_filter_fulllist_box li:nth-last-child(1) {
       border: none;
     }
 
-    .custom-presets-manager-box .custom-presets-manager-icon {
+    .custom-presets-manager-box .custom-presets-manager-icon,
+    .history_filter_fulllist_box .history_filter_fulllist_icon {
       position: absolute;
       top: 5px;
       left: 5px;
@@ -1933,14 +1946,17 @@
       border-radius: 3px;
     }
 
+
     .custom-presets-manager-box .custom-presets-manager-icon svg,
     .custom-presets-manager-box .custom-presets-manager-delete svg,
-    .custom-presets-manager-box .custom-presets-manager-edit svg {
+    .custom-presets-manager-box .custom-presets-manager-edit svg,
+    .history_filter_fulllist_box .history_filter_fulllist_icon svg {
       width: 18px;
       height: 18px;
     }
 
-    .custom-presets-manager-box .custom-presets-manager-name {
+    .custom-presets-manager-box .custom-presets-manager-name,
+    .history_filter_fulllist_box .history_filter_fulllist_name {
       position: absolute;
       top: 5px;
       left: 45px;
@@ -1950,6 +1966,32 @@
       align-items: center;
       color: var(--g-4e4e4e);
       overflow: hidden;
+    }
+
+    .history_filter_fulllist_box .history_filter_fulllist_name {
+      width: calc(100% - 45px)
+    }
+
+    .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_icon {
+      width: 25px;
+      height: 25px;
+      top: 10px;
+      left: 10px;
+    }
+
+    .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_name {
+      height: 25px;
+      top: 10px;
+    }
+
+    .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_icon,
+    .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_name {
+      background: var(--g-e3e3e3);
+      border-radius: 10px;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .custom-presets-manager-box .custom-presets-manager-delete,
@@ -2424,6 +2466,18 @@
     </div>
   </div>
 
+  <div class="history_filter_fulllist_mask"></div>
+  <div class="history_filter_fulllist">
+    <div class="history_filter_fulllist_title">
+      Hashtag Full List
+    </div>
+    <div class="history_filter_fulllist_box">
+
+    </div>
+    <div class="history_filter_fulllist_close" r-click="closefulllist()">
+      Close
+    </div>
+  </div>
 
   <div class="page2">
 
@@ -2678,7 +2732,7 @@
     };
   })(jQuery);
 
-  rclick('.btn,.btn5,.btn6,.btn7,.btn2,.bottom-btn,.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close')
+  rclick('.btn,.btn5,.btn6,.btn7,.btn2,.bottom-btn,.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close,.history_filter_fulllist_close')
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
@@ -3166,6 +3220,7 @@
   let custom_presets_manager = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12.56 34.08L41.44 34.08L41.44 29.28L12.56 29.28L12.56 34.08ZM12.56 23.76L41.44 23.76L41.44 18.96L12.56 18.96L12.56 23.76ZM4.8 57.6C3.52 57.6 2.4 57.12 1.44 56.16C0.48 55.2 0 54.08 0 52.8L0 11.2C0 9.92 0.48 8.8 1.44 7.84C2.4 6.88 3.52 6.4 4.8 6.4L59.2 6.4C60.48 6.4 61.6 6.88 62.56 7.84C63.52 8.8 64 9.92 64 11.2L64 52.8C64 54.08 63.52 55.2 62.56 56.16C61.6 57.12 60.48 57.6 59.2 57.6L4.8 57.6ZM4.8 52.8L59.2 52.8L59.2 11.2L4.8 11.2L4.8 52.8ZM4.8 52.8L4.8 11.2L4.8 52.8Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
   let trashicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M12.5333 64C11.1111 64 9.86667 63.4667 8.8 62.4C7.73333 61.3333 7.2 60.0889 7.2 58.6667L7.2 8L3.55556 8L3.55556 2.66667L20.2667 2.66667L20.2667 7.10543e-15L43.7333 7.10543e-15L43.7333 2.66667L60.4444 2.66667L60.4444 8L56.8 8L56.8 58.6667C56.8 60.0889 56.2667 61.3333 55.2 62.4C54.1333 63.4667 52.8889 64 51.4667 64L12.5333 64ZM51.4667 8L12.5333 8L12.5333 58.6667L51.4667 58.6667L51.4667 8ZM21.9556 51.0222L27.2889 51.0222L27.2889 15.5556L21.9556 15.5556L21.9556 51.0222ZM36.7111 51.0222L42.0444 51.0222L42.0444 15.5556L36.7111 15.5556L36.7111 51.0222ZM12.5333 8L12.5333 58.6667L12.5333 8Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" /></svg>'
   let editicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.23874 58.7613L9.08049 58.7613L47.7599 20.0819L43.9181 16.2401L5.23874 54.9195L5.23874 58.7613ZM58.8486 16.3274L47.6726 5.15143L51.3397 1.48431C52.3292 0.494771 53.5516 6.45324e-07 55.0068 6.45324e-07C56.462 6.45324e-07 57.6844 0.494771 58.6739 1.48431L62.5157 5.32606C63.5052 6.3156 64 7.53797 64 8.99318C64 10.4484 63.5052 11.6708 62.5157 12.6603L58.8486 16.3274ZM55.1814 19.9945L11.176 64L7.10543e-15 64L7.10543e-15 52.824L44.0055 8.81855L55.1814 19.9945ZM45.839 18.161L43.9181 16.2401L47.7599 20.0819L45.839 18.161Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
+  let listicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M0 56.8889L0 51.5556L64 51.5556L64 56.8889L0 56.8889ZM0 42.1333L0 36.8L64 36.8L64 42.1333L0 42.1333ZM0 27.2889L0 21.9556L64 21.9556L64 27.2889L0 27.2889ZM0 12.4444L0 7.11111L64 7.11111L64 12.4444L0 12.4444Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none"/></svg>'
   function mes(mess) {
     $('body').prompt({ 'message': mess, 'time': 1200 });
   }
@@ -3281,8 +3336,13 @@
     }, 1500);
   }
 
-  function filter_showhashtag(hashtag_name) {
-    filter_switch(hashtag_name)
+  function filter_showhashtag(hashtag_name, m) {
+    if (m === true) {
+      filter_switch('default_fulllist')
+    }
+    else {
+      filter_switch(hashtag_name)
+    }
     filter_show_skeleton()
     setTimeout(function () {
       var r_hashtag = allhashtag[hashtag_name]
@@ -3311,14 +3371,69 @@
             var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
             $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
-
-
-
         }
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     }, 1500);
+  }
+  function openfulllist_l() {
+    var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
+    var newallhashtag = {}
+
+    var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
+    for (var d = 0; d < noteslist.length; d++) {
+      if (!(localStorage.hasOwnProperty(noteslist[d]))) {
+        continue;
+      }
+      var notetext = deur(atob(String(localStorage.getItem(noteslist[d]))))
+      var hashtags = notetext.match(hashtag_regex)
+      if (hashtags === null) {
+        continue;
+      }
+      for (var s = 0; s < hashtags.length; s++) {
+        var hashtagkey = String(hashtags[s]).replaceAll('#', '').toLowerCase()
+        newallhashtag[hashtagkey] = hashtags[s]
+      }
+    }
+    $('.history_filter_fulllist .history_filter_fulllist_box').html('')
+    for (var y in newallhashtag) {
+      var y_gid = gid()
+      var this_html = '<li o="0" yi="' + y_gid + '" r-click="filter_fulllist_apply(' + "'" + y + "'" + ')"><div class="history_filter_fulllist_icon">' + hashatagicon + '</div><div class="history_filter_fulllist_name">' + String(newallhashtag[y]).replaceAll('#', '') + '</div></li>'
+      $('.history_filter_fulllist .history_filter_fulllist_box').append(this_html)
+      rclick('.history_filter_fulllist .history_filter_fulllist_box li[yi="' + y_gid + '"]')
+    }
+
+
+  }
+  function openfulllist() {
+    $('.history_filter_fulllist,.history_filter_fulllist_mask').css({ 'display': 'block', 'transition': '0.3s' })
+    setTimeout(function () {
+      $('.history_filter_fulllist').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+      $('.history_filter_fulllist_mask').css({ 'opacity': '1' })
+    }, 1)
+    var jj = []
+    for (var i = 0; i < 10; i++) {
+      jj.push('<li o="0" loading="1"><div class="history_filter_fulllist_icon"></div><div class="history_filter_fulllist_name"></div></li>')
+    }
+    $('.history_filter_fulllist .history_filter_fulllist_box').html(jj.join(''))
+    setTimeout(function () {
+      openfulllist_l()
+    }, 1000);
+  }
+  function closefulllist() {
+    $('.history_filter_fulllist').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.history_filter_fulllist_mask').css({ 'opacity': '0' })
+    setTimeout(function () {
+      $('.history_filter_fulllist,.history_filter_fulllist_mask').css({ 'display': 'none' })
+    }, 500)
+  }
+  function filter_fulllist() {
+    openfulllist()
+  }
+  function filter_fulllist_apply(tagname) {
+    closefulllist()
+    filter_showhashtag(tagname, true)
   }
   //date filter 
 
@@ -4168,6 +4283,7 @@
 
   }
   var allhashtag = {}
+  let filter_fulllist_html = '<li o="0" pl="default_fulllist" r-click="filter_fulllist()" loading="0"><div class="history-filter-icon">' + listicon + '</div><span>Full List</span></li>'
   function gethashtags(str, k) {
     var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
     var hashtags = str.match(hashtag_regex)
@@ -4183,6 +4299,7 @@
     return hashtags
   }
   function refresh_hashtag() {
+    $('.history-filter li[pl="default_fulllist"]').remove()
     var deletecount = 0
     var addcount = 0
     var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
@@ -4203,8 +4320,6 @@
         newallhashtag[hashtagkey] = hashtags[s]
         allhashtag[hashtagkey] = hashtags[s]
       }
-
-
     }
 
     for (var g in allhashtag) {
@@ -4226,17 +4341,26 @@
             hashtagstr = hashtagstr.substring(0, 22) + '...'
           }
 
-          $('.history-filter').append('<li pl="' + o + '" r-click="filter_showhashtag(' + "'" + o + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
+          $('.history-filter').append('<li pl="' + o + '" r-click="filter_showhashtag(' + "'" + o + "'" + ',false)" o="0" hf-group="hashtag"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
           rclick('.history-filter li[pl="' + o + '"]')
           addcount += 1
         }
       }
     }
-    console.log(addcount)
 
     if (deletecount > 0) {
       filter_showall()
     }
+    var h_length = $('.history-filter li[hf-group="hashtag"]').length
+    var h_offset = 0
+    if (h_length > 5) {
+      for (var h = 5; h < h_length; h++) {
+        $('.history-filter li[hf-group="hashtag"]').eq(h - h_offset).remove()
+        h_offset += 1
+      }
+    }
+    $('.history-filter').append(filter_fulllist_html)
+    rclick('.history-filter li[pl="default_fulllist"]')
   }
   var custom_presets_j
   function custompresets() {
@@ -4689,22 +4813,26 @@
           }
         }
         var hashtags_list = []
-
+        var hashtagindex = 0
         for (var z in allhashtag) {
-          var thishashtag = allhashtag[z]
-          var hashtagstr = String(thishashtag)
-          if (hashtagstr.length >= 25) {
-            hashtagstr = hashtagstr.substring(0, 22) + '...'
+          if (hashtagindex < 5) {
+            var thishashtag = allhashtag[z]
+            var hashtagstr = String(thishashtag)
+            if (hashtagstr.length >= 25) {
+              hashtagstr = hashtagstr.substring(0, 22) + '...'
+            }
+            $('.history-filter').append('<li pl="' + z + '" r-click="filter_showhashtag(' + "'" + z + "'" + ',false)" o="0" hf-group="hashtag"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
+            rclick('.history-filter li[pl="' + z + '"]')
           }
-          $('.history-filter').append('<li pl="' + z + '" r-click="filter_showhashtag(' + "'" + z + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
-          rclick('.history-filter li[pl="' + z + '"]')
+          hashtagindex += 1
         }
         $('.history .loading').remove()
         scrollcheckpwd()
         deletepwcache()
         $('.history-filter li[loading="1"]').attr('loading', '0')
         $('.history-filter li[gx="hashtag-loading"]').remove()
-        rclick('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"]')
+        $('.history-filter').append(filter_fulllist_html)
+        rclick('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"],.history-filter li[pl="default_fulllist"]')
         history_filter_load = 1
         loadgooglefont()
       }, 1200);
@@ -4721,24 +4849,6 @@
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
-  /*
-    document.querySelector('.input3 input').addEventListener("paste", function (e) {
-  
-      showsearchresult()
-    });
-    document.querySelector('.input3 input').addEventListener("cut", function (e) {
-  
-      showsearchresult()
-    });
-    document.querySelector('.input3 input').addEventListener("selectionchange", function (e) {
-  
-      showsearchresult()
-    });
-    document.querySelector('.input3 input').addEventListener("keyup", function (e) {
-  
-      showsearchresult()
-    });
-    */
 
   //checkpwpage
 
