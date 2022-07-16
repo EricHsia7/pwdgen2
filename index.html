@@ -3564,22 +3564,21 @@
     }
   }
   function save(gid, shwmes) {
-    var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
+    var encdd = encu(enur($('.history .box#' + gid + ' input[u="' + gid + '"]').attr('value')))
     var ddt = $('.history .box#' + gid).attr('t')
     var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
-    var psehash = 'pwdgen2_saved_a_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
+    var psehash = 'pwdgen2_saved_a_' + sha256($('.history .box#' + gid + ' input[u="' + gid + '"]').attr('value') + '_' + ddt)
     localStorage.setItem(psehash, pse)
     markasrecentaccess(0, gid)
-    if (String($('.saveoo[h="' + gid + '"]').attr('g')) === '0') {
-      $('.saveoo[h="' + gid + '"]').attr('g', '1')
+    if (String($('.history .box#' + gid + ' .saveoo[h="' + gid + '"]').attr('g')) === '0') {
+      $('.history .box#' + gid + ' .saveoo[h="' + gid + '"]').attr('g', '1')
       if (shwmes) {
         mes('saved')
       }
       localStorage.setItem(psehash, pse)
-
     }
     else {
-      $('.saveoo[h="' + gid + '"]').attr('g', '0')
+      $('.history .box#' + gid + ' .saveoo[h="' + gid + '"]').attr('g', '0')
       if (shwmes) {
         mes('unsaved')
       }
@@ -4029,7 +4028,7 @@
       var thspt = checkpwd(pw)
       var hash = sha256(pw + '_' + pwtime.getTime())
       markasrecentaccess(1, hash)
-      $('.history').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
+      $('.history').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
       rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]')
       rclick('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]')
       $('.history-filter').css({ 'display': 'block' })
