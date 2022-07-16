@@ -3783,7 +3783,7 @@
   }
   function showsearchresult(y) {
     $('.btn7').css({ 'opacity': '0' })
-    $('.search_loading').css({ 'opacity': '1' })
+    $('.search_loading,.search_loading_mask').css({ 'opacity': '1' })
     $('.input3 input').attr('disabled', 'disabled')
     setTimeout(function () {
       if (y === true) {
@@ -3849,7 +3849,7 @@
 
       $('.input3 input').removeAttr('disabled')
       $('.btn7').css({ 'opacity': '1' })
-      $('.search_loading').css({ 'opacity': '0' })
+      $('.search_loading,.search_loading_mask').css({ 'opacity': '0' })
     }, 1500);
   }
 
