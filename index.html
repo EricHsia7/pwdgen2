@@ -3350,12 +3350,42 @@
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     }, 1500);
   }
+  function openfulllist_l() {
+    var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
+    var newallhashtag = {}
+
+    var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
+    for (var d = 0; d < noteslist.length; d++) {
+      if (!(localStorage.hasOwnProperty(noteslist[d]))) {
+        continue;
+      }
+      var notetext = deur(atob(String(localStorage.getItem(noteslist[d]))))
+      var hashtags = notetext.match(hashtag_regex)
+      if (hashtags === null) {
+        continue;
+      }
+      for (var s = 0; s < hashtags.length; s++) {
+        var hashtagkey = String(hashtags[s]).replaceAll('#', '').toLowerCase()
+        newallhashtag[hashtagkey] = hashtags[s]
+      }
+    }
+    for (var y in newallhashtag) {
+      var y_gid = gid()
+      var this_html = '<li o="0" yi="' + y_gid + '" rclick="filter_fulllist_apply(' + "'" + y + "'" + ')"><div class="history_filter_fulllist_icon">' + hashatagicon + '</div><div class="history_filter_fulllist_name">' + newallhashtag[y] + '</div></li>'
+      rclick('.history_filter_fulllist .history_filter_fulllist_box li[yo="' + y_gid + '"]')
+    }
+
+
+  }
   function openfulllist() {
     $('.history_filter_fulllist,.history_filter_fulllist_mask').css({ 'display': 'block', 'transition': '0.3s' })
     setTimeout(function () {
       $('.history_filter_fulllist').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
       $('.history_filter_fulllist_mask').css({ 'opacity': '1' })
     }, 1)
+    setTimeout(function () {
+      openfulllist_l()
+    }, 1000);
   }
   function closefulllist() {
     $('.history_filter_fulllist').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
@@ -3368,6 +3398,7 @@
     openfulllist()
   }
   function filter_fulllist_apply(tagname) {
+    closefulllist()
     filter_showhashtag(tagname, true)
   }
   //date filter 
@@ -4256,6 +4287,7 @@
         allhashtag[hashtagkey] = hashtags[s]
       }
     }
+
     for (var g in allhashtag) {
       if (newallhashtag[g] === undefined) {
         allhashtag[g] = false
