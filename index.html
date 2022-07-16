@@ -3286,8 +3286,13 @@
     }, 1500);
   }
 
-  function filter_showhashtag(hashtag_name) {
-    filter_switch(hashtag_name)
+  function filter_showhashtag(hashtag_name, m) {
+    if (m === true) {
+      filter_switch('default_fulllist')
+    }
+    else {
+      filter_switch(hashtag_name)
+    }
     filter_show_skeleton()
     setTimeout(function () {
       var r_hashtag = allhashtag[hashtag_name]
@@ -3316,14 +3321,20 @@
             var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
             $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
-
-
-
         }
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
     }, 1500);
+  }
+  function openfulllist() {
+    
+  }
+  function filter_fulllist() {
+
+  }
+  function filter_fulllist_apply(tagname) {
+    filter_showhashtag(tagname, true)
   }
   //date filter 
 
@@ -4230,7 +4241,7 @@
             hashtagstr = hashtagstr.substring(0, 22) + '...'
           }
 
-          $('.history-filter').append('<li pl="' + o + '" r-click="filter_showhashtag(' + "'" + o + "'" + ')" o="0" hf-group="hashtag"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
+          $('.history-filter').append('<li pl="' + o + '" r-click="filter_showhashtag(' + "'" + o + "'" + ',false)" o="0" hf-group="hashtag"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
           rclick('.history-filter li[pl="' + o + '"]')
           addcount += 1
         }
@@ -4710,7 +4721,7 @@
             if (hashtagstr.length >= 25) {
               hashtagstr = hashtagstr.substring(0, 22) + '...'
             }
-            $('.history-filter').append('<li pl="' + z + '" r-click="filter_showhashtag(' + "'" + z + "'" + ')" o="0" hf-group="hashtag"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
+            $('.history-filter').append('<li pl="' + z + '" r-click="filter_showhashtag(' + "'" + z + "'" + ',false)" o="0" hf-group="hashtag"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
             rclick('.history-filter li[pl="' + z + '"]')
           }
           hashtagindex += 1
