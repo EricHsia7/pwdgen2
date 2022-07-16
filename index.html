@@ -1968,10 +1968,27 @@
       overflow: hidden;
     }
 
+    .history_filter_fulllist_box .history_filter_fulllist_name {
+      width: calc(100% - 45px)
+    }
+
+    .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_name {
+      height: 18px;
+    }
+
     .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_icon,
     .history_filter_fulllist_box li[loading="1"] .history_filter_fulllist_name {
       background: var(--g-e3e3e3);
       border-radius: 10px;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .custom-presets-manager-box .custom-presets-manager-delete,
