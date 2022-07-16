@@ -3615,10 +3615,8 @@
 
   }
   function pwnotes_del(gide) {
-    setTimeout(function () {
-      $('.history .box#' + gide + ' .bxnotesaa').remove()
-    }, 180);
     refresh_hashtag()
+    $('.history .box#' + gide + ' .bxnotesaa').remove()
   }
   function pwnotes_ev(e, psehash, txthash, gide) {
     if ($('textarea[j="' + txthash + '"]').length > 0) {
@@ -3639,13 +3637,10 @@
     if (!(localStorage.getItem(psehash) === null)) {
       txtval = deur(atob(String(localStorage.getItem(psehash))))
     }
-    var txthtml = '<div class="bxnotesaa" style="opacity:0;transition:0.15s;"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" r-click="copynotes(' + "'" + gide + "'" + ',' + "'" + txthash + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" r-click="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
+    var txthtml = '<div class="bxnotesaa"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" r-click="copynotes(' + "'" + gide + "'" + ',' + "'" + txthash + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" r-click="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
     if ($('.history .box#' + gide + ' .bxnotestxt').length === 0) {
       $('.history .box#' + gide).append(txthtml)
       $('textarea[j="' + txthash + '"]').val(txtval)
-      setTimeout(function () {
-        $('.history .box#' + gide + ' .bxnotesaa').css({ 'opacity': '1' });
-      }, 1);
       rclick('.bxntx[yj="' + gide + '"]')
       document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e) {
         pwnotes_ev(e, String(psehash), String(txthash), String(gide));
