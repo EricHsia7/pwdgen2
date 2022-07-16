@@ -2092,7 +2092,7 @@
   </div>
   <div class="input">
     <input type="text" placeholder="length" inputmode="numeric" autocomplete="off">
-    <div class="btn" id="gen" ripple-onclick="gen()">
+    <div class="btn" id="gen" r-click="gen()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2101,7 +2101,7 @@
           fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
       </svg>
     </div>
-    <div class="btn5" id="pwdcustom" ripple-onclick="pwdcustom()" uj="0">
+    <div class="btn5" id="pwdcustom" r-click="pwdcustom()" uj="0">
 
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2135,7 +2135,7 @@
   </div>
 
   <div class="history-filter">
-    <li o="1" pl="default_all" ripple-onclick="filter_showall()" loading="1">
+    <li o="1" pl="default_all" r-click="filter_showall()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2148,7 +2148,7 @@
       </div>
       <span>All</span>
     </li>
-    <li o="0" pl="default_recentaccess" ripple-onclick="filter_showrecentaccess()" loading="1">
+    <li o="0" pl="default_recentaccess" r-click="filter_showrecentaccess()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2161,7 +2161,7 @@
       </div>
       <span>Recent access</span>
     </li>
-    <li o="0" pl="default_containnote" ripple-onclick="filter_showcontainnote()" loading="1">
+    <li o="0" pl="default_containnote" r-click="filter_showcontainnote()" loading="1">
       <div class="history-filter-icon">
         <svg stroke-miterlimit="10"
           style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2174,7 +2174,7 @@
       </div>
       <span>Contain Note</span>
     </li>
-    <li o="0" pl="default_datefilter" ripple-onclick="filter_date_picker()" loading="1">
+    <li o="0" pl="default_datefilter" r-click="filter_date_picker()" loading="1">
       <div class="history-filter-icon">
 
         <svg stroke-miterlimit="10"
@@ -2202,7 +2202,7 @@
 
   <div class="input2">
     <input type="password" placeholder="password" autocomplete="off">
-    <div class="btn6" id="checkpw" ripple-onclick="checkpwfv()">
+    <div class="btn6" id="checkpw" r-click="checkpwfv()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2286,7 +2286,7 @@
 
   <div class="input3">
     <input type="text" placeholder="password,date,notes..." autocomplete="off">
-    <div class="btn7" ripple-onclick="showsearchresult(false)">
+    <div class="btn7" r-click="showsearchresult(false)">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2304,7 +2304,7 @@
 
   <div class="title">
     Password Generator
-    <div class="btn2" ripple-onclick="page2()">
+    <div class="btn2" r-click="page2()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2376,10 +2376,10 @@
       <div class="filter-date-picker-month"></div>
       <div class="filter-date-picker-date"></div>
     </div>
-    <div class="filter-date-picker-apply" ripple-onclick="filter_showdate()">
+    <div class="filter-date-picker-apply" r-click="filter_showdate()">
       Apply
     </div>
-    <div class="filter-date-picker-cancel" ripple-onclick="close_date_picker()">
+    <div class="filter-date-picker-cancel" r-click="close_date_picker()">
       Cancel
     </div>
   </div>
@@ -2411,10 +2411,10 @@
         <input type="text" inputmode="decimal" placeholder="Symbol" id="symbol_custom_presets">
       </div>
     </div>
-    <div class="custom-presets-add-add" ripple-onclick="addcustompresetsadd()">
+    <div class="custom-presets-add-add" r-click="addcustompresetsadd()">
       Add
     </div>
-    <div class="custom-presets-add-cancel" ripple-onclick="closecustompresetsadd()">
+    <div class="custom-presets-add-cancel" r-click="closecustompresetsadd()">
       Cancel
     </div>
   </div>
@@ -2427,7 +2427,7 @@
     <div class="custom-presets-manager-box">
 
     </div>
-    <div class="custom-presets-manager-close" ripple-onclick="closecustompresetsmanager()">
+    <div class="custom-presets-manager-close" r-click="closecustompresetsmanager()">
       Close
     </div>
   </div>
@@ -2498,7 +2498,7 @@
       </div>
     </li>
 
-    <li class="options_list" dy="refresh" ripple-onclick="vrefresh()">
+    <li class="options_list" dy="refresh" r-click="vrefresh()">
       <div class="options_list_txt">Refresh</div>
       <div class="options_list_icon">
         <svg stroke-miterlimit="10"
@@ -2512,7 +2512,7 @@
       </div>
     </li>
 
-    <li class="options_list" dy="backuppwd" ripple-onclick="backupzip()">
+    <li class="options_list" dy="backuppwd" r-click="backupzip()">
       <div class="options_list_txt">Backup</div>
       <div class="options_list_icon">
         <svg stroke-miterlimit="10"
@@ -2545,7 +2545,7 @@
       </li>
     </label>
 
-    <li class="options_list" dy="deleteall" ripple-onclick="confirmcf()">
+    <li class="options_list" dy="deleteall" r-click="confirmcf()">
       <div class="options_list_txt">Delete all saved passwords</div>
       <div class="options_list_icon">
         <svg stroke-miterlimit="10"
@@ -2561,7 +2561,7 @@
 
 
 
-    <li class="options_list" dy="viewongit" ripple-onclick="copywebapplink()">
+    <li class="options_list" dy="viewongit" r-click="copywebapplink()">
       <div class="options_list_txt">Copy the link for this web app</div>
       <div class="options_list_icon">
         <svg stroke-miterlimit="10"
@@ -2576,7 +2576,7 @@
     </li>
 
 
-    <li class="options_list" dy="viewongit" ripple-onclick="viewongithub()">
+    <li class="options_list" dy="viewongit" r-click="viewongithub()">
       <div class="options_list_txt">View on Github</div>
       <div class="options_list_icon">
         <svg stroke-miterlimit="10"
@@ -2592,7 +2592,7 @@
   </div>
   <div class="title2" style="display:none;">
     Options
-    <div class="btn2" ripple-onclick="clspage2()">
+    <div class="btn2" r-click="clspage2()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2609,16 +2609,16 @@
       Enter "<span id="confirmcftxt"></span>" to confirm deletion of saved passwords.
     </div>
     <input type="text" class="confirminput" placeholder="Enter text here...">
-    <div class="btn3" ripple-onclick="deleteallsavedpwds()">Confirm</div>
-    <div class="btn3" style="left:calc(50% + 5px)" ripple-onclick="confirmcls()">Cancel</div>
+    <div class="btn3" r-click="deleteallsavedpwds()">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="confirmcls()">Cancel</div>
   </div>
 
   <div class="restoredata">
     <div class="restoredatatitle">
       After confirming the restore, you "cannot" cancel it
     </div>
-    <div class="btn8" ripple-onclick="cifrestore()">Confirm</div>
-    <div class="btn8" style="left:calc(50% + 5px)" ripple-onclick="clsrestoredata_s()">Cancel</div>
+    <div class="btn8" r-click="cifrestore()">Confirm</div>
+    <div class="btn8" style="left:calc(50% + 5px)" r-click="clsrestoredata_s()">Cancel</div>
   </div>
 
   <div
@@ -2650,62 +2650,10 @@
 
   $.extend($.support, { touch: "ontouchend" in document });
 
-  function ripple(select, color, opacity, time, removewh) {
-    $(select).on("click", function (eee) {
-      if (removewh === 'true') {
-        $(this).css({ 'width': '', 'height': '' });
-      }
-      var ogstyle = $(this).attr('style');
-
-      var ppchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-      var ppid = "";
-      for (var i = 0; i < 16; i++) {
-        var randomNumber = Math.floor(Math.random() * ppchars.length);
-        ppid += ppchars.substring(randomNumber, randomNumber + 1);
-      }
-
-      var ppcharsa = "0123456789abcdefghijklmnopqrstuvwxyz";
-      var ppida = "";
-      for (var ia = 0; ia < 16; ia++) {
-        var randomNumbera = Math.floor(Math.random() * ppcharsa.length);
-        ppida += ppcharsa.substring(randomNumbera, randomNumbera + 1);
-      }
-      $(this).attr('rippleid', ppida);
-
-      var pou = 'relative';
-      if ($(this).css('position') === 'absolute') {
-        pou = 'absolute';
-      }
-      if ($(this).css('position') === 'fixed') {
-        pou = 'fixed';
-      }
-
-      $(this).css({ 'width': $(this).width() + 'px', 'height': $(this).height() + 'px', 'position': pou, 'overflow': 'hidden', 'outline': 'none', '-webkit-tap-highlight-color': 'rgba(0,0,0,0)' });
-      ggww = ($(this).width() + $(this).height()) * 2;
-      if ($(this).width() > $(this).height()) {
-        ggww = $(this).width() * 4;
-      }
-      else {
-        ggww = $(this).height() * 4;
-      }
-
-      var xPos = (eee.pageX - $(this).offset().left) - (ggww / 2);
-      var yPos = (eee.pageY - $(this).offset().top) - (ggww / 2);
-      $('body').append('<style vgf="' + ppid + '">.rippleanimation' + ppid + ' {animation-name:ripple' + ppid + ';animation-duration:' + (time / 1000) + 's;animation-fill-mode:forwards;animation-timing-function:ease-out}@keyframes ripple' + ppid + ' {0%{opacity:' + opacity + ';transform:scale(0)}60%{opacity:' + (0) + ';transform:scale(0.8)}100%{opacity:' + (0) + ';transform:scale(1)}}</style>');
-      $(this).append('<div style="width:' + ggww + 'px;height:' + ggww + 'px;position: absolute;top:' + yPos + 'px;left:' + xPos + 'px;border-radius:99em;transform:scale(0);opacity:' + opacity + ';background:' + color + '; overflow:hidden; -webkit-user-select:none; outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0);will-change: transform,opacity;" id="' + ppid + '"></div>');
-
-      setTimeout(function () {
-        $('#' + ppid).attr('class', 'rippleanimation' + ppid)
-      }, 1);
-      setTimeout(function () {
-        $('#' + ppid).remove();
-        $('style[vgf="' + ppid + '"]').remove();
-        $('*[rippleid="' + ppida + '"]').attr('style', ogstyle);
-      }, time / 0.9);
-      if ($(this).attr('ripple-onclick') != '') {
-
-        eval('setTimeout(function() {' + $(this).attr('ripple-onclick') + '},' + 200 + ');');
-
+  function rclick(select, color, opacity, time, removewh) {
+    $(select).click(function () {
+      if ($(this).attr('r-click') != '') {
+        eval('setTimeout(function() {' + $(this).attr('r-click') + '},' + 200 + ');');
       }
     });
   }
@@ -2738,10 +2686,10 @@
     };
   })(jQuery);
 
-  ripple('.btn,.btn5,.btn6,.btn7', 'var(--g-4e4e4e)', '0.3', 888, 'true');
-  ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
-  ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
-  ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  rclick('.btn,.btn5,.btn6,.btn7', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  rclick('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+  rclick('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
+  rclick('.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
@@ -3444,14 +3392,14 @@
     var ffid = gid()
     $('.filter-date-picker-year,.filter-date-picker-month,.filter-date-picker-date').html('')
     for (var y = 0; y < date_picker_all.year.length; y++) {
-      $('.filter-date-picker-year').append('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" ripple-onclick="date_picker_setyear(' + y + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, undefined, undefined) + "'" + '"><span>' + date_picker_all.year[y] + '</span></li>')
-      ripple('.filter-date-picker-year li[r="' + ffid + '-' + y + '"]', '#4e4e4e', '0.3', 888, 'true');
+      $('.filter-date-picker-year').append('<li e="0" index="' + y + '" r="' + ffid + '-' + y + '" r-click="date_picker_setyear(' + y + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, undefined, undefined) + "'" + '"><span>' + date_picker_all.year[y] + '</span></li>')
+      rclick('.filter-date-picker-year li[r="' + ffid + '-' + y + '"]', '#4e4e4e', '0.3', 888, 'true');
       for (var m = 0; m < date_picker_all.month[y].length; m++) {
-        $('.filter-date-picker-month').prepend('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" ripple-onclick="date_picker_setmonth(' + m + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, m, undefined) + "'" + '"><span>' + che(date_picker_all.month[y][m] + 1) + '</span></li>')
-        ripple('.filter-date-picker-month li[r="' + ffid + '-' + y + '-' + m + '"]', '#4e4e4e', '0.3', 888, 'true');
+        $('.filter-date-picker-month').prepend('<li index="' + y + '" e="0" m="' + y + '-' + m + '" r="' + ffid + '-' + y + '-' + m + '" r-click="date_picker_setmonth(' + m + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, m, undefined) + "'" + '"><span>' + che(date_picker_all.month[y][m] + 1) + '</span></li>')
+        rclick('.filter-date-picker-month li[r="' + ffid + '-' + y + '-' + m + '"]', '#4e4e4e', '0.3', 888, 'true');
         for (var d = 0; d < date_picker_all.date[y][m].length; d++) {
-          $('.filter-date-picker-date').prepend('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" ripple-onclick="date_picker_setdate(' + d + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, m, d) + "'" + '"><span>' + che(date_picker_all.date[y][m][d]) + '</span></li>')
-          ripple('.filter-date-picker-date li[r="' + ffid + '-' + y + '-' + m + '-' + d + '"]', '#4e4e4e', '0.3', 888, 'true');
+          $('.filter-date-picker-date').prepend('<li index="' + y + '-' + m + '" e="0" r="' + ffid + '-' + y + '-' + m + '-' + d + '" m="' + y + '-' + m + '-' + d + '" r-click="date_picker_setdate(' + d + ')" style="--date-picker-result-preview:' + "'" + date_picker_result_preview(y, m, d) + "'" + '"><span>' + che(date_picker_all.date[y][m][d]) + '</span></li>')
+          rclick('.filter-date-picker-date li[r="' + ffid + '-' + y + '-' + m + '-' + d + '"]', '#4e4e4e', '0.3', 888, 'true');
         }
       }
     }
@@ -3699,14 +3647,14 @@
     if (!(localStorage.getItem(psehash) === null)) {
       txtval = deur(atob(String(localStorage.getItem(psehash))))
     }
-    var txthtml = '<div class="bxnotesaa" style="opacity:0;transition:0.15s;"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" ripple-onclick="copynotes(' + "'" + gide + "'" + ',' + "'" + txthash + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" ripple-onclick="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
+    var txthtml = '<div class="bxnotesaa" style="opacity:0;transition:0.15s;"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" r-click="copynotes(' + "'" + gide + "'" + ',' + "'" + txthash + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" r-click="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
     if ($('.history .box#' + gide + ' .bxnotestxt').length === 0) {
       $('.history .box#' + gide).append(txthtml)
       $('textarea[j="' + txthash + '"]').val(txtval)
       setTimeout(function () {
         $('.history .box#' + gide + ' .bxnotesaa').css({ 'opacity': '1' });
       }, 1);
-      ripple('.bxntx[yj="' + gide + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+      rclick('.bxntx[yj="' + gide + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e) {
         pwnotes_ev(e, String(psehash), String(txthash), String(gide));
       });
@@ -3749,13 +3697,13 @@
       trog = 'right bottom'
     }
     var bxbgffft = '<div class="boxmnulibgjj" style="background:rgba(0,0,0,0);position:fixed;top:0px;left:0px;width:100%;height:100%;" jvw="bxbg-' + gid + '"></div>';
-    var boxmnulihtm = '<div class="boxmnuli" style="top:' + ftop + 'px;left:' + fleft + 'px;transform:scale(0);transform-origin:' + trog + ';opacity:0;transition:0.2s;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" ripple-onclick="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '" ripple-onclick="pwnotes_a(' + "'" + gid + "'" + ')">notes</li></div>';
+    var boxmnulihtm = '<div class="boxmnuli" style="top:' + ftop + 'px;left:' + fleft + 'px;transform:scale(0);transform-origin:' + trog + ';opacity:0;transition:0.2s;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" r-click="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '" r-click="pwnotes_a(' + "'" + gid + "'" + ')">notes</li></div>';
     if ($('.boxmnuli[bxz="' + gid + '"]').length === 0) {
       $('body').append(bxbgffft + boxmnulihtm)
       setTimeout(function () {
         $('.boxmnuli[bxz="' + gid + '"]').css({ 'transform': 'scale(1)', 'opacity': '1' });
       }, 1);
-      ripple('li[gxv="bxnmuu-' + gid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+      rclick('li[gxv="bxnmuu-' + gid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       $('.boxmnulibgjj[jvw="bxbg-' + gid + '"]').click(function () {
         delboxmnuli(gid)
       });
@@ -3771,10 +3719,10 @@
     var datt = pwinfo(gid)
     delboxmnuli(gid)
     markasrecentaccess(0, gid)
-    var shhtm = '<div class="box_nf" style="transition:0.15s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" ripple-onclick="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
+    var shhtm = '<div class="box_nf" style="transition:0.15s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" r-click="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
     if ($('.history .box#' + gid + ' .box_nf').length === 0) {
       $('.history .box#' + gid).append(shhtm)
-      ripple('.pwnf[nk="' + gid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+      rclick('.pwnf[nk="' + gid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       setTimeout(function () {
         $('.box_nf[j="' + gid + '"]').css({ 'opacity': '1' })
       }, 1);
@@ -4107,16 +4055,16 @@
       var thspt = checkpwd(pw)
       var hash = sha256(pw + '_' + pwtime.getTime())
       markasrecentaccess(1, hash)
-      $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
+      $('.history').prepend('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
       $('.history-filter').css({ 'display': 'block' })
       if (history_filter_load === 0) {
         $('.history-filter li[loading="1"]').attr('loading', '0')
         $('.history-filter li[gx="hashtag-loading"]').remove()
-        ripple('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        rclick('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         history_filter_load = 1
       }
-      ripple('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
-      ripple('.checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+      rclick('.btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+      rclick('.checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       mes('generated')
       refresh_hashtag()
       if (localStorage.getItem('pw_options_autosavepwd') === '1') {
@@ -4306,8 +4254,8 @@
             hashtagstr = hashtagstr.substring(0, 22) + '...'
           }
 
-          $('.history-filter').append('<li pl="' + o + '" ripple-onclick="filter_showhashtag(' + "'" + o + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
-          ripple('.history-filter li[pl="' + o + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+          $('.history-filter').append('<li pl="' + o + '" r-click="filter_showhashtag(' + "'" + o + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
+          rclick('.history-filter li[pl="' + o + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
           addcount += 1
         }
       }
@@ -4353,17 +4301,17 @@
         var this_icon = '<div class="material-symbols-outlined" translate="no">' + th.icon + '</div>'
       }
 
-      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" ripple-onclick="applycustompreset(' + "'" + th.fd + "'" + ')"><div class="custom-presets-icon">' + this_icon + '</div><span>' + th.name + '</span></li>'
+      var this_html = '<li o="0" fd="' + th.fd + '" loading="0" j-index="' + i + '" r-click="applycustompreset(' + "'" + th.fd + "'" + ')"><div class="custom-presets-icon">' + this_icon + '</div><span>' + th.name + '</span></li>'
       $('.custom-presets').append(this_html)
-      ripple('.custom-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+      rclick('.custom-presets li[fd="' + th.fd + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
     }
 
 
     //add,manager
-    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" ripple-onclick="applycustompreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="custom-presets-icon">' + plusicon + '</div><span>Add</span</li>'
-    var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" ripple-onclick="applycustompreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="custom-presets-icon">' + custom_presets_manager + '</div><span>Manager</span</li>'
+    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" r-click="applycustompreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="custom-presets-icon">' + plusicon + '</div><span>Add</span</li>'
+    var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" r-click="applycustompreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="custom-presets-icon">' + custom_presets_manager + '</div><span>Manager</span</li>'
     $('.custom-presets').append(add_li_html + ' ' + manager_html)
-    ripple('.custom-presets li[fd="addcustompreset"],.custom-presets li[fd="managercustompreset"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+    rclick('.custom-presets li[fd="addcustompreset"],.custom-presets li[fd="managercustompreset"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
     //print end
   }
@@ -4441,8 +4389,8 @@
             $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" load="0"></div>')
           }
           var odddd = gid()
-          $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" ripple-onclick="custompresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="custom_presets_add_icon_picker_icon_svgbox">' + custom_presets_default + '</div></div>')
-          ripple('.custom_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+          $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="default" load="1" icon-d="' + odddd + '" r-click="custompresetsiconpickerchange(' + "'" + odddd + "'" + ')" se="1"><div class="custom_presets_add_icon_picker_icon_svgbox">' + custom_presets_default + '</div></div>')
+          rclick('.custom_presets_add_icon_picker_icon[icon-d="' + odddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
 
           var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
           var f_iconlist = []
@@ -4454,8 +4402,8 @@
               f_iconlist = String(localStorage.getItem('material_design_icons_list')).split(',')
               for (var q = 0; q < f_iconlist.length; q++) {
                 var idddd = gid()
-                $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" ripple-onclick="custompresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="custom_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + f_iconlist[q] + '</span></div></div>')
-                ripple('.custom_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+                $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="' + f_iconlist[q] + '" load="1" icon-d="' + idddd + '" r-click="custompresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="custom_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + f_iconlist[q] + '</span></div></div>')
+                rclick('.custom_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
               }
               $('.custom_presets_add_icon_picker_icon[load="0"]').remove()
               if (custom_presets_icon_picker_scrolled === 0) {
@@ -4478,8 +4426,8 @@
                                 for (var s = 0; s < e3.tree.length; s++) {
                                   f_iconlist.push(e3.tree[s].path)
                                   var idddd = gid()
-                                  $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" ripple-onclick="custompresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="custom_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + e3.tree[s].path + '</span></div></div>')
-                                  ripple('.custom_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+                                  $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" r-click="custompresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="custom_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + e3.tree[s].path + '</span></div></div>')
+                                  rclick('.custom_presets_add_icon_picker_icon[icon-d="' + idddd + '"]', 'var(--g-4e4e4e)', '0.3', 555, 'true');
                                 }
                                 localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
                                 localStorage.setItem('material_design_icons_list_update', new Date().getTime())
@@ -4525,10 +4473,10 @@
 
           var p_hx = 'pwdgen2_custom_presets_custom_d_' + sha256(th.name)
           var p_id = gid()
-          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '" dd="' + p_id + '" hx="' + p_hx + '"><div class="custom-presets-manager-icon">' + this_icon + '</div><div class="custom-presets-manager-name">' + th.name + '</div><div class="custom-presets-manager-edit" ripple-onclick="editcustompresets(' + "'" + p_id + "'" + ')">' + editicon + '</div><div class="custom-presets-manager-delete" ripple-onclick="delcustompresets(' + "'" + p_id + "'" + ')">' + trashicon + '</div></li>'
+          var this_html = '<li o="0" fd="' + th.fd + '" j-index="' + i + '" dd="' + p_id + '" hx="' + p_hx + '"><div class="custom-presets-manager-icon">' + this_icon + '</div><div class="custom-presets-manager-name">' + th.name + '</div><div class="custom-presets-manager-edit" r-click="editcustompresets(' + "'" + p_id + "'" + ')">' + editicon + '</div><div class="custom-presets-manager-delete" r-click="delcustompresets(' + "'" + p_id + "'" + ')">' + trashicon + '</div></li>'
 
           $('.custom-presets-manager-box').append(this_html)
-          ripple('.custom-presets-manager-box li[dd="' + p_id + '"] .custom-presets-manager-delete,.custom-presets-manager-box li[dd="' + p_id + '"] .custom-presets-manager-edit', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+          rclick('.custom-presets-manager-box li[dd="' + p_id + '"] .custom-presets-manager-delete,.custom-presets-manager-box li[dd="' + p_id + '"] .custom-presets-manager-edit', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
       }
     }
@@ -4553,7 +4501,7 @@
     setTimeout(function () {
       $('.custom-presets-add,.custom-presets-add-mask').css({ 'display': 'none' })
       $('.custom-presets-add-title').text('Add Custom Preset')
-      $('.custom-presets-add-add').text('Add').attr('ripple-onclick', 'addcustompresetsadd()')
+      $('.custom-presets-add-add').text('Add').attr('r-click', 'addcustompresetsadd()')
     }, 500)
     clearcustompresetsadd()
   }
@@ -4581,7 +4529,7 @@
       closecustompresetsmanager()
       applycustompreset('addcustompreset', false)
       $('.custom-presets-add-title').text('Edit Custom Preset')
-      $('.custom-presets-add-add').text('Save').attr('ripple-onclick', 'savecustompresetsedit(' + "'" + th_hx + "'" + ')')
+      $('.custom-presets-add-add').text('Save').attr('r-click', 'savecustompresetsedit(' + "'" + th_hx + "'" + ')')
       var th_j = JSON.parse(String(localStorage.getItem(th_hx)))
       $('#name_custom_presets').val(th_j.name)
       $('#length_custom_presets').val(th_j.custom.r_length)
@@ -4763,9 +4711,9 @@
                 notehashtags = gethashtags(notetext, true)
               }
 
-              $('.history').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
-              ripple('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
-              ripple('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+              $('.history').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
+              rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+              rclick('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
             }
           }
         }
@@ -4777,15 +4725,15 @@
           if (hashtagstr.length >= 25) {
             hashtagstr = hashtagstr.substring(0, 22) + '...'
           }
-          $('.history-filter').append('<li pl="' + z + '" ripple-onclick="filter_showhashtag(' + "'" + z + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
-          ripple('.history-filter li[pl="' + z + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+          $('.history-filter').append('<li pl="' + z + '" r-click="filter_showhashtag(' + "'" + z + "'" + ')" o="0"><div class="history-filter-icon">' + hashatagicon + '</div><span>' + hashtagstr.replaceAll('#', '') + '</span></li>')
+          rclick('.history-filter li[pl="' + z + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         }
         $('.history .loading').remove()
         scrollcheckpwd()
         deletepwcache()
         $('.history-filter li[loading="1"]').attr('loading', '0')
         $('.history-filter li[gx="hashtag-loading"]').remove()
-        ripple('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+        rclick('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
         history_filter_load = 1
         loadgooglefont()
       }, 1200);
@@ -4952,8 +4900,8 @@
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
 
-  ripple('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"]', 'var(--g-4e4e4e)', '0.3', 1300, 'true');
-  ripple('.confirm .btn3,.btn8', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  rclick('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"]', 'var(--g-4e4e4e)', '0.3', 1300, 'true');
+  rclick('.confirm .btn3,.btn8', 'var(--g-4e4e4e)', '0.3', 888, 'true');
 
   function deleteallsavedpwds() {
     if ($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
@@ -5095,7 +5043,7 @@
   $('.themecircle').click(function () {
     switchthemecss($(this).attr('od'), true)
   });
-  ripple('.themecircle', 'var(--g-4e4e4e)', '0.3', 555, 'true');
+  rclick('.themecircle', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   if (!(localStorage.getItem('pw_theme_n') === null)) {
     switchthemecss(String(localStorage.getItem('pw_theme_n')), false)
   }
