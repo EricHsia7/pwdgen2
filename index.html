@@ -3772,11 +3772,11 @@
     }
   }
   function showsearchresult(y) {
-    if (y === true) {
-      $('.btn7').css({ 'opacity': '0' })
-      $('.search_loading').css({ 'opacity': '1' })
-      $('.input3 input').attr('disabled', 'disabled')
-      setTimeout(function () {
+    setTimeout(function () {
+      if (y === true) {
+        $('.btn7').css({ 'opacity': '0' })
+        $('.search_loading').css({ 'opacity': '1' })
+        $('.input3 input').attr('disabled', 'disabled')
         searchindexjson = {}
         var boxlen = $('.history .box').length
         for (var r = 0; r < boxlen; r++) {
@@ -3803,41 +3803,44 @@
         $('.btn7').css({ 'opacity': '1' })
         $('.search_loading').css({ 'opacity': '0' })
         $('.input3 input').removeAttr('disabled')
-      }, 1500);
-    }
-    if (y === false) {
-      $('.btn7').css({ 'opacity': '0' })
-      $('.search_loading').css({ 'opacity': '1' })
-    }
-    var keywd = $('.input3 input').val()
-    if (keywd === ' ' || keywd === '') {
-      keywd = gid() + '#' + gid()
-    }
-    var result = []
-    var r_index = 0
-    $('.history .box').attr('search', '0').attr('ksearch', '0')
-    for (var f in searchindexjson) {
-      if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
-        var hbbid = String(f).split('_')[3]
-        result.push('.history .box#' + hbbid)
-        if (r_index <= historyloadingboxcc) {
-          if ($('.history .box#' + hbbid).attr('iconload') === '0') {
-            $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
-            $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
-            $('.history .box#' + hbbid + ' .saveoo').html(saveicon + savedicon)
-            $('.history .box#' + hbbid + ' .noteoo').html(noteicon)
-            $('.history .box#' + hbbid + ' .infooo').html(infoicon)
-            $('.history .box#' + hbbid).attr('iconload', '1')
-          }
-        }
-        r_index += 1
       }
-    }
-    $(result.join(',')).attr('search', '1').attr('ksearch', '1')
-    if (y === false) {
-      $('.btn7').css({ 'opacity': '1' })
-      $('.search_loading').css({ 'opacity': '0' })
-    }
+      if (y === false) {
+        $('.btn7').css({ 'opacity': '0' })
+        $('.search_loading').css({ 'opacity': '1' })
+        $('.input3 input').attr('disabled', 'disabled')
+      }
+      var keywd = $('.input3 input').val()
+      if (keywd === ' ' || keywd === '') {
+        keywd = gid() + '#' + gid()
+      }
+      var result = []
+      var r_index = 0
+      $('.history .box').attr('search', '0').attr('ksearch', '0')
+      for (var f in searchindexjson) {
+        if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
+          var hbbid = String(f).split('_')[3]
+          result.push('.history .box#' + hbbid)
+          if (r_index <= historyloadingboxcc) {
+            if ($('.history .box#' + hbbid).attr('iconload') === '0') {
+              $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
+              $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
+              $('.history .box#' + hbbid + ' .saveoo').html(saveicon + savedicon)
+              $('.history .box#' + hbbid + ' .noteoo').html(noteicon)
+              $('.history .box#' + hbbid + ' .infooo').html(infoicon)
+              $('.history .box#' + hbbid).attr('iconload', '1')
+            }
+          }
+          r_index += 1
+        }
+      }
+      $(result.join(',')).attr('search', '1').attr('ksearch', '1')
+      if (y === false) {
+        $('.btn7').css({ 'opacity': '1' })
+        $('.search_loading').css({ 'opacity': '0' })
+        $('.input3 input').removeAttr('disabled')
+      }
+    }, 1500);
+
   }
 
   function page2() {
