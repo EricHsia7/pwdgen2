@@ -4238,9 +4238,11 @@
       filter_showall()
     }
     var h_length = $('.history-filter li[hf-group="hashtag"]').length
+    var h_offset = 0
     if (h_length > 5) {
       for (var h = 5; h < h_length; h++) {
-        $('.history-filter li[hf-group="hashtag"]').eq(h).remove()
+        $('.history-filter li[hf-group="hashtag"]').eq(h - h_offset).remove()
+        h_offset += 1
       }
     }
   }
