@@ -3702,22 +3702,16 @@
     }
   }
   function delpwdinfo(gid) {
-    $('.box_nf[j="' + gid + '"]').css({ 'opacity': '0' });
-    setTimeout(function () {
-      $('.box_nf[j="' + gid + '"]').remove()
-    }, 180);
+    $('.history .box#' + gid + ' .box_nf[j="' + gid + '"]').remove()
   }
   function showpwdinfo(gid) {
     var datt = pwinfo(gid)
     delboxmnuli(gid)
     markasrecentaccess(0, gid)
-    var shhtm = '<div class="box_nf" style="transition:0.15s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" r-click="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
+    var shhtm = '<div class="box_nf" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" r-click="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
     if ($('.history .box#' + gid + ' .box_nf').length === 0) {
       $('.history .box#' + gid).append(shhtm)
-      rclick('.pwnf[nk="' + gid + '"]')
-      setTimeout(function () {
-        $('.box_nf[j="' + gid + '"]').css({ 'opacity': '1' })
-      }, 1);
+      rclick('.history .box#' + gid + ' .box_nf[j="' + gid + '"] .pwnf[nk="' + gid + '"]')
     }
   }
   function showsearchresult(y) {
