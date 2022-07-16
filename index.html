@@ -3372,6 +3372,7 @@
     for (var y in newallhashtag) {
       var y_gid = gid()
       var this_html = '<li o="0" yi="' + y_gid + '" rclick="filter_fulllist_apply(' + "'" + y + "'" + ')"><div class="history_filter_fulllist_icon">' + hashatagicon + '</div><div class="history_filter_fulllist_name">' + newallhashtag[y] + '</div></li>'
+      $('.history_filter_fulllist .history_filter_fulllist_box').append(this_html)
       rclick('.history_filter_fulllist .history_filter_fulllist_box li[yo="' + y_gid + '"]')
     }
 
