@@ -563,7 +563,7 @@
       background: var(--g-ffffff);
       position: fixed;
       top: 55px;
-      right: 0;
+      left: 0;
       display: none;
       overflow-y: scroll;
       overflow-x: hidden;
@@ -3794,13 +3794,9 @@
 
   function page2() {
     $('body').css({ 'overflow': 'hidden' });
-    $('.page2,.title2').css({ 'right': '0%', 'opacity': '0' });
     $('.page2').css({ 'display': 'block' });
     $('.title2').css({ 'display': 'flex' });
 
-    setTimeout(function () {
-      $('.page2,.title2').css({ 'right': '0%', 'opacity': '1', 'transition': '0.3s' });
-    }, 1);
 
 
     setTimeout(function () {
@@ -3811,10 +3807,7 @@
   }
   function clspage2() {
     $('body').css({ 'overflow': 'scroll' });
-    $('.page2,.title2').css({ 'right': '0%', 'opacity': '0' });
-    setTimeout(function () {
-      $('.page2,.title2').css({ 'display': 'none', 'right': '0%', 'transition': '0s' });
-    }, 300);
+    $('.page2,.title2').css({ 'display': 'none' });
   }
   function setoptions() {
     for (var i = 0; i < $('.switch input').length; i++) {
