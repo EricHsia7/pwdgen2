@@ -3772,11 +3772,11 @@
     }
   }
   function showsearchresult(y) {
+    $('.btn7').css({ 'opacity': '0' })
+    $('.search_loading').css({ 'opacity': '1' })
+    $('.input3 input').attr('disabled', 'disabled')
     setTimeout(function () {
       if (y === true) {
-        $('.btn7').css({ 'opacity': '0' })
-        $('.search_loading').css({ 'opacity': '1' })
-        $('.input3 input').attr('disabled', 'disabled')
         searchindexjson = {}
         var boxlen = $('.history .box').length
         for (var r = 0; r < boxlen; r++) {
@@ -3800,14 +3800,6 @@
           searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd, pwtimestr, thw_notes, thw_saved, thw_time]
 
         }
-        $('.btn7').css({ 'opacity': '1' })
-        $('.search_loading').css({ 'opacity': '0' })
-        $('.input3 input').removeAttr('disabled')
-      }
-      if (y === false) {
-        $('.btn7').css({ 'opacity': '0' })
-        $('.search_loading').css({ 'opacity': '1' })
-        $('.input3 input').attr('disabled', 'disabled')
       }
       var keywd = $('.input3 input').val()
       if (keywd === ' ' || keywd === '') {
@@ -3834,11 +3826,9 @@
         }
       }
       $(result.join(',')).attr('search', '1').attr('ksearch', '1')
-      if (y === false) {
-        $('.btn7').css({ 'opacity': '1' })
-        $('.search_loading').css({ 'opacity': '0' })
-        $('.input3 input').removeAttr('disabled')
-      }
+      $('.btn7').css({ 'opacity': '1' })
+      $('.search_loading').css({ 'opacity': '0' })
+      $('.input3 input').removeAttr('disabled')
     }, 1500);
 
   }
