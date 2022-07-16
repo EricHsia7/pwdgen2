@@ -3763,8 +3763,8 @@
         var boxlen = $('.history .box').length
         for (var r = 0; r < boxlen; r++) {
           var thw_bxf = $('.history .box').eq(r).attr('id')
-          var thw_pwd = $('input[u="' + thw_bxf + '"]').attr('value')
-          var thw_time = $('.history .box#' + thw_bxf + '"]').attr('t')
+          var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
+          var thw_time = $('.history .box#' + thw_bxf).attr('t')
           var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
           var thw_notes = 0
           if (!(localStorage.getItem(thw_nhash) === null)) {
