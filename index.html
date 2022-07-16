@@ -164,6 +164,15 @@
       width: calc(100% - 5px - 45px)
     }
 
+    .search_loading_mask {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 45px;
+      height: 45px;
+      background: var(--g-f4f4f4);
+    }
+
     .search_loading {
       position: absolute;
       top: 12.5px;
@@ -191,7 +200,6 @@
       position: absolute;
       top: 0px;
       left: 0px;
-      opacity: 0;
     }
 
     @keyframes searchloading {
@@ -217,7 +225,8 @@
 
     .input .btn,
     .input .btn5,
-    .input2 .btn6 {
+    .input2 .btn6,
+    .input3 .btn7 {
       width: calc(45px - 5px);
       height: calc(45px - 5px);
       position: absolute;
@@ -238,9 +247,14 @@
       right: 45px
     }
 
+    .input3 .btn7 {
+      opacity: 0;
+    }
+
     .input .btn svg,
     .input .btn5 svg,
-    .input2 .btn6 svg {
+    .input2 .btn6 svg,
+    .input3 .btn7 svg {
       width: 20px;
       height: 20px;
       -webkit-user-select: none;
@@ -2272,6 +2286,18 @@
 
   <div class="input3">
     <input type="text" placeholder="password,date,notes..." autocomplete="off">
+    <div class="btn7" ripple-onclick="showsearchresult(false)">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path
+          d="M57.4556 61L36.2694 39.8139C34.6583 41.2102 32.7787 42.2977 30.6306 43.0764C28.4824 43.8551 26.2 44.2444 23.7833 44.2444C17.9833 44.2444 13.0694 42.2306 9.04167 38.2028C5.01389 34.175 3 29.3148 3 23.6222C3 17.9296 5.01389 13.0694 9.04167 9.04167C13.0694 5.01389 17.9565 3 23.7028 3C29.3954 3 34.2421 5.01389 38.2431 9.04167C42.244 13.0694 44.2444 17.9296 44.2444 23.6222C44.2444 25.9315 43.8685 28.1602 43.1167 30.3083C42.3648 32.4565 41.237 34.4704 39.7333 36.35L61 57.4556L57.4556 61ZM23.7028 39.4111C28.0528 39.4111 31.7583 37.8671 34.8194 34.7792C37.8806 31.6912 39.4111 27.9722 39.4111 23.6222C39.4111 19.2722 37.8806 15.5532 34.8194 12.4653C31.7583 9.37731 28.0528 7.83333 23.7028 7.83333C19.2991 7.83333 15.5532 9.37731 12.4653 12.4653C9.37732 15.5532 7.83333 19.2722 7.83333 23.6222C7.83333 27.9722 9.37731 31.6912 12.4653 34.7792C15.5532 37.8671 19.2991 39.4111 23.7028 39.4111Z"
+          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="var(--g-ffffff)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="0" id="bottom-btn-svg-fill-s" />
+      </svg>
+    </div>
+    <div class="search_loading_mask"></div>
     <div class="search_loading">
       <div class="ld"></div>
     </div>
@@ -2713,7 +2739,7 @@
     };
   })(jQuery);
 
-  ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.btn,.btn5,.btn6,.btn7', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
   ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
@@ -2755,12 +2781,16 @@
     return decodeURIComponent(u)
   }
 
-  function gid() {
+  function gid(n) {
     var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
     var genid = "";
     for (var i = 0; i < 16; i++) {
       var genrandomNumber = Math.floor(Math.random() * genidchars.length);
       genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+    }
+    if (!(n === undefined)) {
+      n = n.replaceAll('_', '-')
+      return n + '-' + genid + '' + new Date().getTime();
     }
     return genid + '' + new Date().getTime();
   }
@@ -2841,8 +2871,8 @@
   }
   function checkpwd(pwdstr, cache, gid, tt) {
     if (cache) {
-      var ddt = $('.history .box[f="' + gid + '"]').attr('t')
-      var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
+      var ddt = $('.history .box#' + gid).attr('t')
+      var psehash = 'pwch_cache_' + sha256($('.history .box#' + gid + ' input[u="' + gid + '"]').attr('value') + '_' + ddt)
       if (!(localStorage.getItem(psehash) === null)) {
 
         var ccrspst = '--'
@@ -2964,7 +2994,7 @@
         var ddpw = pwdstr
       }
       else {
-        var ddt = $('.history .box[f="' + gid + '"]').attr('t')
+        var ddt = $('.history .box#' + gid).attr('t')
         var ddpw = $('input[u="' + gid + '"]').attr('value')
       }
       var psehash = 'pwch_cache_' + sha256(ddpw + '_' + ddt)
@@ -3001,7 +3031,7 @@
     var stle = pwdstr.length
     var stch = checkpwd(pwdstr, true, gid)
     var stcc = stch.str
-    var sttt = $('.history .box[f="' + gid + '"]').attr('t')
+    var sttt = $('.history .box#' + gid).attr('t')
     var phash = sha256(pwdstr + '_' + sttt)
     var psehash = 'pwdgen2_saved_a_' + phash
     var pse2hash = 'pwdgen2_saved_notes_cf_' + phash
@@ -3206,7 +3236,7 @@
   function markasrecentaccess(mode, key) {
     var hash = key
     if (mode === 0) {
-      var ddt = $('.history .box[f="' + key + '"]').attr('t')
+      var ddt = $('.history .box#' + key).attr('t')
       var hash = sha256($('input[u="' + key + '"]').attr('value') + '_' + ddt)
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
@@ -3258,8 +3288,8 @@
             $('.history .box[hash="' + hash + '"]').attr('iconload', '1')
           }
           if ($('.history .box[hash="' + hash + '"]').attr('stch') === '0') {
-            $('.history .box[f="' + hash + '"]').attr('stch', '1')
-            var thstime = parseInt(String($('.history .box[f="' + hash + '"]').attr('t')))
+            $('.history .box[hash="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.history .box[hash="' + hash + '"]').attr('t')))
             var thsstr = $('.history .box[hash="' + hash + '"] input').val()
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
@@ -3295,8 +3325,8 @@
               $('.history .box[hash="' + hash + '"]').attr('iconload', '1')
             }
             if ($('.history .box[hash="' + hash + '"]').attr('stch') === '0') {
-              $('.history .box[f="' + hash + '"]').attr('stch', '1')
-              var thstime = parseInt(String($('.history .box[f="' + hash + '"]').attr('t')))
+              $('.history .box[hash="' + hash + '"]').attr('stch', '1')
+              var thstime = parseInt(String($('.history .box[hash="' + hash + '"]').attr('t')))
               var thsstr = $('.history .box[hash="' + hash + '"] input').val()
               var thspt = checkpwd(thsstr, false, '0', thstime)
               var pwtime = new Date()
@@ -3336,8 +3366,8 @@
             $('.history .box[hash="' + hash + '"]').attr('iconload', '1')
           }
           if ($('.history .box[hash="' + hash + '"]').attr('stch') === '0') {
-            $('.history .box[f="' + hash + '"]').attr('stch', '1')
-            var thstime = parseInt(String($('.history .box[f="' + hash + '"]').attr('t')))
+            $('.history .box[hash="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.history .box[hash="' + hash + '"]').attr('t')))
             var thsstr = $('.history .box[hash="' + hash + '"] input').val()
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
@@ -3555,8 +3585,8 @@
             $('.history .box[hash="' + hash + '"]').attr('iconload', '1')
           }
           if ($('.history .box[hash="' + hash + '"]').attr('stch') === '0') {
-            $('.history .box[f="' + hash + '"]').attr('stch', '1')
-            var thstime = parseInt(String($('.history .box[f="' + hash + '"]').attr('t')))
+            $('.history .box[hash="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.history .box[hash="' + hash + '"]').attr('t')))
             var thsstr = $('.history .box[hash="' + hash + '"] input').val()
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
@@ -3596,7 +3626,7 @@
   }
   function save(gid, shwmes) {
     var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
-    var ddt = $('.history .box[f="' + gid + '"]').attr('t')
+    var ddt = $('.history .box#' + gid).attr('t')
     var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
     var psehash = 'pwdgen2_saved_a_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
     localStorage.setItem(psehash, pse)
@@ -3647,7 +3677,7 @@
   }
   function pwnotes_del(gide) {
     setTimeout(function () {
-      $('.history .box[f="' + gide + '"] .bxnotesaa').remove()
+      $('.history .box#' + gide + ' .bxnotesaa').remove()
     }, 180);
     refresh_hashtag()
   }
@@ -3656,14 +3686,14 @@
       var pseb = btoa(enur($('textarea[j="' + txthash + '"]').val()))
       localStorage.setItem(psehash, pseb)
       var notehashtags = gethashtags($('textarea[j="' + txthash + '"]').val(), false)
-      $('.history .box[f="' + gide + '"]').attr('hashtag', notehashtags.join(','))
+      $('.history .box#' + gide).attr('hashtag', notehashtags.join(','))
     }
   }
   function pwnotes_a(gide) {
     delboxmnuli(gide)
     markasrecentaccess(0, gide)
 
-    var ddt = $('.history .box[f="' + gide + '"]').attr('t')
+    var ddt = $('.history .box#' + gide).attr('t')
     var psehash = 'pwdgen2_saved_notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt)
     var txthash = 'notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt) + '_' + gid()
     var txtval = '';
@@ -3671,11 +3701,11 @@
       txtval = deur(atob(String(localStorage.getItem(psehash))))
     }
     var txthtml = '<div class="bxnotesaa" style="opacity:0;transition:0.15s;"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" ripple-onclick="copynotes(' + "'" + gide + "'" + ',' + "'" + txthash + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" ripple-onclick="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
-    if ($('.history .box[f="' + gide + '"] .bxnotestxt').length === 0) {
-      $('.history .box[f="' + gide + '"]').append(txthtml)
+    if ($('.history .box#' + gide + ' .bxnotestxt').length === 0) {
+      $('.history .box#' + gide).append(txthtml)
       $('textarea[j="' + txthash + '"]').val(txtval)
       setTimeout(function () {
-        $('.history .box[f="' + gide + '"] .bxnotesaa').css({ 'opacity': '1' });
+        $('.history .box#' + gide + ' .bxnotesaa').css({ 'opacity': '1' });
       }, 1);
       ripple('.bxntx[yj="' + gide + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e) {
@@ -3743,8 +3773,8 @@
     delboxmnuli(gid)
     markasrecentaccess(0, gid)
     var shhtm = '<div class="box_nf" style="transition:0.15s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" ripple-onclick="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
-    if ($('.history .box[f="' + gid + '"] .box_nf').length === 0) {
-      $('.history .box[f="' + gid + '"]').append(shhtm)
+    if ($('.history .box#' + gid + ' .box_nf').length === 0) {
+      $('.history .box#' + gid).append(shhtm)
       ripple('.pwnf[nk="' + gid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       setTimeout(function () {
         $('.box_nf[j="' + gid + '"]').css({ 'opacity': '1' })
@@ -3752,16 +3782,17 @@
     }
   }
   function showsearchresult(y) {
-    if (y === true) {
-      $('.search_loading .ld').css({ 'opacity': '1' })
-      $('.input3 input').attr('disabled', 'disabled')
-      setTimeout(function () {
+    $('.btn7').css({ 'opacity': '0' })
+    $('.search_loading,.search_loading_mask').css({ 'display': 'block' })
+    $('.input3 input').attr('disabled', 'disabled')
+    setTimeout(function () {
+      if (y === true) {
         searchindexjson = {}
         var boxlen = $('.history .box').length
         for (var r = 0; r < boxlen; r++) {
-          var thw_bxf = $('.history .box').eq(r).attr('f')
-          var thw_pwd = $('input[u="' + thw_bxf + '"]').attr('value')
-          var thw_time = $('.history .box[f="' + thw_bxf + '"]').attr('t')
+          var thw_bxf = $('.history .box').eq(r).attr('id')
+          var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
+          var thw_time = $('.history .box#' + thw_bxf).attr('t')
           var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
           var thw_notes = 0
           if (!(localStorage.getItem(thw_nhash) === null)) {
@@ -3779,35 +3810,47 @@
           searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd, pwtimestr, thw_notes, thw_saved, thw_time]
 
         }
-        $('.search_loading .ld').css({ 'opacity': '0' })
-        $('.input3 input').removeAttr('disabled')
-      }, 1500);
-    }
-    var keywd = $('.input3 input').val()
-    if (keywd === ' ' || keywd === '') {
-      keywd = gid() + '#' + gid()
-    }
-    var result = []
-    var r_index = 0
-    $('.history .box').attr('search', '0').attr('ksearch', '0')
-    for (var f in searchindexjson) {
-      if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
-        var hbbid = String(f).split('_')[3]
-        result.push('.box[f="' + hbbid + '"]')
-        if (r_index <= historyloadingboxcc) {
-          if ($('.history .box[f="' + hbbid + '"]').attr('iconload') === '0') {
-            $('.history .box[f="' + hbbid + '"] .dspoo').html(eyeicon + eyeicon2)
-            $('.history .box[f="' + hbbid + '"] .copyoo').html(copyicon)
-            $('.history .box[f="' + hbbid + '"] .saveoo').html(saveicon + savedicon)
-            $('.history .box[f="' + hbbid + '"] .noteoo').html(noteicon)
-            $('.history .box[f="' + hbbid + '"] .infooo').html(infoicon)
-            $('.history .box[f="' + hbbid + '"]').attr('iconload', '1')
+      }
+      var keywd = $('.input3 input').val()
+      if (keywd === ' ' || keywd === '') {
+        keywd = gid() + '#' + gid()
+      }
+      var result = []
+      var r_index = 0
+      $('.history .box').attr('search', '0').attr('ksearch', '0')
+      for (var f in searchindexjson) {
+        if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
+          var hbbid = String(f).split('_')[3]
+          result.push('.history .box#' + hbbid)
+          if (r_index < historyloadingboxcc) {
+            if ($('.history .box#' + hbbid).attr('iconload') === '0') {
+              $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
+              $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
+              $('.history .box#' + hbbid + ' .saveoo').html(saveicon + savedicon)
+              $('.history .box#' + hbbid + ' .noteoo').html(noteicon)
+              $('.history .box#' + hbbid + ' .infooo').html(infoicon)
+              $('.history .box#' + hbbid).attr('iconload', '1')
+            }
+            if ($('.history .box#' + hbbid).attr('stch') === '0') {
+              $('.history .box#' + hbbid).attr('stch', '1')
+              var thsstr = $('.history .box#' + hbbid + ' input[u="' + hbbid + '"]').val()
+              var thspt = checkpwd(thsstr, true, hbbid)
+              var thstime = parseInt(String($('.history .box#' + hbbid).attr('t')))
+              var pwtime = new Date()
+              pwtime.setTime(thstime)
+              var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+              $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            }
           }
+          r_index += 1
         }
-        r_index += 1
       }
       $(result.join(',')).attr('search', '1').attr('ksearch', '1')
-    }
+
+      $('.input3 input').removeAttr('disabled')
+      $('.btn7').css({ 'opacity': '1' })
+      $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
+    }, 1500);
   }
 
   function page2() {
@@ -4125,24 +4168,24 @@
         var thswww = $(scrollxselect).eq(i).offset().top - $(document).scrollTop()
         var thshh = $(scrollxselect).eq(i).height()
         if (thswww > (0 - thshh) && thswww < window.innerHeight) {
-          var thsfid = String($(scrollxselect).eq(i).attr('f'))
-          if ($('.history .box[f="' + thsfid + '"]').attr('iconload') === '0') {
-            $('.history .box[f="' + thsfid + '"] .dspoo').html(eyeicon + eyeicon2)
-            $('.history .box[f="' + thsfid + '"] .copyoo').html(copyicon)
-            $('.history .box[f="' + thsfid + '"] .saveoo').html(saveicon + savedicon)
-            $('.history .box[f="' + thsfid + '"] .noteoo').html(noteicon)
-            $('.history .box[f="' + thsfid + '"] .infooo').html(infoicon)
-            $('.history .box[f="' + thsfid + '"]').attr('iconload', '1')
+          var thsfid = String($(scrollxselect).eq(i).attr('id'))
+          if ($('.history .box#' + thsfid).attr('iconload') === '0') {
+            $('.history .box#' + thsfid + ' .dspoo').html(eyeicon + eyeicon2)
+            $('.history .box#' + thsfid + ' .copyoo').html(copyicon)
+            $('.history .box#' + thsfid + ' .saveoo').html(saveicon + savedicon)
+            $('.history .box#' + thsfid + ' .noteoo').html(noteicon)
+            $('.history .box#' + thsfid + ' .infooo').html(infoicon)
+            $('.history .box#' + thsfid).attr('iconload', '1')
           }
-          if ($('.history .box[f="' + thsfid + '"]').attr('stch') === '0') {
-            $('.history .box[f="' + thsfid + '"]').attr('stch', '1')
-            var thsstr = $('input[u="' + thsfid + '"]').val()
+          if ($('.history .box#' + thsfid).attr('stch') === '0') {
+            $('.history .box#' + thsfid).attr('stch', '1')
+            var thsstr = $('.history .box#' + thsfid + ' input[u="' + thsfid + '"]').val()
             var thspt = checkpwd(thsstr, true, thsfid)
-            var thstime = parseInt(String($('.history .box[f="' + thsfid + '"]').attr('t')))
+            var thstime = parseInt(String($('.history .box#' + thsfid).attr('t')))
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-            $('.history .box[f="' + thsfid + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
 
         }
@@ -4687,7 +4730,7 @@
               var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
 
               var pw = deur(decu(thpwdd[0], thpwdd[1]))
-              var pwgid = gid()
+              var pwgid = gid('historybox')
               var pwdvisible = '0'
               var pwdvisible_type = 'password'
               if (localStorage.getItem('pw_options_defaultpwdvisible') === '1') {
@@ -4721,9 +4764,9 @@
                 notehashtags = gethashtags(notetext, true)
               }
 
-              $('.history').append('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
-              ripple('.history .box[f="' + pwgid + '"] .btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
-              ripple('.history .box[f="' + pwgid + '"] .boxtitle .checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+              $('.history').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
+              ripple('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+              ripple('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
             }
           }
         }
@@ -4760,23 +4803,24 @@
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
-
-  document.querySelector('.input3 input').addEventListener("paste", function (e) {
-
-    showsearchresult()
-  });
-  document.querySelector('.input3 input').addEventListener("cut", function (e) {
-
-    showsearchresult()
-  });
-  document.querySelector('.input3 input').addEventListener("selectionchange", function (e) {
-
-    showsearchresult()
-  });
-  document.querySelector('.input3 input').addEventListener("keyup", function (e) {
-
-    showsearchresult()
-  });
+  /*
+    document.querySelector('.input3 input').addEventListener("paste", function (e) {
+  
+      showsearchresult()
+    });
+    document.querySelector('.input3 input').addEventListener("cut", function (e) {
+  
+      showsearchresult()
+    });
+    document.querySelector('.input3 input').addEventListener("selectionchange", function (e) {
+  
+      showsearchresult()
+    });
+    document.querySelector('.input3 input').addEventListener("keyup", function (e) {
+  
+      showsearchresult()
+    });
+    */
 
   //checkpwpage
 
@@ -5291,7 +5335,7 @@
     event.preventDefault();
   }
   function Drag(event) {
-    var drgftxt = $('input[u="' + $('#' + event.currentTarget.id).attr('f') + '"]').attr('value')
+    var drgftxt = $('input[u="' + event.currentTarget.id + '"]').attr('value')
     event.dataTransfer.setData("text", drgftxt);
     var img = new Image();
     img.src = dragimgdturl(drgftxt);
