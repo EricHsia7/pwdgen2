@@ -2447,7 +2447,7 @@
     <div class="history_filter_fulllist_box">
 
     </div>
-    <div class="history_filter_fulllist_close" r-click="closecustompresetsmanager()">
+    <div class="history_filter_fulllist_close" r-click="closefulllist()">
       Close
     </div>
   </div>
@@ -2705,7 +2705,7 @@
     };
   })(jQuery);
 
-  rclick('.btn,.btn5,.btn6,.btn7,.btn2,.bottom-btn,.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close')
+  rclick('.btn,.btn5,.btn6,.btn7,.btn2,.bottom-btn,.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close,.history_filter_fulllist_close')
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
@@ -3351,10 +3351,21 @@
     }, 1500);
   }
   function openfulllist() {
-
+    $('.history_filter_fulllist,.history_filter_fulllist_mask').css({ 'display': 'block', 'transition': '0.3s' })
+    setTimeout(function () {
+      $('.history_filter_fulllist').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+      $('.history_filter_fulllist_mask').css({ 'opacity': '1' })
+    }, 1)
+  }
+  function closefulllist() {
+    $('.history_filter_fulllist').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.history_filter_fulllist_mask').css({ 'opacity': '0' })
+    setTimeout(function () {
+      $('.history_filter_fulllist,.history_filter_fulllist_mask').css({ 'display': 'none' })
+    }, 500)
   }
   function filter_fulllist() {
-
+    openfulllist()
   }
   function filter_fulllist_apply(tagname) {
     filter_showhashtag(tagname, true)
@@ -4772,24 +4783,6 @@
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
-  /*
-    document.querySelector('.input3 input').addEventListener("paste", function (e) {
-  
-      showsearchresult()
-    });
-    document.querySelector('.input3 input').addEventListener("cut", function (e) {
-  
-      showsearchresult()
-    });
-    document.querySelector('.input3 input').addEventListener("selectionchange", function (e) {
-  
-      showsearchresult()
-    });
-    document.querySelector('.input3 input').addEventListener("keyup", function (e) {
-  
-      showsearchresult()
-    });
-    */
 
   //checkpwpage
 
