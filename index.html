@@ -164,6 +164,15 @@
       width: calc(100% - 5px - 45px)
     }
 
+    .search_loading_mask {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 45px;
+      height: 45px;
+      background: var(--g-f4f4f4);
+    }
+
     .search_loading {
       position: absolute;
       top: 12.5px;
@@ -3812,7 +3821,7 @@
         if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
           var hbbid = String(f).split('_')[3]
           result.push('.history .box#' + hbbid)
-          if (r_index <= historyloadingboxcc) {
+          if (r_index < historyloadingboxcc) {
             if ($('.history .box#' + hbbid).attr('iconload') === '0') {
               $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
               $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
