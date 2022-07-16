@@ -191,7 +191,6 @@
       position: absolute;
       top: 0px;
       left: 0px;
-      opacity: 0;
     }
 
     @keyframes searchloading {
@@ -2278,7 +2277,7 @@
 
   <div class="input3">
     <input type="text" placeholder="password,date,notes..." autocomplete="off">
-    <div class="btn7">
+    <div class="btn7" ripple-onclick="showsearchresult()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2730,7 +2729,7 @@
     };
   })(jQuery);
 
-  ripple('.btn,.btn5,.btn6', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+  ripple('.btn,.btn5,.btn6,.btn7', 'var(--g-4e4e4e)', '0.3', 888, 'true');
   ripple('.btn2', 'var(--g-4e4e4e)', '0.3', 555, 'true');
   ripple('.bottom-btn', 'var(--g-4e4e4e)', '0.3', 1200, 'true');
   ripple('.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close', 'var(--g-4e4e4e)', '0.3', 888, 'true');
@@ -4783,23 +4782,24 @@
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
-
-  document.querySelector('.input3 input').addEventListener("paste", function (e) {
-
-    showsearchresult()
-  });
-  document.querySelector('.input3 input').addEventListener("cut", function (e) {
-
-    showsearchresult()
-  });
-  document.querySelector('.input3 input').addEventListener("selectionchange", function (e) {
-
-    showsearchresult()
-  });
-  document.querySelector('.input3 input').addEventListener("keyup", function (e) {
-
-    showsearchresult()
-  });
+  /*
+    document.querySelector('.input3 input').addEventListener("paste", function (e) {
+  
+      showsearchresult()
+    });
+    document.querySelector('.input3 input').addEventListener("cut", function (e) {
+  
+      showsearchresult()
+    });
+    document.querySelector('.input3 input').addEventListener("selectionchange", function (e) {
+  
+      showsearchresult()
+    });
+    document.querySelector('.input3 input').addEventListener("keyup", function (e) {
+  
+      showsearchresult()
+    });
+    */
 
   //checkpwpage
 
