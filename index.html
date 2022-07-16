@@ -4766,7 +4766,7 @@
       $('.t2').text('New Password')
       $('.checkpwdp,.input2,.input3').css({ 'display': 'none' });
       $('.input,.history').css({ 'display': 'block' });
-      $('head #searchcss').html('.box[search="0"] {display: block}.box[search="1"] {display: block}')
+      $('head #searchcss').html('')
       if ($('.history-filter li[pl="default_all"]').attr('o') === '0') {
         $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
       }
@@ -4802,7 +4802,7 @@
       $('.t2').text('Check Password')
       $('.checkpwdp,.input2').css({ 'display': 'block' });
       $('.input,.history,.input3,.history-filter').css({ 'display': 'none' });
-      $('head #searchcss').html('.box[search="0"] {display: block}.box[search="1"] {display: block}')
+      $('head #searchcss').html('')
       $('.btn5').attr('uj', '0')
       bpage_home_click = 0
     }
