@@ -2755,12 +2755,15 @@
     return decodeURIComponent(u)
   }
 
-  function gid() {
+  function gid(n) {
     var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
     var genid = "";
     for (var i = 0; i < 16; i++) {
       var genrandomNumber = Math.floor(Math.random() * genidchars.length);
       genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+    }
+    if (!(n === undefined)) {
+      return n + '_' + genid + '' + new Date().getTime();
     }
     return genid + '' + new Date().getTime();
   }
@@ -2841,7 +2844,7 @@
   }
   function checkpwd(pwdstr, cache, gid, tt) {
     if (cache) {
-      var ddt = $('.history .box[f="' + gid + '"]').attr('t')
+      var ddt = $('.history .box#' + gid).attr('t')
       var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
       if (!(localStorage.getItem(psehash) === null)) {
 
@@ -2964,7 +2967,7 @@
         var ddpw = pwdstr
       }
       else {
-        var ddt = $('.history .box[f="' + gid + '"]').attr('t')
+        var ddt = $('.history .box#' + gid).attr('t')
         var ddpw = $('input[u="' + gid + '"]').attr('value')
       }
       var psehash = 'pwch_cache_' + sha256(ddpw + '_' + ddt)
@@ -3001,7 +3004,7 @@
     var stle = pwdstr.length
     var stch = checkpwd(pwdstr, true, gid)
     var stcc = stch.str
-    var sttt = $('.history .box[f="' + gid + '"]').attr('t')
+    var sttt = $('.history .box#' + gid).attr('t')
     var phash = sha256(pwdstr + '_' + sttt)
     var psehash = 'pwdgen2_saved_a_' + phash
     var pse2hash = 'pwdgen2_saved_notes_cf_' + phash
@@ -3596,7 +3599,7 @@
   }
   function save(gid, shwmes) {
     var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
-    var ddt = $('.history .box[f="' + gid + '"]').attr('t')
+    var ddt = $('.history .box#' + gid).attr('t')
     var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
     var psehash = 'pwdgen2_saved_a_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
     localStorage.setItem(psehash, pse)
@@ -3647,7 +3650,7 @@
   }
   function pwnotes_del(gide) {
     setTimeout(function () {
-      $('.history .box[f="' + gide + '"] .bxnotesaa').remove()
+      $('.history .box#' + gide + ' .bxnotesaa').remove()
     }, 180);
     refresh_hashtag()
   }
@@ -3656,14 +3659,14 @@
       var pseb = btoa(enur($('textarea[j="' + txthash + '"]').val()))
       localStorage.setItem(psehash, pseb)
       var notehashtags = gethashtags($('textarea[j="' + txthash + '"]').val(), false)
-      $('.history .box[f="' + gide + '"]').attr('hashtag', notehashtags.join(','))
+      $('.history .box#' + gide).attr('hashtag', notehashtags.join(','))
     }
   }
   function pwnotes_a(gide) {
     delboxmnuli(gide)
     markasrecentaccess(0, gide)
 
-    var ddt = $('.history .box[f="' + gide + '"]').attr('t')
+    var ddt = $('.history .box#' + gide).attr('t')
     var psehash = 'pwdgen2_saved_notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt)
     var txthash = 'notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt) + '_' + gid()
     var txtval = '';
@@ -3671,11 +3674,11 @@
       txtval = deur(atob(String(localStorage.getItem(psehash))))
     }
     var txthtml = '<div class="bxnotesaa" style="opacity:0;transition:0.15s;"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" ripple-onclick="copynotes(' + "'" + gide + "'" + ',' + "'" + txthash + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" ripple-onclick="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
-    if ($('.history .box[f="' + gide + '"] .bxnotestxt').length === 0) {
-      $('.history .box[f="' + gide + '"]').append(txthtml)
+    if ($('.history .box#' + gide + ' .bxnotestxt').length === 0) {
+      $('.history .box#' + gide).append(txthtml)
       $('textarea[j="' + txthash + '"]').val(txtval)
       setTimeout(function () {
-        $('.history .box[f="' + gide + '"] .bxnotesaa').css({ 'opacity': '1' });
+        $('.history .box#' + gide + ' .bxnotesaa').css({ 'opacity': '1' });
       }, 1);
       ripple('.bxntx[yj="' + gide + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e) {
@@ -3743,8 +3746,8 @@
     delboxmnuli(gid)
     markasrecentaccess(0, gid)
     var shhtm = '<div class="box_nf" style="transition:0.15s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" ripple-onclick="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
-    if ($('.history .box[f="' + gid + '"] .box_nf').length === 0) {
-      $('.history .box[f="' + gid + '"]').append(shhtm)
+    if ($('.history .box#' + gid + ' .box_nf').length === 0) {
+      $('.history .box#' + gid).append(shhtm)
       ripple('.pwnf[nk="' + gid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       setTimeout(function () {
         $('.box_nf[j="' + gid + '"]').css({ 'opacity': '1' })
@@ -3759,7 +3762,7 @@
         searchindexjson = {}
         var boxlen = $('.history .box').length
         for (var r = 0; r < boxlen; r++) {
-          var thw_bxf = $('.history .box').eq(r).attr('f')
+          var thw_bxf = $('.history .box').eq(r).attr('id')
           var thw_pwd = $('input[u="' + thw_bxf + '"]').attr('value')
           var thw_time = $('.history .box[f="' + thw_bxf + '"]').attr('t')
           var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
@@ -4125,7 +4128,7 @@
         var thswww = $(scrollxselect).eq(i).offset().top - $(document).scrollTop()
         var thshh = $(scrollxselect).eq(i).height()
         if (thswww > (0 - thshh) && thswww < window.innerHeight) {
-          var thsfid = String($(scrollxselect).eq(i).attr('f'))
+          var thsfid = String($(scrollxselect).eq(i).attr('id'))
           if ($('.history .box[f="' + thsfid + '"]').attr('iconload') === '0') {
             $('.history .box[f="' + thsfid + '"] .dspoo').html(eyeicon + eyeicon2)
             $('.history .box[f="' + thsfid + '"] .copyoo').html(copyicon)
@@ -4687,7 +4690,7 @@
               var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
 
               var pw = deur(decu(thpwdd[0], thpwdd[1]))
-              var pwgid = gid()
+              var pwgid = gid('historybox')
               var pwdvisible = '0'
               var pwdvisible_type = 'password'
               if (localStorage.getItem('pw_options_defaultpwdvisible') === '1') {
@@ -4721,9 +4724,9 @@
                 notehashtags = gethashtags(notetext, true)
               }
 
-              $('.history').append('<div class="box" f="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" id="drg_' + gid() + gid() + '" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
-              ripple('.history .box[f="' + pwgid + '"] .btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
-              ripple('.history .box[f="' + pwgid + '"] .boxtitle .checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+              $('.history').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" ripple-onclick="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" ripple-onclick="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" ripple-onclick="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" ripple-onclick="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" ripple-onclick="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" ripple-onclick="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
+              ripple('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
+              ripple('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
             }
           }
         }
@@ -5291,7 +5294,7 @@
     event.preventDefault();
   }
   function Drag(event) {
-    var drgftxt = $('input[u="' + $('#' + event.currentTarget.id).attr('f') + '"]').attr('value')
+    var drgftxt = $('input[u="' + event.currentTarget.id + '"]').attr('value')
     event.dataTransfer.setData("text", drgftxt);
     var img = new Image();
     img.src = dragimgdturl(drgftxt);
