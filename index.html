@@ -2763,7 +2763,8 @@
       genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
     }
     if (!(n === undefined)) {
-      return n + '_' + genid + '' + new Date().getTime();
+      n = n.replaceAll('_','-')
+      return n + '-' + genid + '' + new Date().getTime();
     }
     return genid + '' + new Date().getTime();
   }
