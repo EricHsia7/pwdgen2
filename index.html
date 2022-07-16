@@ -2862,7 +2862,7 @@
   function checkpwd(pwdstr, cache, gid, tt) {
     if (cache) {
       var ddt = $('.history .box#' + gid).attr('t')
-      var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
+      var psehash = 'pwch_cache_' + sha256($('.history .box#' + gid + ' input[u="' + gid + '"]').attr('value') + '_' + ddt)
       if (!(localStorage.getItem(psehash) === null)) {
 
         var ccrspst = '--'
