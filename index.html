@@ -2648,7 +2648,7 @@
   function rclick(select) {
     $(select).click(function () {
       if ($(this).attr('r-click') != '') {
-        eval('setTimeout(function() {' + $(this).attr('r-click') + '},' + 200 + ');');
+        eval('setTimeout(function() {' + $(this).attr('r-click') + '},' + 1 + ');');
       }
     });
   }
