@@ -2841,7 +2841,7 @@
   }
   function checkpwd(pwdstr, cache, gid, tt) {
     if (cache) {
-      var ddt = $('.box[f="' + gid + '"]').attr('t')
+      var ddt = $('.history .box[f="' + gid + '"]').attr('t')
       var psehash = 'pwch_cache_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
       if (!(localStorage.getItem(psehash) === null)) {
 
@@ -2964,7 +2964,7 @@
         var ddpw = pwdstr
       }
       else {
-        var ddt = $('.box[f="' + gid + '"]').attr('t')
+        var ddt = $('.history .box[f="' + gid + '"]').attr('t')
         var ddpw = $('input[u="' + gid + '"]').attr('value')
       }
       var psehash = 'pwch_cache_' + sha256(ddpw + '_' + ddt)
@@ -3001,7 +3001,7 @@
     var stle = pwdstr.length
     var stch = checkpwd(pwdstr, true, gid)
     var stcc = stch.str
-    var sttt = $('.box[f="' + gid + '"]').attr('t')
+    var sttt = $('.history .box[f="' + gid + '"]').attr('t')
     var phash = sha256(pwdstr + '_' + sttt)
     var psehash = 'pwdgen2_saved_a_' + phash
     var pse2hash = 'pwdgen2_saved_notes_cf_' + phash
@@ -3206,7 +3206,7 @@
   function markasrecentaccess(mode, key) {
     var hash = key
     if (mode === 0) {
-      var ddt = $('.box[f="' + key + '"]').attr('t')
+      var ddt = $('.history .box[f="' + key + '"]').attr('t')
       var hash = sha256($('input[u="' + key + '"]').attr('value') + '_' + ddt)
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
@@ -3247,25 +3247,25 @@
         var dt = new Date()
         if ((dt - time) < 60 * 60 * 24 * 3 * 1000) {
           var hash = String(list[f]).split('_')[3]
-          $('.box[hash="' + hash + '"]').attr('ar', '1')
+          $('.history .box[hash="' + hash + '"]').attr('ar', '1')
 
-          if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
-            $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
-            $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
-            $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
-            $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
-            $('.box[hash="' + hash + '"] .infooo').html(infoicon)
-            $('.box[hash="' + hash + '"]').attr('iconload', '1')
+          if ($('.history .box[hash="' + hash + '"]').attr('iconload') === '0') {
+            $('.history .box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+            $('.history .box[hash="' + hash + '"] .copyoo').html(copyicon)
+            $('.history .box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+            $('.history .box[hash="' + hash + '"] .noteoo').html(noteicon)
+            $('.history .box[hash="' + hash + '"] .infooo').html(infoicon)
+            $('.history .box[hash="' + hash + '"]').attr('iconload', '1')
           }
-          if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
-            $('.box[f="' + hash + '"]').attr('stch', '1')
-            var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
-            var thsstr = $('.box[hash="' + hash + '"] input').val()
+          if ($('.history .box[hash="' + hash + '"]').attr('stch') === '0') {
+            $('.history .box[f="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.history .box[f="' + hash + '"]').attr('t')))
+            var thsstr = $('.history .box[hash="' + hash + '"] input').val()
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-            $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
         }
       }
@@ -3284,25 +3284,25 @@
         if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
           var notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
           if (notetext.length > 0) {
-            $('.box[hash="' + hash + '"]').attr('ar', '1')
+            $('.history .box[hash="' + hash + '"]').attr('ar', '1')
 
-            if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
-              $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
-              $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
-              $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
-              $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
-              $('.box[hash="' + hash + '"] .infooo').html(infoicon)
-              $('.box[hash="' + hash + '"]').attr('iconload', '1')
+            if ($('.history .box[hash="' + hash + '"]').attr('iconload') === '0') {
+              $('.history .box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+              $('.history .box[hash="' + hash + '"] .copyoo').html(copyicon)
+              $('.history .box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+              $('.history .box[hash="' + hash + '"] .noteoo').html(noteicon)
+              $('.history .box[hash="' + hash + '"] .infooo').html(infoicon)
+              $('.history .box[hash="' + hash + '"]').attr('iconload', '1')
             }
-            if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
-              $('.box[f="' + hash + '"]').attr('stch', '1')
-              var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
-              var thsstr = $('.box[hash="' + hash + '"] input').val()
+            if ($('.history .box[hash="' + hash + '"]').attr('stch') === '0') {
+              $('.history .box[f="' + hash + '"]').attr('stch', '1')
+              var thstime = parseInt(String($('.history .box[f="' + hash + '"]').attr('t')))
+              var thsstr = $('.history .box[hash="' + hash + '"] input').val()
               var thspt = checkpwd(thsstr, false, '0', thstime)
               var pwtime = new Date()
               pwtime.setTime(thstime)
               var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-              $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+              $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
             }
 
 
@@ -3324,26 +3324,26 @@
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
 
-        if (String($('.box[hash="' + hash + '"]').attr('hashtag')).split(',').indexOf(r_hashtag) > -1) {
-          $('.box[hash="' + hash + '"]').attr('ar', '1')
+        if (String($('.history .box[hash="' + hash + '"]').attr('hashtag')).split(',').indexOf(r_hashtag) > -1) {
+          $('.history .box[hash="' + hash + '"]').attr('ar', '1')
 
-          if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
-            $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
-            $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
-            $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
-            $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
-            $('.box[hash="' + hash + '"] .infooo').html(infoicon)
-            $('.box[hash="' + hash + '"]').attr('iconload', '1')
+          if ($('.history .box[hash="' + hash + '"]').attr('iconload') === '0') {
+            $('.history .box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+            $('.history .box[hash="' + hash + '"] .copyoo').html(copyicon)
+            $('.history .box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+            $('.history .box[hash="' + hash + '"] .noteoo').html(noteicon)
+            $('.history .box[hash="' + hash + '"] .infooo').html(infoicon)
+            $('.history .box[hash="' + hash + '"]').attr('iconload', '1')
           }
-          if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
-            $('.box[f="' + hash + '"]').attr('stch', '1')
-            var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
-            var thsstr = $('.box[hash="' + hash + '"] input').val()
+          if ($('.history .box[hash="' + hash + '"]').attr('stch') === '0') {
+            $('.history .box[f="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.history .box[f="' + hash + '"]').attr('t')))
+            var thsstr = $('.history .box[hash="' + hash + '"] input').val()
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-            $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
 
 
@@ -3398,7 +3398,7 @@
     var searchtxt = strarr.join(',')
     for (var g = 0; g < $('.history .box').length; g++) {
       var hash = $('.history .box').eq(g).attr('hash')
-      var zthstime = parseInt($('.box[hash="' + hash + '"]').attr('t'))
+      var zthstime = parseInt($('.history .box[hash="' + hash + '"]').attr('t'))
       var zpwtime = new Date()
       zpwtime.setTime(zthstime)
       var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
@@ -3540,29 +3540,29 @@
       $('.box').attr('ar', '0')
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
-        var zthstime = parseInt($('.box[hash="' + hash + '"]').attr('t'))
+        var zthstime = parseInt($('.history .box[hash="' + hash + '"]').attr('t'))
         var zpwtime = new Date()
         zpwtime.setTime(zthstime)
         var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
         if (zpwtimestr.indexOf(searchtxt) > -1) {
-          $('.box[hash="' + hash + '"]').attr('ar', '1')
-          if ($('.box[hash="' + hash + '"]').attr('iconload') === '0') {
-            $('.box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
-            $('.box[hash="' + hash + '"] .copyoo').html(copyicon)
-            $('.box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
-            $('.box[hash="' + hash + '"] .noteoo').html(noteicon)
-            $('.box[hash="' + hash + '"] .infooo').html(infoicon)
-            $('.box[hash="' + hash + '"]').attr('iconload', '1')
+          $('.history .box[hash="' + hash + '"]').attr('ar', '1')
+          if ($('.history .box[hash="' + hash + '"]').attr('iconload') === '0') {
+            $('.history .box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
+            $('.history .box[hash="' + hash + '"] .copyoo').html(copyicon)
+            $('.history .box[hash="' + hash + '"] .saveoo').html(saveicon + savedicon)
+            $('.history .box[hash="' + hash + '"] .noteoo').html(noteicon)
+            $('.history .box[hash="' + hash + '"] .infooo').html(infoicon)
+            $('.history .box[hash="' + hash + '"]').attr('iconload', '1')
           }
-          if ($('.box[hash="' + hash + '"]').attr('stch') === '0') {
-            $('.box[f="' + hash + '"]').attr('stch', '1')
-            var thstime = parseInt(String($('.box[f="' + hash + '"]').attr('t')))
-            var thsstr = $('.box[hash="' + hash + '"] input').val()
+          if ($('.history .box[hash="' + hash + '"]').attr('stch') === '0') {
+            $('.history .box[f="' + hash + '"]').attr('stch', '1')
+            var thstime = parseInt(String($('.history .box[f="' + hash + '"]').attr('t')))
+            var thsstr = $('.history .box[hash="' + hash + '"] input').val()
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-            $('.box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
         }
       }
@@ -3596,7 +3596,7 @@
   }
   function save(gid, shwmes) {
     var encdd = encu(enur($('input[u="' + gid + '"]').attr('value')))
-    var ddt = $('.box[f="' + gid + '"]').attr('t')
+    var ddt = $('.history .box[f="' + gid + '"]').attr('t')
     var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
     var psehash = 'pwdgen2_saved_a_' + sha256($('input[u="' + gid + '"]').attr('value') + '_' + ddt)
     localStorage.setItem(psehash, pse)
@@ -3647,7 +3647,7 @@
   }
   function pwnotes_del(gide) {
     setTimeout(function () {
-      $('.box[f="' + gide + '"] .bxnotesaa').remove()
+      $('.history .box[f="' + gide + '"] .bxnotesaa').remove()
     }, 180);
     refresh_hashtag()
   }
@@ -3656,14 +3656,14 @@
       var pseb = btoa(enur($('textarea[j="' + txthash + '"]').val()))
       localStorage.setItem(psehash, pseb)
       var notehashtags = gethashtags($('textarea[j="' + txthash + '"]').val(), false)
-      $('.box[f="' + gide + '"]').attr('hashtag', notehashtags.join(','))
+      $('.history .box[f="' + gide + '"]').attr('hashtag', notehashtags.join(','))
     }
   }
   function pwnotes_a(gide) {
     delboxmnuli(gide)
     markasrecentaccess(0, gide)
 
-    var ddt = $('.box[f="' + gide + '"]').attr('t')
+    var ddt = $('.history .box[f="' + gide + '"]').attr('t')
     var psehash = 'pwdgen2_saved_notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt)
     var txthash = 'notes_cf_' + sha256($('input[u="' + gide + '"]').attr('value') + '_' + ddt) + '_' + gid()
     var txtval = '';
@@ -3671,11 +3671,11 @@
       txtval = deur(atob(String(localStorage.getItem(psehash))))
     }
     var txthtml = '<div class="bxnotesaa" style="opacity:0;transition:0.15s;"><textarea j="' + txthash + '" placeholder="notes" class="bxnotestxt"></textarea><div class="btn1 bxntx" style="left:15px" yj="' + gide + '" ripple-onclick="copynotes(' + "'" + gide + "'" + ',' + "'" + txthash + "'" + ')">' + copyicon + '</div><div class="btn1 bxntx" style="left:60px" yj="' + gide + '" ripple-onclick="pwnotes_del(' + "'" + gide + "'" + ')">' + xmarkicon + '</div></div>'
-    if ($('.box[f="' + gide + '"] .bxnotestxt').length === 0) {
-      $('.box[f="' + gide + '"]').append(txthtml)
+    if ($('.history .box[f="' + gide + '"] .bxnotestxt').length === 0) {
+      $('.history .box[f="' + gide + '"]').append(txthtml)
       $('textarea[j="' + txthash + '"]').val(txtval)
       setTimeout(function () {
-        $('.box[f="' + gide + '"] .bxnotesaa').css({ 'opacity': '1' });
+        $('.history .box[f="' + gide + '"] .bxnotesaa').css({ 'opacity': '1' });
       }, 1);
       ripple('.bxntx[yj="' + gide + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e) {
@@ -3743,8 +3743,8 @@
     delboxmnuli(gid)
     markasrecentaccess(0, gid)
     var shhtm = '<div class="box_nf" style="transition:0.15s;opacity:0;" j="' + gid + '"><div class="box_gdx"><div class="pwnf"><div class="pwnf_val">' + datt.len + '</div><div class="pwnf_title">Length</div></div><div class="pwnf"><div class="pwnf_val">' + datt.check + '</div><div class="pwnf_title">Check</div></div><div class="pwnf"><div class="pwnf_val">' + storagesize(datt.storage) + '</div><div class="pwnf_title">Storage</div></div><div class="pwnf" nk="' + gid + '" ripple-onclick="delpwdinfo(' + "'" + gid + "'" + ')"><div class="pwnf_val pwnfclosesvg">' + xmarkicon + '</div><div class="pwnf_title">Close</div></div></div></div>'
-    if ($('.box[f="' + gid + '"] .box_nf').length === 0) {
-      $('.box[f="' + gid + '"]').append(shhtm)
+    if ($('.history .box[f="' + gid + '"] .box_nf').length === 0) {
+      $('.history .box[f="' + gid + '"]').append(shhtm)
       ripple('.pwnf[nk="' + gid + '"]', 'var(--g-4e4e4e)', '0.3', 888, 'true');
       setTimeout(function () {
         $('.box_nf[j="' + gid + '"]').css({ 'opacity': '1' })
@@ -3761,7 +3761,7 @@
         for (var r = 0; r < boxlen; r++) {
           var thw_bxf = $('.history .box').eq(r).attr('f')
           var thw_pwd = $('input[u="' + thw_bxf + '"]').attr('value')
-          var thw_time = $('.box[f="' + thw_bxf + '"]').attr('t')
+          var thw_time = $('.history .box[f="' + thw_bxf + '"]').attr('t')
           var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
           var thw_notes = 0
           if (!(localStorage.getItem(thw_nhash) === null)) {
@@ -3795,13 +3795,13 @@
         var hbbid = String(f).split('_')[3]
         result.push('.box[f="' + hbbid + '"]')
         if (r_index <= historyloadingboxcc) {
-          if ($('.box[f="' + hbbid + '"]').attr('iconload') === '0') {
-            $('.box[f="' + hbbid + '"] .dspoo').html(eyeicon + eyeicon2)
-            $('.box[f="' + hbbid + '"] .copyoo').html(copyicon)
-            $('.box[f="' + hbbid + '"] .saveoo').html(saveicon + savedicon)
-            $('.box[f="' + hbbid + '"] .noteoo').html(noteicon)
-            $('.box[f="' + hbbid + '"] .infooo').html(infoicon)
-            $('.box[f="' + hbbid + '"]').attr('iconload', '1')
+          if ($('.history .box[f="' + hbbid + '"]').attr('iconload') === '0') {
+            $('.history .box[f="' + hbbid + '"] .dspoo').html(eyeicon + eyeicon2)
+            $('.history .box[f="' + hbbid + '"] .copyoo').html(copyicon)
+            $('.history .box[f="' + hbbid + '"] .saveoo').html(saveicon + savedicon)
+            $('.history .box[f="' + hbbid + '"] .noteoo').html(noteicon)
+            $('.history .box[f="' + hbbid + '"] .infooo').html(infoicon)
+            $('.history .box[f="' + hbbid + '"]').attr('iconload', '1')
           }
         }
         r_index += 1
@@ -4126,23 +4126,23 @@
         var thshh = $(scrollxselect).eq(i).height()
         if (thswww > (0 - thshh) && thswww < window.innerHeight) {
           var thsfid = String($(scrollxselect).eq(i).attr('f'))
-          if ($('.box[f="' + thsfid + '"]').attr('iconload') === '0') {
-            $('.box[f="' + thsfid + '"] .dspoo').html(eyeicon + eyeicon2)
-            $('.box[f="' + thsfid + '"] .copyoo').html(copyicon)
-            $('.box[f="' + thsfid + '"] .saveoo').html(saveicon + savedicon)
-            $('.box[f="' + thsfid + '"] .noteoo').html(noteicon)
-            $('.box[f="' + thsfid + '"] .infooo').html(infoicon)
-            $('.box[f="' + thsfid + '"]').attr('iconload', '1')
+          if ($('.history .box[f="' + thsfid + '"]').attr('iconload') === '0') {
+            $('.history .box[f="' + thsfid + '"] .dspoo').html(eyeicon + eyeicon2)
+            $('.history .box[f="' + thsfid + '"] .copyoo').html(copyicon)
+            $('.history .box[f="' + thsfid + '"] .saveoo').html(saveicon + savedicon)
+            $('.history .box[f="' + thsfid + '"] .noteoo').html(noteicon)
+            $('.history .box[f="' + thsfid + '"] .infooo').html(infoicon)
+            $('.history .box[f="' + thsfid + '"]').attr('iconload', '1')
           }
-          if ($('.box[f="' + thsfid + '"]').attr('stch') === '0') {
-            $('.box[f="' + thsfid + '"]').attr('stch', '1')
+          if ($('.history .box[f="' + thsfid + '"]').attr('stch') === '0') {
+            $('.history .box[f="' + thsfid + '"]').attr('stch', '1')
             var thsstr = $('input[u="' + thsfid + '"]').val()
             var thspt = checkpwd(thsstr, true, thsfid)
-            var thstime = parseInt(String($('.box[f="' + thsfid + '"]').attr('t')))
+            var thstime = parseInt(String($('.history .box[f="' + thsfid + '"]').attr('t')))
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-            $('.box[f="' + thsfid + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box[f="' + thsfid + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
 
         }
