@@ -2277,7 +2277,7 @@
 
   <div class="input3">
     <input type="text" placeholder="password,date,notes..." autocomplete="off">
-    <div class="btn7" ripple-onclick="showsearchresult()">
+    <div class="btn7" ripple-onclick="showsearchresult(false)">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -3805,6 +3805,10 @@
         $('.input3 input').removeAttr('disabled')
       }, 1500);
     }
+    if (y === false) {
+      $('.btn7').css({ 'opacity': '0' })
+      $('.search_loading').css({ 'opacity': '1' })
+    }
     var keywd = $('.input3 input').val()
     if (keywd === ' ' || keywd === '') {
       keywd = gid() + '#' + gid()
@@ -3828,7 +3832,11 @@
         }
         r_index += 1
       }
-      $(result.join(',')).attr('search', '1').attr('ksearch', '1')
+    }
+    $(result.join(',')).attr('search', '1').attr('ksearch', '1')
+    if (y === false) {
+      $('.btn7').css({ 'opacity': '1' })
+      $('.search_loading').css({ 'opacity': '0' })
     }
   }
 
