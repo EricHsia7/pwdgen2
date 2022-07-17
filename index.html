@@ -3260,9 +3260,9 @@
       date_list[thisdatename] = '1'
     }
     for (var e in date_list) {
-      date_list_arr.push('.history-date-title[d="' + e + '"] {display:flex;}')
+      date_list_arr.push('.history_date_title[d="' + e + '"] {display:flex;}')
     }
-    $('#historydatetitlecss').html('.history-date-title{display:none} ' + date_list_arr.join(' '))
+    $('#historydatetitlecss').html('.history_date_title{display:none} ' + date_list_arr.join(' '))
   }
   function filter_show_skeleton() {
     $('.history').prepend(historyloadingboxhtml.join(''))
