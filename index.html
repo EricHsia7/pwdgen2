@@ -4947,6 +4947,7 @@
         $('#historyfiltercss').html('')
       }
       $('#historydatetitlecss-search').html('')
+      $('#historydatetitlecss').html(String($('#historydatetitlecss').html()).replaceAll('/*', '').replaceAll('*/', ''))
       $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
       if ($('.history .box').length > 0) {
         $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'block' });
@@ -4978,6 +4979,7 @@
       $('.input,.history,.input3,.history-filter').css({ 'display': 'none' });
       $('head #searchcss').html('')
       $('#historydatetitlecss-search').html('')
+      $('#historydatetitlecss').html(String($('#historydatetitlecss').html()).replaceAll('/*', '').replaceAll('*/', ''))
       $('.btn5').attr('uj', '0')
       bpage_home_click = 0
     }
@@ -4997,6 +4999,8 @@
       $('.btn5').attr('uj', '0')
       showsearchresult(true)
       $('#historyfiltercss').html('')
+
+      $('#historydatetitlecss').html('/*' + $('#historydatetitlecss').html() + '*/')
       bpage_home_click = 0
     }
 
