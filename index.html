@@ -2697,7 +2697,8 @@
   $.extend($.support, { touch: "ontouchend" in document });
 
   function rclick(select) {
-    $(select).click(function () {
+    $(select).click(function (e) {
+      e.stopPropagation()
       if ($(this).attr('r-click') != '') {
         eval('setTimeout(function() {' + $(this).attr('r-click') + '},' + 1 + ');');
       }
