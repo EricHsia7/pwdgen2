@@ -416,7 +416,7 @@
       white-space: nowrap;
       padding-left: 5px;
       box-sizing: border-box;
-      margin-top:10px;
+      margin-top: 10px;
     }
 
     .box {
@@ -2122,6 +2122,7 @@
       display: flex;
     }
   </style>
+  <style id="historydatetitlecss"></style>
   <style id="searchcss">
     .box[search="0"] {
       display: none
@@ -3247,6 +3248,21 @@
       var hash = sha256($('input[u="' + key + '"]').attr('value') + '_' + ddt)
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
+  }
+  function history_date_title_check(date_arr) {
+    var date_list = {}
+    var date_list_arr = []
+    var date_arr_len = date_arr.length
+    for (var t = 0; t < date_arr_len; t++) {
+      var thisdate = new Date()
+      thisdate.setTime(parseInt(date_arr[t]))
+      var thisdatename = 'y' + thisdate.getFullYear() + '_m' + (thisdate.getMonth() + 1)
+      date_list[thisdatename] = '1'
+    }
+    for (var e in date_list) {
+      date_list_arr.push('.history-date-title[d="' + date_list[e] + '"] {display:flex;}')
+    }
+    $('#historydatetitlecss').html('.history-date-title{display:none} ' + date_list_arr.join(' '))
   }
   function filter_show_skeleton() {
     $('.history').prepend(historyloadingboxhtml.join(''))
@@ -4831,7 +4847,7 @@
               }
               var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
               if (saveddate[date_title_name] === undefined) {
-                $('.history').append('<div class="history_date_title">' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '</div>')
+                $('.history').append('<div class="history_date_title" d="' + date_title_name + '">' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '</div>')
                 saveddate[date_title_name] = '1'
               }
 
@@ -4856,6 +4872,7 @@
           hashtagindex += 1
         }
         $('.history .loading').remove()
+        //$('#historydatetitlecss').
         scrollcheckpwd()
         deletepwcache()
         $('.history-filter li[loading="1"]').attr('loading', '0')
