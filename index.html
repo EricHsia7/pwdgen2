@@ -3895,12 +3895,14 @@
       }
       var result = []
       var r_index = 0
+      var date_list = []
       $('head #searchcss').html('.box[search="0"] {display: none}.box[search="1"] {display: block}')
       $('.history .box').attr('search', '0')
       for (var f in searchindexjson) {
         if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
           var hbbid = String(f).split('_')[3]
           result.push('.history .box#' + hbbid)
+          date_list.push(searchindexjson[f][4])
           if (r_index < historyloadingboxcc) {
             if ($('.history .box#' + hbbid).attr('iconload') === '0') {
               $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
@@ -3925,7 +3927,7 @@
         }
       }
       $(result.join(',')).attr('search', '1')
-
+      history_date_title_check(date_list)
       $('.input3 input').removeAttr('disabled')
       $('.btn7').css({ 'opacity': '1' })
       $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
