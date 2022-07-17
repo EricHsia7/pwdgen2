@@ -404,6 +404,21 @@
       user-select: none;
     }
 
+    .history_date_title {
+      font-size: 23px;
+      color: var(--g-4e4e4e);
+      -webkit-user-select: none;
+      user-select: none;
+      height: 30px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      padding-left: 5px;
+      box-sizing: border-box;
+      margin-top: 10px;
+    }
+
     .box {
       width: 100%;
       height: 130px;
@@ -2107,6 +2122,8 @@
       display: flex;
     }
   </style>
+  <style id="historydatetitlecss"></style>
+  <style id="historydatetitlecss-search"></style>
   <style id="searchcss">
     .box[search="0"] {
       display: none
@@ -3233,6 +3250,25 @@
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
+  function history_date_title_check(date_arr, search) {
+    var date_list = {}
+    var date_list_arr = []
+    var date_arr_len = date_arr.length
+    for (var t = 0; t < date_arr_len; t++) {
+      var thisdate = new Date()
+      thisdate.setTime(parseInt(date_arr[t]))
+      var thisdatename = 'y' + thisdate.getFullYear() + '_m' + (thisdate.getMonth() + 1)
+      date_list[thisdatename] = '1'
+    }
+    for (var e in date_list) {
+      date_list_arr.push('.history_date_title[d="' + e + '"] {display:flex;}')
+    }
+    var csstx = ''
+    if (search === true) {
+      csstx = '-search'
+    }
+    $('#historydatetitlecss' + csstx).html('.history_date_title{display:none} ' + date_list_arr.join(' '))
+  }
   function filter_show_skeleton() {
     $('.history').prepend(historyloadingboxhtml.join(''))
     $('#historyfiltercss').html('.box {display:none;}.loading{display:block}')
@@ -3262,6 +3298,7 @@
     filter_switch('default_recentaccess')
     filter_show_skeleton()
     setTimeout(function () {
+      var date_list = []
       var list = searchItemsbyname('pwdgen2_recent_access_')
       $('.box').attr('ar', '0')
       for (var f = 0; f < list.length; f++) {
@@ -3270,7 +3307,7 @@
         if ((dt - time) < 60 * 60 * 24 * 3 * 1000) {
           var hash = String(list[f]).split('_')[3]
           $('.history .box[hash="' + hash + '"]').attr('ar', '1')
-
+          date_list.push($('.history .box[hash="' + hash + '"]').attr('t'))
           if ($('.history .box[hash="' + hash + '"]').attr('iconload') === '0') {
             $('.history .box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
             $('.history .box[hash="' + hash + '"] .copyoo').html(copyicon)
@@ -3293,6 +3330,7 @@
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+      history_date_title_check(date_list, false)
     }, 1500);
   }
   function filter_showcontainnote() {
@@ -3300,6 +3338,7 @@
     filter_show_skeleton()
     setTimeout(function () {
       $('.box').attr('ar', '0')
+      var date_list = []
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
 
@@ -3307,7 +3346,7 @@
           var notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
           if (notetext.length > 0) {
             $('.history .box[hash="' + hash + '"]').attr('ar', '1')
-
+            date_list.push($('.history .box[hash="' + hash + '"]').attr('t'))
             if ($('.history .box[hash="' + hash + '"]').attr('iconload') === '0') {
               $('.history .box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
               $('.history .box[hash="' + hash + '"] .copyoo').html(copyicon)
@@ -3326,14 +3365,12 @@
               var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
               $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
             }
-
-
-
           }
         }
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+      history_date_title_check(date_list, false)
     }, 1500);
   }
 
@@ -3346,6 +3383,7 @@
     }
     filter_show_skeleton()
     setTimeout(function () {
+      var date_list = []
       var r_hashtag = allhashtag[hashtag_name]
       $('.box').attr('ar', '0')
       for (var g = 0; g < $('.history .box').length; g++) {
@@ -3353,7 +3391,7 @@
 
         if (String($('.history .box[hash="' + hash + '"]').attr('hashtag')).split(',').indexOf(r_hashtag) > -1) {
           $('.history .box[hash="' + hash + '"]').attr('ar', '1')
-
+          date_list.push($('.history .box[hash="' + hash + '"]').attr('t'))
           if ($('.history .box[hash="' + hash + '"]').attr('iconload') === '0') {
             $('.history .box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
             $('.history .box[hash="' + hash + '"] .copyoo').html(copyicon)
@@ -3376,6 +3414,7 @@
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+      history_date_title_check(date_list, false)
     }, 1500);
   }
   function openfulllist_l() {
@@ -3619,6 +3658,7 @@
     filter_show_skeleton()
     close_date_picker()
     setTimeout(function () {
+      var date_list = []
       $('.box').attr('ar', '0')
       for (var g = 0; g < $('.history .box').length; g++) {
         var hash = $('.history .box').eq(g).attr('hash')
@@ -3628,6 +3668,7 @@
         var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
         if (zpwtimestr.indexOf(searchtxt) > -1) {
           $('.history .box[hash="' + hash + '"]').attr('ar', '1')
+          date_list.push($('.history .box[hash="' + hash + '"]').attr('t'))
           if ($('.history .box[hash="' + hash + '"]').attr('iconload') === '0') {
             $('.history .box[hash="' + hash + '"] .dspoo').html(eyeicon + eyeicon2)
             $('.history .box[hash="' + hash + '"] .copyoo').html(copyicon)
@@ -3650,6 +3691,7 @@
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
+      history_date_title_check(date_list, false)
     }, 1500);
   }
 
@@ -3660,6 +3702,7 @@
     filter_show_skeleton()
     setTimeout(function () {
       $('#historyfiltercss').html('')
+      $('#historydatetitlecss').html('')
       filter_hide_skeleton()
     }, 1500);
   }
@@ -3857,12 +3900,14 @@
       }
       var result = []
       var r_index = 0
+      var date_list = []
       $('head #searchcss').html('.box[search="0"] {display: none}.box[search="1"] {display: block}')
       $('.history .box').attr('search', '0')
       for (var f in searchindexjson) {
         if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
           var hbbid = String(f).split('_')[3]
           result.push('.history .box#' + hbbid)
+          date_list.push(searchindexjson[f][4])
           if (r_index < historyloadingboxcc) {
             if ($('.history .box#' + hbbid).attr('iconload') === '0') {
               $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
@@ -3887,7 +3932,7 @@
         }
       }
       $(result.join(',')).attr('search', '1')
-
+      history_date_title_check(date_list, true)
       $('.input3 input').removeAttr('disabled')
       $('.btn7').css({ 'opacity': '1' })
       $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
@@ -4744,6 +4789,7 @@
     $('head').append('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400&display=swap" rel="stylesheet">')
   }
   function showsavedhistory() {
+    var saveddate = {}
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var savedlist_t = []
     var savedlist_d = []
@@ -4813,6 +4859,11 @@
                 notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
                 notehashtags = gethashtags(notetext, true)
               }
+              var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
+              if (saveddate[date_title_name] === undefined) {
+                $('.history').append('<div class="history_date_title" d="' + date_title_name + '">' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '</div>')
+                saveddate[date_title_name] = '1'
+              }
 
               $('.history').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
               rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]')
@@ -4835,6 +4886,7 @@
           hashtagindex += 1
         }
         $('.history .loading').remove()
+        //$('#historydatetitlecss').
         scrollcheckpwd()
         deletepwcache()
         $('.history-filter li[loading="1"]').attr('loading', '0')
@@ -4894,6 +4946,8 @@
       else {
         $('#historyfiltercss').html('')
       }
+      $('#historydatetitlecss-search').html('')
+      $('#historydatetitlecss').html(String($('#historydatetitlecss').html()).replaceAll('/*', '').replaceAll('*/', ''))
       $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
       if ($('.history .box').length > 0) {
         $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'block' });
@@ -4924,6 +4978,8 @@
       $('.checkpwdp,.input2').css({ 'display': 'block' });
       $('.input,.history,.input3,.history-filter').css({ 'display': 'none' });
       $('head #searchcss').html('')
+      $('#historydatetitlecss-search').html('')
+      $('#historydatetitlecss').html(String($('#historydatetitlecss').html()).replaceAll('/*', '').replaceAll('*/', ''))
       $('.btn5').attr('uj', '0')
       bpage_home_click = 0
     }
@@ -4943,6 +4999,8 @@
       $('.btn5').attr('uj', '0')
       showsearchresult(true)
       $('#historyfiltercss').html('')
+
+      $('#historydatetitlecss').html('/*' + $('#historydatetitlecss').html() + '*/')
       bpage_home_click = 0
     }
 
