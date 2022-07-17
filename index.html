@@ -4299,11 +4299,14 @@
     return hashtags
   }
   function refresh_hashtag() {
-    $('.history-filter li[pl="default_fulllist"]').remove()
+    if ($('.history-filter li[pl="default_fulllist"]').length > 0) {
+      $('.history-filter li[pl="default_fulllist"]').remove()
+    }
     var deletecount = 0
     var addcount = 0
     var hashtag_regex = /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
     var newallhashtag = {}
+    var newallhashtag_length = 0
     var noteslist = searchItemsbyname('pwdgen2_saved_notes_cf_')
     for (var d = 0; d < noteslist.length; d++) {
       if (!(localStorage.hasOwnProperty(noteslist[d]))) {
@@ -4347,7 +4350,9 @@
         }
       }
     }
-
+    for (var e in newallhashtag) {
+      newallhashtag_length += 1
+    }
     if (deletecount > 0) {
       filter_showall()
     }
@@ -4359,8 +4364,10 @@
         h_offset += 1
       }
     }
-    $('.history-filter').append(filter_fulllist_html)
-    rclick('.history-filter li[pl="default_fulllist"]')
+    if (newallhashtag_length > 0) {
+      $('.history-filter').append(filter_fulllist_html)
+      rclick('.history-filter li[pl="default_fulllist"]')
+    }
   }
   var custom_presets_j
   function custompresets() {
@@ -4831,8 +4838,11 @@
         deletepwcache()
         $('.history-filter li[loading="1"]').attr('loading', '0')
         $('.history-filter li[gx="hashtag-loading"]').remove()
-        $('.history-filter').append(filter_fulllist_html)
-        rclick('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"],.history-filter li[pl="default_fulllist"]')
+        if (hashtagindex > 0) {
+          $('.history-filter').append(filter_fulllist_html)
+          rclick('.history-filter li[pl="default_fulllist"]')
+        }
+        rclick('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"]')
         history_filter_load = 1
         loadgooglefont()
       }, 1200);
