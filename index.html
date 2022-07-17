@@ -419,6 +419,10 @@
       margin-top: 10px;
     }
 
+    .history_date_group {
+      width: 100%;
+    }
+
     .box {
       width: 100%;
       height: 130px;
@@ -3250,8 +3254,8 @@
     }
     localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
-  function history_date_title_check(date_arr, search,skeletonscreen) {
-    if(skeletonscreen) {
+  function history_date_title_check(date_arr, search, skeletonscreen) {
+    if (skeletonscreen) {
       $('#historydatetitlecss').html('.history_date_title{display:none}')
       return ''
     }
@@ -3301,7 +3305,7 @@
   function filter_showrecentaccess() {
     filter_switch('default_recentaccess')
     filter_show_skeleton()
-    history_date_title_check([], false,true)
+    history_date_title_check([], false, true)
     setTimeout(function () {
       var date_list = []
       var list = searchItemsbyname('pwdgen2_recent_access_')
@@ -3335,13 +3339,13 @@
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
-      history_date_title_check(date_list, false,false)
+      history_date_title_check(date_list, false, false)
     }, 1500);
   }
   function filter_showcontainnote() {
     filter_switch('default_containnote')
     filter_show_skeleton()
-    history_date_title_check([], false,true)
+    history_date_title_check([], false, true)
     setTimeout(function () {
       $('.box').attr('ar', '0')
       var date_list = []
@@ -3376,7 +3380,7 @@
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
-      history_date_title_check(date_list, false,false)
+      history_date_title_check(date_list, false, false)
     }, 1500);
   }
 
@@ -3388,7 +3392,7 @@
       filter_switch(hashtag_name)
     }
     filter_show_skeleton()
-    history_date_title_check([], false,true)
+    history_date_title_check([], false, true)
     setTimeout(function () {
       var date_list = []
       var r_hashtag = allhashtag[hashtag_name]
@@ -3421,7 +3425,7 @@
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
-      history_date_title_check(date_list, false,false)
+      history_date_title_check(date_list, false, false)
     }, 1500);
   }
   function openfulllist_l() {
@@ -3663,7 +3667,7 @@
     var searchtxt = date_picker.getStr()
     filter_switch('default_datefilter')
     filter_show_skeleton()
-    history_date_title_check([], false,true)
+    history_date_title_check([], false, true)
     close_date_picker()
     setTimeout(function () {
       var date_list = []
@@ -3699,7 +3703,7 @@
       }
       filter_hide_skeleton()
       $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
-      history_date_title_check(date_list, false,false)
+      history_date_title_check(date_list, false, false)
     }, 1500);
   }
 
@@ -3708,7 +3712,7 @@
   function filter_showall() {
     filter_switch('default_all')
     filter_show_skeleton()
-    history_date_title_check([], false,true)
+    history_date_title_check([], false, true)
     setTimeout(function () {
       $('#historyfiltercss').html('')
       $('#historydatetitlecss').html('')
@@ -3941,7 +3945,7 @@
         }
       }
       $(result.join(',')).attr('search', '1')
-      history_date_title_check(date_list, true,false)
+      history_date_title_check(date_list, true, false)
       $('.input3 input').removeAttr('disabled')
       $('.btn7').css({ 'opacity': '1' })
       $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
@@ -4196,7 +4200,12 @@
       var thspt = checkpwd(pw)
       var hash = sha256(pw + '_' + pwtime.getTime())
       markasrecentaccess(1, hash)
-      $('.history').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
+      var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
+      if ($('.history_date_group[d="' + date_title_name + '"]').length < 1) {
+        $('.history').prepend('<div class="history_date_group" d="' + date_title_name + '"></div>')
+        $('.history').prepend('<div class="history_date_title" d="' + date_title_name + '">' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '</div>')
+      }
+      $('.history .history_date_group[d="' + date_title_name + '"]').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
       rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]')
       rclick('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]')
       $('.history-filter').css({ 'display': 'block' })
@@ -4871,10 +4880,11 @@
               var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
               if (saveddate[date_title_name] === undefined) {
                 $('.history').append('<div class="history_date_title" d="' + date_title_name + '">' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '</div>')
+                $('.history').append('<div class="history_date_group" d="' + date_title_name + '"></div>')
                 saveddate[date_title_name] = '1'
               }
 
-              $('.history').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
+              $('.history .history_date_group[d="' + date_title_name + '"]').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
               rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]')
               rclick('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]')
             }
