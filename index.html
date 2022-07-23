@@ -4527,7 +4527,8 @@
     return result
   }
   function show_icon_picker_search_result() {
-    var selector_arr = serach_icon_picker(custom_presets_icon_picker_search_index, $('#custom_presets_add_icon_picker_search_input').val())
+    var selector_arr = []
+    var arr = serach_icon_picker(custom_presets_icon_picker_search_index, $('#custom_presets_add_icon_picker_search_input').val())
     var arr_len = arr.length
     for (var i = 0; i < arr_len; i++) {
       selector_arr.push('.custom_presets_add_icon_picker_icon[n="' + arr[i] + '"]')
