@@ -2137,6 +2137,7 @@
       display: block
     }
   </style>
+  <style id="custom_presets_icon_picker_search_css"></style>
 </head>
 
 <body>
@@ -4519,6 +4520,14 @@
       }
     }
     return result
+  }
+  function show_icon_picker_search_result(arr) {
+    var selector_arr = []
+    var arr_len = arr.length
+    for (var i = 0; i < arr_len; i++) {
+      selector_arr.push('.custom_presets_add_icon_picker_icon[n="' + arr[i] + '"]')
+    }
+    $('#custom_preset_icon_picker_search_css').html('.custom_presets_add_icon_picker_icon{display:none}' + selector_arr.join(',') + '{display:inline-block;}')
   }
   function custom_presets_switch(fd) {
     var filterbox_width = $('.custom-presets').width()
