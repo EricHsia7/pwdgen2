@@ -2451,7 +2451,8 @@
     </div>
     <div class="custom-presets-add-box">
       <input type="text" placeholder="name" class="custom-presets-add-b10" id="name_custom_presets">
-      <input type="text" placeholder="search icon" id="custom_presets_add_icon_picker_search_input" class="custom-presets-add-b10">
+      <input type="text" placeholder="search icon" id="custom_presets_add_icon_picker_search_input"
+        class="custom-presets-add-b10">
       <div class="custom-presets-add-icon-picker" v="default" translate="no"></div>
       <input type="text" placeholder="length" class="custom-presets-add-b10" id="length_custom_presets">
       <li class="custom-presets-add-list">
@@ -4530,7 +4531,12 @@
     return result
   }
   function show_icon_picker_search_result() {
-    var arr = serach_icon_picker(custom_presets_icon_picker_search_index, $('#custom_presets_add_icon_picker_search_input').val())
+    var text = $('#custom_presets_add_icon_picker_search_input').val()
+    if (text.length < 1) {
+      $('#custom_presets_icon_picker_search_css').html('')
+      return ''
+    }
+    var arr = serach_icon_picker(custom_presets_icon_picker_search_index, text)
     var selector_arr = []
     var arr_len = arr.length
     for (var i = 0; i < arr_len; i++) {
