@@ -4501,12 +4501,10 @@
   var custom_presets_icon_picker_scrolled = 1
   var custom_presets_icon_picker_scroll_name = ''
   function custompresetsiconpickerscroll(icon_d, name) {
-    console.log(icon_d)
     if (icon_d === 'no') {
       icon_d = $('.custom_presets_add_icon_picker_icon[n="' + name + '"]').attr('icon-d')
       custompresetsiconpickerchange(icon_d, false)
     }
-    console.log(name)
     if ($('.custom_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').length > 0) {
       var filterbox_width = $('.custom-presets-add-icon-picker').width()
       var pl_offset_left = $('.custom_presets_add_icon_picker_icon[icon-d="' + icon_d + '"]').offset().left - $('.custom-presets-add-icon-picker').offset().left - $(document).scrollLeft() + $('.custom-presets-add-icon-picker').scrollLeft()
