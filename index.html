@@ -2034,6 +2034,10 @@
       right: 45px;
     }
 
+    #custom_presets_add_icon_picker_search_input {
+      display: none
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -2137,6 +2141,7 @@
       display: block
     }
   </style>
+  <style id="custom_presets_icon_picker_search_css"></style>
 </head>
 
 <body>
@@ -2446,6 +2451,8 @@
     </div>
     <div class="custom-presets-add-box">
       <input type="text" placeholder="name" class="custom-presets-add-b10" id="name_custom_presets">
+      <input type="text" placeholder="search icon" id="custom_presets_add_icon_picker_search_input"
+        class="custom-presets-add-b10">
       <div class="custom-presets-add-icon-picker" v="default" translate="no"></div>
       <input type="text" placeholder="length" class="custom-presets-add-b10" id="length_custom_presets">
       <li class="custom-presets-add-list">
@@ -4481,6 +4488,79 @@
     rclick('.custom-presets li[fd="addcustompreset"],.custom-presets li[fd="managercustompreset"]')
     //print end
   }
+  function createindex_icon_picker(data_arr) {
+    var index = {}
+    var data_len = data_arr.length
+    for (var i = 0; i < data_len; i++) {
+      new_l = String(data_arr[i]).length
+      var ul = []
+      for (var j = 0; j < new_l; j++) {
+        var unicode = String(data_arr[i]).charCodeAt(j)
+        if (index['u' + unicode] === undefined) {
+          index['u' + unicode] = []
+        }
+        index['u' + unicode].push(data_arr[i])
+        ul.push(unicode)
+      }
+    }
+    return index
+  }
+  function serach_icon_picker(index, text) {
+    var text_len = text.length
+    if (text_len < 1) {
+      return []
+    }
+    var result = []
+    var p_index = []
+    for (var j = 0; j < text_len; j++) {
+      var unicode = String(text).charCodeAt(j)
+      p_index.push(index['u' + unicode])
+    }
+    var p_index_len = p_index.length
+    for (var t = 0; t < p_index_len; t++) {
+      var this_a = p_index[t]
+      var this_a_len = this_a.length
+      for (var e = 0; e < this_a_len; e++) {
+        if (String(this_a[e]).indexOf(text) > -1) {
+          if (!(result.indexOf(this_a[e]) > -1)) {
+            result.push(this_a[e])
+          }
+        }
+      }
+    }
+    return result
+  }
+  function show_icon_picker_search_result() {
+    var text = ($('#custom_presets_add_icon_picker_search_input').val()).toLowerCase()
+    if (text.length < 1) {
+      $('#custom_presets_icon_picker_search_css').html('')
+      return ''
+    }
+    var arr = serach_icon_picker(custom_presets_icon_picker_search_index, text)
+    var selector_arr = []
+    var arr_len = arr.length
+    for (var i = 0; i < arr_len; i++) {
+      selector_arr.push('.custom_presets_add_icon_picker_icon[n="' + arr[i] + '"]')
+    }
+    $('#custom_presets_icon_picker_search_css').html('.custom_presets_add_icon_picker_icon{display:none}' + selector_arr.join(',') + '{display:inline-block;}')
+  }
+
+  function icon_picker_search_initialize() {
+    $('#custom_presets_add_icon_picker_search_input').css({ 'display': 'block' })
+    document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("paste", function (e) {
+      show_icon_picker_search_result()
+    });
+    document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("cut", function (e) {
+      show_icon_picker_search_result()
+    });
+    document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("selectionchange", function (e) {
+      show_icon_picker_search_result()
+    });
+    document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("keyup", function (e) {
+      show_icon_picker_search_result()
+    });
+  }
+
   function custom_presets_switch(fd) {
     var filterbox_width = $('.custom-presets').width()
     var fd_offset_left = $('.custom-presets li[fd="' + fd + '"]').offset().left - $('.custom-presets').offset().left - $(document).scrollLeft() + $('.custom-presets').scrollLeft()
@@ -4500,6 +4580,7 @@
   var custom_presets_icon_load = 0
   var custom_presets_icon_picker_scrolled = 1
   var custom_presets_icon_picker_scroll_name = ''
+  var custom_presets_icon_picker_search_index = {}
   function custompresetsiconpickerscroll(icon_d, name) {
     if (icon_d === 'no') {
       icon_d = $('.custom_presets_add_icon_picker_icon[n="' + name + '"]').attr('icon-d')
@@ -4547,6 +4628,8 @@
           $('.custom-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
           $('.custom-presets-add-mask').css({ 'opacity': '1' })
         }, 1)
+        $('#custom_presets_add_icon_picker_search_input').val('')
+        $('#custom_presets_icon_picker_search_css').html('')
         if (custom_presets_icon_load === 0) {
           custom_presets_icon_load = 1
           for (var y = 0; y < 20; y++) {
@@ -4574,6 +4657,8 @@
                 custompresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
                 custom_presets_icon_picker_scrolled = 1
               }
+              custom_presets_icon_picker_search_index = createindex_icon_picker(f_iconlist)
+              icon_picker_search_initialize()
             }, 500);
           }
           else {
@@ -4600,6 +4685,8 @@
                                   custompresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
                                   custom_presets_icon_picker_scrolled === 1
                                 }
+                                custom_presets_icon_picker_search_index = createindex_icon_picker(f_iconlist)
+                                icon_picker_search_initialize()
                               }
                             });
                           }
@@ -4668,6 +4755,8 @@
       $('.custom-presets-add-add').text('Add').attr('r-click', 'addcustompresetsadd()')
     }, 500)
     clearcustompresetsadd()
+    $('#custom_presets_add_icon_picker_search_input').val('')
+    $('#custom_presets_icon_picker_search_css').html('')
   }
   function closecustompresetsmanager() {
     $('.custom-presets-manager').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
