@@ -4505,8 +4505,11 @@
     return index
   }
   function serach_icon_picker(index, text) {
-    var result = []
     var text_len = text.length
+    if (text_len < 1) {
+      return []
+    }
+    var result = []
     var p_index = []
     for (var j = 0; j < text_len; j++) {
       var unicode = String(text).charCodeAt(j)
@@ -4527,8 +4530,8 @@
     return result
   }
   function show_icon_picker_search_result() {
-    var selector_arr = []
     var arr = serach_icon_picker(custom_presets_icon_picker_search_index, $('#custom_presets_add_icon_picker_search_input').val())
+    var selector_arr = []
     var arr_len = arr.length
     for (var i = 0; i < arr_len; i++) {
       selector_arr.push('.custom_presets_add_icon_picker_icon[n="' + arr[i] + '"]')
