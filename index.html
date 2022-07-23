@@ -4481,6 +4481,45 @@
     rclick('.custom-presets li[fd="addcustompreset"],.custom-presets li[fd="managercustompreset"]')
     //print end
   }
+  function createindex_icon_picker(data_arr) {
+    var index = {}
+    var data_len = data_arr.length
+    for (var i = 0; i < data_len; i++) {
+      new_l = String(data_arr[i]).length
+      var ul = []
+      for (var j = 0; j < new_l; j++) {
+        var unicode = String(data_arr[i]).charCodeAt(j)
+        if (index['u' + unicode] === undefined) {
+          index['u' + unicode] = []
+        }
+        index['u' + unicode].push(data_arr[i])
+        ul.push(unicode)
+      }
+    }
+    return index
+  }
+  function serach_icon_picker(index, text) {
+    var result = []
+    var text_len = text.length
+    var p_index = []
+    for (var j = 0; j < text_len; j++) {
+      var unicode = String(text).charCodeAt(j)
+      p_index.push(index['u' + unicode])
+    }
+    var p_index_len = p_index.length
+    for (var t = 0; t < p_index_len; t++) {
+      var this_a = p_index[t]
+      var this_a_len = this_a.length
+      for (var e = 0; e < this_a_len; e++) {
+        if (String(this_a[e]).indexOf(text) > -1) {
+          if (!(result.indexOf(this_a[e]) > -1)) {
+            result.push(this_a[e])
+          }
+        }
+      }
+    }
+    return result
+  }
   function custom_presets_switch(fd) {
     var filterbox_width = $('.custom-presets').width()
     var fd_offset_left = $('.custom-presets li[fd="' + fd + '"]').offset().left - $('.custom-presets').offset().left - $(document).scrollLeft() + $('.custom-presets').scrollLeft()
