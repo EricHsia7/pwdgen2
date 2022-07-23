@@ -3810,19 +3810,19 @@
       $('.history .box#' + gide).append(txthtml)
       $('textarea[j="' + txthash + '"]').val(txtval)
       rclick('.bxntx[yj="' + gide + '"]')
-      document.querySelector('textarea[j="' + txthash + '"]').addEventListener("paste", function (e) {
+      document.querySelector('.history textarea[j="' + txthash + '"]').addEventListener("paste", function (e) {
         pwnotes_ev(e, String(psehash), String(txthash), String(gide));
       });
-      document.querySelector('textarea[j="' + txthash + '"]').addEventListener("cut", function (e) {
+      document.querySelector('.history textarea[j="' + txthash + '"]').addEventListener("cut", function (e) {
         pwnotes_ev(e, String(psehash), String(txthash), String(gide));
       });
-      document.querySelector('textarea[j="' + txthash + '"]').addEventListener("selectionchange", function (e) {
+      document.querySelector('.history textarea[j="' + txthash + '"]').addEventListener("selectionchange", function (e) {
         pwnotes_ev(e, String(psehash), String(txthash), String(gide));
       });
       document.addEventListener("selectionchange", function (e) {
         pwnotes_ev(e, String(psehash), String(txthash), String(gide));
       });
-      document.querySelector('textarea[j="' + txthash + '"]').addEventListener("keyup", function (e) {
+      document.querySelector('.history textarea[j="' + txthash + '"]').addEventListener("keyup", function (e) {
         pwnotes_ev(e, String(psehash), String(txthash), String(gide));
       });
 
