@@ -2034,6 +2034,10 @@
       right: 45px;
     }
 
+    #custom_presets_add_icon_picker_search_input {
+      display: none
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -2447,6 +2451,7 @@
     </div>
     <div class="custom-presets-add-box">
       <input type="text" placeholder="name" class="custom-presets-add-b10" id="name_custom_presets">
+      <input type="text" placeholder="search icon" id="custom_presets_add_icon_picker_search_input">
       <div class="custom-presets-add-icon-picker" v="default" translate="no"></div>
       <input type="text" placeholder="length" class="custom-presets-add-b10" id="length_custom_presets">
       <li class="custom-presets-add-list">
@@ -4521,14 +4526,36 @@
     }
     return result
   }
-  function show_icon_picker_search_result(arr) {
-    var selector_arr = []
+  function show_icon_picker_search_result() {
+    var selector_arr = serach_icon_picker(custom_presets_icon_picker_search_index, $('#custom_presets_add_icon_picker_search_input').val())
     var arr_len = arr.length
     for (var i = 0; i < arr_len; i++) {
       selector_arr.push('.custom_presets_add_icon_picker_icon[n="' + arr[i] + '"]')
     }
     $('#custom_preset_icon_picker_search_css').html('.custom_presets_add_icon_picker_icon{display:none}' + selector_arr.join(',') + '{display:inline-block;}')
   }
+
+  function icon_picker_search_initialize() {
+    $('#custom_presets_add_icon_picker_search_input').css({ 'display': 'block' })
+    document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("paste", function (e) {
+      show_icon_picker_search_result()
+    });
+    document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("cut", function (e) {
+      show_icon_picker_search_result()
+    });
+    document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("selectionchange", function (e) {
+      show_icon_picker_search_result()
+    });
+    /*
+    document.addEventListener("selectionchange", function (e) {
+      searchresult()
+    });
+    */
+    document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("keyup", function (e) {
+      show_icon_picker_search_result()
+    });
+  }
+
   function custom_presets_switch(fd) {
     var filterbox_width = $('.custom-presets').width()
     var fd_offset_left = $('.custom-presets li[fd="' + fd + '"]').offset().left - $('.custom-presets').offset().left - $(document).scrollLeft() + $('.custom-presets').scrollLeft()
@@ -4624,7 +4651,7 @@
                 custom_presets_icon_picker_scrolled = 1
               }
               custom_presets_icon_picker_search_index = createindex_icon_picker(f_iconlist)
-              //display search input
+              icon_picker_search_initialize()
             }, 500);
           }
           else {
@@ -4652,7 +4679,7 @@
                                   custom_presets_icon_picker_scrolled === 1
                                 }
                                 custom_presets_icon_picker_search_index = createindex_icon_picker(f_iconlist)
-                                //display search input
+                                icon_picker_search_initialize()
                               }
                             });
                           }
