@@ -4531,7 +4531,7 @@
     return result
   }
   function show_icon_picker_search_result() {
-    var text = $('#custom_presets_add_icon_picker_search_input').val()
+    var text = ($('#custom_presets_add_icon_picker_search_input').val()).toLowerCase()
     if (text.length < 1) {
       $('#custom_presets_icon_picker_search_css').html('')
       return ''
