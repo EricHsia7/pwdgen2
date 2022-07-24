@@ -3903,7 +3903,7 @@
     for (var r = 0; r < boxlen; r++) {
       var thw_bxf = $('.history .box').eq(r).attr('id')
       var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
-      var thw_time = $('.history .box#' + thw_bxf).attr('t')
+      var thw_time = parseInt($('.history .box#' + thw_bxf).attr('t'))
 
       var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
       var thw_notes = false
@@ -3918,7 +3918,7 @@
         unicode_str.push(thw_notes)
       }
       var unicode_str_arr = unicode_arr(unicode_str.join(''))
-      searchindex_v2.push({ 'box_id': thw_bxf, 'pwd': thw_pwd, 'date': pwtimestr, 'notes': thw_notes, 'unicode': unicode_str_arr })
+      searchindex_v2.push({ 'box_id': thw_bxf, 'pwd': thw_pwd, 'date': pwtimestr, 'notes': thw_notes, 'time': thw_time, 'unicode': unicode_str_arr })
     }
     var t2 = new Date()
     console.log((t2.getTime() - t1.getTime()))
@@ -3929,6 +3929,9 @@
       return ''
     }
     var text_unicode = unicode_arr(text)
+    var result = []
+    var r_index = 0
+    var date_list = []
     var searchindex_v2_len = searchindex_v2.length
     for (var q = 0; q < searchindex_v2_len; q++) {
       var this_index = searchindex_v2[q]
@@ -3958,11 +3961,37 @@
             }
           }
         }
-        if(text_check) {
-          console.log(this_index)
+        if (text_check) {
+          date_list.push(this_index.time)
+          //g
+          var hbbid = this_index.id
+          if (r_index < historyloadingboxcc) {
+            if ($('.history .box#' + hbbid).attr('iconload') === '0') {
+              $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
+              $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
+              $('.history .box#' + hbbid + ' .saveoo').html(saveicon + savedicon)
+              $('.history .box#' + hbbid + ' .noteoo').html(noteicon)
+              $('.history .box#' + hbbid + ' .infooo').html(infoicon)
+              $('.history .box#' + hbbid).attr('iconload', '1')
+            }
+            if ($('.history .box#' + hbbid).attr('stch') === '0') {
+              $('.history .box#' + hbbid).attr('stch', '1')
+              var thsstr = $('.history .box#' + hbbid + ' input[u="' + hbbid + '"]').val()
+              var thspt = checkpwd(thsstr, true, hbbid)
+              var thstime = parseInt(String($('.history .box#' + hbbid).attr('t')))
+              var pwtime = new Date()
+              pwtime.setTime(thstime)
+              var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+              $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            }
+          }
+          r_index += 1
+          //g
         }
       }
     }
+    $(result.join(',')).attr('search', '1')
+    history_date_title_check(date_list, true, false)
   }
   function showsearchresult(y) {
     $('.btn7').css({ 'opacity': '0' })
