@@ -3963,9 +3963,8 @@
         }
         if (text_check) {
           date_list.push(this_index.time)
-          result.push('.history .box#' + hbbid)
           //g
-          var hbbid = this_index.id
+          var hbbid = this_index.box_id
           if (r_index < historyloadingboxcc) {
             if ($('.history .box#' + hbbid).attr('iconload') === '0') {
               $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
@@ -3987,7 +3986,6 @@
             }
           }
           r_index += 1
-          console.log(result)
           //g
         }
       }
