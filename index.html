@@ -3924,6 +3924,8 @@
     console.log((t2.getTime() - t1.getTime()))
   }
   function showsearchresult_v2() {
+    $('head #searchcss').html('.box[search="0"] {display: none}.box[search="1"] {display: block}')
+    $('.history .box').attr('search', '0')
     var text = $('.input3 input').val()
     if (text.length < 1) {
       return ''
