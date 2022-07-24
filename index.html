@@ -3913,17 +3913,57 @@
       var pwt = new Date()
       pwt.setTime(thw_time)
       var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
-      var unicode_str = [thw_pwd,pwtimestr]
-      if(!(thw_notes === false)) {
+      var unicode_str = [thw_pwd, pwtimestr]
+      if (!(thw_notes === false)) {
         unicode_str.push(thw_notes)
       }
       var unicode_str_arr = unicode_arr(unicode_str.join(''))
-      searchindex_v2.push({ 'box_id': thw_bxf, 'pwd': thw_pwd, 'date': pwtimestr, 'notes': thw_notes ,'unicode':unicode_str_arr})
+      searchindex_v2.push({ 'box_id': thw_bxf, 'pwd': thw_pwd, 'date': pwtimestr, 'notes': thw_notes, 'unicode': unicode_str_arr })
     }
     var t2 = new Date()
-    console.log((t2.getTime()-t1.getTime()))
+    console.log((t2.getTime() - t1.getTime()))
   }
-
+  function showsearchresult_v2() {
+    var text = $('.input3 input').val()
+    if (text.length < 1) {
+      return ''
+    }
+    var text_unicode = unicode_arr(text)
+    var searchindex_v2_len = searchindex_v2.length
+    for (var q = 0; q < searchindex_v2_len; q++) {
+      var this_index = searchindex_v2[q]
+      var text_unicode_len = text_unicode.length
+      var unicode_check = false
+      for (var r = 0; r < text_unicode_len; r++) {
+        if (this_index.unicode.indexOf(text_unicode[r]) > -1) {
+          unicode_check = true
+          break;
+        }
+      }
+      if (unicode_check === false) {
+        continue;
+      }
+      else {
+        var text_check = false
+        if (String(this_index.notes).indexOf(text) > -1) {
+          text_check = true
+        }
+        else {
+          if (String(this_index.date).indexOf(text) > -1) {
+            text_check = true
+          }
+          else {
+            if (String(this_index.pwd).indexOf(text) > -1) {
+              text_check = true
+            }
+          }
+        }
+        if(text_check) {
+          console.log(this_index)
+        }
+      }
+    }
+  }
   function showsearchresult(y) {
     $('.btn7').css({ 'opacity': '0' })
     $('.search_loading,.search_loading_mask').css({ 'display': 'block' })
