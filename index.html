@@ -3896,8 +3896,11 @@
     return unicode_arr
   }
   var searchindex_v2 = []
+  var searchindex_v2_creating = false
   function createsearchindex_pwd() {
-    var t1 = new Date()
+    $('.btn7').css({ 'opacity': '0' })
+    $('.search_loading,.search_loading_mask').css({ 'display': 'block' })
+    $('.input3 input').attr('disabled', 'disabled')
     searchindex_v2 = []
     var boxlen = $('.history .box').length
     for (var r = 0; r < boxlen; r++) {
@@ -3920,81 +3923,91 @@
       var unicode_str_arr = unicode_arr(unicode_str.join(''))
       searchindex_v2.push({ 'box_id': thw_bxf, 'pwd': thw_pwd, 'date': pwtimestr, 'notes': thw_notes, 'time': thw_time, 'unicode': unicode_str_arr })
     }
-    var t2 = new Date()
-    console.log((t2.getTime() - t1.getTime()))
+    $('.input3 input').removeAttr('disabled')
+    $('.btn7').css({ 'opacity': '1' })
+    $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
+
   }
   function showsearchresult_v2() {
-    $('head #searchcss').html('.box[search="0"] {display: none}.box[search="1"] {display: block}')
-    $('.history .box').attr('search', '0')
-    var text = $('.input3 input').val()
-    if (text.length < 1) {
-      return ''
-    }
-    var text_unicode = unicode_arr(text)
-    var result = []
-    var r_index = 0
-    var date_list = []
-    var searchindex_v2_len = searchindex_v2.length
-    for (var q = 0; q < searchindex_v2_len; q++) {
-      var this_index = searchindex_v2[q]
-      var text_unicode_len = text_unicode.length
-      var unicode_check = false
-      for (var r = 0; r < text_unicode_len; r++) {
-        if (this_index.unicode.indexOf(text_unicode[r]) > -1) {
-          unicode_check = true
-          break;
+    $('.btn7').css({ 'opacity': '0' })
+    $('.search_loading,.search_loading_mask').css({ 'display': 'block' })
+    $('.input3 input').attr('disabled', 'disabled')
+    setTimeout(function () {
+      $('head #searchcss').html('.box[search="0"] {display: none}.box[search="1"] {display: block}')
+      $('.history .box').attr('search', '0')
+      var text = $('.input3 input').val()
+      if (text.length < 1) {
+        return ''
+      }
+      var text_unicode = unicode_arr(text)
+      var result = []
+      var r_index = 0
+      var date_list = []
+      var searchindex_v2_len = searchindex_v2.length
+      for (var q = 0; q < searchindex_v2_len; q++) {
+        var this_index = searchindex_v2[q]
+        var text_unicode_len = text_unicode.length
+        var unicode_check = false
+        for (var r = 0; r < text_unicode_len; r++) {
+          if (this_index.unicode.indexOf(text_unicode[r]) > -1) {
+            unicode_check = true
+            break;
+          }
         }
-      }
-      if (unicode_check === false) {
-        continue;
-      }
-      else {
-        var text_check = false
-        if (String(this_index.notes).indexOf(text) > -1) {
-          text_check = true
+        if (unicode_check === false) {
+          continue;
         }
         else {
-          if (String(this_index.date).indexOf(text) > -1) {
+          var text_check = false
+          if (String(this_index.notes).indexOf(text) > -1) {
             text_check = true
           }
           else {
-            if (String(this_index.pwd).indexOf(text) > -1) {
+            if (String(this_index.date).indexOf(text) > -1) {
               text_check = true
             }
-          }
-        }
-        if (text_check) {
-          //g
-          var hbbid = this_index.box_id
-          date_list.push(this_index.time)
-          result.push('.history .box#' + hbbid)
-          if (r_index < historyloadingboxcc) {
-            if ($('.history .box#' + hbbid).attr('iconload') === '0') {
-              $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
-              $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
-              $('.history .box#' + hbbid + ' .saveoo').html(saveicon + savedicon)
-              $('.history .box#' + hbbid + ' .noteoo').html(noteicon)
-              $('.history .box#' + hbbid + ' .infooo').html(infoicon)
-              $('.history .box#' + hbbid).attr('iconload', '1')
-            }
-            if ($('.history .box#' + hbbid).attr('stch') === '0') {
-              $('.history .box#' + hbbid).attr('stch', '1')
-              var thsstr = $('.history .box#' + hbbid + ' input[u="' + hbbid + '"]').val()
-              var thspt = checkpwd(thsstr, true, hbbid)
-              var thstime = parseInt(String($('.history .box#' + hbbid).attr('t')))
-              var pwtime = new Date()
-              pwtime.setTime(thstime)
-              var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-              $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            else {
+              if (String(this_index.pwd).indexOf(text) > -1) {
+                text_check = true
+              }
             }
           }
-          r_index += 1
-          //g
+          if (text_check) {
+            //g
+            var hbbid = this_index.box_id
+            date_list.push(this_index.time)
+            result.push('.history .box#' + hbbid)
+            if (r_index < historyloadingboxcc) {
+              if ($('.history .box#' + hbbid).attr('iconload') === '0') {
+                $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
+                $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
+                $('.history .box#' + hbbid + ' .saveoo').html(saveicon + savedicon)
+                $('.history .box#' + hbbid + ' .noteoo').html(noteicon)
+                $('.history .box#' + hbbid + ' .infooo').html(infoicon)
+                $('.history .box#' + hbbid).attr('iconload', '1')
+              }
+              if ($('.history .box#' + hbbid).attr('stch') === '0') {
+                $('.history .box#' + hbbid).attr('stch', '1')
+                var thsstr = $('.history .box#' + hbbid + ' input[u="' + hbbid + '"]').val()
+                var thspt = checkpwd(thsstr, true, hbbid)
+                var thstime = parseInt(String($('.history .box#' + hbbid).attr('t')))
+                var pwtime = new Date()
+                pwtime.setTime(thstime)
+                var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+                $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+              }
+            }
+            r_index += 1
+            //g
+          }
         }
       }
-    }
-    $(result.join(',')).attr('search', '1')
-    history_date_title_check(date_list, true, false)
+      $(result.join(',')).attr('search', '1')
+      history_date_title_check(date_list, true, false)
+      $('.input3 input').removeAttr('disabled')
+      $('.btn7').css({ 'opacity': '1' })
+      $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
+    }, 1500);
   }
   function showsearchresult(y) {
     $('.btn7').css({ 'opacity': '0' })
