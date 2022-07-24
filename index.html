@@ -2346,7 +2346,7 @@
 
   <div class="input3">
     <input type="text" placeholder="password,date,notes..." autocomplete="off">
-    <div class="btn7" r-click="showsearchresult(false)">
+    <div class="btn7" r-click="showsearchresult_v2()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -3901,32 +3901,34 @@
     $('.btn7').css({ 'opacity': '0' })
     $('.search_loading,.search_loading_mask').css({ 'display': 'block' })
     $('.input3 input').attr('disabled', 'disabled')
-    searchindex_v2 = []
-    var boxlen = $('.history .box').length
-    for (var r = 0; r < boxlen; r++) {
-      var thw_bxf = $('.history .box').eq(r).attr('id')
-      var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
-      var thw_time = parseInt($('.history .box#' + thw_bxf).attr('t'))
+    setTimeout(function () {
+      searchindex_v2 = []
+      var boxlen = $('.history .box').length
+      for (var r = 0; r < boxlen; r++) {
+        var thw_bxf = $('.history .box').eq(r).attr('id')
+        var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
+        var thw_time = parseInt($('.history .box#' + thw_bxf).attr('t'))
 
-      var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
-      var thw_notes = false
-      if (!(localStorage.getItem(thw_nhash) === null)) {
-        thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"', '').replaceAll("'", '') + '"'
+        var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
+        var thw_notes = false
+        if (!(localStorage.getItem(thw_nhash) === null)) {
+          thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"', '').replaceAll("'", '') + '"'
+        }
+        var pwt = new Date()
+        pwt.setTime(thw_time)
+        var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
+        var unicode_str = [thw_pwd, pwtimestr]
+        if (!(thw_notes === false)) {
+          unicode_str.push(thw_notes)
+        }
+        var unicode_str_arr = unicode_arr(unicode_str.join(''))
+        searchindex_v2.push({ 'box_id': thw_bxf, 'pwd': thw_pwd, 'date': pwtimestr, 'notes': thw_notes, 'time': thw_time, 'unicode': unicode_str_arr })
       }
-      var pwt = new Date()
-      pwt.setTime(thw_time)
-      var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
-      var unicode_str = [thw_pwd, pwtimestr]
-      if (!(thw_notes === false)) {
-        unicode_str.push(thw_notes)
-      }
-      var unicode_str_arr = unicode_arr(unicode_str.join(''))
-      searchindex_v2.push({ 'box_id': thw_bxf, 'pwd': thw_pwd, 'date': pwtimestr, 'notes': thw_notes, 'time': thw_time, 'unicode': unicode_str_arr })
-    }
-    $('.input3 input').removeAttr('disabled')
-    $('.btn7').css({ 'opacity': '1' })
-    $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
+      $('.input3 input').removeAttr('disabled')
+      $('.btn7').css({ 'opacity': '1' })
+      $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
 
+    }, 1000);
   }
   function showsearchresult_v2() {
     $('.btn7').css({ 'opacity': '0' })
@@ -5228,9 +5230,9 @@
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'none' });
       $('.btn5 svg').css({ 'transform': 'rotate(0deg)' });
       $('.btn5').attr('uj', '0')
-      showsearchresult(true)
+      createsearchindex_pwd()
+      showsearchresult_v2()
       $('#historyfiltercss').html('')
-
       $('#historydatetitlecss').html('/*' + $('#historydatetitlecss').html() + '*/')
       bpage_home_click = 0
     }
