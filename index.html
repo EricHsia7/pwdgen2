@@ -3962,9 +3962,10 @@
           }
         }
         if (text_check) {
-          date_list.push(this_index.time)
           //g
           var hbbid = this_index.box_id
+          date_list.push(this_index.time)
+          result.push('.history .box#' + hbbid)
           if (r_index < historyloadingboxcc) {
             if ($('.history .box#' + hbbid).attr('iconload') === '0') {
               $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
@@ -3991,7 +3992,6 @@
       }
     }
     $(result.join(',')).attr('search', '1')
-    console.log(result)
     history_date_title_check(date_list, true, false)
   }
   function showsearchresult(y) {
