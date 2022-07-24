@@ -2346,7 +2346,7 @@
 
   <div class="input3">
     <input type="text" placeholder="password,date,notes..." autocomplete="off">
-    <div class="btn7" r-click="showsearchresult(false)">
+    <div class="btn7" r-click="showsearchresult_v2()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -3884,71 +3884,128 @@
       rclick('.history .box#' + gid + ' .box_nf[j="' + gid + '"] .pwnf[nk="' + gid + '"]')
     }
   }
-  function showsearchresult(y) {
+  function unicode_arr(str) {
+    var str_len = str.length
+    var unicode_arr = []
+    for (var t = 0; t < str_len; t++) {
+      var unicode = str.charCodeAt(t)
+      if (!(unicode_arr.indexOf(unicode) > -1)) {
+        unicode_arr.push(unicode)
+      }
+    }
+    return unicode_arr
+  }
+  var searchindex_v2 = []
+  var searchindex_v2_creating = false
+  function createsearchindex_pwd() {
     $('.btn7').css({ 'opacity': '0' })
     $('.search_loading,.search_loading_mask').css({ 'display': 'block' })
     $('.input3 input').attr('disabled', 'disabled')
     setTimeout(function () {
-      if (y === true) {
-        searchindexjson = {}
-        var boxlen = $('.history .box').length
-        for (var r = 0; r < boxlen; r++) {
-          var thw_bxf = $('.history .box').eq(r).attr('id')
-          var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
-          var thw_time = $('.history .box#' + thw_bxf).attr('t')
-          var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
-          var thw_notes = 0
-          if (!(localStorage.getItem(thw_nhash) === null)) {
-            thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"', '').replaceAll("'", '') + '"'
-          }
-          var psehash = 'pwdgen2_saved_a_' + sha256(thw_pwd + '_' + thw_time)
-          var thw_saved = 0
-          if (!(localStorage.getItem(psehash) === null)) {
-            thw_saved = 1
-          }
+      searchindex_v2 = []
+      var boxlen = $('.history .box').length
+      for (var r = 0; r < boxlen; r++) {
+        var thw_bxf = $('.history .box').eq(r).attr('id')
+        var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
+        var thw_time = parseInt($('.history .box#' + thw_bxf).attr('t'))
 
-          var pwt = new Date()
-          pwt.setTime(thw_time)
-          var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
-          searchindexjson['f_' + r + '_s_' + thw_bxf] = [thw_pwd, pwtimestr, thw_notes, thw_saved, thw_time]
-
+        var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
+        var thw_notes = false
+        if (!(localStorage.getItem(thw_nhash) === null)) {
+          thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"', '').replaceAll("'", '') + '"'
         }
+        var pwt = new Date()
+        pwt.setTime(thw_time)
+        var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
+        var unicode_str = [thw_pwd, pwtimestr]
+        if (!(thw_notes === false)) {
+          unicode_str.push(thw_notes)
+        }
+        var unicode_str_arr = unicode_arr(unicode_str.join(''))
+        searchindex_v2.push({ 'box_id': thw_bxf, 'pwd': thw_pwd, 'date': pwtimestr, 'notes': thw_notes, 'time': thw_time, 'unicode': unicode_str_arr })
       }
-      var keywd = $('.input3 input').val()
-      if (keywd === ' ' || keywd === '') {
-        keywd = gid() + '#' + gid()
+      $('.input3 input').removeAttr('disabled')
+      $('.btn7').css({ 'opacity': '1' })
+      $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
+
+    }, 1000);
+  }
+  function showsearchresult_v2() {
+    $('.btn7').css({ 'opacity': '0' })
+    $('.search_loading,.search_loading_mask').css({ 'display': 'block' })
+    $('.input3 input').attr('disabled', 'disabled')
+    setTimeout(function () {
+      $('head #searchcss').html('.box[search="0"] {display: none}.box[search="1"] {display: block}')
+      $('.history .box').attr('search', '0')
+      var text = $('.input3 input').val()
+      if (text.length < 1) {
+        $('.input3 input').removeAttr('disabled')
+        $('.btn7').css({ 'opacity': '1' })
+        $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
+        history_date_title_check([], true, false)
+        return ''
       }
+      var text_unicode = unicode_arr(text)
       var result = []
       var r_index = 0
       var date_list = []
-      $('head #searchcss').html('.box[search="0"] {display: none}.box[search="1"] {display: block}')
-      $('.history .box').attr('search', '0')
-      for (var f in searchindexjson) {
-        if ((searchindexjson[f].join(' ')).indexOf(keywd) > -1) {
-          var hbbid = String(f).split('_')[3]
-          result.push('.history .box#' + hbbid)
-          date_list.push(searchindexjson[f][4])
-          if (r_index < historyloadingboxcc) {
-            if ($('.history .box#' + hbbid).attr('iconload') === '0') {
-              $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
-              $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
-              $('.history .box#' + hbbid + ' .saveoo').html(saveicon + savedicon)
-              $('.history .box#' + hbbid + ' .noteoo').html(noteicon)
-              $('.history .box#' + hbbid + ' .infooo').html(infoicon)
-              $('.history .box#' + hbbid).attr('iconload', '1')
+      var searchindex_v2_len = searchindex_v2.length
+      for (var q = 0; q < searchindex_v2_len; q++) {
+        var this_index = searchindex_v2[q]
+        var text_unicode_len = text_unicode.length
+        var unicode_check = false
+        for (var r = 0; r < text_unicode_len; r++) {
+          if (this_index.unicode.indexOf(text_unicode[r]) > -1) {
+            unicode_check = true
+            break;
+          }
+        }
+        if (unicode_check === false) {
+          continue;
+        }
+        else {
+          var text_check = false
+          if (String(this_index.notes).indexOf(text) > -1) {
+            text_check = true
+          }
+          else {
+            if (String(this_index.date).indexOf(text) > -1) {
+              text_check = true
             }
-            if ($('.history .box#' + hbbid).attr('stch') === '0') {
-              $('.history .box#' + hbbid).attr('stch', '1')
-              var thsstr = $('.history .box#' + hbbid + ' input[u="' + hbbid + '"]').val()
-              var thspt = checkpwd(thsstr, true, hbbid)
-              var thstime = parseInt(String($('.history .box#' + hbbid).attr('t')))
-              var pwtime = new Date()
-              pwtime.setTime(thstime)
-              var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
-              $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            else {
+              if (String(this_index.pwd).indexOf(text) > -1) {
+                text_check = true
+              }
             }
           }
-          r_index += 1
+          if (text_check) {
+            //g
+            var hbbid = this_index.box_id
+            date_list.push(this_index.time)
+            result.push('.history .box#' + hbbid)
+            if (r_index < historyloadingboxcc) {
+              if ($('.history .box#' + hbbid).attr('iconload') === '0') {
+                $('.history .box#' + hbbid + ' .dspoo').html(eyeicon + eyeicon2)
+                $('.history .box#' + hbbid + ' .copyoo').html(copyicon)
+                $('.history .box#' + hbbid + ' .saveoo').html(saveicon + savedicon)
+                $('.history .box#' + hbbid + ' .noteoo').html(noteicon)
+                $('.history .box#' + hbbid + ' .infooo').html(infoicon)
+                $('.history .box#' + hbbid).attr('iconload', '1')
+              }
+              if ($('.history .box#' + hbbid).attr('stch') === '0') {
+                $('.history .box#' + hbbid).attr('stch', '1')
+                var thsstr = $('.history .box#' + hbbid + ' input[u="' + hbbid + '"]').val()
+                var thspt = checkpwd(thsstr, true, hbbid)
+                var thstime = parseInt(String($('.history .box#' + hbbid).attr('t')))
+                var pwtime = new Date()
+                pwtime.setTime(thstime)
+                var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+                $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+              }
+            }
+            r_index += 1
+            //g
+          }
         }
       }
       $(result.join(',')).attr('search', '1')
@@ -3963,14 +4020,10 @@
     $('body').css({ 'overflow': 'hidden' });
     $('.page2').css({ 'display': 'block' });
     $('.title2').css({ 'display': 'flex' });
-
-
-
     setTimeout(function () {
       testsessionStorage()
       setstorageusage()
     }, 350);
-
   }
   function clspage2() {
     $('body').css({ 'overflow': 'scroll' });
@@ -5103,9 +5156,9 @@
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'none' });
       $('.btn5 svg').css({ 'transform': 'rotate(0deg)' });
       $('.btn5').attr('uj', '0')
-      showsearchresult(true)
+      createsearchindex_pwd()
+      showsearchresult_v2()
       $('#historyfiltercss').html('')
-
       $('#historydatetitlecss').html('/*' + $('#historydatetitlecss').html() + '*/')
       bpage_home_click = 0
     }
