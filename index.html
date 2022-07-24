@@ -3939,6 +3939,10 @@
       $('.history .box').attr('search', '0')
       var text = $('.input3 input').val()
       if (text.length < 1) {
+        $('.input3 input').removeAttr('disabled')
+        $('.btn7').css({ 'opacity': '1' })
+        $('.search_loading,.search_loading_mask').css({ 'display': 'none' })
+        history_date_title_check([], true, false)
         return ''
       }
       var text_unicode = unicode_arr(text)
