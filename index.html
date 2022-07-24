@@ -3884,6 +3884,27 @@
       rclick('.history .box#' + gid + ' .box_nf[j="' + gid + '"] .pwnf[nk="' + gid + '"]')
     }
   }
+  var searchindex_v2 = []
+  function createsearchindex_pwd() {
+    searchindex_v2 = []
+    var boxlen = $('.history .box').length
+    for (var r = 0; r < boxlen; r++) {
+      var thw_bxf = $('.history .box').eq(r).attr('id')
+      var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
+      var thw_time = $('.history .box#' + thw_bxf).attr('t')
+
+      var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
+      var thw_notes = false
+      if (!(localStorage.getItem(thw_nhash) === null)) {
+        thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"', '').replaceAll("'", '') + '"'
+      }
+
+      var pwt = new Date()
+      pwt.setTime(thw_time)
+      var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
+      searchindex_v2.push({'box_id':thw_bxf,'pwd':thw_pwd,'date':pwtimestr,'notes':thw_notes})
+    }
+  }
   function showsearchresult(y) {
     $('.btn7').css({ 'opacity': '0' })
     $('.search_loading,.search_loading_mask').css({ 'display': 'block' })
