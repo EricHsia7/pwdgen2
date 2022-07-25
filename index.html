@@ -3910,7 +3910,7 @@
         var thw_pwd = $('.history .box#' + thw_bxf + ' input[u="' + thw_bxf + '"]').attr('value')
         var thw_time = parseInt($('.history .box#' + thw_bxf).attr('t'))
 
-        var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256_h(thw_pwd + '_' + thw_time)
+        var thw_nhash = 'pwdgen2_saved_notes_cf_' + sha256(thw_pwd + '_' + thw_time)
         var thw_notes = false
         if (!(localStorage.getItem(thw_nhash) === null)) {
           thw_notes = '"' + String(deur(atob(String(localStorage.getItem(thw_nhash))))).replaceAll('"', '').replaceAll("'", '') + '"'
