@@ -559,7 +559,6 @@
     .btn2 {
       position: absolute;
       top: 11px;
-      left: 11px;
       width: 33px;
       height: 33px;
       display: flex;
@@ -568,6 +567,14 @@
       border-radius: 99em;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       mask-image: -webkit-radial-gradient(white, black);
+    }
+
+    .btn2 {
+      right: 11px
+    }
+
+    .btn2-l {
+      left: 11px;
     }
 
     .btn2 svg {
@@ -2368,8 +2375,9 @@
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)" fill-rule="evenodd"
-          opacity="1" stroke="none" />
+        <path
+          d="M4.8 36.8C3.46667 36.8 2.33333 36.3333 1.4 35.4C0.466666 34.4667-6.35783e-07 33.3333 7.10543e-15 32C7.10543e-15 30.6667 0.466667 29.5333 1.4 28.6C2.33333 27.6667 3.46667 27.2 4.8 27.2C6.13333 27.2 7.26667 27.6667 8.2 28.6C9.13333 29.5333 9.6 30.6667 9.6 32C9.6 33.3333 9.13333 34.4667 8.2 35.4C7.26667 36.3333 6.13333 36.8 4.8 36.8ZM32 36.8C30.6667 36.8 29.5333 36.3333 28.6 35.4C27.6667 34.4667 27.2 33.3333 27.2 32C27.2 30.6667 27.6667 29.5333 28.6 28.6C29.5333 27.6667 30.6667 27.2 32 27.2C33.3333 27.2 34.4667 27.6667 35.4 28.6C36.3333 29.5333 36.8 30.6667 36.8 32C36.8 33.3333 36.3333 34.4667 35.4 35.4C34.4667 36.3333 33.3333 36.8 32 36.8ZM59.2 36.8C57.8667 36.8 56.7333 36.3333 55.8 35.4C54.8667 34.4667 54.4 33.3333 54.4 32C54.4 30.6667 54.8667 29.5333 55.8 28.6C56.7333 27.6667 57.8667 27.2 59.2 27.2C60.5333 27.2 61.6667 27.6667 62.6 28.6C63.5333 29.5333 64 30.6667 64 32C64 33.3333 63.5333 34.4667 62.6 35.4C61.6667 36.3333 60.5333 36.8 59.2 36.8Z"
+          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
       </svg>
     </div>
   </div>
@@ -2664,14 +2672,13 @@
   </div>
   <div class="title2" style="display:none;">
     Options
-    <div class="btn2" r-click="clspage2()">
+    <div class="btn2-l" r-click="clspage2()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path
-          d="M4.92308 64L0 59.0769L27.0769 32L1.11786e-06 4.92308L4.92308-5.5893e-07L32 27.0769L59.0769-1.67679e-06L64 4.92307L36.9231 32L64 59.0769L59.0769 64L32 36.9231L4.92308 64Z"
-          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+        <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)"
+          fill-rule="evenodd" opacity="1" stroke="none" />
       </svg>
     </div>
   </div>
