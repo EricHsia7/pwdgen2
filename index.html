@@ -424,7 +424,7 @@
 
     .box {
       width: 100%;
-      height: 130px;
+      height: 120px;
       background: var(--g-f4f4f4);
       border-radius: 15px;
       position: relative;
@@ -435,9 +435,9 @@
 
     .box .boxtitle {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      width: calc(100% - 30px);
+      top: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
       height: 25px;
       background: rgba(0, 0, 0, 0);
       font-size: 20px;
@@ -466,16 +466,15 @@
     }
 
     .box input {
-      width: clac(100% - 30px);
+      width: calc(100% - 20px);
       height: 25px;
       border: none;
       background: rgba(0, 0, 0, 0);
       padding: 0;
       margin: 0;
       position: absolute;
-      top: calc(15px + 25px + 5px);
-      left: 15px;
-      width: calc(100% - 30px);
+      top: calc(10px + 25px + 5px);
+      left: 10px;
       font-size: 18px;
       border-radius: 0;
       text-overflow: ellipsis;
@@ -489,8 +488,8 @@
       background: var(--g-e3e3e3);
       border-radius: 13px;
       position: absolute;
-      left: 15px;
-      top: calc(15px + 25px + 5px + 25px + 5px);
+      left: 10px;
+      top: calc(10px + 25px + 5px + 25px + 5px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -4273,7 +4272,7 @@
         $('.history').prepend('<div class="history_date_group" d="' + date_title_name + '"></div>')
         $('.history').prepend('<div class="history_date_title" d="' + date_title_name + '">' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '</div>')
       }
-      $('.history .history_date_group[d="' + date_title_name + '"]').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + infoicon + '</div></div>');
+      $('.history .history_date_group[d="' + date_title_name + '"]').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:55px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:100px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:145px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:190px">' + infoicon + '</div></div>');
       rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]')
       rclick('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]')
       $('.history-filter').css({ 'display': 'block' })
@@ -5032,7 +5031,7 @@
                 saveddate[date_title_name] = '1'
               }
 
-              $('.history .history_date_group[d="' + date_title_name + '"]').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:60px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:105px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:150px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:195px">' + icon_infooo + '</div></div>')
+              $('.history .history_date_group[d="' + date_title_name + '"]').append('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="0" draggable="true" ondragstart="Drag(event)" iconload="' + iconloadattr + '" hash="' + hash + '" hashtag="' + notehashtags.join(',') + '"><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + icon_dspoo + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:55px">' + icon_copyoo + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:100px" g="1">' + icon_saveoo + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:145px">' + icon_noteoo + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:190px">' + icon_infooo + '</div></div>')
               rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]')
               rclick('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]')
             }
