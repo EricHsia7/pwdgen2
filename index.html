@@ -4282,7 +4282,7 @@
     for (var g = 0; g < original_text_arr_len - 1; g++) {
       select_start += original_text_arr[g].length
     }
-    select_start += n.split(':')[0].length + original_text_arr_len 
+    select_start += n.split(':')[0].length + original_text_arr_len
     var select_end = original_text_arr.join(',').length
     $('.input input[type="text"]').val(original_text_arr.join(',')).focus()
 
@@ -4349,19 +4349,40 @@
 
 
   function gen() {
-    var pwlen = parseInt($('.input input[type="text"]').val())
+    var pwtext = $('.input input[type="text"]').val()
+    var pwarr = pwtext.split(',')
+    var pwarr_len = pwarr.length
+    var pwjson = {}
+    for (var i = 0; i < pwarr_len; i++) {
+      var th = pwarr[i].split(':')
+      var th_key = 's_' + th[0].replaceAll('-', '_')
+      var th_content = th[1]
+      pwjson[th_key] = th_content
+    }
+    var pwlen = parseInt(pwjson.s_length)
     if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
-
       $('body').prompt({ 'message': 'Please enter a value between 8 and 32768', 'time': 3000 });
     }
     else {
+
       var pwtime = new Date()
       var pwtimestr = timestr(pwtime)
 
-      var cushapropg = $('#cuschaprop').prop('checked')
+      var cushapropg = false
+      var cushapropg_n = ['capital', 'lowercase', 'number', 'symbol']
+      var cushapropg_n_len = cushapropg_n.length
+      var cushapropg_c = 0
+      var pww = []
+      for (var d = 0; d < cushapropg_n_len; d++) {
+        var th = pwjson['s_' + cushapropg_n[d]]
+        if (!(th === undefined)) {
+          pww.push(th)
+          cushapropg_c += 1
+        }
+      }
+      //,do-not-use-similar-characters:
       var dontusesimilarcharsg = $('#dontusesimilarchars').prop('checked')
-      if (cushapropg) {
-        var pww = cgbwsj()
+      if (cushapropg_c > 3) {
         var pw_a = pww[0]
         var pw_b = pww[1]
         var pw_c = pww[2]
