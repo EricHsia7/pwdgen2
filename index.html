@@ -2295,7 +2295,7 @@
 
   <div class="history">
   </div>
-  
+
   <div class="generator_custom_auto_complete"></div>
 
   <div class="input2">
@@ -4265,7 +4265,10 @@
 
   }
 
-  function generator_custom_auto_complete_c(original_text, n) {
+  function generator_custom_auto_complete_c(original_text, n, e) {
+    if (!(e === null) && !(e === undefined)) {
+      e.stopPropagation()
+    }
     var original_text_arr = original_text.split(',')
     var original_text_arr_len = original_text_arr.length
     if (original_text_arr_len > 0) {
@@ -4295,7 +4298,7 @@
     for (var e = 0; e < custom_key_names_len; e++) {
       if (custom_key_names[e].name.indexOf(th_w) > -1 && !(original_text.indexOf(custom_key_names[e].name) > -1)) {
         result.push(custom_key_names[e].name + ':' + custom_key_names[e].type)
-        $('.generator_custom_auto_complete').append('<li onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ')">' + custom_key_names[e].name + ':' + custom_key_names[e].type + '</li>')
+        $('.generator_custom_auto_complete').append('<li onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ',event)">' + custom_key_names[e].name + ':' + custom_key_names[e].type + '</li>')
       }
     }
     return [original_text, result]
