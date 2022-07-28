@@ -4286,7 +4286,7 @@
     var select_end = original_text_arr.join(',').length
     $('.input input[type="text"]').val(original_text_arr.join(',')).focus()
 
-    document.querySelector('.input input[type="text"]').setSelectionRange((select_start - 1), (select_end - 1));
+    document.querySelector('.input input[type="text"]').setSelectionRange((select_start), (select_end));
   }
   function generator_custom_auto_complete() {
     var original_text = $('.input input[type="text"]').val()
