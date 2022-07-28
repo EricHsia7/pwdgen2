@@ -4716,9 +4716,9 @@
       var jcustom = custom_presets_j[jindex].custom
 
       //$('#cuschaprop').prop('checked', jcustom.cuschaprop)
-      var text = ['do-not-use-similar-characters:' + jcustom.dontusesimilarcharsg, 'length:' + jcustom.r_length, 'capital:' + jcustom.capital, 'lowercase:' + jcustom.lowercase, 'number:' + jcustom.number, 'symbol:' + jcustom.symbol]
+      var text = ['length:' + jcustom.r_length, 'capital:' + jcustom.capital, 'lowercase:' + jcustom.lowercase, 'number:' + jcustom.number, 'symbol:' + jcustom.symbol, 'do-not-use-similar-characters:' + jcustom.dontusesimilarcharsg]
 
-      $('.input input[type="text"]').val(text)
+      $('.input input[type="text"]').val(text.join(','))
       $('.custom-presets li').attr('o', '0')
       $('.custom-presets li[fd="' + g + '"]').attr('o', '1')
     }
