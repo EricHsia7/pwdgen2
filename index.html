@@ -4375,21 +4375,18 @@
       var pww = []
       for (var d = 0; d < cushapropg_n_len; d++) {
         var th = pwjson['s_' + cushapropg_n[d]]
-        console.log(th)
         if (!(th === undefined)) {
           pww.push(parseFloat(th))
           cushapropg_c += 1
         }
       }
       //,do-not-use-similar-characters:
-      console.log(pwjson)
-      console.log(cushapropg_c)
-      console.log(pww)
       var dontusesimilarcharsg = false
       if (pwjson.s_do_not_use_similar_characters === 'true') {
         dontusesimilarcharsg = true
       }
       if (cushapropg_c > 3) {
+        cushapropg = true
         var pw_a = pww[0]
         var pw_b = pww[1]
         var pw_c = pww[2]
