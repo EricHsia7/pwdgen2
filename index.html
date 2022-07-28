@@ -2805,7 +2805,6 @@
   function deur(u) {
     return decodeURIComponent(u)
   }
-
   function gid(n) {
     var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
     var genid = "";
@@ -3103,6 +3102,9 @@
       return y
     }
   }
+  function timestr(date) {
+    return date.getFullYear() + '-' + che(date.getMonth() + 1) + '-' + che(date.getDate()) + ' ' + che(date.getHours()) + ':' + che(date.getMinutes()) + ':' + che(date.getSeconds())
+  }
   function searchItemsbyname(name) {
     var gh = []
     for (var t in window.localStorage) {
@@ -3345,7 +3347,7 @@
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
             pwtime.setTime(thstime)
-            var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+            var pwtimestr = timestr(pwtime)
             $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
         }
@@ -3385,7 +3387,7 @@
               var thspt = checkpwd(thsstr, false, '0', thstime)
               var pwtime = new Date()
               pwtime.setTime(thstime)
-              var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+              var pwtimestr = timestr(pwtime)
               $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
             }
           }
@@ -3431,7 +3433,7 @@
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
             pwtime.setTime(thstime)
-            var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+            var pwtimestr = timestr(pwtime)
             $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
         }
@@ -3709,7 +3711,7 @@
             var thspt = checkpwd(thsstr, false, '0', thstime)
             var pwtime = new Date()
             pwtime.setTime(thstime)
-            var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+            var pwtimestr = timestr(pwtime)
             $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
         }
@@ -3923,7 +3925,7 @@
         }
         var pwt = new Date()
         pwt.setTime(thw_time)
-        var pwtimestr = pwt.getFullYear() + '-' + che(pwt.getMonth() + 1) + '-' + che(pwt.getDate()) + ' ' + che(pwt.getHours()) + ':' + che(pwt.getMinutes()) + ':' + che(pwt.getSeconds())
+        var pwtimestr = timestr(pwt)
         var unicode_str = [thw_pwd, pwtimestr]
         if (!(thw_notes === false)) {
           unicode_str.push(thw_notes)
@@ -4006,7 +4008,7 @@
                 var thstime = parseInt(String($('.history .box[hash="' + hbbid + '"]').attr('t')))
                 var pwtime = new Date()
                 pwtime.setTime(thstime)
-                var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+                var pwtimestr = timestr(pwtime)
                 $('.history .box[hash="' + hbbid + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
               }
             }
@@ -4239,7 +4241,7 @@
     }
     else {
       var pwtime = new Date()
-      var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+      var pwtimestr = timestr(pwtime)
 
       var cushapropg = $('#cuschaprop').prop('checked')
       var dontusesimilarcharsg = $('#dontusesimilarchars').prop('checked')
@@ -4349,7 +4351,7 @@
             var thstime = parseInt(String($('.history .box#' + thsfid).attr('t')))
             var pwtime = new Date()
             pwtime.setTime(thstime)
-            var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+            var pwtimestr = timestr(pwtime)
             $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
           }
 
@@ -4988,7 +4990,7 @@
 
               var pwtime = new Date()
               pwtime.setTime(thpwdd[2])
-              var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+              var pwtimestr = timestr(pwtime)
 
               var pw = deur(decu(thpwdd[0], thpwdd[1]))
               var pwgid = gid('historybox')
@@ -5383,7 +5385,7 @@
           }
           var pwtime = new Date()
           pwtime.setTime(thpwdd[2])
-          var pwtimestr = pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds())
+          var pwtimestr = timestr(pwtime)
 
           var pw = deur(decu(thpwdd[0], thpwdd[1]))
           var pwgid = gid()
