@@ -4277,6 +4277,15 @@
     else {
       original_text_arr = [n]
     }
+
+    var select_start = 0
+    for (var g = 0; g < original_text_arr_len - 1; g++) {
+      select_start += original_text_arr[g].length
+    }
+    select_start += n.split(':')[0].length+1
+    var select_end = original_text_arr.join(',').length
+    $('.input input[type="text"]').setSelectionRange((select_start-1), (select_end-1));
+
     $('.input input[type="text"]').val(original_text_arr.join(',')).focus()
   }
   function generator_custom_auto_complete() {
@@ -4303,11 +4312,11 @@
         //onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ',event)"
       }
     }
-    if(result.length > 0) {
-      $('.input').css({'border-radius':'15px 15px 0px 0px'})
+    if (result.length > 0) {
+      $('.input').css({ 'border-radius': '15px 15px 0px 0px' })
     }
     else {
-      $('.input').css({'border-radius':'15px'})
+      $('.input').css({ 'border-radius': '15px' })
     }
     return [original_text, result]
   }
@@ -4335,7 +4344,7 @@
 
   document.querySelector('.input input[type="text"]').addEventListener("blur", function (e) {
     $('.generator_custom_auto_complete').css({ 'display': 'none' });
-    $('.input').css({'border-radius':'15px'})
+    $('.input').css({ 'border-radius': '15px' })
   });
 
 
