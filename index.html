@@ -4381,7 +4381,10 @@
         }
       }
       //,do-not-use-similar-characters:
-      var dontusesimilarcharsg = $('#dontusesimilarchars').prop('checked')
+      var dontusesimilarcharsg = false
+      if (pwjson.s_do_not_use_similar_characters === 'true') {
+        dontusesimilarcharsg = true
+      }
       if (cushapropg_c > 3) {
         var pw_a = pww[0]
         var pw_b = pww[1]
