@@ -4233,6 +4233,61 @@
     }
 
   }
+
+  function generator_custom_auto_complete_c(original_text, n) {
+    var original_text_arr = original_text.split(',')
+    var original_text_arr_len = original_text_arr.length
+    if (original_text_arr_len > 0) {
+      original_text_arr.splice((original_text_arr_len - 1), 1, n)
+    }
+    else {
+      original_text_arr = [n]
+    }
+    $('input').val(original_text_arr.join(',')).focus()
+  }
+  function generator_custom_auto_complete() {
+    var original_text = $('input').val()
+    var custom_key_names = [
+      { 'name': 'length', 'type': 'integer' },
+      { 'name': 'capital', 'type': 'decimal' },
+      { 'name': 'lowercase', 'type': 'decimal' },
+      { 'name': 'number', 'type': 'decimal' },
+      { 'name': 'symbol', 'type': 'decimal' },
+      { 'name': 'do-not-use-similar-characters', 'type': 'boolean' }]
+    var custom_key_names_len = custom_key_names.length
+    var original_text_arr = original_text.split(',')
+    var original_text_arr_len = original_text_arr.length
+
+    var result = []
+    var th_w = (original_text_arr[(original_text_arr_len - 1)]).toLowerCase()
+    $('.result').html('')
+    for (var e = 0; e < custom_key_names_len; e++) {
+      if (custom_key_names[e].name.indexOf(th_w) > -1 && !(original_text.indexOf(custom_key_names[e].name) > -1)) {
+        result.push(custom_key_names[e].name + ':' + custom_key_names[e].type)
+        $('.result').append('<li onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ')">' + custom_key_names[e].name + ':' + custom_key_names[e].type + '</li>')
+      }
+    }
+    return [original_text, result]
+  }
+  
+  document.querySelector('input').addEventListener("paste", function (e) {
+    generator_custom_auto_complete()
+  });
+  document.querySelector('input').addEventListener("cut", function (e) {
+    generator_custom_auto_complete()
+  });
+  document.querySelector('input').addEventListener("selectionchange", function (e) {
+    generator_custom_auto_complete()
+  });
+  document.querySelector('input').addEventListener("keyup", function (e) {
+    generator_custom_auto_complete()
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      var res = generator_custom_auto_complete()
+      generator_custom_auto_complete_c(res[0], res[1][0])
+    }
+  });
+
+  
   function gen() {
     var pwlen = parseInt($('.input input[type="text"]').val())
     if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
