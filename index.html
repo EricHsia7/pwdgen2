@@ -4287,7 +4287,8 @@
       { 'name': 'lowercase', 'type': 'decimal' },
       { 'name': 'number', 'type': 'decimal' },
       { 'name': 'symbol', 'type': 'decimal' },
-      { 'name': 'do-not-use-similar-characters', 'type': 'boolean' }]
+      { 'name': 'do-not-use-similar-characters', 'type': 'boolean' }
+    ]
     var custom_key_names_len = custom_key_names.length
     var original_text_arr = original_text.split(',')
     var original_text_arr_len = original_text_arr.length
@@ -4298,7 +4299,8 @@
     for (var e = 0; e < custom_key_names_len; e++) {
       if (custom_key_names[e].name.indexOf(th_w) > -1 && !(original_text.indexOf(custom_key_names[e].name) > -1)) {
         result.push(custom_key_names[e].name + ':' + custom_key_names[e].type)
-        $('.generator_custom_auto_complete').append('<li onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ',event)">' + custom_key_names[e].name + ':' + custom_key_names[e].type + '</li>')
+        $('.generator_custom_auto_complete').append('<li>' + custom_key_names[e].name + ':' + custom_key_names[e].type + '</li>')
+        //onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ',event)"
       }
     }
     return [original_text, result]
@@ -4322,9 +4324,12 @@
   });
   document.querySelector('.input input[type="text"]').addEventListener("focus", function (e) {
     $('.generator_custom_auto_complete').css({ 'display': 'inline-block' });
+    $('.input').css({'border-radius':'15px 15px 0px 0px'})
   });
+
   document.querySelector('.input input[type="text"]').addEventListener("blur", function (e) {
     $('.generator_custom_auto_complete').css({ 'display': 'none' });
+    $('.input').css({'border-radius':'15px'})
   });
 
 
