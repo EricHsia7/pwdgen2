@@ -4284,9 +4284,9 @@
     }
     select_start += n.split(':')[0].length + 1
     var select_end = original_text_arr.join(',').length
-    document.querySelector('.input input[type="text"]').setSelectionRange((select_start - 1), (select_end - 1));
-
     $('.input input[type="text"]').val(original_text_arr.join(',')).focus()
+
+    document.querySelector('.input input[type="text"]').setSelectionRange((select_start - 1), (select_end - 1));
   }
   function generator_custom_auto_complete() {
     var original_text = $('.input input[type="text"]').val()
