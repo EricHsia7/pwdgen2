@@ -4293,8 +4293,7 @@
   document.querySelector('.input input[type="text"]').addEventListener("cut", function (e) {
     generator_custom_auto_complete()
   });
-  document.querySelector('.input input[type="text"]'
-  ).addEventListener("selectionchange", function (e) {
+  document.querySelector('.input input[type="text"]').addEventListener("selectionchange", function (e) {
     generator_custom_auto_complete()
   });
   document.querySelector('.input input[type="text"]').addEventListener("keyup", function (e) {
@@ -4303,6 +4302,12 @@
       var res = generator_custom_auto_complete()
       generator_custom_auto_complete_c(res[0], res[1][0])
     }
+  });
+  document.querySelector('.input input[type="text"]').addEventListener("focus", function (e) {
+    $('.input input[type="text"]').css({ 'display': 'inline-block' });
+  });
+  document.querySelector('.input input[type="text"]').addEventListener("blur", function (e) {
+    $('.input input[type="text"]').css({ 'display': 'none' });
   });
 
 
