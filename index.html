@@ -4303,6 +4303,12 @@
         //onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ',event)"
       }
     }
+    if(result.length > 0) {
+      $('.input').css({'border-radius':'15px 15px 0px 0px'})
+    }
+    else {
+      $('.input').css({'border-radius':'15px'})
+    }
     return [original_text, result]
   }
 
@@ -4324,7 +4330,6 @@
   });
   document.querySelector('.input input[type="text"]').addEventListener("focus", function (e) {
     $('.generator_custom_auto_complete').css({ 'display': 'inline-block' });
-    $('.input').css({'border-radius':'15px 15px 0px 0px'})
   });
 
   document.querySelector('.input input[type="text"]').addEventListener("blur", function (e) {
