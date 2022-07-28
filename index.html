@@ -4330,6 +4330,7 @@
   });
   document.querySelector('.input input[type="text"]').addEventListener("focus", function (e) {
     $('.generator_custom_auto_complete').css({ 'display': 'inline-block' });
+    generator_custom_auto_complete()
   });
 
   document.querySelector('.input input[type="text"]').addEventListener("blur", function (e) {
