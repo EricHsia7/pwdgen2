@@ -269,15 +269,7 @@
       left: 0
     }
 
-    .input .custom {
-      position: absolute;
-      top: calc(46px + 35px + 10px);
-      left: 0;
-      width: 100%;
-      height: calc(100% - 46px - 35px - 10px)
-    }
 
-    .input .custom .customlist,
     .custom-presets-add-list {
       margin: 0;
       padding: 0;
@@ -288,31 +280,8 @@
       font-size: 12px
     }
 
-    .input .custom .customlist .customlisttxt2 {
-      position: absolute;
-      top: 5px;
-      left: 10px;
-      width: calc(100% - 20px);
-      height: 35px;
-      display: flex;
-      align-items: center;
-      color: var(--g-4e4e4e);
-      font-size: 15px
-    }
 
-    .custom input[type="text"] {
-      height: 25px;
-      width: 100px;
-      font-size: 15px;
-      border-radius: 0;
-      border-bottom: 1px var(--g-e3e3e3) solid;
-      position: relative;
-      top: 0;
-      left: 0;
-      padding: 0 3px
-    }
 
-    .input .custom input[type="checkbox"],
     .custom-presets-add input[type="checkbox"] {
       position: absolute;
       width: 0;
@@ -325,7 +294,6 @@
       background: rgba(0, 0, 0, 0)
     }
 
-    .input .custom input[type="checkbox"]::before,
     .custom-presets-add input[type="checkbox"]::before {
       content: '';
       position: absolute;
@@ -337,7 +305,6 @@
       background: var(--g-e3e3e3)
     }
 
-    .input .custom input[type="checkbox"]::after,
     .custom-presets-add input[type="checkbox"]::after {
       content: '';
       position: absolute;
@@ -350,12 +317,10 @@
       opacity: 0
     }
 
-    .input .custom input[type="checkbox"]:checked::after,
     .custom-presets-add input[type="checkbox"]:checked::after {
       opacity: 1
     }
 
-    .input .customlist .customlisttxt,
     .custom-presets-add-list .custom-presets-add-list-txt {
       position: absolute;
       top: 5px;
@@ -373,7 +338,6 @@
       left: 50%;
       transform: translateX(-50%);
       display: none;
-      /*inline-block*/
       width: var(--u-width);
       height: auto;
       border-radius: 0px 0px 15px 15px;
@@ -395,13 +359,6 @@
       color: var(--g-4e4e4e);
     }
 
-    #cgbwprop {
-      left: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: calc(100% - 20px)
-    }
 
     .t2 {
       font-size: 18px;
@@ -1013,75 +970,6 @@
 
     .themecircle[od="black"] {
       background: #000000
-    }
-
-    .cgb {
-      position: absolute;
-      width: calc(100% - 20px);
-      height: 25px;
-      background: var(--g-e3e3e3);
-      border-radius: 3px;
-      left: 10px;
-      top: calc(45px * 2);
-      -webkit-user-select: none;
-      user-select: none;
-    }
-
-    .cgbw {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--g-4e4e4e);
-      border-radius: 5px;
-      transition: height .3s;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-
-    .cgbw:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -6px;
-      background: rgba(0, 0, 0, 0);
-      width: 15px;
-      height: 50px;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-
-    .cgbw[gh="1"],
-    .cgbw:hover {
-      height: 30px
-    }
-
-    .cgbw:after {
-      content: '';
-      position: absolute;
-      top: 25px;
-      right: 0;
-      width: 15px;
-      height: 22px;
-      background: var(--g-4e4e4e);
-      opacity: 0;
-      transform: translateX(calc(50% - 1.5px)) scale(0);
-      -webkit-user-select: none;
-      user-select: none;
-      clip-path: path('M7.5 0C7.5 0 6.62992 1.25123 5.52546 2.93899C4.42101 4.62674 3.08218 6.75102 2.14468 8.49711C1.20718 10.2432 0.671007 11.4019 0.369213 12.2286C0.067419 13.0554 0 13.5503 0 13.9688L0 14.25L0 14.5312C0 16.4488 0.797787 18.151 2.08731 19.4016C3.37682 20.6523 5.15807 21.4513 7.125 21.5625L7.5 21.5625L7.875 21.5625C9.84193 21.4513 11.6232 20.6523 12.9127 19.4016C14.2022 18.151 15 16.4488 15 14.5312L15 14.25L15 13.9688C15 13.5503 14.9276 13.0475 14.6208 12.2128C14.314 11.3781 13.7729 10.2115 12.8354 8.46544C11.8979 6.71934 10.564 4.60298 9.46455 2.92315C8.36509 1.24331 7.5 0 7.5 0Z')
-    }
-
-    .cgbw[gh="1"]:after,
-    .cgbw:hover:after {
-      opacity: 1;
-      transform: translateX(calc(50% - 1.5px)) scale(1)
-    }
-
-    .cgbw:after {
-      content: '';
-      transition: .3s;
-      transform-origin: 50% 0
     }
 
     #pchpit {
@@ -2186,7 +2074,7 @@
     New Password
   </div>
   <div class="input">
-    <input type="text" placeholder="length" inputmode="numeric" autocomplete="off">
+    <input type="text" placeholder="custom" autocomplete="off">
     <div class="btn" id="gen" r-click="gen()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -2211,22 +2099,6 @@
     </div>
     <div class="border"></div>
     <div class="custom-presets"></div>
-    <div class="custom">
-      <li class="customlist"><input type="checkbox" id="dontusesimilarchars">
-        <div class="customlisttxt">Don't use similar characters (|1iIjJlL0Oo)</div>
-      </li>
-      <li class="customlist"><input type="checkbox" id="cuschaprop">
-        <div class="customlisttxt">Custom chars proportion(The default is 4 equal parts)</div>
-      </li>
-      <li class="customlist" style="position:absolute;left:0px;top:calc(45px * 2 + 25px);">
-        <div class="customlisttxt" id="cgbwprop">Capital:25%&nbsp;Lowercase:25%&nbsp;Number:25%&nbsp;Symbol:25%</div>
-      </li>
-      <div class="cgb">
-        <div class="cgbw" jwf="0" style="left:25%" kp="0.25"></div>
-        <div class="cgbw" jwf="1" style="left:50%" kp="0.5"></div>
-        <div class="cgbw" jwf="2" style="left:75%" kp="0.75"></div>
-      </div>
-    </div>
   </div>
 
 
@@ -4136,97 +4008,6 @@
     saveoptions()
   })
 
-  function cgbwsj() {
-    var c1 = parseFloat($('.cgbw').eq(0).attr('kp'))
-    var c2 = parseFloat($('.cgbw').eq(1).attr('kp'))
-    var c3 = parseFloat($('.cgbw').eq(2).attr('kp'))
-
-    var carr = [c1, c2, c3]
-    carr.sort(function (a, b) {
-      return a - b;
-    });
-    var ch_a = (carr[0])
-    var ch_b = (carr[1] - carr[0])
-    var ch_c = (carr[2] - carr[1])
-    var ch_d = (1 - carr[2])
-    var ch_all = [ch_a, ch_b, ch_c, ch_d]
-    return ch_all
-  }
-  function cgbwfn(l, e) {
-    e.preventDefault()
-    $('.custom-presets li').attr('o', '0')
-    if (cgbwtd) {
-
-
-      var pgx = e.pageX
-      var pgfl = $('.cgb').offset().left
-      var pgw = $('.cgb').width() - 3
-      var pgsl = $(document).scrollLeft()
-      var hx = pgx - pgfl - pgsl
-      if (hx < 0) {
-        hx = 0
-      }
-      if (hx > pgw) {
-        hx = pgw
-      }
-      $('.cgbw').eq(l).css({ 'left': hx }).attr('kp', hx / pgw).attr('gh', '1')
-    }
-    else {
-      $('.cgbw').eq(l).attr('gh', '0')
-    }
-    var cgbwft = cgbwsj()
-    $('#cgbwprop').html('Capital:' + parseInt(cgbwft[0] * 100) + '%&nbsp;Lowercase:' + parseInt(cgbwft[1] * 100) + '%&nbsp;Number:' + parseInt(cgbwft[2] * 100) + '%&nbsp;Symbol:' + parseInt(cgbwft[3] * 100) + '%')
-  }
-  var cgbwtd = false
-  var chbwtohm = ['touchmove', 'mousemove']
-  var chbwtost = ['touchstart', 'mousedown']
-  var chbwtoed = ['touchend', 'mouseup']
-  var chbw = 1
-  if ($.support.touch) {
-    var chbw = 0
-  }
-  document.querySelectorAll('.cgbw')[0].addEventListener(chbwtost[chbw], function (e) {
-    e.preventDefault()
-    cgbwtd = true
-  }, { passive: true })
-  document.querySelectorAll('.cgbw')[1].addEventListener(chbwtost[chbw], function (e) {
-    e.preventDefault()
-    cgbwtd = true
-  }, { passive: true })
-  document.querySelectorAll('.cgbw')[2].addEventListener(chbwtost[chbw], function (e) {
-    e.preventDefault()
-    cgbwtd = true
-  }, { passive: true })
-
-  document.querySelectorAll('.cgbw')[0].addEventListener(chbwtoed[chbw], function (e) {
-    e.preventDefault()
-    cgbwtd = false
-    $('.cgbw').eq(0).attr('gh', '0')
-  }, { passive: true })
-  document.querySelectorAll('.cgbw')[1].addEventListener(chbwtoed[chbw], function (e) {
-    e.preventDefault()
-    cgbwtd = false
-    $('.cgbw').eq(1).attr('gh', '0')
-  }, { passive: true })
-  document.querySelectorAll('.cgbw')[2].addEventListener(chbwtoed[chbw], function (e) {
-    e.preventDefault()
-    cgbwtd = false
-    $('.cgbw').eq(2).attr('gh', '0')
-  }, { passive: true })
-
-
-  document.querySelectorAll('.cgbw')[0].addEventListener(chbwtohm[chbw], function (e) {
-    e.preventDefault()
-    cgbwfn(0, e)
-  }, { passive: true })
-  document.querySelectorAll('.cgbw')[1].addEventListener(chbwtohm[chbw], function (e) {
-    e.preventDefault()
-    cgbwfn(1, e)
-  }, { passive: true })
-  document.querySelectorAll('.cgbw')[2].addEventListener(chbwtohm[chbw], function (e) {
-    e.preventDefault()
-    cgbwfn(2, e)
-  }, { passive: true })
   var custom_presets_evt = 0
   function pwdcustom() {
     if (custom_presets_evt === 0) {
@@ -4242,18 +4023,15 @@
       document.querySelector('.input input[type="text"]').addEventListener("keyup", function (e) {
         $('.custom-presets li').attr('o', '0')
       });
-      document.querySelector('.input .custom input[type="checkbox"]').addEventListener("click", function (e) {
-        $('.custom-presets li').attr('o', '0')
-      });
       $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
       custom_presets_evt = 1
     }
 
     custompresets()
     if ($('.btn5').attr('uj') === '0') {
-      $('.input').css({ 'height': '253px' });
-      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (253 - 45) + 'px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (253 - 45) + 'px)' });
+      $('.input').css({ 'height': '102px' });
+      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (102 - 45) + 'px)' });
+      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (102 - 45) + 'px)' });
       $('.btn5').attr('uj', '1')
     }
     else {
@@ -4937,13 +4715,10 @@
       var jindex = parseInt($('.custom-presets li[fd="' + g + '"]').attr('j-index'))
       var jcustom = custom_presets_j[jindex].custom
 
-      $('#cuschaprop').prop('checked', jcustom.cuschaprop)
-      $('#dontusesimilarchars').prop('checked', jcustom.dontusesimilarcharsg)
-      $('.input input[type="text"]').val(jcustom.r_length)
-      $('.cgbw').eq(0).css({ 'left': ((jcustom.capital) * 100) + '%' }).attr('kp', (jcustom.capital)).attr('gh', '0')
-      $('.cgbw').eq(1).css({ 'left': ((jcustom.capital + jcustom.lowercase) * 100) + '%' }).attr('kp', (jcustom.capital + jcustom.lowercase)).attr('gh', '0')
-      $('.cgbw').eq(2).css({ 'left': 'calc(' + ((jcustom.capital + jcustom.lowercase + jcustom.number) * 100) + '% - 3px)' }).attr('kp', (jcustom.capital + jcustom.lowercase + jcustom.number)).attr('gh', '0')
-      $('#cgbwprop').html('Capital:' + parseInt(jcustom.capital * 100) + '%&nbsp;Lowercase:' + parseInt(jcustom.lowercase * 100) + '%&nbsp;Number:' + parseInt(jcustom.number * 100) + '%&nbsp;Symbol:' + parseInt(jcustom.symbol * 100) + '%')
+      //$('#cuschaprop').prop('checked', jcustom.cuschaprop)
+      var text = ['length:' + jcustom.r_length, 'capital:' + jcustom.capital, 'lowercase:' + jcustom.lowercase, 'number:' + jcustom.number, 'symbol:' + jcustom.symbol, 'do-not-use-similar-characters:' + jcustom.dontusesimilarcharsg]
+
+      $('.input input[type="text"]').val(text.join(','))
       $('.custom-presets li').attr('o', '0')
       $('.custom-presets li[fd="' + g + '"]').attr('o', '1')
     }
