@@ -367,6 +367,18 @@
       color: var(--g-4e4e4e)
     }
 
+    .generator_custom_auto_complete {
+      position: absolute;
+      top: calc(35% + 45px);
+      display: none;
+      /*inline-block*/
+      width: var(--u-width);
+      height: auto;
+      border-radius: 0px 0px 15px 15px;
+      overflow: scroll;
+      max-height: calc(45px * 3);
+    }
+
     #cgbwprop {
       left: 10px;
       display: flex;
@@ -2200,6 +2212,11 @@
       </div>
     </div>
   </div>
+
+  <div class="generator_custom_auto_complete">
+
+  </div>
+
 
   <div class="history-filter">
     <li o="1" pl="default_all" r-click="filter_showall()" loading="1">
@@ -4243,10 +4260,10 @@
     else {
       original_text_arr = [n]
     }
-    $('input').val(original_text_arr.join(',')).focus()
+    $('.input input[type="text"]').val(original_text_arr.join(',')).focus()
   }
   function generator_custom_auto_complete() {
-    var original_text = $('input').val()
+    var original_text = $('.input input[type="text"]').val()
     var custom_key_names = [
       { 'name': 'length', 'type': 'integer' },
       { 'name': 'capital', 'type': 'decimal' },
@@ -4260,26 +4277,27 @@
 
     var result = []
     var th_w = (original_text_arr[(original_text_arr_len - 1)]).toLowerCase()
-    $('.result').html('')
+    $('.generator_custom_auto_complete').html('')
     for (var e = 0; e < custom_key_names_len; e++) {
       if (custom_key_names[e].name.indexOf(th_w) > -1 && !(original_text.indexOf(custom_key_names[e].name) > -1)) {
         result.push(custom_key_names[e].name + ':' + custom_key_names[e].type)
-        $('.result').append('<li onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ')">' + custom_key_names[e].name + ':' + custom_key_names[e].type + '</li>')
+        $('.generator_custom_auto_complete').append('<li onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ')">' + custom_key_names[e].name + ':' + custom_key_names[e].type + '</li>')
       }
     }
     return [original_text, result]
   }
-  
-  document.querySelector('input').addEventListener("paste", function (e) {
+
+  document.querySelector('.input input[type="text"]').addEventListener("paste", function (e) {
     generator_custom_auto_complete()
   });
-  document.querySelector('input').addEventListener("cut", function (e) {
+  document.querySelector('.input input[type="text"]').addEventListener("cut", function (e) {
     generator_custom_auto_complete()
   });
-  document.querySelector('input').addEventListener("selectionchange", function (e) {
+  document.querySelector('.input input[type="text"]'
+  ).addEventListener("selectionchange", function (e) {
     generator_custom_auto_complete()
   });
-  document.querySelector('input').addEventListener("keyup", function (e) {
+  document.querySelector('.input input[type="text"]').addEventListener("keyup", function (e) {
     generator_custom_auto_complete()
     if (e.key === 'Enter' || e.keyCode === 13) {
       var res = generator_custom_auto_complete()
@@ -4287,7 +4305,7 @@
     }
   });
 
-  
+
   function gen() {
     var pwlen = parseInt($('.input input[type="text"]').val())
     if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
