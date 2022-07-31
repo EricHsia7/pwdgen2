@@ -2382,24 +2382,7 @@
       <input type="text" placeholder="search icon" id="custom_presets_add_icon_picker_search_input"
         class="custom-presets-add-b10">
       <div class="custom-presets-add-icon-picker" v="default" translate="no"></div>
-      <input type="text" placeholder="length" class="custom-presets-add-b10" id="length_custom_presets">
-      <li class="custom-presets-add-list">
-        <input type="checkbox" id="dontusesimilarchars_custom_presets">
-        <div class="custom-presets-add-list-txt">Don't use similar characters (|1iIjJlL0Oo)</div>
-      </li>
-      <li class="custom-presets-add-list">
-        <input type="checkbox" id="cuschaprop_custom_presets">
-        <div class="custom-presets-add-list-txt">Custom chars proportion(The default is 4 equal parts)</div>
-      </li>
-      <div class="custom-presets-add-p-box">
-        <input type="text" inputmode="decimal" placeholder="Capital" class="custom-presets-add-b10"
-          id="capital_custom_presets">
-        <input type="text" inputmode="decimal" placeholder="Lowercase" class="custom-presets-add-b10"
-          id="lowercase_custom_presets">
-        <input type="text" inputmode="decimal" placeholder="Number" class="custom-presets-add-b10"
-          id="number_custom_presets">
-        <input type="text" inputmode="decimal" placeholder="Symbol" id="symbol_custom_presets">
-      </div>
+      <input type="text" placeholder="custom" class="custom-presets-add-b10" id="custom_custom_presets">
     </div>
     <div class="custom-presets-add-add" r-click="addcustompresetsadd()">
       Add
@@ -4785,10 +4768,16 @@
       $('.custom-presets-add-title').text('Edit Custom Preset')
       $('.custom-presets-add-add').text('Save').attr('r-click', 'savecustompresetsedit(' + "'" + th_hx + "'" + ')')
       var th_j = JSON.parse(String(localStorage.getItem(th_hx)))
+      var custom_arr = ['length:', 'capital:', 'lowercase:', 'number:', 'symbol:', 'do-not-use-similar-characters:']
+      var custom_string_arr = []
       $('#name_custom_presets').val(th_j.name)
-      $('#length_custom_presets').val(th_j.custom.r_length)
-      $('#dontusesimilarchars_custom_presets').prop('checked', th_j.custom.dontusesimilarcharsg)
-      $('#cuschaprop_custom_presets').prop('checked', th_j.custom.cuschaprop)
+      custom_string_arr.push(custom_arr[0] + th_j.r_length)
+      custom_string_arr.push(custom_arr[1] + th_j.custom.capital)
+      custom_string_arr.push(custom_arr[2] + th_j.custom.lowercase)
+      custom_string_arr.push(custom_arr[3] + th_j.custom.number)
+      custom_string_arr.push(custom_arr[4] + th_j.custom.symbol)
+      custom_string_arr.push(custom_arr[5] + th_j.custom.dontusesimilarcharsg)
+      $('#custom_custom_presets').val(custom_string_arr.join(','))
       $('.custom-presets-add-icon-picker').attr('v', th_j.icon)
       var icon_e = $('.custom_presets_add_icon_picker_icon[n="' + th_j.icon + '"]')
       var icon_d = icon_e.attr('icon-d')
@@ -4799,10 +4788,6 @@
       setTimeout(function () {
         custompresetsiconpickerscroll(icon_d, th_j.icon)
       }, 500)
-      $('#capital_custom_presets').val(th_j.custom.capital)
-      $('#lowercase_custom_presets').val(th_j.custom.lowercase)
-      $('#number_custom_presets').val(th_j.custom.number)
-      $('#symbol_custom_presets').val(th_j.custom.symbol)
     }
   }
   function addcustompresetsadd() {
