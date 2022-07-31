@@ -2172,7 +2172,7 @@
           fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
       </svg>
     </div>
-    <div class="btn5" id="pwdcustom" r-click="pwdcustom()">
+    <div class="btn5" id="pwdcustom" r-click="applycustompreset('addcustompreset',true)">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -4473,7 +4473,7 @@
 
 
     //add,manager
-    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" r-click="applycustompreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="custom-presets-icon">' + plusicon + '</div><span>Add</span</li>'
+    //var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" r-click="applycustompreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="custom-presets-icon">' + plusicon + '</div><span>Add</span</li>'
     var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" r-click="applycustompreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="custom-presets-icon">' + custom_presets_manager + '</div><span>Manager</span</li>'
     $('.custom-presets').append(add_li_html + ' ' + manager_html)
     rclick('.custom-presets li[fd="addcustompreset"],.custom-presets li[fd="managercustompreset"]')
