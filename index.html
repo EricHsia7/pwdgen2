@@ -4611,7 +4611,9 @@
     if (g === 'addcustompreset') {
       od = '1'
     }
-    custom_presets_switch(g)
+    if (!(g === 'addcustompreset')) {
+      custom_presets_switch(g)
+    }
     if (od === '1') {
       if (g === 'addcustompreset') {
         if (clearval) {
