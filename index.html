@@ -4812,15 +4812,17 @@
 
     var cushapropg_n = ['capital', 'lowercase', 'number', 'symbol']
     var cushapropg_n_len = cushapropg_n.length
+    var cushapropg_c = 0
     var pww = []
     for (var d = 0; d < cushapropg_n_len; d++) {
       var th = pwjson['s_' + cushapropg_n[d]]
-      if (th === undefined) {
-        pww.push(0)
-      }
-      else {
+      if (!(th === undefined)) {
         pww.push(parseFloat(th))
+        cushapropg_c += 1
       }
+    }
+    if(!(cushapropg_c > 3)) {
+      pww = [0.25,0.25,0.25,0.25]
     }
 
     var p_capital = parseFloat(pww[0])
