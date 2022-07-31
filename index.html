@@ -4137,12 +4137,6 @@
     generator_custom_auto_complete()
   });
 
-  document.querySelector('.input input[type="text"]').addEventListener("blur", function (e) {
-    closepwdcustom()
-    $('.input').css({ '--j-li-length': 0 })
-  });
-
-
   function gen() {
     var pwtext = $('.input input[type="text"]').val()
     var pwarr = pwtext.split(',')
