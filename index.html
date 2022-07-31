@@ -4608,6 +4608,9 @@
   }
   function applycustompreset(g, clearval) {
     var od = $('.custom-presets li[fd="' + g + '"]').attr('od')
+    if (g === 'addcustompreset') {
+      od = '1'
+    }
     custom_presets_switch(g)
     if (od === '1') {
       if (g === 'addcustompreset') {
