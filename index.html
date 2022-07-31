@@ -4429,7 +4429,6 @@
         'custom': {
           'r_length': 128,
           'dontusesimilarcharsg': false,
-          'cuschaprop': true,
           'capital': 0.25,
           'lowercase': 0.25,
           'number': 0.25,
@@ -4841,7 +4840,6 @@
       'custom': {
         'r_length': p_length,
         'dontusesimilarcharsg': dontusesimilarchars,
-        'cuschaprop': cuschaprop,
         'capital': p_capital,
         'lowercase': p_lowercase,
         'number': p_number,
@@ -4858,7 +4856,6 @@
     var p_name = ($('#name_custom_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
     var p_length = parseInt($('#length_custom_presets').val())
     var dontusesimilarchars = $('#dontusesimilarchars_custom_presets').prop('checked')
-    var cuschaprop = $('#cuschaprop_custom_presets').prop('checked')
     var p_icon = $('.custom-presets-add-icon-picker').attr('v')
     var p_capital = parseFloat($('#capital_custom_presets').val())
     var p_lowercase = parseFloat($('#lowercase_custom_presets').val())
@@ -4876,7 +4873,6 @@
       'custom': {
         'r_length': p_length,
         'dontusesimilarcharsg': dontusesimilarchars,
-        'cuschaprop': cuschaprop,
         'capital': p_capital,
         'lowercase': p_lowercase,
         'number': p_number,
