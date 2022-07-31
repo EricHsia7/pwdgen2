@@ -4617,6 +4617,7 @@
         }, 1)
         $('#custom_presets_add_icon_picker_search_input').val('')
         $('#custom_presets_icon_picker_search_css').html('')
+        $('#custom_custom_presets').val($('.input input[type="text"]').val())
         if (custom_presets_icon_load === 0) {
           custom_presets_icon_load = 1
           for (var y = 0; y < 20; y++) {
@@ -4791,15 +4792,43 @@
     }
   }
   function addcustompresetsadd() {
+    var pwtext = $('#custom_custom_presets').val()
+    var pwarr = pwtext.split(',')
+    var pwarr_len = pwarr.length
+    var pwjson = {}
+    for (var i = 0; i < pwarr_len; i++) {
+      var th = pwarr[i].split(':')
+      var th_key = 's_' + th[0].replaceAll('-', '_')
+      var th_content = th[1]
+      pwjson[th_key] = th_content
+    }
+
     var p_name = ($('#name_custom_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
-    var p_length = parseInt($('#length_custom_presets').val())
-    var dontusesimilarchars = $('#dontusesimilarchars_custom_presets').prop('checked')
-    var cuschaprop = $('#cuschaprop_custom_presets').prop('checked')
+    var p_length = parseInt(pwjson.s_length)
+    var dontusesimilarchars = false
+    if (pwjson.s_do_not_use_similar_characters === 'true') {
+      dontusesimilarchars = true
+    }
     var p_icon = $('.custom-presets-add-icon-picker').attr('v')
-    var p_capital = parseFloat($('#capital_custom_presets').val())
-    var p_lowercase = parseFloat($('#lowercase_custom_presets').val())
-    var p_number = parseFloat($('#number_custom_presets').val())
-    var p_symbol = parseFloat($('#symbol_custom_presets').val())
+
+    var cushapropg_n = ['capital', 'lowercase', 'number', 'symbol']
+    var cushapropg_n_len = cushapropg_n.length
+    var pww = []
+    for (var d = 0; d < cushapropg_n_len; d++) {
+      var th = pwjson['s_' + cushapropg_n[d]]
+      if (th === undefined) {
+        pww.push(0)
+      }
+      else {
+        pww.push(parseFloat(th))
+      }
+    }
+
+    var p_capital = parseFloat(pww[0])
+    var p_lowercase = parseFloat(pww[1])
+    var p_number = parseFloat(pww[2])
+    var p_symbol = parseFloat(pww[3])
+
     var p_hx = 'pwdgen2_custom_presets_custom_d_' + sha256(p_name)
     if (p_name === '') {
       mes('Name is required.')
@@ -4865,14 +4894,8 @@
   }
   function clearcustompresetsadd() {
     $('#name_custom_presets').val('')
-    $('#length_custom_presets').val('')
-    $('#dontusesimilarchars_custom_presets').prop('checked', false)
-    $('#cuschaprop_custom_presets').prop('checked', false)
+    $('#custom_custom_presets').val('')
     $('.custom-presets-add-icon-picker').attr('v', 'default')
-    $('#capital_custom_presets').val('0.25')
-    $('#lowercase_custom_presets').val('0.25')
-    $('#number_custom_presets').val('0.25')
-    $('#symbol_custom_presets').val('0.25')
     custompresetsiconpickerchange($('.custom_presets_add_icon_picker_icon[n="default"]').attr('icon-d'), false)
     $('.custom-presets-add-icon-picker').scrollLeft(0)
   }
