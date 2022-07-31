@@ -132,6 +132,24 @@
       overflow: hidden
     }
 
+    .input {
+      height: calc(45px + ((5px + 35px + 5px + 1px) * var(--j-custom-presets-hide)) + (var(--j-li-length) * 45px) + var(--j-border2-hide) * 1px);
+      max-height: calc(45px + 1px + 5px + 35px + 5px + (3 * 45px) + var(--j-border2-hide) * 1px);
+      box-shadow: 0px 0px 25px -7px rgba(0, 0, 0, calc(var(--j-custom-presets-hide) * 0.15));
+    }
+
+    .input-mask {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      background: rgba(0, 0, 0, 0);
+      width: 100%;
+      height: 100%;
+      user-select: none;
+      -webkit-user-select: none;
+      display: none;
+    }
+
     .input2,
     .input3 {
       display: none
@@ -147,7 +165,7 @@
       position: absolute;
       top: 5px;
       left: 10px;
-      width: calc(100% - 5px - 10px - 45px - 45px);
+      width: calc(100% - 10px - 45px - 45px);
       height: 35px;
       margin: 0;
       padding: 0;
@@ -260,7 +278,8 @@
       user-select: none;
     }
 
-    .input .border {
+    .input .border,
+    .input .border2 {
       background: var(--g-e3e3e3);
       width: 100%;
       height: 1px;
@@ -269,18 +288,9 @@
       left: 0
     }
 
-
-    .custom-presets-add-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      width: 100%;
-      height: 45px;
-      position: relative;
-      font-size: 12px
+    .input .border2 {
+      top: 91px
     }
-
-
 
     .custom-presets-add input[type="checkbox"] {
       position: absolute;
@@ -321,26 +331,13 @@
       opacity: 1
     }
 
-    .custom-presets-add-list .custom-presets-add-list-txt {
-      position: absolute;
-      top: 5px;
-      left: 35px;
-      width: calc(100% - 50px);
-      height: 35px;
-      display: flex;
-      align-items: center;
-      color: var(--g-4e4e4e)
-    }
-
     .generator_custom_auto_complete {
       position: absolute;
-      top: calc(35% + 45px);
-      left: 50%;
-      transform: translateX(-50%);
-      display: none;
-      width: var(--u-width);
-      height: auto;
-      border-radius: 0px 0px 15px 15px;
+      top: 92px;
+      left: 0px;
+      display: inline-block;
+      width: 100%;
+      height: calc(var(--j-li-length) * 45px);
       overflow: scroll;
       max-height: calc(45px * 3);
       background: var(--g-f4f4f4);
@@ -359,6 +356,9 @@
       color: var(--g-4e4e4e);
     }
 
+    .generator_custom_auto_complete li:nth-last-child(1) {
+      border-bottom: none
+    }
 
     .t2 {
       font-size: 18px;
@@ -1406,10 +1406,10 @@
     }
 
     .custom-presets {
-      top: 57px;
-      left: 10px;
+      top: 51px;
+      left: 5px;
       transform: none;
-      width: calc(100% - 20px);
+      width: calc(100% - 10px);
       display: block;
     }
 
@@ -2073,35 +2073,6 @@
   <div class="t2">
     New Password
   </div>
-  <div class="input">
-    <input type="text" placeholder="custom" autocomplete="off">
-    <div class="btn" id="gen" r-click="gen()">
-      <svg stroke-miterlimit="10"
-        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path d="M22.0215 55.1029L0 33.0814L4.22734 28.8541L22.0215 46.6482L59.7727 8.89708L64 13.1244L22.0215 55.1029Z"
-          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
-      </svg>
-    </div>
-    <div class="btn5" id="pwdcustom" r-click="pwdcustom()" uj="0">
-
-      <svg stroke-miterlimit="10"
-        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path
-          d="M-1.77636e-15 56.7111L-1.77636e-15 51.3778L21.9556 51.3778L21.9556 56.7111L-1.77636e-15 56.7111ZM-1.77636e-15 12.6222L-1.77636e-15 7.28889L36.7111 7.28889L36.7111 12.6222L-1.77636e-15 12.6222ZM27.2889 64L27.2889 44L32.6222 44L32.6222 51.3778L64 51.3778L64 56.7111L32.6222 56.7111L32.6222 64L27.2889 64ZM16.6222 41.9556L16.6222 34.6667L-1.77636e-15 34.6667L-1.77636e-15 29.3333L16.6222 29.3333L16.6222 21.8667L21.9556 21.8667L21.9556 41.9556L16.6222 41.9556ZM27.2889 34.6667L27.2889 29.3333L64 29.3333L64 34.6667L27.2889 34.6667ZM42.0444 20L42.0444-3.55271e-15L47.3778-3.55271e-15L47.3778 7.28889L64 7.28889L64 12.6222L47.3778 12.6222L47.3778 20L42.0444 20Z"
-          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
-      </svg>
-
-
-    </div>
-    <div class="border"></div>
-    <div class="custom-presets"></div>
-  </div>
-
-
   <div class="history-filter">
     <li o="1" pl="default_all" r-click="filter_showall()" loading="1">
       <div class="history-filter-icon">
@@ -2163,12 +2134,36 @@
       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </li>
   </div>
-
-
   <div class="history">
   </div>
 
-  <div class="generator_custom_auto_complete"></div>
+  <div class="input-mask"></div>
+  <div class="input" style="--j-li-length:0;--j-custom-presets-hide:0;--j-border2-hide:0">
+    <input type="text" placeholder="custom" autocomplete="off">
+    <div class="btn" id="gen" r-click="gen()">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M22.0215 55.1029L0 33.0814L4.22734 28.8541L22.0215 46.6482L59.7727 8.89708L64 13.1244L22.0215 55.1029Z"
+          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+      </svg>
+    </div>
+    <div class="btn5" id="pwdcustom" r-click="applycustompreset('addcustompreset',true)">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path
+          d="M28.5714 64L28.5714 35.4286L0 35.4286L0 28.5714L28.5714 28.5714L28.5714 7.10543e-15L35.4286 7.10543e-15L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z"
+          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+      </svg>
+    </div>
+    <div class="border"></div>
+    <div class="custom-presets"></div>
+    <div class="border2"></div>
+    <div class="generator_custom_auto_complete"></div>
+  </div>
 
   <div class="input2">
     <input type="password" placeholder="password" autocomplete="off">
@@ -2364,24 +2359,7 @@
       <input type="text" placeholder="search icon" id="custom_presets_add_icon_picker_search_input"
         class="custom-presets-add-b10">
       <div class="custom-presets-add-icon-picker" v="default" translate="no"></div>
-      <input type="text" placeholder="length" class="custom-presets-add-b10" id="length_custom_presets">
-      <li class="custom-presets-add-list">
-        <input type="checkbox" id="dontusesimilarchars_custom_presets">
-        <div class="custom-presets-add-list-txt">Don't use similar characters (|1iIjJlL0Oo)</div>
-      </li>
-      <li class="custom-presets-add-list">
-        <input type="checkbox" id="cuschaprop_custom_presets">
-        <div class="custom-presets-add-list-txt">Custom chars proportion(The default is 4 equal parts)</div>
-      </li>
-      <div class="custom-presets-add-p-box">
-        <input type="text" inputmode="decimal" placeholder="Capital" class="custom-presets-add-b10"
-          id="capital_custom_presets">
-        <input type="text" inputmode="decimal" placeholder="Lowercase" class="custom-presets-add-b10"
-          id="lowercase_custom_presets">
-        <input type="text" inputmode="decimal" placeholder="Number" class="custom-presets-add-b10"
-          id="number_custom_presets">
-        <input type="text" inputmode="decimal" placeholder="Symbol" id="symbol_custom_presets">
-      </div>
+      <input type="text" placeholder="custom" class="custom-presets-add-b10" id="custom_custom_presets">
     </div>
     <div class="custom-presets-add-add" r-click="addcustompresetsadd()">
       Add
@@ -4009,8 +3987,17 @@
   })
 
   var custom_presets_evt = 0
-  function pwdcustom() {
+  var googlefontloaded = 0
+  function openpwdcustom() {
+    if (googlefontloaded === 0) {
+      $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
+      googlefontloaded = 1
+    }
     if (custom_presets_evt === 0) {
+      $('.input-mask').click(function () {
+        closepwdcustom()
+        $('.input').css({ '--j-li-length': 0 })
+      })
       document.querySelector('.input input[type="text"]').addEventListener("paste", function (e) {
         $('.custom-presets li').attr('o', '0')
       });
@@ -4023,24 +4010,18 @@
       document.querySelector('.input input[type="text"]').addEventListener("keyup", function (e) {
         $('.custom-presets li').attr('o', '0')
       });
-      $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
       custom_presets_evt = 1
     }
 
     custompresets()
-    if ($('.btn5').attr('uj') === '0') {
-      $('.input').css({ 'height': '102px' });
-      $('.history').css({ 'transform': 'translateX(-50%) translateY(' + (102 - 45) + 'px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(' + (102 - 45) + 'px)' });
-      $('.btn5').attr('uj', '1')
-    }
-    else {
-      $('.input').css({ 'height': '45px' });
-      $('.history').css({ 'transform': 'translateX(-50%) translateY(0px)' });
-      $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)' });
-      $('.btn5').attr('uj', '0')
-    }
-
+    $('.btn5').attr('uj', '1')
+    $('.input').css({ '--j-custom-presets-hide': 1 })
+    $('.input-mask').css({ 'display': 'block' })
+  }
+  function closepwdcustom() {
+    $('.btn5').attr('uj', '0')
+    $('.input').css({ '--j-custom-presets-hide': 0 });
+    $('.input-mask').css({ 'display': 'none' })
   }
 
   function generator_custom_auto_complete_c(original_text, n, e) {
@@ -4091,10 +4072,10 @@
       }
     }
     if (result.length > 0) {
-      $('.input').css({ 'border-radius': '15px 15px 0px 0px' })
+      $('.input').css({ '--j-li-length': result.length, '--j-border2-hide': 1 });
     }
     else {
-      $('.input').css({ 'border-radius': '15px' })
+      $('.input').css({ '--j-li-length': 0, '--j-border2-hide': 0 });
     }
     return [original_text, result]
   }
@@ -4116,15 +4097,9 @@
     }
   });
   document.querySelector('.input input[type="text"]').addEventListener("focus", function (e) {
-    $('.generator_custom_auto_complete').css({ 'display': 'inline-block' });
+    openpwdcustom()
     generator_custom_auto_complete()
   });
-
-  document.querySelector('.input input[type="text"]').addEventListener("blur", function (e) {
-    $('.generator_custom_auto_complete').css({ 'display': 'none' });
-    $('.input').css({ 'border-radius': '15px' })
-  });
-
 
   function gen() {
     var pwtext = $('.input input[type="text"]').val()
@@ -4431,7 +4406,6 @@
         'custom': {
           'r_length': 128,
           'dontusesimilarcharsg': false,
-          'cuschaprop': true,
           'capital': 0.25,
           'lowercase': 0.25,
           'number': 0.25,
@@ -4462,9 +4436,9 @@
 
 
     //add,manager
-    var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" r-click="applycustompreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="custom-presets-icon">' + plusicon + '</div><span>Add</span</li>'
+    //var add_li_html = '<li o="0" fd="addcustompreset" od="1" loading="0" r-click="applycustompreset(' + "'" + 'addcustompreset' + "'" + ',true)"><div class="custom-presets-icon">' + plusicon + '</div><span>Add</span</li>'
     var manager_html = '<li o="0" fd="managercustompreset" od="1" loading="0" r-click="applycustompreset(' + "'" + 'managercustompreset' + "'" + ')"><div class="custom-presets-icon">' + custom_presets_manager + '</div><span>Manager</span</li>'
-    $('.custom-presets').append(add_li_html + ' ' + manager_html)
+    $('.custom-presets').append(manager_html)
     rclick('.custom-presets li[fd="addcustompreset"],.custom-presets li[fd="managercustompreset"]')
     //print end
   }
@@ -4597,11 +4571,20 @@
   }
   function applycustompreset(g, clearval) {
     var od = $('.custom-presets li[fd="' + g + '"]').attr('od')
-    custom_presets_switch(g)
+    if (g === 'addcustompreset') {
+      od = '1'
+    }
+    if (!(g === 'addcustompreset')) {
+      custom_presets_switch(g)
+    }
     if (od === '1') {
       if (g === 'addcustompreset') {
         if (clearval) {
           clearcustompresetsadd()
+        }
+        if (googlefontloaded === 0) {
+          $('head').append('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />')
+          googlefontloaded = 1
         }
         $('.custom-presets-add,.custom-presets-add-mask').css({ 'display': 'block', 'transition': '0.3s' })
         setTimeout(function () {
@@ -4610,6 +4593,7 @@
         }, 1)
         $('#custom_presets_add_icon_picker_search_input').val('')
         $('#custom_presets_icon_picker_search_css').html('')
+        $('#custom_custom_presets').val($('.input input[type="text"]').val())
         if (custom_presets_icon_load === 0) {
           custom_presets_icon_load = 1
           for (var y = 0; y < 20; y++) {
@@ -4761,10 +4745,16 @@
       $('.custom-presets-add-title').text('Edit Custom Preset')
       $('.custom-presets-add-add').text('Save').attr('r-click', 'savecustompresetsedit(' + "'" + th_hx + "'" + ')')
       var th_j = JSON.parse(String(localStorage.getItem(th_hx)))
+      var custom_arr = ['length:', 'capital:', 'lowercase:', 'number:', 'symbol:', 'do-not-use-similar-characters:']
+      var custom_string_arr = []
       $('#name_custom_presets').val(th_j.name)
-      $('#length_custom_presets').val(th_j.custom.r_length)
-      $('#dontusesimilarchars_custom_presets').prop('checked', th_j.custom.dontusesimilarcharsg)
-      $('#cuschaprop_custom_presets').prop('checked', th_j.custom.cuschaprop)
+      custom_string_arr.push(custom_arr[0] + th_j.custom.r_length)
+      custom_string_arr.push(custom_arr[1] + th_j.custom.capital)
+      custom_string_arr.push(custom_arr[2] + th_j.custom.lowercase)
+      custom_string_arr.push(custom_arr[3] + th_j.custom.number)
+      custom_string_arr.push(custom_arr[4] + th_j.custom.symbol)
+      custom_string_arr.push(custom_arr[5] + th_j.custom.dontusesimilarcharsg)
+      $('#custom_custom_presets').val(custom_string_arr.join(','))
       $('.custom-presets-add-icon-picker').attr('v', th_j.icon)
       var icon_e = $('.custom_presets_add_icon_picker_icon[n="' + th_j.icon + '"]')
       var icon_d = icon_e.attr('icon-d')
@@ -4775,22 +4765,48 @@
       setTimeout(function () {
         custompresetsiconpickerscroll(icon_d, th_j.icon)
       }, 500)
-      $('#capital_custom_presets').val(th_j.custom.capital)
-      $('#lowercase_custom_presets').val(th_j.custom.lowercase)
-      $('#number_custom_presets').val(th_j.custom.number)
-      $('#symbol_custom_presets').val(th_j.custom.symbol)
     }
   }
   function addcustompresetsadd() {
+    var pwtext = $('#custom_custom_presets').val()
+    var pwarr = pwtext.split(',')
+    var pwarr_len = pwarr.length
+    var pwjson = {}
+    for (var i = 0; i < pwarr_len; i++) {
+      var th = pwarr[i].split(':')
+      var th_key = 's_' + th[0].replaceAll('-', '_')
+      var th_content = th[1]
+      pwjson[th_key] = th_content
+    }
+
     var p_name = ($('#name_custom_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
-    var p_length = parseInt($('#length_custom_presets').val())
-    var dontusesimilarchars = $('#dontusesimilarchars_custom_presets').prop('checked')
-    var cuschaprop = $('#cuschaprop_custom_presets').prop('checked')
+    var p_length = parseInt(pwjson.s_length)
+    var dontusesimilarchars = false
+    if (pwjson.s_do_not_use_similar_characters === 'true') {
+      dontusesimilarchars = true
+    }
     var p_icon = $('.custom-presets-add-icon-picker').attr('v')
-    var p_capital = parseFloat($('#capital_custom_presets').val())
-    var p_lowercase = parseFloat($('#lowercase_custom_presets').val())
-    var p_number = parseFloat($('#number_custom_presets').val())
-    var p_symbol = parseFloat($('#symbol_custom_presets').val())
+
+    var cushapropg_n = ['capital', 'lowercase', 'number', 'symbol']
+    var cushapropg_n_len = cushapropg_n.length
+    var cushapropg_c = 0
+    var pww = []
+    for (var d = 0; d < cushapropg_n_len; d++) {
+      var th = pwjson['s_' + cushapropg_n[d]]
+      if (!(th === undefined)) {
+        pww.push(parseFloat(th))
+        cushapropg_c += 1
+      }
+    }
+    if (!(cushapropg_c > 3)) {
+      pww = [0.25, 0.25, 0.25, 0.25]
+    }
+
+    var p_capital = parseFloat(pww[0])
+    var p_lowercase = parseFloat(pww[1])
+    var p_number = parseFloat(pww[2])
+    var p_symbol = parseFloat(pww[3])
+
     var p_hx = 'pwdgen2_custom_presets_custom_d_' + sha256(p_name)
     if (p_name === '') {
       mes('Name is required.')
@@ -4803,7 +4819,6 @@
       'custom': {
         'r_length': p_length,
         'dontusesimilarcharsg': dontusesimilarchars,
-        'cuschaprop': cuschaprop,
         'capital': p_capital,
         'lowercase': p_lowercase,
         'number': p_number,
@@ -4817,15 +4832,45 @@
     mes('Custom preset added')
   }
   function savecustompresetsedit(oldhx) {
+    var pwtext = $('#custom_custom_presets').val()
+    var pwarr = pwtext.split(',')
+    var pwarr_len = pwarr.length
+    var pwjson = {}
+    for (var i = 0; i < pwarr_len; i++) {
+      var th = pwarr[i].split(':')
+      var th_key = 's_' + th[0].replaceAll('-', '_')
+      var th_content = th[1]
+      pwjson[th_key] = th_content
+    }
+
     var p_name = ($('#name_custom_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
-    var p_length = parseInt($('#length_custom_presets').val())
-    var dontusesimilarchars = $('#dontusesimilarchars_custom_presets').prop('checked')
-    var cuschaprop = $('#cuschaprop_custom_presets').prop('checked')
+    var p_length = parseInt(pwjson.s_length)
+    var dontusesimilarchars = false
+    if (pwjson.s_do_not_use_similar_characters === 'true') {
+      dontusesimilarchars = true
+    }
     var p_icon = $('.custom-presets-add-icon-picker').attr('v')
-    var p_capital = parseFloat($('#capital_custom_presets').val())
-    var p_lowercase = parseFloat($('#lowercase_custom_presets').val())
-    var p_number = parseFloat($('#number_custom_presets').val())
-    var p_symbol = parseFloat($('#symbol_custom_presets').val())
+
+    var cushapropg_n = ['capital', 'lowercase', 'number', 'symbol']
+    var cushapropg_n_len = cushapropg_n.length
+    var cushapropg_c = 0
+    var pww = []
+    for (var d = 0; d < cushapropg_n_len; d++) {
+      var th = pwjson['s_' + cushapropg_n[d]]
+      if (!(th === undefined)) {
+        pww.push(parseFloat(th))
+        cushapropg_c += 1
+      }
+    }
+    if (!(cushapropg_c > 3)) {
+      pww = [0.25, 0.25, 0.25, 0.25]
+    }
+
+    var p_capital = parseFloat(pww[0])
+    var p_lowercase = parseFloat(pww[1])
+    var p_number = parseFloat(pww[2])
+    var p_symbol = parseFloat(pww[3])
+
     var p_hx = 'pwdgen2_custom_presets_custom_d_' + sha256(p_name)
     if (p_name === '') {
       mes('Name is required.')
@@ -4838,7 +4883,6 @@
       'custom': {
         'r_length': p_length,
         'dontusesimilarcharsg': dontusesimilarchars,
-        'cuschaprop': cuschaprop,
         'capital': p_capital,
         'lowercase': p_lowercase,
         'number': p_number,
@@ -4856,14 +4900,8 @@
   }
   function clearcustompresetsadd() {
     $('#name_custom_presets').val('')
-    $('#length_custom_presets').val('')
-    $('#dontusesimilarchars_custom_presets').prop('checked', false)
-    $('#cuschaprop_custom_presets').prop('checked', false)
+    $('#custom_custom_presets').val('')
     $('.custom-presets-add-icon-picker').attr('v', 'default')
-    $('#capital_custom_presets').val('0.25')
-    $('#lowercase_custom_presets').val('0.25')
-    $('#number_custom_presets').val('0.25')
-    $('#symbol_custom_presets').val('0.25')
     custompresetsiconpickerchange($('.custom_presets_add_icon_picker_icon[n="default"]').attr('icon-d'), false)
     $('.custom-presets-add-icon-picker').scrollLeft(0)
   }
@@ -5035,9 +5073,6 @@
       if ($('.history .box').length > 0) {
         $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'block' });
       }
-      $('.btn5').attr('uj', '0')
-
-      $('.input').css({ 'height': '45px' });
       bpage_home_click += 1
       if (bpage_home_click >= 2) {
         bpage_home_click = 1
@@ -5063,7 +5098,6 @@
       $('head #searchcss').html('')
       $('#historydatetitlecss-search').html('')
       $('#historydatetitlecss').html(String($('#historydatetitlecss').html()).replaceAll('/*', '').replaceAll('*/', ''))
-      $('.btn5').attr('uj', '0')
       bpage_home_click = 0
     }
     if (page === 's') {
@@ -5074,12 +5108,8 @@
       $('.t2').text('Search Password')
       $('.input3,.history').css({ 'display': 'block' });
       $('.input,.checkpwdp,.input2').css({ 'display': 'none' });
-
-      $('.input').css({ 'height': '45px' });
       $('.history').css({ 'transform': 'translateX(-50%) translateY(-45px)' });
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'none' });
-      $('.btn5 svg').css({ 'transform': 'rotate(0deg)' });
-      $('.btn5').attr('uj', '0')
       createsearchindex_pwd()
       showsearchresult_v2()
       $('#historyfiltercss').html('')
