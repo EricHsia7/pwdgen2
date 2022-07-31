@@ -4821,8 +4821,8 @@
         cushapropg_c += 1
       }
     }
-    if(!(cushapropg_c > 3)) {
-      pww = [0.25,0.25,0.25,0.25]
+    if (!(cushapropg_c > 3)) {
+      pww = [0.25, 0.25, 0.25, 0.25]
     }
 
     var p_capital = parseFloat(pww[0])
@@ -4855,14 +4855,45 @@
     mes('Custom preset added')
   }
   function savecustompresetsedit(oldhx) {
+    var pwtext = $('#custom_custom_presets').val()
+    var pwarr = pwtext.split(',')
+    var pwarr_len = pwarr.length
+    var pwjson = {}
+    for (var i = 0; i < pwarr_len; i++) {
+      var th = pwarr[i].split(':')
+      var th_key = 's_' + th[0].replaceAll('-', '_')
+      var th_content = th[1]
+      pwjson[th_key] = th_content
+    }
+
     var p_name = ($('#name_custom_presets').val()).replaceAll('"', ' ').replaceAll("'", ' ')
-    var p_length = parseInt($('#length_custom_presets').val())
-    var dontusesimilarchars = $('#dontusesimilarchars_custom_presets').prop('checked')
+    var p_length = parseInt(pwjson.s_length)
+    var dontusesimilarchars = false
+    if (pwjson.s_do_not_use_similar_characters === 'true') {
+      dontusesimilarchars = true
+    }
     var p_icon = $('.custom-presets-add-icon-picker').attr('v')
-    var p_capital = parseFloat($('#capital_custom_presets').val())
-    var p_lowercase = parseFloat($('#lowercase_custom_presets').val())
-    var p_number = parseFloat($('#number_custom_presets').val())
-    var p_symbol = parseFloat($('#symbol_custom_presets').val())
+
+    var cushapropg_n = ['capital', 'lowercase', 'number', 'symbol']
+    var cushapropg_n_len = cushapropg_n.length
+    var cushapropg_c = 0
+    var pww = []
+    for (var d = 0; d < cushapropg_n_len; d++) {
+      var th = pwjson['s_' + cushapropg_n[d]]
+      if (!(th === undefined)) {
+        pww.push(parseFloat(th))
+        cushapropg_c += 1
+      }
+    }
+    if (!(cushapropg_c > 3)) {
+      pww = [0.25, 0.25, 0.25, 0.25]
+    }
+
+    var p_capital = parseFloat(pww[0])
+    var p_lowercase = parseFloat(pww[1])
+    var p_number = parseFloat(pww[2])
+    var p_symbol = parseFloat(pww[3])
+
     var p_hx = 'pwdgen2_custom_presets_custom_d_' + sha256(p_name)
     if (p_name === '') {
       mes('Name is required.')
