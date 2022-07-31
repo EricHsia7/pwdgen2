@@ -132,6 +132,11 @@
       overflow: hidden
     }
 
+    .input {
+      height: calc(45px + 1px + 10px + 35px + 10px + (var(--j-li-length) * 45px));
+      max-height: calc(45px + 1px + 10px + 35px + 10px + (3 * 45px));
+    }
+
     .input2,
     .input3 {
       display: none
@@ -334,13 +339,12 @@
 
     .generator_custom_auto_complete {
       position: absolute;
-      top: calc(35% + 45px);
+      top: 102px;
       left: 50%;
       transform: translateX(-50%);
-      display: none;
+      display: inline-block;
       width: var(--u-width);
-      height: auto;
-      border-radius: 0px 0px 15px 15px;
+      height: calc(var(--j-li-length) * 45px);
       overflow: scroll;
       max-height: calc(45px * 3);
       background: var(--g-f4f4f4);
@@ -358,7 +362,6 @@
       align-items: center;
       color: var(--g-4e4e4e);
     }
-
 
     .t2 {
       font-size: 18px;
@@ -2099,6 +2102,7 @@
     </div>
     <div class="border"></div>
     <div class="custom-presets"></div>
+    <div class="generator_custom_auto_complete"></div>
   </div>
 
 
@@ -2167,8 +2171,6 @@
 
   <div class="history">
   </div>
-
-  <div class="generator_custom_auto_complete"></div>
 
   <div class="input2">
     <input type="password" placeholder="password" autocomplete="off">
@@ -4091,10 +4093,10 @@
       }
     }
     if (result.length > 0) {
-      $('.input').css({ 'border-radius': '15px 15px 0px 0px' })
+      $('.input').css({ '--j-li-length': result.length });
     }
     else {
-      $('.input').css({ 'border-radius': '15px' })
+      $('.input').css({ '--j-li-length': 0 })
     }
     return [original_text, result]
   }
@@ -4116,13 +4118,13 @@
     }
   });
   document.querySelector('.input input[type="text"]').addEventListener("focus", function (e) {
-    $('.generator_custom_auto_complete').css({ 'display': 'inline-block' });
+    pwdcustom()
     generator_custom_auto_complete()
   });
 
   document.querySelector('.input input[type="text"]').addEventListener("blur", function (e) {
-    $('.generator_custom_auto_complete').css({ 'display': 'none' });
-    $('.input').css({ 'border-radius': '15px' })
+    pwdcustom()
+    $('.input').css({ '--j-li-length': 0 })
   });
 
 
