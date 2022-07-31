@@ -133,7 +133,7 @@
     }
 
     .input {
-      height: calc(45px + 1px + 10px + 35px + 10px + (var(--j-li-length) * 45px));
+      height: calc(45px + 1px + ((10px + 35px + 10px) * var(--j-custom-presets-hide)) + (var(--j-li-length) * 45px));
       max-height: calc(45px + 1px + 10px + 35px + 10px + (3 * 45px));
     }
 
@@ -2140,7 +2140,7 @@
   <div class="history">
   </div>
 
-  <div class="input" style="--j-li-length:0">
+  <div class="input" style="--j-li-length:0;--j-custom-presets-hide:0">
     <input type="text" placeholder="custom" autocomplete="off">
     <div class="btn" id="gen" r-click="gen()">
       <svg stroke-miterlimit="10"
@@ -4026,9 +4026,11 @@
     custompresets()
     if ($('.btn5').attr('uj') === '0') {
       $('.btn5').attr('uj', '1')
+      $('.input').css({'--j-custom-presets-hide':1})
     }
     else {
       $('.btn5').attr('uj', '0')
+      $('.input').css({'--j-custom-presets-hide':0});
     }
 
   }
