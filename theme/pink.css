@@ -14,10 +14,10 @@
     --storage-4: #ff4794;
     --storage-5: #ff1f7c;
     --check-strong-icon: var(--g-4e4e4e);
-    --check-strong-icon: var(--g-4e4e4e);
-    --check-strong-icon: var(--g-4e4e4e);
-    --check-strong-icon: var(--g-4e4e4e);   
-}
+    --check-passable-icon: var(--g-4e4e4e);
+    --check-fragile-icon: var(--g-4e4e4e);
+    --check-unsafe-icon: var(--g-4e4e4e);
+   }
 
 ::placeholder {
     color: rgba(206, 96, 96, 0.4);
@@ -40,8 +40,8 @@
         --storage-4: #ff4794;
         --storage-5: #ff1f7c;
         --check-strong-icon: var(--g-4e4e4e);
-        --check-strong-icon: var(--g-4e4e4e);
-        --check-strong-icon: var(--g-4e4e4e);
-        --check-strong-icon: var(--g-4e4e4e);       
-    }
+        --check-passable-icon: var(--g-4e4e4e);
+        --check-fragile-icon: var(--g-4e4e4e);
+        --check-unsafe-icon: var(--g-4e4e4e);
+           }
 }
