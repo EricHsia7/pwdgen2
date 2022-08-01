@@ -398,9 +398,20 @@
       display: flex;
       align-items: center;
       white-space: nowrap;
-      padding-left: 5px;
+      padding-left: 0px;
       box-sizing: border-box;
       margin-top: 10px;
+    }
+
+    .history_date_title span {
+      display: inline-block;
+      background: var(--g-f4f4f4);
+      border-radius: 15px;
+      padding: 5px;
+      box-sizing: border-box;
+      height: 28px;
+      font-size: 20px;
+      margin-right:5px;
     }
 
     .history_date_group {
@@ -3152,7 +3163,7 @@
   }
   function history_date_title_check(date_arr, search, skeletonscreen) {
     if (skeletonscreen) {
-      $('#historydatetitlecss').html('.history_date_title{display:none}')
+      $('#historydatetitlecss').html('.history_date_title span {opacity:0}')
       return ''
     }
     var date_list = {}
@@ -4165,7 +4176,7 @@
       var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
       if ($('.history_date_group[d="' + date_title_name + '"]').length < 1) {
         $('.history').prepend('<div class="history_date_group" d="' + date_title_name + '"></div>')
-        $('.history').prepend('<div class="history_date_title" d="' + date_title_name + '">' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '</div>')
+        $('.history').prepend('<div class="history_date_title" d="' + date_title_name + '"><span>' + pwtime.getFullYear() + '</span><span>' + che(pwtime.getMonth() + 1) + '</span></div>')
       }
       $('.history .history_date_group[d="' + date_title_name + '"]').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:55px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:100px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:145px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:190px">' + infoicon + '</div></div>');
       rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]')
@@ -4981,7 +4992,7 @@
               }
               var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
               if (saveddate[date_title_name] === undefined) {
-                $('.history').append('<div class="history_date_title" d="' + date_title_name + '">' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '</div>')
+                $('.history').append('<div class="history_date_title" d="' + date_title_name + '"><span>' + pwtime.getFullYear() + '</span><span>' + che(pwtime.getMonth() + 1) + '</span></div>')
                 $('.history').append('<div class="history_date_group" d="' + date_title_name + '"></div>')
                 saveddate[date_title_name] = '1'
               }
