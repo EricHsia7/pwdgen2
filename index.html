@@ -3454,10 +3454,10 @@
         return false
       }
       if (!(date_picker.month === undefined)) {
-        strarr.push('month:' + (date_picker_all.month[date_picker.year][date_picker.month] + 1))
+        strarr.push('month:' + che(parseInt(date_picker_all.month[date_picker.year][date_picker.month] + 1)))
       }
       if (!(date_picker.date === undefined)) {
-        strarr.push('date:' + (date_picker_all.date[date_picker.year][date_picker.month][date_picker.date]))
+        strarr.push('date:' + che(parseInt(date_picker_all.date[date_picker.year][date_picker.month][date_picker.date])))
       }
 
       return strarr.join(',')
@@ -3484,7 +3484,7 @@
       var zthstime = parseInt($('.history .box[hash="' + hash + '"]').attr('t'))
       var zpwtime = new Date()
       zpwtime.setTime(zthstime)
-      var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
+      var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + che(zpwtime.getMonth() + 1) + ',date:' + che(zpwtime.getDate())
       if (zpwtimestr.indexOf(searchtxt) > -1) {
         searchresultcount += 1
       }
@@ -3628,7 +3628,7 @@
         var zthstime = parseInt($('.history .box[hash="' + hash + '"]').attr('t'))
         var zpwtime = new Date()
         zpwtime.setTime(zthstime)
-        var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + (zpwtime.getMonth() + 1) + ',date:' + (zpwtime.getDate())
+        var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + che(zpwtime.getMonth() + 1) + ',date:' + che(zpwtime.getDate())
         if (zpwtimestr.indexOf(searchtxt) > -1) {
           $('.history .box[hash="' + hash + '"]').attr('ar', '1')
           date_list.push($('.history .box[hash="' + hash + '"]').attr('t'))
