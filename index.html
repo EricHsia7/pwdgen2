@@ -3165,7 +3165,7 @@
   }
   function history_date_title_check(date_arr, search, skeletonscreen) {
     if (skeletonscreen) {
-      $('#historydatetitlecss').html('.history_date_title {display:none}')
+      $('#historydatetitlecss').html('.history_date_title {display:none}.history_date_title.loading {display:flex}')
       return ''
     }
     var date_list = {}
