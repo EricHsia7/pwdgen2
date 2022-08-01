@@ -2814,20 +2814,25 @@
         var ccrspkk = parseInt(String(localStorage.getItem(psehash)).split(':')[1])
         var ccrsptt = parseInt(String(localStorage.getItem(psehash)).split(':')[0])
         var ccrnwtt = new Date().getTime()
+        var ccrspicon = ''
         if (ccrspkk >= 85 && ccrspkk <= 100) {
           ccrspst = 'Strong'
+          ccrspicon = check_strong_icon
         }
         if (ccrspkk >= 60 && ccrspkk < 85) {
           ccrspst = 'Passable'
+          ccrspicon = check_passable_icon
         }
         if (ccrspkk >= 45 && ccrspkk < 60) {
           ccrspst = 'Fragile'
+          ccrspicon = check_fragile_icon
         }
         if (ccrspkk >= 0 && ccrspkk < 45) {
           ccrspst = 'Unsafe'
+          ccrspicon = check_unsafe_icon
         }
         if ((ccrnwtt - ccrsptt) < 43200000) {
-          return { 'p': ccrspkk, 'str': ccrspst, 'details': '--' }
+          return { 'p': ccrspkk, 'str': ccrspst, 'icon': ccrspicon, 'details': '--' }
         }
         else {
           localStorage.removeItem(psehash)
@@ -2910,17 +2915,22 @@
     var rspkk = Math.floor(rsp * 100)
 
     var rspst = '--'
+    var rspicon = ''
     if (rspkk >= 85 && rspkk <= 100) {
       rspst = 'Strong'
+      rspicon = check_strong_icon
     }
     if (rspkk >= 60 && rspkk < 85) {
       rspst = 'Passable'
+      rspicon = check_passable_icon
     }
     if (rspkk >= 45 && rspkk < 60) {
       rspst = 'Fragile'
+      rspicon = check_fragile_icon
     }
     if (rspkk >= 0 && rspkk < 45) {
       rspst = 'Unsafe'
+      rspicon = check_unsafe_icon
     }
 
     if (cache) {
@@ -2959,7 +2969,7 @@
     if (det_repeat <= 0) {
       det_repeat = 0
     }
-    return { 'p': Math.floor(rsp * 100), 'str': rspst, 'details': { 'evdis': det_evdis, 'len': det_len, 'repeat': det_repeat } }
+    return { 'p': Math.floor(rsp * 100), 'str': rspst, 'icon': rspicon, 'details': { 'evdis': det_evdis, 'len': det_len, 'repeat': det_repeat } }
   }
   function pwinfo(gid) {
     var pwdstr = $('input[u="' + gid + '"]').attr('value')
@@ -3264,7 +3274,7 @@
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = timestr(pwtime)
-            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).html(thspt.icon)
           }
         }
       }
@@ -3304,7 +3314,7 @@
               var pwtime = new Date()
               pwtime.setTime(thstime)
               var pwtimestr = timestr(pwtime)
-              $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+              $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).html(thspt.icon)
             }
           }
         }
@@ -3350,7 +3360,7 @@
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = timestr(pwtime)
-            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).html(thspt.icon)
           }
         }
       }
@@ -3628,7 +3638,7 @@
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = timestr(pwtime)
-            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box[hash="' + hash + '"] .boxtitle .checkpwd').attr('pt', thspt.p).html(thspt.icon)
           }
         }
       }
@@ -3925,7 +3935,7 @@
                 var pwtime = new Date()
                 pwtime.setTime(thstime)
                 var pwtimestr = timestr(pwtime)
-                $('.history .box[hash="' + hbbid + '"] .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+                $('.history .box[hash="' + hbbid + '"] .boxtitle .checkpwd').attr('pt', thspt.p).html(thspt.icon)
               }
             }
             r_index += 1
@@ -4202,7 +4212,7 @@
         $('.history').prepend('<div class="history_date_group" d="' + date_title_name + '"></div>')
         $('.history').prepend('<div class="history_date_title" d="' + date_title_name + '"><span>' + pwtime.getFullYear() + '</span><span>' + che(pwtime.getMonth() + 1) + '</span></div>')
       }
-      $('.history .history_date_group[d="' + date_title_name + '"]').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.str + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:55px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:100px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:145px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:190px">' + infoicon + '</div></div>');
+      $('.history .history_date_group[d="' + date_title_name + '"]').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.icon + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:55px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:100px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:145px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:190px">' + infoicon + '</div></div>');
       rclick('.history .box#' + pwgid + ' .btn1[h="' + pwgid + '"]')
       rclick('.history .box#' + pwgid + ' .boxtitle .checkpwd[h="' + pwgid + '"]')
       $('.history-filter').css({ 'display': 'block' })
@@ -4280,7 +4290,7 @@
             var pwtime = new Date()
             pwtime.setTime(thstime)
             var pwtimestr = timestr(pwtime)
-            $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).text(thspt.str)
+            $('.history .box#' + thsfid + ' .boxtitle .checkpwd').attr('pt', thspt.p).html(thspt.icon)
           }
 
         }
