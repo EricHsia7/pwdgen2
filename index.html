@@ -3485,6 +3485,7 @@
       var zpwtime = new Date()
       zpwtime.setTime(zthstime)
       var zpwtimestr = 'year:' + zpwtime.getFullYear() + ',month:' + che(zpwtime.getMonth() + 1) + ',date:' + che(zpwtime.getDate())
+      console.log(zpwtimestr)
       if (zpwtimestr.indexOf(searchtxt) > -1) {
         searchresultcount += 1
       }
