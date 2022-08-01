@@ -1958,7 +1958,7 @@
     }
 
     #custom_presets_add_icon_picker_search_input {
-      display: none
+      opacity: 0.3
     }
 
     @media (min-width: 600px) {
@@ -2357,7 +2357,7 @@
     <div class="custom-presets-add-box">
       <input type="text" placeholder="name" class="custom-presets-add-b10" id="name_custom_presets">
       <input type="text" placeholder="search icon" id="custom_presets_add_icon_picker_search_input"
-        class="custom-presets-add-b10">
+        class="custom-presets-add-b10" readonly="readonly">
       <div class="custom-presets-add-icon-picker" v="default" translate="no"></div>
       <input type="text" placeholder="custom" class="custom-presets-add-b10" id="custom_custom_presets">
     </div>
@@ -4500,7 +4500,7 @@
   }
 
   function icon_picker_search_initialize() {
-    $('#custom_presets_add_icon_picker_search_input').css({ 'display': 'block' })
+    $('#custom_presets_add_icon_picker_search_input').css({ 'opacity': '1' }).removeAttr('readonly')
     document.querySelector('#custom_presets_add_icon_picker_search_input').addEventListener("paste", function (e) {
       show_icon_picker_search_result()
     });
