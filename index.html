@@ -399,6 +399,7 @@
       padding-left: 0px;
       box-sizing: border-box;
       margin-top: 10px;
+      position: relative;
     }
 
     .history_date_title span {
@@ -406,13 +407,29 @@
       justify-content: center;
       align-items: center;
       background: var(--g-f4f4f4);
-      border-radius: 15px;
+      border-radius: 8px;
       padding: 5px;
       box-sizing: border-box;
       height: 28px;
       font-size: 15px;
       margin-right: 5px;
       color: var(--g-4e4e4e);
+      position: relative;
+    }
+
+    .history_date_title.loading span::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: calc(100% - 6px);
+      height: calc(100% - 6px);
+      background: var(--g-e3e3e3);
+      border-radius: 5px;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
     }
 
     .history_date_group {
