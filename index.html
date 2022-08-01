@@ -2046,6 +2046,10 @@
       --storage-3: #595959;
       --storage-4: #3d3d3d;
       --storage-5: #0e0e0e;
+      --check-strong-icon: #418274;
+      --check-passable-icon: #ebc069;
+      --check-fragile-icon: #da7a4b;
+      --check-unsafe-icon: #c43c3c;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -2064,6 +2068,10 @@
         --storage-3: #595959;
         --storage-4: #3d3d3d;
         --storage-5: #0e0e0e;
+        --check-strong-icon: #418274;
+        --check-passable-icon: #ebc069;
+        --check-fragile-icon: #da7a4b;
+        --check-unsafe-icon: #c43c3c;
       }
     }
   </style>
@@ -5011,7 +5019,7 @@
                 var iconloadattr = '1'
               }
               else {
-                var thspt = { 'p': '--', 'str': '--' ,'icon':''}
+                var thspt = { 'p': '--', 'str': '--', 'icon': '' }
                 var icon_dspoo = ''
                 var icon_copyoo = ''
                 var icon_saveoo = ''

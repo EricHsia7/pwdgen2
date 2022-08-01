@@ -13,6 +13,10 @@
     --storage-3: #4ec692;
     --storage-4: #39b17d;
     --storage-5: #2f9267;
+    --check-strong-icon: var(--g-4e4e4e);
+    --check-strong-icon: var(--g-4e4e4e);
+    --check-strong-icon: var(--g-4e4e4e);
+    --check-strong-icon: var(--g-4e4e4e);   
 }
 
 ::placeholder {
@@ -35,5 +39,9 @@
         --storage-3: #4ec692;
         --storage-4: #39b17d;
         --storage-5: #2f9267;
+        --check-strong-icon: var(--g-4e4e4e);
+        --check-strong-icon: var(--g-4e4e4e);
+        --check-strong-icon: var(--g-4e4e4e);
+        --check-strong-icon: var(--g-4e4e4e);       
     }
 }
