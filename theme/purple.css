@@ -13,6 +13,10 @@
  --storage-3: #6b3ead;
  --storage-4: #482085;
  --storage-5: #3a1a69;
+ --check-strong-icon: var(--g-4e4e4e);
+ --check-passable-icon: var(--g-4e4e4e);
+ --check-fragile-icon: var(--g-4e4e4e);
+ --check-unsafe-icon: var(--g-4e4e4e);
 }
 
 ::placeholder {
@@ -35,5 +39,9 @@
   --storage-3: #6b3ead;
   --storage-4: #482085;
   --storage-5: #3a1a69;
- }
+  --check-strong-icon: var(--g-4e4e4e);
+  --check-passable-icon: var(--g-4e4e4e);
+  --check-fragile-icon: var(--g-4e4e4e);
+  --check-unsafe-icon: var(--g-4e4e4e);
+  }
 }

@@ -13,6 +13,10 @@
     --storage-3: #595959;
     --storage-4: #3d3d3d;
     --storage-5: #0e0e0e;
+    --check-strong-icon: #418274;
+    --check-passable-icon: #ebc069;
+    --check-fragile-icon: #da7a4b;
+    --check-unsafe-icon: #c43c3c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,5 +35,9 @@
         --storage-3: #595959;
         --storage-4: #3d3d3d;
         --storage-5: #0e0e0e;
+        --check-strong-icon: #418274;
+        --check-passable-icon: #ebc069;
+        --check-fragile-icon: #da7a4b;
+        --check-unsafe-icon: #c43c3c;
     }
 }
