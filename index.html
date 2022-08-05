@@ -3026,7 +3026,7 @@
   }
   function local_storage_setitem(key, content) {
     try {
-      await localStorage.setItem(key, content)
+      localStorage.setItem(key, content)
     } catch (error) {
       console.log(error)
       if (!(localStorage.hasOwnProperty(key))) {
