@@ -3025,13 +3025,21 @@
     return (window.matchMedia('(display-mode: standalone)').matches);
   }
   function local_storage_setitem(key, content) {
-    localStorage.setItem(key, content).then(success => {
+    try {
+      var item = localStorage.setItem(key, content)
+    } catch (e) {
+      show_storage_full()
+    }
+    /*
+    .then(success => {
       console.log(success); // Success!
     }, err => {
       console.log(err); // Error!
       show_storage_full()
     });
-    // return item
+    */
+    return item
+
   }
   function encu(textu) {
     var eechars = "123456789";
