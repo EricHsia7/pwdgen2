@@ -3204,9 +3204,15 @@
     return { 'len': stle, 'check': stcc, 'time': sttt, 'storage': stog }
   }
   function strlengthtobytes(str) {
-    //return new Blob([str]).size
-    return String(str).length
+    var m = encodeURIComponent(str).match(/%[89ABab]/g);
+    return str.length + (m ? m.length : 0);
   }
+  /*
+    function strlengthtobytes(str) {
+      //return new Blob([str]).size
+      return String(str).length
+    }
+    */
   function storagesize(bytes) {
 
     var tokb = (1 / 1024)
