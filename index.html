@@ -2868,7 +2868,7 @@
         <div class="storage_full_action_list_title">
           Delete large password
         </div>
-        <div class="storage_full_action_list_btn">
+        <div class="storage_full_action_list_btn" r-click="show_delete_large_password()">
           Check
         </div>
       </li>
@@ -5305,6 +5305,7 @@
     if (storage_full_illustration_content_load === 0) {
       $('.storage_full_illustration_content').html('<img src="https://erichsia7.github.io/pwdgen2/resource/box.svg">')
       storage_full_illustration_content_load = 1
+      rclick('.storage_full_action_list_btn')
     }
   }
   function show_delete_large_password() {
@@ -5376,6 +5377,7 @@
     }
     $('.delete_large_password .delete_large_password_list .delete_large_password_box#' + largeid).remove()
     mes('password deleted.')
+    deletelargepwdconfirmcls()
   }
 
   function showsavedhistory() {
