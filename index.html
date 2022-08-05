@@ -5287,6 +5287,7 @@
   }
   function showsavedlargepassword() {
     //$('.delete_large_password_list').html('')
+    try {
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     for (var e = 0; e < savedlist.length; e++) {
       console.log(savedlist[e])
@@ -5325,6 +5326,11 @@
         rclick('.delete_large_password .delete_large_password_list .delete_large_password_box#' + pwgid + ' .delete_large_password_box_head_delete_btn')
       }
     }
+  }
+  catch (error) {
+console.log(error)
+    }
+
   }
   function showsavedhistory() {
     var saveddate = {}
