@@ -3026,14 +3026,14 @@
   }
   function local_storage_setitem(key, content) {
     try {
-      localStorage.setItem(key, content)
+      await localStorage.setItem(key, content)
     } catch (error) {
       console.log(error)
       if (!(localStorage.hasOwnProperty(key))) {
         show_storage_full()
       }
     }
-   // return item
+    // return item
   }
   function encu(textu) {
     var eechars = "123456789";
