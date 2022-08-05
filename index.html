@@ -4369,7 +4369,7 @@
     }
     var pwlen = parseInt(pwjson.s_length)
     if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
-      $('body').prompt({ 'message': 'Please enter a value between 8 and 32768', 'time': 3000 });
+      $('body').prompt({ 'message': 'length must be between 8 and 32768', 'time': 3000 });
     }
     else {
 
