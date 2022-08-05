@@ -3204,7 +3204,8 @@
     return { 'len': stle, 'check': stcc, 'time': sttt, 'storage': stog }
   }
   function strlengthtobytes(str) {
-    return new Blob([str]).size
+    //return new Blob([str]).size
+    return String(str).length
   }
   function storagesize(bytes) {
 
