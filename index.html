@@ -5290,6 +5290,7 @@
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var savedlist_len = savedlist.length
     for (var i = 0; i < savedlist_len; i++) {
+      console.log(savedlist[i])
       console.log(i)
       if (!(localStorage.getItem(savedlist[i]) === null)) {
         var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
