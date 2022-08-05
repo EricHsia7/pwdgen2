@@ -3204,8 +3204,7 @@
     return { 'len': stle, 'check': stcc, 'time': sttt, 'storage': stog }
   }
   function strlengthtobytes(str) {
-    var m = encodeURIComponent(str).match(/%[89ABab]/g);
-    return str.length + (m ? m.length : 0);
+    return str.length*16/(0.008*1024)
   }
   /*
     function strlengthtobytes(str) {
