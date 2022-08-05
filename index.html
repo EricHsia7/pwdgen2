@@ -877,7 +877,8 @@
     .filter-date-picker-mask,
     .custom-presets-add-mask,
     .custom-presets-manager-mask,
-    .history_filter_fulllist_mask {
+    .history_filter_fulllist_mask,
+    .delete_large_confirm_mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -889,7 +890,8 @@
       user-select: none;
     }
 
-    .confirm {
+    .confirm,
+    .delete_large_confirm {
       width: var(--u-width);
       height: 170px;
       background: var(--g-f4f4f4);
@@ -903,7 +905,8 @@
       user-select: none;
     }
 
-    .confirm .confirmtitle {
+    .confirm .confirmtitle,
+    .delete_large_confirm .delete_large_confirm_title {
       position: absolute;
       top: 15px;
       left: 15px;
@@ -914,6 +917,10 @@
       -webkit-user-select: none;
       user-select: none;
       overflow: hidden
+    }
+
+    .delete_large_confirm .delete_large_confirm_title {
+      height: 80px;
     }
 
     .confirm .confirminput {
@@ -2909,6 +2916,16 @@
   <div class="delete_large_password_title" style="display:none;">
     Delete large password
   </div>
+
+  <div class="delete_large_confirm_mask"></div>
+  <div class="delete_large_confirm">
+    <div class="delete_large_confirm_title">
+      Confirm delete?
+    </div>
+    <div class="btn3" r-click="" id="delete_large_confirm_btn3">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="deletelargepwdconfirmcls()">Cancel</div>
+  </div>
+
 
 
   <div class="restoredata">
@@ -5320,13 +5337,31 @@
           continue;
         }
         var storage_str = storagesize(stog)
-        var htm = '<div class="delete_large_password_box" id="' + pwgid + '"><div class="delete_large_password_box_head"><div class="delete_large_password_box_head_size">' + storage_str + '</div><div class="delete_large_password_box_head_delete_btn" r-click="deletelargepasswordbyhash(' + "'" + hash + "'" + ',' + "'" + pwgid + "'" + ')">Delete</div></div><div class="delete_large_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
+        var htm = '<div class="delete_large_password_box" id="' + pwgid + '"><div class="delete_large_password_box_head"><div class="delete_large_password_box_head_size">' + storage_str + '</div><div class="delete_large_password_box_head_delete_btn" r-click="deletelargepwdconfirm(' + "'" + hash + "'" + ',' + "'" + pwgid + "'" + ')">Delete</div></div><div class="delete_large_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
         $('.delete_large_password .delete_large_password_list').append(htm)
         $('.delete_large_password .delete_large_password_list .delete_large_password_box#' + pwgid + ' textarea').val(notetext)
         rclick('.delete_large_password .delete_large_password_list .delete_large_password_box#' + pwgid + ' .delete_large_password_box_head_delete_btn')
       }
     }
   }
+  function deletelargepwdconfirm(hash, gid) {
+    $('.delete_large_confirm_mask,.delete_large_confirm').css({ 'opacity': '0', 'display': 'block' })
+    $('.delete_large_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+
+    setTimeout(function () {
+      $('.delete_large_confirm_mask,.delete_large_confirm').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.delete_large_confirm').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+    $('#delete_large_confirm_btn3').attr('r-click', "deletelargepasswordbyhash('" + hash + "','" + gid + "')")
+  }
+  function deletelargepwdconfirmcls() {
+    $('.delete_large_confirm_mask,.delete_large_confirm').css({ 'opacity': '0' })
+    $('.delete_large_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.delete_large_confirm_mask,.delete_large_confirm').css({ 'display': 'none', 'transition': '0s' });
+    }, 300);
+  }
+
   function deletelargepasswordbyhash(hash, largeid) {
     if (localStorage.hasOwnProperty('pwdgen2_saved_a_' + hash)) {
       localStorage.removeItem('pwdgen2_saved_a_' + hash)
@@ -5337,6 +5372,7 @@
     $('.delete_large_password .delete_large_password_list .delete_large_password_box#' + largeid).remove()
     mes('password deleted.')
   }
+
   function showsavedhistory() {
     var saveddate = {}
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
@@ -5592,7 +5628,7 @@
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
 
-  rclick('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8')
+  rclick('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8,.delete_large_confirm .btn3')
 
   function deleteallsavedpwds() {
     if ($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
