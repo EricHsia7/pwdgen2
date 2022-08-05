@@ -5289,10 +5289,10 @@
     //$('.delete_large_password_list').html('')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var savedlist_len = savedlist.length
-    for (var i = 0; i < savedlist_len; i++) {
+    for (var e = 0; e < savedlist.length; e++) {
       console.log(savedlist[i])
       console.log(i)
-      if (!(localStorage.getItem(savedlist[i]) === null)) {
+      if (!(localStorage.getItem(savedlist[e]) === null)) {
         var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
         var pwtime = new Date()
         pwtime.setTime(thpwdd[2])
