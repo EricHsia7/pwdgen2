@@ -3025,11 +3025,12 @@
     return (window.matchMedia('(display-mode: standalone)').matches);
   }
   function local_storage_setitem(key, content) {
-    try {
-      localStorage.setItem(key, content)
-    } catch (error) {
+    localStorage.setItem(key, content).then(success => {
+      console.log(success); // Success!
+    }, err => {
+      console.log(err); // Error!
       show_storage_full()
-    }
+    });
     // return item
   }
   function encu(textu) {
