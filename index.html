@@ -3024,23 +3024,17 @@
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
   }
-  function local_storage_setitem(key, content) {
+  /*
+  function localstoragesetItem(key, content) {
     try {
       var item = localStorage.setItem(key, content)
     } catch (e) {
       show_storage_full()
     }
-    /*
-    .then(success => {
-      console.log(success); // Success!
-    }, err => {
-      console.log(err); // Error!
-      show_storage_full()
-    });
-    */
     return item
-
   }
+  //#bug-58630001
+  */
   function encu(textu) {
     var eechars = "123456789";
     var eeid = "";
@@ -3301,7 +3295,7 @@
       }
       var psehash = 'pwch_cache_' + sha256(ddpw + '_' + ddt)
       var chtt = new Date().getTime()
-      local_storage_setitem(psehash, chtt + ':' + Math.floor(rsp * 100))
+      localStorage.setItem(psehash, chtt + ':' + Math.floor(rsp * 100))
     }
     var det_evdis = (len1 - ((bha / 100) * len1) + len2 * 0.02) / len0 * 100
     //Evenly distributed
@@ -3419,7 +3413,7 @@
         setTimeout(testsessionStorage, 1);
 
       } catch (error) {
-        local_storage_setitem('storage_size', String(sessionStorage.getItem('sizetest')).length)
+        localStorage.setItem('storage_size', String(sessionStorage.getItem('sizetest')).length)
       }
       return testsessionStorage()
     }
@@ -3558,7 +3552,7 @@
       var ddt = $('.history .box#' + key).attr('t')
       var hash = sha256($('input[u="' + key + '"]').attr('value') + '_' + ddt)
     }
-    local_storage_setitem('pwdgen2_recent_access_' + hash, new Date().getTime())
+    localStorage.setItem('pwdgen2_recent_access_' + hash, new Date().getTime())
   }
   function history_date_title_check(date_arr, search, skeletonscreen) {
     if (skeletonscreen) {
@@ -4043,14 +4037,14 @@
     var ddt = $('.history .box#' + gid).attr('t')
     var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
     var psehash = 'pwdgen2_saved_a_' + sha256($('.history .box#' + gid + ' input[u="' + gid + '"]').attr('value') + '_' + ddt)
-    local_storage_setitem(psehash, pse)
+    localStorage.setItem(psehash, pse)
     markasrecentaccess(0, gid)
     if (String($('.history .box#' + gid + ' .saveoo[h="' + gid + '"]').attr('g')) === '0') {
       $('.history .box#' + gid + ' .saveoo[h="' + gid + '"]').attr('g', '1')
       if (shwmes) {
         mes('saved')
       }
-      local_storage_setitem(psehash, pse)
+      localStorage.setItem(psehash, pse)
     }
     else {
       $('.history .box#' + gid + ' .saveoo[h="' + gid + '"]').attr('g', '0')
@@ -4095,7 +4089,7 @@
   function pwnotes_ev(e, psehash, txthash, gide) {
     if ($('textarea[j="' + txthash + '"]').length > 0) {
       var pseb = btoa(enur($('textarea[j="' + txthash + '"]').val()))
-      local_storage_setitem(psehash, pseb)
+      localStorage.setItem(psehash, pseb)
       var notehashtags = gethashtags($('textarea[j="' + txthash + '"]').val(), false)
       $('.history .box#' + gide).attr('hashtag', notehashtags.join(','))
     }
@@ -4384,15 +4378,15 @@
   }
   $('.switch input').click(function () {
     if ($(this).prop('checked')) {
-      local_storage_setitem('pw_options_' + $(this).attr('jg'), '1')
+      localStorage.setItem('pw_options_' + $(this).attr('jg'), '1')
     }
     else {
-      local_storage_setitem('pw_options_' + $(this).attr('jg'), '0')
+      localStorage.setItem('pw_options_' + $(this).attr('jg'), '0')
     }
     saveoptions()
   })
   $('.page2 input[type="text"]').keyup(function () {
-    local_storage_setitem('pw_options_' + $(this).attr('jg'), $(this).val())
+    localStorage.setItem('pw_options_' + $(this).attr('jg'), $(this).val())
     saveoptions()
   })
 
@@ -4618,7 +4612,7 @@
                 dellist.push(savedlist[i])
                 localStorage.removeItem(savedlist[i])
                 if (savedlist.indexOf(savedlist[i]) > -1) {
-                  local_storage_setitem('pwdgen2_saved_list', String(localStorage.getItem('pwdgen2_saved_list')).replaceAll(',' + savedlist[i], '').replaceAll(savedlist[i], ''))
+                  localStorage.setItem('pwdgen2_saved_list', String(localStorage.getItem('pwdgen2_saved_list')).replaceAll(',' + savedlist[i], '').replaceAll(savedlist[i], ''))
                 }
               }
 
@@ -5016,7 +5010,7 @@
           var icons_url = 'https://api.github.com/repos/google/material-design-icons/git/trees/master'
           var f_iconlist = []
           if (!(localStorage.hasOwnProperty('material_design_icons_list_update'))) {
-            local_storage_setitem('material_design_icons_list_update', '0')
+            localStorage.setItem('material_design_icons_list_update', '0')
           }
           if ((new Date().getTime() - parseInt(String(localStorage.getItem('material_design_icons_list_update')))) < 15778463000) {
             setTimeout(function () {
@@ -5052,8 +5046,8 @@
                                   $('.custom-presets-add-icon-picker').append('<div class="custom_presets_add_icon_picker_icon" n="' + e3.tree[s].path + '" load="1" icon-d="' + idddd + '" r-click="custompresetsiconpickerchange(' + "'" + idddd + "'" + ',true)"><div class="custom_presets_add_icon_picker_icon_spanbox"><span class="material-symbols-outlined" translate="no">' + e3.tree[s].path + '</span></div></div>')
                                   rclick('.custom_presets_add_icon_picker_icon[icon-d="' + idddd + '"]')
                                 }
-                                local_storage_setitem('material_design_icons_list', f_iconlist.join(','))
-                                local_storage_setitem('material_design_icons_list_update', new Date().getTime())
+                                localStorage.setItem('material_design_icons_list', f_iconlist.join(','))
+                                localStorage.setItem('material_design_icons_list_update', new Date().getTime())
                                 $('.custom_presets_add_icon_picker_icon[load="0"]').remove()
                                 if (custom_presets_icon_picker_scrolled === 0) {
                                   custompresetsiconpickerscroll('no', custom_presets_icon_picker_scroll_name)
@@ -5236,7 +5230,7 @@
       }
     }
 
-    local_storage_setitem(p_hx, JSON.stringify(p_json))
+    localStorage.setItem(p_hx, JSON.stringify(p_json))
     closecustompresetsadd()
     custompresets()
     mes('Custom preset added')
@@ -5302,7 +5296,7 @@
     if (localStorage.hasOwnProperty(oldhx)) {
       localStorage.removeItem(oldhx)
     }
-    local_storage_setitem(p_hx, JSON.stringify(p_json))
+    localStorage.setItem(p_hx, JSON.stringify(p_json))
     closecustompresetsadd()
     custompresets()
     mes('Custom preset edited')
@@ -5628,7 +5622,7 @@
         var vrandomNumber = Math.floor(Math.random() * vidchars.length);
         vid += vidchars.substring(vrandomNumber, vrandomNumber + 1);
       }
-      local_storage_setitem('pw_version_id', vt + '.' + vid)
+      localStorage.setItem('pw_version_id', vt + '.' + vid)
       return [vt, vid];
     }
     else {
@@ -5753,7 +5747,7 @@
     var theme_version = version_id(false).join('.');
     if (themenamelist.indexOf(od) > -1) {
       theme_css = 'https://erichsia7.github.io/pwdgen2/theme/' + od + '.css';
-      local_storage_setitem('pw_theme_n', od)
+      localStorage.setItem('pw_theme_n', od)
     }
     else {
       return ''
@@ -5779,8 +5773,8 @@
       }
       $.ajax({
         type: 'get', url: theme_css + '?' + new Date().getTime(), dataType: 'text', success: function (e) {
-          local_storage_setitem('pw_theme_' + od + '_ld', theme_version);
-          local_storage_setitem('pw_theme_' + od, e);
+          localStorage.setItem('pw_theme_' + od + '_ld', theme_version);
+          localStorage.setItem('pw_theme_' + od, e);
           settheme(e)
           if (showmes) {
             mes('The theme has been applied')
@@ -5882,8 +5876,8 @@
       if (m === 0) {
         //overwrite
         //localStorage start
-        local_storage_setitem('pwdgen2_saved_a_' + whash, waes + ':' + wiv + ':' + wtt)
-        local_storage_setitem('pwdgen2_saved_notes_cf_' + whash, wnt)
+        localStorage.setItem('pwdgen2_saved_a_' + whash, waes + ':' + wiv + ':' + wtt)
+        localStorage.setItem('pwdgen2_saved_notes_cf_' + whash, wnt)
         //localStorage end
       }
       if (m === 1) {
@@ -5915,13 +5909,13 @@
         else {
 
         }
-        local_storage_setitem('pwdgen2_saved_a_' + whash, waes + ':' + wiv + ':' + wtt)
-        local_storage_setitem('pwdgen2_saved_notes_cf_' + whash, wnt)
+        localStorage.setItem('pwdgen2_saved_a_' + whash, waes + ':' + wiv + ':' + wtt)
+        localStorage.setItem('pwdgen2_saved_notes_cf_' + whash, wnt)
 
         //localStorage end
       }
       if (m === 2) {
-        local_storage_setitem(wpw.key, wpw.content)
+        localStorage.setItem(wpw.key, wpw.content)
       }
     }
   }
