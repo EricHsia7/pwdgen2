@@ -3203,15 +3203,17 @@
 
     return { 'len': stle, 'check': stcc, 'time': sttt, 'storage': stog }
   }
+  /*
   function strlengthtobytes(str) {
     return str.length*16/(0.008*1024)
   }
-  /*
+  */
+  
     function strlengthtobytes(str) {
-      //return new Blob([str]).size
-      return String(str).length
+      return (new Blob([str]).size)/2
+      //return String(str).length
     }
-    */
+    
   function storagesize(bytes) {
 
     var tokb = (1 / 1024)
