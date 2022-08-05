@@ -55,7 +55,8 @@
     }
 
     .title,
-    .title2 {
+    .title2,
+    .storage_full_title {
       position: fixed;
       top: 0;
       right: 0;
@@ -600,7 +601,8 @@
       height: 16px
     }
 
-    .page2 {
+    .page2,
+    .storage_full {
       width: 100%;
       height: calc(100% - 55px);
       background: var(--g-ffffff);
@@ -2614,6 +2616,13 @@
     <div class="btn3" style="left:calc(50% + 5px)" r-click="confirmcls()">Cancel</div>
   </div>
 
+  <div class="storage_full_title" style="display:none;">
+
+  </div>
+  <div class="storage_full" style="display:none">
+
+  </div>
+
   <div class="restoredata">
     <div class="restoredatatitle">
       After confirming the restore, you "cannot" cancel it
@@ -2628,6 +2637,8 @@
     <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">Your browser does not
       support.</span>
   </div>
+
+
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
