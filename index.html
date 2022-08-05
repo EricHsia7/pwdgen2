@@ -5311,7 +5311,7 @@
           xntl = 0
         }
         var stog = strlengthtobytes(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash)) + strlengthtobytes('pwdgen2_saved_notes_cf_' + hash) + xntl + strlengthtobytes(xnt)
-        if (!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)) > -1)) {
+        if (!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + hash) > -1)) {
           stog = 0
         }
         if (stog < 10000) {
