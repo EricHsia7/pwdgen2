@@ -5280,7 +5280,13 @@
       storage_full_illustration_content_load = 1
     }
   }
+  function show_delete_large_password() {
+    $('.delete_large_password_title').css({ 'display': 'flex' })
+    $('.delete_large_password').css({ 'display': 'block' })
+    showsavedlargepassword()
+  }
   function showsavedlargepassword() {
+    $('.delete_large_password_list').html('')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     savedlist_len = savedlist.length
     for (var i = 0; i < savedlist_len; i++) {
