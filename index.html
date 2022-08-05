@@ -3028,10 +3028,7 @@
     try {
       localStorage.setItem(key, content)
     } catch (error) {
-      console.log(error)
-      if (!(localStorage.hasOwnProperty(key))) {
-        show_storage_full()
-      }
+      show_storage_full()
     }
     // return item
   }
