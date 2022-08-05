@@ -921,6 +921,9 @@
 
     .delete_large_confirm .delete_large_confirm_title {
       height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .confirm .confirminput {
@@ -938,7 +941,8 @@
       color: var(--g-4e4e4e)
     }
 
-    .confirm .btn3 {
+    .confirm .btn3,
+    .delete_large_confirm .btn3 {
       position: absolute;
       top: calc(15px + 55px + 35px + 5px);
       left: 15px;
