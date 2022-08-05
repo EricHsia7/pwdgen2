@@ -2898,17 +2898,7 @@
   </div>
 
   <div class="delete_large_password" style="display:none;">
-    <div class="delete_large_password_list">
-      <div class="delete_large_password_box">
-        <div class="delete_large_password_box_head">
-          <div class="delete_large_password_box_head_size">10 kb</div>
-          <div class="delete_large_password_box_head_delete_btn">Delete</div>
-        </div>
-        <div class="delete_large_password_box_title">Date</div>
-        <input type="text" readonly="readonly" placeholder="password" value="password">
-        <textarea readonly="readonly" placeholder="Note"></textarea>
-      </div>
-    </div>
+    <div class="delete_large_password_list"></div>
   </div>
 
   <div class="delete_large_password_title" style="display:none;">
@@ -5288,6 +5278,38 @@
     if (storage_full_illustration_content_load === 0) {
       $('.storage_full_illustration_content').html('<img src="https://erichsia7.github.io/pwdgen2/resource/box.svg">')
       storage_full_illustration_content_load = 1
+    }
+  }
+  function showsavedlargepassword() {
+    var savedlist = searchItemsbyname('pwdgen2_saved_a_')
+    savedlist_len = savedlist.length
+    for (var i = 0; i < savedlist_len; i++) {
+      var thpwdd = String(localStorage.getItem(savedlist[i])).split(':')
+      var pwtime = new Date()
+      pwtime.setTime(thpwdd[2])
+      var pwtimestr = timestr(pwtime)
+      var pw = deur(decu(thpwdd[0], thpwdd[1]))
+      var pwgid = gid('largelist')
+      var hash = sha256(pw + '_' + pwtime.getTime())
+      var notetext = ''
+      if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
+        notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
+      }
+      var xnt = localStorage.getItem(savedlist[i]);
+      var xntl = strlengthtobytes(savedlist[i])
+      if (xnt === null) {
+        xnt = ''
+        xntl = 0
+      }
+      var stog = strlengthtobytes(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash)) + strlengthtobytes('pwdgen2_saved_notes_cf_' + hash) + xntl + strlengthtobytes(xnt)
+      if (!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)) > -1)) {
+        stog = 0
+      }
+      var storage_str = storagesize(stog)
+      var htm = '<div class="delete_large_password_box" id="' + pwgid + '"><div class="delete_large_password_box_head"><div class="delete_large_password_box_head_size">' + storage_str + '</div><div class="delete_large_password_box_head_delete_btn" r-click="deletelargepasswordbyhash(' + "'" + hash + "'" + ')">Delete</div></div><div class="delete_large_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
+      $('.delete_large_password .delete_large_password_list').append(htm)
+      $('.delete_large_password .delete_large_password_list .delete_large_password_box#' + pwgid + ' textarea').val(notetext)
+      rclick('.delete_large_password .delete_large_password_list .delete_large_password_box#' + pwgid + ' .delete_large_password_box_head_delete_btn')
     }
   }
   function showsavedhistory() {
