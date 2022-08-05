@@ -5005,7 +5005,8 @@
   }
   var storage_full_illustration_content_load = 0
   function show_storage_full() {
-    $('.storage_full_title,.storage_full').css({ 'display': 'block' })
+    $('.storage_full').css({ 'display': 'block' })
+    $('.storage_full_title').css({ 'display': 'flex' })
     if (storage_full_illustration_content_load === 0) {
       $('.storage_full_illustration_content').html('<img src="https://erichsia7.github.io/pwdgen2/resource/box.svg">')
       storage_full_illustration_content_load = 1
