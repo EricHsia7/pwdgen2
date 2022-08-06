@@ -823,7 +823,9 @@
       justify-content: flex-start;
       align-items: flex-start;
       height: 20px;
-      top: 15px;
+      position: relative;
+      top: 0px;
+      left: 0px;
     }
 
     .options_list_txt input[type="text"] {
@@ -1397,6 +1399,7 @@
       overflow: hidden;
       display: flex;
       align-items: center;
+      margin-bottom: 3px;
     }
 
     .storage-usage-bar {
@@ -2726,7 +2729,7 @@
       <div class="options_list_txt">Storage</div>
       <div class="options_list_txt" dy="storageusagetext"><span>--</span></div>
     </li>
-    <li class="options_list merge-c">
+    <li class="options_list merge-c options_list_center">
       <div class="storage-usage-bar-box"></div>
       <div class="options_list_txt" dy="storageusagetype">
         --
