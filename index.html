@@ -2315,11 +2315,10 @@
     .clean_up_password_box.loading2 .l-textarea::after {
       position: absolute;
       content: '';
-      top: 5px;
+      top: 0px;
       left: 0px;
       width: 100%;
-      height: calc(100% - 10px);
-      border-radius: 8px;
+      height: 100%;
       background: var(--g-e3e3e3);
       user-select: none;
       -webkit-user-select: none;
@@ -2328,6 +2327,11 @@
       animation-iteration-count: var(--e-animation-iteration-count);
       animation-timing-function: var(--e-animation-timing-function);
       display: block;
+    }
+
+    .clean_up_password_box.loading2 .l-textarea::after {
+      height: calc(100% - 10px);
+      top: 5px;
     }
 
     .clean_up_btn {
