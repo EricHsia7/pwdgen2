@@ -2931,6 +2931,16 @@
   </div>
   <div class="storage_clean_title" style="display:none;">
     Clean up storage
+    <div class="btn2-l" r-click="hide_storage_clean()">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)"
+          fill-rule="evenodd" opacity="1" stroke="none" />
+      </svg>
+    </div>
+
   </div>
 
   <div class="delete_large_password" style="display:none;">
@@ -5340,6 +5350,9 @@
       storage_clean_illustration_content_load = 1
       rclick('.storage_clean_action_list_btn')
     }
+  }
+  function hide_storage_clean() {
+    $('.storage_clean,.storage_clean_title').css({ 'display': 'none' })
   }
   function show_delete_large_password() {
     $('.delete_large_password_title').css({ 'display': 'flex' })
