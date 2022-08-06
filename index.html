@@ -56,7 +56,7 @@
 
     .title,
     .title2,
-    .storage_full_title,
+    .storage_clean_title,
     .delete_large_password_title {
       position: fixed;
       top: 0;
@@ -603,7 +603,7 @@
     }
 
     .page2,
-    .storage_full,
+    .storage_clean,
     .delete_large_password {
       width: 100%;
       height: calc(100% - 55px);
@@ -776,6 +776,10 @@
       align-items: center;
     }
 
+    .options_list_center_column {
+      flex-direction: column;
+    }
+
     .options_list[dsb="1"] {
       opacity: .35
     }
@@ -817,11 +821,16 @@
     }
 
     .options_list_txt[dy="storageusagetype"] {
-      display: flex;
+      display: inline-flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: flex-start;
-      align-items: flex-start
+      align-items: flex-start;
+      max-height: 24px;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      width: calc(100% - 20px);
     }
 
     .options_list_txt input[type="text"] {
@@ -1388,13 +1397,14 @@
 
     .storage-usage-bar-box {
       width: calc(100% - 20px);
-      height: 35px;
+      height: 8px;
       background: var(--g-e3e3e3);
       border-radius: 10px;
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
+      margin-bottom: 2px;
     }
 
     .storage-usage-bar {
@@ -2009,8 +2019,8 @@
       opacity: 0.3
     }
 
-    .storage_full_illustration_skeleton,
-    .storage_full_illustration_content {
+    .storage_clean_illustration_skeleton,
+    .storage_clean_illustration_content {
       position: absolute;
       top: 30px;
       left: 50%;
@@ -2022,14 +2032,14 @@
       align-items: center;
     }
 
-    .storage_full_illustration_skeleton {
+    .storage_clean_illustration_skeleton {
       animation-name: var(--e-animation-name);
       animation-duration: var(--e-animation-duration);
       animation-iteration-count: var(--e-animation-iteration-count);
       animation-timing-function: var(--e-animation-timing-function);
     }
 
-    .storage_full_title2 {
+    .storage_clean_title2 {
       position: absolute;
       top: 300px;
       left: 0px;
@@ -2044,7 +2054,7 @@
       color: var(--g-4e4e4e)
     }
 
-    .storage_full_paragraph {
+    .storage_clean_paragraph {
       position: absolute;
       top: 345px;
       left: 0px;
@@ -2057,7 +2067,7 @@
       text-align: center;
     }
 
-    .storage_full_action {
+    .storage_clean_action {
       position: absolute;
       top: 395px;
       left: 50%;
@@ -2069,7 +2079,7 @@
       padding-bottom: 100px;
     }
 
-    .storage_full_action h3 {
+    .storage_clean_action h3 {
       margin: 0px;
       padding: 5px;
       box-sizing: border-box;
@@ -2079,7 +2089,7 @@
       color: var(--g-4e4e4e)
     }
 
-    .storage_full_action li {
+    .storage_clean_action li {
       width: 100%;
       height: 45px;
       position: relative;
@@ -2091,11 +2101,11 @@
       border-bottom: 1px solid var(--g-e3e3e3);
     }
 
-    .storage_full_action li:nth-last-child(1) {
+    .storage_clean_action li:nth-last-child(1) {
       border: none
     }
 
-    .storage_full_action_list_title {
+    .storage_clean_action_list_title {
       position: absolute;
       top: 5px;
       left: 5px;
@@ -2109,7 +2119,7 @@
       color: var(--g-4e4e4e)
     }
 
-    .storage_full_action_list_btn {
+    .storage_clean_action_list_btn {
       position: absolute;
       top: 5px;
       right: 5px;
@@ -2127,8 +2137,8 @@
       color: var(--g-4e4e4e)
     }
 
-    .storage_full_illustration_skeleton svg,
-    .storage_full_illustration_content img {
+    .storage_clean_illustration_skeleton svg,
+    .storage_clean_illustration_content img {
       width: var(--u-width);
     }
 
@@ -2724,13 +2734,22 @@
       <div class="options_list_txt">Storage</div>
       <div class="options_list_txt" dy="storageusagetext"><span>--</span></div>
     </li>
-    <li class="options_list merge-c options_list_center">
-      <div class="storage-usage-bar-box">
-      </div>
-    </li>
-    <li class="options_list merge-b">
+    <li class="options_list merge-c options_list_center options_list_center_column">
+      <div class="storage-usage-bar-box"></div>
       <div class="options_list_txt" dy="storageusagetype">
         --
+      </div>
+    </li>
+    <li class="options_list merge-b" dy="cleanupstorage" r-click="show_storage_clean()">
+      Clean up
+      <div class="options_list_icon">
+        <svg stroke-miterlimit="10"
+          style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+          viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M18.8548 64L13.1452 58.2905L39.4357 32L13.1452 5.70954L18.8548-7.10543e-15L50.8548 32L18.8548 64Z"
+            fill="var(--g-4e4e4e)" fill-rule="nonzero" opacity="1" stroke="none" />
+        </svg>
       </div>
     </li>
 
@@ -2848,8 +2867,8 @@
     <div class="btn3" style="left:calc(50% + 5px)" r-click="confirmcls()">Cancel</div>
   </div>
 
-  <div class="storage_full" style="display:none">
-    <div class="storage_full_illustration_skeleton">
+  <div class="storage_clean" style="display:none">
+    <div class="storage_clean_illustration_skeleton">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 250 200" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2859,58 +2878,58 @@
           fill="var(--g-e3e3e3)" fill-rule="nonzero" opacity="1" stroke="none" />
       </svg>
     </div>
-    <div class="storage_full_illustration_content"></div>
-    <div class="storage_full_title2">Storage full</div>
-    <div class="storage_full_paragraph">You must clear the storage to continue using</div>
-    <div class="storage_full_action">
+    <div class="storage_clean_illustration_content"></div>
+    <div class="storage_clean_title2">Storage full</div>
+    <div class="storage_clean_paragraph">You must clear the storage to continue using</div>
+    <div class="storage_clean_action">
       <h3>Actions</h3>
       <li>
-        <div class="storage_full_action_list_title">
+        <div class="storage_clean_action_list_title">
           Delete large password
         </div>
-        <div class="storage_full_action_list_btn" r-click="show_delete_large_password()">
+        <div class="storage_clean_action_list_btn" r-click="show_delete_large_password()">
           Check
         </div>
       </li>
 
       <li>
-        <div class="storage_full_action_list_title">
+        <div class="storage_clean_action_list_title">
           Delete old password
         </div>
-        <div class="storage_full_action_list_btn">
+        <div class="storage_clean_action_list_btn">
           Check
         </div>
       </li>
 
       <li>
-        <div class="storage_full_action_list_title">
+        <div class="storage_clean_action_list_title">
           Clear cache
         </div>
-        <div class="storage_full_action_list_btn">
+        <div class="storage_clean_action_list_btn">
           Clear
         </div>
       </li>
 
       <li>
-        <div class="storage_full_action_list_title">
+        <div class="storage_clean_action_list_title">
           Turn on auto delete
         </div>
-        <div class="storage_full_action_list_btn">
+        <div class="storage_clean_action_list_btn">
           Turn on
         </div>
       </li>
 
       <li>
-        <div class="storage_full_action_list_title">
+        <div class="storage_clean_action_list_title">
           Backup data and clear storage
         </div>
-        <div class="storage_full_action_list_btn">
+        <div class="storage_clean_action_list_btn">
           Backup
         </div>
       </li>
     </div>
   </div>
-  <div class="storage_full_title" style="display:none;">
+  <div class="storage_clean_title" style="display:none;">
     Notice
   </div>
 
@@ -3029,7 +3048,7 @@
     try {
       var item = localStorage.setItem(key, content)
     } catch (e) {
-      show_storage_full()
+      show_storage_clean()
     }
     return item
   }
@@ -5312,14 +5331,14 @@
   function loadgooglefont() {
     $('head').append('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400&display=swap" rel="stylesheet">')
   }
-  var storage_full_illustration_content_load = 0
-  function show_storage_full() {
-    $('.storage_full').css({ 'display': 'block' })
-    $('.storage_full_title').css({ 'display': 'flex' })
-    if (storage_full_illustration_content_load === 0) {
-      $('.storage_full_illustration_content').html('<img src="https://erichsia7.github.io/pwdgen2/resource/box.svg">')
-      storage_full_illustration_content_load = 1
-      rclick('.storage_full_action_list_btn')
+  var storage_clean_illustration_content_load = 0
+  function show_storage_clean() {
+    $('.storage_clean').css({ 'display': 'block' })
+    $('.storage_clean_title').css({ 'display': 'flex' })
+    if (storage_clean_illustration_content_load === 0) {
+      $('.storage_clean_illustration_content').html('<img src="https://erichsia7.github.io/pwdgen2/resource/box.svg">')
+      storage_clean_illustration_content_load = 1
+      rclick('.storage_clean_action_list_btn')
     }
   }
   function show_delete_large_password() {
@@ -5654,7 +5673,7 @@
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
 
-  rclick('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8,.delete_large_confirm .btn3')
+  rclick('.options_list[dy="cleanupstorage"],.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8,.delete_large_confirm .btn3')
 
   function deleteallsavedpwds() {
     if ($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
