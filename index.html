@@ -2206,6 +2206,19 @@
       -webkit-user-select: none;
     }
 
+    .clean_up_password_box.loading .clean_up_password_box_head_size::after {
+      width: 120px;
+      height: 25px;
+      background: var(--g-e3e3e3);
+      border-radius: 8px;
+      user-select: none;
+      -webkit-user-select: none;
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 0px;
+    }
+
     .clean_up_password_box_head_delete_btn {
       position: absolute;
       top: 5px;
@@ -2223,6 +2236,10 @@
       -webkit-user-select: none;
     }
 
+    .clean_up_password_box.loading .clean_up_password_box_head_delete_btn {
+      color: rgba(0, 0, 0, 0);
+    }
+
     .clean_up_password_box_title {
       position: absolute;
       top: 45px;
@@ -2237,6 +2254,20 @@
       user-select: none;
       -webkit-user-select: none;
     }
+
+    .clean_up_password_box.loading .clean_up_password_box_title::after {
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      background: var(--g-e3e3e3);
+      border-radius: 8px;
+      user-select: none;
+      -webkit-user-select: none;
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
+
 
     .clean_up_password_box input[type="text"],
     .clean_up_password_box textarea {
@@ -2260,6 +2291,20 @@
     .clean_up_password_box textarea {
       height: 100px;
       top: 105px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_box.loading input[type="text"]::after,
+    .clean_up_password_box.loading textarea::after {
+      position: absolute;
+      content: '';
+      top: 5px;
+      left: 5px;
+      width: calc(100% - 10px);
+      height: calc(100% - 10px);
+      border-radius: 8px;
+      background: var(--g-e3e3e3);
       user-select: none;
       -webkit-user-select: none;
     }
