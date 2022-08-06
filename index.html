@@ -57,7 +57,7 @@
     .title,
     .title2,
     .storage_clean_title,
-    .delete_large_password_title {
+    .clean_up_password_title {
       position: fixed;
       top: 0;
       right: 0;
@@ -604,7 +604,7 @@
 
     .page2,
     .storage_clean,
-    .delete_large_password {
+    .clean_up_password {
       width: 100%;
       height: calc(100% - 55px);
       background: var(--g-ffffff);
@@ -888,7 +888,7 @@
     .custom-presets-add-mask,
     .custom-presets-manager-mask,
     .history_filter_fulllist_mask,
-    .delete_large_confirm_mask {
+    .clean_up_confirm_mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -901,7 +901,7 @@
     }
 
     .confirm,
-    .delete_large_confirm {
+    .clean_up_confirm {
       width: var(--u-width);
       height: 170px;
       background: var(--g-f4f4f4);
@@ -916,7 +916,7 @@
     }
 
     .confirm .confirmtitle,
-    .delete_large_confirm .delete_large_confirm_title {
+    .clean_up_confirm .clean_up_confirm_title {
       position: absolute;
       top: 15px;
       left: 15px;
@@ -929,7 +929,7 @@
       overflow: hidden
     }
 
-    .delete_large_confirm .delete_large_confirm_title {
+    .clean_up_confirm .clean_up_confirm_title {
       height: 90px;
       display: flex;
       justify-content: center;
@@ -954,7 +954,7 @@
     }
 
     .confirm .btn3,
-    .delete_large_confirm .btn3 {
+    .clean_up_confirm .btn3 {
       position: absolute;
       top: calc(15px + 55px + 35px + 5px);
       left: 15px;
@@ -2149,7 +2149,7 @@
       width: var(--u-width);
     }
 
-    .delete_large_password_list {
+    .clean_up_password_list {
       position: absolute;
       top: 30px;
       left: 50%;
@@ -2158,7 +2158,7 @@
       width: var(--u-width);
     }
 
-    .delete_large_password_box {
+    .clean_up_password_box {
       position: relative;
       width: 100%;
       height: 215px;
@@ -2168,11 +2168,11 @@
       margin-bottom: 10px
     }
 
-    .delete_large_password_list .delete_large_password_box:nth-last-child(1) {
+    .clean_up_password_list .clean_up_password_box:nth-last-child(1) {
       margin-bottom: 100px
     }
 
-    .delete_large_password_box_head {
+    .clean_up_password_box_head {
       position: absolute;
       top: 0px;
       left: 0px;
@@ -2182,7 +2182,7 @@
       box-sizing: border-box;
     }
 
-    .delete_large_password_box_head_size {
+    .clean_up_password_box_head_size {
       position: absolute;
       top: 5px;
       left: 10px;
@@ -2194,7 +2194,7 @@
       color: var(--g-4e4e4e);
     }
 
-    .delete_large_password_box_head_delete_btn {
+    .clean_up_password_box_head_delete_btn {
       position: absolute;
       top: 5px;
       right: 5px;
@@ -2209,7 +2209,7 @@
       align-items: center;
     }
 
-    .delete_large_password_box_title {
+    .clean_up_password_box_title {
       position: absolute;
       top: 45px;
       left: 10px;
@@ -2222,8 +2222,8 @@
       align-items: center;
     }
 
-    .delete_large_password_box input[type="text"],
-    .delete_large_password_box textarea {
+    .clean_up_password_box input[type="text"],
+    .clean_up_password_box textarea {
       width: calc(100% - 20px);
       height: 25px;
       font-size: 18px;
@@ -2239,7 +2239,7 @@
       margin: 0px;
     }
 
-    .delete_large_password_box textarea {
+    .clean_up_password_box textarea {
       height: 100px;
       top: 105px;
     }
@@ -2895,7 +2895,7 @@
         <div class="storage_clean_action_list_title">
           Delete large password
         </div>
-        <div class="storage_clean_action_list_btn" r-click="show_delete_large_password()">
+        <div class="storage_clean_action_list_btn" r-click="show_clean_up_password()">
           Check
         </div>
       </li>
@@ -2950,13 +2950,13 @@
     </div>
   </div>
 
-  <div class="delete_large_password" style="display:none;">
-    <div class="delete_large_password_list"></div>
+  <div class="clean_up_password" style="display:none;">
+    <div class="clean_up_password_list"></div>
   </div>
 
-  <div class="delete_large_password_title" style="display:none;">
+  <div class="clean_up_password_title" style="display:none;">
     Delete large password
-    <div class="btn2-l" r-click="hide_delete_large_password()">
+    <div class="btn2-l" r-click="hide_clean_up_password()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2968,13 +2968,13 @@
 
   </div>
 
-  <div class="delete_large_confirm_mask"></div>
-  <div class="delete_large_confirm">
-    <div class="delete_large_confirm_title">
+  <div class="clean_up_confirm_mask"></div>
+  <div class="clean_up_confirm">
+    <div class="clean_up_confirm_title">
       Confirm delete?
     </div>
-    <div class="btn3" r-click="" id="delete_large_confirm_btn3">Confirm</div>
-    <div class="btn3" style="left:calc(50% + 5px)" r-click="deletelargepwdconfirmcls()">Cancel</div>
+    <div class="btn3" r-click="" id="clean_up_confirm_btn3">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="cleanuppwdconfirmcls()">Cancel</div>
   </div>
 
 
@@ -5361,18 +5361,18 @@
   function hide_storage_clean() {
     $('.storage_clean,.storage_clean_title').css({ 'display': 'none' })
   }
-  function show_delete_large_password() {
-    $('.delete_large_password_title').css({ 'display': 'flex' })
-    $('.delete_large_password').css({ 'display': 'block' })
+  function show_clean_up_password() {
+    $('.clean_up_password_title').css({ 'display': 'flex' })
+    $('.clean_up_password').css({ 'display': 'block' })
     showsavedlargepassword()
   }
 
-  function hide_delete_large_password() {
-    $('.delete_large_password_title,.delete_large_password').css({ 'display': 'none' })
+  function hide_clean_up_password() {
+    $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' })
   }
 
   function showsavedlargepassword() {
-    $('.delete_large_password_list').html('')
+    $('.clean_up_password_list').html('')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     for (var e = 0; e < savedlist.length; e++) {
       if (!(localStorage.getItem(savedlist[e]) === null)) {
@@ -5401,41 +5401,41 @@
           continue;
         }
         var storage_str = storagesize(stog)
-        var htm = '<div class="delete_large_password_box" id="' + pwgid + '"><div class="delete_large_password_box_head"><div class="delete_large_password_box_head_size">' + storage_str + '</div><div class="delete_large_password_box_head_delete_btn" r-click="deletelargepwdconfirm(' + "'" + hash + "'" + ',' + "'" + pwgid + "'" + ')">Delete</div></div><div class="delete_large_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
-        $('.delete_large_password .delete_large_password_list').append(htm)
-        $('.delete_large_password .delete_large_password_list .delete_large_password_box#' + pwgid + ' textarea').val(notetext)
-        rclick('.delete_large_password .delete_large_password_list .delete_large_password_box#' + pwgid + ' .delete_large_password_box_head_delete_btn')
+        var htm = '<div class="clean_up_password_box" id="' + pwgid + '"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size">' + storage_str + '</div><div class="clean_up_password_box_head_delete_btn" r-click="cleanuppwdconfirm(' + "'" + hash + "'" + ',' + "'" + pwgid + "'" + ')">Delete</div></div><div class="clean_up_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
+        $('.clean_up_password .clean_up_password_list').append(htm)
+        $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' textarea').val(notetext)
+        rclick('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' .clean_up_password_box_head_delete_btn')
       }
     }
   }
-  function deletelargepwdconfirm(hash, gid) {
-    $('.delete_large_confirm_mask,.delete_large_confirm').css({ 'opacity': '0', 'display': 'block' })
-    $('.delete_large_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+  function cleanuppwdconfirm(hash, gid) {
+    $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'opacity': '0', 'display': 'block' })
+    $('.clean_up_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
 
     setTimeout(function () {
-      $('.delete_large_confirm_mask,.delete_large_confirm').css({ 'opacity': '1', 'transition': '0.3s' })
-      $('.delete_large_confirm').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+      $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.clean_up_confirm').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
     }, 1);
-    $('#delete_large_confirm_btn3').attr('r-click', "deletelargepasswordbyhash('" + hash + "','" + gid + "')")
+    $('#clean_up_confirm_btn3').attr('r-click', "cleanuppasswordbyhash('" + hash + "','" + gid + "')")
   }
-  function deletelargepwdconfirmcls() {
-    $('.delete_large_confirm_mask,.delete_large_confirm').css({ 'opacity': '0' })
-    $('.delete_large_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+  function cleanuppwdconfirmcls() {
+    $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'opacity': '0' })
+    $('.clean_up_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
     setTimeout(function () {
-      $('.delete_large_confirm_mask,.delete_large_confirm').css({ 'display': 'none', 'transition': '0s' });
+      $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'display': 'none', 'transition': '0s' });
     }, 300);
   }
 
-  function deletelargepasswordbyhash(hash, largeid) {
+  function cleanuppasswordbyhash(hash, id) {
     if (localStorage.hasOwnProperty('pwdgen2_saved_a_' + hash)) {
       localStorage.removeItem('pwdgen2_saved_a_' + hash)
     }
     if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
       localStorage.removeItem('pwdgen2_saved_notes_cf_' + hash)
     }
-    $('.delete_large_password .delete_large_password_list .delete_large_password_box#' + largeid).remove()
+    $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + largeid).remove()
     mes('password deleted.')
-    deletelargepwdconfirmcls()
+    cleanuppwdconfirmcls()
   }
 
   function showsavedhistory() {
@@ -5693,7 +5693,7 @@
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
 
-  rclick('.options_list[dy="cleanupstorage"],.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8,.delete_large_confirm .btn3')
+  rclick('.options_list[dy="cleanupstorage"],.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8,.clean_up_confirm .btn3')
 
   function deleteallsavedpwds() {
     if ($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
