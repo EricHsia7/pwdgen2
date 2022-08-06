@@ -2225,14 +2225,14 @@
 
     .clean_up_password_box_head_delete_btn {
       position: absolute;
-      top: 5px;
+      top: 10px;
       right: 5px;
-      height: 35px;
+      height: 25px;
       padding: 0px 8px;
       border-radius: 25px;
       background: var(--g-e3e3e3);
       color: var(--g-4e4e4e);
-      font-size: 15px;
+      font-size: 14px;
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -5474,8 +5474,8 @@
 
   }
   function hide_clean_up_password() {
-    $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' });
     $('.clean_up_password').scrollTop(0)
+    $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' });
   }
   function showcleanpassword(m) {
     var nowtime = new Date().getTime()
