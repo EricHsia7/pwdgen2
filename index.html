@@ -5410,7 +5410,7 @@
     var del_time = 60 * 60 * 24 * 7 * 1000 //7days
     var del_size = 10000 //10kb
     $('.clean_up_password_list').html('')
-    $('.clean_up_password,.clean_up_password_list').css({ 'display': 'block' });
+    $('.clean_up_password_list').css({ 'display': 'block' });
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var pwd_count = 0
     for (var e = 0; e < savedlist.length; e++) {
@@ -5455,7 +5455,7 @@
       }
     }
     if (pwd_count === 0) {
-      $('.clean_up_password,.clean_up_password_list').css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' })
+      $('.clean_up_password_list').css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' })
       $('.clean_up_password .clean_up_password_list').html('<span id="nothing">Nothing</span>')
     }
   }
