@@ -2206,7 +2206,7 @@
       -webkit-user-select: none;
     }
 
-    .clean_up_password_box.loading .clean_up_password_box_head_size::after {
+    .clean_up_password_box.loading2 .clean_up_password_box_head_size::after {
       width: 120px;
       height: 25px;
       background: var(--g-e3e3e3);
@@ -2236,8 +2236,13 @@
       -webkit-user-select: none;
     }
 
-    .clean_up_password_box.loading .clean_up_password_box_head_delete_btn {
+    .clean_up_password_box.loading2 .clean_up_password_box_head_delete_btn {
       color: rgba(0, 0, 0, 0);
+      animation-name: searchloading;
+      animation-duration: 550ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
     }
 
     .clean_up_password_box_title {
@@ -2255,7 +2260,7 @@
       -webkit-user-select: none;
     }
 
-    .clean_up_password_box.loading .clean_up_password_box_title::after {
+    .clean_up_password_box.loading2 .clean_up_password_box_title::after {
       width: calc(100% - 10px);
       height: calc(100% - 10px);
       background: var(--g-e3e3e3);
@@ -2266,6 +2271,11 @@
       position: absolute;
       top: 5px;
       left: 5px;
+      animation-name: searchloading;
+      animation-duration: 550ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
     }
 
 
@@ -2295,8 +2305,8 @@
       -webkit-user-select: none;
     }
 
-    .clean_up_password_box.loading input[type="text"]::after,
-    .clean_up_password_box.loading textarea::after {
+    .clean_up_password_box.loading2 input[type="text"]::after,
+    .clean_up_password_box.loading2 textarea::after {
       position: absolute;
       content: '';
       top: 5px;
@@ -2307,6 +2317,11 @@
       background: var(--g-e3e3e3);
       user-select: none;
       -webkit-user-select: none;
+      animation-name: searchloading;
+      animation-duration: 550ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
     }
 
     .clean_up_btn {
@@ -5454,7 +5469,11 @@
     var nowtime = new Date().getTime()
     var del_time = 60 * 60 * 24 * 7 * 1000 //7days
     var del_size = 10000 //10kb
-    $('.clean_up_password_list').html('')
+    var clean_loading_htm = []
+    for (var w = 0; w < 10; w++) {
+      clean_loading_htm.push('<div class="clean_up_password_box loading2"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size"></div><div class="clean_up_password_box_head_delete_btn">Delete</div></div><div class="clean_up_password_box_title"></div><input type="text" readonly="readonly"><textarea readonly="readonly" placeholder="Note"></textarea></div>')
+    }
+    $('.clean_up_password_list').html(clean_loading_htm)
     $('.clean_up_password_list').css({ 'display': 'block' });
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     var pwd_count = 0
@@ -5503,6 +5522,7 @@
       $('.clean_up_password_list').css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' })
       $('.clean_up_password .clean_up_password_list').html('<span id="nothing">Nothing</span>')
     }
+    $('.clean_up_password_list .loading2').remove()
   }
   function cleanuppwdconfirm(hash, gid) {
     $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'opacity': '0', 'display': 'block' })
