@@ -5475,54 +5475,57 @@
     }
     $('.clean_up_password_list').html(clean_loading_htm)
     $('.clean_up_password_list').css({ 'display': 'block' });
-    var savedlist = searchItemsbyname('pwdgen2_saved_a_')
-    var pwd_count = 0
-    for (var e = 0; e < savedlist.length; e++) {
-      if (!(localStorage.getItem(savedlist[e]) === null)) {
-        var thpwdd = String(localStorage.getItem(savedlist[e])).split(':')
-        var pwtime = new Date()
-        pwtime.setTime(thpwdd[2])
-        var pwtimestr = timestr(pwtime)
-        var pw = deur(decu(thpwdd[0], thpwdd[1]))
-        var pwgid = gid('largelist')
-        var hash = sha256(pw + '_' + pwtime.getTime())
-        var notetext = ''
-        if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
-          notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
-        }
-        var xnt = localStorage.getItem(savedlist[e]);
-        var xntl = strlengthtobytes(savedlist[e])
-        if (xnt === null) {
-          xnt = ''
-          xntl = 0
-        }
-        var stog = strlengthtobytes(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash)) + strlengthtobytes('pwdgen2_saved_notes_cf_' + hash) + xntl + strlengthtobytes(xnt)
-        if (!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + hash) > -1)) {
-          stog = 0
-        }
-        if (m === 0) {
-          if (stog < del_size) {
-            continue;
+    setTimeout(function () {
+
+      var savedlist = searchItemsbyname('pwdgen2_saved_a_')
+      var pwd_count = 0
+      for (var e = 0; e < savedlist.length; e++) {
+        if (!(localStorage.getItem(savedlist[e]) === null)) {
+          var thpwdd = String(localStorage.getItem(savedlist[e])).split(':')
+          var pwtime = new Date()
+          pwtime.setTime(thpwdd[2])
+          var pwtimestr = timestr(pwtime)
+          var pw = deur(decu(thpwdd[0], thpwdd[1]))
+          var pwgid = gid('largelist')
+          var hash = sha256(pw + '_' + pwtime.getTime())
+          var notetext = ''
+          if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
+            notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
           }
-        }
-        if (m === 1) {
-          if ((nowtime - pwtime.getTime()) < del_time) {
-            continue;
+          var xnt = localStorage.getItem(savedlist[e]);
+          var xntl = strlengthtobytes(savedlist[e])
+          if (xnt === null) {
+            xnt = ''
+            xntl = 0
           }
+          var stog = strlengthtobytes(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash)) + strlengthtobytes('pwdgen2_saved_notes_cf_' + hash) + xntl + strlengthtobytes(xnt)
+          if (!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + hash) > -1)) {
+            stog = 0
+          }
+          if (m === 0) {
+            if (stog < del_size) {
+              continue;
+            }
+          }
+          if (m === 1) {
+            if ((nowtime - pwtime.getTime()) < del_time) {
+              continue;
+            }
+          }
+          var storage_str = storagesize(stog)
+          var htm = '<div class="clean_up_password_box" id="' + pwgid + '"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size">' + storage_str + '</div><div class="clean_up_password_box_head_delete_btn" r-click="cleanuppwdconfirm(' + "'" + hash + "'" + ',' + "'" + pwgid + "'" + ')">Delete</div></div><div class="clean_up_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
+          $('.clean_up_password .clean_up_password_list').append(htm)
+          $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' textarea').val(notetext)
+          rclick('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' .clean_up_password_box_head_delete_btn')
+          pwd_count += 1
         }
-        var storage_str = storagesize(stog)
-        var htm = '<div class="clean_up_password_box" id="' + pwgid + '"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size">' + storage_str + '</div><div class="clean_up_password_box_head_delete_btn" r-click="cleanuppwdconfirm(' + "'" + hash + "'" + ',' + "'" + pwgid + "'" + ')">Delete</div></div><div class="clean_up_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
-        $('.clean_up_password .clean_up_password_list').append(htm)
-        $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' textarea').val(notetext)
-        rclick('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' .clean_up_password_box_head_delete_btn')
-        pwd_count += 1
       }
-    }
-    if (pwd_count === 0) {
-      $('.clean_up_password_list').css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' })
-      $('.clean_up_password .clean_up_password_list').html('<span id="nothing">Nothing</span>')
-    }
-    $('.clean_up_password_list .loading2').remove()
+      if (pwd_count === 0) {
+        $('.clean_up_password_list').css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' })
+        $('.clean_up_password .clean_up_password_list').html('<span id="nothing">Nothing</span>')
+      }
+      $('.clean_up_password_list .loading2').remove()
+    }, 1500)
   }
   function cleanuppwdconfirm(hash, gid) {
     $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'opacity': '0', 'display': 'block' })
