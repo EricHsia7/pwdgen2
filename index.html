@@ -5426,14 +5426,14 @@
     }, 300);
   }
 
-  function cleanuppasswordbyhash(hash, id) {
+  function cleanuppasswordbyhash(hash, gid) {
     if (localStorage.hasOwnProperty('pwdgen2_saved_a_' + hash)) {
       localStorage.removeItem('pwdgen2_saved_a_' + hash)
     }
     if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
       localStorage.removeItem('pwdgen2_saved_notes_cf_' + hash)
     }
-    $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + largeid).remove()
+    $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + gid).remove()
     mes('password deleted.')
     cleanuppwdconfirmcls()
   }
