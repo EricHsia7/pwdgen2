@@ -2244,7 +2244,7 @@
     }
 
     .clean_up_btn {
-      width: var(--u-width);
+      width: 100%;
       height: 55px;
       background: var(--g-e3e3e3);
       border-radius: 15px;
@@ -2254,7 +2254,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top:20px;
+      margin-top: 20px;
       margin-bottom: 100px;
       user-select: none;
       -webkit-user-select: none;
@@ -2951,7 +2951,7 @@
           Backup
         </div>
       </li>
-      <div class="clean_up_btn">Refresh page and back</div>
+      <div class="clean_up_btn" r-click="hide_clean_up_password()">Refresh page and back</div>
     </div>
   </div>
   <div class="storage_clean_title" style="display:none;">
@@ -5373,11 +5373,9 @@
     $('.clean_up_password').css({ 'display': 'block' })
     showsavedlargepassword()
   }
-
   function hide_clean_up_password() {
-    $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' })
+    location.reload()
   }
-
   function showsavedlargepassword() {
     $('.clean_up_password_list').html('')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
