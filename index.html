@@ -2927,13 +2927,13 @@
         <div class="storage_clean_action_list_title">
           Delete large password
         </div>
-        <div class="storage_clean_action_list_btn" r-click="show_clean_up_password()">
+        <div class="storage_clean_action_list_btn" r-click="show_clean_up_password(0)">
           Check
         </div>
       </li>
 
       <li>
-        <div class="storage_clean_action_list_title">
+        <div class="storage_clean_action_list_btn" r-click="show_clean_up_password(1)">
           Delete old password
         </div>
         <div class="storage_clean_action_list_btn">
@@ -2979,7 +2979,7 @@
   </div>
 
   <div class="clean_up_password_title" style="display:none;">
-    Delete large password
+    <span id="clean_up_password_title_text">Delete large password</span>
     <div class="btn2-l" r-click="hide_clean_up_password()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -5384,15 +5384,25 @@
   function hide_storage_clean() {
     location.reload()
   }
-  function show_clean_up_password() {
+  function show_clean_up_password(m) {
     $('.clean_up_password_title').css({ 'display': 'flex' })
     $('.clean_up_password').css({ 'display': 'block' })
-    showsavedlargepassword()
+    if (m === 0) {
+      $('#clean_up_password_title_text').text('Delete large password')
+    }
+    if (m === 1) {
+      $('#clean_up_password_title_text').text('Delete old password')
+    }
+
+    showcleanpassword(m)
   }
   function hide_clean_up_password() {
     $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' })
   }
-  function showsavedlargepassword() {
+  function showcleanpassword(m) {
+    var nowtime = new Date().getTime()
+    var del_time = 60 * 60 * 24 * 7 * 1000 //7days
+    var del_size = 10000 //10kb
     $('.clean_up_password_list').html('')
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     for (var e = 0; e < savedlist.length; e++) {
@@ -5418,8 +5428,15 @@
         if (!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + hash) > -1)) {
           stog = 0
         }
-        if (stog < 10000) {
-          continue;
+        if (m === 0) {
+          if (stog < del_time) {
+            continue;
+          }
+        }
+        if (m === 1) {
+          if ((nowtime - pwtime.getTime()) < del_time) {
+            continue;
+          }
         }
         var storage_str = storagesize(stog)
         var htm = '<div class="clean_up_password_box" id="' + pwgid + '"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size">' + storage_str + '</div><div class="clean_up_password_box_head_delete_btn" r-click="cleanuppwdconfirm(' + "'" + hash + "'" + ',' + "'" + pwgid + "'" + ')">Delete</div></div><div class="clean_up_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
