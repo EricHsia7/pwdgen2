@@ -2315,11 +2315,12 @@
     .clean_up_password_box.loading2 .l-textarea::after {
       position: absolute;
       content: '';
-      top: 0px;
+      top: 5px;
       left: 0px;
       width: 100%;
-      height: 100%;
+      height: calc(100% - 5px);
       background: var(--g-e3e3e3);
+      border-radius: 8px;
       user-select: none;
       -webkit-user-select: none;
       animation-name: var(--e-animation-name);
