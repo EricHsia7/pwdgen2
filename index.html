@@ -5426,7 +5426,7 @@
     }, 300);
   }
 
-  function cleanuppasswordbyhash(hash, largeid) {
+  function cleanuppasswordbyhash(hash, id) {
     if (localStorage.hasOwnProperty('pwdgen2_saved_a_' + hash)) {
       localStorage.removeItem('pwdgen2_saved_a_' + hash)
     }
