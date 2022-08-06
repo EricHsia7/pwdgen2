@@ -2951,7 +2951,7 @@
           Backup
         </div>
       </li>
-      <div class="clean_up_btn" r-click="hide_clean_up_password()">Refresh page and back</div>
+      <div class="clean_up_btn" r-click="hide_storage_clean()">Refresh page and back</div>
     </div>
   </div>
   <div class="storage_clean_title" style="display:none;">
@@ -5366,7 +5366,7 @@
     }
   }
   function hide_storage_clean() {
-    $('.storage_clean,.storage_clean_title').css({ 'display': 'none' })
+    location.reload()
   }
   function show_clean_up_password() {
     $('.clean_up_password_title').css({ 'display': 'flex' })
@@ -5374,7 +5374,7 @@
     showsavedlargepassword()
   }
   function hide_clean_up_password() {
-    location.reload()
+    $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' })
   }
   function showsavedlargepassword() {
     $('.clean_up_password_list').html('')
