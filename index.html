@@ -2021,7 +2021,8 @@
     }
 
     .storage_clean_illustration_skeleton,
-    .storage_clean_illustration_content {
+    .storage_clean_illustration_content,
+    .storage_clean_illustration_mask {
       position: absolute;
       top: 30px;
       left: 50%;
@@ -2031,6 +2032,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .storage_clean_illustration_skeleton {
@@ -2052,7 +2055,7 @@
       font-size: 30px;
       -webkit-user-select: none;
       user-select: none;
-      color: var(--g-4e4e4e)
+      color: var(--g-4e4e4e);
     }
 
     .storage_clean_paragraph {
@@ -2066,6 +2069,8 @@
       align-items: center;
       color: var(--g-4e4e4e);
       text-align: center;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .storage_clean_action {
@@ -2880,6 +2885,7 @@
       </svg>
     </div>
     <div class="storage_clean_illustration_content"></div>
+    <div class="storage_clean_illustration_mask"></div>
     <div class="storage_clean_title2">Clean up</div>
     <div class="storage_clean_paragraph">You can do the following acrions to clean up storage</div>
     <div class="storage_clean_action">
