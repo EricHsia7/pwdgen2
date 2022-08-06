@@ -5405,7 +5405,9 @@
     var del_time = 60 * 60 * 24 * 7 * 1000 //7days
     var del_size = 10000 //10kb
     $('.clean_up_password_list').html('')
+    $('.clean_up_password').css({ 'display': 'block' });
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
+    var pwd_count = 0
     for (var e = 0; e < savedlist.length; e++) {
       if (!(localStorage.getItem(savedlist[e]) === null)) {
         var thpwdd = String(localStorage.getItem(savedlist[e])).split(':')
@@ -5444,7 +5446,12 @@
         $('.clean_up_password .clean_up_password_list').append(htm)
         $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' textarea').val(notetext)
         rclick('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' .clean_up_password_box_head_delete_btn')
+        pwd_count += 1
       }
+    }
+    if (pwd_count === 0) {
+      $('.clean_up_password').css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' })
+      $('.clean_up_password .clean_up_password_list').html('Nothing')
     }
   }
   function cleanuppwdconfirm(hash, gid) {
