@@ -5474,7 +5474,8 @@
 
   }
   function hide_clean_up_password() {
-    $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' })
+    $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' });
+    $('.clean_up_password').scrollTop(0)
   }
   function showcleanpassword(m) {
     var nowtime = new Date().getTime()
