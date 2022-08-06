@@ -2278,7 +2278,9 @@
 
 
     .clean_up_password_box input[type="text"],
-    .clean_up_password_box textarea {
+    .clean_up_password_box textarea,
+    .clean_up_password_box .l-input,
+    .clean_up_password_box .l-textarea {
       width: calc(100% - 20px);
       height: 25px;
       font-size: 18px;
@@ -2303,8 +2305,8 @@
       -webkit-user-select: none;
     }
 
-    .clean_up_password_box.loading2 input[type="text"]::after,
-    .clean_up_password_box.loading2 textarea::after {
+    .clean_up_password_box.loading2 .l-input::after,
+    .clean_up_password_box.loading2 .l-textarea::after {
       position: absolute;
       content: '';
       top: 5px;
@@ -5468,7 +5470,7 @@
     var del_size = 10000 //10kb
     var clean_loading_htm = []
     for (var w = 0; w < 10; w++) {
-      clean_loading_htm.push('<div class="clean_up_password_box loading2"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size"></div><div class="clean_up_password_box_head_delete_btn">Delete</div></div><div class="clean_up_password_box_title"></div><input type="text" readonly="readonly"><textarea readonly="readonly" placeholder="Note"></textarea></div>')
+      clean_loading_htm.push('<div class="clean_up_password_box loading2"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size"></div><div class="clean_up_password_box_head_delete_btn">Delete</div></div><div class="clean_up_password_box_title"></div><div class="l-input"></div><div class="l-textarea"></div></div>')
     }
     $('.clean_up_password_list').html(clean_loading_htm)
     $('.clean_up_password_list').css({ 'display': 'block' });
