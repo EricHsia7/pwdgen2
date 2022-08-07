@@ -5540,7 +5540,6 @@
     }
     $('.clean_up_password_option_btn').attr('r-click', "clean_up_password_option(" + m + ")")
     showcleanpassword(m)
-
   }
   function hide_clean_up_password() {
     $('.clean_up_password').scrollTop(0)
@@ -5606,13 +5605,13 @@
   }
   function showcleanpassword(m) {
     var nowtime = new Date().getTime()
-    var del_time = 60 * 60 * 24 * 7 * 1000 //7days
-    var del_size = 10000 //10kb
+    //var del_time = 60 * 60 * 24 * 7 * 1000 //7days
+    //var del_size = 10000 //10kb
     if (m === 0) {
-      del_size = parseInt($('.clean_up_password_option').attr('v')) //7days
+      var del_size = parseInt($('.clean_up_password_option').attr('v')) //7days
     }
     if (m === 1) {
-      del_time = parseInt($('.clean_up_password_option').attr('v')) //7days
+      var del_time = parseInt($('.clean_up_password_option').attr('v')) //7days
     }
 
     var clean_loading_htm = []
