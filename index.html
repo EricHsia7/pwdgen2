@@ -55,7 +55,9 @@
     }
 
     .title,
-    .title2 {
+    .title2,
+    .storage_clean_title,
+    .clean_up_password_title {
       position: fixed;
       top: 0;
       right: 0;
@@ -407,7 +409,7 @@
       justify-content: center;
       align-items: center;
       background: var(--g-f4f4f4);
-      border-radius: 15px;
+      border-radius: 18px;
       padding: 0px 8px;
       box-sizing: border-box;
       height: 35px;
@@ -426,7 +428,7 @@
       width: calc(100% - 10px);
       height: calc(100% - 10px);
       background: var(--g-e3e3e3);
-      border-radius: 8px;
+      border-radius: 15px;
       animation-name: var(--e-animation-name);
       animation-duration: var(--e-animation-duration);
       animation-iteration-count: var(--e-animation-iteration-count);
@@ -600,7 +602,9 @@
       height: 16px
     }
 
-    .page2 {
+    .page2,
+    .storage_clean,
+    .clean_up_password {
       width: 100%;
       height: calc(100% - 55px);
       background: var(--g-ffffff);
@@ -640,9 +644,11 @@
       left: 50%;
       bottom: 0px;
       opacity: 0;
-      transform: translateX(-50%) translateY(0px) scale(0.75);
-      background: var(--g-e3e3e3);
-      box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.08);
+      transform: translateX(-50%) translateY(0px) scale(0.85);
+      background: var(--g-f4f4f4);
+      border: 1px solid var(--g-e3e3e3);
+      box-sizing: border-box;
+      box-shadow: 0px 0px 23px -9px rgba(0, 0, 0, 0.1);
       will-change: transform, opacity;
       -webkit-user-select: none;
       user-select: none;
@@ -772,6 +778,10 @@
       align-items: center;
     }
 
+    .options_list_center_column {
+      flex-direction: column;
+    }
+
     .options_list[dsb="1"] {
       opacity: .35
     }
@@ -813,11 +823,17 @@
     }
 
     .options_list_txt[dy="storageusagetype"] {
-      display: flex;
+      display: inline-flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: flex-start;
-      align-items: flex-start
+      align-items: flex-start;
+      max-height: 24px;
+      height: auto;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      width: calc(100% - 20px);
     }
 
     .options_list_txt input[type="text"] {
@@ -873,7 +889,10 @@
     .filter-date-picker-mask,
     .custom-presets-add-mask,
     .custom-presets-manager-mask,
-    .history_filter_fulllist_mask {
+    .history_filter_fulllist_mask,
+    .clean_up_confirm_mask,
+    .clear_storage_confirm_mask,
+    .clean_up_password_option_box_mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -885,7 +904,9 @@
       user-select: none;
     }
 
-    .confirm {
+    .confirm,
+    .clean_up_confirm,
+    .clear_storage_confirm {
       width: var(--u-width);
       height: 170px;
       background: var(--g-f4f4f4);
@@ -899,7 +920,9 @@
       user-select: none;
     }
 
-    .confirm .confirmtitle {
+    .confirm .confirmtitle,
+    .clean_up_confirm .clean_up_confirm_title,
+    .clear_storage_confirm .clear_storage_confirm_title {
       position: absolute;
       top: 15px;
       left: 15px;
@@ -910,6 +933,19 @@
       -webkit-user-select: none;
       user-select: none;
       overflow: hidden
+    }
+
+    .clean_up_confirm .clean_up_confirm_title,
+    .clear_storage_confirm .clear_storage_confirm_title {
+      height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 23px;
+    }
+
+    .clear_storage_confirm .clear_storage_confirm_title {
+      font-size: 18px;
     }
 
     .confirm .confirminput {
@@ -924,10 +960,13 @@
       border-radius: 12px;
       background: rgba(0, 0, 0, 0);
       border: 1px var(--g-e3e3e3) solid;
-      color: var(--g-4e4e4e)
+      color: var(--g-4e4e4e);
+      caret-color: var(--g-4e4e4e);
     }
 
-    .confirm .btn3 {
+    .confirm .btn3,
+    .clean_up_confirm .btn3,
+    .clear_storage_confirm .btn3 {
       position: absolute;
       top: calc(15px + 55px + 35px + 5px);
       left: 15px;
@@ -1372,13 +1411,14 @@
 
     .storage-usage-bar-box {
       width: calc(100% - 20px);
-      height: 35px;
+      height: 8px;
       background: var(--g-e3e3e3);
       border-radius: 10px;
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
+      margin-bottom: 2px;
     }
 
     .storage-usage-bar {
@@ -1431,7 +1471,7 @@
       position: absolute;
       -webkit-user-select: none;
       user-select: none;
-      border-radius: 15px;
+      border-radius: 18px;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
       mask-image: -webkit-radial-gradient(white, black);
       display: none;
@@ -1456,7 +1496,7 @@
       background: var(--g-f4f4f4);
       display: inline-block;
       padding: 0px;
-      border-radius: 15px;
+      border-radius: 18px;
       box-sizing: border-box;
       height: 35px;
       margin-right: 5px;
@@ -1571,7 +1611,7 @@
       width: calc(100% - 5px);
       height: calc(100% - 10px);
       background: var(--g-e3e3e3);
-      border-radius: 8px;
+      border-radius: 15px;
       user-select: none;
       -webkit-user-select: none;
       animation-name: var(--e-animation-name);
@@ -1589,7 +1629,7 @@
       width: calc(100% - 10px);
       height: calc(100% - 10px);
       background: var(--g-e3e3e3);
-      border-radius: 8px;
+      border-radius: 15px;
       user-select: none;
       -webkit-user-select: none;
       animation-name: var(--e-animation-name);
@@ -1605,7 +1645,8 @@
     .filter-date-picker,
     .custom-presets-add,
     .custom-presets-manager,
-    .history_filter_fulllist {
+    .history_filter_fulllist,
+    .clean_up_password_option_box {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -1623,7 +1664,8 @@
     .filter-date-picker-title,
     .custom-presets-add-title,
     .custom-presets-manager-title,
-    .history_filter_fulllist_title {
+    .history_filter_fulllist_title,
+    .clean_up_password_option_box_title {
       height: 45px;
       width: calc(100% - 20px);
       position: absolute;
@@ -1757,7 +1799,8 @@
     .custom-presets-add-cancel,
     .custom-presets-add-add,
     .custom-presets-manager-close,
-    .history_filter_fulllist_close {
+    .history_filter_fulllist_close,
+    .clean_up_password_option_box_close {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -1782,13 +1825,15 @@
     }
 
     .custom-presets-manager-close,
-    .history_filter_fulllist_close {
+    .history_filter_fulllist_close,
+    .clean_up_password_option_box_close {
       width: calc(100% - 20px)
     }
 
     .custom-presets-add-box,
     .custom-presets-manager-box,
-    .history_filter_fulllist_box {
+    .history_filter_fulllist_box,
+    .clean_up_password_option_box_c {
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
@@ -1891,7 +1936,8 @@
     }
 
     .custom-presets-manager-box li,
-    .history_filter_fulllist_box li {
+    .history_filter_fulllist_box li,
+    .clean_up_password_option_box_c li {
       width: 100%;
       height: 45px;
       position: relative;
@@ -1902,12 +1948,14 @@
     }
 
     .custom-presets-manager-box li:nth-last-child(1),
-    .history_filter_fulllist_box li:nth-last-child(1) {
+    .history_filter_fulllist_box li:nth-last-child(1),
+    .clean_up_password_option_box_c li:nth-last-child(1) {
       border: none;
     }
 
     .custom-presets-manager-box .custom-presets-manager-icon,
-    .history_filter_fulllist_box .history_filter_fulllist_icon {
+    .history_filter_fulllist_box .history_filter_fulllist_icon,
+    .clean_up_password_option_box .clean_up_password_option_box_icon {
       position: absolute;
       top: 5px;
       left: 5px;
@@ -1924,13 +1972,15 @@
     .custom-presets-manager-box .custom-presets-manager-icon svg,
     .custom-presets-manager-box .custom-presets-manager-delete svg,
     .custom-presets-manager-box .custom-presets-manager-edit svg,
-    .history_filter_fulllist_box .history_filter_fulllist_icon svg {
+    .history_filter_fulllist_box .history_filter_fulllist_icon svg,
+    .clean_up_password_option_box .clean_up_password_option_box_icon svg {
       width: 18px;
       height: 18px;
     }
 
     .custom-presets-manager-box .custom-presets-manager-name,
-    .history_filter_fulllist_box .history_filter_fulllist_name {
+    .history_filter_fulllist_box .history_filter_fulllist_name,
+    .clean_up_password_option_box .clean_up_password_option_box_name {
       position: absolute;
       top: 5px;
       left: 45px;
@@ -1942,7 +1992,8 @@
       overflow: hidden;
     }
 
-    .history_filter_fulllist_box .history_filter_fulllist_name {
+    .history_filter_fulllist_box .history_filter_fulllist_name,
+    .clean_up_password_option_box .clean_up_password_option_box_name {
       width: calc(100% - 45px)
     }
 
@@ -1991,6 +2042,379 @@
 
     #custom_presets_add_icon_picker_search_input {
       opacity: 0.3
+    }
+
+    .storage_clean_illustration_skeleton,
+    .storage_clean_illustration_content,
+    .storage_clean_illustration_mask {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(var(--u-width) * 0.8);
+      height: 270px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .storage_clean_illustration_skeleton {
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
+    }
+
+    .storage_clean_title2 {
+      position: absolute;
+      top: 300px;
+      left: 0px;
+      width: 100%;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      -webkit-user-select: none;
+      user-select: none;
+      color: var(--g-4e4e4e);
+    }
+
+    .storage_clean_paragraph {
+      position: absolute;
+      top: 345px;
+      left: 0px;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--g-4e4e4e);
+      text-align: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .storage_clean_action {
+      position: absolute;
+      top: 395px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--u-width);
+      display: inline-block;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .storage_clean_action h3 {
+      margin: 0px;
+      padding: 5px;
+      box-sizing: border-box;
+      font-size: 23px;
+      -webkit-user-select: none;
+      user-select: none;
+      color: var(--g-4e4e4e)
+    }
+
+    .storage_clean_action li {
+      width: 100%;
+      height: 45px;
+      position: relative;
+      list-style: none;
+      box-sizing: border-box;
+      display: block;
+      -webkit-user-select: none;
+      user-select: none;
+      border-bottom: 1px solid var(--g-e3e3e3);
+    }
+
+    .storage_clean_action li:nth-last-child(2) {
+      border-bottom: none
+    }
+
+    #storage_clean_action_clearstorage {
+      display: none;
+    }
+
+    .storage_clean_action_list_title {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: calc(100% - 10px);
+      height: 35px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      -webkit-user-select: none;
+      user-select: none;
+      color: var(--g-4e4e4e)
+    }
+
+    .storage_clean_action_list_btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 15px;
+      display: inline-flex;
+      padding: 0px 8px;
+      height: 35px;
+      box-sizing: border-box;
+      border-radius: 25px;
+      background: var(--g-e3e3e3);
+      justify-content: center;
+      align-items: center;
+      -webkit-user-select: none;
+      user-select: none;
+      color: var(--g-4e4e4e)
+    }
+
+    .storage_clean_illustration_skeleton svg,
+    .storage_clean_illustration_content img {
+      width: var(--u-width);
+    }
+
+    .clean_up_password_list {
+      position: absolute;
+      top: calc(30px + 45px + 20px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-block;
+      width: var(--u-width);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_list span#nothing {
+      color: var(--g-4e4e4e);
+      font-size: 25px;
+    }
+
+    .clean_up_password_box {
+      position: relative;
+      width: 100%;
+      height: 215px;
+      border: 1px solid var(--g-f4f4f4);
+      border-radius: 10px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_list .clean_up_password_box:nth-last-child(1) {
+      margin-bottom: 100px
+    }
+
+    .clean_up_password_box_head {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 45px;
+      border-bottom: 1px solid var(--g-f4f4f4);
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_box_head_size {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      max-width: calc(100% - 10px);
+      height: 35px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 15px;
+      color: var(--g-4e4e4e);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_box.loading2 .clean_up_password_box_head_size::after {
+      width: 120px;
+      height: 25px;
+      background: var(--g-e3e3e3);
+      border-radius: 8px;
+      user-select: none;
+      -webkit-user-select: none;
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 0px;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
+    }
+
+    .clean_up_password_box_head_delete_btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 25px;
+      padding: 0px 8px;
+      border-radius: 25px;
+      background: var(--g-e3e3e3);
+      color: var(--g-4e4e4e);
+      font-size: 14px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_box.loading2 .clean_up_password_box_head_delete_btn {
+      color: rgba(0, 0, 0, 0);
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
+    }
+
+    .clean_up_password_box_title {
+      position: absolute;
+      top: 45px;
+      left: 10px;
+      height: 35px;
+      width: calc(100% - 20px);
+      overflow: hidden;
+      font-size: 20px;
+      color: var(--g-4e4e4e);
+      display: flex;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_box.loading2 .clean_up_password_box_title::after {
+      width: 100%;
+      height: calc(100% - 10px);
+      background: var(--g-e3e3e3);
+      border-radius: 8px;
+      user-select: none;
+      -webkit-user-select: none;
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 0px;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
+      display: block;
+    }
+
+
+    .clean_up_password_box input[type="text"],
+    .clean_up_password_box textarea,
+    .clean_up_password_box .l-input,
+    .clean_up_password_box .l-textarea {
+      width: calc(100% - 20px);
+      height: 25px;
+      font-size: 18px;
+      position: absolute;
+      left: 10px;
+      top: 75px;
+      color: var(--g-4e4e4e);
+      border: none;
+      background: rgba(0, 0, 0, 0);
+      border-radius: 0px;
+      -webkit-appearance: none;
+      padding: 0px;
+      margin: 0px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_box textarea,
+    .clean_up_password_box .l-textarea {
+      height: 100px;
+      top: 105px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_box.loading2 .l-input::after,
+    .clean_up_password_box.loading2 .l-textarea::after {
+      position: absolute;
+      content: '';
+      top: 5px;
+      left: 0px;
+      width: 100%;
+      height: calc(100% - 5px);
+      background: var(--g-e3e3e3);
+      border-radius: 8px;
+      user-select: none;
+      -webkit-user-select: none;
+      animation-name: var(--e-animation-name);
+      animation-duration: var(--e-animation-duration);
+      animation-iteration-count: var(--e-animation-iteration-count);
+      animation-timing-function: var(--e-animation-timing-function);
+      display: block;
+    }
+
+    .clean_up_password_box.loading2 .l-textarea::after {
+      height: 100%;
+      top: 0px;
+    }
+
+    .clean_up_btn {
+      width: 100%;
+      height: 55px;
+      background: var(--g-e3e3e3);
+      border-radius: 15px;
+      overflow: hidden;
+      color: var(--g-4e4e4e);
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 100px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .clean_up_password_option {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--u-width);
+      height: 45px;
+      border: 1px solid var(--g-f4f4f4);
+      border-radius: 8px;
+      background: var(--g-ffffff);
+    }
+
+    .clean_up_password_option_value_text {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 25px;
+      width: calc(100% - 20px);
+      display: flex;
+      align-items: center;
+      color: var(--g-4e4e4e);
+    }
+
+    .clean_up_password_option_btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 25px;
+      width: auto;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 8px;
+      border-radius: 15px;
+      background: var(--g-e3e3e3);
+      color: var(--g-4e4e4e);
     }
 
     @media (min-width: 600px) {
@@ -2490,13 +2914,22 @@
       <div class="options_list_txt">Storage</div>
       <div class="options_list_txt" dy="storageusagetext"><span>--</span></div>
     </li>
-    <li class="options_list merge-c options_list_center">
-      <div class="storage-usage-bar-box">
-      </div>
-    </li>
-    <li class="options_list merge-b">
+    <li class="options_list merge-c options_list_center options_list_center_column">
+      <div class="storage-usage-bar-box"></div>
       <div class="options_list_txt" dy="storageusagetype">
         --
+      </div>
+    </li>
+    <li class="options_list merge-b" dy="cleanupstorage" r-click="show_storage_clean()">
+      <div class="options_list_txt">Clean up</div>
+      <div class="options_list_icon">
+        <svg stroke-miterlimit="10"
+          style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+          viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M18.8548 64L13.1452 58.2905L39.4357 32L13.1452 5.70954L18.8548-7.10543e-15L50.8548 32L18.8548 64Z"
+            fill="var(--g-4e4e4e)" fill-rule="nonzero" opacity="1" stroke="none" />
+        </svg>
       </div>
     </li>
 
@@ -2614,6 +3047,127 @@
     <div class="btn3" style="left:calc(50% + 5px)" r-click="confirmcls()">Cancel</div>
   </div>
 
+  <div class="storage_clean" style="display:none">
+    <div class="storage_clean_illustration_skeleton">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 250 200" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path
+          d="M124.875 0.5625L98.5 11.125L3.78125 65.8125L30.125 55.25L0 97.3438L30.125 114.781L30.125 144.75L32.0312 145.844L124.875 199.438L219.594 144.75L219.594 114.781L249.719 97.3438L219.594 55.25L250 68.1562L155.281 13.4688L124.875 0.5625Z"
+          fill="var(--g-e3e3e3)" fill-rule="nonzero" opacity="1" stroke="none" />
+      </svg>
+    </div>
+    <div class="storage_clean_illustration_content"></div>
+    <div class="storage_clean_illustration_mask"></div>
+    <div class="storage_clean_title2">Clean up</div>
+    <div class="storage_clean_paragraph">You can do the following acrions to clean up storage</div>
+    <div class="storage_clean_action">
+      <h3>Actions</h3>
+      <li>
+        <div class="storage_clean_action_list_title">
+          Delete large password
+        </div>
+        <div class="storage_clean_action_list_btn" r-click="show_clean_up_password(0)">
+          Check
+        </div>
+      </li>
+
+      <li>
+        <div class="storage_clean_action_list_title">
+          Delete old password
+        </div>
+        <div class="storage_clean_action_list_btn" r-click="show_clean_up_password(1)">
+          Check
+        </div>
+      </li>
+
+      <li>
+        <div class="storage_clean_action_list_title">
+          Clear cache
+        </div>
+        <div class="storage_clean_action_list_btn" r-click="clearcache()">
+          Clear
+        </div>
+      </li>
+
+      <li>
+        <div class="storage_clean_action_list_title">
+          Backup data and clear storage
+        </div>
+        <div class="storage_clean_action_list_btn" r-click="backupzipandclearstorage()">
+          Backup
+        </div>
+      </li>
+      <li id="storage_clean_action_clearstorage">
+        <div class="storage_clean_action_list_title">
+          Clear storage
+        </div>
+        <div class="storage_clean_action_list_btn" r-click="confirmclearstorage()">
+          Clear
+        </div>
+      </li>
+
+      <div class="clean_up_btn" r-click="hide_storage_clean()">Refresh page and back</div>
+    </div>
+  </div>
+  <div class="storage_clean_title" style="display:none;">
+    Clean up storage
+  </div>
+
+  <div class="clean_up_password" style="display:none;">
+    <div class="clean_up_password_option" v="">
+      <div class="clean_up_password_option_value_text"></div>
+      <div class="clean_up_password_option_btn" r-click="clean_up_password_option(0)">Select</div>
+    </div>
+    <div class="clean_up_password_list"></div>
+  </div>
+
+  <div class="clean_up_password_title" style="display:none;">
+    <span id="clean_up_password_title_text"></span>
+    <div class="btn2-l" r-click="hide_clean_up_password()">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)"
+          fill-rule="evenodd" opacity="1" stroke="none" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="clean_up_password_option_box_mask"></div>
+  <div class="clean_up_password_option_box">
+    <div class="clean_up_password_option_box_title">
+      Select date
+    </div>
+    <div class="clean_up_password_option_box_c">
+
+    </div>
+    <div class="clean_up_password_option_box_close" r-click="closecleanoption()">
+      Close
+    </div>
+  </div>
+
+  <div class="clean_up_confirm_mask"></div>
+  <div class="clean_up_confirm">
+    <div class="clean_up_confirm_title">
+      Confirm delete?
+    </div>
+    <div class="btn3" r-click="" id="clean_up_confirm_btn3">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="cleanuppwdconfirmcls()">Cancel</div>
+  </div>
+
+  <div class="clear_storage_confirm_mask"></div>
+  <div class="clear_storage_confirm">
+    <div class="clear_storage_confirm_title">
+      Confirm clear?
+    </div>
+    <div class="btn3" r-click="clearstorage()" id="clean_up_confirm_btn3">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="clsconfirmclearstorage()">Cancel</div>
+  </div>
+
+
   <div class="restoredata">
     <div class="restoredatatitle">
       After confirming the restore, you "cannot" cancel it
@@ -2628,6 +3182,8 @@
     <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">Your browser does not
       support.</span>
   </div>
+
+
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -2679,7 +3235,7 @@
           promptid += promptchars.substring(randomNumber, randomNumber + 1);
         }
         var translateY = -1 * (document.querySelector('.bottom').clientHeight + 20)
-        $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time + 300 * 2) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt' + promptid + '{0%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(0.75);}' + Math.floor((300) / (settings.time + 300 + 150) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}' + Math.floor((300 + settings.time) / (settings.time + 300 + 150) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
+        $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time + 150 + 200) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt' + promptid + '{0%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(0.85);}' + Math.floor((200) / (settings.time + 200 + 150) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}' + Math.floor((200 + settings.time) / (settings.time + 200 + 150) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
 
         setTimeout(function () {
           $("#" + promptid + ',style[qix="promptanimation' + promptid + '"]').remove();
@@ -2688,12 +3244,22 @@
     };
   })(jQuery);
 
-  rclick('.btn,.btn5,.btn6,.btn7,.btn2,.btn2-l,.bottom-btn,.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close,.history_filter_fulllist_close')
+  rclick('.btn,.btn5,.btn6,.btn7,.btn2,.btn2-l,.bottom-btn,.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close,.history_filter_fulllist_close,.clean_up_btn')
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
   }
-
+  /*
+  function localstoragesetItem(key, content) {
+    try {
+      var item = localStorage.setItem(key, content)
+    } catch (e) {
+      show_storage_clean()
+    }
+    return item
+  }
+  //#bug-58630001
+  */
   function encu(textu) {
     var eechars = "123456789";
     var eeid = "";
@@ -3003,9 +3569,17 @@
 
     return { 'len': stle, 'check': stcc, 'time': sttt, 'storage': stog }
   }
+  /*
   function strlengthtobytes(str) {
-    return new Blob([str]).size
+    return str.length*16/(0.008*1024)
   }
+  */
+
+  function strlengthtobytes(str) {
+    return (new Blob([str]).size)
+    //return String(str).length
+  }
+
   function storagesize(bytes) {
 
     var tokb = (1 / 1024)
@@ -3194,6 +3768,8 @@
   let check_passable_icon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M43.68 27.76C44.9067 27.76 45.9333 27.3467 46.76 26.52C47.5867 25.6933 48 24.6667 48 23.44C48 22.2133 47.5867 21.1867 46.76 20.36C45.9333 19.5333 44.9067 19.12 43.68 19.12C42.4533 19.12 41.4267 19.5333 40.6 20.36C39.7733 21.1867 39.36 22.2133 39.36 23.44C39.36 24.6667 39.7733 25.6933 40.6 26.52C41.4267 27.3467 42.4533 27.76 43.68 27.76ZM20.32 27.76C21.5467 27.76 22.5733 27.3467 23.4 26.52C24.2267 25.6933 24.64 24.6667 24.64 23.44C24.64 22.2133 24.2267 21.1867 23.4 20.36C22.5733 19.5333 21.5467 19.12 20.32 19.12C19.0933 19.12 18.0667 19.5333 17.24 20.36C16.4133 21.1867 16 22.2133 16 23.44C16 24.6667 16.4133 25.6933 17.24 26.52C18.0667 27.3467 19.0933 27.76 20.32 27.76ZM32 49.52C35.52 49.52 38.76 48.5733 41.72 46.68C44.68 44.7867 46.8267 42.2133 48.16 38.96L44 38.96C42.7733 41.0933 41.0933 42.7333 38.96 43.88C36.8267 45.0267 34.5333 45.6 32.08 45.6C29.5733 45.6 27.24 45.04 25.08 43.92C22.92 42.8 21.2533 41.1467 20.08 38.96L15.84 38.96C17.2267 42.2133 19.3867 44.7867 22.32 46.68C25.2533 48.5733 28.48 49.52 32 49.52ZM32 64C27.6267 64 23.4933 63.16 19.6 61.48C15.7067 59.8 12.3067 57.5067 9.4 54.6C6.49333 51.6933 4.2 48.2933 2.52 44.4C0.84 40.5067 0 36.3467 0 31.92C0 27.5467 0.84 23.4133 2.52 19.52C4.2 15.6267 6.49333 12.24 9.4 9.36C12.3067 6.48 15.7067 4.2 19.6 2.52C23.4933 0.84 27.6533-3.55271e-15 32.08-3.55271e-15C36.4533-3.55271e-15 40.5867 0.84 44.48 2.52C48.3733 4.2 51.76 6.48 54.64 9.36C57.52 12.24 59.8 15.6267 61.48 19.52C63.16 23.4133 64 27.5733 64 32C64 36.3733 63.16 40.5067 61.48 44.4C59.8 48.2933 57.52 51.6933 54.64 54.6C51.76 57.5067 48.3733 59.8 44.48 61.48C40.5867 63.16 36.4267 64 32 64ZM32 59.2C39.5733 59.2 46 56.5467 51.28 51.24C56.56 45.9333 59.2 39.52 59.2 32C59.2 24.4267 56.56 18 51.28 12.72C46 7.44 39.5733 4.8 32 4.8C24.48 4.8 18.0667 7.44 12.76 12.72C7.45333 18 4.8 24.4267 4.8 32C4.8 39.52 7.45333 45.9333 12.76 51.24C18.0667 56.5467 24.48 59.2 32 59.2Z" fill="var(--check-passable-icon)" fill-rule="nonzero" opacity="1" stroke="none"/></svg>'
   let check_fragile_icon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M43.68 27.76C44.9067 27.76 45.9333 27.3467 46.76 26.52C47.5867 25.6933 48 24.6667 48 23.44C48 22.2133 47.5867 21.1867 46.76 20.36C45.9333 19.5333 44.9067 19.12 43.68 19.12C42.4533 19.12 41.4267 19.5333 40.6 20.36C39.7733 21.1867 39.36 22.2133 39.36 23.44C39.36 24.6667 39.7733 25.6933 40.6 26.52C41.4267 27.3467 42.4533 27.76 43.68 27.76ZM20.32 27.76C21.5467 27.76 22.5733 27.3467 23.4 26.52C24.2267 25.6933 24.64 24.6667 24.64 23.44C24.64 22.2133 24.2267 21.1867 23.4 20.36C22.5733 19.5333 21.5467 19.12 20.32 19.12C19.0933 19.12 18.0667 19.5333 17.24 20.36C16.4133 21.1867 16 22.2133 16 23.44C16 24.6667 16.4133 25.6933 17.24 26.52C18.0667 27.3467 19.0933 27.76 20.32 27.76ZM32 37.04C28.4267 37.04 25.1867 38.04 22.28 40.04C19.3733 42.04 17.2267 44.6933 15.84 48L20.08 48C21.2533 45.76 22.92 44.0267 25.08 42.8C27.24 41.5733 29.5733 40.96 32.08 40.96C34.5867 40.96 36.8933 41.5733 39 42.8C41.1067 44.0267 42.7733 45.76 44 48L48.16 48C46.8267 44.6933 44.6933 42.04 41.76 40.04C38.8267 38.04 35.5733 37.04 32 37.04ZM32 64C27.6267 64 23.4933 63.16 19.6 61.48C15.7067 59.8 12.3067 57.5067 9.4 54.6C6.49333 51.6933 4.2 48.2933 2.52 44.4C0.84 40.5067 0 36.3467 0 31.92C0 27.5467 0.84 23.4133 2.52 19.52C4.2 15.6267 6.49333 12.24 9.4 9.36C12.3067 6.48 15.7067 4.2 19.6 2.52C23.4933 0.84 27.6533 0 32.08 0C36.4533 0 40.5867 0.84 44.48 2.52C48.3733 4.2 51.76 6.48 54.64 9.36C57.52 12.24 59.8 15.6267 61.48 19.52C63.16 23.4133 64 27.5733 64 32C64 36.3733 63.16 40.5067 61.48 44.4C59.8 48.2933 57.52 51.6933 54.64 54.6C51.76 57.5067 48.3733 59.8 44.48 61.48C40.5867 63.16 36.4267 64 32 64ZM32 59.2C39.5733 59.2 46 56.5467 51.28 51.24C56.56 45.9333 59.2 39.52 59.2 32C59.2 24.4267 56.56 18 51.28 12.72C46 7.44 39.5733 4.8 32 4.8C24.48 4.8 18.0667 7.44 12.76 12.72C7.45333 18 4.8 24.4267 4.8 32C4.8 39.52 7.45333 45.9333 12.76 51.24C18.0667 56.5467 24.48 59.2 32 59.2Z" fill="var(--check-fragile-icon)" fill-rule="nonzero" opacity="1" stroke="none"/></svg>'
   let check_unsafe_icon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M32 37.04C28.4267 37.04 25.1867 38.04 22.28 40.04C19.3733 42.04 17.2267 44.6933 15.84 48L48.16 48C46.8267 44.6933 44.6933 42.04 41.76 40.04C38.8267 38.04 35.5733 37.04 32 37.04ZM17.36 31.28L21.36 27.68L24.96 31.28L27.44 28.4L23.84 24.8L27.44 21.2L24.96 18.32L21.36 21.92L17.36 18.32L14.88 21.2L18.48 24.8L14.88 28.4L17.36 31.28ZM39.12 31.28L42.64 27.68L46.72 31.28L49.2 28.4L45.6 24.8L49.2 21.2L46.72 18.32L42.64 21.92L39.12 18.32L36.64 21.2L40.16 24.8L36.64 28.4L39.12 31.28ZM32 64C27.6267 64 23.4933 63.16 19.6 61.48C15.7067 59.8 12.3067 57.5067 9.4 54.6C6.49333 51.6933 4.2 48.2933 2.52 44.4C0.84 40.5067 0 36.3733 0 32C0 27.5733 0.84 23.4133 2.52 19.52C4.2 15.6267 6.49333 12.24 9.4 9.36C12.3067 6.48 15.7067 4.2 19.6 2.52C23.4933 0.84 27.6267 0 32 0C36.4267 0 40.5867 0.84 44.48 2.52C48.3733 4.2 51.76 6.48 54.64 9.36C57.52 12.24 59.8 15.6267 61.48 19.52C63.16 23.4133 64 27.5733 64 32C64 36.3733 63.16 40.5067 61.48 44.4C59.8 48.2933 57.52 51.6933 54.64 54.6C51.76 57.5067 48.3733 59.8 44.48 61.48C40.5867 63.16 36.4267 64 32 64ZM32 59.2C39.5733 59.2 46 56.5467 51.28 51.24C56.56 45.9333 59.2 39.52 59.2 32C59.2 24.4267 56.56 18 51.28 12.72C46 7.44 39.5733 4.8 32 4.8C24.48 4.8 18.0667 7.44 12.76 12.72C7.45333 18 4.8 24.4267 4.8 32C4.8 39.52 7.45333 45.9333 12.76 51.24C18.0667 56.5467 24.48 59.2 32 59.2Z" fill="var(--check-unsafe-icon)" fill-rule="nonzero" opacity="1" stroke="none"/></svg>'
+  let clockicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M43.76 47.44L47.36 43.84L34.64 31.04L34.64 14.96L29.84 14.96L29.84 32.96L43.76 47.44ZM32 64C27.6267 64 23.4933 63.16 19.6 61.48C15.7067 59.8 12.3067 57.5067 9.4 54.6C6.49333 51.6933 4.2 48.2933 2.52 44.4C0.84 40.5067 0 36.3733 0 32C0 27.6267 0.84 23.4933 2.52 19.6C4.2 15.7067 6.49333 12.3067 9.4 9.4C12.3067 6.49333 15.7067 4.2 19.6 2.52C23.4933 0.84 27.6267 0 32 0C36.3733 0 40.5067 0.84 44.4 2.52C48.2933 4.2 51.6933 6.49333 54.6 9.4C57.5067 12.3067 59.8 15.7067 61.48 19.6C63.16 23.4933 64 27.6267 64 32C64 36.3733 63.16 40.5067 61.48 44.4C59.8 48.2933 57.5067 51.6933 54.6 54.6C51.6933 57.5067 48.2933 59.8 44.4 61.48C40.5067 63.16 36.3733 64 32 64ZM32 59.2C39.4667 59.2 45.8667 56.5333 51.2 51.2C56.5333 45.8667 59.2 39.4667 59.2 32C59.2 24.5333 56.5333 18.1333 51.2 12.8C45.8667 7.46667 39.4667 4.8 32 4.8C24.5333 4.8 18.1333 7.46667 12.8 12.8C7.46667 18.1333 4.8 24.5333 4.8 32C4.8 39.4667 7.46667 45.8667 12.8 51.2C18.1333 56.5333 24.5333 59.2 32 59.2Z" fill="var(--g-4e4e4e)" fill-rule="nonzero" opacity="1" stroke="none"/></svg>'
+  let storageicon = '<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M0 60.4444L0 47.2889L64 47.2889L64 60.4444L0 60.4444ZM5.33333 57.0667L11.7333 57.0667L11.7333 50.6667L5.33333 50.6667L5.33333 57.0667ZM0 16.7111L0 3.55556L64 3.55556L64 16.7111L0 16.7111ZM5.33333 13.3333L11.7333 13.3333L11.7333 6.93333L5.33333 6.93333L5.33333 13.3333ZM0 38.5778L0 25.4222L64 25.4222L64 38.5778L0 38.5778ZM5.33333 35.2L11.7333 35.2L11.7333 28.8L5.33333 28.8L5.33333 35.2Z" fill="var(--g-4e4e4e)" fill-rule="nonzero" opacity="1" stroke="none"/></svg>'
   function mes(mess) {
     $('body').prompt({ 'message': mess, 'time': 1200 });
   }
@@ -4169,7 +4745,7 @@
     }
     var pwlen = parseInt(pwjson.s_length)
     if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
-      $('body').prompt({ 'message': 'Please enter a value between 8 and 32768', 'time': 3000 });
+      $('body').prompt({ 'message': 'length must be between 8 and 32768', 'time': 3000 });
     }
     else {
 
@@ -4963,6 +5539,225 @@
   function loadgooglefont() {
     $('head').append('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400&display=swap" rel="stylesheet">')
   }
+  var storage_clean_illustration_content_load = 0
+  function show_storage_clean() {
+    $('.storage_clean').css({ 'display': 'block' })
+    $('.storage_clean_title').css({ 'display': 'flex' })
+    if (storage_clean_illustration_content_load === 0) {
+      $('.storage_clean_illustration_content').html('<img src="https://erichsia7.github.io/pwdgen2/resource/box.svg">')
+      storage_clean_illustration_content_load = 1
+      rclick('.storage_clean_action_list_btn')
+    }
+  }
+  function hide_storage_clean() {
+    location.reload()
+  }
+  function show_clean_up_password(m) {
+    $('.clean_up_password_title').css({ 'display': 'flex' })
+    $('.clean_up_password').css({ 'display': 'block' })
+    if (m === 0) {
+      $('#clean_up_password_title_text').text('Delete large password')
+      setcleanoptionvalue(8000, '8 KB')
+    }
+    if (m === 1) {
+      $('#clean_up_password_title_text').text('Delete old password')
+      setcleanoptionvalue(60 * 60 * 24 * 7 * 1000, '7 days')
+    }
+    $('.clean_up_password_option_btn').attr('r-click', "clean_up_password_option(" + m + ")")
+    showcleanpassword(m)
+
+  }
+  function hide_clean_up_password() {
+    $('.clean_up_password').scrollTop(0)
+    $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' });
+  }
+  function clean_up_password_option(m) {
+    $('.clean_up_password_option_box_c').html('')
+    var list_icon = ''
+    if (m === 0) {
+      list_icon = storageicon
+      $('.clean_up_password_option_box_title').text('Select size')
+      var option_list = [
+        { 'text': '128 BYTE', 'v': 128 },
+        { 'text': '256 BYTE', 'v': 256 },
+        { 'text': '512 BYTE', 'v': 512 },
+        { 'text': '1 KB', 'v': 1000 },
+        { 'text': '8 KB', 'v': 8000 },
+        { 'text': '16 KB', 'v': 16000 },
+        { 'text': '32 KB', 'v': 32000 },
+        { 'text': '64 KB', 'v': 64000 }
+      ]
+    }
+    if (m === 1) {
+      list_icon = clockicon
+      $('.clean_up_password_option_box_title').text('Select time')
+      var option_list = [
+        { 'text': '7 days', 'v': 60 * 60 * 24 * 7 * 1000 },
+        { 'text': '14 days', 'v': 60 * 60 * 24 * 14 * 1000 },
+        { 'text': '30 days', 'v': 60 * 60 * 24 * 30 * 1000 },
+        { 'text': '60 days', 'v': 60 * 60 * 24 * 60 * 1000 },
+        { 'text': '90 days', 'v': 60 * 60 * 24 * 90 * 1000 },
+        { 'text': '120 days', 'v': 60 * 60 * 24 * 120 * 1000 },
+        { 'text': '360 days', 'v': 60 * 60 * 24 * 360 * 1000 },
+      ]
+    }
+    var option_list_len = option_list.length
+    for (var o = 0; o < option_list_len; o++) {
+      var this_li = option_list[o]
+      var li_id = gid('cleanoptionlist')
+      var htm = '<li id="' + li_id + '" r-click="setcleanoptionvalue(' + this_li.v + ',' + "'" + this_li.text + "'" + ',' + m + ')"><div class="clean_up_password_option_box_icon">' + list_icon + '</div><div class="clean_up_password_option_box_name">' + this_li.text + '</div></li>'
+      $('.clean_up_password_option_box_c').append(htm)
+      rclick('.clean_up_password_option_box .clean_up_password_option_box_c li#' + li_id)
+    }
+    $('.clean_up_password_option_box_mask,.clean_up_password_option_box').css({ 'opacity': '0', 'display': 'block' })
+    $('.clean_up_password_option_box').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.clean_up_password_option_box_mask,.clean_up_password_option_box').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.clean_up_password_option_box').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+  }
+  function setcleanoptionvalue(val, txt, m) {
+    $('.clean_up_password_option').attr('v', val)
+    $('.clean_up_password_option_value_text').text(txt)
+    closecleanoption()
+    showcleanpassword(m)
+  }
+  function closecleanoption() {
+    $('.clean_up_password_option_box_mask,.clean_up_password_option_box').css({ 'opacity': '0' })
+    $('.clean_up_password_option_box').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.clean_up_password_option_box_mask,.clean_up_password_option_box').css({ 'display': 'none', 'transition': '0s' });
+    }, 300);
+  }
+  function showcleanpassword(m) {
+    var nowtime = new Date().getTime()
+    var del_time = 60 * 60 * 24 * 7 * 1000 //7days
+    var del_size = 10000 //10kb
+    if (m === 0) {
+      del_size = parseInt($('.clean_up_password_option').attr('v')) //7days
+    }
+    if (m === 1) {
+      del_time = parseInt($('.clean_up_password_option').attr('v')) //7days
+    }
+
+    var clean_loading_htm = []
+    for (var w = 0; w < 10; w++) {
+      clean_loading_htm.push('<div class="clean_up_password_box loading2"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size"></div><div class="clean_up_password_box_head_delete_btn">Delete</div></div><div class="clean_up_password_box_title"></div><div class="l-input"></div><div class="l-textarea"></div></div>')
+    }
+    $('.clean_up_password_list').html(clean_loading_htm)
+    $('.clean_up_password_list').css({ 'display': 'block' });
+    setTimeout(function () {
+
+      var savedlist = searchItemsbyname('pwdgen2_saved_a_')
+      var pwd_count = 0
+      for (var e = 0; e < savedlist.length; e++) {
+        if (!(localStorage.getItem(savedlist[e]) === null)) {
+          var thpwdd = String(localStorage.getItem(savedlist[e])).split(':')
+          var pwtime = new Date()
+          pwtime.setTime(thpwdd[2])
+          var pwtimestr = timestr(pwtime)
+          var pw = deur(decu(thpwdd[0], thpwdd[1]))
+          var pwgid = gid('largelist')
+          var hash = sha256(pw + '_' + pwtime.getTime())
+          var notetext = ''
+          if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
+            notetext = deur(atob(String(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash))))
+          }
+          var xnt = localStorage.getItem(savedlist[e]);
+          var xntl = strlengthtobytes(savedlist[e])
+          if (xnt === null) {
+            xnt = ''
+            xntl = 0
+          }
+          var stog = strlengthtobytes(localStorage.getItem('pwdgen2_saved_notes_cf_' + hash)) + strlengthtobytes('pwdgen2_saved_notes_cf_' + hash) + xntl + strlengthtobytes(xnt)
+          if (!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + hash) > -1)) {
+            stog = 0
+          }
+          if (m === 0) {
+            if (stog < del_size) {
+              continue;
+            }
+          }
+          if (m === 1) {
+            if ((nowtime - pwtime.getTime()) < del_time) {
+              continue;
+            }
+          }
+          var storage_str = storagesize(stog)
+          var htm = '<div class="clean_up_password_box" id="' + pwgid + '"><div class="clean_up_password_box_head"><div class="clean_up_password_box_head_size">' + storage_str + '</div><div class="clean_up_password_box_head_delete_btn" r-click="cleanuppwdconfirm(' + "'" + hash + "'" + ',' + "'" + pwgid + "'" + ')">Delete</div></div><div class="clean_up_password_box_title">' + pwtimestr + '</div><input type="text" readonly="readonly" placeholder="password" value="' + pw + '"><textarea readonly="readonly" placeholder="Note"></textarea></div>'
+          $('.clean_up_password .clean_up_password_list').append(htm)
+          $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' textarea').val(notetext)
+          rclick('.clean_up_password .clean_up_password_list .clean_up_password_box#' + pwgid + ' .clean_up_password_box_head_delete_btn')
+          pwd_count += 1
+        }
+      }
+      if (pwd_count === 0) {
+        $('.clean_up_password_list').css({ 'display': 'flex', 'justify-content': 'center', 'align-items': 'center' })
+        $('.clean_up_password .clean_up_password_list').html('<span id="nothing">Nothing</span>')
+      }
+      $('.clean_up_password_list .loading2').remove()
+    }, 1500)
+  }
+  function cleanuppwdconfirm(hash, gid) {
+    $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'opacity': '0', 'display': 'block' })
+    $('.clean_up_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+
+    setTimeout(function () {
+      $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.clean_up_confirm').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+    $('#clean_up_confirm_btn3').attr('r-click', "cleanuppasswordbyhash('" + hash + "','" + gid + "')")
+  }
+  function cleanuppwdconfirmcls() {
+    $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'opacity': '0' })
+    $('.clean_up_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.clean_up_confirm_mask,.clean_up_confirm').css({ 'display': 'none', 'transition': '0s' });
+    }, 300);
+  }
+
+  function cleanuppasswordbyhash(hash, gid) {
+    if (localStorage.hasOwnProperty('pwdgen2_saved_a_' + hash)) {
+      localStorage.removeItem('pwdgen2_saved_a_' + hash)
+    }
+    if (localStorage.hasOwnProperty('pwdgen2_saved_notes_cf_' + hash)) {
+      localStorage.removeItem('pwdgen2_saved_notes_cf_' + hash)
+    }
+    $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + gid).remove()
+    mes('password deleted.')
+    cleanuppwdconfirmcls()
+  }
+
+  function clearcache() {
+    deletepwcache()
+    mes('Cache cleared')
+  }
+  function backupzipandclearstorage() {
+    backupzip()
+    $('#storage_clean_action_clearstorage').css({ 'display': 'block' })
+  }
+  function confirmclearstorage() {
+    $('.clear_storage_confirm_mask,.clear_storage_confirm').css({ 'opacity': '0', 'display': 'block' })
+    $('.clear_storage_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+
+    setTimeout(function () {
+      $('.clear_storage_confirm_mask,.clear_storage_confirm').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.clear_storage_confirm').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+  }
+  function clsconfirmclearstorage() {
+    $('.clear_storage_confirm_mask,.clear_storage_confirm').css({ 'opacity': '0' })
+    $('.clear_storage_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.clear_storage_confirm_mask,.clear_storage_confirm').css({ 'display': 'none', 'transition': '0s' });
+    }, 300);
+  }
+  function clearstorage() {
+    localStorage.clear()
+    mes('Storage cleared')
+    clsconfirmclearstorage()
+  }
+
   function showsavedhistory() {
     var saveddate = {}
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
@@ -5218,7 +6013,7 @@
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
 
-  rclick('.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8')
+  rclick('.options_list[dy="cleanupstorage"],.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8,.clean_up_confirm .btn3,.clear_storage_confirm .btn3,.clean_up_password_option_btn,.clean_up_password_option_box_close')
 
   function deleteallsavedpwds() {
     if ($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
@@ -5513,7 +6308,7 @@
     restorepwdfromjson(jsonhh, 2)
     setTimeout(function () {
       vrefresh()
-    }, 10000);
+    }, 30000);
   }
 
   function hexToRgb(hex) {
