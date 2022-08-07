@@ -891,7 +891,8 @@
     .custom-presets-manager-mask,
     .history_filter_fulllist_mask,
     .clean_up_confirm_mask,
-    .clear_storage_confirm_mask {
+    .clear_storage_confirm_mask,
+    .clean_up_password_option_box_mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -1644,7 +1645,8 @@
     .filter-date-picker,
     .custom-presets-add,
     .custom-presets-manager,
-    .history_filter_fulllist {
+    .history_filter_fulllist,
+    .clean_up_password_option_box {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -1662,7 +1664,8 @@
     .filter-date-picker-title,
     .custom-presets-add-title,
     .custom-presets-manager-title,
-    .history_filter_fulllist_title {
+    .history_filter_fulllist_title,
+    .clean_up_password_option_box_title {
       height: 45px;
       width: calc(100% - 20px);
       position: absolute;
@@ -1796,7 +1799,8 @@
     .custom-presets-add-cancel,
     .custom-presets-add-add,
     .custom-presets-manager-close,
-    .history_filter_fulllist_close {
+    .history_filter_fulllist_close,
+    .clean_up_password_option_box_close {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -1827,7 +1831,8 @@
 
     .custom-presets-add-box,
     .custom-presets-manager-box,
-    .history_filter_fulllist_box {
+    .history_filter_fulllist_box,
+    .clean_up_password_option_box_c {
       height: calc(100% - 45px - 10px - 5px - 45px - 10px);
       width: calc(100% - 20px);
       position: absolute;
@@ -1930,7 +1935,8 @@
     }
 
     .custom-presets-manager-box li,
-    .history_filter_fulllist_box li {
+    .history_filter_fulllist_box li,
+    .clean_up_password_option_box_c li {
       width: 100%;
       height: 45px;
       position: relative;
@@ -1941,12 +1947,14 @@
     }
 
     .custom-presets-manager-box li:nth-last-child(1),
-    .history_filter_fulllist_box li:nth-last-child(1) {
+    .history_filter_fulllist_box li:nth-last-child(1),
+    .clean_up_password_option_box_c li:nth-last-child(1) {
       border: none;
     }
 
     .custom-presets-manager-box .custom-presets-manager-icon,
-    .history_filter_fulllist_box .history_filter_fulllist_icon {
+    .history_filter_fulllist_box .history_filter_fulllist_icon,
+    .clean_up_password_option_box .clean_up_password_option_box_icon {
       position: absolute;
       top: 5px;
       left: 5px;
@@ -1963,13 +1971,15 @@
     .custom-presets-manager-box .custom-presets-manager-icon svg,
     .custom-presets-manager-box .custom-presets-manager-delete svg,
     .custom-presets-manager-box .custom-presets-manager-edit svg,
-    .history_filter_fulllist_box .history_filter_fulllist_icon svg {
+    .history_filter_fulllist_box .history_filter_fulllist_icon svg,
+    .clean_up_password_option_box .clean_up_password_option_box_icon svg {
       width: 18px;
       height: 18px;
     }
 
     .custom-presets-manager-box .custom-presets-manager-name,
-    .history_filter_fulllist_box .history_filter_fulllist_name {
+    .history_filter_fulllist_box .history_filter_fulllist_name,
+    .clean_up_password_option_box .clean_up_password_option_box_name {
       position: absolute;
       top: 5px;
       left: 45px;
@@ -1981,7 +1991,8 @@
       overflow: hidden;
     }
 
-    .history_filter_fulllist_box .history_filter_fulllist_name {
+    .history_filter_fulllist_box .history_filter_fulllist_name,
+    .clean_up_password_option_box .clean_up_password_option_box_name {
       width: calc(100% - 45px)
     }
 
@@ -2165,7 +2176,7 @@
 
     .clean_up_password_list {
       position: absolute;
-      top: 30px;
+      top: calc(30px + 45px + 20px);
       left: 50%;
       transform: translateX(-50%);
       display: inline-block;
@@ -2365,6 +2376,44 @@
       margin-bottom: 100px;
       user-select: none;
       -webkit-user-select: none;
+    }
+
+    .clean_up_password_option {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--u-width);
+      height: 45px;
+      border: 1px solid var(--g-e3e3e3);
+      border-radius: 8px;
+      background: var(--g-ffffff);
+    }
+
+    .clean_up_password_option_value_text {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 25px;
+      width: calc(100% - 20px);
+      display: flex;
+      align-items: center;
+      color: var(--g-4e4e4e);
+    }
+
+    .clean_up_password_option_btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 25px;
+      width: auto;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 8px;
+      border-radius: 15px;
+      background: var(--g-e3e3e3);
+      color: var(--g-4e4e4e);
     }
 
     @media (min-width: 600px) {
@@ -3066,11 +3115,15 @@
   </div>
 
   <div class="clean_up_password" style="display:none;">
+    <div class="clean_up_password_option" v="">
+      <div class="clean_up_password_option_value_text"></div>
+      <div class="clean_up_password_option_btn" r-click="clean_up_password_option(0)">Select</div>
+    </div>
     <div class="clean_up_password_list"></div>
   </div>
 
   <div class="clean_up_password_title" style="display:none;">
-    <span id="clean_up_password_title_text">Delete large password</span>
+    <span id="clean_up_password_title_text"></span>
     <div class="btn2-l" r-click="hide_clean_up_password()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -3079,6 +3132,19 @@
         <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)"
           fill-rule="evenodd" opacity="1" stroke="none" />
       </svg>
+    </div>
+  </div>
+
+  <div class="clean_up_password_option_box_mask"></div>
+  <div class="clean_up_password_option_box">
+    <div class="clean_up_password_option_box_title">
+      Select date
+    </div>
+    <div class="clean_up_password_option_box_c">
+
+    </div>
+    <div class="clean_up_password_option_box_close" r-click="closecleanoption()">
+      Close
     </div>
   </div>
 
@@ -5499,6 +5565,59 @@
   function hide_clean_up_password() {
     $('.clean_up_password').scrollTop(0)
     $('.clean_up_password_title,.clean_up_password').css({ 'display': 'none' });
+  }
+  function show_clean_up_password_option(m) {
+    $('.clean_up_password_option_box_c').html('')
+    if (m === 0) {
+      $('.clean_up_password_option_box_title').text('Select size')
+      var option_list = [
+        { 'text': '128 BYTE', 'v': 128 },
+        { 'text': '256 BYTE', 'v': 256 },
+        { 'text': '512 BYTE', 'v': 512 },
+        { 'text': '1 KB', 'v': 1000 },
+        { 'text': '8 KB', 'v': 8000 },
+        { 'text': '16 KB', 'v': 16000 },
+        { 'text': '32 KB', 'v': 32000 },
+        { 'text': '64 KB', 'v': 64000 }
+      ]
+    }
+    if (m === 1) {
+      $('.clean_up_password_option_box_title').text('Select time')
+      var option_list = [
+        { 'text': '7 days', 'v': 60 * 60 * 24 * 7 * 1000 },
+        { 'text': '14 days', 'v': 60 * 60 * 24 * 14 * 1000 },
+        { 'text': '30 days', 'v': 60 * 60 * 24 * 30 * 1000 },
+        { 'text': '60 days', 'v': 60 * 60 * 24 * 60 * 1000 },
+        { 'text': '90 days', 'v': 60 * 60 * 24 * 90 * 1000 },
+        { 'text': '120 days', 'v': 60 * 60 * 24 * 120 * 1000 },
+        { 'text': '360 days', 'v': 60 * 60 * 24 * 360 * 1000 },
+      ]
+    }
+    var option_list_len = option_list.length
+    for (var o = 0; o < option_list_len; o++) {
+      var this_li = option_list[o]
+      var li_id = gid('cleanoptionlist')
+      var htm = '<li id="' + li_id + '" r-click="setcleanoptionvalue(' + this_li.v + ')">' + this_li.text + '</li>'
+      $('.clean_up_password_option_box_c').append(htm)
+      rclick('.clean_up_password_option_box .clean_up_password_option_box_c li#' + li_id)
+    }
+    $('.clean_up_password_option_box_mask,.clean_up_password_option_box').css({ 'opacity': '0', 'display': 'block' })
+    $('.clean_up_password_option_box').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.clean_up_password_option_box_mask,.clean_up_password_option_box').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.clean_up_password_option_box').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+  }
+  function setcleanoptionvalue(val) {
+$('.clean_up_password_option').attr('v',v)
+    closecleanoption()
+  }
+  function closecleanoption() {
+    $('.clean_up_password_option_box_mask,.clean_up_password_option_box').css({ 'opacity': '0' })
+    $('.clean_up_password_option_box').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.clean_up_password_option_box_mask,.clean_up_password_option_box').css({ 'display': 'none', 'transition': '0s' });
+    }, 300);
   }
   function showcleanpassword(m) {
     var nowtime = new Date().getTime()
