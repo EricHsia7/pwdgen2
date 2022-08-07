@@ -5599,7 +5599,7 @@
     for (var o = 0; o < option_list_len; o++) {
       var this_li = option_list[o]
       var li_id = gid('cleanoptionlist')
-      var htm = '<li id="' + li_id + '" r-click="setcleanoptionvalue(' + this_li.v + ',' + "'" + this_li.text + "'" + ',' + m + ')">' + this_li.text + '</li>'
+      var htm = '<li id="' + li_id + '" r-click="setcleanoptionvalue(' + this_li.v + ',' + "'" + this_li.text + "'" + ',' + m + ')"><div class="clean_up_password_option_box_icon">' + hashatagicon + '</div><div class="clean_up_password_option_box_name">' + this_li.text + '</div></li>'
       $('.clean_up_password_option_box_c').append(htm)
       rclick('.clean_up_password_option_box .clean_up_password_option_box_c li#' + li_id)
     }
