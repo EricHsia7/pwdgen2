@@ -466,7 +466,6 @@
     .box .checkpwd {
       height: 25px;
       width: 25px;
-      /*background: var(--g-e3e3e3);*/
       border-radius: 15px;
       display: inline-flex;
       justify-content: center;
@@ -1096,7 +1095,6 @@
     #pwdcheckscore {
       stroke-dasharray: 377px;
       stroke-dashoffset: calc(377px * (1 - (var(--pwd-check-score) / 100)));
-      /*p*/
     }
 
     #pwdcheckscore-svg {
@@ -1508,11 +1506,6 @@
     }
 
     .custom-presets li {
-      /*
-      height: 32px;
-      border: 1px solid var(--g-e3e3e3);
-      box-sizing: content-box;
-      */
       background: var(--g-ffffff);
     }
 
@@ -3249,17 +3242,6 @@
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
   }
-  /*
-  function localstoragesetItem(key, content) {
-    try {
-      var item = localStorage.setItem(key, content)
-    } catch (e) {
-      show_storage_clean()
-    }
-    return item
-  }
-  //#bug-58630001
-  */
   function encu(textu) {
     var eechars = "123456789";
     var eeid = "";
@@ -3566,18 +3548,11 @@
     if (!(searchItemsbyname('pwdgen2_saved_a_').indexOf('pwdgen2_saved_a_' + sha256(pwdstr + '_' + sttt)) > -1)) {
       stog = 0
     }
-
     return { 'len': stle, 'check': stcc, 'time': sttt, 'storage': stog }
   }
-  /*
-  function strlengthtobytes(str) {
-    return str.length*16/(0.008*1024)
-  }
-  */
 
   function strlengthtobytes(str) {
     return (new Blob([str]).size)
-    //return String(str).length
   }
 
   function storagesize(bytes) {
