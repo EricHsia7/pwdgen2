@@ -888,7 +888,8 @@
     .custom-presets-add-mask,
     .custom-presets-manager-mask,
     .history_filter_fulllist_mask,
-    .clean_up_confirm_mask {
+    .clean_up_confirm_mask,
+    .clear_storage_confirm_mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -901,7 +902,8 @@
     }
 
     .confirm,
-    .clean_up_confirm {
+    .clean_up_confirm,
+    .clear_storage_confirm {
       width: var(--u-width);
       height: 170px;
       background: var(--g-f4f4f4);
@@ -916,7 +918,8 @@
     }
 
     .confirm .confirmtitle,
-    .clean_up_confirm .clean_up_confirm_title {
+    .clean_up_confirm .clean_up_confirm_title,
+    .clear_storage_confirm .clear_storage_confirm_title {
       position: absolute;
       top: 15px;
       left: 15px;
@@ -929,14 +932,17 @@
       overflow: hidden
     }
 
-    .clean_up_confirm .clean_up_confirm_title {
+    .clean_up_confirm .clean_up_confirm_title,
+    .clear_storage_confirm .clear_storage_confirm_title {
       height: 90px;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 23px;
     }
-
+    .clear_storage_confirm .clear_storage_confirm_title {
+      font-size:18px;
+    }
     .confirm .confirminput {
       position: absolute;
       top: calc(15px + 55px);
@@ -954,7 +960,8 @@
     }
 
     .confirm .btn3,
-    .clean_up_confirm .btn3 {
+    .clean_up_confirm .btn3 ,
+    .clear_storage_confirm .btn3 {
       position: absolute;
       top: calc(15px + 55px + 35px + 5px);
       left: 15px;
@@ -2111,6 +2118,10 @@
       border-bottom: none
     }
 
+    #storage_clean_action_clearstorage {
+      display: none;
+    }
+
     .storage_clean_action_list_title {
       position: absolute;
       top: 5px;
@@ -2331,7 +2342,7 @@
     }
 
     .clean_up_password_box.loading2 .l-textarea::after {
-      height:100%;
+      height: 100%;
       top: 0px;
     }
 
@@ -3021,17 +3032,8 @@
         <div class="storage_clean_action_list_title">
           Clear cache
         </div>
-        <div class="storage_clean_action_list_btn">
+        <div class="storage_clean_action_list_btn" r-click="clearcache()">
           Clear
-        </div>
-      </li>
-
-      <li>
-        <div class="storage_clean_action_list_title">
-          Turn on auto delete
-        </div>
-        <div class="storage_clean_action_list_btn">
-          Turn on
         </div>
       </li>
 
@@ -3039,10 +3041,19 @@
         <div class="storage_clean_action_list_title">
           Backup data and clear storage
         </div>
-        <div class="storage_clean_action_list_btn">
+        <div class="storage_clean_action_list_btn" r-click="backupzipandclearstorage()">
           Backup
         </div>
       </li>
+      <li id="storage_clean_action_clearstorage">
+        <div class="storage_clean_action_list_title">
+          Clear storage
+        </div>
+        <div class="storage_clean_action_list_btn" r-click="confirmclearstorage()">
+          Clear
+        </div>
+      </li>
+
       <div class="clean_up_btn" r-click="hide_storage_clean()">Refresh page and back</div>
     </div>
   </div>
@@ -3076,6 +3087,14 @@
     <div class="btn3" style="left:calc(50% + 5px)" r-click="cleanuppwdconfirmcls()">Cancel</div>
   </div>
 
+  <div class="clear_storage_confirm_mask"></div>
+  <div class="clear_storage_confirm">
+    <div class="clear_storage_confirm_title">
+      Confirm clear?
+    </div>
+    <div class="btn3" r-click="clearstorage()" id="clean_up_confirm_btn3">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="clsconfirmclearstorage()">Cancel</div>
+  </div>
 
 
   <div class="restoredata">
@@ -5567,6 +5586,36 @@
     $('.clean_up_password .clean_up_password_list .clean_up_password_box#' + gid).remove()
     mes('password deleted.')
     cleanuppwdconfirmcls()
+  }
+
+  function clearcache() {
+    deletepwcache()
+    mes('Cache cleared')
+  }
+  function backupzipandclearstorage() {
+    backupzip()
+    $('#storage_clean_action_clearstorage').css({ 'display': 'block' })
+  }
+  function confirmclearstorage() {
+    $('.clear_storage_confirm_mask,.clear_storage_confirm').css({ 'opacity': '0', 'display': 'block' })
+    $('.clear_storage_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+
+    setTimeout(function () {
+      $('.clear_storage_confirm_mask,.clear_storage_confirm').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.clear_storage_confirm').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+  }
+  function clsconfirmclearstorage() {
+    $('.clear_storage_confirm_mask,.clear_storage_confirm').css({ 'opacity': '0' })
+    $('.clear_storage_confirm').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.clear_storage_confirm_mask,.clear_storage_confirm').css({ 'display': 'none', 'transition': '0s' });
+    }, 300);
+  }
+  function clearstorage() {
+    localStorage.clear()
+    mes('Storage cleared')
+    clsconfirmclearstorage()
   }
 
   function showsavedhistory() {
