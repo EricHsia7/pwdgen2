@@ -2111,6 +2111,13 @@
       color: var(--g-4e4e4e)
     }
 
+    .storage_clean_action_list_box {
+      width: 100%;
+      height: auto;
+      display: inline-block;
+      position: relative;
+    }
+
     .storage_clean_action li {
       width: 100%;
       height: 45px;
@@ -2123,7 +2130,7 @@
       border-top: 1px solid var(--g-e3e3e3);
     }
 
-    .storage_clean_action:nth-child(2) {
+    .storage_clean_action .storage_clean_action_list_box li:first-child {
       border-top: none
     }
 
@@ -3057,49 +3064,51 @@
     <div class="storage_clean_paragraph">You can do the following actions to clean up storage</div>
     <div class="storage_clean_action">
       <h3>Actions</h3>
-      <li>
-        <div class="storage_clean_action_list_title">
-          Delete large password
-        </div>
-        <div class="storage_clean_action_list_btn" r-click="show_clean_up_password(0)">
-          Check
-        </div>
-      </li>
+      <div class="storage_clean_action_list_box">
+        <li>
+          <div class="storage_clean_action_list_title">
+            Delete large password
+          </div>
+          <div class="storage_clean_action_list_btn" r-click="show_clean_up_password(0)">
+            Check
+          </div>
+        </li>
 
-      <li>
-        <div class="storage_clean_action_list_title">
-          Delete old password
-        </div>
-        <div class="storage_clean_action_list_btn" r-click="show_clean_up_password(1)">
-          Check
-        </div>
-      </li>
+        <li>
+          <div class="storage_clean_action_list_title">
+            Delete old password
+          </div>
+          <div class="storage_clean_action_list_btn" r-click="show_clean_up_password(1)">
+            Check
+          </div>
+        </li>
 
-      <li>
-        <div class="storage_clean_action_list_title">
-          Clear cache
-        </div>
-        <div class="storage_clean_action_list_btn" r-click="clearcache()">
-          Clear
-        </div>
-      </li>
+        <li>
+          <div class="storage_clean_action_list_title">
+            Clear cache
+          </div>
+          <div class="storage_clean_action_list_btn" r-click="clearcache()">
+            Clear
+          </div>
+        </li>
 
-      <li>
-        <div class="storage_clean_action_list_title">
-          Backup data and clear storage
-        </div>
-        <div class="storage_clean_action_list_btn" r-click="backupzipandclearstorage()">
-          Backup
-        </div>
-      </li>
-      <li id="storage_clean_action_clearstorage">
-        <div class="storage_clean_action_list_title">
-          Clear storage
-        </div>
-        <div class="storage_clean_action_list_btn" r-click="confirmclearstorage()">
-          Clear
-        </div>
-      </li>
+        <li>
+          <div class="storage_clean_action_list_title">
+            Backup data and clear storage
+          </div>
+          <div class="storage_clean_action_list_btn" r-click="backupzipandclearstorage()">
+            Backup
+          </div>
+        </li>
+        <li id="storage_clean_action_clearstorage">
+          <div class="storage_clean_action_list_title">
+            Clear storage
+          </div>
+          <div class="storage_clean_action_list_btn" r-click="confirmclearstorage()">
+            Clear
+          </div>
+        </li>
+      </div>
 
       <div class="clean_up_btn" r-click="hide_storage_clean()">Refresh page and back</div>
     </div>
