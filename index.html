@@ -5532,11 +5532,11 @@
     $('.clean_up_password').css({ 'display': 'block' })
     if (m === 0) {
       $('#clean_up_password_title_text').text('Delete large password')
-      setcleanoptionvalue(8000, '8 KB')
+      setcleanoptionvalue(8000, '8 KB', m)
     }
     if (m === 1) {
       $('#clean_up_password_title_text').text('Delete old password')
-      setcleanoptionvalue(60 * 60 * 24 * 7 * 1000, '7 days')
+      setcleanoptionvalue(60 * 60 * 24 * 7 * 1000, '7 days', m)
     }
     $('.clean_up_password_option_btn').attr('r-click', "clean_up_password_option(" + m + ")")
     showcleanpassword(m)
