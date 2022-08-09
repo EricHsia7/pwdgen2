@@ -4605,9 +4605,10 @@
       custom_presets_evt = 1
     }
     custompresets()
-    $('.custom-input,.custom-input-page').attr('fx', '1').promise().done(function () {
+    $('.custom-input,.custom-input-page').attr('fx', '1')
+    setTimeout(function () {
       $('.custom-input input[type="text"]').focus()
-    })
+    }, 10)
   }
   function closepwdcustom() {
     $('.custom-input,.custom-input-page').attr('fx', '0')
