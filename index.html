@@ -168,7 +168,6 @@
       font-size: 18px;
     }
 
-    .input input[type="text"],
     .input2 input,
     .input3 input {
       border: none;
@@ -5175,7 +5174,7 @@
         }, 1)
         $('#custom_presets_add_icon_picker_search_input').val('')
         $('#custom_presets_icon_picker_search_css').html('')
-        $('#custom_custom_presets').val($('.input input[type="text"]').val())
+        $('#custom_custom_presets').val($('.custom-input input[type="text"]').val())
         if (custom_presets_icon_load === 0) {
           custom_presets_icon_load = 1
           for (var y = 0; y < 20; y++) {
@@ -5284,7 +5283,7 @@
       //$('#cuschaprop').prop('checked', jcustom.cuschaprop)
       var text = ['length:' + jcustom.r_length, 'capital:' + jcustom.capital, 'lowercase:' + jcustom.lowercase, 'number:' + jcustom.number, 'symbol:' + jcustom.symbol, 'do-not-use-similar-characters:' + jcustom.dontusesimilarcharsg]
 
-      $('.input input[type="text"]').val(text.join(','))
+      $('.custom-input input[type="text"]').val(text.join(','))
       $('.custom-presets li').attr('o', '0')
       $('.custom-presets li[fd="' + g + '"]').attr('o', '1')
     }
