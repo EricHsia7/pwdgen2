@@ -153,6 +153,20 @@
       display: none
     }
 
+    .input-placeholder {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 35px;
+      color: var(--g-4e4e4e);
+      display: flex;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      opacity: 0.4;
+    }
+
     .input input[type="text"],
     .input2 input,
     .input3 input {
@@ -2544,13 +2558,15 @@
       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
     </li>
   </div>
-  <div class="history">
-  </div>
-
 
   <div class="input" style="--j-li-length:0;--j-custom-presets-hide:0;--j-border2-hide:0">
     <div class="input-placeholder">custom</div>
   </div>
+
+  <div class="history">
+  </div>
+
+
 
   <div class="input2">
     <input type="password" placeholder="password" autocomplete="off">
@@ -4586,11 +4602,11 @@
       custom_presets_evt = 1
     }
     custompresets()
-    $('.custom-input,.custom-input-page').attr('f','1')
+    $('.custom-input,.custom-input-page').attr('fx', '1')
     $('.custom-input input[type="text"]').focus()
   }
   function closepwdcustom() {
-    $('.custom-input,.custom-input-page').attr('f','0')
+    $('.custom-input,.custom-input-page').attr('fx', '0')
   }
 
   function generator_custom_auto_complete_c(original_text, n, e) {
