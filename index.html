@@ -430,12 +430,15 @@
     .box {
       width: 100%;
       height: 120px;
-      background: var(--g-f4f4f4);
+      background: var(--g-ffffff);
+      border:1px solid var(--g-f4f4f4);
+      box-shadow:0px 0px 12px -8px rgba(0,0,0,0.15);
       border-radius: 12px;
       position: relative;
       margin-top: 10px;
       -webkit-user-select: none;
       user-select: none;
+      box-sizing: border-box;
     }
 
     .box .boxtitle {
@@ -491,7 +494,7 @@
     .box .btn1 {
       height: 40px;
       width: 40px;
-      background: var(--g-e3e3e3);
+      background: var(--g-f4f4f4);
       border-radius: 10px;
       position: absolute;
       left: 10px;
@@ -514,7 +517,7 @@
 
     .box.loading .boxtitle,
     .box.loading input {
-      background: var(--g-e3e3e3);
+      background: var(--g-f4f4f4);
       border-radius: 7px;
     }
 
