@@ -2732,6 +2732,12 @@
 
     </div>
   </div>
+  
+  <div class="custom-input-page">
+    <div class="custom-presets"></div>
+    <div class="border"></div>
+    <div class="generator_custom_auto_complete"></div>
+  </div>
 
   <div class="custom-input">
     <div class="btn2-l" r-click="closepwdcustom()">
@@ -2764,11 +2770,6 @@
           fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
       </svg>
     </div>
-  </div>
-  <div class="custom-input-page">
-    <div class="custom-presets"></div>
-    <div class="border"></div>
-    <div class="generator_custom_auto_complete"></div>
   </div>
 
 
@@ -4675,12 +4676,6 @@
       generator_custom_auto_complete_c(res[0], res[1][0])
     }
   });
-  /*
-  document.querySelector('.input input[type="text"]').addEventListener("focus", function (e) {
-    openpwdcustom()
-    generator_custom_auto_complete()
-  });
-*/
 
   function gen() {
     var pwtext = $('.custom-input input[type="text"]').val()
