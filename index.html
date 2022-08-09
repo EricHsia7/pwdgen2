@@ -45,7 +45,8 @@
     .title,
     .title2,
     .storage_clean_title,
-    .clean_up_password_title {
+    .clean_up_password_title,
+    .custom-input {
       position: fixed;
       top: 0;
       right: 0;
@@ -62,6 +63,31 @@
       background-size: var(--b-size);
       background-repeat: repeat;
       border-bottom: 1px solid var(--g-f4f4f4);
+    }
+
+    .custom-input {
+      display: none;
+    }
+
+    .custom-input[fx="1"] {
+      display: block;
+    }
+
+    .custom-input input[type="text"] {
+      position: absolute;
+      top: 10px;
+      left: 55px;
+      width: calc(100% - 55px * 3);
+      height: 35px;
+      margin: 0px;
+      padding: 0px;
+      font-size: 18px;
+      caret-color: var(--g-4e4e4e);
+      color: var(--g-4e4e4e);
+      -webkit-appearance: none;
+      border: none;
+      border-radius: 0px;
+      background: rgba(0, 0, 0, 0)
     }
 
     .bottom {
@@ -122,30 +148,6 @@
       overflow: hidden
     }
 
-    .input {
-      height: calc(45px + ((5px + 35px + 5px + 1px) * var(--j-custom-presets-hide)) + (var(--j-li-length) * 45px) + var(--j-border2-hide) * 1px);
-      max-height: calc(45px + 1px + 5px + 35px + 5px + (3 * 45px) + var(--j-border2-hide) * 1px);
-      box-shadow: 0px 0px 25px -7px rgba(0, 0, 0, calc(var(--j-custom-presets-hide) * 0.15));
-    }
-
-    .input[f="1"] {
-      transform: translateX(0px) translateY(-35%);
-      width:100%;
-      height:55px;
-    }
-
-    .input-mask {
-      position: fixed;
-      top: 0px;
-      left: 0px;
-      background: rgba(0, 0, 0, 0);
-      width: 100%;
-      height: 100%;
-      user-select: none;
-      -webkit-user-select: none;
-      display: none;
-    }
-
     .input2,
     .input3 {
       display: none
@@ -176,6 +178,7 @@
     .input3 input {
       width: calc(100% - 5px - 45px)
     }
+
 
     .search_loading_mask {
       position: absolute;
@@ -236,7 +239,7 @@
       margin-left: 5px
     }
 
-    .input .btn,
+    .custom-input .btn,
     .input .btn5,
     .input2 .btn6,
     .input3 .btn7 {
@@ -256,8 +259,14 @@
       user-select: none;
     }
 
-    .input .btn5 {
-      right: 45px
+    .custom-input .btn {
+      top: 5px;
+      right: 5px;
+    }
+
+    .custom-input .btn5 {
+      top: 5px;
+      right: 55px;
     }
 
     .input3 .btn7 {
@@ -274,9 +283,22 @@
       user-select: none;
     }
 
-    .input .border,
-    .input .border2 {
-      background: var(--g-e3e3e3);
+    .custom-input-page {
+      background: var(--g-ffffff);
+      width: 100%;
+      height: calc(100% - 55px);
+      top: 55px;
+      left: 0px;
+      position: fixed;
+      display: none;
+    }
+
+    .custom-input-page[fx="1"] {
+      display: block;
+    }
+
+    .custom-input-page .border {
+      background: var(--g-f4f4f4);
       width: 100%;
       height: 1px;
       position: absolute;
@@ -329,13 +351,12 @@
 
     .generator_custom_auto_complete {
       position: absolute;
-      top: 92px;
+      top: 47px;
       left: 0px;
       display: inline-block;
       width: 100%;
-      height: calc(var(--j-li-length) * 45px);
+      height: calc(100% - 47px);
       overflow: scroll;
-      max-height: calc(45px * 3);
       background: var(--g-f4f4f4);
     }
 
@@ -1455,7 +1476,7 @@
     }
 
     .custom-presets {
-      top: 51px;
+      top: 5px;
       left: 5px;
       transform: none;
       width: calc(100% - 10px);
@@ -2526,32 +2547,9 @@
   <div class="history">
   </div>
 
-  <div class="input-mask"></div>
+
   <div class="input" style="--j-li-length:0;--j-custom-presets-hide:0;--j-border2-hide:0">
-    <input type="text" placeholder="custom" autocomplete="off">
-    <div class="btn" id="gen" r-click="gen()">
-      <svg stroke-miterlimit="10"
-        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path d="M22.0215 55.1029L0 33.0814L4.22734 28.8541L22.0215 46.6482L59.7727 8.89708L64 13.1244L22.0215 55.1029Z"
-          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
-      </svg>
-    </div>
-    <div class="btn5" id="pwdcustom" r-click="applycustompreset('addcustompreset',true)">
-      <svg stroke-miterlimit="10"
-        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
-        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink">
-        <path
-          d="M28.5714 64L28.5714 35.4286L0 35.4286L0 28.5714L28.5714 28.5714L28.5714 7.10543e-15L35.4286 7.10543e-15L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z"
-          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
-      </svg>
-    </div>
-    <div class="border"></div>
-    <div class="custom-presets"></div>
-    <div class="border2"></div>
-    <div class="generator_custom_auto_complete"></div>
+    <div class="input-placeholder">custom</div>
   </div>
 
   <div class="input2">
@@ -2718,6 +2716,45 @@
 
     </div>
   </div>
+
+  <div class="custom-input">
+    <div class="btn2-l" r-click="closepwdcustom()">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)"
+          fill-rule="evenodd" opacity="1" stroke="none" />
+      </svg>
+    </div>
+
+    <input type="text" placeholder="custom" autocomplete="off">
+    <div class="btn" id="gen" r-click="gen()">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M22.0215 55.1029L0 33.0814L4.22734 28.8541L22.0215 46.6482L59.7727 8.89708L64 13.1244L22.0215 55.1029Z"
+          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+      </svg>
+    </div>
+    <div class="btn5" id="pwdcustom" r-click="applycustompreset('addcustompreset',true)">
+      <svg stroke-miterlimit="10"
+        style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
+        viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path
+          d="M28.5714 64L28.5714 35.4286L0 35.4286L0 28.5714L28.5714 28.5714L28.5714 7.10543e-15L35.4286 7.10543e-15L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z"
+          fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+      </svg>
+    </div>
+  </div>
+  <div class="custom-input-page">
+    <div class="custom-presets"></div>
+    <div class="border"></div>
+    <div class="generator_custom_auto_complete"></div>
+  </div>
+
 
   <div class="filter-date-picker-mask"></div>
   <div class="filter-date-picker">
@@ -4534,34 +4571,26 @@
       googlefontloaded = 1
     }
     if (custom_presets_evt === 0) {
-      $('.input-mask').click(function () {
-        closepwdcustom()
-        $('.input').css({ '--j-li-length': 0 })
-      })
-      document.querySelector('.input input[type="text"]').addEventListener("paste", function (e) {
+      document.querySelector('.custom-input input[type="text"]').addEventListener("paste", function (e) {
         $('.custom-presets li').attr('o', '0')
       });
-      document.querySelector('.input input[type="text"]').addEventListener("cut", function (e) {
+      document.querySelector('.custom-input input[type="text"]').addEventListener("cut", function (e) {
         $('.custom-presets li').attr('o', '0')
       });
-      document.querySelector('.input input[type="text"]').addEventListener("selectionchange", function (e) {
+      document.querySelector('.custom-input input[type="text"]').addEventListener("selectionchange", function (e) {
         $('.custom-presets li').attr('o', '0')
       });
-      document.querySelector('.input input[type="text"]').addEventListener("keyup", function (e) {
+      document.querySelector('.custom-input input[type="text"]').addEventListener("keyup", function (e) {
         $('.custom-presets li').attr('o', '0')
       });
       custom_presets_evt = 1
     }
-
     custompresets()
-    $('.btn5').attr('uj', '1')
-    $('.input').css({ '--j-custom-presets-hide': 1 })
-    $('.input-mask').css({ 'display': 'block' })
+    $('.custom-input,.custom-input-page').attr('f','1')
+    $('.custom-input input[type="text"]').focus()
   }
   function closepwdcustom() {
-    $('.btn5').attr('uj', '0')
-    $('.input').css({ '--j-custom-presets-hide': 0 });
-    $('.input-mask').css({ 'display': 'none' })
+    $('.custom-input,.custom-input-page').attr('f','0')
   }
 
   function generator_custom_auto_complete_c(original_text, n, e) {
@@ -4583,12 +4612,12 @@
     }
     select_start += n.split(':')[0].length + original_text_arr_len
     var select_end = original_text_arr.join(',').length
-    $('.input input[type="text"]').val(original_text_arr.join(',')).focus()
+    $('.custom-input input[type="text"]').val(original_text_arr.join(',')).focus()
 
-    document.querySelector('.input input[type="text"]').setSelectionRange((select_start), (select_end));
+    document.querySelector('.custom-input input[type="text"]').setSelectionRange((select_start), (select_end));
   }
   function generator_custom_auto_complete() {
-    var original_text = $('.input input[type="text"]').val()
+    var original_text = $('.custom-input input[type="text"]').val()
     var custom_key_names = [
       { 'name': 'length', 'type': 'integer' },
       { 'name': 'capital', 'type': 'decimal' },
@@ -4611,38 +4640,34 @@
         //onclick="generator_custom_auto_complete_c(' + "'" + original_text + "'" + ',' + "'" + custom_key_names[e].name + ':' + custom_key_names[e].type + "'" + ',event)"
       }
     }
-    if (result.length > 0) {
-      $('.input').css({ '--j-li-length': result.length, '--j-border2-hide': 1 });
-    }
-    else {
-      $('.input').css({ '--j-li-length': 0, '--j-border2-hide': 0 });
-    }
     return [original_text, result]
   }
 
-  document.querySelector('.input input[type="text"]').addEventListener("paste", function (e) {
+  document.querySelector('.custom-input input[type="text"]').addEventListener("paste", function (e) {
     generator_custom_auto_complete()
   });
-  document.querySelector('.input input[type="text"]').addEventListener("cut", function (e) {
+  document.querySelector('.custom-input input[type="text"]').addEventListener("cut", function (e) {
     generator_custom_auto_complete()
   });
-  document.querySelector('.input input[type="text"]').addEventListener("selectionchange", function (e) {
+  document.querySelector('.custom-input input[type="text"]').addEventListener("selectionchange", function (e) {
     generator_custom_auto_complete()
   });
-  document.querySelector('.input input[type="text"]').addEventListener("keyup", function (e) {
+  document.querySelector('.custom-input input[type="text"]').addEventListener("keyup", function (e) {
     generator_custom_auto_complete()
     if (e.key === 'Enter' || e.keyCode === 13) {
       var res = generator_custom_auto_complete()
       generator_custom_auto_complete_c(res[0], res[1][0])
     }
   });
+  /*
   document.querySelector('.input input[type="text"]').addEventListener("focus", function (e) {
     openpwdcustom()
     generator_custom_auto_complete()
   });
+*/
 
   function gen() {
-    var pwtext = $('.input input[type="text"]').val()
+    var pwtext = $('.custom-input input[type="text"]').val()
     var pwarr = pwtext.split(',')
     var pwarr_len = pwarr.length
     var pwjson = {}
