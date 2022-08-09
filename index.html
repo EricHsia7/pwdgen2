@@ -178,9 +178,9 @@
       background: rgba(0, 0, 0, 0);
       color: var(--g-4e4e4e);
       position: absolute;
-      top: 5px;
+      top: 4px;
       left: 10px;
-      width: calc(100% - 10px - 45px - 45px);
+      width: calc(100% - 10px - 45px - 45px - 2px);
       height: 35px;
       margin: 0;
       padding: 0;
@@ -1474,7 +1474,8 @@
     .history-filter li,
     .custom-presets li {
       list-style: none;
-      background: var(--g-f4f4f4);
+      background: var(--g-ffffff);
+      border: 1px solid var(--g-f4f4f4);
       display: inline-block;
       padding: 0px;
       border-radius: 12px;
@@ -1547,6 +1548,7 @@
     .history-filter li[o="1"],
     .custom-presets li[o="1"] {
       background: var(--g-e3e3e3);
+      border: 1px solid var(--g-e3e3e3);
     }
 
     .history-filter li[o="0"] span,
@@ -1558,7 +1560,7 @@
 
     .history-filter li[loading="1"],
     .custom-presets li[loading="1"] {
-      background: var(--g-f4f4f4);
+      background: var(--g-ffffff);
     }
 
     .history-filter li[loading="1"] *,
@@ -1582,7 +1584,7 @@
       left: 0px;
       width: calc(100% - 5px);
       height: calc(100% - 10px);
-      background: var(--g-e3e3e3);
+      background: var(--g-f4f4f4);
       border-radius: 8px;
       user-select: none;
       -webkit-user-select: none;
@@ -1596,7 +1598,7 @@
       left: 5px;
       width: calc(100% - 10px);
       height: calc(100% - 10px);
-      background: var(--g-e3e3e3);
+      background: var(--g-f4f4f4);
       border-radius: 8px;
       user-select: none;
       -webkit-user-select: none;
