@@ -155,7 +155,7 @@
 
     .input-placeholder {
       position: absolute;
-      top: 10px;
+      top: 5px;
       left: 10px;
       width: calc(100% - 20px);
       height: 35px;
@@ -165,6 +165,7 @@
       user-select: none;
       -webkit-user-select: none;
       opacity: 0.4;
+      font-size:18px;
     }
 
     .input input[type="text"],
@@ -3224,7 +3225,7 @@
     };
   })(jQuery);
 
-  rclick('.btn,.btn5,.btn6,.btn7,.btn2,.btn2-l,.bottom-btn,.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close,.history_filter_fulllist_close,.clean_up_btn')
+  rclick('.btn,.btn5,.btn6,.btn7,.btn2,.btn2-l,.bottom-btn,.filter-date-picker-apply,.filter-date-picker-cancel,.custom-presets-add-cancel,.custom-presets-add-add,.custom-presets-manager-close,.history_filter_fulllist_close,.clean_up_btn,input')
 
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
