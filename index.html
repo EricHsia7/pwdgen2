@@ -1595,6 +1595,11 @@
       background: var(--g-ffffff);
     }
 
+    .history-filter li[loading="1"]::after,
+    .custom-presets li[loading="1"]::after {
+      border: 1px solid var(--g-f4f4f4);
+    }
+
     .history-filter li[loading="1"] *,
     .custom-presets li[loading="1"] * {
       opacity: 0;
