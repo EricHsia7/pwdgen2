@@ -1517,6 +1517,7 @@
       border-radius: 12px;
       border: 1.2px solid var(--g-f4f4f4);
       box-sizing: border-box;
+      opacity: 1;
     }
 
     .history-filter li span,
@@ -1572,12 +1573,12 @@
 
     .history-filter li[o="1"],
     .custom-presets li[o="1"] {
-      background: var(--g-e3e3e3);
+      background: var(--g-f4f4f4);
     }
 
     .history-filter li[o="1"]::after,
     .custom-presets li[o="1"]::after {
-      border: 1px solid var(--g-e3e3e3);
+      opacity: 0;
     }
 
     .history-filter li[o="0"] span,
@@ -1594,6 +1595,7 @@
 
     .history-filter li[loading="1"]::after,
     .custom-presets li[loading="1"]::after {
+      opacity: 1;
       border: 1px solid var(--g-f4f4f4);
     }
 
