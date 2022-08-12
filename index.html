@@ -2391,10 +2391,24 @@
     }
 
     @media (min-width: 600px) {
+      .bottom {
+        height: calc(100% - 56px);
+        width: 45px;
+        border-right: 1px solid var(--g-f4f4f4);
+        border-top: none;
+      }
+
       .bottom-bx {
-        width: var(--u-width);
-        left: 50%;
-        transform: translateX(-50%);
+        width: 100%;
+        left: 0px;
+        transform: translateX(0px);
+      }
+
+      .bottom-btn {
+        width: 100%;
+        height: 45px;
+        left: 0px;
+        top: calc(45px * var(--n-btn-x));
       }
     }
   </style>
