@@ -4400,41 +4400,6 @@
     }
 
   }
-  function delboxmnuli(gid) {
-    $('.boxmnuli[bxz="' + gid + '"]').css({ 'transform': 'scale(0)', 'opacity': '0' });
-    setTimeout(function () {
-      $('.boxmnuli[bxz="' + gid + '"]').remove()
-    }, 230);
-    $('.boxmnulibgjj[jvw="bxbg-' + gid + '"]').remove()
-  }
-  function showboxmnuli(gid) {
-    var btnleft = $('.momenuliooo[h="' + gid + '"]').offset().left
-    var bthheight = $('.momenuliooo[h="' + gid + '"]').height()
-    var btntop = $('.momenuliooo[h="' + gid + '"]').offset().top
-    var bthwidth = $('.momenuliooo[h="' + gid + '"]').height()
-    var wwwh = window.innerHeight
-    var wwww = window.innerWidth
-    var ftop = (btntop + bthheight + 5);
-    var fleft = (btnleft + bthwidth - 180);
-    var stop = $(document).scrollTop()
-    var trog = 'right top'
-    if ((wwwh - (btntop - stop) - bthheight) < (41 * 2) - 1) {
-      ftop = (btntop - 5 - ((41 * 2) - 1));
-      trog = 'right bottom'
-    }
-    var bxbgffft = '<div class="boxmnulibgjj" style="background:rgba(0,0,0,0);position:fixed;top:0px;left:0px;width:100%;height:100%;" jvw="bxbg-' + gid + '"></div>';
-    var boxmnulihtm = '<div class="boxmnuli" style="top:' + ftop + 'px;left:' + fleft + 'px;transform:scale(0);transform-origin:' + trog + ';opacity:0;transition:0.2s;" bxz="' + gid + '"><li gxv="bxnmuu-' + gid + '" r-click="showpwdinfo(' + "'" + gid + "'" + ')">info</li><li gxv="bxnmuu-' + gid + '" r-click="pwnotes_a(' + "'" + gid + "'" + ')">notes</li></div>';
-    if ($('.boxmnuli[bxz="' + gid + '"]').length === 0) {
-      $('body').append(bxbgffft + boxmnulihtm)
-      setTimeout(function () {
-        $('.boxmnuli[bxz="' + gid + '"]').css({ 'transform': 'scale(1)', 'opacity': '1' });
-      }, 1);
-      rclick('li[gxv="bxnmuu-' + gid + '"]')
-      $('.boxmnulibgjj[jvw="bxbg-' + gid + '"]').click(function () {
-        delboxmnuli(gid)
-      });
-    }
-  }
   function delpwdinfo(gid) {
     $('.history .box#' + gid + ' .box_nf[j="' + gid + '"]').remove()
   }
@@ -4884,7 +4849,7 @@
     $('.content').scroll(function () {
       var dftuuarr = [];
       for (var i = 0; i < $(scrollxselect).length; i++) {
-        var thswww = $(scrollxselect).eq(i).offset().top - $(document).scrollTop()
+        var thswww = $(scrollxselect).eq(i).offset().top - $('.content').scrollTop()
         var thshh = $(scrollxselect).eq(i).height()
         if (thswww > (0 - thshh) && thswww < window.innerHeight) {
           var thsfid = String($(scrollxselect).eq(i).attr('id'))
@@ -4921,7 +4886,7 @@
     $('.input2 input').val($('input[u="' + gid + '"]').attr('value'))
     checkpwfv()
     bpage('b')
-    $('body,html').scrollTop(0)
+    $('body,html,.content').scrollTop(0)
   }
 
   function deletepwcache() {
@@ -5952,14 +5917,14 @@
       bpage_home_click += 1
       if (bpage_home_click >= 2) {
         bpage_home_click = 1
-        if ($('html,body').scrollTop() > 2000) {
-          $('html,body').animate({ 'scrollTop': ($('html,body').scrollTop() - 2000 - 500) }, 625)
+        if ($('html,body,.content').scrollTop() > 2000) {
+          $('html,body,.content').animate({ 'scrollTop': ($('html,body').scrollTop() - 2000 - 500) }, 625)
           setTimeout(function () {
-            $('html,body').stop().scrollTop(0)
+            $('html,body,.content').stop().scrollTop(0)
           }, 630);
         }
         else {
-          $('html,body').animate({ 'scrollTop': 0 }, 500)
+          $('html,body,.content').animate({ 'scrollTop': 0 }, 500)
         }
       }
     }
