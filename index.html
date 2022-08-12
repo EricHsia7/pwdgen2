@@ -127,6 +127,17 @@
       user-select: none;
     }
 
+    .bottom-btn-name {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 13px;
+      color: var(--g-4e4e4e);
+      user-select: none;
+      -webkit-user-select: none;
+      padding: 3px;
+    }
+
     .bottom-bx {
       position: absolute;
       top: 0px;
@@ -2419,6 +2430,16 @@
         height: calc(65px + 20px);
         left: 0px;
         top: calc((65px + 20px) * var(--n-btn-x));
+        flex-direction: column;
+      }
+
+      .bottom-btn-name {
+        display: inline-flex;
+      }
+
+      .bottom-btn svg {
+        width: 23px;
+        height: 23px;
       }
 
       .content {
@@ -2742,8 +2763,8 @@
           <path
             d="M31.6875 6.03125C31.9727 5.81896 32.3726 5.81686 32.6562 6.03125C38.3896 10.3646 49.8604 19.0417 55.5938 23.375C55.7938 23.5262 55.9062 23.7492 55.9062 24C55.9062 32.6667 55.9062 49.9896 55.9062 58.6562C55.9062 59.0981 55.5668 59.4688 55.125 59.4688L44.9688 59.4688C44.5269 59.4688 44.1875 59.0981 44.1875 58.6562C44.1875 52.5184 44.1875 40.63 44.1875 34.125C37.7109 34.125 26.1954 34.125 19.7188 34.125C19.7188 40.63 19.7188 52.5184 19.7188 58.6562C19.7187 59.0981 19.3793 59.4688 18.9375 59.4688L8.875 59.4688C8.43317 59.4688 8.09375 59.0981 8.09375 58.6562C8.09375 49.9896 8.09375 32.6667 8.09375 24C8.09375 23.7472 8.20342 23.4947 8.40625 23.3438C14.2285 19.0104 25.8653 10.3646 31.6875 6.03125Z"
             fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" id="bottom-btn-svg-fill-a" />
-
         </svg>
+        <div class="bottom-btn-name">Home</div>
       </div>
 
       <div class="bottom-btn" style="--n-btn-x:1;" b="s">
@@ -2756,6 +2777,7 @@
             fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="var(--g-ffffff)" stroke-linecap="round"
             stroke-linejoin="round" stroke-width="0" id="bottom-btn-svg-fill-s" />
         </svg>
+        <div class="bottom-btn-name">Search</div>
       </div>
 
       <div class="bottom-btn" style="--n-btn-x:2;" b="b">
@@ -2773,6 +2795,7 @@
             d="M28.8125 19.2812L28.8125 27.2812L20.8125 27.2812L20.8125 33.6875L28.8125 33.6875L28.8125 41.6875L35.1875 41.6875L35.1875 33.6875L43.1875 33.6875L43.1875 27.2812L35.1875 27.2812L35.1875 19.2812L28.8125 19.2812Z"
             fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" id="bottom-btn-svg-fill-d" />
         </svg>
+        <div class="bottom-btn-name">Check</div>
       </div>
 
     </div>
