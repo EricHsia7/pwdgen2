@@ -4517,12 +4517,14 @@
     $('body').css({ 'overflow': 'hidden' });
     $('.page2').css({ 'display': 'block' });
     $('.title2').css({ 'display': 'flex' });
+    $('.bottom').css({ 'display': 'none' })
     setTimeout(function () {
       testsessionStorage()
       setstorageusage()
     }, 350);
   }
   function clspage2() {
+    $('.bottom').css({ 'display': 'block' })
     $('body').css({ 'overflow': 'scroll' });
     $('.page2,.title2').css({ 'display': 'none' });
   }
