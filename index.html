@@ -4764,7 +4764,7 @@
       var this_g = $('.history_date_group').eq(u)
       var ft = this_g.offset().top
       var this_g_h = this_g.height()
-      if (ft > st && st < (ft + this_g_h)) {
+      if ((ft - st) < 0 && st < (ft + this_g_h)) {
         $('.ucjkdxngzahvaqlo_scroll').text(this_g.attr('text'))
       }
     }
