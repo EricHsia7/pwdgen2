@@ -2390,6 +2390,57 @@
       color: var(--g-4e4e4e);
     }
 
+    .history_date_title_scroll_box {
+      position: fixed;
+      top: 55px;
+      right: clamp(-10px, -15%, -20px);
+      height: calc(100% - 55px);
+      width: clamp(10px, 10%, 20px);
+      background: rgba(0, 0, 0, 0);
+      user-select: none;
+      -webkit-user-select: none;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .history_date_title_scroll_box[ds="1"] {
+      right: 0px;
+      opacity: 1;
+    }
+
+    .history_date_title_scroll_box[ft="1"] {
+      display: none;
+    }
+
+    .history_date_title_scroll {
+      width: auto;
+      height: 35px;
+      background: var(--g-f4f4f4);
+      border: 1px solid var(--g-e3e3e3);
+      user-select: none;
+      -webkit-user-select: none;
+      box-sizing: border-box;
+      border-radius: 10px;
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      transform: translateY(var(--j-history-date-title-scroll-y));
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 8px;
+      color: var(--g-4e4e4e);
+      font-size: 15px;
+      word-break: keep-all;
+      box-shadow: 0px 0px 23px -9px rgba(0, 0, 0, 0.1);
+    }
+
+    .history_date_title_scroll svg {
+      width: 20px;
+      height: 20px;
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -2579,6 +2630,9 @@
   <div class="history">
   </div>
 
+  <div class="history_date_title_scroll_box" ds="0">
+    <div class="history_date_title_scroll"></div>
+  </div>
 
 
   <div class="input2">
@@ -4692,6 +4746,88 @@
     }
   });
 
+
+  function show_history_date_title_scroll() {
+    $('.history_date_title_scroll_box').attr('ds', '1')
+  }
+  function hide_history_date_title_scroll() {
+    $('.history_date_title_scroll_box').attr('ds', '0')
+  }
+  function update_history_date_title_scroll(st) {
+    var wh = window.innerHeight
+    var sh = document.documentElement.scrollHeight
+    var ss = st / sh
+    if (ss < 0) {
+      ss = 0
+    }
+    if (ss > 1) {
+      ss = 1
+    }
+    var bottom_h = document.querySelector('.bottom').clientHeight
+    var sf = ss * (wh - bottom_h - 55 - 10 + 35)
+    $('.history_date_title_scroll').css({ '--j-history-date-title-scroll-y': sf + 'px' })
+  }
+  var history_date_title_scroll_arr = []
+  function set_history_group_title(st) {
+    var hdg_len = $('.history_date_group').length
+    var hdg_set_l = 0
+    for (var u = 0; u < hdg_len; u++) {
+      var this_g = $('.history_date_group').eq(u)
+      var ft = this_g.offset().top
+      var this_g_h = this_g.height()
+      if ((ft - st) < 0 && st < (ft + this_g_h)) {
+        $('.history_date_title_scroll').text(this_g.attr('text'))
+        hdg_set_l += 1
+      }
+    }
+    if (hdg_set_l < 1) {
+      var this_g = $('.history_date_group').eq(0)
+      $('.history_date_title_scroll').text(this_g.attr('text'))
+    }
+  }
+  function evt_history_date_title_scroll() {
+    $(document).scroll(function (e) {
+      var st = $(document).scrollTop()
+      history_date_title_scroll_arr.push(st)
+      if (history_date_title_scroll_arr.length > 10) {
+        history_date_title_scroll_arr.splice(0, 1)
+      }
+      var history_date_title_scroll_a = 0
+      for (var t = 0; t < history_date_title_scroll_arr.length; t++) {
+        var s1 = history_date_title_scroll_arr[t + 1]
+        var s2 = history_date_title_scroll_arr[t]
+        if (s1 === undefined || null && s2 === undefined || null) {
+          s1 = 1
+          s2 = 1
+        }
+        else {
+          if (s1 === undefined || null) {
+            s1 = s2
+          }
+          if (s2 === undefined || null) {
+            s2 = s1
+          }
+
+        }
+        history_date_title_scroll_a += Math.abs(s1 - s2)
+        if (history_date_title_scroll_a <= 0) {
+          history_date_title_scroll_a = 1
+        }
+        var sspeed = history_date_title_scroll_a / history_date_title_scroll_arr.length
+        if (sspeed < 7) {
+          hide_history_date_title_scroll()
+        }
+        else {
+          show_history_date_title_scroll()
+          set_history_group_title(st)
+          window.requestAnimationFrame(function () {
+            update_history_date_title_scroll(st)
+          })
+        }
+      }
+    })
+  }
+
   function gen() {
     var pwtext = $('.custom-input input[type="text"]').val()
     var pwarr = pwtext.split(',')
@@ -4755,7 +4891,7 @@
       markasrecentaccess(1, hash)
       var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
       if ($('.history_date_group[d="' + date_title_name + '"]').length < 1) {
-        $('.history').prepend('<div class="history_date_group" d="' + date_title_name + '"></div>')
+        $('.history').prepend('<div class="history_date_group" d="' + date_title_name + '" text="' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '"></div>')
         $('.history').prepend('<div class="history_date_title" d="' + date_title_name + '"><span>' + pwtime.getFullYear() + '</span><span>' + che(pwtime.getMonth() + 1) + '</span></div>')
       }
       $('.history .history_date_group[d="' + date_title_name + '"]').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.icon + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:55px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:100px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:145px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:190px">' + infoicon + '</div></div>');
@@ -5715,7 +5851,6 @@
     mes('Storage cleared')
     clsconfirmclearstorage()
   }
-
   function showsavedhistory() {
     var saveddate = {}
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
@@ -5790,7 +5925,7 @@
               var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
               if (saveddate[date_title_name] === undefined) {
                 $('.history').append('<div class="history_date_title" d="' + date_title_name + '"><span>' + pwtime.getFullYear() + '</span><span>' + che(pwtime.getMonth() + 1) + '</span></div>')
-                $('.history').append('<div class="history_date_group" d="' + date_title_name + '"></div>')
+                $('.history').append('<div class="history_date_group" d="' + date_title_name + '" text="' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '"></div>')
                 saveddate[date_title_name] = '1'
               }
 
@@ -5827,6 +5962,7 @@
         rclick('.history-filter li[pl="default_all"],.history-filter li[pl="default_recentaccess"],.history-filter li[pl="default_containnote"],.history-filter li[pl="default_datefilter"]')
         history_filter_load = 1
         loadgooglefont()
+        evt_history_date_title_scroll()
       }, 1200);
     }
     else {
@@ -5834,6 +5970,7 @@
       deletepwcache()
       $(document).ready(function () {
         loadgooglefont()
+        evt_history_date_title_scroll()
       })
     }
   }
@@ -5841,7 +5978,6 @@
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
-
   //checkpwpage
 
   function checkpwfv() {
@@ -5868,6 +6004,7 @@
       $('.t2').text('New Password')
       $('.checkpwdp,.input2,.input3').css({ 'display': 'none' });
       $('.input,.history').css({ 'display': 'block' });
+      $('.history_date_title_scroll_box').attr('ft', '0')
       $('head #searchcss').html('')
       if ($('.history-filter li[pl="default_all"]').attr('o') === '0') {
         $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
@@ -5903,6 +6040,7 @@
       $('.t2').text('Check Password')
       $('.checkpwdp,.input2').css({ 'display': 'block' });
       $('.input,.history,.input3,.history-filter').css({ 'display': 'none' });
+      $('.history_date_title_scroll_box').attr('ft', '1')
       $('head #searchcss').html('')
       $('#historydatetitlecss-search').html('')
       $('#historydatetitlecss').html(String($('#historydatetitlecss').html()).replaceAll('/*', '').replaceAll('*/', ''))
@@ -5916,6 +6054,7 @@
       $('.t2').text('Search Password')
       $('.input3,.history').css({ 'display': 'block' });
       $('.input,.checkpwdp,.input2').css({ 'display': 'none' });
+      $('.history_date_title_scroll_box').attr('ft', '1')
       $('.history').css({ 'transform': 'translateX(-50%) translateY(-45px)' });
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'none' });
       createsearchindex_pwd()
