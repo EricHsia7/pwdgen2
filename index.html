@@ -4755,7 +4755,7 @@
   }
   function update_history_date_title_scroll(st) {
     var wh = window.innerHeight
-    var sh = document.documentElement.scrollHeight
+    var sh = (document.documentElement.scrollHeight - wh)
     var ss = st / sh
     if (ss < 0) {
       ss = 0
