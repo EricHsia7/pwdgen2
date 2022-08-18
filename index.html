@@ -2619,7 +2619,7 @@
 
   <div class="history">
   </div>
-  
+
   <div class="ucjkdxngzahvaqlo_scroll_box" ds="0">
     <div class="ucjkdxngzahvaqlo_scroll"></div>
   </div>
@@ -4745,7 +4745,7 @@
   }
   function update_ucjkdxngzahvaqlo_scroll(st) {
     var wh = window.innerHeight
-    var sh = document.body.scrollHeight
+    var sh = document.documentElement.scrollHeight
     var ss = st / sh
     var sf = ss * (wh - document.querySelector('.bottom').clientHeight - 55)
     console.log([ss, st, sh])
