@@ -4765,7 +4765,7 @@
     }
     var bottom_h = document.querySelector('.bottom').clientHeight
     var sf = ss * (wh - bottom_h - 55 - 10 + 35)
-    $('.history_date_title_scroll').css({ '--j-history-date-title-scroll-y': sf + 'px' })
+    $('.history_date_title_scroll').css({ '--j-history-date-title-scroll-y': 'calc(' + ss + ' * ' + (wh - bottom_h - 55 - 10 + 35) + 'px)' })
   }
   var history_date_title_scroll_arr = []
   function set_history_group_title(st) {
