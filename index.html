@@ -2420,7 +2420,7 @@
       border-radius: 10px;
       position: absolute;
       top: 0px;
-      right: 0px;
+      right: 10px;
       transform: translateY(var(--j-ucjkdxngzahvaqlo-scroll-y));
       transform-origin: center top;
       display: inline-flex;
@@ -4757,7 +4757,18 @@
     $('.ucjkdxngzahvaqlo_scroll').css({ '--j-ucjkdxngzahvaqlo-scroll-y': sf + 'px' })
   }
   var ucjkdxngzahvaqlo_scroll_arr = []
+  function get_history_group_title(st) {
+    var hdg_len = $('.history_date_group').length
+    for (var u = 0; u < hdg_len; u++) {
+      var this_g = $('.history_date_group').eq(u)
 
+      var thswww = this_g.offset().top - st
+      var thshh = this_g.height()
+      if (thswww > (0 - thshh) && thswww < window.innerHeight) {
+        $('.ucjkdxngzahvaqlo_scroll_box').text(this_g.attr('text'))
+      }
+    }
+  }
   function evt_ucjkdxngzahvaqlo_scroll() {
     $(document).scroll(function (e) {
       var st = $(document).scrollTop()
@@ -4863,7 +4874,7 @@
       markasrecentaccess(1, hash)
       var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
       if ($('.history_date_group[d="' + date_title_name + '"]').length < 1) {
-        $('.history').prepend('<div class="history_date_group" d="' + date_title_name + '"></div>')
+        $('.history').prepend('<div class="history_date_group" d="' + date_title_name + '" text="' + pwtime.getFullYear() + '-' + che(pwtime.getMonth()) + '"></div>')
         $('.history').prepend('<div class="history_date_title" d="' + date_title_name + '"><span>' + pwtime.getFullYear() + '</span><span>' + che(pwtime.getMonth() + 1) + '</span></div>')
       }
       $('.history .history_date_group[d="' + date_title_name + '"]').prepend('<div class="box" id="' + pwgid + '" t="' + pwtime.getTime() + '" stch="1" draggable="true" ondragstart="Drag(event)" iconload="1" hash="' + hash + '" hashtag=""><div class="boxtitle">' + pwtimestr + '<div class="checkpwd" pt="' + thspt.p + '" h="' + pwgid + '" r-click="showpwcheckdet(' + "'" + pwgid + "'" + ')">' + thspt.icon + '</div></div><input type="' + pwdvisible_type + '" value="' + pw + '" u="' + pwgid + '" readonly="readonly" autocomplete="off"><div class="btn1 dspoo" h="' + pwgid + '" c="' + pwdvisible + '" r-click="dsp(' + "'" + pwgid + "'" + ')">' + eyeicon + eyeicon2 + '</div><div class="btn1 copyoo" h="' + pwgid + '" c="0" r-click="copy(' + "'" + pwgid + "'" + ',true)" style="left:55px">' + copyicon + '</div><div class="btn1 saveoo" h="' + pwgid + '" c="0" r-click="save(' + "'" + pwgid + "'" + ',true)" style="left:100px" g="0">' + saveicon + savedicon + '</div><div class="btn1 noteoo" h="' + pwgid + '" c="0" r-click="pwnotes_a(' + "'" + pwgid + "'" + ')" style="left:145px" g="0">' + noteicon + '</div><div class="btn1 infooo" h="' + pwgid + '" c="0" r-click="showpwdinfo(' + "'" + pwgid + "'" + ')" style="left:190px">' + infoicon + '</div></div>');
@@ -5900,7 +5911,7 @@
               var date_title_name = 'y' + pwtime.getFullYear() + '_m' + (pwtime.getMonth() + 1)
               if (saveddate[date_title_name] === undefined) {
                 $('.history').append('<div class="history_date_title" d="' + date_title_name + '"><span>' + pwtime.getFullYear() + '</span><span>' + che(pwtime.getMonth() + 1) + '</span></div>')
-                $('.history').append('<div class="history_date_group" d="' + date_title_name + '"></div>')
+                $('.history').append('<div class="history_date_group" d="' + date_title_name + '" text="' + pwtime.getFullYear() + '-' + che(pwtime.getMonth()) + '"></div>')
                 saveddate[date_title_name] = '1'
               }
 
