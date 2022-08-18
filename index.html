@@ -2430,6 +2430,7 @@
       color: var(--g-4e4e4e);
       font-size: 15px;
       word-break: keep-all;
+      box-shadow: 0px 0px 23px -9px rgba(0, 0, 0, 0.1);
     }
 
     .ucjkdxngzahvaqlo_scroll svg {
@@ -4754,6 +4755,12 @@
     var wh = window.innerHeight
     var sh = document.documentElement.scrollHeight
     var ss = st / sh
+    if (ss < 0) {
+      ss = 0
+    }
+    if (ss > 1) {
+      ss = 1
+    }
     var sf = ss * (wh - document.querySelector('.bottom').clientHeight - 55 + 35 - 10)
     $('.ucjkdxngzahvaqlo_scroll').css({ '--j-ucjkdxngzahvaqlo-scroll-y': sf + 'px' })
   }
