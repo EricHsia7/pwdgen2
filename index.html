@@ -4771,13 +4771,19 @@
   var ucjkdxngzahvaqlo_scroll_arr = []
   function set_history_group_title(st) {
     var hdg_len = $('.history_date_group').length
+    var hdg_set_l = 0
     for (var u = 0; u < hdg_len; u++) {
       var this_g = $('.history_date_group').eq(u)
       var ft = this_g.offset().top
       var this_g_h = this_g.height()
       if ((ft - st) < 0 && st < (ft + this_g_h)) {
         $('.ucjkdxngzahvaqlo_scroll').text(this_g.attr('text'))
+        hdg_set_l += 1
       }
+    }
+    if (hdg_set_l < 1) {
+      var this_g = $('.history_date_group').eq(0)
+      $('.ucjkdxngzahvaqlo_scroll').text(this_g.attr('text'))
     }
   }
   function evt_ucjkdxngzahvaqlo_scroll() {
