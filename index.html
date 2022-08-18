@@ -2409,6 +2409,10 @@
       opacity: 1;
     }
 
+    .ucjkdxngzahvaqlo_scroll_box[ft="1"] {
+      display: none;
+    }
+
     .ucjkdxngzahvaqlo_scroll {
       width: auto;
       height: 35px;
@@ -5999,6 +6003,7 @@
       $('.t2').text('New Password')
       $('.checkpwdp,.input2,.input3').css({ 'display': 'none' });
       $('.input,.history').css({ 'display': 'block' });
+      $('.ucjkdxngzahvaqlo_scroll_box').attr('ft', '0')
       $('head #searchcss').html('')
       if ($('.history-filter li[pl="default_all"]').attr('o') === '0') {
         $('#historyfiltercss').html('.box[ar="0"] {display:none} .box[ar="1"] {display:block}')
@@ -6034,6 +6039,7 @@
       $('.t2').text('Check Password')
       $('.checkpwdp,.input2').css({ 'display': 'block' });
       $('.input,.history,.input3,.history-filter').css({ 'display': 'none' });
+      $('.ucjkdxngzahvaqlo_scroll_box').attr('ft', '1')
       $('head #searchcss').html('')
       $('#historydatetitlecss-search').html('')
       $('#historydatetitlecss').html(String($('#historydatetitlecss').html()).replaceAll('/*', '').replaceAll('*/', ''))
@@ -6047,6 +6053,7 @@
       $('.t2').text('Search Password')
       $('.input3,.history').css({ 'display': 'block' });
       $('.input,.checkpwdp,.input2').css({ 'display': 'none' });
+      $('.ucjkdxngzahvaqlo_scroll_box').attr('ft', '1')
       $('.history').css({ 'transform': 'translateX(-50%) translateY(-45px)' });
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'none' });
       createsearchindex_pwd()
