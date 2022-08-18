@@ -4755,7 +4755,7 @@
   }
   function update_history_date_title_scroll(st) {
     var wh = window.innerHeight
-    var sh = (document.documentElement.scrollHeight - wh)
+    var sh = (document.documentElement.scrollHeight-wh)
     var ss = st / sh
     if (ss < 0) {
       ss = 0
@@ -4764,7 +4764,7 @@
       ss = 1
     }
     var bottom_h = document.querySelector('.bottom').clientHeight
-    var sf = ss * (wh - bottom_h - 55 - 10 + 35)
+    var sf = ss * (wh - bottom_h - 55 - 10)
     $('.history_date_title_scroll').css({ '--j-history-date-title-scroll-y': sf + 'px' })
   }
   var history_date_title_scroll_arr = []
