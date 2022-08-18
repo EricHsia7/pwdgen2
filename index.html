@@ -2394,7 +2394,7 @@
       position: fixed;
       top: 55px;
       right: clamp(-10px, -15%, -20px);
-      height: calc(100% - var(--j-bottom-height) - 55px);
+      height: calc(100% - 55px);
       width: clamp(10px, 10%, 20px);
       background: rgba(0, 0, 0, 0);
       user-select: none;
@@ -2554,7 +2554,6 @@
     }
   </style>
   <style id="custom_presets_icon_picker_search_css"></style>
-  <style id="js-css"></style>
 </head>
 
 <body>
@@ -4765,7 +4764,8 @@
     if (ss > 1) {
       ss = 1
     }
-    var sf = ss * (wh - document.querySelector('.bottom').clientHeight - 55 + 35 - 10)
+    var bottom_h = document.querySelector('.bottom').clientHeight || 55
+    var sf = ss * (wh - bottom_h - 55 + 35 - 10)
     $('.ucjkdxngzahvaqlo_scroll').css({ '--j-ucjkdxngzahvaqlo-scroll-y': sf + 'px' })
   }
   var ucjkdxngzahvaqlo_scroll_arr = []
@@ -5852,9 +5852,6 @@
     mes('Storage cleared')
     clsconfirmclearstorage()
   }
-  function setjscss() {
-    $('#js-css').html(':root{--j-bottom-height:' + document.querySelector('.bottom').clientHeight + 'px;}')
-  }
   function showsavedhistory() {
     var saveddate = {}
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
@@ -5982,7 +5979,6 @@
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
-  setjscss()
   //checkpwpage
 
   function checkpwfv() {
