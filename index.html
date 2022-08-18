@@ -2429,6 +2429,7 @@
       padding: 0px 8px;
       color: var(--g-4e4e4e);
       font-size: 15px;
+      word-break: keep-all;
     }
 
     .ucjkdxngzahvaqlo_scroll svg {
@@ -4761,11 +4762,8 @@
     var hdg_len = $('.history_date_group').length
     for (var u = 0; u < hdg_len; u++) {
       var this_g = $('.history_date_group').eq(u)
-
-      var thswww = this_g.offset().top - st
-      var thshh = this_g.height()
-      if (thswww > (0 - thshh) && thswww < window.innerHeight) {
-        $('.ucjkdxngzahvaqlo_scroll_box').text(this_g.attr('text'))
+      if (this_g.offset().top > st) {
+        $('.ucjkdxngzahvaqlo_scroll').text(this_g.attr('text'))
       }
     }
   }
