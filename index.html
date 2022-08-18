@@ -4748,7 +4748,6 @@
     var sh = document.documentElement.scrollHeight
     var ss = st / sh
     var sf = ss * (wh - document.querySelector('.bottom').clientHeight - 55)
-    console.log([ss, st, sh])
     $('.ucjkdxngzahvaqlo_scroll').css({ '--j-ucjkdxngzahvaqlo-scroll-y': sf + 'px' })
   }
   var ucjkdxngzahvaqlo_scroll_arr = []
@@ -4787,7 +4786,7 @@
         }
         else {
           show_ucjkdxngzahvaqlo_scroll()
-          update_ucjkdxngzahvaqlo_scroll(st)
+          window.requestAnimationFrame(update_ucjkdxngzahvaqlo_scroll(st))
         }
       }
     })
