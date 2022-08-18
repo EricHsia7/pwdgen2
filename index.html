@@ -4786,7 +4786,9 @@
         }
         else {
           show_ucjkdxngzahvaqlo_scroll()
-          window.requestAnimationFrame(update_ucjkdxngzahvaqlo_scroll(st))
+          window.requestAnimationFrame(function () {
+            update_ucjkdxngzahvaqlo_scroll(st)
+          })
         }
       }
     })
