@@ -2419,7 +2419,7 @@
       box-sizing: border-box;
       border-radius: 10px;
       position: absolute;
-      top: 0px;
+      top: 5px;
       right: 10px;
       transform: translateY(var(--j-ucjkdxngzahvaqlo-scroll-y));
       transform-origin: center top;
@@ -4754,7 +4754,7 @@
     var wh = window.innerHeight
     var sh = document.documentElement.scrollHeight
     var ss = st / sh
-    var sf = ss * (wh - document.querySelector('.bottom').clientHeight - 55 - 35)
+    var sf = ss * (wh - document.querySelector('.bottom').clientHeight - 55 + 35 - 10)
     $('.ucjkdxngzahvaqlo_scroll').css({ '--j-ucjkdxngzahvaqlo-scroll-y': sf + 'px' })
   }
   var ucjkdxngzahvaqlo_scroll_arr = []
