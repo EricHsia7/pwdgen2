@@ -2390,6 +2390,46 @@
       color: var(--g-4e4e4e);
     }
 
+    .ucjkdxngzahvaqlo_scroll_box {
+      position: fixed;
+      top: 55px;
+      right: -55px;
+      height: calc(100% - var(--j-bottom-height) - 55px);
+      width: 55px;
+      background: rgba(0, 0, 0, 0);
+      user-select: none;
+      -webkit-user-select: none;
+      box-sizing: border-box;
+      opacity: 0
+    }
+
+    .ucjkdxngzahvaqlo_scroll_box[ds="1"] {
+      right: 0px;
+      opacity: 1;
+      transition: 0.3s;
+    }
+
+    .ucjkdxngzahvaqlo_scroll {
+      width: 55px;
+      height: 55px;
+      background: var(--g-f4f4f4);
+      border: 1px solid var(--g-e3e3e3);
+      user-select: none;
+      -webkit-user-select: none;
+      box-sizing: border-box;
+      border-radius: 10px 0px 0px 10px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      transform: translateY(var(--j-ucjkdxngzahvaqlo-scroll-y));
+      transform-origin: center top;
+    }
+
+    .ucjkdxngzahvaqlo_scroll svg {
+      width: 20px;
+      height: 20px;
+    }
+
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -2502,6 +2542,7 @@
     }
   </style>
   <style id="custom_presets_icon_picker_search_css"></style>
+  <style id="js-css"></style>
 </head>
 
 <body>
@@ -4692,6 +4733,22 @@
     }
   });
 
+
+  function show_ucjkdxngzahvaqlo_scroll() {
+    $('.ucjkdxngzahvaqlo_scroll_box').attr('ds', '1')
+  }
+  function hide_ucjkdxngzahvaqlo_scroll() {
+    $('.ucjkdxngzahvaqlo_scroll_box').attr('ds', '0')
+  }
+  function update_ucjkdxngzahvaqlo_scroll(st) {
+    var wh = window.innerHeight
+    var sh = document.body.scrollHeight
+    var ss = st / sh
+    var sf = ss * (wh - document.querySelector('.bottom').clientHeight - 55)
+    console.log([ss, st, sh])
+    $('.ucjkdxngzahvaqlo_scroll').css({ '--j-ucjkdxngzahvaqlo-scroll-y': sf })
+  }
+
   function gen() {
     var pwtext = $('.custom-input input[type="text"]').val()
     var pwarr = pwtext.split(',')
@@ -5715,7 +5772,9 @@
     mes('Storage cleared')
     clsconfirmclearstorage()
   }
-
+  function setjscss() {
+    $('#js-css').html(':root{--j-bottom-height:' + document.querySelector('.bottom').clientHeight + 'px;}')
+  }
   function showsavedhistory() {
     var saveddate = {}
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
@@ -5841,7 +5900,7 @@
   autodeletesavedpwd()
   showsavedhistory()
   setoptions()
-
+  setjscss()
   //checkpwpage
 
   function checkpwfv() {
