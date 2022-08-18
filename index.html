@@ -4749,7 +4749,48 @@
     var ss = st / sh
     var sf = ss * (wh - document.querySelector('.bottom').clientHeight - 55)
     console.log([ss, st, sh])
-    $('.ucjkdxngzahvaqlo_scroll').css({ '--j-ucjkdxngzahvaqlo-scroll-y': sf })
+    $('.ucjkdxngzahvaqlo_scroll').css({ '--j-ucjkdxngzahvaqlo-scroll-y': sf + 'px' })
+  }
+  var ucjkdxngzahvaqlo_scroll_arr = []
+
+  function evt_ucjkdxngzahvaqlo_scroll() {
+    $(document).scroll(function (e) {
+      var st = $(document).scrollTop()
+      ucjkdxngzahvaqlo_scroll_arr.push(st)
+      if (ucjkdxngzahvaqlo_scroll_arr.length > 10) {
+        ucjkdxngzahvaqlo_scroll_arr.splice(0, 1)
+      }
+      var ucjkdxngzahvaqlo_scroll_a = 0
+      for (var t = 0; t < ucjkdxngzahvaqlo_scroll_arr.length; t++) {
+        var s1 = ucjkdxngzahvaqlo_scroll_arr[t + 1]
+        var s2 = ucjkdxngzahvaqlo_scroll_arr[t]
+        if (s1 === undefined || null && s2 === undefined || null) {
+          s1 = 1
+          s2 = 1
+        }
+        else {
+          if (s1 === undefined || null) {
+            s1 = s2
+          }
+          if (s2 === undefined || null) {
+            s2 = s1
+          }
+
+        }
+        ucjkdxngzahvaqlo_scroll_a += Math.abs(s1 - s2)
+        if (ucjkdxngzahvaqlo_scroll_a <= 0) {
+          ucjkdxngzahvaqlo_scroll_a = 1
+        }
+        var sspeed = ucjkdxngzahvaqlo_scroll_a / ucjkdxngzahvaqlo_scroll_arr.length
+        if (sspeed < 20) {
+          hide_ucjkdxngzahvaqlo_scroll()
+        }
+        else {
+          show_ucjkdxngzahvaqlo_scroll()
+          update_ucjkdxngzahvaqlo_scroll()
+        }
+      }
+    })
   }
 
   function gen() {
