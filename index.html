@@ -4743,7 +4743,7 @@
 
   function show_history_date_title_scroll() {
     $('.history_date_title_scroll_box').attr('ds', '1')
-    $('.history_date_title_scroll').css({'will-change':'transform'})
+    $('.history_date_title_scroll').css({ 'will-change': 'transform' })
   }
   function hide_history_date_title_scroll() {
     $('.history_date_title_scroll_box').attr('ds', '0')
@@ -4777,10 +4777,6 @@
       }
     }
     if (hdg_set_l < 1) {
-      /*
-      var this_g = $('.history_date_group').eq(0)
-      $('.history_date_title_scroll').text(this_g.attr('text'))
-      */
       $('.history_date_title_scroll_box').attr('ft', '1')
     }
     else {
@@ -4812,7 +4808,6 @@
           if (s2 === undefined || null) {
             s2 = s1
           }
-
         }
         history_date_title_scroll_a += Math.abs(s1 - s2)
         if (history_date_title_scroll_a <= 0) {
