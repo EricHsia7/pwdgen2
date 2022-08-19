@@ -65,6 +65,38 @@
       border-bottom: 1px solid var(--g-f4f4f4);
     }
 
+    .title {
+      flex-direction: column;
+    }
+
+    .title-text-a,
+    .title-text-history-date-title {
+      font-size: 18px;
+      opacity: 1;
+      transition: 0.3s;
+    }
+
+    .title[dz="0"] .title-text-a {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .title[dz="0"] .title-text-history-date-title {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .title[dz="1"] .title-text-a {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .title[dz="1"] .title-text-history-date-title {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+
     .custom-input {
       display: none;
     }
@@ -2681,8 +2713,13 @@
     </div>
   </div>
 
-  <div class="title">
-    Password Generator
+  <div class="title" dz="0">
+    <div class="title-text-a">
+      Password Generator
+    </div>
+    <div class="title-text-history-date-title">
+      --
+    </div>
     <div class="btn2" r-click="page2()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -4690,7 +4727,7 @@
     }
   });
 
-  function set_history_group_title(st) {
+  function set_history_date_title(st) {
     var hdg_len = $('.history_date_group').length
     var hdg_set_l = 0
     for (var u = 0; u < hdg_len; u++) {
@@ -4698,18 +4735,22 @@
       var ft = this_g.offset().top
       var this_g_h = this_g.height()
       if ((ft - st) < 0 && st < (ft + this_g_h) && this_g_h > 10) {
-        $('.history_date_title_scroll').text(this_g.attr('text'))
+        $('.title-text-history-date-title').text(this_g.attr('text'))
         hdg_set_l += 1
       }
     }
     if (hdg_set_l < 1) {
-      $('.history_date_title_scroll_box').attr('ft', '1')
+      $('.title').attr('dz', '0')
     }
     else {
-      $('.history_date_title_scroll_box').attr('ft', '0')
+      $('.title').attr('dz', '1')
     }
   }
-
+  function evt_history_date_title_scroll() {
+    $(document).scroll(function () {
+      set_history_date_title($(document).scrollTop())
+    })
+  }
   function gen() {
     var pwtext = $('.custom-input input[type="text"]').val()
     var pwarr = pwtext.split(',')
