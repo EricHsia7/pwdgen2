@@ -4836,52 +4836,9 @@
         var pw_d = 0.25
       }
 
-      var lenT = 64
-      var len0 = pwlen
-      var len1 = pwlen
-      var len2 = (len0 - len1)
-
-      var cpp = Math.floor(pw_a * 100)
-      var lpp = Math.floor(pw_b * 100)
-      var npp = Math.floor(pw_c * 100)
-      var spp = Math.floor(pw_d * 100)
-
-      var bhc = Math.abs(25 - cpp)
-      var bhl = Math.abs(25 - lpp)
-      var bhn = Math.abs(25 - npp)
-      var bhs = Math.abs(25 - spp)
-
-      var bha = (bhc + bhl + bhn + bhs) / 4
-      var bhrrea = 1
-
-      var rsp = (len1 - ((bha / 100) * len1) + len2 * 0.02) / len0 * 0.5 + (len0 / lenT) * 0.5 - (bhrrea * 0.2)
-      if (rsp >= 1) {
-        rsp = 1
-      }
-      if (rsp <= 0) {
-        rsp = 0
-      }
-      var rspkk = Math.floor(rsp * 100)
-
-      var rspst = '--'
-      var rspicon = ''
-      if (rspkk >= 85 && rspkk <= 100) {
-        rspst = 'Strong'
-        rspicon = check_strong_icon
-      }
-      if (rspkk >= 60 && rspkk < 85) {
-        rspst = 'Passable'
-        rspicon = check_passable_icon
-      }
-      if (rspkk >= 45 && rspkk < 60) {
-        rspst = 'Fragile'
-        rspicon = check_fragile_icon
-      }
-      if (rspkk >= 0 && rspkk < 45) {
-        rspst = 'Unsafe'
-        rspicon = check_unsafe_icon
-      }
-      return { 'p': rspkk, 'str': rspst, 'icon': rspicon }
+      var test_pw = pwd(pwlen, dontusesimilarcharsg, cushapropg, pw_a, pw_b, pw_c, pw_d).str
+      var test_check = checkpwd(test_pw)
+      return test_check
     }
   }
   function open_custom_check_confirm() {
