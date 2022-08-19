@@ -923,7 +923,8 @@
     .history_filter_fulllist_mask,
     .clean_up_confirm_mask,
     .clear_storage_confirm_mask,
-    .clean_up_password_option_box_mask {
+    .clean_up_password_option_box_mask,
+    .confirm_custom_check_mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -937,7 +938,8 @@
 
     .confirm,
     .clean_up_confirm,
-    .clear_storage_confirm {
+    .clear_storage_confirm,
+    .confirm_custom_check {
       width: var(--u-width);
       height: 170px;
       background: var(--g-f4f4f4);
@@ -953,7 +955,8 @@
 
     .confirm .confirmtitle,
     .clean_up_confirm .clean_up_confirm_title,
-    .clear_storage_confirm .clear_storage_confirm_title {
+    .clear_storage_confirm .clear_storage_confirm_title,
+    .confirm_custom_check .confirm_custom_check_title {
       position: absolute;
       top: 15px;
       left: 15px;
@@ -967,7 +970,8 @@
     }
 
     .clean_up_confirm .clean_up_confirm_title,
-    .clear_storage_confirm .clear_storage_confirm_title {
+    .clear_storage_confirm .clear_storage_confirm_title,
+    .confirm_custom_check .confirm_custom_check_title {
       height: 90px;
       display: flex;
       justify-content: center;
@@ -975,8 +979,9 @@
       font-size: 23px;
     }
 
-    .clear_storage_confirm .clear_storage_confirm_title {
-      font-size: 18px;
+    .confirm_custom_check .confirm_custom_check_title {
+      font-size: 17px;
+      white-space: pre;
     }
 
     .confirm .confirminput {
@@ -998,7 +1003,8 @@
 
     .confirm .btn3,
     .clean_up_confirm .btn3,
-    .clear_storage_confirm .btn3 {
+    .clear_storage_confirm .btn3,
+    .confirm_custom_check .btn3 {
       position: absolute;
       top: calc(15px + 55px + 35px + 5px);
       left: 15px;
@@ -2810,7 +2816,7 @@
     </div>
 
     <input type="text" placeholder="custom" autocomplete="off">
-    <div class="btn" id="gen" r-click="gen()">
+    <div class="btn" id="gen" r-click="custom_check()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2896,6 +2902,17 @@
       Close
     </div>
   </div>
+
+  <div class="confirm_custom_check_mask"></div>
+  <div class="confirm_custom_check">
+    <div class="confirm_custom_check_title">
+      Your customs make the generated password&nbsp;<span id="custom_check_text"></span>,confirm to continue?
+      It is recommended that you change your customs.
+    </div>
+    <div class="btn3" r-click="gen()">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="clsconfirmclearstorage()">Cancel</div>
+  </div>
+
 
   <div class="page2">
 
@@ -4763,6 +4780,102 @@
     $(document).scroll(function () {
       set_history_date_title($(document).scrollTop())
     })
+  }
+  function custom_check(opts) {
+    var pwtext = String(opts)
+    var pwarr = pwtext.split(',')
+    var pwarr_len = pwarr.length
+    var pwjson = {}
+    for (var i = 0; i < pwarr_len; i++) {
+      var th = pwarr[i].split(':')
+      var th_key = 's_' + th[0].replaceAll('-', '_')
+      var th_content = th[1]
+      pwjson[th_key] = th_content
+    }
+    var pwlen = parseInt(pwjson.s_length)
+    if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
+      $('body').prompt({ 'message': 'length must be between 8 and 32768', 'time': 3000 });
+      return ''
+    }
+    else {
+
+      var cushapropg = false
+      var cushapropg_n = ['capital', 'lowercase', 'number', 'symbol']
+      var cushapropg_n_len = cushapropg_n.length
+      var cushapropg_c = 0
+      var pww = []
+      for (var d = 0; d < cushapropg_n_len; d++) {
+        var th = pwjson['s_' + cushapropg_n[d]]
+        if (!(th === undefined)) {
+          pww.push(parseFloat(th))
+          cushapropg_c += 1
+        }
+      }
+      var dontusesimilarcharsg = false
+      if (pwjson.s_do_not_use_similar_characters === 'true') {
+        dontusesimilarcharsg = true
+      }
+      if (cushapropg_c > 3) {
+        cushapropg = true
+        var pw_a = pww[0]
+        var pw_b = pww[1]
+        var pw_c = pww[2]
+        var pw_d = pww[3]
+      }
+      else {
+        var pw_a = 0.25
+        var pw_b = 0.25
+        var pw_c = 0.25
+        var pw_d = 0.25
+      }
+
+      var lenT = 64
+      var len0 = pwlen
+      var len1 = chars_c + chars_l + chars_n + chars_s
+      var len2 = (len0 - len1)
+
+      var cpp = Math.floor(pw_a * 100)
+      var lpp = Math.floor(pw_b * 100)
+      var npp = Math.floor(pw_c * 100)
+      var spp = Math.floor(pw_d * 100)
+
+      var bhc = Math.abs(25 - cpp)
+      var bhl = Math.abs(25 - lpp)
+      var bhn = Math.abs(25 - npp)
+      var bhs = Math.abs(25 - spp)
+
+      var bha = (bhc + bhl + bhn + bhs) / 4
+      var bhrrea = 1
+
+      var rsp = (len1 - ((bha / 100) * len1) + len2 * 0.02) / len0 * 0.5 + (len0 / lenT) * 0.5 - (bhrrea * 0.2)
+      if (rsp >= 1) {
+        rsp = 1
+      }
+      if (rsp <= 0) {
+        rsp = 0
+      }
+      var rspkk = Math.floor(rsp * 100)
+
+      var rspst = '--'
+      var rspicon = ''
+      if (rspkk >= 85 && rspkk <= 100) {
+        rspst = 'Strong'
+        rspicon = check_strong_icon
+      }
+      if (rspkk >= 60 && rspkk < 85) {
+        rspst = 'Passable'
+        rspicon = check_passable_icon
+      }
+      if (rspkk >= 45 && rspkk < 60) {
+        rspst = 'Fragile'
+        rspicon = check_fragile_icon
+      }
+      if (rspkk >= 0 && rspkk < 45) {
+        rspst = 'Unsafe'
+        rspicon = check_unsafe_icon
+      }
+      return rspst
+    }
   }
   function gen() {
     var pwtext = $('.custom-input input[type="text"]').val()
