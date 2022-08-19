@@ -83,6 +83,8 @@
       top: 50%;
       left: 50%;
       transform: translateX(-50%) translateY(-50%);
+      word-break: keep-all;
+      white-space: nowrap;
     }
 
     .title[dz="0"] .title-text-a {
@@ -4741,9 +4743,10 @@
     var hdg_set_l = 0
     for (var u = 0; u < hdg_len; u++) {
       var this_g = $('.history_date_group').eq(u)
-      var ft = this_g.offset().top
+      var this_t = $('.hidtory_date_title').eq(u)
+      var ft = this_t.offset().top
       var this_g_h = this_g.height()
-      if ((ft - st) < 0 && st < (ft + this_g_h) && this_g_h > 10) {
+      if ((ft - st) < 55 && st < (ft + this_g_h) && this_g_h > 10) {
         $('.title-text-history-date-title').text(this_g.attr('text'))
         hdg_set_l += 1
       }
