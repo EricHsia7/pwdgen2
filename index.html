@@ -74,29 +74,36 @@
       font-size: 18px;
       opacity: 1;
       transition: 0.3s;
+      height: 30px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
     }
 
     .title[dz="0"] .title-text-a {
       opacity: 1;
-      font-size: 18px;
+      transform: translateX(-50%) translateY(-50%);
     }
 
     .title[dz="0"] .title-text-history-date-title {
       opacity: 0;
-      font-size: 0px;
-      transform: scale(0);
+      transform: translateX(-50%) translateY(calc(-50% + 30px));
     }
 
     .title[dz="1"] .title-text-a {
       opacity: 0;
       font-size: 0px;
-      transform: scale(0);
+      transform: translateX(-50%) translateY(calc(-50% - 30px));
     }
 
     .title[dz="1"] .title-text-history-date-title {
       opacity: 1;
       font-size: 18px;
-      transform: scale(1);
+      transform: translateX(-50%) translateY(-50%);
     }
 
 
