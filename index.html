@@ -63,7 +63,50 @@
       background-size: var(--b-size);
       background-repeat: repeat;
       border-bottom: 1px solid var(--g-f4f4f4);
+      overflow: hidden;
     }
+
+    .title {
+      flex-direction: column;
+    }
+
+    .title-text-a,
+    .title-text-history-date-title {
+      font-size: 18px;
+      opacity: 1;
+      transition: 0.3s;
+      height: 30px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      word-break: keep-all;
+      white-space: nowrap;
+    }
+
+    .title[dz="0"] .title-text-a {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .title[dz="0"] .title-text-history-date-title {
+      opacity: 0;
+      transform: translateX(-50%) translateY(calc(-50% + 30px));
+    }
+
+    .title[dz="1"] .title-text-a {
+      opacity: 0;
+      transform: translateX(-50%) translateY(calc(-50% - 30px));
+    }
+
+    .title[dz="1"] .title-text-history-date-title {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
 
     .custom-input {
       display: none;
@@ -2390,52 +2433,6 @@
       color: var(--g-4e4e4e);
     }
 
-    .history_date_title_scroll_box {
-      position: fixed;
-      top: 55px;
-      right: clamp(-10px, -15%, -20px);
-      height: calc(100% - 55px);
-      width: clamp(10px, 10%, 20px);
-      background: rgba(0, 0, 0, 0);
-      user-select: none;
-      -webkit-user-select: none;
-      box-sizing: border-box;
-      opacity: 0;
-      transition: 0.3s;
-    }
-
-    .history_date_title_scroll_box[ds="1"] {
-      right: 0px;
-      opacity: 1;
-    }
-
-    .history_date_title_scroll_box[ft="1"] {
-      display: none;
-    }
-
-    .history_date_title_scroll {
-      width: auto;
-      height: 35px;
-      background: var(--g-f4f4f4);
-      border: 1px solid var(--g-e3e3e3);
-      user-select: none;
-      -webkit-user-select: none;
-      box-sizing: border-box;
-      border-radius: 10px;
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      transform: translateY(var(--j-history-date-title-scroll-y));
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0px 8px;
-      color: var(--g-4e4e4e);
-      font-size: 15px;
-      word-break: keep-all;
-      box-shadow: 0px 0px 23px -9px rgba(0, 0, 0, 0.1);
-    }
-
     @media (min-width: 600px) {
       .bottom-bx {
         width: var(--u-width);
@@ -2625,11 +2622,6 @@
   <div class="history">
   </div>
 
-  <div class="history_date_title_scroll_box" ds="0">
-    <div class="history_date_title_scroll"></div>
-  </div>
-
-
   <div class="input2">
     <input type="password" placeholder="password" autocomplete="off">
     <div class="btn6" id="checkpw" r-click="checkpwfv()">
@@ -2732,8 +2724,13 @@
     </div>
   </div>
 
-  <div class="title">
-    Password Generator
+  <div class="title" dz="0">
+    <div class="title-text-a">
+      Password Generator
+    </div>
+    <div class="title-text-history-date-title">
+      --
+    </div>
     <div class="btn2" r-click="page2()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -4741,93 +4738,31 @@
     }
   });
 
-  function show_history_date_title_scroll() {
-    $('.history_date_title_scroll_box').attr('ds', '1')
-    $('.history_date_title_scroll').css({ 'will-change': 'transform' })
-  }
-  function hide_history_date_title_scroll() {
-    $('.history_date_title_scroll_box').attr('ds', '0')
-  }
-  function update_history_date_title_scroll(st) {
-    var hf = $('.history').offset().top
-    var wh = window.innerHeight
-    var sh = (document.documentElement.scrollHeight - wh - hf)
-    var ss = st / sh
-    if (ss < 0) {
-      ss = 0
-    }
-    if (ss > 1) {
-      ss = 1
-    }
-    var bottom_h = document.querySelector('.bottom').clientHeight
-    var sf = ss * (wh - bottom_h - 55 - 10 - 35)
-    $('.history_date_title_scroll').css({ '--j-history-date-title-scroll-y': sf + 'px' })
-  }
-  var history_date_title_scroll_arr = []
-  function set_history_group_title(st) {
+  function set_history_date_title(st) {
     var hdg_len = $('.history_date_group').length
     var hdg_set_l = 0
     for (var u = 0; u < hdg_len; u++) {
       var this_g = $('.history_date_group').eq(u)
-      var ft = this_g.offset().top
+      var this_t = $('.history_date_title').eq(u)
+      var ft = this_t.offset().top
       var this_g_h = this_g.height()
-      if ((ft - st) < 0 && st < (ft + this_g_h) && this_g_h > 10) {
-        $('.history_date_title_scroll').text(this_g.attr('text'))
+      if ((ft - st) < 55 && st < (ft + this_g_h) && this_g_h > 10) {
+        $('.title-text-history-date-title').text(this_g.attr('text'))
         hdg_set_l += 1
       }
     }
     if (hdg_set_l < 1) {
-      $('.history_date_title_scroll_box').attr('ft', '1')
+      $('.title').attr('dz', '0')
     }
     else {
-      $('.history_date_title_scroll_box').attr('ft', '0')
+      $('.title').attr('dz', '1')
     }
   }
   function evt_history_date_title_scroll() {
-    $(document).scroll(function (e) {
-      var st = $(document).scrollTop() - $('.history').offset().top
-      if (st < 0) {
-        st = 0
-      }
-      history_date_title_scroll_arr.push(st)
-      if (history_date_title_scroll_arr.length > 10) {
-        history_date_title_scroll_arr.splice(0, 1)
-      }
-      var history_date_title_scroll_a = 0
-      for (var t = 0; t < history_date_title_scroll_arr.length; t++) {
-        var s1 = history_date_title_scroll_arr[t + 1]
-        var s2 = history_date_title_scroll_arr[t]
-        if (s1 === undefined || null && s2 === undefined || null) {
-          s1 = 1
-          s2 = 1
-        }
-        else {
-          if (s1 === undefined || null) {
-            s1 = s2
-          }
-          if (s2 === undefined || null) {
-            s2 = s1
-          }
-        }
-        history_date_title_scroll_a += Math.abs(s1 - s2)
-        if (history_date_title_scroll_a <= 0) {
-          history_date_title_scroll_a = 1
-        }
-        var sspeed = history_date_title_scroll_a / history_date_title_scroll_arr.length
-        if (sspeed < 7) {
-          hide_history_date_title_scroll()
-        }
-        else {
-          show_history_date_title_scroll()
-          set_history_group_title(st)
-          window.requestAnimationFrame(function () {
-            update_history_date_title_scroll(st)
-          })
-        }
-      }
+    $(document).scroll(function () {
+      set_history_date_title($(document).scrollTop())
     })
   }
-
   function gen() {
     var pwtext = $('.custom-input input[type="text"]').val()
     var pwarr = pwtext.split(',')
