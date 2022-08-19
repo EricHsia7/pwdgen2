@@ -4776,7 +4776,7 @@
       var this_g = $('.history_date_group').eq(u)
       var ft = this_g.offset().top
       var this_g_h = this_g.height()
-      if ((ft - st) < 55 && st < (ft + this_g_h) && this_g_h > 10) {
+      if ((ft - st) < 0 && st < (ft + this_g_h) && this_g_h > 10) {
         $('.history_date_title_scroll').text(this_g.attr('text'))
         hdg_set_l += 1
       }
