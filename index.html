@@ -2816,7 +2816,7 @@
     </div>
 
     <input type="text" placeholder="custom" autocomplete="off">
-    <div class="btn" id="gen" r-click="custom_check()">
+    <div class="btn" id="gen" r-click="custom_check_open_confirm()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2906,11 +2906,11 @@
   <div class="confirm_custom_check_mask"></div>
   <div class="confirm_custom_check">
     <div class="confirm_custom_check_title">
-      Your customs make the generated password&nbsp;<span id="custom_check_text"></span>,confirm to continue?
+      Your customs make the generated password&nbsp;<span id="custom_check_text">--</span>,confirm to continue?
       It is recommended that you change your customs.
     </div>
-    <div class="btn3" r-click="gen()">Confirm</div>
-    <div class="btn3" style="left:calc(50% + 5px)" r-click="clsconfirmclearstorage()">Cancel</div>
+    <div class="btn3" r-click="gen();close_custom_check_confirm()">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="close_custom_check_confirm()">Cancel</div>
   </div>
 
 
@@ -4874,7 +4874,31 @@
         rspst = 'Unsafe'
         rspicon = check_unsafe_icon
       }
-      return rspst
+      return { 'p': rspkk, 'str': rspst, 'icon': rspicon }
+    }
+  }
+  function open_custom_check_confirm() {
+    $('.confirm_custom_check_mask,.confirm_custom_check').css({ 'opacity': '0', 'display': 'block' })
+    $('.confirm_custom_check').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.confirm_custom_check_mask,.confirm_custom_check').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.confirm_custom_check').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+  }
+  function close_custom_check_confirm() {
+    $('.confirm_custom_check_mask,.confirm_custom_check').css({ 'opacity': '0' })
+    $('.confirm_custom_check').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.confirm_custom_check_mask,.confirm_custom_check').css({ 'display': 'none', 'transition': '0s' });
+    }, 300);
+  }
+  function custom_check_confirm() {
+    mes('Customs checking.')
+    var pwtext = $('.custom-input input[type="text"]').val()
+    var check_f = custom_check(pwtext)
+    if (check_f.p <= 85) {
+      open_custom_check_confirm()
+      $('#custom_check_text').text((check_f.str).toLowerCase())
     }
   }
   function gen() {
