@@ -984,6 +984,10 @@
       flex-direction: column;
     }
 
+    .confirm_custom_check .confirm_custom_check_title span {
+      word-break: break-all;
+    }
+
     .confirm .confirminput {
       position: absolute;
       top: calc(15px + 55px);
@@ -2906,8 +2910,11 @@
   <div class="confirm_custom_check_mask"></div>
   <div class="confirm_custom_check">
     <div class="confirm_custom_check_title">
-      <span>Your customs make the generated password&nbsp;<span id="custom_check_text">--</span>,confirm to continue?</span>
-      <span>It is recommended that you change your customs.</span>
+      <span>
+        <span>Your customs make the generated password&nbsp;<span id="custom_check_text">--</span>,confirm to
+          continue?</span>
+        <span>It is recommended that you change your customs.</span>
+      </span>
     </div>
     <div class="btn3" r-click="gen();close_custom_check_confirm()">Confirm</div>
     <div class="btn3" style="left:calc(50% + 5px)" r-click="close_custom_check_confirm()">Cancel</div>
