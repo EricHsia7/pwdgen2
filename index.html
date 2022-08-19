@@ -2434,7 +2434,6 @@
       font-size: 15px;
       word-break: keep-all;
       box-shadow: 0px 0px 23px -9px rgba(0, 0, 0, 0.1);
-      transition: 50ms;
     }
 
     @media (min-width: 600px) {
@@ -4742,9 +4741,9 @@
     }
   });
 
-
   function show_history_date_title_scroll() {
     $('.history_date_title_scroll_box').attr('ds', '1')
+    $('.history_date_title_scroll').css({'will-change':'transform'})
   }
   function hide_history_date_title_scroll() {
     $('.history_date_title_scroll_box').attr('ds', '0')
