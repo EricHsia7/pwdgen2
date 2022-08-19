@@ -4755,7 +4755,7 @@
   }
   function update_history_date_title_scroll(st) {
     var wh = window.innerHeight
-    var sh = (document.documentElement.scrollHeight-wh)
+    var sh = (document.documentElement.scrollHeight - wh)
     var ss = st / sh
     if (ss < 0) {
       ss = 0
@@ -4775,14 +4775,20 @@
       var this_g = $('.history_date_group').eq(u)
       var ft = this_g.offset().top
       var this_g_h = this_g.height()
-      if ((ft - st) < 0 && st < (ft + this_g_h) && this_g_h > 10 ) {
+      if ((ft - st) < 55 && st < (ft + this_g_h) && this_g_h > 10) {
         $('.history_date_title_scroll').text(this_g.attr('text'))
         hdg_set_l += 1
       }
     }
     if (hdg_set_l < 1) {
+      /*
       var this_g = $('.history_date_group').eq(0)
       $('.history_date_title_scroll').text(this_g.attr('text'))
+      */
+      $('.history_date_title_scroll_box').attr('ft', '1')
+    }
+    else {
+      $('.history_date_title_scroll_box').attr('ft', '0')
     }
   }
   function evt_history_date_title_scroll() {
