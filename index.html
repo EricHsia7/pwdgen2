@@ -923,7 +923,8 @@
     .history_filter_fulllist_mask,
     .clean_up_confirm_mask,
     .clear_storage_confirm_mask,
-    .clean_up_password_option_box_mask {
+    .clean_up_password_option_box_mask,
+    .confirm_custom_check_mask {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
@@ -937,7 +938,8 @@
 
     .confirm,
     .clean_up_confirm,
-    .clear_storage_confirm {
+    .clear_storage_confirm,
+    .confirm_custom_check {
       width: var(--u-width);
       height: 170px;
       background: var(--g-f4f4f4);
@@ -953,7 +955,8 @@
 
     .confirm .confirmtitle,
     .clean_up_confirm .clean_up_confirm_title,
-    .clear_storage_confirm .clear_storage_confirm_title {
+    .clear_storage_confirm .clear_storage_confirm_title,
+    .confirm_custom_check .confirm_custom_check_title {
       position: absolute;
       top: 15px;
       left: 15px;
@@ -967,7 +970,8 @@
     }
 
     .clean_up_confirm .clean_up_confirm_title,
-    .clear_storage_confirm .clear_storage_confirm_title {
+    .clear_storage_confirm .clear_storage_confirm_title,
+    .confirm_custom_check .confirm_custom_check_title {
       height: 90px;
       display: flex;
       justify-content: center;
@@ -975,8 +979,13 @@
       font-size: 23px;
     }
 
-    .clear_storage_confirm .clear_storage_confirm_title {
-      font-size: 18px;
+    .confirm_custom_check .confirm_custom_check_title {
+      font-size: 17px;
+      flex-direction: column;
+    }
+
+    .confirm_custom_check .confirm_custom_check_title span {
+      word-break: break-all;
     }
 
     .confirm .confirminput {
@@ -998,7 +1007,8 @@
 
     .confirm .btn3,
     .clean_up_confirm .btn3,
-    .clear_storage_confirm .btn3 {
+    .clear_storage_confirm .btn3,
+    .confirm_custom_check .btn3 {
       position: absolute;
       top: calc(15px + 55px + 35px + 5px);
       left: 15px;
@@ -2810,7 +2820,7 @@
     </div>
 
     <input type="text" placeholder="custom" autocomplete="off">
-    <div class="btn" id="gen" r-click="gen()">
+    <div class="btn" id="gen" r-click="custom_check_confirm()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
         viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -2896,6 +2906,20 @@
       Close
     </div>
   </div>
+
+  <div class="confirm_custom_check_mask"></div>
+  <div class="confirm_custom_check">
+    <div class="confirm_custom_check_title">
+      <span>
+        <span>Your customs make the generated password&nbsp;<span id="custom_check_text">--</span>,confirm to
+          continue?</span>
+        <span>It is recommended that you change your customs.</span>
+      </span>
+    </div>
+    <div class="btn3" r-click="gen();close_custom_check_confirm()">Confirm</div>
+    <div class="btn3" style="left:calc(50% + 5px)" r-click="close_custom_check_confirm()">Cancel</div>
+  </div>
+
 
   <div class="page2">
 
@@ -4764,6 +4788,86 @@
       set_history_date_title($(document).scrollTop())
     })
   }
+  function custom_check(opts) {
+    var pwtext = String(opts)
+    var pwarr = pwtext.split(',')
+    var pwarr_len = pwarr.length
+    var pwjson = {}
+    for (var i = 0; i < pwarr_len; i++) {
+      var th = pwarr[i].split(':')
+      var th_key = 's_' + th[0].replaceAll('-', '_')
+      var th_content = th[1]
+      pwjson[th_key] = th_content
+    }
+    var pwlen = parseInt(pwjson.s_length)
+    if (pwlen < 8 || pwlen > 32768 || String(pwlen) === 'NaN') {
+      $('body').prompt({ 'message': 'length must be between 8 and 32768', 'time': 3000 });
+      return ''
+    }
+    else {
+
+      var cushapropg = false
+      var cushapropg_n = ['capital', 'lowercase', 'number', 'symbol']
+      var cushapropg_n_len = cushapropg_n.length
+      var cushapropg_c = 0
+      var pww = []
+      for (var d = 0; d < cushapropg_n_len; d++) {
+        var th = pwjson['s_' + cushapropg_n[d]]
+        if (!(th === undefined)) {
+          pww.push(parseFloat(th))
+          cushapropg_c += 1
+        }
+      }
+      var dontusesimilarcharsg = false
+      if (pwjson.s_do_not_use_similar_characters === 'true') {
+        dontusesimilarcharsg = true
+      }
+      if (cushapropg_c > 3) {
+        cushapropg = true
+        var pw_a = pww[0]
+        var pw_b = pww[1]
+        var pw_c = pww[2]
+        var pw_d = pww[3]
+      }
+      else {
+        var pw_a = 0.25
+        var pw_b = 0.25
+        var pw_c = 0.25
+        var pw_d = 0.25
+      }
+
+      var test_pw = pwd(pwlen, dontusesimilarcharsg, cushapropg, pw_a, pw_b, pw_c, pw_d).str
+      var test_check = checkpwd(test_pw)
+      return test_check
+    }
+  }
+  function open_custom_check_confirm() {
+    $('.confirm_custom_check_mask,.confirm_custom_check').css({ 'opacity': '0', 'display': 'block' })
+    $('.confirm_custom_check').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.confirm_custom_check_mask,.confirm_custom_check').css({ 'opacity': '1', 'transition': '0.3s' })
+      $('.confirm_custom_check').css({ 'transform': 'translate(-50%,-50%) scale(1)' });
+    }, 1);
+  }
+  function close_custom_check_confirm() {
+    $('.confirm_custom_check_mask,.confirm_custom_check').css({ 'opacity': '0' })
+    $('.confirm_custom_check').css({ 'transform': 'translate(-50%,-50%) scale(0.8)' });
+    setTimeout(function () {
+      $('.confirm_custom_check_mask,.confirm_custom_check').css({ 'display': 'none', 'transition': '0s' });
+    }, 300);
+  }
+  function custom_check_confirm() {
+    mes('Customs checking.')
+    var pwtext = $('.custom-input input[type="text"]').val()
+    var check_f = custom_check(pwtext)
+    if (check_f.p <= 85) {
+      open_custom_check_confirm()
+      $('#custom_check_text').text((check_f.str).toLowerCase())
+    }
+    else {
+      gen()
+    }
+  }
   function gen() {
     var pwtext = $('.custom-input input[type="text"]').val()
     var pwarr = pwtext.split(',')
@@ -6046,7 +6150,7 @@
     window.location.replace('https://erichsia7.github.io/pwdgen2/?v=' + version_id(false).join('.'))
   }
 
-  rclick('.options_list[dy="cleanupstorage"],.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8,.clean_up_confirm .btn3,.clear_storage_confirm .btn3,.clean_up_password_option_btn,.clean_up_password_option_box_close')
+  rclick('.options_list[dy="cleanupstorage"],.options_list[dy="refresh"],.options_list[dy="deleteall"],.options_list[dy="backuppwd"],.options_list[dy="viewongit"],.options_list[dy="restorebackuppwd"],.confirm .btn3,.btn8,.clean_up_confirm .btn3,.clear_storage_confirm .btn3,.clean_up_password_option_btn,.clean_up_password_option_box_close,.confirm_custom_check .btn3')
 
   function deleteallsavedpwds() {
     if ($('.confirminput').val() === $('#confirmcftxt').attr('cftxt')) {
