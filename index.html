@@ -5989,7 +5989,7 @@
       $('.t2').text('Search Password')
       $('.input3,.history').css({ 'display': 'block' });
       $('.input,.checkpwdp,.input2').css({ 'display': 'none' });
-      $('.title').attr('dz', '0')
+      set_history_date_title($(document).scrollTop())
       $('.history').css({ 'transform': 'translateX(-50%) translateY(-45px)' });
       $('.history-filter').css({ 'transform': 'translateX(-50%) translateY(0px)', 'display': 'none' });
       createsearchindex_pwd()
