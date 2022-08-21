@@ -2930,6 +2930,12 @@
   <div class="page2">
 
     <li class="options_list">
+      <div class="options_list_txt">Disable customs check brefore generated</div>
+      <label for="options_customscheck" class="switch"><input type="checkbox" id="options_customscheck"
+          name="options_customscheck" jg="customscheck"></label>
+    </li>
+
+    <li class="options_list">
       <div class="options_list_txt">Auto save the generated password</div>
       <label for="options_autosavepwd" class="switch"><input type="checkbox" id="options_autosavepwd"
           name="options_autosavepwd" jg="autosavepwd"></label>
@@ -4863,15 +4869,20 @@
     }, 300);
   }
   function custom_check_confirm() {
-    mes('Customs checking.')
-    var pwtext = $('.custom-input input[type="text"]').val()
-    var check_f = custom_check(pwtext)
-    if (check_f.p <= 85) {
-      open_custom_check_confirm()
-      $('#custom_check_text').text((check_f.str).toLowerCase())
+    if (localStorage.getItem('pw_options_customscheck') === '1') {
+      gen()
     }
     else {
-      gen()
+      mes('Customs checking.')
+      var pwtext = $('.custom-input input[type="text"]').val()
+      var check_f = custom_check(pwtext)
+      if (check_f.p >= 85) {
+        gen()
+      }
+      else {
+        open_custom_check_confirm()
+        $('#custom_check_text').text((check_f.str).toLowerCase())
+      }
     }
   }
   function gen() {
