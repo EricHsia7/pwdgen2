@@ -5089,7 +5089,7 @@
       var this_recentaccess_hash = this_recentaccess_key.split('_')[3]
       var this_recentaccess = parseInt(String(localStorage.getItem(this_recentaccess_key)))
       if (pwnwtt - this_recentaccess > 60 * 60 * 24 * 3 * 1000 || !(localStorage.hasOwnProperty('pwdgen2_saved_a_' + this_recentaccess_hash) === true)) {
-        localStorage.removeItem(recentaccesslist[d])
+        localStorage.removeItem(this_recentaccess_key)
       }
     }
   }
