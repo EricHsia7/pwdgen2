@@ -2825,7 +2825,7 @@
       </svg>
     </div>
 
-    <input type="text" placeholder="custom" autocomplete="off">
+    <input type="text" placeholder="custom" autocomplete="off" id="custom-input-x">
     <div class="btn" id="gen" r-click="custom_check_confirm()">
       <svg stroke-miterlimit="10"
         style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1"
@@ -4702,7 +4702,8 @@
     }
     custompresets()
     $('.custom-input,.custom-input-page').attr('fx', '1')
-    $('.custom-input input[type="text"]').focus()
+    $('.custom-input input[type="text"]')
+    document.getElementById('custom-input-x').focus()
   }
   function closepwdcustom() {
     $('.custom-input,.custom-input-page').attr('fx', '0')
@@ -4727,8 +4728,8 @@
     }
     select_start += n.split(':')[0].length + original_text_arr_len
     var select_end = original_text_arr.join(',').length
-    $('.custom-input input[type="text"]').val(original_text_arr.join(',')).focus()
-
+    $('.custom-input input[type="text"]').val(original_text_arr.join(','))
+    //document.getElementById('custom-input-x').focus()
     document.querySelector('.custom-input input[type="text"]').setSelectionRange((select_start), (select_end));
   }
   function generator_custom_auto_complete() {
