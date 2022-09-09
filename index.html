@@ -4729,7 +4729,7 @@
     select_start += n.split(':')[0].length + original_text_arr_len
     var select_end = original_text_arr.join(',').length
     $('.custom-input input[type="text"]').val(original_text_arr.join(','))
-    //document.getElementById('custom-input-x').focus()
+    document.getElementById('custom-input-x').focus()
     document.querySelector('.custom-input input[type="text"]').setSelectionRange((select_start), (select_end));
   }
   function generator_custom_auto_complete() {
