@@ -5914,8 +5914,8 @@
     var saveddate = {}
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
     savedlist.sort(function (a, b) {
-      var a_date = parseInt(String(localStorage.getItem(a).split(':')[2]))
-      var b_date = parseInt(String(localStorage.getItem(b).split(':')[2]))
+      var a_date = parseInt(String(localStorage.getItem(a)).split(':')[2])
+      var b_date = parseInt(String(localStorage.getItem(b)).split(':')[2])
       return a_date - b_date
     });
     savedlist = savedlist.reverse()
