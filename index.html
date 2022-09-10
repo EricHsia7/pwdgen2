@@ -5913,25 +5913,11 @@
   function showsavedhistory() {
     var saveddate = {}
     var savedlist = searchItemsbyname('pwdgen2_saved_a_')
-    var savedlist_t = []
-    var savedlist_d = []
-    for (var i = 0; i < savedlist.length; i++) {
-      savedlist_t.push(parseInt(String(localStorage.getItem(savedlist[i])).split(':')[2]))
-      savedlist_d.push('hxtt_' + String(localStorage.getItem(savedlist[i])).split(':')[2] + '#' + savedlist[i])
-    }
-    savedlist_t.sort(function (a, b) {
-      return a - b;
+    savedlist.sort(function (a, b) {
+      var a_date = parseInt(String(localStorage.getItem(a)).split(':')[2])
+      var b_date = parseInt(String(localStorage.getItem(b)).split(':')[2])
+      return a_date - b_date
     });
-    savedlist = []
-    for (var i = 0; i < savedlist_t.length; i++) {
-
-      for (var g = 0; g < savedlist_d.length; g++) {
-        if (String(savedlist_d[g]).indexOf('hxtt_' + savedlist_t[i] + '#') > -1) {
-          savedlist.push(String(savedlist_d[g]).split('#')[1])
-        }
-      }
-
-    }
     savedlist = savedlist.reverse()
     if (savedlist.length > 0) {
       $('.history-filter').css({ 'display': 'block' })
