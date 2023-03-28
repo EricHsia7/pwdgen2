@@ -1,0 +1,39 @@
+{
+  "name": "Password Generator",
+  "short_name": "Password Generator",
+  "icons": [
+    {
+      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/168x168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./?pwa=QdD7EZ65aTSs86iJ91oRuNY9e2rqar8P",
+  "display": "standalone",
+  "id": "m1EttjpJ84xfKvkC8HN40QtP6B42dP50"
+}
