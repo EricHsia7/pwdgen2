@@ -3132,6 +3132,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js" integrity="sha512-szJ5FSo9hEmXXe7b5AUVtn/WnL8a5VofnFeYC2i2z03uS2LhAch7ewNLbl5flsEmTTimMN0enBZg/3sQ+YOSzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js" integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   var getUrlString = location.href;
   var url = new URL(getUrlString);
@@ -3239,6 +3240,96 @@
     array.length = size;
     return array;
   }
+
+
+  var password = [{ type: "regex", regex: /[A-Za-z0-9-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/g, repeat: true, quantity: 32, method: "random" }]
+  var email = [
+    {
+      type: "regex",
+      regex: /[a-z]/g,
+      method: "random",
+      repeat: true,
+      quantity: 3
+    },
+    {
+      type: "regex",
+      regex: /[a-z0-9]/g,
+      method: "random",
+      repeat: false,
+      quantity: 13
+    },
+    {
+      type: "string",
+      string: "@"
+    },
+    {
+      type: "regex",
+      regex: /[a-z]/g,
+      method: "random",
+      repeat: true,
+      quantity: 8
+    },
+
+    {
+      type: "string",
+      string: "."
+    },
+    {
+      type: "list",
+      list: ["com", "org", "app"],
+      method: "random",
+      repeat: false,
+      quantity: 1
+    }
+  ]
+
+  function pwd_fine_grained_pattern(options) {
+    var pattern = _.cloneDeep(options);
+    var d = ""
+    var get_chars_from_regex = function (regex) {
+      var input = String.fromCharCode(...Array.from({ length: Math.pow(2, 16) }, (_, i) => i));
+      var matches = String(input).match(regex);
+      var chars = matches ? matches.join('') : '';
+      return chars
+    }
+    var get_chars_from_list = function (regex) {
+
+    }
+    var pattern_len = pattern.length
+    for (var e = 0; e < pattern_len; e++) {
+      var this_item = pattern[e]
+      var this_format = this_item[this_item['type']]
+
+      var result = ''
+      if (this_item['type'] === "regex") {
+        var string = ''
+        var chars = get_chars_from_regex(this_format).split('')
+        for (var r = 0; r < this_item['quantity']; r++) {
+          var random_index = Math.floor((chars.length - 1) * Math.random())
+          string += chars[random_index]
+          if (!this_item.repeat) {
+            chars.splice(random_index, 1)
+          }
+        }
+        result = String(string)
+      }
+      if (this_item['type'] === "string") {
+        result = String(this_format)
+      }
+      if (this_item['type'] === "list") {
+        for (var r = 0; r < this_item['quantity']; r++) {
+          var random_index = Math.floor((this_format.length - 1) * Math.random())
+          result += this_format[random_index]
+          if (!this_item.repeat) {
+            this_format.splice(random_index, 1)
+          }
+        }
+      }
+      d += result
+    }
+    return d
+  }
+
 
   function pwd(len, nosimilar, custom_proportion, capital, lowercase, number, symbol) {
     var pwdarr = [];
