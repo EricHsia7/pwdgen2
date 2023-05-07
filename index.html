@@ -3298,14 +3298,14 @@
     var pattern_len = pattern.length
     for (var e = 0; e < pattern_len; e++) {
       var this_item = pattern[e]
-      var this_format = this_item[this_item['type']]
+      var this_content = this_item[this_item['type']]
 
       var result = ''
       if (this_item['type'] === "regex") {
         var string = ''
-        var chars = get_chars_from_regex(this_format).split('')
+        var chars = get_chars_from_regex(this_content).split('')
         for (var r = 0; r < this_item['quantity']; r++) {
-          var random_index = Math.floor((chars.length - 1) * Math.random())
+          var random_index = Math.round((chars.length - 1) * Math.random())
           string += chars[random_index]
           if (!this_item.repeat) {
             chars.splice(random_index, 1)
@@ -3314,16 +3314,19 @@
         result = String(string)
       }
       if (this_item['type'] === "string") {
-        result = String(this_format)
+        result = String(this_content)
       }
       if (this_item['type'] === "list") {
         for (var r = 0; r < this_item['quantity']; r++) {
-          var random_index = Math.floor((this_format.length - 1) * Math.random())
-          result += this_format[random_index]
+          var random_index = Math.round((this_content.length - 1) * Math.random())
+          result += this_content[random_index]
           if (!this_item.repeat) {
-            this_format.splice(random_index, 1)
+            this_content.splice(random_index, 1)
           }
         }
+      }
+      if (this_item['type'] === "group") {
+        result = pwd_fine_grained_pattern(this_content)
       }
       d += result
     }
