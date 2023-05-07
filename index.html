@@ -3261,7 +3261,7 @@
       var result = ''
       if (this_item['type'] === "regex") {
         var string = ''
-        var chars = get_chars_from_regex(this_content).split('')
+        var chars = get_chars_from_regex(new RegExp(this_content)).split('')
         for (var r = 0; r < this_item['quantity']; r++) {
           var random_index = Math.round((chars.length - 1) * Math.random())
           string += chars[random_index]
