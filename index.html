@@ -3241,48 +3241,6 @@
     return array;
   }
 
-
-  var password = [{ type: "regex", regex: /[A-Za-z0-9-!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/g, repeat: true, quantity: 32, method: "random" }]
-  var email = [
-    {
-      type: "regex",
-      regex: /[a-z]/g,
-      method: "random",
-      repeat: true,
-      quantity: 3
-    },
-    {
-      type: "regex",
-      regex: /[a-z0-9]/g,
-      method: "random",
-      repeat: false,
-      quantity: 13
-    },
-    {
-      type: "string",
-      string: "@"
-    },
-    {
-      type: "regex",
-      regex: /[a-z]/g,
-      method: "random",
-      repeat: true,
-      quantity: 8
-    },
-
-    {
-      type: "string",
-      string: "."
-    },
-    {
-      type: "list",
-      list: ["com", "org", "app"],
-      method: "random",
-      repeat: false,
-      quantity: 1
-    }
-  ]
-
   function pwd_fine_grained_pattern(options) {
     var pattern = _.cloneDeep(options);
     var d = ""
