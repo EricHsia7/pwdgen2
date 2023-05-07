@@ -1,5 +1,6 @@
 {
  "pattern_name": "Email",
+ "pattern_icon": "alternate_email",
  "pattern": [
   {
    "type": "regex",
