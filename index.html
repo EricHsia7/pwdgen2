@@ -3327,6 +3327,14 @@
       }
       if (this_item['type'] === "group") {
         result = pwd_fine_grained_pattern(this_content)
+        var actions = this_item['actions']
+        var actions_len = acrions.length
+        for (var j = 0; j < actions_len; j++) {
+          if (actions[j] === 'shuffle') {
+            result = shuffleSelf(result.split(''), result.length).join('')
+            continue;
+          }
+        }
       }
       d += result
     }
