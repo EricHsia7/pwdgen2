@@ -8,7 +8,7 @@
    "repeat": false
   },
   {
-   "tpye": "group",
+   "type": "group",
    "group": [
     {
      "type": "regex",
