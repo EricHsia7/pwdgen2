@@ -2971,6 +2971,7 @@
     </div>
   </div>
 
+  <div class="pattern_creator_mask"></div>
   <div class="pattern_creator">
     <div class="pattern_creator_title">
       Pattern Creator
@@ -4843,7 +4844,11 @@
     }
   }
   function closePatternCreator() {
-    $('.pattern_creator').css({ 'display': 'none' })
+    $('.pattern_creator').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
+    $('.pattern_creator_mask').css({ 'opacity': '0' })
+    setTimeout(function () {
+      $('.pattern_creator').css({ 'display': 'none', 'transition': '0.3s' })
+    }, 350)
   }
   var custom_presets_evt = 0
   var googlefontloaded = 0
