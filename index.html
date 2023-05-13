@@ -349,6 +349,95 @@
       user-select: none;
     }
 
+    .pattern_creator {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background: var(--g-ffffff);
+    }
+
+    .pattern_creator .pattern_creator_title {
+      position: absolute;
+      background: var(--g-ffffff);
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 55px;
+      border-bottom: var(--g-f4f4f4) solid 1px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pattern_creator .pattern,
+    .pattern_creator .pattern2 {
+      padding: 5px;
+      margin: 0px;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-size: 1.15rem;
+      caret-color: var(--g-4e4e4e);
+      color: var(--g-4e4e4e);
+      word-break: break-all;
+      white-space: pre-wrap;
+      overflow: scroll;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      background: rgba(0, 0, 0, 0);
+      box-sizing: border-box;
+
+    }
+
+    .pattern_creator .pattern {
+      display: inline-block;
+    }
+
+    .pattern_creator .pattern2 *,
+    .pattern_creator .pattern2 {
+      color: rgba(0, 0, 0, 0)
+    }
+
+    .pattern_creator .pattern_box {
+      width: calc(100% - 20px);
+      height: 300px;
+      overflow: hidden;
+      position: absolute;
+      top: 130px;
+      left: 10px;
+      background: var(--g-f4f4f4);
+      border-radius: 10px;
+    }
+
+    .pattern_creator .pattern_creator .generation_preview_title {
+      position: absolute;
+      top: 65px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .pattern_creator .pattern_creator .generation_preview {
+      position: absolute;
+      top: 90px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 30px;
+      border: 1px var(--g-f4f4f4) solid;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 5px;
+      overflow: hidden;
+    }
+
     .custom-input-page {
       background: var(--g-ffffff);
       width: 100%;
@@ -2770,6 +2859,20 @@
     </div>
   </div>
 
+  <div class="pattern_creator">
+    <div class="pattern_creator_title">Pattern Creator</div>
+    <div class="pattern_box"></div>
+    <pre><code class="language-json pattern"></code></pre>
+    <pre><code class="language-json pattern2" contenteditable="true"></code></pre>
+  </div>
+  <div class="generation_preview_title">Generation preview</div>
+  <div class="generation_preview"></div>
+  </div>
+
+
+
+
+
 
   <div class="filter-date-picker-mask"></div>
   <div class="filter-date-picker">
@@ -3249,9 +3352,6 @@
       var matches = String(input).match(regex);
       var chars = matches ? matches.join('') : '';
       return chars
-    }
-    var get_chars_from_list = function (regex) {
-
     }
     var pattern_len = pattern.length
     for (var e = 0; e < pattern_len; e++) {
