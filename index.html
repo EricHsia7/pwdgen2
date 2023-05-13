@@ -469,16 +469,6 @@
       user-select: none;
     }
 
-    .pattern_creator {
-      position: fixed;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      background: var(--g-ffffff);
-      display: none;
-    }
-
     .pattern_creator .pattern_creator_title {
       position: absolute;
       background: var(--g-ffffff);
@@ -1128,6 +1118,7 @@
     .confirm_mask,
     .filter-date-picker-mask,
     .custom-presets-add-mask,
+    .pattern_creator_mask,
     .custom-presets-manager-mask,
     .history_filter_fulllist_mask,
     .clean_up_confirm_mask,
@@ -1907,6 +1898,7 @@
     }
 
     .filter-date-picker,
+    .pattern_creator,
     .custom-presets-add,
     .custom-presets-manager,
     .history_filter_fulllist,
@@ -4820,7 +4812,11 @@
   var pattern_creator_evt = 0
   const pattern_json = {}
   function openPatternCreator() {
-    $('.pattern_creator').css({ 'display': 'block' })
+    $('.pattern_creator').css({ 'display': 'block', 'transition': '0.3s' })
+    setTimeout(function () {
+      $('.pattern_creator').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
+      $('.pattern_creator_mask').css({ 'opacity': '1' })
+    }, 1)
     document.querySelector('.pattern').innerHTML = JSON.stringify(pattern_json, null, 2)
     document.querySelector('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
     hljs.highlightAll();
@@ -5548,6 +5544,7 @@
           $('.custom-presets-add').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
           $('.custom-presets-add-mask').css({ 'opacity': '1' })
         }, 1)
+
         $('#custom_presets_add_icon_picker_search_input').val('')
         $('#custom_presets_icon_picker_search_css').html('')
         $('#custom_custom_presets').val($('.custom-input input[type="text"]').val())
