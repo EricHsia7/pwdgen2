@@ -370,6 +370,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      color: var(--g-4e4e4e);
     }
 
     .pattern_creator .pattern,
@@ -390,7 +391,6 @@
       left: 0px;
       background: rgba(0, 0, 0, 0);
       box-sizing: border-box;
-
     }
 
     .pattern_creator .pattern {
@@ -3236,6 +3236,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js" integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="sha512-rdhY3cbXURo13l/WU9VlaRyaIYeJ/KBakckXIvJNAQde8DgpOmE+eZf7ha4vdqVjTtwQt69bD2wH2LXob/LB7Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script>
   var getUrlString = location.href;
   var url = new URL(getUrlString);
@@ -4693,6 +4695,34 @@
     localStorage.setItem('pw_options_' + $(this).attr('jg'), $(this).val())
     saveoptions()
   })
+  var pattern_creator_evt = 0
+  const pattern_json = {}
+  function openPatternCreator() {
+    document.querySelector('.pattern').innerHTML = JSON.stringify(pattern_json, null, 2)
+    document.querySelector('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
+    hljs.highlightAll();
+    if (pattern_creator_evt === 0) {
+      pattern_creator_evt = 1
+      document.querySelector('.pattern2').addEventListener('input', function (event) {
+        document.querySelector('.pattern').innerHTML = document.querySelector('.pattern2').innerText
+        hljs.highlightBlock(document.querySelector('.pattern'));
+      });
+      document.querySelector('.pattern2').addEventListener('blur', function (event) {
+        try {
+          document.querySelector('.pattern2').innerHTML = JSON.stringify(JSON.parse(document.querySelector('.pattern2').innerText), null, 2)
+          hljs.highlightBlock(document.querySelector('.pattern2'));
+        } catch (e) {
+        }
+        document.querySelector('.pattern').innerHTML = document.querySelector('.pattern2').innerHTML
+      });
+      document.querySelector('.pattern2').addEventListener('scroll', function (event) {
+        window.requestAnimationFrame(function () {
+          var st = document.querySelector('.pattern2').pageYOffset || document.querySelector('.pattern2').scrollTop
+          document.querySelector('.pattern').scrollTop = st
+        })
+      });
+    }
+  }
 
   var custom_presets_evt = 0
   var googlefontloaded = 0
