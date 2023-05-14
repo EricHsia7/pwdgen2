@@ -306,14 +306,14 @@
 
 <body>
 
- <div class="container">
+ <div class="container" p="main-page">
   <div class="contents-box">
    <div class="password-list"></div>
   </div>
   <div class="title-box">
-   <div class="title">Password</div>
+   <div class="title">Passwords</div>
   </div>
-  <div class="fixed-title-box">Password</div>
+  <div class="fixed-title-box">Passwords</div>
   <div class="search-box">
    <div class="search-cancel" onclick="closeSearch()">
     Cancel
@@ -327,6 +327,9 @@
     <input type="text" placeholder="Search" id="search">
    </div>
   </div>
+ </div>
+ <div class="container" p="password-page">
+  <div class="fixed-title-box">Password</div>
  </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -550,8 +553,8 @@
  }
  var search_sticky = false
  var container_scrollTop = 0
- document.querySelector('.container').addEventListener('scroll', function (e) {
-  container_scrollTop = document.querySelector('.container').scrollTop
+ qe('.container[p="main-page"]').addEventListener('scroll', function (e) {
+  container_scrollTop = qe('.container[p="main-page"]').scrollTop
   var scale = 1
   if (container_scrollTop < 0) {
    scale = 1 + (Math.abs(container_scrollTop) / 500)
@@ -559,15 +562,15 @@
     scale = 1.3
    }
   }
-  document.querySelector('.title').style.setProperty('--scroll-scale', scale)
+  qe('.container[p="main-page"] .title').style.setProperty('--scroll-scale', scale)
   if (container_scrollTop >= 50) {
-   qe(".search-box").setAttribute('sticky', 'true')
-   qe(".fixed-title-box").setAttribute('sticky', 'true')
+   qe('.container[p="main-page"] .search-box').setAttribute('sticky', 'true')
+   qe('.container[p="main-page"] .fixed-title-box').setAttribute('sticky', 'true')
    search_sticky = true
   }
   else {
-   qe(".search-box").setAttribute('sticky', 'false')
-   qe(".fixed-title-box").setAttribute('sticky', 'false')
+   qe('.container[p="main-page"] .search-box').setAttribute('sticky', 'false')
+   qe('.container[p="main-page"] .fixed-title-box').setAttribute('sticky', 'false')
    search_sticky = false
   }
  })
