@@ -32,13 +32,14 @@
    --p-aeaeb2: #aeaeb2;
    --p-333333: #333333;
   }
+
   @media (prefers-color-scheme: dark) {
    :root {
-   --p-f2f2f7: #1c1c1e;
-   --p-ffffff: #252527;
-   --p-e5e5ea: #2c2c2e;
-   --p-aeaeb2: #636366;
-   --p-333333: #ffffff;
+    --p-f2f2f7: #0a0a0b;
+    --p-ffffff: #252527;
+    --p-e5e5ea: #2c2c2e;
+    --p-aeaeb2: #636366;
+    --p-333333: #ffffff;
    }
   }
 
@@ -80,6 +81,7 @@
    line-height: 2.5rem;
    transform-origin: left bottom;
    transform: scale(var(--scroll-scale));
+   color:var(--p-333333)
   }
 
   .fixed-title-box {
@@ -176,6 +178,7 @@
    font-size: 18px;
    background: rgba(0, 0, 0, 0);
    caret-color: var(--p-main-color);
+   color:var(--p-333333);
   }
 
   .search input#search::placeholder {
