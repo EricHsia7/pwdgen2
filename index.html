@@ -443,25 +443,25 @@
 
     <div class="details-item">
      <div class="details-item-title">Username</div>
-     <div class="details-item-value">username</div>
+     <div class="details-item-value" k="username"></div>
      <div class="details-item-copy" icon="copy"></div>
     </div>
 
     <div class="details-item">
      <div class="details-item-title">Password</div>
-     <div class="details-item-value"></div>
+     <div class="details-item-value" k="password"></div>
      <div class="details-item-copy" icon="copy"></div>
     </div>
 
     <div class="details-item">
      <div class="details-item-title">Website</div>
-     <div class="details-item-value"></div>
+     <div class="details-item-value" k="website"></div>
      <div class="details-item-copy" icon="copy"></div>
     </div>
 
     <div class="details-item">
      <div class="details-item-title">Created at</div>
-     <div class="details-item-value"></div>
+     <div class="details-item-value" k="createdat"></div>
      <div class="details-item-copy" icon="copy"></div>
     </div>
    </div>
@@ -675,7 +675,7 @@
   var list_decrypted = []
   for (var k = 0; k < list_len; k++) {
    var this_item = JSON.parse(String(LS.getItem(list[k])))
-   list_decrypted.push({ website: this_item.website, password: deur(decryptString(this_item.encrypted_password, this_item.aes_iv)), note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
+   list_decrypted.push({ website: this_item.website, password: deur(decryptString(this_item.encrypted_password, this_item.aes_iv)), username: this_item.username, note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
   }
   list_decrypted.sort(function (a, b) {
    return new Date(b.time_stamp).getTime() - new Date(a.time_stamp).getTime()
@@ -772,6 +772,13 @@
    for (var q = 0; q < copy_btn_len; q++) {
     copy_btn[q].innerHTML = icon_copy
    }
+  }
+  if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
+   var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
+   qe('.password-page .details-item-value[k="username"]').innerText = json.username || ""
+   qe('.password-page .details-item-value[k="password"]').innerText = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
+   qe('.password-page .details-item-value[k="website"]').innerText = json.website || ""
+   qe('.password-page .details-item-value[k="createdat"]').innerText = timestr(new Date(json.time_stamp)) || ""
   }
  }
  qe(".search").addEventListener("click", function (e) {
