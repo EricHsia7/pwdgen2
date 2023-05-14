@@ -81,7 +81,7 @@
    line-height: 2.5rem;
    transform-origin: left bottom;
    transform: scale(var(--scroll-scale));
-   color:var(--p-333333)
+   color: var(--p-333333)
   }
 
   .fixed-title-box {
@@ -178,7 +178,7 @@
    font-size: 18px;
    background: rgba(0, 0, 0, 0);
    caret-color: var(--p-main-color);
-   color:var(--p-333333);
+   color: var(--p-333333);
   }
 
   .search input#search::placeholder {
@@ -241,7 +241,7 @@
    font-weight: 500;
    display: flex;
    align-items: center;
-   color:var(--p-333333)
+   color: var(--p-333333)
   }
 
   .password-item .password-item-tags {
@@ -362,7 +362,190 @@
   </div>
  </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js" integrity="sha512-LOqfKFwH2W3jeb0NzXcImFlSyoL7hjsWbZvIeKNOaZw1gFw+yKTE/QUDGLit2KWdd57qd6IgMDkppK2tkwIEhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+ let LS = window.localStorage
+ function encryptString(string) {
+  var initialization_vector_pattern = [
+   {
+    type: "regex",
+    regex: "/[1-9]/g",
+    quantity: 1,
+    repeat: false
+   },
+   {
+    type: "group",
+    group: [
+     {
+      type: "regex",
+      regex: "/[0-9]/g",
+      quantity: 9,
+      repeat: true
+     }
+    ],
+    actions: [
+     "shuffle"
+    ]
+   }
+  ]
+  var initialization_vector = parseInt(pwd_fine_grained_pattern(initialization_vector_pattern));
+  var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+  var textBytes = aesjs.utils.utf8.toBytes(string);
+  var aesCtr = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(initialization_vector));
+  var encryptedBytes = aesCtr.encrypt(textBytes);
+  var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+  return [encryptedHex, initialization_vector]
+ }
+
+ function decryptString(encrypted_string, initialization_vector) {
+  var keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+  var encryptedBytese = aesjs.utils.hex.toBytes(encrypted_string);
+  var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(initialization_vector)));
+  var decryptedBytese = aesCtre.decrypt(encryptedBytese);
+  var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytese);
+  return decryptedText;
+ }
+ function enur(u) {
+  return encodeURIComponent(u)
+ }
+ function deur(u) {
+  return decodeURIComponent(u)
+ }
+
+ function gid(n) {
+  var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+  var genid = "";
+  for (var i = 0; i < 16; i++) {
+   var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+   genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+  }
+  if (!(n === undefined)) {
+   n = n.replaceAll('_', '-')
+   return n + '-' + genid + '' + new Date().getTime();
+  }
+  return genid + '' + new Date().getTime();
+ }
+ function shuffleSelf(array, size) {
+  var index = -1,
+   length = array.length,
+   lastIndex = length - 1;
+  size = size === undefined ? length : size;
+  while (++index < size) {
+   var rand = index + Math.floor(Math.random() * (lastIndex - index + 1))
+   value = array[rand];
+   array[rand] = array[index];
+   array[index] = value;
+  }
+  array.length = size;
+  return array;
+ }
+
+ function pwd_fine_grained_pattern(options) {
+  var pattern = _.cloneDeep(options);
+  var d = ""
+  var get_chars_from_regex = function (regex) {
+   var input = String.fromCharCode(...Array.from({ length: Math.pow(2, 16) }, (_, i) => i));
+   var matches = String(input).match(regex);
+   var chars = matches ? matches.join('') : '';
+   return chars
+  }
+  var pattern_len = pattern.length
+  for (var e = 0; e < pattern_len; e++) {
+   var this_item = pattern[e]
+   var this_content = this_item[this_item['type']]
+
+   var result = ''
+   if (this_item['type'] === "regex") {
+    var this_content_matches = this_content.match(/^\/(.*)\/([a-z]*)$/i);
+    var string = ''
+    var chars = get_chars_from_regex(new RegExp(this_content_matches[1], this_content_matches[2])).split('')
+    for (var r = 0; r < this_item['quantity']; r++) {
+     var random_index = Math.round((chars.length - 1) * Math.random())
+     string += chars[random_index]
+     if (!this_item.repeat) {
+      chars.splice(random_index, 1)
+     }
+    }
+    result = String(string)
+   }
+   if (this_item['type'] === "string") {
+    result = String(this_content)
+   }
+   if (this_item['type'] === "list") {
+    for (var r = 0; r < this_item['quantity']; r++) {
+     var random_index = Math.round((this_content.length - 1) * Math.random())
+     result += this_content[random_index]
+     if (!this_item.repeat) {
+      this_content.splice(random_index, 1)
+     }
+    }
+   }
+   if (this_item['type'] === "group") {
+    result = pwd_fine_grained_pattern(this_content)
+    var actions = this_item['actions']
+    var actions_len = actions.length
+    for (var j = 0; j < actions_len; j++) {
+     if (actions[j] === 'shuffle') {
+      result = shuffleSelf(result.split(''), result.length).join('')
+      continue;
+     }
+    }
+   }
+   d += result
+  }
+  return d
+ }
+
+ function che(y) {
+  if (y < 10) {
+   return '0' + y
+  }
+  else {
+   return y
+  }
+ }
+ function timestr(date) {
+  return date.getFullYear() + '-' + che(date.getMonth() + 1) + '-' + che(date.getDate()) + ' ' + che(date.getHours()) + ':' + che(date.getMinutes()) + ':' + che(date.getSeconds())
+ }
+ function searchItemsbyname(name) {
+  var gh = []
+  for (var t in window.localStorage) {
+   if (String(t).indexOf(name) > -1) {
+    gh.push(t)
+   }
+  }
+  return gh
+ }
+ function listSavedPassword() {
+  var list = searchItemsbyname('pwdgen2_saved_b')
+  var list_len = list.length
+  var list_decrypted = []
+  for (var k = 0; k < list_len; k++) {
+   var this_item = JSON.parse(String(LS.getItem(list[k])))
+   list_decrypted.push({ website: this_item.website, password: aes_decrypt(this_item.encrypted_password, this_item.aes_iv), note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
+  }
+ }
+
+ function upgradeData() {
+  var list = searchItemsbyname('pwdgen2_saved_a')
+  if (list <= 0) {
+   return ''
+  }
+  var list_len = list.length
+  var list_decrypted = []
+  for (var k = 0; k < list_len; k++) {
+   var this_item = String(localStorage.getItem(list[k])).split(':')
+
+   var pwtime = new Date()
+   pwtime.setTime(thpwdd[2])
+
+   var pw = deur(decryptString(thpwdd[0], thpwdd[1]))
+
+   var this_item = JSON.parse(String(LS.getItem(list[k])))
+   list_decrypted.push({ website: this_item.website, password: aes_decrypt(this_item.encrypted_password, this_item.aes_iv), note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
+  }
+ }
+
  function qe(selector) {
   return document.querySelector(selector)
  }

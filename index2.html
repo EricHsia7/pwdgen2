@@ -3402,31 +3402,31 @@
   function isRunningStandalone() {
     return (window.matchMedia('(display-mode: standalone)').matches);
   }
-  function encu(textu) {
+  function encryptString(string) {
     var eechars = "123456789";
     var eeid = "";
     for (var i = 0; i < 8; i++) {
       var eerandomNumber = Math.floor(Math.random() * eechars.length);
       eeid += eechars.substring(eerandomNumber, eerandomNumber + 1);
     }
-    var ivqu = parseInt(eeid);
+    var initialization_vector = parseInt(eeid);
     var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-    var textBytesu = aesjs.utils.utf8.toBytes(textu);
-    var aesCtru = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(ivqu));
-    var encryptedBytesu = aesCtru.encrypt(textBytesu);
-    var encryptedHexu = aesjs.utils.hex.fromBytes(encryptedBytesu);
-    return [encryptedHexu, ivqu]
+    var textBytes = aesjs.utils.utf8.toBytes(string);
+    var aesCtr = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(initialization_vector));
+    var encryptedBytes = aesCtr.encrypt(textBytes);
+    var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+    return [encryptedHex, initialization_vector]
   }
 
-  function decu(juy, oik) {
+  function decryptString(juy, oik) {
     var keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-    var gbu = juy;
-    var kiu = oik;
-    var encryptedBytese = aesjs.utils.hex.toBytes(gbu);
-    var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(kiu)));
+    var encrypted_string = juy;
+    var initialization_vector = oik;
+    var encryptedBytese = aesjs.utils.hex.toBytes(encrypted_string);
+    var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(initialization_vector)));
     var decryptedBytese = aesCtre.decrypt(encryptedBytese);
-    var decryptedTexte = aesjs.utils.utf8.fromBytes(decryptedBytese);
-    return decryptedTexte;
+    var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytese);
+    return decryptedText;
   }
   function enur(u) {
     return encodeURIComponent(u)
@@ -4452,7 +4452,7 @@
     }
   }
   function save(gid, shwmes) {
-    var encdd = encu(enur($('.history .box#' + gid + ' input[u="' + gid + '"]').attr('value')))
+    var encdd = encryptString(enur($('.history .box#' + gid + ' input[u="' + gid + '"]').attr('value')))
     var ddt = $('.history .box#' + gid).attr('t')
     var pse = encdd[0] + ':' + encdd[1] + ':' + ddt
     var psehash = 'pwdgen2_saved_a_' + sha256($('.history .box#' + gid + ' input[u="' + gid + '"]').attr('value') + '_' + ddt)
@@ -5983,7 +5983,7 @@
           var pwtime = new Date()
           pwtime.setTime(thpwdd[2])
           var pwtimestr = timestr(pwtime)
-          var pw = deur(decu(thpwdd[0], thpwdd[1]))
+          var pw = deur(decryptString(thpwdd[0], thpwdd[1]))
           var pwgid = gid('largelist')
           var hash = sha256(pw + '_' + pwtime.getTime())
           var notetext = ''
@@ -6107,7 +6107,7 @@
               pwtime.setTime(thpwdd[2])
               var pwtimestr = timestr(pwtime)
 
-              var pw = deur(decu(thpwdd[0], thpwdd[1]))
+              var pw = deur(decryptString(thpwdd[0], thpwdd[1]))
               var pwgid = gid('historybox')
               var pwdvisible = '0'
               var pwdvisible_type = 'password'
@@ -6499,7 +6499,7 @@
           pwtime.setTime(thpwdd[2])
           var pwtimestr = timestr(pwtime)
 
-          var pw = deur(decu(thpwdd[0], thpwdd[1]))
+          var pw = deur(decryptString(thpwdd[0], thpwdd[1]))
           var pwgid = gid()
           var pwdvisible = '0'
           var pwdvisible_type = 'password'
@@ -6509,7 +6509,7 @@
           }
           var jsonobjgg = { 'pwd_aes': thpwdd[0], 'pwd_iv': thpwdd[1], 'notes': thpwnote, 'time': pwtime.getTime() }
           pwddatalist.push(jsonobjgg)
-          pwddatalistcsv.push('"' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds()) + '","' + deur(decu(thpwdd[0], thpwdd[1])) + '","' + deur(atob(String(thpwnote))).replaceAll('"', ' ').replaceAll("'", ' ') + '","' + pwtime.getTime() + '"')
+          pwddatalistcsv.push('"' + pwtime.getFullYear() + '-' + che(pwtime.getMonth() + 1) + '-' + che(pwtime.getDate()) + ' ' + che(pwtime.getHours()) + ':' + che(pwtime.getMinutes()) + ':' + che(pwtime.getSeconds()) + '","' + deur(decryptString(thpwdd[0], thpwdd[1])) + '","' + deur(atob(String(thpwnote))).replaceAll('"', ' ').replaceAll("'", ' ') + '","' + pwtime.getTime() + '"')
         }
       }
     }
@@ -6527,7 +6527,7 @@
     var txtfolder = zip.folder("Passwords(Text)");
 
     for (var w = 0; w < pwddatalist.length; w++) {
-      txtfolder.file('#' + w + '_' + pwddatalist[w].time + '.txt', deur(decu(pwddatalist[w].pwd_aes, pwddatalist[w].pwd_iv)), { base64: false });
+      txtfolder.file('#' + w + '_' + pwddatalist[w].time + '.txt', deur(decryptString(pwddatalist[w].pwd_aes, pwddatalist[w].pwd_iv)), { base64: false });
     }
 
 
@@ -6563,7 +6563,7 @@
         var wiv = wpw.pwd_iv
         var wnt = wpw.notes
         var wtt = wpw.time
-        var wpwd = deur(decu(waes, wiv))
+        var wpwd = deur(decryptString(waes, wiv))
         var whash = sha256(wpwd + '_' + wtt)
 
         if (!(localStorage.getItem('pwdgen2_saved_a_' + whash) === null)) {
