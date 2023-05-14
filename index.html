@@ -528,8 +528,9 @@
    list_decrypted.push({ website: this_item.website, password: aes_decrypt(this_item.encrypted_password, this_item.aes_iv), note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
   }
   list_decrypted.sort(function (a, b) {
-   return b.time_stamp - a.time_stamp
+   return new Date(b.time_stamp).getTime() - new Date(a.time_stamp).getTime()
   })
+
   return list_decrypted
  }
  function printSavedPasswordList() {
