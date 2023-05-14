@@ -66,7 +66,7 @@
    background: var(--p-f2f2f7);
   }
 
-  .container[p="password-page"] {
+  .container.password-page {
    display: none;
   }
 
@@ -104,11 +104,11 @@
    transition: color 0.3s;
   }
 
-  .container[p="main-page"] .fixed-title-box {
+  .container.main-page .fixed-title-box {
    color: rgba(0, 0, 0, 0);
   }
 
-  .container[p="main-page"]  .fixed-title-box[sticky="true"] {
+  .container.main-page .fixed-title-box[sticky="true"] {
    color: var(--p-333333);
    background: var(--p-ffffff)
   }
@@ -340,7 +340,7 @@
 
 <body>
 
- <div p="main-page" class="container">
+ <div class="container main-page">
   <div class="contents-box">
    <div class="password-list"></div>
   </div>
@@ -362,7 +362,7 @@
    </div>
   </div>
  </div>
- <div p="password-page" class="container">
+ <div class="container password-page">
   <div class="fixed-title-box">Password</div>
  </div>
 </body>
@@ -628,8 +628,8 @@ function fade(element, type, display, callback) {
  }
  var search_sticky = false
  var container_scrollTop = 0
- qe('.container[p="main-page"]').addEventListener('scroll', function (e) {
-  container_scrollTop = qe('.container[p="main-page"]').scrollTop
+ qe('.container.main-page').addEventListener('scroll', function (e) {
+  container_scrollTop = qe('.container.main-page').scrollTop
   var scale = 1
   if (container_scrollTop < 0) {
    scale = 1 + (Math.abs(container_scrollTop) / 500)
@@ -637,15 +637,15 @@ function fade(element, type, display, callback) {
     scale = 1.3
    }
   }
-  qe('.container[p="main-page"] .title').style.setProperty('--scroll-scale', scale)
+  qe('.container.main-page .title').style.setProperty('--scroll-scale', scale)
   if (container_scrollTop >= 50) {
-   qe('.container[p="main-page"] .search-box').setAttribute('sticky', 'true')
-   qe('.container[p="main-page"] .fixed-title-box').setAttribute('sticky', 'true')
+   qe('.container.main-page .search-box').setAttribute('sticky', 'true')
+   qe('.container.main-page .fixed-title-box').setAttribute('sticky', 'true')
    search_sticky = true
   }
   else {
-   qe('.container[p="main-page"] .search-box').setAttribute('sticky', 'false')
-   qe('.container[p="main-page"] .fixed-title-box').setAttribute('sticky', 'false')
+   qe('.container.main-page .search-box').setAttribute('sticky', 'false')
+   qe('.container.main-page .fixed-title-box').setAttribute('sticky', 'false')
    search_sticky = false
   }
  })
@@ -659,7 +659,7 @@ function fade(element, type, display, callback) {
   qe(".search-box").setAttribute('sticky', search_sticky)
  }
 function openPassword(id) {
-  fade(qe('.container[p="password-page"]'), 'In', 'block')
+  fade(qe('.container.password-page'), 'In', 'block')
   }
 qe(".search").addEventListener("click", function (e) {
   openSearch()
