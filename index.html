@@ -4813,7 +4813,7 @@
   var pattern_creator_evt = 0
   const pattern_json = {}
   function openPatternCreator() {
-    $('.pattern_creator').css({ 'display': 'block', 'transition': '0.3s' })
+    $('.pattern_creator,.pattern_creator_mask').css({ 'display': 'block', 'transition': '0.3s' })
     setTimeout(function () {
       $('.pattern_creator').css({ 'transform': 'translate(-50%,-50%) scale(1)', 'opacity': '1' })
       $('.pattern_creator_mask').css({ 'opacity': '1' })
@@ -4847,7 +4847,7 @@
     $('.pattern_creator').css({ 'transform': 'translate(-50%,-50%) scale(0.8)', 'opacity': '0' })
     $('.pattern_creator_mask').css({ 'opacity': '0' })
     setTimeout(function () {
-      $('.pattern_creator').css({ 'display': 'none', 'transition': '0.3s' })
+      $('.pattern_creator,.pattern_creator_mask').css({ 'display': 'none', 'transition': '0.3s' })
     }, 350)
   }
   var custom_presets_evt = 0
