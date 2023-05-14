@@ -236,7 +236,6 @@
    position: relative;
    width: calc(100% - 20px);
    height: 80px;
-
    border-bottom: var(--p-e5e5ea) 1px solid;
    left: 10px;
    box-sizing: border-box;
@@ -311,6 +310,77 @@
    top: 155px;
    left: 15px;
    width: calc(100% - 30px);
+  }
+
+
+
+  .details-list {
+   position: relative;
+   width: 100%;
+   display: inline-block;
+   border-radius: 10px;
+   overflow: hidden;
+   background: var(--p-ffffff);
+  }
+
+  .details-item {
+   position: relative;
+   width: calc(100% - 20px);
+   height: 50px;
+   border-bottom: var(--p-e5e5ea) 1px solid;
+   left: 10px;
+   box-sizing: border-box;
+  }
+
+  .details-item .details-item-title {
+   position: absolute;
+   top: 10px;
+   left: 0px;
+   width: auto;
+   height: 30px;
+   font-size: 18px;
+   font-weight: 500;
+   display: inline-flex;
+   align-items: center;
+  }
+
+  .details-item .details-item-value {
+   position: absolute;
+   right: 40px;
+   top: 10px;
+   width: auto;
+   height: 30px;
+   display: inline-flex;
+   overflow: hidden;
+   flex-direction: row;
+   justify-content: right;
+   align-items: center;
+  }
+
+  .details-item .details-item-copy {
+   width: 30px;
+   height: 30px;
+   top: 10px;
+   right: 0px;
+   position: absolute;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: var(--p-e5e5ea);
+   border-radius: 8px;
+  }
+
+  .details-item .details-item-copy svg {
+   width: 18px;
+   height: 18px;
+  }
+
+  .details-item .details-item-copy svg path {
+   fill: var(--p-main-color);
+  }
+
+  .details-list .details-item:last-child {
+   border: none;
   }
  </style>
 
