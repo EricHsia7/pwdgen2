@@ -559,10 +559,9 @@
    var this_item = String(localStorage.getItem(list[k])).split(':')
 
    var pwtime = new Date()
-   pwtime.setTime(thpwdd[2])
-   var pw = deur(decryptString(thpwdd[0], thpwdd[1]))
+   pwtime.setTime(this_item[2])
    var id = pwd_fine_grained_pattern(id_pattern)
-   list_decrypted.push({ website: "", encrypted_password: thpwdd[0], aes_iv: parseInt(thpwdd[1]), note: "", time_stamp: pwtime, id: id })
+   list_decrypted.push({ website: "", encrypted_password: this_item[0], aes_iv: parseInt(this_item[1]), note: "", time_stamp: pwtime, id: id })
    LS.setItem(`pwdgen2_saved_b_${id}`, JSON.stringify(list_decrypted))
    LS.removeItem(list[k])
   }
