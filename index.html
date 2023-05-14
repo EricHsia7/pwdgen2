@@ -525,7 +525,7 @@
   var list_decrypted = []
   for (var k = 0; k < list_len; k++) {
    var this_item = JSON.parse(String(LS.getItem(list[k])))
-   list_decrypted.push({ website: this_item.website, password: decryptString(this_item.encrypted_password, this_item.aes_iv), note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
+   list_decrypted.push({ website: this_item.website, password: deur(decryptString(this_item.encrypted_password, this_item.aes_iv)), note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
   }
   list_decrypted.sort(function (a, b) {
    return new Date(b.time_stamp).getTime() - new Date(a.time_stamp).getTime()
