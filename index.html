@@ -536,9 +536,11 @@
  function printSavedPasswordList() {
   var list = listSavedPassword()
   var list_len = list.length
+  var html = []
   for (var k = 0; k < list_len; k++) {
    var tags = []
-   var html = `<div class="password-item" onclick="openPassword('${list[k].id}')"><div class="password-item-title">${timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icon_arrow}</div></div>`
+   html.push(`<div class="password-item" onclick="openPassword('${list[k].id}')"><div class="password-item-title">${timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icon_arrow}</div></div>`)
+
   }
   qe(".password-list").innerHTML = html.join('')
  }
