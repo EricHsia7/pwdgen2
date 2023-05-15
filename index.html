@@ -772,11 +772,13 @@
   if (container_scrollTop >= 50) {
    qe('.main-page .search-box').setAttribute('sticky', 'true')
    qe('.main-page .fixed-title-box').setAttribute('sticky', 'true')
+   standaloneStatusBarColor(1)
    search_sticky = true
   }
   else {
    qe('.main-page .search-box').setAttribute('sticky', 'false')
    qe('.main-page .fixed-title-box').setAttribute('sticky', 'false')
+   standaloneStatusBarColor(0)
    search_sticky = false
   }
  })
@@ -784,10 +786,12 @@
  function openSearch() {
   qe(".search-box").setAttribute('status', '1')
   qe(".search-box").setAttribute('sticky', 'true')
+  standaloneStatusBarColor(1)
  }
  function closeSearch() {
   qe(".search-box").setAttribute('status', '0')
   qe(".search-box").setAttribute('sticky', search_sticky)
+  standaloneStatusBarColor(0)
  }
  function openPassword(id) {
   fade(qe('.password-page'), 'In', 'block')
@@ -828,6 +832,16 @@
 function copyDetails(k) {
  copyElement(`.password-page .details-item-value[k="${k}"] input`)
 }
+function standaloneStatusBarColor(a) {
+    var c = '#f2f2f7'
+    var d = '#0a0a0b'
+    if (a === 1) {
+      c = '#ffffff'
+      d = '#1c1c1e'
+    }
+    $('head meta[kji="light"]').attr('content', c)
+    $('head meta[kji="dark"]').attr('content', d)
+  }
 
  qe(".search").addEventListener("click", function (e) {
   openSearch()
