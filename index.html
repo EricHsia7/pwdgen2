@@ -449,25 +449,33 @@
 
     <div class="details-item">
      <div class="details-item-title">Username</div>
-     <div class="details-item-value" k="username"></div>
+     <div class="details-item-value" k="username">
+      <input type="text" placeholder="username">
+     </div>
      <div class="details-item-copy" icon="copy"></div>
     </div>
 
     <div class="details-item">
      <div class="details-item-title">Password</div>
-     <div class="details-item-value" k="password"></div>
+     <div class="details-item-value" k="password">
+      <input type="password" placeholder="password">
+     </div>
      <div class="details-item-copy" icon="copy"></div>
     </div>
 
     <div class="details-item">
      <div class="details-item-title">Website</div>
-     <div class="details-item-value" k="website"></div>
+     <div class="details-item-value" k="website">
+      <input type="text" placeholder="website">
+     </div>
      <div class="details-item-copy" icon="copy"></div>
     </div>
 
     <div class="details-item">
      <div class="details-item-title">Created at</div>
-     <div class="details-item-value" k="createdat"></div>
+     <div class="details-item-value" k="createdat">
+      <input type="text" placeholder="created at">
+     </div>
      <div class="details-item-copy" icon="copy"></div>
     </div>
    </div>
@@ -781,10 +789,10 @@
   }
   if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
    var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
-   qe('.password-page .details-item-value[k="username"]').innerText = json.username || ""
-   qe('.password-page .details-item-value[k="password"]').innerText = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
-   qe('.password-page .details-item-value[k="website"]').innerText = json.website || ""
-   qe('.password-page .details-item-value[k="createdat"]').innerText = timestr(new Date(json.time_stamp)) || ""
+   qe('.password-page .details-item-value[k="username"] input').value = json.username || ""
+   qe('.password-page .details-item-value[k="password"] input').value = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
+   qe('.password-page .details-item-value[k="website"] input').value = json.website || ""
+   qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
   }
  }
  qe(".search").addEventListener("click", function (e) {
