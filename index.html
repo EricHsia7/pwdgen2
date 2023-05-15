@@ -465,7 +465,7 @@
      <div class="details-item-value" k="username">
       <input type="text" placeholder="username" readonly="readonly">
      </div>
-     <div class="details-item-copy" icon="copy"></div>
+     <div class="details-item-copy" icon="copy" onclick="copyDetails('username')"></div>
     </div>
 
     <div class="details-item">
@@ -473,7 +473,7 @@
      <div class="details-item-value" k="password">
       <input type="password" placeholder="password" readonly="readonly">
      </div>
-     <div class="details-item-copy" icon="copy"></div>
+     <div class="details-item-copy" icon="copy" onclick="copyDetails('password')"></div>
     </div>
 
     <div class="details-item">
@@ -481,7 +481,7 @@
      <div class="details-item-value" k="website">
       <input type="text" placeholder="website" readonly="readonly">
      </div>
-     <div class="details-item-copy" icon="copy"></div>
+     <div class="details-item-copy" icon="copy" onclick="copyDetails('website')"></div>
     </div>
 
     <div class="details-item">
@@ -489,7 +489,7 @@
      <div class="details-item-value" k="createdat">
       <input type="text" placeholder="created at" readonly="readonly">
      </div>
-     <div class="details-item-copy" icon="copy"></div>
+     <div class="details-item-copy" icon="copy" onclick="copyDetails('createdat')"></div>
     </div>
    </div>
   </div>
@@ -809,12 +809,12 @@
   }
  }
 
- function copyElement(elementid) {
-  if (document.getElementById(elementid).tagName === "INPUT" || document.getElementById(elementid).tagName === "TEXTAREA") {
-   var copyText = document.getElementById(elementid).value;
+ function copyElement(selector) {
+  if (qe(selector).tagName === "INPUT" || qe(selector).tagName === "TEXTAREA") {
+   var copyText = qe(selector).value ;
   }
   else {
-   var copyText = document.getElementById(elementid).textContent;
+   var copyText = qe(selector).textContent;
   }
 
   var textArea = document.createElement("textarea");
@@ -824,8 +824,11 @@
   textArea.select();
   document.execCommand("Copy");
   textArea.remove();
-  
  }
+
+function copyDetails(k) {
+ copyElement(`.password-page .details-item-value[k="${k}"] input`)
+}
 
  qe(".search").addEventListener("click", function (e) {
   openSearch()
