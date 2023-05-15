@@ -345,6 +345,8 @@
    display: inline-flex;
    align-items: center;
    overflow: hidden;
+   white-space: nowrap;
+   word-break: keep-all;
   }
 
   .details-item .details-item-value {
@@ -355,8 +357,11 @@
    height: 30px;
    display: inline-flex;
    overflow: hidden;
+   white-space: nowrap;
+   word-break: keep-all;
+   text-overflow: ellipsis;
    flex-direction: row;
-   justify-content: right;
+   justify-content: left;
    align-items: center;
   }
 
