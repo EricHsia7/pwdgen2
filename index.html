@@ -814,7 +814,7 @@
 
  function copyElement(selector) {
   if (qe(selector).tagName === "INPUT" || qe(selector).tagName === "TEXTAREA") {
-   var copyText = qe(selector).value ;
+   var copyText = qe(selector).value;
   }
   else {
    var copyText = qe(selector).textContent;
@@ -829,19 +829,19 @@
   textArea.remove();
  }
 
-function copyDetails(k) {
- copyElement(`.password-page .details-item-value[k="${k}"] input`)
-}
-function standaloneStatusBarColor(a) {
-    var c = '#f2f2f7'
-    var d = '#0a0a0b'
-    if (a === 1) {
-      c = '#ffffff'
-      d = '#1c1c1e'
-    }
-    $('head meta[kji="light"]').attr('content', c)
-    $('head meta[kji="dark"]').attr('content', d)
+ function copyDetails(k) {
+  copyElement(`.password-page .details-item-value[k="${k}"] input`)
+ }
+ function standaloneStatusBarColor(a) {
+  var c = '#f2f2f7'
+  var d = '#0a0a0b'
+  if (a === 1) {
+   c = '#ffffff'
+   d = '#1c1c1e'
   }
+  $('head meta[kji="light"]').attr('content', c)
+  $('head meta[kji="dark"]').attr('content', d)
+ }
 
  qe(".search").addEventListener("click", function (e) {
   openSearch()
