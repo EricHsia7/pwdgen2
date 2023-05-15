@@ -839,8 +839,8 @@
    c = '#ffffff'
    d = '#1c1c1e'
   }
-  $('head meta[kji="light"]').attr('content', c)
-  $('head meta[kji="dark"]').attr('content', d)
+  qe('head meta[kji="light"]').setAttribute('content', c)
+  qe('head meta[kji="dark"]').setAttribute('content', d)
  }
 
  qe(".search").addEventListener("click", function (e) {
