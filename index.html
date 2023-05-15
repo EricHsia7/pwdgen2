@@ -791,7 +791,9 @@
  function closeSearch() {
   qe(".search-box").setAttribute('status', '0')
   qe(".search-box").setAttribute('sticky', search_sticky)
-  standaloneStatusBarColor(0)
+  if(!search_sticky) {
+   standaloneStatusBarColor(0)
+  }
  }
  function openPassword(id) {
   fade(qe('.password-page'), 'In', 'block')
