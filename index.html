@@ -808,6 +808,25 @@
    qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
   }
  }
+
+ function copyElement(elementid) {
+  if (document.getElementById(elementid).tagName === "INPUT" || document.getElementById(elementid).tagName === "TEXTAREA") {
+   var copyText = document.getElementById(elementid).value;
+  }
+  else {
+   var copyText = document.getElementById(elementid).textContent;
+  }
+
+  var textArea = document.createElement("textarea");
+  textArea.value = copyText;
+  textArea.setAttribute('readonly', 'readonly')
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand("Copy");
+  textArea.remove();
+  
+ }
+
  qe(".search").addEventListener("click", function (e) {
   openSearch()
  })
