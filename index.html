@@ -339,7 +339,8 @@
       top: 55px;
     }
 
-    .details-list {
+    .details-list,
+    .details-note {
       position: relative;
       width: 100%;
       display: inline-block;
@@ -431,6 +432,26 @@
 
     .details-list .details-item:last-child {
       border: none;
+    }
+
+    .details-note-content {
+      position: relative;
+      width: calc(100% - 20px);
+      min-height: 100px;
+      left: 10px;
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      display: inline-block;
+      padding: 10px 0px;
+      font-size: 18px;
+      color: var(--p-333333);
+    }
+
+    .details-note-content .hashtag {
+      color: var(--p-main-color);
+      font-weight: 500;
+      text-decoration: underline;
     }
 
     .btn {
@@ -546,6 +567,11 @@
           <div class="details-item-copy" icon="copy" onclick="copyDetails('createdat')"></div>
         </div>
       </div>
+
+      <div class="details-note">
+        <div class="details-note-content"></div>
+      </div>
+
     </div>
     <div class="fixed-title-box">
       <div class="btn left-top-corner" onclick="closePassword()">
@@ -565,6 +591,7 @@
   let icon_arrow = `<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M18.24 64L13.76 59.44L41.2 32L13.76 4.56L18.24 0L50.24 32L18.24 64Z" fill-rule="nonzero" opacity="1" stroke="none" /></svg>`
   let icon_copy = `<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9.6 64C8.32 64 7.2 63.52 6.24 62.56C5.28 61.6 4.8 60.48 4.8 59.2L4.8 10.96L9.6 10.96L9.6 59.2L47.52 59.2L47.52 64L9.6 64ZM19.2 54.4C17.92 54.4 16.8 53.92 15.84 52.96C14.88 52 14.4 50.88 14.4 49.6L14.4 4.8C14.4 3.52 14.88 2.4 15.84 1.44C16.8 0.48 17.92 0 19.2 0L54.4 0C55.68 0 56.8 0.48 57.76 1.44C58.72 2.4 59.2 3.52 59.2 4.8L59.2 49.6C59.2 50.88 58.72 52 57.76 52.96C56.8 53.92 55.68 54.4 54.4 54.4L19.2 54.4ZM19.2 49.6L54.4 49.6L54.4 4.8L19.2 4.8L19.2 49.6ZM19.2 49.6L19.2 4.8L19.2 49.6Z" fill-rule="nonzero" opacity="1" stroke="none" /></svg>`
   var password_page_icon_loaded = false
+  var allhashtag = {}
   function encryptString(string) {
     var initialization_vector_pattern = [
       {
@@ -857,6 +884,34 @@
       standaloneStatusBarColor(0)
     }
   }
+  function gethashtags(str, k) {
+    var hashtag_regex = /\B#([a-z0-q9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
+    var hashtags = str.match(hashtag_regex)
+    var hashtags_norepeat = []
+    if (hashtags === null) {
+      return []
+    }
+    var hashtags_len = hashtags.length
+    for(var w = 0;w<hashtags_len;w++) {
+      if(!(hashtags_norepeat.indexOf(hashtags[w]) > -1)) {
+        hashtags_norepeat.push(hashtags[w])
+      }
+    }
+    if (k) {
+      for (var s = 0; s < hashtags_norepeat.length; s++) {
+        var hashtagkey = String(hashtags_norepeat[s]).replaceAll('#', '').toLowerCase()
+        allhashtag[hashtagkey] = hashtags_norepeat[s]
+      }
+    }
+    return hashtags_norepeat
+  }
+  function generateHashTagHTML(plain_text) {
+    var hashtags = gethashtags(plain_text, false)
+    var hashtags_len = hashtags.length
+    for (var w = 0; w < hashtags_len; w++) {
+      plain_text = plain_text.replaceAll(hashtags[w], `<span class="hashtag">${hashtags[w]}</div>`)
+    }
+  }
   function openPassword(id) {
     fade(qe('.password-page'), 'In', 'block')
     if (search_sticky) {
@@ -872,10 +927,13 @@
     }
     if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
       var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
+      var note_plain_text = deur(atob(String(json.note)))
       qe('.password-page .details-item-value[k="username"] input').value = json.username || ""
       qe('.password-page .details-item-value[k="password"] input').value = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
       qe('.password-page .details-item-value[k="website"] input').value = json.website || ""
       qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
+      qe('.password-page .details-note-content').innerHTML = generateHashTagHTML(note_plain_text)
+
     }
   }
   function closePassword() {
