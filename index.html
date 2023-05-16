@@ -76,6 +76,8 @@
    position: relative;
    width: 100%;
    height: 90px;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .title {
@@ -88,7 +90,9 @@
    line-height: 2.5rem;
    transform-origin: left bottom;
    transform: scale(var(--scroll-scale));
-   color: var(--p-333333)
+   color: var(--p-333333);
+   -webkit-user-select: none;
+   user-select: none;
   }
 
   .fixed-title-box {
@@ -104,7 +108,9 @@
    justify-content: center;
    align-items: center;
    transition: color 0.3s;
-   color: var(--p-333333)
+   color: var(--p-333333);
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .main-page .fixed-title-box {
@@ -151,6 +157,8 @@
    display: flex;
    color: var(--p-main-color);
    font-weight: 500;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .search-box[status="1"] .search-cancel {
@@ -206,6 +214,8 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .search-icon svg {
@@ -229,6 +239,8 @@
    border-radius: 10px;
    overflow: hidden;
    background: var(--p-ffffff);
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .password-item {
@@ -238,6 +250,8 @@
    border-bottom: var(--p-e5e5ea) 1px solid;
    left: 10px;
    box-sizing: border-box;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .password-item .password-item-title {
@@ -250,7 +264,9 @@
    font-weight: 500;
    display: flex;
    align-items: center;
-   color: var(--p-333333)
+   color: var(--p-333333);
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .password-item .password-item-tags {
@@ -262,6 +278,8 @@
    display: flex;
    overflow: hidden;
    flex-direction: row;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .password-item .password-item-tags li {
@@ -274,6 +292,8 @@
    padding: 0px;
    margin: 0px;
    margin-right: 5px;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .password-item .password-open-icon {
@@ -285,11 +305,15 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .password-item .password-open-icon svg {
    width: 20px;
    height: 20px;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .password-item .password-open-icon svg path {
@@ -322,6 +346,8 @@
    border-radius: 10px;
    overflow: hidden;
    background: var(--p-ffffff);
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .details-item {
@@ -331,6 +357,8 @@
    border-bottom: var(--p-e5e5ea) 1px solid;
    left: 10px;
    box-sizing: border-box;
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .details-item .details-item-title {
@@ -347,6 +375,8 @@
    white-space: nowrap;
    word-break: keep-all;
    color: var(--p-333333);
+   user-select: none;
+   -webkit-user-select: none;
   }
 
   .details-item .details-item-value {
@@ -374,7 +404,7 @@
    word-break: keep-all;
    text-overflow: ellipsis;
    overflow: hidden;
-   color: var(--p-333333)
+   color: var(--p-333333);
   }
 
   .details-item .details-item-copy {
@@ -791,7 +821,7 @@
  function closeSearch() {
   qe(".search-box").setAttribute('status', '0')
   qe(".search-box").setAttribute('sticky', search_sticky)
-  if(!search_sticky) {
+  if (!search_sticky) {
    standaloneStatusBarColor(0)
   }
  }
