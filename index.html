@@ -871,7 +871,9 @@
    qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
   }
  }
-
+function closePassword() {
+fade(qe('.password-page'), 'Out', 'none')
+}
  function copyElement(selector) {
   if (qe(selector).tagName === "INPUT" || qe(selector).tagName === "TEXTAREA") {
    var copyText = qe(selector).value;
