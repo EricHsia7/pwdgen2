@@ -446,6 +446,8 @@
       padding: 10px 0px;
       font-size: 18px;
       color: var(--p-333333);
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
     .details-note-content .hashtag {
@@ -892,8 +894,8 @@
       return []
     }
     var hashtags_len = hashtags.length
-    for(var w = 0;w<hashtags_len;w++) {
-      if(!(hashtags_norepeat.indexOf(hashtags[w]) > -1)) {
+    for (var w = 0; w < hashtags_len; w++) {
+      if (!(hashtags_norepeat.indexOf(hashtags[w]) > -1)) {
         hashtags_norepeat.push(hashtags[w])
       }
     }
@@ -911,6 +913,7 @@
     for (var w = 0; w < hashtags_len; w++) {
       plain_text = plain_text.replaceAll(hashtags[w], `<span class="hashtag">${hashtags[w]}</div>`)
     }
+    return plain_text
   }
   function openPassword(id) {
     fade(qe('.password-page'), 'In', 'block')
