@@ -432,6 +432,29 @@
   .details-list .details-item:last-child {
    border: none;
   }
+  
+  .btn {
+  width:35px;
+  height:35px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  user-select:none;
+  -webkit-user-select:none;
+  position:absolute;
+  }
+  .btn svg path {
+    fill:var(--p-main-color);
+    }
+    .btn svg {
+      width:25px;
+      height:25px;
+      }
+  .btn.left-top-corner {
+  top:7.5px;
+  left:7.5px;
+  }
+  
  </style>
 
  <style>
@@ -524,7 +547,7 @@
   </div>
   <div class="fixed-title-box">
    <div class="btn left-top-corner">
-    
+    <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M18.24 64L13.76 59.44L41.2 32L13.76 4.56L18.24 0L50.24 32L18.24 64Z" fill-rule="nonzero" opacity="1" stroke="none" /></svg>
    </div>
    Password
   </div>
