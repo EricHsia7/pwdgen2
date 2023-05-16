@@ -911,7 +911,7 @@
     var hashtags = gethashtags(plain_text, false)
     var hashtags_len = hashtags.length
     for (var w = 0; w < hashtags_len; w++) {
-      plain_text = plain_text.replaceAll(hashtags[w], `<span class="hashtag">${hashtags[w]}</div>`)
+      plain_text = plain_text.replaceAll(hashtags[w], `<span class="hashtag">${hashtags[w]}</span>`)
     }
     return plain_text
   }
