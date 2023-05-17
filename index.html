@@ -875,6 +875,23 @@
     }
   })
 
+  function createsearchindex_pwd() {
+    var list = listSavedPassword()
+    var list_len = list.length
+    searchIndex = []
+    for (var r = 0; r < list_len; r++) {
+      var all = []
+      all.push(list[r].password)
+      all.push(list[r].website)
+      all.push(deur(atob(list[r].note)))
+      all.push(list[r].username)
+      all.push(timestr(new Date(list[r].time_stamp)))
+      var all_unicode = unicode_arr(all.join(''))
+      searchIndex.push({ password: all[0], website: all[1], note: all[2], username: all[3], date: all[4] })
+    }
+
+  }
+
   function openSearch() {
     qe(".search-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
