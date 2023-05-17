@@ -966,10 +966,9 @@
           searchIndex.hashtags.push(hashtags[w])
         }
       }
-      var date_a = ['year:' + all[6], 'month:' + all[7], 'date:' + all[8]]
-      for (var w = 0; w < 3; w++) {
-        if (!(searchIndex.date.indexOf(date_a[w]) > -1)) {
-          searchIndex.date.push(date_a[w])
+      for (var w = 6; w < 8; w++) {
+        if (!(searchIndex.date.indexOf(all[w]) > -1)) {
+          searchIndex.date.push(all[w])
         }
       }
 
@@ -1054,7 +1053,7 @@
         result.push(this_index)
       }
     }
-    return { result: result, suggestions: suggestions }
+    return { result: result, suggestions: suggestions.slice(0, 3) }
   }
 
   function openSearch() {
