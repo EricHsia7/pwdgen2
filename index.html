@@ -922,35 +922,34 @@
           unicode_check = true
           break;
         }
-
-        if (unicode_check === false) {
-          continue;
+      }
+      if (unicode_check === false) {
+        continue;
+      }
+      else {
+        var text_check = false
+        if (String(this_index.all).indexOf(query) > -1) {
+          text_check = true
         }
         else {
-          var text_check = false
-          if (String(this_index.all).indexOf(query) > -1) {
+          if (String(this_index.note).indexOf(query) > -1) {
             text_check = true
           }
           else {
-            if (String(this_index.note).indexOf(query) > -1) {
+            if (String(this_index.website).indexOf(query) > -1) {
               text_check = true
             }
             else {
-              if (String(this_index.website).indexOf(query) > -1) {
+              if (String(this_index.username).indexOf(query) > -1) {
                 text_check = true
               }
               else {
-                if (String(this_index.username).indexOf(query) > -1) {
+                if (String(this_index.password).indexOf(query) > -1) {
                   text_check = true
                 }
                 else {
-                  if (String(this_index.password).indexOf(query) > -1) {
+                  if (String(this_index.date).indexOf(query) > -1) {
                     text_check = true
-                  }
-                  else {
-                    if (String(this_index.date).indexOf(query) > -1) {
-                      text_check = true
-                    }
                   }
                 }
               }
