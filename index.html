@@ -900,7 +900,7 @@
       var hashtags = gethashtags(all[2], true)
       all.push(hashtags)
       all.push('year:' + date.getFullYear())
-      all.push('month:' + date.getMonth() + 1)
+      all.push('month:' + (date.getMonth() + 1))
       all.push('date:' + date.getDate())
       var all_unicode = unicode_arr(all.join(''))
       var hashtags_unicode = unicode_arr(hashtags.join(''))
