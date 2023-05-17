@@ -909,6 +909,58 @@
     return searchIndex
   }
 
+  function get_search_result(query, index) {
+    var query_unicode = unicode_arr(query)
+    var query_unicode_len = query_unicode.length
+    var result = []
+    var index_len = index.length
+    for (var q = 0; q < index_len; q++) {
+      var this_index = index[q]
+      var unicode_check = false
+      for (var u = 0; u < query_unicode; u++) {
+        if (this_index.all_unicode.indexOf(query_unicode[u]) > -1) {
+          unicode_check = true
+          break;
+        }
+
+        if (unicode_check === false) {
+          continue;
+        }
+        else {
+          var text_check = false
+          if (String(this_index.all).indexOf(query) > -1) {
+            text_check = true
+          }
+          else {
+            if (String(this_index.note).indexOf(query) > -1) {
+              text_check = true
+            }
+            else {
+              if (String(this_index.website).indexOf(query) > -1) {
+                text_check = true
+              }
+              else {
+                if (String(this_index.username).indexOf(query) > -1) {
+                  text_check = true
+                }
+                else {
+                  if (String(this_index.password).indexOf(query) > -1) {
+                    text_check = true
+                  }
+                  else {
+                    if (String(this_index.date).indexOf(query) > -1) {
+                      text_check = true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   function openSearch() {
     qe(".search-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
