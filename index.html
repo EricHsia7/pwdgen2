@@ -875,7 +875,7 @@
     }
   })
 
-  function createsearchindex_pwd() {
+  function createSearchIndex() {
     var list = listSavedPassword()
     var list_len = list.length
     searchIndex = []
@@ -885,11 +885,18 @@
       all.push(list[r].website)
       all.push(deur(atob(list[r].note)))
       all.push(list[r].username)
-      all.push(timestr(new Date(list[r].time_stamp)))
+      var date = new Date(list[r].time_stamp)
+      all.push(timestr(date))
+      var hashtags = gethashtags(all[2], true)
+      all.push(hashtags)
+      all.push('year:' + date.getFullYear())
+      all.push('month:' + date.getMonth() + 1)
+      all.push('date:' + date.getDate())
       var all_unicode = unicode_arr(all.join(''))
-      searchIndex.push({ password: all[0], website: all[1], note: all[2], username: all[3], date: all[4] })
+      var hashtags_unicode = unicode_arr(hashtags)
+      searchIndex.push({ password: all[0], website: all[1], note: all[2], username: all[3], date: all[4], all_unicode: all_unicode, hashtags: all[5], hashtags_unicode: hashtags_unicode, all: all.join(' ') })
     }
-
+    return searchIndex
   }
 
   function openSearch() {
