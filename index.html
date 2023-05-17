@@ -917,7 +917,7 @@
     for (var q = 0; q < index_len; q++) {
       var this_index = index[q]
       var unicode_check = false
-      for (var u = 0; u < query_unicode; u++) {
+      for (var u = 0; u < query_unicode_len; u++) {
         if (this_index.all_unicode.indexOf(query_unicode[u]) > -1) {
           unicode_check = true
           break;
