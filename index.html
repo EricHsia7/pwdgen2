@@ -904,7 +904,7 @@
       all.push('date:' + date.getDate())
       var all_unicode = unicode_arr(all.join(''))
       var hashtags_unicode = unicode_arr(hashtags.join(''))
-      searchIndex.push({ password: all[0], website: all[1], note: all[2], username: all[3], date: all[4], all_unicode: all_unicode, hashtags: all[5], hashtags_unicode: hashtags_unicode, all: all.join(' ') })
+      searchIndex.push({ id: list[r].id, password: all[0], website: all[1], note: all[2], username: all[3], date: all[4], all_unicode: all_unicode, hashtags: all[5], hashtags_unicode: hashtags_unicode, all: all.join(' ') })
     }
     return searchIndex
   }
@@ -961,7 +961,7 @@
         result.push(this_index)
       }
     }
-return result
+    return result
   }
 
   function openSearch() {
