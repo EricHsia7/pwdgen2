@@ -885,6 +885,61 @@
     }
     return unicode_arr
   }
+  function jaroWinklerDistance(str1, str2) {
+    var len1 = str1.length;
+    var len2 = str2.length;
+    var matchDistance = Math.floor(Math.max(len1, len2) / 2) - 1;
+    var matches1 = new Array(len1).fill(false);
+    var matches2 = new Array(len2).fill(false);
+    let matches = 0;
+    let transpositions = 0;
+
+    for (let i = 0; i < len1; i++) {
+      var start = Math.max(0, i - matchDistance);
+      var end = Math.min(i + matchDistance + 1, len2);
+
+      for (let j = start; j < end; j++) {
+        if (!matches2[j] && str1[i] === str2[j]) {
+          matches1[i] = true;
+          matches2[j] = true;
+          matches++;
+          break;
+        }
+      }
+    }
+
+    if (matches === 0) {
+      return 0;
+    }
+
+    let k = 0;
+    for (let i = 0; i < len1; i++) {
+      if (matches1[i]) {
+        while (!matches2[k]) {
+          k++;
+        }
+        if (str1[i] !== str2[k]) {
+          transpositions++;
+        }
+        k++;
+      }
+    }
+
+    var similarity = (matches / len1 + matches / len2 + (matches - transpositions / 2) / matches) / 3;
+    var prefix = 0;
+    while (str1[prefix] === str2[prefix] && prefix < 4) {
+      prefix++;
+    }
+
+    var weight = 0.1;
+    return similarity + prefix * weight * (1 - similarity);
+  }
+
+  var str1 = 'JavaScript';
+  var str2 = 'Java Script';
+  var distance = jaroWinklerDistance(str1, str2);
+  console.log(distance); // 0.93
+
   function createSearchIndex() {
     var list = listSavedPassword()
     var list_len = list.length
@@ -922,13 +977,38 @@
     return searchIndex
   }
 
-  function get_search_result(query, index) {
+
+  function search_passwords(query, index) {
+    var index_hashtags_len = index.hashtags.length
+    var index_date_len = index.date.length
+    var suggestions_hashtags = []
+    var suggestions_date = []
+    var suggestions = []
+    for (var h = 0; h < index_hashtags_len; h++) {
+      if (index.hashtags[h].indexOf(query) > -1) {
+        suggestions_hashtags.push({ suggestion: index.hashtags[h], similarity: (suggestions_hashtags.length < 10 ? jaroWinklerDistance(query, index.hashtags[h]) : 0) })
+      }
+    }
+    for (var d = 0; d < index_date_len; d++) {
+      if (index.date[d].indexOf(query) > -1) {
+        suggestions_date.push({ suggestion: index.date[d], similarity: (suggestions_date.length < 10 ? jaroWinklerDistance(query, index.date[d]) : 0) })
+      }
+    }
+    if (suggestions_hashtags.length < 10 && suggestions_date.length < 10) {
+      suggestions = suggestions_hashtags.concat(suggestions_date).sort(function (a, b) {
+        return b.similarity - a.similarity
+      })
+    }
+    else {
+      suggestions = suggestions_hashtags.concat(suggestions_date).sort()
+    }
+
     var query_unicode = unicode_arr(query)
     var query_unicode_len = query_unicode.length
     var result = []
-    var index_len = index.length
+    var index_len = index.all.length
     for (var q = 0; q < index_len; q++) {
-      var this_index = index[q]
+      var this_index = index.all[q]
       var unicode_check = false
       for (var u = 0; u < query_unicode_len; u++) {
         if (this_index.all_unicode.indexOf(query_unicode[u]) > -1) {
@@ -974,7 +1054,7 @@
         result.push(this_index)
       }
     }
-    return result
+    return { result: result, suggestions: suggestions }
   }
 
   function openSearch() {
