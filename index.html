@@ -888,7 +888,7 @@
   function createSearchIndex() {
     var list = listSavedPassword()
     var list_len = list.length
-    searchIndex = []
+    searchIndex = { all: [], hashtags: [], date: [] }
     for (var r = 0; r < list_len; r++) {
       var all = []
       all.push(list[r].password)
@@ -898,13 +898,26 @@
       var date = new Date(list[r].time_stamp)
       all.push(timestr(date))
       var hashtags = gethashtags(all[2], true)
+      var hashtags_len = hashtags.length
       all.push(hashtags.join(' '))
       all.push('year:' + date.getFullYear())
       all.push('month:' + (date.getMonth() + 1))
       all.push('date:' + date.getDate())
       var all_unicode = unicode_arr(all.join(''))
       var hashtags_unicode = unicode_arr(hashtags.join(''))
-      searchIndex.push({ id: list[r].id, password: all[0], website: all[1], note: all[2], username: all[3], date: all[4], all_unicode: all_unicode, hashtags: hashtags, hashtags_unicode: hashtags_unicode, all: all.join(' ') })
+      searchIndex.all.push({ id: list[r].id, password: all[0], website: all[1], note: all[2], username: all[3], date: all[4], all_unicode: all_unicode, hashtags: hashtags, hashtags_unicode: hashtags_unicode, all: all.join(' ') })
+      for (var w = 0; w < hashtags_len; w++) {
+        if (!(searchIndex.hashtags.indexOf(hashtags[w]) > -1)) {
+          searchIndex.hashtags.push(hashtags[w])
+        }
+      }
+      var date_a = ['year:' + all[6], 'month:' + all[7], 'date:' + all[8]]
+      for (var w = 0; w < 3; w++) {
+        if (!(searchIndex.date.indexOf(date_a[w]) > -1)) {
+          searchIndex.date.push(date_a[w])
+        }
+      }
+
     }
     return searchIndex
   }
