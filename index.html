@@ -874,7 +874,17 @@
       search_sticky = false
     }
   })
-
+  function unicode_arr(str) {
+    var str_len = str.length
+    var unicode_arr = []
+    for (var t = 0; t < str_len; t++) {
+      var unicode = str.charCodeAt(t)
+      if (!(unicode_arr.indexOf(unicode) > -1)) {
+        unicode_arr.push(unicode)
+      }
+    }
+    return unicode_arr
+  }
   function createSearchIndex() {
     var list = listSavedPassword()
     var list_len = list.length
