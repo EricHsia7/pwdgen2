@@ -898,7 +898,7 @@
       var date = new Date(list[r].time_stamp)
       all.push(timestr(date))
       var hashtags = gethashtags(all[2], true)
-      all.push(hashtags)
+      all.push(hashtags.join(','))
       all.push('year:' + date.getFullYear())
       all.push('month:' + (date.getMonth() + 1))
       all.push('date:' + date.getDate())
