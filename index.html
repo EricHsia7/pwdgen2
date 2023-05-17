@@ -935,11 +935,6 @@
     return similarity + prefix * weight * (1 - similarity);
   }
 
-  var str1 = 'JavaScript';
-  var str2 = 'Java Script';
-  var distance = jaroWinklerDistance(str1, str2);
-  console.log(distance); // 0.93
-
   function createSearchIndex() {
     var list = listSavedPassword()
     var list_len = list.length
