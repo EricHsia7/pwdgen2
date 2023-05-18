@@ -1024,19 +1024,19 @@
       }
       else {
         var text_check = false
-        if (String(this_index.all).indexOf(query) > -1) {
+        if (String(this_index.all).toLowerCase().indexOf(query) > -1) {
           text_check = true
         }
         else {
-          if (String(this_index.note).indexOf(query) > -1) {
+          if (String(this_index.note).toLowerCase().indexOf(query) > -1) {
             text_check = true
           }
           else {
-            if (String(this_index.website).indexOf(query) > -1) {
+            if (String(this_index.website).toLowerCase().indexOf(query) > -1) {
               text_check = true
             }
             else {
-              if (String(this_index.username).indexOf(query) > -1) {
+              if (String(this_index.username).toLowerCase().indexOf(query) > -1) {
                 text_check = true
               }
               else {
