@@ -1078,9 +1078,12 @@
         var display_title = t.title
         var display_preview = ""
         var display_icon = ""
-        var elt_class = "search-category-title"
+        var elt_class = "search-category"
       }
+      var t_html = `<div class="${elt_class}"><div class="${elt_class}-icon">${display_icon}</div><div class="${elt_class}-title">${display_title}</div><div class="${elt_class}-preview">${display_preview}</div></div>`
+   html.push(t_html)
     }
+    
   }
 
   function openSearch() {
