@@ -531,6 +531,9 @@
         </div>
         <input type="text" placeholder="Search" id="search">
       </div>
+      <div class="search-output-box">
+        <div class="search-output"></div>
+      </div>
     </div>
   </div>
   <div class="password-page">
@@ -594,6 +597,9 @@
   let icon_copy = `<svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9.6 64C8.32 64 7.2 63.52 6.24 62.56C5.28 61.6 4.8 60.48 4.8 59.2L4.8 10.96L9.6 10.96L9.6 59.2L47.52 59.2L47.52 64L9.6 64ZM19.2 54.4C17.92 54.4 16.8 53.92 15.84 52.96C14.88 52 14.4 50.88 14.4 49.6L14.4 4.8C14.4 3.52 14.88 2.4 15.84 1.44C16.8 0.48 17.92 0 19.2 0L54.4 0C55.68 0 56.8 0.48 57.76 1.44C58.72 2.4 59.2 3.52 59.2 4.8L59.2 49.6C59.2 50.88 58.72 52 57.76 52.96C56.8 53.92 55.68 54.4 54.4 54.4L19.2 54.4ZM19.2 49.6L54.4 49.6L54.4 4.8L19.2 4.8L19.2 49.6ZM19.2 49.6L19.2 4.8L19.2 49.6Z" fill-rule="nonzero" opacity="1" stroke="none" /></svg>`
   var password_page_icon_loaded = false
   var allhashtag = {}
+  var search_status = 0
+  var search_evt = 0
+  var searchIndex = {}
   function encryptString(string) {
     var initialization_vector_pattern = [
       {
@@ -1091,9 +1097,30 @@
   }
 
   function openSearch() {
+    searchIndex = createSearchIndex()
+    if (search_evt === 0) {
+      qe(".search input#search").addEventListener("selectionchange", function (e) {
+        updateSearch(qe(".search input#search").value, searchIndex)
+      })
+      qe(".search input#search").addEventListener("keyup", function (e) {
+        updateSearch(qe(".search input#search").value, searchIndex)
+      })
+      qe(".search input#search").addEventListener("cut", function (e) {
+        updateSearch(qe(".search input#search").value, searchIndex)
+      })
+      qe(".search input#search").addEventListener("paste", function (e) {
+        updateSearch(qe(".search input#search").value, searchIndex)
+      })
+      qe(".search input#search").addEventListener("copy", function (e) {
+        updateSearch(qe(".search input#search").value, searchIndex)
+      })
+    }
     qe(".search-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
     standaloneStatusBarColor(1)
+    search_status = 1
+
+  
   }
   function closeSearch() {
     qe(".search-box").setAttribute('status', '0')
@@ -1101,7 +1128,14 @@
     if (!search_sticky) {
       standaloneStatusBarColor(0)
     }
+    search_status = 0
   }
+
+  function updateSearch(query, index) {
+    var search = search_passwords(query, index)
+    printSearch(search, qe(".search-output"))
+  }
+
   function gethashtags(str, k) {
     var hashtag_regex = /\B#([a-z0-q9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g
     var hashtags = str.match(hashtag_regex)
