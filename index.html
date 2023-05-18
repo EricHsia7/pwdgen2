@@ -1051,7 +1051,7 @@
     return { result: result, suggestions: suggestions.slice(0, 3) }
   }
 
-  function printSearch(search) {
+  function printSearch(search, element) {
     var array = (search.suggestions.length >= 1 ? [{ type: 3, title: "Suggestions" }] : []).concat(search.suggestions).concat(search.result.length >= 1 ? [{ type: 3, title: "Results" }] : []).concat(search.result)
     var array_len = array.length
     for (var i = 0; i < array_len; i++) {
@@ -1061,29 +1061,33 @@
         var display_preview = (t.note).replaceAll(/\n/g, " ")
         var display_icon = icon_password
         var elt_class = "search-item"
+        var elt_action = `openPassword('${t.id}')`
       }
       if (t.type === 1) {
         var display_title = t.suggestion
         var display_preview = ""
         var display_icon = icon_hashtag
         var elt_class = "search-suggestion"
+        var elt_action = `setSearchQuery('${t.suggestion}')`
       }
       if (t.type === 2) {
         var display_title = t.suggestion
         var display_preview = ""
         var display_icon = icon_date
         var elt_class = "search-suggestion"
+        var elt_action = `setSearchQuery('${t.suggestion}')`
       }
       if (t.type === 3) {
         var display_title = t.title
         var display_preview = ""
         var display_icon = ""
         var elt_class = "search-category"
+        var elt_action = ""
       }
-      var t_html = `<div class="${elt_class}"><div class="${elt_class}-icon">${display_icon}</div><div class="${elt_class}-title">${display_title}</div><div class="${elt_class}-preview">${display_preview}</div></div>`
-   html.push(t_html)
+      var t_html = `<div class="${elt_class}" onclick="${elt_action}"><div class="${elt_class}-icon">${display_icon}</div><div class="${elt_class}-title">${display_title}</div><div class="${elt_class}-preview">${display_preview}</div></div>`
+      html.push(t_html)
     }
-    
+    element.innerHTML = html.join('')
   }
 
   function openSearch() {
