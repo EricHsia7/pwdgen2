@@ -1058,6 +1058,7 @@
   }
 
   function printSearch(search, element) {
+    var html = []
     var array = (search.suggestions.length >= 1 ? [{ type: 3, title: "Suggestions" }] : []).concat(search.suggestions).concat(search.result.length >= 1 ? [{ type: 3, title: "Results" }] : []).concat(search.result)
     var array_len = array.length
     for (var i = 0; i < array_len; i++) {
