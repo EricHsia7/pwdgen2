@@ -1134,7 +1134,7 @@ position:fixed;
       })
     }
     qe(".search-box").setAttribute('status', '1')
-qe(".search-out-box").setAttribute('status', '1')
+qe(".search-output-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
     standaloneStatusBarColor(1)
     search_status = 1
@@ -1143,7 +1143,7 @@ qe(".search-out-box").setAttribute('status', '1')
   }
   function closeSearch() {
     qe(".search-box").setAttribute('status', '0')
-    qe(".search-out-box").setAttribute('status', '0')
+    qe(".search-output-box").setAttribute('status', '0')
     qe(".search-box").setAttribute('sticky', search_sticky)
     if (!search_sticky) {
       standaloneStatusBarColor(0)
