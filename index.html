@@ -480,6 +480,20 @@
       top: 7.5px;
       left: 7.5px;
     }
+    
+    .search-output-box {
+position:fixed;
+      top:100px;
+      left:0px;
+      width:100%;
+      height:calc(100% - 100px);
+        overflow:scroll;
+      background:var(--p-ffffff);
+      display:none;
+    }
+       .search-output-box[status="1"] {
+      display:block;
+    }
   </style>
 
   <style>
@@ -531,10 +545,10 @@
         </div>
         <input type="text" placeholder="Search" id="search">
       </div>
-      <div class="search-output-box">
+    </div>
+    <div class="search-output-box">
         <div class="search-output"></div>
       </div>
-    </div>
   </div>
   <div class="password-page">
     <div class="contents-box">
@@ -1120,6 +1134,7 @@
       })
     }
     qe(".search-box").setAttribute('status', '1')
+qe(".search-out-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
     standaloneStatusBarColor(1)
     search_status = 1
@@ -1128,6 +1143,7 @@
   }
   function closeSearch() {
     qe(".search-box").setAttribute('status', '0')
+    qe(".search-out-box").setAttribute('status', '0')
     qe(".search-box").setAttribute('sticky', search_sticky)
     if (!search_sticky) {
       standaloneStatusBarColor(0)
