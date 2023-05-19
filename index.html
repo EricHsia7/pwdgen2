@@ -1214,7 +1214,7 @@
       var t = array[i]
       if (t.type === 0) {
         var display_title = t.date
-        var display_preview = (t.note).replaceAll(/\n/g, " ")
+        var display_preview = (String(t.note).length > 0) ? (t.note).replaceAll(/\n/g, " ") : "note-free"
         var display_icon = icon_password
         var elt_class = "search-item"
         var elt_action = `openPassword('${t.id}')`
