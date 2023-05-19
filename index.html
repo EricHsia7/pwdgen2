@@ -497,10 +497,11 @@
       overscroll-behavior: contain;
     }
 
+    /*
     .search-output-box[status="1"] {
       display: block;
     }
-
+*/
     .search-output {
       width: 100%;
       display: inline-block;
@@ -1271,15 +1272,15 @@
     qe(".search-box").setAttribute('status', '1')
     qe(".search-output-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
+    fade(qe('.search-output-box'), 'In', 'block')
     standaloneStatusBarColor(1)
     search_status = 1
-
-
   }
   function closeSearch() {
     qe(".search-box").setAttribute('status', '0')
     qe(".search-output-box").setAttribute('status', '0')
     qe(".search-box").setAttribute('sticky', search_sticky)
+    fade(qe('.search-output-box'), 'Out', 'none')
     if (!search_sticky) {
       standaloneStatusBarColor(0)
     }
