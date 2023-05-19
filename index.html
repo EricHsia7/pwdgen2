@@ -1009,16 +1009,17 @@ fill:var(--p-333333);
       qe('.main-page .fixed-title-box').setAttribute('sticky', 'true')
       if (!(search_status === 1)) {
         standaloneStatusBarColor(1)
+        search_sticky = true
       }
-      search_sticky = true
+      
     }
     else {
       qe('.main-page .search-box').setAttribute('sticky', 'false')
       qe('.main-page .fixed-title-box').setAttribute('sticky', 'false')
       if (!(search_status === 1)) {
         standaloneStatusBarColor(0)
+        search_sticky = false
       }
-      search_sticky = false
     }
   })
   function unicode_arr(str) {
@@ -1314,11 +1315,11 @@ qe(".search input#search").value = q
   }
   function openPassword(id) {
     fade(qe('.password-page'), 'In', 'block')
-    if (search_sticky) {
+    if (search_sticky || search_status === 1) {
       standaloneStatusBarColor(0)
     }
     if (!password_page_icon_loaded) {
-      password_page_icon_loaded = true
+      password_page_icon_loaded search_status= true
       var copy_btn = document.querySelectorAll('.password-page .details-item-copy')
       var copy_btn_len = copy_btn.length
       for (var q = 0; q < copy_btn_len; q++) {
@@ -1338,7 +1339,7 @@ qe(".search input#search").value = q
   }
   function closePassword() {
     fade(qe('.password-page'), 'Out', 'none')
-    if (search_sticky) {
+    if (search_sticky || search_status === 1) {
       standaloneStatusBarColor(1)
     }
   }
