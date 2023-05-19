@@ -1237,7 +1237,10 @@ fill:var(--p-333333);
     }
     element.innerHTML = html.join('')
   }
-
+function setSearchQuery(q) {
+qe(".search input#search").value = q
+  updateSearch(qe(".search input#search").value, searchIndex)
+}
   function openSearch() {
     searchIndex = createSearchIndex()
     if (search_evt === 0) {
