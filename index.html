@@ -1208,7 +1208,7 @@ fill:var(--p-main-color);
         var elt_action = `openPassword('${t.id}')`
       }
       if (t.type === 1) {
-        var display_title = t.suggestion
+        var display_title = String(t.suggestion).substring(1)
         var display_preview = ""
         var display_icon = icon_hashtag
         var elt_class = "search-suggestion"
