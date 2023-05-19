@@ -892,13 +892,17 @@ position:fixed;
     if (container_scrollTop >= 50) {
       qe('.main-page .search-box').setAttribute('sticky', 'true')
       qe('.main-page .fixed-title-box').setAttribute('sticky', 'true')
+      if(!(search_status === 1)) {
       standaloneStatusBarColor(1)
+      }
       search_sticky = true
     }
     else {
       qe('.main-page .search-box').setAttribute('sticky', 'false')
       qe('.main-page .fixed-title-box').setAttribute('sticky', 'false')
+      if(!(search_status === 1)) {
       standaloneStatusBarColor(0)
+      }
       search_sticky = false
     }
   })
