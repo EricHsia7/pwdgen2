@@ -1381,7 +1381,6 @@
         else {
           LS.removeItem(LS_cache_key)
         }
-
       }
     }
 
@@ -1490,7 +1489,7 @@
     }
     if (cache) {
       var chtt = new Date().getTime()
-      LS.setItem(LS_cache_key, chtt + ':' + Math.floor(rsp * 100))
+      LS.setItem(LS_cache_key, chtt + ':' + points)
     }
     var det_evdis = (len1 - ((bha / 100) * len1) + len2 * 0.02) / len0 * 100
     //Evenly distributed
