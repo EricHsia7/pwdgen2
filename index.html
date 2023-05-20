@@ -1329,7 +1329,7 @@
   }
 
 
-  function checkPassword(string, cache, id, tt) {
+  function checkPassword(string, cache, id) {
     if (cache) {
       var LS_key = `pwdgen2_saved_b_${id}`
       var LS_cache_key = `pwdgen2_check_cache_b_${id}`
@@ -1342,21 +1342,33 @@
         if (points >= 85 && points <= 100) {
           phrase = 'Strong'
           icon = icon_check_strong
+          var r = 52
+          var g = 199
+          var b = 89
         }
         if (points >= 60 && points < 85) {
           phrase = 'Passable'
           icon = icon_check_passable
+          var r = 255
+          var g = 204
+          var b = 0
         }
         if (points >= 45 && points < 60) {
           phrase = 'Fragile'
           icon = icon_check_fragile
+          var r = 255
+          var g = 249
+          var b = 0
         }
         if (points >= 0 && points < 45) {
           phrase = 'Unsafe'
           icon = icon_check_unsafe
+          var r = 255
+          var g = 59
+          var b = 48
         }
         if ((nowtime - cached_result_time_stamp) < 43200000) {
-          return { 'points': points, 'phrase': phrase, 'icon': icon, 'details': '--' }
+          return { 'points': points, 'phrase': phrase, 'icon': icon, 'details': '--', 'color': { r: r, g: g, b: b } }
         }
         else {
           LS.removeItem(LS_cache_key)
@@ -1436,27 +1448,38 @@
     if (rsp <= 0) {
       rsp = 0
     }
-    var rspkk = Math.floor(rsp * 100)
+    var points = Math.floor(rsp * 100)
 
     var phrase = '--'
     var icon = ''
-    if (rspkk >= 85 && rspkk <= 100) {
+    if (points >= 85 && points <= 100) {
       phrase = 'Strong'
       icon = icon_check_strong
+      var r = 52
+      var g = 199
+      var b = 89
     }
-    if (rspkk >= 60 && rspkk < 85) {
+    if (points >= 60 && points < 85) {
       phrase = 'Passable'
       icon = icon_check_passable
+      var r = 255
+      var g = 204
+      var b = 0
     }
-    if (rspkk >= 45 && rspkk < 60) {
+    if (points >= 45 && points < 60) {
       phrase = 'Fragile'
       icon = icon_check_fragile
+      var r = 255
+      var g = 249
+      var b = 0
     }
-    if (rspkk >= 0 && rspkk < 45) {
+    if (points >= 0 && points < 45) {
       phrase = 'Unsafe'
       icon = icon_check_unsafe
+      var r = 255
+      var g = 59
+      var b = 48
     }
-
     if (cache) {
       var chtt = new Date().getTime()
       LS.setItem(LS_cache_key, chtt + ':' + Math.floor(rsp * 100))
@@ -1483,7 +1506,7 @@
     if (det_repeat <= 0) {
       det_repeat = 0
     }
-    return { 'points': Math.floor(rsp * 100), 'phrase': phrase, 'icon': icon, 'details': { 'evdis': det_evdis, 'len': det_len, 'repeat': det_repeat } }
+    return { 'points': points, 'phrase': phrase, 'icon': icon, 'details': { 'evdis': det_evdis, 'len': det_len, 'repeat': det_repeat }, 'color': { r: r, g: g, b: b } }
   }
 
 
