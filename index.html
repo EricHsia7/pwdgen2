@@ -781,6 +781,22 @@
       -webkit-user-select: none;
     }
     
+    .pattern_creator {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: clamp(180px, 90%, 450px);
+      height: 350px;
+      background: var(--g-ffffff);
+      border-radius: 12px;
+      display: none;
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow: hidden;
+    }
+    
     .pattern_creator .pattern_creator_title {
       position: absolute;
       background: var(--g-ffffff);
