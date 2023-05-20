@@ -1333,34 +1333,35 @@
     if (cache) {
       var LS_key = `pwdgen2_saved_b_${id}`
       var LS_cache_key = `pwdgen2_check_cache_b_${id}`
-      if (!(LS.getItem(LS_key) === null)) {
+      if (LS.hasOwnProperty(LS_key)) {
         var phrase = '--'
         var cached_result_points = parseInt(String(LS.getItem(LS_cache_key)).split(':')[1])
         var cached_result_time_stamp = parseInt(String(LS.getItem(LS_cache_key)).split(':')[0])
         var nowtime = new Date().getTime()
         var icon = ''
-        if (points >= 85 && points <= 100) {
+
+        if (cached_result_points >= 85 && cached_result_points <= 100) {
           phrase = 'Strong'
           icon = icon_check_strong
           var r = 52
           var g = 199
           var b = 89
         }
-        if (points >= 60 && points < 85) {
+        if (cached_result_points >= 60 && cached_result_points < 85) {
           phrase = 'Passable'
           icon = icon_check_passable
           var r = 255
           var g = 204
           var b = 0
         }
-        if (points >= 45 && points < 60) {
+        if (cached_result_points >= 45 && cached_result_points < 60) {
           phrase = 'Fragile'
           icon = icon_check_fragile
           var r = 255
           var g = 249
           var b = 0
         }
-        if (points >= 0 && points < 45) {
+        if (cached_result_points >= 0 && cached_result_points < 45) {
           phrase = 'Unsafe'
           icon = icon_check_unsafe
           var r = 255
@@ -1368,7 +1369,7 @@
           var b = 48
         }
         if ((nowtime - cached_result_time_stamp) < 43200000) {
-          return { 'points': points, 'phrase': phrase, 'icon': icon, 'details': '--', 'color': { r: r, g: g, b: b } }
+          return { 'points': cached_result_points, 'phrase': phrase, 'icon': icon, 'details': '--', 'color': { r: r, g: g, b: b } }
         }
         else {
           LS.removeItem(LS_cache_key)
