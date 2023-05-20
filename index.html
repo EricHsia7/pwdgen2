@@ -1019,7 +1019,13 @@
       <div class="details-note">
         <div class="details-note-content"></div>
       </div>
-
+      <div class="details-check-result">
+        <div class="details-check-result-content">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+          <div class="details-check-result-view-detailed-reports">View</div>
+        </div>
+      </div>
     </div>
     <div class="fixed-title-box">
       <div class="btn left-top-corner" onclick="closePassword()">
@@ -1823,12 +1829,18 @@
     if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
       var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
       var note_plain_text = deur(atob(String(json.note)))
+      var password = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
       qe('.password-page .details-item-value[k="username"] input').value = json.username || ""
-      qe('.password-page .details-item-value[k="password"] input').value = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
+      qe('.password-page .details-item-value[k="password"] input').value = password
       qe('.password-page .details-item-value[k="website"] input').value = json.website || ""
       qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
       qe('.password-page .details-note-content').innerHTML = generateHashTagHTML(note_plain_text)
-
+      var check = checkPassword(password, true, id)
+      qe(".details-check-result .details-check-result-content .details-check-result-points").innerText = check.points
+      qe(".details-check-result .details-check-result-content .details-check-result-points").style.setProperty('--j-check-color-r', check.color.r)
+      qe(".details-check-result .details-check-result-content .details-check-result-points").style.setProperty('--j-check-color-g', check.color.g)
+      qe(".details-check-result .details-check-result-content .details-check-result-points").style.setProperty('--j-check-color-b', check.color.b)
+      qe(".details-check-result .details-check-result-content .details-check-result-phrase").innerText = `This password is ${check.phrase}.`
     }
   }
   function closePassword() {
