@@ -547,13 +547,15 @@
       height: 45px;
       background: var(--p-ffffff);
       border-top: var(--p-e5e5ea) 1px solid;
-      box-sizing:border-box;
+      box-sizing: border-box;
       user-select: none;
       -webkit-user-select: none;
     }
-.search-output .search-suggestion:nth-child(2) {
-  border-top: none;
+
+    .search-output .search-suggestion:nth-child(2) {
+      border-top: none;
     }
+
     .search-suggestion-icon {
       position: absolute;
       top: 7.5px;
@@ -570,7 +572,7 @@
     .search-suggestion-icon svg {
       width: 23px;
       height: 23px;
-user-select: none;
+      user-select: none;
       -webkit-user-select: none;
     }
 
@@ -598,13 +600,15 @@ user-select: none;
       height: 60px;
       background: var(--p-ffffff);
       border-bottom: var(--p-e5e5ea) 1px solid;
-      box-sizing:border-box;
+      box-sizing: border-box;
       user-select: none;
       -webkit-user-select: none;
     }
-.search-output .search-item:last-child {
-  border-bottom: none;
+
+    .search-output .search-item:last-child {
+      border-bottom: none;
     }
+
     .search-item-icon {
       position: absolute;
       top: 15px;
@@ -613,15 +617,15 @@ user-select: none;
       height: 30px;
       user-select: none;
       -webkit-user-select: none;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .search-item-icon svg {
       width: 23px;
       height: 23px;
-user-select: none;
+      user-select: none;
       -webkit-user-select: none;
     }
 
@@ -779,6 +783,8 @@ user-select: none;
   var search_status = 0
   var search_evt = 0
   var searchIndex = {}
+  var search_sticky = false
+  var container_scrollTop = 0
   function encryptString(string) {
     var initialization_vector_pattern = [
       {
@@ -1019,7 +1025,7 @@ user-select: none;
     var list_len = list.length
     var list_decrypted = []
     for (var k = 0; k < list_len; k++) {
-      var this_item = String(localStorage.getItem(list[k])).split(':')
+      var this_item = String(LS.getItem(list[k])).split(':')
       var hash = list[k].split('_')[3]
       var pwtime = new Date()
       pwtime.setTime(this_item[2])
@@ -1034,37 +1040,166 @@ user-select: none;
   function qe(selector) {
     return document.querySelector(selector)
   }
-  var search_sticky = false
-  var container_scrollTop = 0
-  qe('.main-page').addEventListener('scroll', function (e) {
-    container_scrollTop = qe('.main-page').scrollTop
-    var scale = 1
-    if (container_scrollTop < 0) {
-      scale = 1 + (Math.abs(container_scrollTop) / 500)
-      if (scale > 1.3) {
-        scale = 1.3
-      }
-    }
-    qe('.main-page .title').style.setProperty('--scroll-scale', scale)
-    if (container_scrollTop >= 50) {
-      qe('.main-page .search-box').setAttribute('sticky', 'true')
-      qe('.main-page .fixed-title-box').setAttribute('sticky', 'true')
-      if (!(search_status === 1)) {
-        standaloneStatusBarColor(1)
+
+
+  function checkPassword(string, cache, id, tt) {
+    if (cache) {
+      var LS_key = `pwdgen2_saved_b_${id}`
+      var LS_cache_key = `pwdgen2_check_cache_b_${id}`
+      if (!(LS.getItem(LS_key) === null)) {
+        var phrase = '--'
+        var cached_result_points = parseInt(String(LS.getItem(LS_cache_key)).split(':')[1])
+        var cached_result_time_stamp = parseInt(String(LS.getItem(LS_cache_key)).split(':')[0])
+        var nowtime = new Date().getTime()
+        var icon = ''
+        if (points >= 85 && points <= 100) {
+          phrase = 'Strong'
+          icon = check_strong_icon
+        }
+        if (points >= 60 && points < 85) {
+          phrase = 'Passable'
+          icon = check_passable_icon
+        }
+        if (points >= 45 && points < 60) {
+          phrase = 'Fragile'
+          icon = check_fragile_icon
+        }
+        if (points >= 0 && points < 45) {
+          phrase = 'Unsafe'
+          icon = check_unsafe_icon
+        }
+        if ((nowtime - cached_result_time_stamp) < 43200000) {
+          return { 'points': points, 'phrase': phrase, 'icon': icon, 'details': '--' }
+        }
+        else {
+          LS.removeItem(LS_cache_key)
+        }
 
       }
-      search_sticky = true
     }
-    else {
-      qe('.main-page .search-box').setAttribute('sticky', 'false')
-      qe('.main-page .fixed-title-box').setAttribute('sticky', 'false')
-      if (!(search_status === 1)) {
-        standaloneStatusBarColor(0)
 
+    var chars_all = ['ABCDEFGHIJKLMNOPQRSTUVXYZ', 'abcdefghijklmnopqrstuvxyz', '0123456789', '%-+=/,.)(*&$#@}{][^_|~\<>!?})'];
+    var chars_c = 0
+    var chars_l = 0
+    var chars_n = 0
+    var chars_s = 0
+    var pwdarr = string.split('')
+    for (var i = 0; i < pwdarr.length; i++) {
+      for (var t = 0; t < chars_all.length; t++) {
+        if (String(chars_all[t]).indexOf(pwdarr[i]) > -1) {
+          if (t === 0) {
+            chars_c += 1
+          }
+          if (t === 1) {
+            chars_l += 1
+          }
+          if (t === 2) {
+            chars_n += 1
+          }
+          if (t === 3) {
+            chars_s += 1
+          }
+        }
       }
-      search_sticky = false
     }
-  })
+
+    //repeatchars
+    var rreajson = {}
+    var rrea = string.split('')
+    rrea.sort()
+
+    for (var e = 0; e < rrea.length; e++) {
+      var rrajsonname = btoa(encodeURIComponent(rrea[e])).replaceAll('=', '_')
+      if (rreajson[rrajsonname] === undefined) {
+        rreajson[rrajsonname] = 1
+      }
+      else {
+        rreajson[rrajsonname] = parseInt(rreajson[rrajsonname]) + 1
+      }
+    }
+    var rreaal = 0
+    var rreatp = 0
+    for (var x in rreajson) {
+      rreaal += rreajson[x]
+      rreatp += 1
+    }
+    var lenT = 64
+    var len0 = string.length
+    var len1 = chars_c + chars_l + chars_n + chars_s
+    var len2 = (len0 - len1)
+
+    var cpp = Math.floor(chars_c / len1 * 100)
+    var lpp = Math.floor(chars_l / len1 * 100)
+    var npp = Math.floor(chars_n / len1 * 100)
+    var spp = Math.floor(chars_s / len1 * 100)
+
+    var bhc = Math.abs(25 - cpp)
+    var bhl = Math.abs(25 - lpp)
+    var bhn = Math.abs(25 - npp)
+    var bhs = Math.abs(25 - spp)
+    var bha = (bhc + bhl + bhn + bhs) / 4
+
+    var bhrrea = (rreaal / rreatp) / len0
+
+    var rsp = (len1 - ((bha / 100) * len1) + len2 * 0.02) / len0 * 0.5 + (len0 / lenT) * 0.5 - (bhrrea * 0.2)
+
+    if (rsp >= 1) {
+      rsp = 1
+    }
+    if (rsp <= 0) {
+      rsp = 0
+    }
+    var rspkk = Math.floor(rsp * 100)
+
+    var phrase = '--'
+    var icon = ''
+    if (rspkk >= 85 && rspkk <= 100) {
+      phrase = 'Strong'
+      icon = check_strong_icon
+    }
+    if (rspkk >= 60 && rspkk < 85) {
+      phrase = 'Passable'
+      icon = check_passable_icon
+    }
+    if (rspkk >= 45 && rspkk < 60) {
+      phrase = 'Fragile'
+      icon = check_fragile_icon
+    }
+    if (rspkk >= 0 && rspkk < 45) {
+      phrase = 'Unsafe'
+      icon = check_unsafe_icon
+    }
+
+    if (cache) {
+      var chtt = new Date().getTime()
+      LS.setItem(LS_cache_key, chtt + ':' + Math.floor(rsp * 100))
+    }
+    var det_evdis = (len1 - ((bha / 100) * len1) + len2 * 0.02) / len0 * 100
+    //Evenly distributed
+    var det_len = (len0 / lenT) * 100
+    var det_repeat = (bhrrea * 100)
+    if (det_evdis >= 100) {
+      det_evdis = 100
+    }
+    if (det_evdis <= 0) {
+      det_evdis = 0
+    }
+    if (det_len >= 100) {
+      det_len = 100
+    }
+    if (det_len <= 0) {
+      det_len = 0
+    }
+    if (det_repeat >= 100) {
+      det_repeat = 100
+    }
+    if (det_repeat <= 0) {
+      det_repeat = 0
+    }
+    return { 'points': Math.floor(rsp * 100), 'phrase': phrase, 'icon': icon, 'details': { 'evdis': det_evdis, 'len': det_len, 'repeat': det_repeat } }
+  }
+
+
   function unicode_arr(str) {
     var str_len = str.length
     var unicode_arr = []
@@ -1432,7 +1567,35 @@ user-select: none;
   upgradeData()
   printSavedPasswordList()
 
+  qe('.main-page').addEventListener('scroll', function (e) {
+    container_scrollTop = qe('.main-page').scrollTop
+    var scale = 1
+    if (container_scrollTop < 0) {
+      scale = 1 + (Math.abs(container_scrollTop) / 500)
+      if (scale > 1.3) {
+        scale = 1.3
+      }
+    }
+    qe('.main-page .title').style.setProperty('--scroll-scale', scale)
+    if (container_scrollTop >= 50) {
+      qe('.main-page .search-box').setAttribute('sticky', 'true')
+      qe('.main-page .fixed-title-box').setAttribute('sticky', 'true')
+      if (!(search_status === 1)) {
+        standaloneStatusBarColor(1)
 
+      }
+      search_sticky = true
+    }
+    else {
+      qe('.main-page .search-box').setAttribute('sticky', 'false')
+      qe('.main-page .fixed-title-box').setAttribute('sticky', 'false')
+      if (!(search_status === 1)) {
+        standaloneStatusBarColor(0)
+
+      }
+      search_sticky = false
+    }
+  })
 
 </script>
 
