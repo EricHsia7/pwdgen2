@@ -1312,6 +1312,7 @@ user-select: none;
     }
     standaloneStatusBarColor(1)
     search_status = 1
+    updateSearch(qe(".search input#search").value, searchIndex)
   }
   function closeSearch() {
     qe(".search-box").setAttribute('status', '0')
