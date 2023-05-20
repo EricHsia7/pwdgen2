@@ -1340,7 +1340,7 @@
     if (cache) {
       var LS_key = `pwdgen2_saved_b_${id}`
       var LS_cache_key = `pwdgen2_check_cache_b_${id}`
-      if (LS.hasOwnProperty(LS_key)) {
+      if (LS.hasOwnProperty(LS_cache_key)) {
         var phrase = '--'
         var cached_result_points = parseInt(String(LS.getItem(LS_cache_key)).split(':')[1])
         var cached_result_time_stamp = parseInt(String(LS.getItem(LS_cache_key)).split(':')[0])
