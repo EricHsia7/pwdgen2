@@ -15,6 +15,126 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f2f7" kji="light">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0b" kji="dark">
   <link rel="manifest" href="https://erichsia7.github.io/pwdgen2/manifest7.json?e1">
+    <style id="highlight">
+    :root {
+      --h-bg: #fff;
+      /* background color */
+      --h-fg: #24292e;
+      /* foreground color */
+      --h-red: #d73a49;
+      --h-purple: #6f42c1;
+      --h-blue: #005cc5;
+      --h-green: #22863a;
+      --h-yellow: #735c0f;
+      --h-orange: #e36209;
+      --h-gray: #6a737d;
+      --h-light-gray: #f0fff4;
+      --h-light-red: #ffeef0;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --h-bg: #0d1117;
+        --h-fg: #c9d1d9;
+        --h-red: #ff7b72;
+        --h-purple: #d2a8ff;
+        --h-blue: #79c0ff;
+        --h-green: #7ee787;
+        --h-yellow: #f2cc60;
+        --h-orange: #ffa657;
+        --h-gray: #8b949e;
+        --h-light-gray: #033a16;
+        --h-light-red: #67060c;
+      }
+    }
+
+    .hljs-doctag,
+    .hljs-keyword,
+    .hljs-meta .hljs-keyword,
+    .hljs-template-tag,
+    .hljs-template-variable,
+    .hljs-type,
+    .hljs-variable.language_ {
+      color: var(--h-red);
+    }
+
+    .hljs-title,
+    .hljs-title.class_,
+    .hljs-title.class_.inherited__,
+    .hljs-title.function_ {
+      color: var(--h-purple);
+    }
+
+    .hljs-attr,
+    .hljs-attribute,
+    .hljs-literal,
+    .hljs-meta,
+    .hljs-number,
+    .hljs-operator,
+    .hljs-selector-attr,
+    .hljs-selector-class,
+    .hljs-selector-id,
+    .hljs-variable {
+      color: var(--h-blue);
+    }
+
+    .hljs-meta .hljs-string,
+    .hljs-regexp,
+    .hljs-string {
+      color: var(--h-light-blue);
+    }
+
+    .hljs-built_in,
+    .hljs-symbol {
+      color: var(--h-orange);
+    }
+
+    .hljs-code,
+    .hljs-comment,
+    .hljs-formula {
+      color: var(--h-gray);
+    }
+
+    .hljs-name,
+    .hljs-quote,
+    .hljs-selector-pseudo,
+    .hljs-selector-tag {
+      color: var(--h-green);
+    }
+
+    .hljs-subst {
+      color: var(--h-fg);
+    }
+
+    .hljs-section {
+      color: var(--h-blue);
+      font-weight: 700;
+    }
+
+    .hljs-bullet {
+      color: var(--h-yellow);
+    }
+
+    .hljs-emphasis {
+      color: var(--h-fg);
+      font-style: italic;
+    }
+
+    .hljs-strong {
+      color: var(--h-fg);
+      font-weight: 700;
+    }
+
+    .hljs-addition {
+      color: var(--h-green);
+      background-color: var(--h-light-gray);
+    }
+
+    .hljs-deletion {
+      color: var(--h-red);
+      background-color: var(--h-light-red);
+    }
+  </style>
   <style>
     * {
       -webkit-appearance: none;
@@ -660,6 +780,85 @@
       user-select: none;
       -webkit-user-select: none;
     }
+    
+    .pattern_creator .pattern_creator_title {
+      position: absolute;
+      background: var(--g-ffffff);
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 55px;
+      border-bottom: var(--g-f4f4f4) solid 1px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--g-4e4e4e);
+      font-size: 18px;
+    }
+
+    .pattern_creator .pattern,
+    .pattern_creator .pattern2 {
+      padding: 5px;
+      margin: 0px;
+      display: block;
+      width: 100%;
+      height: 100%;
+      font-size: 1.15rem;
+      caret-color: var(--g-4e4e4e);
+      color: var(--g-4e4e4e);
+      word-break: break-all;
+      white-space: pre-wrap;
+      overflow: scroll;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      background: rgba(0, 0, 0, 0);
+      box-sizing: border-box;
+    }
+
+    .pattern_creator .pattern2 *,
+    .pattern_creator .pattern2 {
+      color: rgba(0, 0, 0, 0)
+    }
+
+    .pattern_creator .pattern_box {
+      width: calc(100% - 20px);
+      height: 300px;
+      overflow: hidden;
+      position: absolute;
+      top: 130px;
+      left: 10px;
+      background: var(--g-f4f4f4);
+      border-radius: 10px;
+    }
+
+    .pattern_creator .generation_preview_title {
+      position: absolute;
+      top: 65px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 20px;
+      display: flex;
+      align-items: center;
+      color: var(--g-4e4e4e);
+    }
+
+    .pattern_creator .generation_preview {
+      position: absolute;
+      top: 90px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: 30px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 5px;
+      overflow: hidden;
+      background: var(--g-f4f4f4);
+      color: var(--g-4e4e4e);
+    }
   </style>
 
   <style>
@@ -767,6 +966,25 @@
       Password
     </div>
   </div>
+  
+  
+  <div class="pattern_creator">
+    <div class="pattern_creator_title">
+      Pattern Creator
+      <div class="btn2-l" r-click="closePatternCreator()">
+        <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
+        </svg>
+      </div>
+    </div>
+    <div class="pattern_box">
+      <pre><code class="language-json pattern"></code></pre>
+      <pre><code class="language-json pattern2" contenteditable="true"></code></pre>
+    </div>
+    <div class="generation_preview_title">Generation preview</div>
+    <div class="generation_preview"></div>
+  </div>
+  
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js" integrity="sha512-LOqfKFwH2W3jeb0NzXcImFlSyoL7hjsWbZvIeKNOaZw1gFw+yKTE/QUDGLit2KWdd57qd6IgMDkppK2tkwIEhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
