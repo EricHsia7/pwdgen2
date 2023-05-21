@@ -1415,7 +1415,7 @@
 
     var getReport = function (length_points, randomness_points, repeat_points, complexity_points) {
       var Reports_Template = `Reports Template:
-According to the points, this password has {amount} {problems}.
+According to the points, this password has {amount} problems.
 
 All you have to do is follow the instructions:
   1. {Length_Instructions}
@@ -1495,7 +1495,6 @@ All you have to do is follow the instructions:
 
       // Replace placeholders in the template with the corresponding instructions
       var report = Reports_Template.replace("{amount}", points_summary)
-        .replace("{problems}", problem_summary)
         .replace("{Length_Instructions}", Length_Instructions)
         .replace("{Randomness_Instructions}", Randomness_Instructions)
         .replace("{Repeat_Instructions}", Repeat_Instructions)
