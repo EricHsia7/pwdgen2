@@ -601,8 +601,18 @@
       left: 10px;
     }
 
-    .details-check-result .details-check-result-item:last-child {
-      border-bottom: none;
+    .details-check-result-report {
+      width: calc(100% - 20px);
+      min-height: 50px;
+      position: relative;
+      box-sizing: border-box;
+      left: 10px;
+      display: inline-block;
+      padding: 10px 0px;
+      font-size: 18px;
+      color: var(--p-333333);
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
     .details-check-result-points {
@@ -1061,6 +1071,7 @@
           <div class="details-check-result-points"></div>
           <div class="details-check-result-phrase"></div>
         </div>
+        <div class="details-check-result-report"></div>
       </div>
     </div>
     <div class="fixed-title-box">
@@ -1875,8 +1886,8 @@ All you have to do is follow the instructions:
       qe('.password-page .details-note-content').innerHTML = generateHashTagHTML(note_plain_text)
       var check = checkPassword(password, false, id)
       var setCheckResultItem = function (type, i, r, g, b, points, phrase) {
-        var q = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`
-        var qp = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-phrase`
+        var q = `.password-page .details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`
+        var qp = `.password-page .details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-phrase`
         qe(q).innerText = points
         qe(q).style.setProperty('--j-check-color-r', r)
         qe(q).style.setProperty('--j-check-color-g', g)
@@ -1888,6 +1899,7 @@ All you have to do is follow the instructions:
       setCheckResultItem('item', 'randomness', check.details.randomness.color.r, check.details.randomness.color.g, check.details.randomness.color.b, check.details.randomness.points, `Randomness`)
       setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.details.repeat.color.g, check.details.repeat.color.b, check.details.repeat.points, `Repeat`)
       setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.details.complexity.color.g, check.details.complexity.color.b, check.details.complexity.points, `Complexity`)
+      qe(".password-page .details-check-result .details-check-result-report").innerText = check.details.report
     }
   }
   function closePassword() {
