@@ -1347,8 +1347,6 @@
       for (var w = 0; w < arr_len; w++) {
         n_arr.push({ c: arr[w], i: w, u: String(arr[w]).charCodeAt(0) })
         json['u_' + String(arr[w]).charCodeAt(0)] = json.hasOwnProperty('u_' + String(arr[w]).charCodeAt(0)) ? json['u_' + String(arr[w]).charCodeAt(0)] + 1 : 1
-
-
       }
       n_arr.sort(function (a, b) {
         return a.u - b.u
@@ -1431,8 +1429,9 @@
         }
       }
     }
-    var ju = judgePoints(getPoints(string))
-    return { 'points': cached_result_points, 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] } }
+    var points = getPoints(string)
+    var ju = judgePoints(points)
+    return { 'points': points, 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] } }
   }
   /*
   function checkPassword(string, cache, id) {
