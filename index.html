@@ -629,9 +629,9 @@
       color: var(--p-333333);
     }
 
-    .details-check-result-item .details-check-result-points {
+    .details-check-result-item .details-check-result-phrase {
       top: 10px;
-      left: 75px;
+      left: 50px;
       width: calc(100% - 50px - 10px);
       height: 30px;
       font-size: 16px;
@@ -1875,8 +1875,8 @@ All you have to do is follow the instructions:
       setCheckResultItem('summary', 'summary', check.color.r, check.color.g, check.color.b, check.points, `This password is ${check.phrase}.`)
       setCheckResultItem('item', 'length', check.details.len.color.r, check.details.len.color.g, check.details.len.color.b, check.details.len.points, `Length`)
       setCheckResultItem('item', 'randomness', check.details.randomness.color.r, check.details.randomness.color.g, check.details.randomness.color.b, check.details.randomness.points, `Randomness`)
-      setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.repeat.randomness.color.g, check.repeat.randomness.color.b, check.repeat.randomness.points, `Repeat`)
-      setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.complexity.randomness.color.g, check.complexity.randomness.color.b, check.complexity.randomness.points, `Complexity`)
+      setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.details.repeat.randomness.color.g, check.details.repeat.randomness.color.b, check.details.repeat.randomness.points, `Repeat`)
+      setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.details.complexity.randomness.color.g, check.details.complexity.randomness.color.b, check.details.complexity.randomness.points, `Complexity`)
     }
   }
   function closePassword() {
