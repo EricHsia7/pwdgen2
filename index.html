@@ -1529,7 +1529,7 @@
         points_summary = 'no'
       }
 
-      var report = `According to the points, this password has ${points_summary} problems.
+      var report = `According to the points, this password has ${points_summary} problem${(points_summary > 1 ? 's' : '')}.
 All you have to do is follow the instructions:
 1. ${Length_Instructions}
 2. ${Randomness_Instructions}
