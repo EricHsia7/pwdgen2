@@ -176,7 +176,8 @@
 
     .container,
     .password-page,
-    .main-page {
+    .main-page,
+    .password-check-reports-page {
       position: fixed;
       top: 0px;
       left: 0px;
@@ -188,7 +189,8 @@
       background: var(--p-f2f2f7);
     }
 
-    .password-page {
+    .password-page,
+    .password-check-reports-page {
       display: none;
     }
 
@@ -473,6 +475,7 @@
       background: var(--p-ffffff);
       user-select: none;
       -webkit-user-select: none;
+      margin-bottom: 10px;
     }
 
     .details-item {
@@ -1037,8 +1040,9 @@
       Password
     </div>
   </div>
-
-
+  <div class="password-check-reports-page">
+    Check Reports
+  </div>
   <div class="pattern_creator">
     <div class="pattern_creator_title">
       Pattern Creator
