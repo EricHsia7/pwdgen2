@@ -588,7 +588,7 @@
       height: 75px;
       position: relative;
     }
-    
+
     .details-check-result-item {
       width: 100%;
       height: 50px;
@@ -610,9 +610,9 @@
       align-items: center;
       font-weight: 500;
     }
-    
+
     .details-check-result-item .details-check-result-points {
-width: 30px;
+      width: 30px;
       height: 30px;
       font-size: 17px;
     }
@@ -628,9 +628,9 @@ width: 30px;
       font-size: 18px;
       color: var(--p-333333);
     }
-    
+
     .details-check-result-item .details-check-result-points {
-top: 10px;
+      top: 10px;
       left: 75px;
       width: calc(100% - 50px - 10px);
       height: 30px;
@@ -1533,10 +1533,15 @@ All you have to do is follow the instructions:
     }
     var points = getPoints(string)
     var ju = judgePoints(points[0])
+    var ju_length = judgePoints(points[1])
+    var ju_randomness = judgePoints(points[2])
+    var ju_repeat = judgePoints(points[3])
+    var ju_complexity = judgePoints(points[4])
+
     if (cache) {
       LS.setItem(LS_cache_key, nowtime + ':' + points[0])
     }
-    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { length: points[1], randomness: points[2], repeat: points[3], complexity: points[4], report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8]) } }
+    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { length: { points: points[1], color: { r: ju_length[0], g: ju_length[1], b: ju_length[2] } }, randomness: { points: points[2], color: { r: ju_randomness[0], g: ju_randomness[1], b: ju_randomness[2] } }, repeat: { points: points[3], color: { r: ju_repeat[0], g: ju_repeat[1], b: ju_repeat[2] } }, complexity: { points: points[4], color: { r: ju_complexity[0], g: ju_complexity[1], b: ju_complexity[2] } }, report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8]) } }
   }
 
   function unicode_arr(str) {
@@ -1858,16 +1863,16 @@ All you have to do is follow the instructions:
       qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
       qe('.password-page .details-note-content').innerHTML = generateHashTagHTML(note_plain_text)
       var check = checkPassword(password, true, id)
-    var setCheckResultItem = function(type,i,r,g,b,points,phrase) {
-    var q = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`
-    var qp = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-phrase`
-      qe(q).innerText = points
-      qe(q).style.setProperty('--j-check-color-r', r)
-      qe(q).style.setProperty('--j-check-color-g', g)
-      qe(q).style.setProperty('--j-check-color-b', b)
-      qe(qp).innerText = phrase
-    }
-    setCheckResultItem('summary','summary',check.color.r,check.color.g,check.color.b,check.points,`This password is ${check.phrase}.`)
+      var setCheckResultItem = function (type, i, r, g, b, points, phrase) {
+        var q = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`
+        var qp = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-phrase`
+        qe(q).innerText = points
+        qe(q).style.setProperty('--j-check-color-r', r)
+        qe(q).style.setProperty('--j-check-color-g', g)
+        qe(q).style.setProperty('--j-check-color-b', b)
+        qe(qp).innerText = phrase
+      }
+      setCheckResultItem('summary', 'summary', check.color.r, check.color.g, check.color.b, check.points, `This password is ${check.phrase}.`)
     }
   }
   function closePassword() {
