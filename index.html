@@ -1541,7 +1541,7 @@ All you have to do is follow the instructions:
     if (cache) {
       LS.setItem(LS_cache_key, nowtime + ':' + points[0])
     }
-    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { length: { points: points[1], color: { r: ju_length[1], g: ju_length[2], b: ju_length[3] } }, randomness: { points: points[2], color: { r: ju_randomness[1], g: ju_randomness[2], b: ju_randomness[3] } }, repeat: { points: points[3], color: { r: ju_repeat[1], g: ju_repeat[2], b: ju_repeat[3] } }, complexity: { points: points[4], color: { r: ju_complexity[1], g: ju_complexity[2], b: ju_complexity[3] } }, report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8]) } }
+    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { len: { points: points[1], color: { r: ju_length[1], g: ju_length[2], b: ju_length[3] } }, randomness: { points: points[2], color: { r: ju_randomness[1], g: ju_randomness[2], b: ju_randomness[3] } }, repeat: { points: points[3], color: { r: ju_repeat[1], g: ju_repeat[2], b: ju_repeat[3] } }, complexity: { points: points[4], color: { r: ju_complexity[1], g: ju_complexity[2], b: ju_complexity[3] } }, report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8]) } }
   }
 
   function unicode_arr(str) {
@@ -1862,7 +1862,7 @@ All you have to do is follow the instructions:
       qe('.password-page .details-item-value[k="website"] input').value = json.website || ""
       qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
       qe('.password-page .details-note-content').innerHTML = generateHashTagHTML(note_plain_text)
-      var check = checkPassword(password, true, id)
+      var check = checkPassword(password, false, id)
       var setCheckResultItem = function (type, i, r, g, b, points, phrase) {
         var q = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`
         var qp = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-phrase`
@@ -1873,7 +1873,7 @@ All you have to do is follow the instructions:
         qe(qp).innerText = phrase
       }
       setCheckResultItem('summary', 'summary', check.color.r, check.color.g, check.color.b, check.points, `This password is ${check.phrase}.`)
-      setCheckResultItem('item', 'length', check.details.length.color.r, check.details.length.color.g, check.details.length.color.b, check.details.length.points, `Length`)
+      setCheckResultItem('item', 'length', check.details.len.color.r, check.details.len.color.g, check.details.len.color.b, check.details.len.points, `Length`)
       setCheckResultItem('item', 'randomness', check.details.randomness.color.r, check.details.randomness.color.g, check.details.randomness.color.b, check.details.randomness.points, `Randomness`)
       setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.repeat.randomness.color.g, check.repeat.randomness.color.b, check.repeat.randomness.points, `Repeat`)
       setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.complexity.randomness.color.g, check.complexity.randomness.color.b, check.complexity.randomness.points, `Complexity`)
