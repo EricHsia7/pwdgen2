@@ -583,9 +583,15 @@
       text-decoration: underline;
     }
 
-    .details-check-result-content {
+    .details-check-result-summary {
       width: 100%;
       height: 75px;
+      position: relative;
+    }
+    
+    .details-check-result-item {
+      width: 100%;
+      height: 50px;
       position: relative;
     }
 
@@ -604,31 +610,31 @@
       align-items: center;
       font-weight: 500;
     }
+    
+    .details-check-result-item .details-check-result-points {
+width: 30px;
+      height: 30px;
+      font-size: 17px;
+    }
 
     .details-check-result-phrase {
       position: absolute;
       top: 22.5px;
       left: 75px;
-      width: calc(100% - 75px - 10px - 50px - 5px);
+      width: calc(100% - 75px - 10px);
       height: 30px;
       display: flex;
       align-items: center;
       font-size: 18px;
       color: var(--p-333333);
     }
-
-    .details-check-result-view-detailed-reports {
-      position: absolute;
-      top: 22.5px;
+    
+    .details-check-result-item .details-check-result-points {
+top: 10px;
+      left: 75px;
+      width: calc(100% - 50px - 10px);
       height: 30px;
-      right: 10px;
-      width: 50px;
-      background: var(--p-f2f2f7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 10px;
-      color: var(--p-333333);
+      font-size: 16px;
     }
 
     .btn {
@@ -1024,10 +1030,25 @@
         <div class="details-note-content"></div>
       </div>
       <div class="details-check-result">
-        <div class="details-check-result-content">
+        <div class="details-check-result-summary" i="summary">
           <div class="details-check-result-points"></div>
           <div class="details-check-result-phrase"></div>
-          <div class="details-check-result-view-detailed-reports">View</div>
+        </div>
+        <div class="details-check-result-item" i="length">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
+        <div class="details-check-result-item" i="randomness">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
+        <div class="details-check-result-item" i="repeat">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
+        <div class="details-check-result-item" i="complexity">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
         </div>
       </div>
     </div>
@@ -1039,9 +1060,6 @@
       </div>
       Password
     </div>
-  </div>
-  <div class="password-check-reports-page">
-    Check Reports
   </div>
   <div class="pattern_creator">
     <div class="pattern_creator_title">
@@ -1840,11 +1858,16 @@ All you have to do is follow the instructions:
       qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
       qe('.password-page .details-note-content').innerHTML = generateHashTagHTML(note_plain_text)
       var check = checkPassword(password, true, id)
-      qe(".details-check-result .details-check-result-content .details-check-result-points").innerText = check.points
-      qe(".details-check-result .details-check-result-content .details-check-result-points").style.setProperty('--j-check-color-r', check.color.r)
-      qe(".details-check-result .details-check-result-content .details-check-result-points").style.setProperty('--j-check-color-g', check.color.g)
-      qe(".details-check-result .details-check-result-content .details-check-result-points").style.setProperty('--j-check-color-b', check.color.b)
-      qe(".details-check-result .details-check-result-content .details-check-result-phrase").innerText = `This password is ${check.phrase}.`
+    var setCheckResultItem = function(type,i,r,g,b,points,phrase) {
+    var q = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`
+    var qp = `.details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-phrase`
+      qe(q).innerText = points
+      qe(q).style.setProperty('--j-check-color-r', r)
+      qe(q).style.setProperty('--j-check-color-g', g)
+      qe(q).style.setProperty('--j-check-color-b', b)
+      qe(qp).innerText = phrase
+    }
+    setCheckResultItem('summary','summary',check.color.r,check.color.g,check.color.b,check.points,`This password is ${check.phrase}.`)
     }
   }
   function closePassword() {
