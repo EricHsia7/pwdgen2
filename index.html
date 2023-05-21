@@ -1414,6 +1414,14 @@
     }
 
     var getReport = function (length_points, randomness_points, repeat_points, complexity_points) {
+      var Reports_Template = `Reports Template:
+According to the points, this password has {amount} {problems}.
+
+All you have to do is follow the instructions:
+  1. {Length_Instructions}
+  2. {Randomness_Instructions}
+  3. {Repeat_Instructions}
+  4. {Complexity_Instructions}`
       // Initialize a set to store used instructions
       var used_instructions = new Set();
       // Length Instructions
