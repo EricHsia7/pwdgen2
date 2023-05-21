@@ -584,25 +584,27 @@
     }
 
     .details-check-result-summary {
-      width: 100%;
+      width: calc(100% - 20px);
       height: 75px;
       position: relative;
       border-bottom: var(--p-e5e5ea) 1px solid;
       box-sizing: border-box;
+      left: 10px;
     }
 
     .details-check-result-item {
-      width: 100%;
+      width: calc(100% - 20px);
       height: 50px;
       position: relative;
       border-bottom: var(--p-e5e5ea) 1px solid;
       box-sizing: border-box;
+      left: 10px;
     }
 
     .details-check-result-points {
       position: absolute;
       top: 10px;
-      left: 10px;
+      left: 0px;
       width: 55px;
       height: 55px;
       background: rgba(var(--j-check-color-r), var(--j-check-color-g), var(--j-check-color-b), 0.15);
@@ -619,13 +621,14 @@
       width: 30px;
       height: 30px;
       font-size: 17px;
+      border-radius: 5px;
     }
 
     .details-check-result-phrase {
       position: absolute;
       top: 22.5px;
-      left: 75px;
-      width: calc(100% - 75px - 10px);
+      left: 65px;
+      width: calc(100% - 65px);
       height: 30px;
       display: flex;
       align-items: center;
@@ -635,8 +638,8 @@
 
     .details-check-result-item .details-check-result-phrase {
       top: 10px;
-      left: 50px;
-      width: calc(100% - 50px - 10px);
+      left: 40px;
+      width: calc(100% - 40px);
       height: 30px;
       font-size: 16px;
     }
@@ -1402,7 +1405,7 @@
       }
       ty = (1 - Math.min(Math.max(Math.sqrt(t_s / 4) / t_avg, 0), 1)) * 100
 
-      return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.5 + repeat * 2 + ty * 2) / 8.5), 0), 100), length, randomness, repeat, ty, t[0], t[1], t[2], t[3]]
+      return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.5 + repeat * 2 + ty * 2) / 8.5), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), t[0], t[1], t[2], t[3]]
     }
 
     var judgePoints = function (points) {
