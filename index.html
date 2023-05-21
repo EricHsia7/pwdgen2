@@ -1873,6 +1873,10 @@ All you have to do is follow the instructions:
         qe(qp).innerText = phrase
       }
       setCheckResultItem('summary', 'summary', check.color.r, check.color.g, check.color.b, check.points, `This password is ${check.phrase}.`)
+      setCheckResultItem('item', 'length', check.details.length.color.r, check.details.length.color.g, check.details.length.color.b, check.details.length.points, `Length`)
+      setCheckResultItem('item', 'randomness', check.details.randomness.color.r, check.details.randomness.color.g, check.details.randomness.color.b, check.details.randomness.points, `Randomness`)
+      setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.repeat.randomness.color.g, check.repeat.randomness.color.b, check.repeat.randomness.points, `Repeat`)
+      setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.complexity.randomness.color.g, check.complexity.randomness.color.b, check.complexity.randomness.points, `Complexity`)
     }
   }
   function closePassword() {
