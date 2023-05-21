@@ -1422,6 +1422,7 @@ All you have to do is follow the instructions:
   2. {Randomness_Instructions}
   3. {Repeat_Instructions}
   4. {Complexity_Instructions}`
+      var points_summary = 4
       // Initialize a set to store used instructions
       var used_instructions = new Set();
       // Length Instructions
@@ -1437,6 +1438,7 @@ All you have to do is follow the instructions:
       } else if (length_points >= 76 && length_points <= 100 && !used_instructions.has("length_long_enough")) {
         var Length_Instructions = "The length of this password is long enough, but please keep awareness of the security of your accounts.";
         used_instructions.add("length_long_enough");
+        points_summary -= 1
       }
 
       // Randomness Instructions
@@ -1452,6 +1454,7 @@ All you have to do is follow the instructions:
       } else if (randomness_points >= 76 && randomness_points <= 100 && !used_instructions.has("randomness_random")) {
         var Randomness_Instructions = "The arrangement of characters in this password is entirely random, but please keep awareness of the security of your accounts.";
         used_instructions.add("randomness_random");
+        points_summary -= 1
       }
 
       // Repeat Instructions
@@ -1467,6 +1470,7 @@ All you have to do is follow the instructions:
       } else if (repeat_points >= 76 && repeat_points <= 100 && !used_instructions.has("repeat_hardly")) {
         var Repeat_Instructions = "In this password, the characters are hardly repeated, but please keep awareness of the security of your accounts.";
         used_instructions.add("repeat_hardly");
+        points_summary -= 1
       }
 
       // Complexity Instructions
@@ -1482,10 +1486,15 @@ All you have to do is follow the instructions:
       } else if (complexity_points >= 76 && complexity_points <= 100 && !used_instructions.has("complexity_complex")) {
         var Complexity_Instructions = "This password consists of {n} uppercases, {n} lowercases, {n} digits, and {n} other types of characters. The types of characters in this password are complex and rich. But please keep awareness of the security of your accounts.";
         used_instructions.add("complexity_complex");
+        points_summary -= 1
+      }
+
+      if (points_summary === 0) {
+        points_summary = 'no'
       }
 
       // Replace placeholders in the template with the corresponding instructions
-      var report = Reports_Template.replace("{amount}", score_summary)
+      var report = Reports_Template.replace("{amount}", points_summary)
         .replace("{problems}", problem_summary)
         .replace("{Length_Instructions}", Length_Instructions)
         .replace("{Randomness_Instructions}", Randomness_Instructions)
