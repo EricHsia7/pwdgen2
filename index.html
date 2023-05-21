@@ -1335,7 +1335,108 @@
     return document.querySelector(selector)
   }
 
+function checkPassword(string,cache,id) {
+  var getPoints = function(string) {
+  var length = -42.7 + 29.7 * Math.log(string.length);
+  var arr = string.split('')
+  var arr_len = arr.length
+  var randomness = 0
+  var n_arr = []
+  var json = {}
+  var t =[]
+  for(var w=0;w<arr_len;w++){
+n_arr.push({c:arr[w],i:w,u:String(arr[w]).charCodeAt(0)})
+    json['u_' + String(arr[w]).charCodeAt(0)] = json.hasOwnProperty('u_' + String(arr[w]).charCodeAt(0))?json['u_' + String(arr[w]).charCodeAt(0)]+1:1
 
+
+}
+  n_arr.sort(function(a,b){
+return a.u-b.u
+})
+  
+  for(var w=0;w<arr_len;w++){
+    randomness += Math.abs(w-n_arr[w].i)
+}
+  randomness = randomness/n_arr.length/(string.length/2)*100
+  var repeat = 0
+  var repeat_len = 0
+  for(var w in json) {
+repeat += json[w]
+    repeat_len+=1
+}
+  repeat = (1-repeat/repeat_len/string.length)*100
+  
+  t.push(string.match(/[A-Z]*/gm).join('').length)
+  t.push(string.match(/[a-z]*/gm).join('').length)
+  t.push(string.match(/[0-9]*/gm).join('').length)
+  t.push(string.length-t[0]-t[1]-t[2])
+  
+  var t_avg = string.length/4
+  var t_s = 0
+  for(var w=0;w<4;w++) {
+t_s+=Math.pow(t[w]-t_avg,2)
+}
+  t = (1-Math.min(Math.max(Math.sqrt(t_s/4)/t_avg,0),1))*100
+  
+return Math.min(Math.max(Math.floor((length*3+randomness*1.5+repeat*2+t*2)/8.5),0),100)
+  }
+
+var judgePoints(points) {
+var phrase = ''
+var r,g,b = 0
+if (points >= 85 && points <= 100) {
+          phrase = 'strong'
+           r = 52
+           g = 199
+           b = 89
+        }
+        if (points >= 60 && points < 85) {
+          phrase = 'average'
+          
+           r = 242
+           g = 190
+           b = 0
+        }
+        if (points >= 45 && points < 60) {
+          phrase = 'fragile'
+          
+           r = 255
+           g = 149
+           b = 0
+        }
+        if (points >= 0 && points < 45) {
+          phrase = 'unsafe'
+           r = 255
+           g = 59
+           b = 48
+        }
+  return [phrase,r,g,b]
+}
+
+
+if (cache) {
+      var LS_key = `pwdgen2_saved_b_${id}`
+      var LS_cache_key = `pwdgen2_check_cache_b_${id}`
+      if (LS.hasOwnProperty(LS_cache_key)) {
+        var phrase = '--'
+        var cached_result_points = parseInt(String(LS.getItem(LS_cache_key)).split(':')[1])
+        var cached_result_time_stamp = parseInt(String(LS.getItem(LS_cache_key)).split(':')[0])
+        var nowtime = new Date().getTime()
+var ju = judgePoints(cached_result_points)
+        if ((nowtime - cached_result_time_stamp) < 43200000) {
+          return { 'points': cached_result_points, 'phrase': ju[0],'color': { r: ju[1], g: ju[2], b: ju[3] } }
+        }
+        else {
+          LS.removeItem(LS_cache_key)
+        }
+      }
+    }
+  var ju = judgePoints(getPoints(string))
+  return { 'points': cached_result_points, 'phrase': ju[0],'color': { r: ju[1], g: ju[2], b: ju[3] } }
+
+
+}
+  /*
   function checkPassword(string, cache, id) {
     if (cache) {
       var LS_key = `pwdgen2_saved_b_${id}`
@@ -1515,7 +1616,7 @@
     }
     return { 'points': points, 'phrase': phrase, 'icon': icon, 'details': { 'evdis': det_evdis, 'len': det_len, 'repeat': det_repeat }, 'color': { r: r, g: g, b: b } }
   }
-
+*/
 
   function unicode_arr(str) {
     var str_len = str.length
