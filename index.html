@@ -1471,7 +1471,7 @@
       } else if (length_points >= 51 && length_points <= 75 && !used_instructions.has("length_average")) {
         var Length_Instructions = "The length of this password is average. Recommend you make it longer.";
         used_instructions.add("length_average");
-      } else if (length_points >= 76 && length_points <= 100 && !used_instructions.has("length_long_enough")) {
+      } else if (length_points >= 76 && !used_instructions.has("length_long_enough")) {
         var Length_Instructions = "The length of this password is long enough, but please keep awareness of the security of your accounts.";
         used_instructions.add("length_long_enough");
         points_summary -= 1
@@ -1487,7 +1487,7 @@
       } else if (randomness_points >= 51 && randomness_points <= 75 && !used_instructions.has("randomness_average")) {
         var Randomness_Instructions = "The arrangement of characters in this password is randomly distributed on average. Recommend you rearrange the characters.";
         used_instructions.add("randomness_average");
-      } else if (randomness_points >= 76 && randomness_points <= 100 && !used_instructions.has("randomness_random")) {
+      } else if (randomness_points >= 76 && !used_instructions.has("randomness_random")) {
         var Randomness_Instructions = "The arrangement of characters in this password is entirely random, but please keep awareness of the security of your accounts.";
         used_instructions.add("randomness_random");
         points_summary -= 1
@@ -1503,7 +1503,7 @@
       } else if (repeat_points >= 51 && repeat_points <= 75 && !used_instructions.has("repeat_slightly")) {
         var Repeat_Instructions = "In this password, the characters are slightly repeated, which is not a strict problem, but still suggest you regenerate a new one.";
         used_instructions.add("repeat_slightly");
-      } else if (repeat_points >= 76 && repeat_points <= 100 && !used_instructions.has("repeat_hardly")) {
+      } else if (repeat_points >= 76 && !used_instructions.has("repeat_hardly")) {
         var Repeat_Instructions = "In this password, the characters are hardly repeated, but please keep awareness of the security of your accounts.";
         used_instructions.add("repeat_hardly");
         points_summary -= 1
@@ -1519,7 +1519,7 @@
       } else if (complexity_points >= 51 && complexity_points <= 75 && !used_instructions.has("complexity_not_complex_enough_2")) {
         var Complexity_Instructions = `This password consists of ${n1} uppercases, ${n2} lowercases, ${n3} digits, and ${n4} other types of characters. The types of characters in this password aren't complex and rich enough. Recommend you regenerate a new password that includes all the types of characters.`;
         used_instructions.add("complexity_not_complex_enough_2");
-      } else if (complexity_points >= 76 && complexity_points <= 100 && !used_instructions.has("complexity_complex")) {
+      } else if (complexity_points >= 76 && !used_instructions.has("complexity_complex")) {
         var Complexity_Instructions = `This password consists of ${n1} uppercases, ${n2} lowercases, ${n3} digits, and ${n4} other types of characters. The types of characters in this password are complex and rich. But please keep awareness of the security of your accounts.`;
         used_instructions.add("complexity_complex");
         points_summary -= 1
