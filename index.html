@@ -176,7 +176,8 @@
 
     .container,
     .password-page,
-    .main-page {
+    .main-page,
+    .password-check-reports-page {
       position: fixed;
       top: 0px;
       left: 0px;
@@ -188,7 +189,8 @@
       background: var(--p-f2f2f7);
     }
 
-    .password-page {
+    .password-page,
+    .password-check-reports-page {
       display: none;
     }
 
@@ -463,7 +465,8 @@
     }
 
     .details-list,
-    .details-note {
+    .details-note,
+    .details-check-result {
       position: relative;
       width: 100%;
       display: inline-block;
@@ -472,6 +475,7 @@
       background: var(--p-ffffff);
       user-select: none;
       -webkit-user-select: none;
+      margin-bottom: 10px;
     }
 
     .details-item {
@@ -570,13 +574,88 @@
       font-size: 18px;
       color: var(--p-333333);
       white-space: pre-wrap;
-      word-break: break-all;
+      word-break: break-word;
     }
 
     .details-note-content .hashtag {
       color: var(--p-main-color);
       font-weight: 500;
       text-decoration: underline;
+    }
+
+    .details-check-result-summary {
+      width: calc(100% - 20px);
+      height: 75px;
+      position: relative;
+      border-bottom: var(--p-e5e5ea) 1px solid;
+      box-sizing: border-box;
+      left: 10px;
+    }
+
+    .details-check-result-item {
+      width: calc(100% - 20px);
+      height: 50px;
+      position: relative;
+      border-bottom: var(--p-e5e5ea) 1px solid;
+      box-sizing: border-box;
+      left: 10px;
+    }
+
+    .details-check-result-report {
+      width: calc(100% - 20px);
+      min-height: 50px;
+      position: relative;
+      box-sizing: border-box;
+      left: 10px;
+      display: inline-block;
+      padding: 10px 0px;
+      font-size: 18px;
+      color: var(--p-333333);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .details-check-result-points {
+      position: absolute;
+      top: 10px;
+      left: 0px;
+      width: 55px;
+      height: 55px;
+      background: rgba(var(--j-check-color-r), var(--j-check-color-g), var(--j-check-color-b), 0.15);
+      border-radius: 10px;
+      color: rgba(var(--j-check-color-r), var(--j-check-color-g), var(--j-check-color-b), 1);
+      font-size: 23px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+    }
+
+    .details-check-result-item .details-check-result-points {
+      width: 30px;
+      height: 30px;
+      font-size: 15px;
+      border-radius: 7px;
+    }
+
+    .details-check-result-phrase {
+      position: absolute;
+      top: 22.5px;
+      left: 65px;
+      width: calc(100% - 65px);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      color: var(--p-333333);
+    }
+
+    .details-check-result-item .details-check-result-phrase {
+      top: 10px;
+      left: 40px;
+      width: calc(100% - 40px);
+      height: 30px;
+      font-size: 16px;
     }
 
     .btn {
@@ -779,6 +858,9 @@
       color: var(--p-333333);
       user-select: none;
       -webkit-user-select: none;
+      white-space: nowrap;
+      word-break: keep-all;
+      overflow: hidden;
     }
 
     .pattern_creator {
@@ -971,7 +1053,29 @@
       <div class="details-note">
         <div class="details-note-content"></div>
       </div>
-
+      <div class="details-check-result">
+        <div class="details-check-result-summary" i="summary">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
+        <div class="details-check-result-item" i="length">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
+        <div class="details-check-result-item" i="randomness">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
+        <div class="details-check-result-item" i="repeat">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
+        <div class="details-check-result-item" i="complexity">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
+        <div class="details-check-result-report"></div>
+      </div>
     </div>
     <div class="fixed-title-box">
       <div class="btn left-top-corner" onclick="closePassword()">
@@ -982,8 +1086,6 @@
       Password
     </div>
   </div>
-
-
   <div class="pattern_creator">
     <div class="pattern_creator_title">
       Pattern Creator
@@ -1280,164 +1382,191 @@
     return document.querySelector(selector)
   }
 
-
   function checkPassword(string, cache, id) {
+    var getPoints = function (string) {
+      var length = -42.7 + 29.7 * Math.log(string.length);
+      var arr = string.split('')
+      var arr_len = arr.length
+      var randomness = 0
+      var n_arr = []
+      var json = {}
+      var t = []
+      for (var w = 0; w < arr_len; w++) {
+        n_arr.push({ c: arr[w], i: w, u: String(arr[w]).charCodeAt(0) })
+        json['u_' + String(arr[w]).charCodeAt(0)] = json.hasOwnProperty('u_' + String(arr[w]).charCodeAt(0)) ? json['u_' + String(arr[w]).charCodeAt(0)] + 1 : 1
+      }
+      n_arr.sort(function (a, b) {
+        return a.u - b.u
+      })
+
+      for (var w = 0; w < arr_len; w++) {
+        randomness += Math.abs(w - n_arr[w].i)
+      }
+      randomness = randomness / n_arr.length / (string.length / 2) * 100
+      var repeat = 0
+      var repeat_len = 0
+      for (var w in json) {
+        repeat += json[w]
+        repeat_len += 1
+      }
+      repeat = (1 - repeat / repeat_len / string.length) * 100
+
+      t.push(string.match(/[A-Z]*/gm).join('').length)
+      t.push(string.match(/[a-z]*/gm).join('').length)
+      t.push(string.match(/[0-9]*/gm).join('').length)
+      t.push(string.length - t[0] - t[1] - t[2])
+
+      var t_avg = string.length / 4
+      var t_s = 0
+      for (var w = 0; w < 4; w++) {
+        t_s += Math.pow(t[w] - t_avg, 2)
+      }
+      ty = (1 - Math.min(Math.max(Math.sqrt(t_s / 4) / t_avg, 0), 1)) * 100
+
+      return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.5 + repeat * 2 + ty * 2) / 8.5), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), t[0], t[1], t[2], t[3]]
+    }
+
+    var judgePoints = function (points) {
+      var phrase = ''
+      var r, g, b = 0
+      if (points >= 85) {
+        phrase = 'strong'
+        r = 52
+        g = 199
+        b = 89
+      }
+      if (points >= 60 && points < 85) {
+        phrase = 'average'
+        r = 242
+        g = 190
+        b = 0
+      }
+      if (points >= 45 && points < 60) {
+        phrase = 'fragile'
+        r = 255
+        g = 149
+        b = 0
+      }
+      if (points < 45) {
+        phrase = 'unsafe'
+        r = 255
+        g = 59
+        b = 48
+      }
+      return [phrase, r, g, b]
+    }
+
+    var getReport = function (length_points, randomness_points, repeat_points, complexity_points, n1, n2, n3, n4) {
+
+      var points_summary = 4
+      // Initialize a set to store used instructions
+      var used_instructions = new Set();
+      // Length Instructions
+      if (length_points <= 25 && !used_instructions.has("length_short")) {
+        var Length_Instructions = "The length of this password is too short. Suggest you make it long enough.";
+        used_instructions.add("length_short");
+      } else if (length_points >= 26 && length_points <= 50 && !used_instructions.has("length_not_long")) {
+        var Length_Instructions = "The length of this password isn't long enough. Suggest you make it longer.";
+        used_instructions.add("length_not_long");
+      } else if (length_points >= 51 && length_points <= 75 && !used_instructions.has("length_average")) {
+        var Length_Instructions = "The length of this password is average. Recommend you make it longer.";
+        used_instructions.add("length_average");
+      } else if (length_points >= 76 && !used_instructions.has("length_long_enough")) {
+        var Length_Instructions = "The length of this password is long enough, but please keep awareness of the security of your accounts.";
+        used_instructions.add("length_long_enough");
+        points_summary -= 1
+      }
+
+      // Randomness Instructions
+      if (randomness_points <= 25 && !used_instructions.has("randomness_neat")) {
+        var Randomness_Instructions = "The arrangement of characters in this password is too neat, so the password isn't random. Suggest you rearrange the characters.";
+        used_instructions.add("randomness_neat");
+      } else if (randomness_points >= 26 && randomness_points <= 50 && !used_instructions.has("randomness_not_messy")) {
+        var Randomness_Instructions = "The arrangement of characters in this password isn't messy enough, so the password isn't random. Suggest you rearrange the characters.";
+        used_instructions.add("randomness_not_messy");
+      } else if (randomness_points >= 51 && randomness_points <= 75 && !used_instructions.has("randomness_average")) {
+        var Randomness_Instructions = "The arrangement of characters in this password is randomly distributed on average. Recommend you rearrange the characters.";
+        used_instructions.add("randomness_average");
+      } else if (randomness_points >= 76 && !used_instructions.has("randomness_random")) {
+        var Randomness_Instructions = "The arrangement of characters in this password is entirely random, but please keep awareness of the security of your accounts.";
+        used_instructions.add("randomness_random");
+        points_summary -= 1
+      }
+
+      // Repeat Instructions
+      if (repeat_points <= 25 && !used_instructions.has("repeat_entirely")) {
+        var Repeat_Instructions = "In this password, the characters are entirely repeated, which can pose a danger to your account. Suggest you regenerate a new one.";
+        used_instructions.add("repeat_entirely");
+      } else if (repeat_points >= 26 && repeat_points <= 50 && !used_instructions.has("repeat_repeated")) {
+        var Repeat_Instructions = "In this password, the characters are repeated, which might cause potential dangers to your account. Suggest you regenerate a new one.";
+        used_instructions.add("repeat_repeated");
+      } else if (repeat_points >= 51 && repeat_points <= 75 && !used_instructions.has("repeat_slightly")) {
+        var Repeat_Instructions = "In this password, the characters are slightly repeated, which is not a strict problem, but still suggest you regenerate a new one.";
+        used_instructions.add("repeat_slightly");
+      } else if (repeat_points >= 76 && !used_instructions.has("repeat_hardly")) {
+        var Repeat_Instructions = "In this password, the characters are hardly repeated, but please keep awareness of the security of your accounts.";
+        used_instructions.add("repeat_hardly");
+        points_summary -= 1
+      }
+
+      // Complexity Instructions
+      if (complexity_points <= 25 && !used_instructions.has("complexity_not_complex")) {
+        var Complexity_Instructions = `This password consists of ${n1} uppercases, ${n2} lowercases, ${n3} digits, and ${n4} other types of characters. The types of characters in this password aren't complex and rich enough. Suggest you regenerate a new password that includes all the types of characters.`;
+        used_instructions.add("complexity_not_complex");
+      } else if (complexity_points >= 26 && complexity_points <= 50 && !used_instructions.has("complexity_not_complex_enough")) {
+        var Complexity_Instructions = `This password consists of ${n1} uppercases, ${n2} lowercases, ${n3} digits, and ${n4} types of other characters. The types of characters in this password aren't complex and rich enough. Suggest you regenerate a new password that includes all the types of characters.`;
+        used_instructions.add("complexity_not_complex_enough");
+      } else if (complexity_points >= 51 && complexity_points <= 75 && !used_instructions.has("complexity_not_complex_enough_2")) {
+        var Complexity_Instructions = `This password consists of ${n1} uppercases, ${n2} lowercases, ${n3} digits, and ${n4} other types of characters. The types of characters in this password aren't complex and rich enough. Recommend you regenerate a new password that includes all the types of characters.`;
+        used_instructions.add("complexity_not_complex_enough_2");
+      } else if (complexity_points >= 76 && !used_instructions.has("complexity_complex")) {
+        var Complexity_Instructions = `This password consists of ${n1} uppercases, ${n2} lowercases, ${n3} digits, and ${n4} other types of characters. The types of characters in this password are complex and rich. But please keep awareness of the security of your accounts.`;
+        used_instructions.add("complexity_complex");
+        points_summary -= 1
+      }
+
+      if (points_summary === 0) {
+        points_summary = 'no'
+      }
+
+      var report = `According to the points, this password has ${points_summary} problem${(points_summary > 1 ? 's' : '')}.
+All you have to do is follow the instructions:
+1. ${Length_Instructions}
+2. ${Randomness_Instructions}
+3. ${Repeat_Instructions}
+4. ${Complexity_Instructions}`
+
+      return report
+    }
+
     if (cache) {
       var LS_key = `pwdgen2_saved_b_${id}`
       var LS_cache_key = `pwdgen2_check_cache_b_${id}`
-      if (!(LS.getItem(LS_key) === null)) {
-        var phrase = '--'
+      var nowtime = new Date().getTime()
+      if (LS.hasOwnProperty(LS_cache_key)) {
         var cached_result_points = parseInt(String(LS.getItem(LS_cache_key)).split(':')[1])
         var cached_result_time_stamp = parseInt(String(LS.getItem(LS_cache_key)).split(':')[0])
-        var nowtime = new Date().getTime()
-        var icon = ''
-        if (points >= 85 && points <= 100) {
-          phrase = 'Strong'
-          icon = icon_check_strong
-        }
-        if (points >= 60 && points < 85) {
-          phrase = 'Passable'
-          icon = icon_check_passable
-        }
-        if (points >= 45 && points < 60) {
-          phrase = 'Fragile'
-          icon = icon_check_fragile
-        }
-        if (points >= 0 && points < 45) {
-          phrase = 'Unsafe'
-          icon = icon_check_unsafe
-        }
+        var ju = judgePoints(cached_result_points)
         if ((nowtime - cached_result_time_stamp) < 43200000) {
-          return { 'points': points, 'phrase': phrase, 'icon': icon, 'details': '--' }
+          return { 'points': cached_result_points, 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': null }
         }
         else {
           LS.removeItem(LS_cache_key)
         }
-
       }
     }
-
-    var chars_all = ['ABCDEFGHIJKLMNOPQRSTUVXYZ', 'abcdefghijklmnopqrstuvxyz', '0123456789', '%-+=/,.)(*&$#@}{][^_|~\<>!?})'];
-    var chars_c = 0
-    var chars_l = 0
-    var chars_n = 0
-    var chars_s = 0
-    var pwdarr = string.split('')
-    for (var i = 0; i < pwdarr.length; i++) {
-      for (var t = 0; t < chars_all.length; t++) {
-        if (String(chars_all[t]).indexOf(pwdarr[i]) > -1) {
-          if (t === 0) {
-            chars_c += 1
-          }
-          if (t === 1) {
-            chars_l += 1
-          }
-          if (t === 2) {
-            chars_n += 1
-          }
-          if (t === 3) {
-            chars_s += 1
-          }
-        }
-      }
-    }
-
-    //repeatchars
-    var rreajson = {}
-    var rrea = string.split('')
-    rrea.sort()
-
-    for (var e = 0; e < rrea.length; e++) {
-      var rrajsonname = btoa(encodeURIComponent(rrea[e])).replaceAll('=', '_')
-      if (rreajson[rrajsonname] === undefined) {
-        rreajson[rrajsonname] = 1
-      }
-      else {
-        rreajson[rrajsonname] = parseInt(rreajson[rrajsonname]) + 1
-      }
-    }
-    var rreaal = 0
-    var rreatp = 0
-    for (var x in rreajson) {
-      rreaal += rreajson[x]
-      rreatp += 1
-    }
-    var lenT = 64
-    var len0 = string.length
-    var len1 = chars_c + chars_l + chars_n + chars_s
-    var len2 = (len0 - len1)
-
-    var cpp = Math.floor(chars_c / len1 * 100)
-    var lpp = Math.floor(chars_l / len1 * 100)
-    var npp = Math.floor(chars_n / len1 * 100)
-    var spp = Math.floor(chars_s / len1 * 100)
-
-    var bhc = Math.abs(25 - cpp)
-    var bhl = Math.abs(25 - lpp)
-    var bhn = Math.abs(25 - npp)
-    var bhs = Math.abs(25 - spp)
-    var bha = (bhc + bhl + bhn + bhs) / 4
-
-    var bhrrea = (rreaal / rreatp) / len0
-
-    var rsp = (len1 - ((bha / 100) * len1) + len2 * 0.02) / len0 * 0.5 + (len0 / lenT) * 0.5 - (bhrrea * 0.2)
-
-    if (rsp >= 1) {
-      rsp = 1
-    }
-    if (rsp <= 0) {
-      rsp = 0
-    }
-    var rspkk = Math.floor(rsp * 100)
-
-    var phrase = '--'
-    var icon = ''
-    if (rspkk >= 85 && rspkk <= 100) {
-      phrase = 'Strong'
-      icon = icon_check_strong
-    }
-    if (rspkk >= 60 && rspkk < 85) {
-      phrase = 'Passable'
-      icon = icon_check_passable
-    }
-    if (rspkk >= 45 && rspkk < 60) {
-      phrase = 'Fragile'
-      icon = icon_check_fragile
-    }
-    if (rspkk >= 0 && rspkk < 45) {
-      phrase = 'Unsafe'
-      icon = icon_check_unsafe
-    }
+    var points = getPoints(string)
+    var ju = judgePoints(points[0])
+    var ju_length = judgePoints(points[1])
+    var ju_randomness = judgePoints(points[2])
+    var ju_repeat = judgePoints(points[3])
+    var ju_complexity = judgePoints(points[4])
 
     if (cache) {
-      var chtt = new Date().getTime()
-      LS.setItem(LS_cache_key, chtt + ':' + Math.floor(rsp * 100))
+      LS.setItem(LS_cache_key, nowtime + ':' + points[0])
     }
-    var det_evdis = (len1 - ((bha / 100) * len1) + len2 * 0.02) / len0 * 100
-    //Evenly distributed
-    var det_len = (len0 / lenT) * 100
-    var det_repeat = (bhrrea * 100)
-    if (det_evdis >= 100) {
-      det_evdis = 100
-    }
-    if (det_evdis <= 0) {
-      det_evdis = 0
-    }
-    if (det_len >= 100) {
-      det_len = 100
-    }
-    if (det_len <= 0) {
-      det_len = 0
-    }
-    if (det_repeat >= 100) {
-      det_repeat = 100
-    }
-    if (det_repeat <= 0) {
-      det_repeat = 0
-    }
-    return { 'points': Math.floor(rsp * 100), 'phrase': phrase, 'icon': icon, 'details': { 'evdis': det_evdis, 'len': det_len, 'repeat': det_repeat } }
+    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { len: { points: points[1], color: { r: ju_length[1], g: ju_length[2], b: ju_length[3] } }, randomness: { points: points[2], color: { r: ju_randomness[1], g: ju_randomness[2], b: ju_randomness[3] } }, repeat: { points: points[3], color: { r: ju_repeat[1], g: ju_repeat[2], b: ju_repeat[3] } }, complexity: { points: points[4], color: { r: ju_complexity[1], g: ju_complexity[2], b: ju_complexity[3] } }, report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8]) } }
   }
-
 
   function unicode_arr(str) {
     var str_len = str.length
@@ -1757,7 +1886,24 @@
       qe('.password-page .details-item-value[k="website"] input').value = json.website || ""
       qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
       qe('.password-page .details-note-content').innerHTML = generateHashTagHTML(note_plain_text)
-      var check_result = checkPassword(password, true, id)
+
+      var check = checkPassword(password, false, id)
+      var setCheckResultItem = function (type, i, r, g, b, points, phrase) {
+        var q = `.password-page .details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`
+        var qp = `.password-page .details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-phrase`
+        qe(q).innerText = points
+        qe(q).style.setProperty('--j-check-color-r', r)
+        qe(q).style.setProperty('--j-check-color-g', g)
+        qe(q).style.setProperty('--j-check-color-b', b)
+        qe(qp).innerText = phrase
+      }
+      setCheckResultItem('summary', 'summary', check.color.r, check.color.g, check.color.b, check.points, `This password is ${check.phrase}.`)
+      setCheckResultItem('item', 'length', check.details.len.color.r, check.details.len.color.g, check.details.len.color.b, check.details.len.points, `Length`)
+      setCheckResultItem('item', 'randomness', check.details.randomness.color.r, check.details.randomness.color.g, check.details.randomness.color.b, check.details.randomness.points, `Randomness`)
+      setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.details.repeat.color.g, check.details.repeat.color.b, check.details.repeat.points, `Repeat`)
+      setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.details.complexity.color.g, check.details.complexity.color.b, check.details.complexity.points, `Complexity`)
+      qe(".password-page .details-check-result .details-check-result-report").innerText = check.details.report
+
     }
   }
   function closePassword() {
