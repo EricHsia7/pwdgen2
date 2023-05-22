@@ -2018,15 +2018,15 @@ All you have to do is follow the instructions:
   function checkCommonWordPatterns(string) {
     if (!words_list.loaded) {
       getWordsList()
-      return false
+      return falee
     }
     string = string.toLowerCase()
     var len = string.length
 
     var matched = []
     for (var i = 0; i < len; i++) {
-      if (json.c.hasOwnProperty(string.substring(i, i + 3))) {
-        var arr = json.c[string.substring(i, i + 3)].slice()
+      if (words_list.c.hasOwnProperty(string.substring(i, i + 3))) {
+        var arr = words_list.c[string.substring(i, i + 3)].slice()
         var arr_len = arr.length
         for (var r = 0; r < arr_len; r++) {
           if (string.indexOf(arr[r].trim()) !== -1 && matched.indexOf(arr[r]) < 0) {
@@ -2038,7 +2038,6 @@ All you have to do is follow the instructions:
     matched.sort(function (a, b) {
       return b.length - a.length
     })
-
     var matched_len = matched.length
     for (var g = 0; g < matched_len; g++) {
       string = string.replaceAll(matched[g].trim(), '')
