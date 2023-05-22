@@ -1886,6 +1886,7 @@ All you have to do is follow the instructions:
       qe('.password-page .details-item-value[k="website"] input').value = json.website || ""
       qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
       qe('.password-page .details-note-content').innerHTML = generateHashTagHTML(note_plain_text)
+
       var check = checkPassword(password, false, id)
       var setCheckResultItem = function (type, i, r, g, b, points, phrase) {
         var q = `.password-page .details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`
@@ -1902,6 +1903,7 @@ All you have to do is follow the instructions:
       setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.details.repeat.color.g, check.details.repeat.color.b, check.details.repeat.points, `Repeat`)
       setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.details.complexity.color.g, check.details.complexity.color.b, check.details.complexity.points, `Complexity`)
       qe(".password-page .details-check-result .details-check-result-report").innerText = check.details.report
+
     }
   }
   function closePassword() {
