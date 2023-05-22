@@ -1126,6 +1126,8 @@
   var searchIndex = {}
   var search_sticky = false
   var container_scrollTop = 0
+  var words_list = { 'loaded': false, 'progress': 0, 'c': {} }
+
   function encryptString(string) {
     var initialization_vector_pattern = [
       {
@@ -1942,6 +1944,94 @@ All you have to do is follow the instructions:
     qe('head meta[kji="light"]').setAttribute('content', c)
     qe('head meta[kji="dark"]').setAttribute('content', d)
   }
+
+  function fetchWithProgress(url, progressCallback) {
+    return new Promise((resolve, reject) => {
+      // Fetch the URL using the Fetch API
+      fetch(url).then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
+        const contentLength = Number(response.headers.get('Content-Length'));
+        const reader = response.body.getReader();
+        var receivedBytes = 0;
+        const decoder = new TextDecoder();
+        var textContent = '';
+        function read() {
+          reader.read().then(({ done, value }) => {
+            if (done) {
+              resolve(textContent);
+              return;
+            }
+            receivedBytes += value.length;
+            const progress = receivedBytes / 85878 * 100
+            progressCallback(progress);
+            const chunk = decoder.decode(value, { stream: true });
+            textContent += chunk;
+            read();
+          }).catch(error => {
+            reject(error);
+          });
+        }
+        read();
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+  function getWordsList() {
+    if (!words_list.loaded) {
+      var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQLnA8hJhyZ8V7ZxrgeF6l7kIHahobdTqkXwdmEcBgbC0UNdSFCU1dy7wuFMOzuq_DBx49uzCjknOMJ/pub?gid=0&single=true&output=csv&' + new Date().getTime();
+      var handleProgress = function (progress) {
+        words_list.progress = progress
+      }
+      fetchWithProgress(url, handleProgress).then(function (text) {
+        var array = text.split(/\n/g).forEach(e => {
+          if (words_list.c.hasOwnProperty(e.substring(0, 3))) {
+            words_list.c[e.substring(0, 3)].push(e)
+          }
+          else {
+            words_list.c[e.substring(0, 3)] = [e]
+          }
+        })
+        words_list.loaded = true
+      }).catch(error => {
+        //console.error('Error fetching URL:', error);
+      });
+    }
+  }
+
+  function checkCommonWordPatterns(string) {
+    if (!words_list.loaded) {
+      getWordsList()
+      return false
+    }
+    string = string.toLowerCase()
+    var len = string.length
+
+    var matched = []
+    for (var i = 0; i < len; i++) {
+      if (json.c.hasOwnProperty(string.substring(i, i + 3))) {
+        var arr = json.c[string.substring(i, i + 3)].slice()
+        var arr_len = arr.length
+        for (var r = 0; r < arr_len; r++) {
+          if (string.indexOf(arr[r].trim()) !== -1 && matched.indexOf(arr[r]) < 0) {
+            matched.push(arr[r])
+          }
+        }
+      }
+    }
+    matched.sort(function (a, b) {
+      return b.length - a.length
+    })
+
+    var matched_len = matched.length
+    for (var g = 0; g < matched_len; g++) {
+      string = string.replaceAll(matched[g].trim(), '')
+    }
+    return string.length / len
+  }
+
 
   qe(".search").addEventListener("click", function (e) {
     openSearch()
