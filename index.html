@@ -2018,7 +2018,7 @@ All you have to do is follow the instructions:
   function checkCommonWordPatterns(string) {
     if (!words_list.loaded) {
       getWordsList()
-      return falee
+      return false
     }
     string = string.toLowerCase()
     var len = string.length
