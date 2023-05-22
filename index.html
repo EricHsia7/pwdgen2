@@ -1074,6 +1074,10 @@
           <div class="details-check-result-points"></div>
           <div class="details-check-result-phrase"></div>
         </div>
+        <div class="details-check-result-item" i="commonality">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
         <div class="details-check-result-report"></div>
       </div>
     </div>
@@ -1426,7 +1430,7 @@
       ty = (1 - Math.min(Math.max(Math.sqrt(t_s / 4) / t_avg, 0), 1)) * 100
 
       var commonWords = checkCommonWordPatterns(string) * 100
-      return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.5 + repeat * 2 + ty * 2 + commonWords * 2) / 10.5), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), t[0], t[1], t[2], t[3]]
+      return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.5 + repeat * 2 + ty * 2 + commonWords * 2) / 10.5), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), commonWords, t[0], t[1], t[2], t[3]]
     }
 
     var judgePoints = function (points) {
@@ -1564,11 +1568,11 @@ All you have to do is follow the instructions:
     var ju_randomness = judgePoints(points[2])
     var ju_repeat = judgePoints(points[3])
     var ju_complexity = judgePoints(points[4])
-
+    var ju_commonality = judgePoints(points[5])
     if (cache) {
       LS.setItem(LS_cache_key, nowtime + ':' + points[0])
     }
-    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { len: { points: points[1], color: { r: ju_length[1], g: ju_length[2], b: ju_length[3] } }, randomness: { points: points[2], color: { r: ju_randomness[1], g: ju_randomness[2], b: ju_randomness[3] } }, repeat: { points: points[3], color: { r: ju_repeat[1], g: ju_repeat[2], b: ju_repeat[3] } }, complexity: { points: points[4], color: { r: ju_complexity[1], g: ju_complexity[2], b: ju_complexity[3] } }, report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8]) } }
+    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { len: { points: points[1], color: { r: ju_length[1], g: ju_length[2], b: ju_length[3] } }, randomness: { points: points[2], color: { r: ju_randomness[1], g: ju_randomness[2], b: ju_randomness[3] } }, repeat: { points: points[3], color: { r: ju_repeat[1], g: ju_repeat[2], b: ju_repeat[3] } }, complexity: { points: points[4], color: { r: ju_complexity[1], g: ju_complexity[2], b: ju_complexity[3] }, commonality: { r: ju_commonality[1], g: ju_commonality[2], b: ju_commonality[3] } }, report: getReport(points[1], points[2], points[3], points[4], points[6], points[7], points[8], points[9]) } }
   }
 
   function unicode_arr(str) {
@@ -1905,6 +1909,8 @@ All you have to do is follow the instructions:
       setCheckResultItem('item', 'randomness', check.details.randomness.color.r, check.details.randomness.color.g, check.details.randomness.color.b, check.details.randomness.points, `Randomness`)
       setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.details.repeat.color.g, check.details.repeat.color.b, check.details.repeat.points, `Repeat`)
       setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.details.complexity.color.g, check.details.complexity.color.b, check.details.complexity.points, `Complexity`)
+      setCheckResultItem('item', 'commonality', check.details.commonality.color.r, check.details.commonality.color.g, check.details.commonality.color.b, check.details.commonality.points, `Commonality`)
+
       qe(".password-page .details-check-result .details-check-result-report").innerText = check.details.report
 
     }
@@ -2019,7 +2025,7 @@ All you have to do is follow the instructions:
   function checkCommonWordPatterns(string) {
     if (!words_list.loaded) {
       getWordsList()
-      return false
+      return 0
     }
     string = string.toLowerCase()
     var len = string.length
@@ -2086,7 +2092,7 @@ All you have to do is follow the instructions:
       search_sticky = false
     }
   })
-getWordsList()
+  getWordsList()
 </script>
 
 </html>
