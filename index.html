@@ -1074,7 +1074,7 @@
           <div class="details-check-result-points"></div>
           <div class="details-check-result-phrase"></div>
         </div>
-        <div class="details-check-result-item" i="commonality">
+        <div class="details-check-result-item" i="uniqueness">
           <div class="details-check-result-points"></div>
           <div class="details-check-result-phrase"></div>
         </div>
@@ -1568,7 +1568,7 @@ All you have to do is follow the instructions:
     var ju_randomness = judgePoints(points[2])
     var ju_repeat = judgePoints(points[3])
     var ju_complexity = judgePoints(points[4])
-    var ju_commonality = judgePoints(points[5])
+    var ju_uniqueness = judgePoints(points[5])
     if (cache) {
       LS.setItem(LS_cache_key, nowtime + ':' + points[0])
     }
@@ -1611,12 +1611,12 @@ All you have to do is follow the instructions:
             b: ju_complexity[3]
           }
         },
-        commonality: {
+        uniqueness: {
           points: points[5],
           color: {
-            r: ju_commonality[1],
-            g: ju_commonality[2],
-            b: ju_commonality[3]
+            r: ju_uniqueness[1],
+            g: ju_uniqueness[2],
+            b: ju_uniqueness[3]
           }
         }
         ,
@@ -1959,7 +1959,7 @@ All you have to do is follow the instructions:
       setCheckResultItem('item', 'randomness', check.details.randomness.color.r, check.details.randomness.color.g, check.details.randomness.color.b, check.details.randomness.points, `Randomness`)
       setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.details.repeat.color.g, check.details.repeat.color.b, check.details.repeat.points, `Repeat`)
       setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.details.complexity.color.g, check.details.complexity.color.b, check.details.complexity.points, `Complexity`)
-      setCheckResultItem('item', 'commonality', check.details.commonality.color.r, check.details.commonality.color.g, check.details.commonality.color.b, check.details.commonality.points, `Commonality`)
+      setCheckResultItem('item', 'uniqueness', check.details.uniqueness.color.r, check.details.uniqueness.color.g, check.details.uniqueness.color.b, check.details.uniqueness.points, `Uniqueness`)
 
       qe(".password-page .details-check-result .details-check-result-report").innerText = check.details.report
 
