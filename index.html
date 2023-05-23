@@ -1572,7 +1572,56 @@ All you have to do is follow the instructions:
     if (cache) {
       LS.setItem(LS_cache_key, nowtime + ':' + points[0])
     }
-    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { len: { points: points[1], color: { r: ju_length[1], g: ju_length[2], b: ju_length[3] } }, randomness: { points: points[2], color: { r: ju_randomness[1], g: ju_randomness[2], b: ju_randomness[3] } }, repeat: { points: points[3], color: { r: ju_repeat[1], g: ju_repeat[2], b: ju_repeat[3] } }, complexity: { points: points[4], color: { r: ju_complexity[1], g: ju_complexity[2], b: ju_complexity[3] }, commonality: { r: ju_commonality[1], g: ju_commonality[2], b: ju_commonality[3] } }, report: getReport(points[1], points[2], points[3], points[4], points[6], points[7], points[8], points[9]) } }
+    return {
+      'points': points[0],
+      'phrase': ju[0],
+      'color':
+      {
+        r: ju[1],
+        g: ju[2],
+        b: ju[3]
+      },
+      'details': {
+        len: {
+          points: points[1],
+          color:
+            { r: ju_length[1], g: ju_length[2], b: ju_length[3] }
+        },
+        randomness: {
+          points: points[2],
+          color: {
+            r: ju_randomness[1],
+            g: ju_randomness[2],
+            b: ju_randomness[3]
+          }
+        },
+        repeat: {
+          points: points[3],
+          color: {
+            r: ju_repeat[1],
+            g: ju_repeat[2],
+            b: ju_repeat[3]
+          }
+        },
+        complexity: {
+          points: points[4],
+          color: {
+            r: ju_complexity[1],
+            g: ju_complexity[2],
+            b: ju_complexity[3]
+          },
+          commonality: {
+            points: points[5],
+            color: {
+              r: ju_commonality[1],
+              g: ju_commonality[2],
+              b: ju_commonality[3]
+            }
+          }
+        },
+        report: getReport(points[1], points[2], points[3], points[4], points[6], points[7], points[8], points[9])
+      }
+    }
   }
 
   function unicode_arr(str) {
