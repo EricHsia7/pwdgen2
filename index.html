@@ -2102,7 +2102,38 @@ All you have to do is follow the instructions:
     return string.length / len
   }
 
-
+  function setPassword(password, username, time, website, note, id) {
+    var encryption = encryptString(password)
+    var json = {
+      website: website,
+      encrypted_password: encryption[0],
+      aes_iv: encryption[1],
+      note: btoa(enur(note)),
+      time_stamp: time,
+      id: id
+    }
+    LS.setItem('pwdgen2_saved_b_' + id, JSON.stringify(json))
+  }
+  function addPassword(password, username, website, note) {
+    var id_pattern = [
+      {
+        type: "group",
+        group: [
+          {
+            type: "regex",
+            regex: "/[A-Za-z0-9]/g",
+            quantity: 32,
+            repeat: true
+          }
+        ],
+        actions: ["shuffle"]
+      }
+    ]
+    var time = new Date()
+    var id = pwd_fine_grained_pattern(id_pattern)
+    setPassword(password, username, time, website, note, id)
+    return id
+  }
   qe(".search").addEventListener("click", function (e) {
     openSearch()
   })
