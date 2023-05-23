@@ -2102,6 +2102,18 @@ All you have to do is follow the instructions:
     return string.length / len
   }
 
+  function setPassword(password, username, time, website, note, id) {
+    var encryption = encryptString(password)
+    var json = {
+      website: website,
+      encrypted_password: encryption[0],
+      aes_iv: encryption[1],
+      note: note,
+      time_stamp: time,
+      id: id
+    }
+    LS.setItem('pwdgen2_saved_b_' + id, JSON.stringify(json))
+  }
 
   qe(".search").addEventListener("click", function (e) {
     openSearch()
