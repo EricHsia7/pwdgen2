@@ -1533,13 +1533,13 @@
       }
       // Uniqueness Instructions
       if (uniqueness_points <= 25 && !used_instructions.has("uniqueness_not_unique")) {
-        var Uniqueness_Instructions = `This password includes many common words, Suggest you remove the words from this password to make it more secure.`
+        var Uniqueness_Instructions = `This password includes many common words. Suggest you remove the words from this password to make it more secure.`
         used_instructions.add("complexity_not_complex");
       } else if (uniqueness_points >= 26 && uniqueness_points <= 50 && !used_instructions.has("uniqueness_not_unique_enough")) {
-        var Uniqueness_Instructions = `This password includes some common words, Suggest you remove the words from this password to make it more secure.`
+        var Uniqueness_Instructions = `This password includes some common words. Suggest you remove the words from this password to make it more secure.`
         used_instructions.add("complexity_not_complex_enough");
       } else if (uniqueness_points >= 51 && uniqueness_points <= 99 && !used_instructions.has("uniqueness_not_unique_enough_2")) {
-        var Uniqueness_Instructions = `This password includes common words, Suggest you remove the words from this password to make it more secure.`
+        var Uniqueness_Instructions = `This password includes common words. Suggest you remove the words from this password to make it more secure.`
         used_instructions.add("complexity_not_complex_enough_2");
       } else if (uniqueness_points >= 100 && !used_instructions.has("uniqueness_unique")) {
         var Uniqueness_Instructions = `This password doesn't include common words collected in our list. But please keep awareness of the security of your accounts.`
