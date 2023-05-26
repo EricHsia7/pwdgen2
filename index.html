@@ -1463,9 +1463,9 @@
       return [phrase, r, g, b]
     }
 
-    var getReport = function (length_points, randomness_points, repeat_points, complexity_points, n1, n2, n3, n4) {
+    var getReport = function (length_points, randomness_points, repeat_points, complexity_points, uniqueness_points, n1, n2, n3, n4) {
 
-      var points_summary = 4
+      var points_summary = 5
       // Initialize a set to store used instructions
       var used_instructions = new Set();
       // Length Instructions
@@ -1531,6 +1531,21 @@
         used_instructions.add("complexity_complex");
         points_summary -= 1
       }
+      // Uniqueness Instructions
+      if (uniqueness_points <= 25 && !used_instructions.has("uniqueness_not_unique")) {
+        var Uniqueness_Instructions = `This password includes many common words, Suggest you remove the words from this password to make it more secure.`
+        used_instructions.add("complexity_not_complex");
+      } else if (uniqueness_points >= 26 && uniqueness_points <= 50 && !used_instructions.has("uniqueness_not_unique_enough")) {
+        var Uniqueness_Instructions = `This password includes some common words, Suggest you remove the words from this password to make it more secure.`
+        used_instructions.add("complexity_not_complex_enough");
+      } else if (uniqueness_points >= 51 && uniqueness_points <= 99 && !used_instructions.has("uniqueness_not_unique_enough_2")) {
+        var Uniqueness_Instructions = `This password includes common words, Suggest you remove the words from this password to make it more secure.`
+        used_instructions.add("complexity_not_complex_enough_2");
+      } else if (uniqueness_points >= 100 && !used_instructions.has("uniqueness_unique")) {
+        var Uniqueness_Instructions = `This password doesn't include common words collected in our list. But please keep awareness of the security of your accounts.`
+        used_instructions.add("complexity_complex");
+        points_summary -= 1
+      }
 
       if (points_summary === 0) {
         points_summary = 'no'
@@ -1541,7 +1556,8 @@ All you have to do is follow the instructions:
 1. ${Length_Instructions}
 2. ${Randomness_Instructions}
 3. ${Repeat_Instructions}
-4. ${Complexity_Instructions}`
+4. ${Complexity_Instructions}
+5. ${Uniqueness_Instructions}`
 
       return report
     }
@@ -1620,7 +1636,7 @@ All you have to do is follow the instructions:
           }
         }
         ,
-        report: getReport(points[1], points[2], points[3], points[4], points[6], points[7], points[8], points[9])
+        report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8], points[9])
       }
     }
   }
