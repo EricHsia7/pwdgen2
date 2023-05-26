@@ -1074,6 +1074,10 @@
           <div class="details-check-result-points"></div>
           <div class="details-check-result-phrase"></div>
         </div>
+        <div class="details-check-result-item" i="uniqueness">
+          <div class="details-check-result-points"></div>
+          <div class="details-check-result-phrase"></div>
+        </div>
         <div class="details-check-result-report"></div>
       </div>
     </div>
@@ -1126,6 +1130,8 @@
   var searchIndex = {}
   var search_sticky = false
   var container_scrollTop = 0
+  var words_list = { 'loaded': false, 'progress': 0, 'c': {} }
+
   function encryptString(string) {
     var initialization_vector_pattern = [
       {
@@ -1423,7 +1429,8 @@
       }
       ty = (1 - Math.min(Math.max(Math.sqrt(t_s / 4) / t_avg, 0), 1)) * 100
 
-      return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.5 + repeat * 2 + ty * 2) / 8.5), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), t[0], t[1], t[2], t[3]]
+      var commonWords = checkCommonWordPatterns(string) * 100
+      return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.5 + repeat * 2 + ty * 2 + commonWords * 2) / 10.5), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), Math.floor(commonWords), t[0], t[1], t[2], t[3]]
     }
 
     var judgePoints = function (points) {
@@ -1456,9 +1463,9 @@
       return [phrase, r, g, b]
     }
 
-    var getReport = function (length_points, randomness_points, repeat_points, complexity_points, n1, n2, n3, n4) {
+    var getReport = function (length_points, randomness_points, repeat_points, complexity_points, uniqueness_points, n1, n2, n3, n4) {
 
-      var points_summary = 4
+      var points_summary = 5
       // Initialize a set to store used instructions
       var used_instructions = new Set();
       // Length Instructions
@@ -1524,6 +1531,21 @@
         used_instructions.add("complexity_complex");
         points_summary -= 1
       }
+      // Uniqueness Instructions
+      if (uniqueness_points <= 25 && !used_instructions.has("uniqueness_not_unique")) {
+        var Uniqueness_Instructions = `This password includes many common words. Suggest you remove the words from this password to make it more secure.`
+        used_instructions.add("complexity_not_complex");
+      } else if (uniqueness_points >= 26 && uniqueness_points <= 50 && !used_instructions.has("uniqueness_not_unique_enough")) {
+        var Uniqueness_Instructions = `This password includes some common words. Suggest you remove the words from this password to make it more secure.`
+        used_instructions.add("complexity_not_complex_enough");
+      } else if (uniqueness_points >= 51 && uniqueness_points <= 99 && !used_instructions.has("uniqueness_not_unique_enough_2")) {
+        var Uniqueness_Instructions = `This password includes common words. Suggest you remove the words from this password to make it more secure.`
+        used_instructions.add("complexity_not_complex_enough_2");
+      } else if (uniqueness_points >= 100 && !used_instructions.has("uniqueness_unique")) {
+        var Uniqueness_Instructions = `This password doesn't include common words collected in our list. But please keep awareness of the security of your accounts.`
+        used_instructions.add("complexity_complex");
+        points_summary -= 1
+      }
 
       if (points_summary === 0) {
         points_summary = 'no'
@@ -1534,7 +1556,8 @@ All you have to do is follow the instructions:
 1. ${Length_Instructions}
 2. ${Randomness_Instructions}
 3. ${Repeat_Instructions}
-4. ${Complexity_Instructions}`
+4. ${Complexity_Instructions}
+5. ${Uniqueness_Instructions}`
 
       return report
     }
@@ -1561,11 +1584,61 @@ All you have to do is follow the instructions:
     var ju_randomness = judgePoints(points[2])
     var ju_repeat = judgePoints(points[3])
     var ju_complexity = judgePoints(points[4])
-
+    var ju_uniqueness = judgePoints(points[5])
     if (cache) {
       LS.setItem(LS_cache_key, nowtime + ':' + points[0])
     }
-    return { 'points': points[0], 'phrase': ju[0], 'color': { r: ju[1], g: ju[2], b: ju[3] }, 'details': { len: { points: points[1], color: { r: ju_length[1], g: ju_length[2], b: ju_length[3] } }, randomness: { points: points[2], color: { r: ju_randomness[1], g: ju_randomness[2], b: ju_randomness[3] } }, repeat: { points: points[3], color: { r: ju_repeat[1], g: ju_repeat[2], b: ju_repeat[3] } }, complexity: { points: points[4], color: { r: ju_complexity[1], g: ju_complexity[2], b: ju_complexity[3] } }, report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8]) } }
+    return {
+      'points': points[0],
+      'phrase': ju[0],
+      'color':
+      {
+        r: ju[1],
+        g: ju[2],
+        b: ju[3]
+      },
+      'details': {
+        len: {
+          points: points[1],
+          color:
+            { r: ju_length[1], g: ju_length[2], b: ju_length[3] }
+        },
+        randomness: {
+          points: points[2],
+          color: {
+            r: ju_randomness[1],
+            g: ju_randomness[2],
+            b: ju_randomness[3]
+          }
+        },
+        repeat: {
+          points: points[3],
+          color: {
+            r: ju_repeat[1],
+            g: ju_repeat[2],
+            b: ju_repeat[3]
+          }
+        },
+        complexity: {
+          points: points[4],
+          color: {
+            r: ju_complexity[1],
+            g: ju_complexity[2],
+            b: ju_complexity[3]
+          }
+        },
+        uniqueness: {
+          points: points[5],
+          color: {
+            r: ju_uniqueness[1],
+            g: ju_uniqueness[2],
+            b: ju_uniqueness[3]
+          }
+        }
+        ,
+        report: getReport(points[1], points[2], points[3], points[4], points[5], points[6], points[7], points[8], points[9])
+      }
+    }
   }
 
   function unicode_arr(str) {
@@ -1902,6 +1975,8 @@ All you have to do is follow the instructions:
       setCheckResultItem('item', 'randomness', check.details.randomness.color.r, check.details.randomness.color.g, check.details.randomness.color.b, check.details.randomness.points, `Randomness`)
       setCheckResultItem('item', 'repeat', check.details.repeat.color.r, check.details.repeat.color.g, check.details.repeat.color.b, check.details.repeat.points, `Repeat`)
       setCheckResultItem('item', 'complexity', check.details.complexity.color.r, check.details.complexity.color.g, check.details.complexity.color.b, check.details.complexity.points, `Complexity`)
+      setCheckResultItem('item', 'uniqueness', check.details.uniqueness.color.r, check.details.uniqueness.color.g, check.details.uniqueness.color.b, check.details.uniqueness.points, `Uniqueness`)
+
       qe(".password-page .details-check-result .details-check-result-report").innerText = check.details.report
 
     }
@@ -1943,6 +2018,138 @@ All you have to do is follow the instructions:
     qe('head meta[kji="dark"]').setAttribute('content', d)
   }
 
+  function fetchWithProgress(url, progressCallback) {
+    return new Promise((resolve, reject) => {
+      // Fetch the URL using the Fetch API
+      fetch(url).then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
+        const contentLength = Number(response.headers.get('Content-Length'));
+        const reader = response.body.getReader();
+        var receivedBytes = 0;
+        const decoder = new TextDecoder();
+        var textContent = '';
+        function read() {
+          reader.read().then(({ done, value }) => {
+            if (done) {
+              resolve(textContent);
+              return;
+            }
+            receivedBytes += value.length;
+            const progress = receivedBytes / 85878 * 100
+            progressCallback(progress);
+            const chunk = decoder.decode(value, { stream: true });
+            textContent += chunk;
+            read();
+          }).catch(error => {
+            reject(error);
+          });
+        }
+        read();
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+  function getWordsList() {
+    if (!words_list.loaded) {
+      if (LS.hasOwnProperty('pwdgen2_words_list_cache')) {
+        var text = String(LS.getItem('pwdgen2_words_list_cache'))
+        var array = text.split(/\n/g).forEach(e => {
+          if (words_list.c.hasOwnProperty(e.substring(0, 3))) {
+            words_list.c[e.substring(0, 3)].push(e)
+          }
+          else {
+            words_list.c[e.substring(0, 3)] = [e]
+          }
+        })
+        words_list.loaded = true
+        return ''
+      }
+      var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQLnA8hJhyZ8V7ZxrgeF6l7kIHahobdTqkXwdmEcBgbC0UNdSFCU1dy7wuFMOzuq_DBx49uzCjknOMJ/pub?gid=0&single=true&output=csv&' + new Date().getTime();
+      var handleProgress = function (progress) {
+        words_list.progress = progress
+      }
+      fetchWithProgress(url, handleProgress).then(function (text) {
+        var array = text.split(/\n/g).forEach(e => {
+          if (words_list.c.hasOwnProperty(e.substring(0, 3))) {
+            words_list.c[e.substring(0, 3)].push(e)
+          }
+          else {
+            words_list.c[e.substring(0, 3)] = [e]
+          }
+        })
+        words_list.loaded = true
+        LS.setItem('pwdgen2_words_list_cache', text)
+      }).catch(error => {
+        //console.error('Error fetching URL:', error);
+      });
+    }
+  }
+
+  function checkCommonWordPatterns(string) {
+    if (!words_list.loaded) {
+      getWordsList()
+      return 0
+    }
+    string = string.toLowerCase()
+    var len = string.length
+
+    var matched = []
+    for (var i = 0; i < len; i++) {
+      if (words_list.c.hasOwnProperty(string.substring(i, i + 3))) {
+        var arr = words_list.c[string.substring(i, i + 3)].slice()
+        var arr_len = arr.length
+        for (var r = 0; r < arr_len; r++) {
+          if (string.indexOf(arr[r].trim()) !== -1 && matched.indexOf(arr[r]) < 0) {
+            matched.push(arr[r])
+          }
+        }
+      }
+    }
+    matched.sort(function (a, b) {
+      return b.length - a.length
+    })
+    var matched_len = matched.length
+    for (var g = 0; g < matched_len; g++) {
+      string = string.replaceAll(matched[g].trim(), '')
+    }
+    return string.length / len
+  }
+
+  function setPassword(password, username, time, website, note, id) {
+    var encryption = encryptString(password)
+    var json = {
+      website: website,
+      encrypted_password: encryption[0],
+      aes_iv: encryption[1],
+      note: btoa(enur(note)),
+      time_stamp: time,
+      id: id
+    }
+    LS.setItem('pwdgen2_saved_b_' + id, JSON.stringify(json))
+  }
+  function addPassword(password, username, website, note) {
+    var id_pattern = [
+      {
+        type: "group",
+        group: [
+          {
+            type: "regex",
+            regex: "/[A-Za-z0-9]/g",
+            quantity: 32,
+            repeat: true
+          }
+        ],
+        actions: ["shuffle"]
+      }
+    ]
+    var time = new Date()
+    var id = pwd_fine_grained_pattern(id_pattern)
+    setPassword(password, username, time, website, note, id)
+    return id
+  }
   qe(".search").addEventListener("click", function (e) {
     openSearch()
   })
@@ -1982,7 +2189,7 @@ All you have to do is follow the instructions:
       search_sticky = false
     }
   })
-
+  getWordsList()
 </script>
 
 </html>
