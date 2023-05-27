@@ -1152,9 +1152,9 @@
     <div class="search-output-box">
       <div class="search-output"></div>
     </div>
-    <div class="options_mask" r-click="closeoptions()"></div>
+    <div class="options_mask" onclick="closeoptions()"></div>
     <div class="options">
-      <li r-click="editcountdown()" style="--options-list-n:0;" style="--options-list-n:0;" y="edit" group="0" b="0">
+      <li onclick="editcountdown()" style="--options-list-n:0;" style="--options-list-n:0;" y="edit" group="0" b="0">
         <div class="l_options_title">Add Password</div>
         <div class="l_options_icon">
           <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1162,7 +1162,7 @@
           </svg>
         </div>
       </li>
-      <li r-click="openoptionscontentbox()" style="--options-list-n:1;" y="openoptionscontentbox" group="0">
+      <li onclick="openoptionscontentbox()" style="--options-list-n:1;" y="openoptionscontentbox" group="0">
         <div class="l_options_title">Settings</div>
         <div class="l_options_icon">
           <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1170,7 +1170,7 @@
           </svg>
         </div>
       </li>
-      <li r-click="refreshpage()" style="--options-list-n:2;" y="refresh" group="0">
+      <li onclick="refreshpage()" style="--options-list-n:2;" y="refresh" group="0">
         <div class="l_options_title">Refresh</div>
         <div class="l_options_icon">
           <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1178,7 +1178,7 @@
           </svg>
         </div>
       </li>
-      <li r-click="viewongithub()" style="--options-list-n:3;" y="github" group="0">
+      <li onclick="viewongithub()" style="--options-list-n:3;" y="github" group="0">
         <div class="l_options_title">Github</div>
         <div class="l_options_icon">
           <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1268,7 +1268,7 @@
   <div class="pattern_creator">
     <div class="pattern_creator_title">
       Pattern Creator
-      <div class="btn2-l" r-click="closePatternCreator()">
+      <div class="btn2-l" onclick="closePatternCreator()">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
         </svg>
@@ -2329,7 +2329,7 @@ All you have to do is follow the instructions:
   function openOptions(r) {
     qe('.options_mask').style.setProperty('display', 'block')
     qe('.options').style.setProperty('display', 'inline-block')
-    qe('.options').style.setProperty('--js-options-list-count', qe('.options li[group="' + r + '"]').length)
+    qe('.options').style.setProperty('--js-options-list-count', document.querySelectorAll('.options li[group="' + r + '"]').length)
     setTimeout(function () {
       qe('.options').setAttribute('k', '1')
     }, 1)
