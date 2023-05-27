@@ -977,7 +977,7 @@
 
     .options {
       position: fixed;
-      top: 60px;
+      top: 50px;
       right: 10px;
       transform: scale(0);
       transform-origin: top right;
@@ -1065,7 +1065,7 @@
       height: 50px;
       display: flex;
       align-items: center;
-      color: var(--d-333333);
+      color: var(--p-333333);
       font-size: 16px;
     }
 
@@ -1085,6 +1085,10 @@
     .options li .l_options_icon svg {
       width: 20px;
       height: 20px;
+    }
+
+    .options li .l_options_icon svg path {
+      fill: var(--p-333333)
     }
   </style>
   <style id="options_css"></style>
@@ -2331,6 +2335,7 @@ All you have to do is follow the instructions:
     }, 1)
     qe('#options_css').innerHTML = '.options li{display:none;}.options li[group="' + r + '"] {display:flex;}'
   }
+
   function closeOptions() {
     qe('.options').setAttribute('k', '0')
     qe('.options_mask').style.setProperty('display', 'none')
