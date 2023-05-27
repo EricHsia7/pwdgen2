@@ -2326,6 +2326,23 @@ All you have to do is follow the instructions:
 
   }
 
+  function openOptions(r) {
+    qe('.options_mask').style.setProperty('display', 'block')
+    qe('.options').style.setProperty('display', 'inline-block')
+    qe('.options').style.setProperty('--js-options-list-count', qe('.options li[group="' + r + '"]').length)
+    setTimeout(function () {
+      qe('.options').setAttribute('k', '1')
+    }, 1)
+    qe('#options_css').innerHTML = '.options li{display:none;}.options li[group="' + r + '"] {display:flex;}'
+  }
+  function closeOptions() {
+    qe('.options').setAttribute('k', '0')
+    qe('.options_mask').style.setProperty('display', 'none')
+    setTimeout(function () {
+      qe('.options').style.setProperty('display', 'none')
+    }, 350)
+  }
+
   qe(".search").addEventListener("click", function (e) {
     openSearch()
   })
