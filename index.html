@@ -962,6 +962,130 @@
       background: var(--g-f4f4f4);
       color: var(--g-4e4e4e);
     }
+
+    .options_mask {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      display: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .options {
+      position: fixed;
+      top: 60px;
+      right: 10px;
+      transform: scale(0);
+      transform-origin: top right;
+      opacity: 0;
+      width: clamp(100px, calc(100% - 20px), 230px);
+      min-height: 50px;
+      height: 50px;
+      display: none;
+      background: rgba(var(--d-options-r), var(--d-options-g), var(--d-options-b), 0.5);
+      backdrop-filter: blur(11px);
+      -webkit-backdrop-filter: blur(11px);
+      border-radius: 15px;
+      overflow: hidden;
+      max-height: 450px;
+      user-select: none;
+      -webkit-user-select: none;
+      box-shadow: 0px 0px 32px -11px rgba(0, 0, 0, 0.15);
+      transition: 0.25s;
+      transition-timing-function: cubic-bezier(0.175, 0.660, 0.610, 0.970);
+      will-change: transform, opacity;
+    }
+
+    .options[k="1"] {
+      transform: scale(1);
+      opacity: 1;
+      transition: 0.45s;
+      transition-timing-function: cubic-bezier(0.190, 1.100, 0.420, 1.025);
+      height: calc(var(--js-options-list-count) * 50px);
+    }
+
+    .options[s="-1"] {
+      transform: scale(1);
+      transition: 0.25s;
+      transition-timing-function: linear;
+    }
+
+    .options[s="1"] {
+      transform: scale(calc(95 / 100));
+      transition: 0.25s;
+      transition-timing-function: linear;
+      box-shadow: 0px 0px 32px -11px rgba(0, 0, 0, 0);
+      overflow: visible;
+    }
+
+    .options li {
+      width: 100%;
+      height: 50px;
+      border-top: 1px solid var(--d-e3e3e3);
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      position: absolute;
+      right: 0px;
+      top: calc(var(--options-list-n) * 50px);
+    }
+
+    .options li[b="0"] {
+      border: none;
+    }
+
+    .options[s="1"] li {
+      opacity: 0.6;
+    }
+
+    .options[s="1"] li[s="1"] {
+      opacity: 1;
+      transition-timing-function: cubic-bezier(0.190, 1.100, 0.420, 1.025);
+      transform: scale(calc(100 / 95));
+      transition: 0.25s;
+      transform-origin: top right;
+      z-index: 30;
+      background: rgba(var(--d-options-r), var(--d-options-g), var(--d-options-b), 0.5);
+      box-shadow: 0px 0px 32px -11px rgba(0, 0, 0, 0.15);
+      border-radius: 15px;
+      backdrop-filter: blur(11px);
+      -webkit-backdrop-filter: blur(11px);
+      border: 0px solid rgba(0, 0, 0, 0);
+    }
+
+    .options li .l_options_title {
+      position: absolute;
+      top: 0px;
+      left: 12px;
+      width: calc(100% - 50px - 10px);
+      height: 50px;
+      display: flex;
+      align-items: center;
+      color: var(--d-333333);
+      font-size: 16px;
+    }
+
+    .options li .l_options_icon {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .options li .l_options_icon svg {
+      width: 20px;
+      height: 20px;
+    }
   </style>
 
   <style>
@@ -1023,6 +1147,41 @@
     </div>
     <div class="search-output-box">
       <div class="search-output"></div>
+    </div>
+    <div class="options_mask" r-click="closeoptions()"></div>
+    <div class="options">
+      <li r-click="editcountdown()" style="--options-list-n:0;" style="--options-list-n:0;" y="edit" group="0" b="0">
+        <div class="l_options_title">Add Password</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M28.5714 64L28.5714 35.4286L1.06581e-14 35.4286L1.06581e-14 28.5714L28.5714 28.5714L28.5714 0L35.4286 0L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
+      <li r-click="openoptionscontentbox()" style="--options-list-n:1;" y="openoptionscontentbox" group="0">
+        <div class="l_options_title">Settings</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M43.4375 0L43.4375 19.0938L47.5312 19.0938L47.5312 11.625L64 11.625L64 7.5L47.5312 7.5L47.5312 0L43.4375 0ZM0 7.5L0 11.625L35.6562 11.625L35.6562 7.5L0 7.5ZM16.4688 22.3125L16.4688 29.9062L0 29.9062L0 34.0938L16.4688 34.0938L16.4688 41.5L20.5625 41.5L20.5625 22.3125L16.4688 22.3125ZM28.3438 29.9062L28.3438 34.0938L64 34.0938L64 29.9062L28.3438 29.9062ZM28.3438 44.9062L28.3438 64L32.5625 64L32.5625 56.5L64 56.5L64 52.375L32.5625 52.375L32.5625 44.9062L28.3438 44.9062ZM0 52.375L0 56.5L20.5625 56.5L20.5625 52.375L0 52.375Z" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
+      <li r-click="refreshpage()" style="--options-list-n:2;" y="refresh" group="0">
+        <div class="l_options_title">Refresh</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M32.2133 64C23.3244 64 15.7689 60.8889 9.54667 54.6667C3.32444 48.4444 0.213334 40.8889 0.213334 32C0.213334 23.1111 3.32444 15.5556 9.54667 9.33333C15.7689 3.11111 23.3244 0 32.2133 0C37.9733 0 43.1111 1.26222 47.6267 3.78667C52.1422 6.31111 55.9289 9.77778 58.9867 14.1867L58.9867 0L63.7867 0L63.7867 24.1067L39.7867 24.1067L39.7867 19.2L56.64 19.2C54.08 14.8622 50.72 11.3778 46.56 8.74667C42.4 6.11556 37.6178 4.8 32.2133 4.8C24.6044 4.8 18.1689 7.43111 12.9067 12.6933C7.64444 17.9556 5.01333 24.3911 5.01333 32C5.01333 39.6089 7.64444 46.0444 12.9067 51.3067C18.1689 56.5689 24.6044 59.2 32.2133 59.2C37.9733 59.2 43.2356 57.5467 48 54.24C52.7644 50.9333 56.1067 46.5422 58.0267 41.0667L63.04 41.0667C61.0489 47.9644 57.2089 53.5111 51.52 57.7067C45.8311 61.9022 39.3956 64 32.2133 64Z" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
+      <li r-click="viewongithub()" style="--options-list-n:3;" y="github" group="0">
+        <div class="l_options_title">Github</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M31.9021 0.868074C14.2875 0.868074 0 15.1555 0 32.7702C0 46.862 9.19878 58.8008 21.7248 63.1066C23.2905 63.3023 23.8777 62.3237 23.8777 61.5409C23.8777 60.758 23.8777 58.8008 23.8777 56.0607C15.0703 58.0179 13.1131 51.7549 13.1131 51.7549C11.7431 48.0363 9.59021 47.0577 9.59021 47.0577C6.65443 45.1005 9.78593 45.1005 9.78593 45.1005C12.9174 45.2962 14.6789 48.4277 14.6789 48.4277C17.6147 53.3207 22.1162 51.9506 23.8777 51.1678C24.0734 49.0149 25.052 47.6448 25.8349 46.862C18.789 46.0791 11.3517 43.339 11.3517 31.0087C11.3517 27.4858 12.526 24.7457 14.6789 22.3971C14.2875 21.6143 13.3089 18.287 15.0703 13.9812C15.0703 13.9812 17.8104 13.1983 23.8777 17.3084C26.422 16.5256 29.1621 16.3298 31.9021 16.3298C34.6422 16.3298 37.3823 16.7213 39.9266 17.3084C45.9939 13.1983 48.7339 13.9812 48.7339 13.9812C50.4954 18.287 49.3211 21.6143 49.1254 22.3971C51.0826 24.55 52.4526 27.4858 52.4526 31.0087C52.4526 43.339 45.0153 45.8834 37.9694 46.6662C39.1437 47.6448 40.1223 49.602 40.1223 52.5378C40.1223 56.8436 40.1223 60.1708 40.1223 61.3451C40.1223 62.128 40.7095 63.1066 42.2752 62.9109C54.9969 58.6051 64 46.6662 64 32.5745C63.8043 15.1555 49.5168 0.868074 31.9021 0.868074Z" fill="var(--d-333333)" fill-rule="evenodd" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
     </div>
   </div>
   <div class="password-page">
