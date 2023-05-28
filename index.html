@@ -1152,7 +1152,7 @@
     <div class="search-output-box">
       <div class="search-output"></div>
     </div>
-    <div class="options_mask" onclick="closeOptions()" ontouchstart="closeOptions()"></div>
+    <div class="options_mask" onclick="closeOptions(event)" ontouchstart="closeOptions(event)"></div>
     <div class="options">
       <li onclick="openAddPassword()" style="--options-list-n:0;" y="addpassword" group="0" b="0">
         <div class="l_options_title">Add Password</div>
@@ -2367,7 +2367,8 @@ All you have to do is follow the instructions:
     qe('#options_css').innerHTML = '.options li{display:none;}.options li[group="' + r + '"] {display:flex;}'
   }
 
-  function closeOptions() {
+  function closeOptions(event) {
+    event.stopPropagation()
     qe('.options').setAttribute('k', '0')
     qe('.options_mask').style.setProperty('display', 'none')
     setTimeout(function () {
