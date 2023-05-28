@@ -2370,9 +2370,9 @@ All you have to do is follow the instructions:
   function closeOptions(event) {
     event.stopPropagation()
     qe('.options').setAttribute('k', '0')
-    qe('.options_mask').style.setProperty('display', 'none')
     setTimeout(function () {
       qe('.options').style.setProperty('display', 'none')
+      qe('.options_mask').style.setProperty('display', 'none')
     }, 350)
   }
 
