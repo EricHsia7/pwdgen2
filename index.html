@@ -465,6 +465,88 @@
       top: 55px;
     }
 
+    .password-generator-presets {
+      height: 35px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      width: 100%;
+      top: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute;
+      -webkit-user-select: none;
+      user-select: none;
+      border-radius: 12px;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: -webkit-radial-gradient(white, black);
+      display: block;
+    }
+
+    .password-generator-presets .preset {
+      list-style: none;
+      background: var(--p-e5e5ea);
+      display: inline-block;
+      padding: 0px;
+      border-radius: 20px;
+      box-sizing: border-box;
+      height: 35px;
+      margin-right: 5px;
+      overflow: hidden;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: -webkit-radial-gradient(white, black);
+      user-select: none;
+      -webkit-user-select: none;
+      position: relative;
+      width: auto;
+    }
+
+    .password-generator-presets .preset::after {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      content: '';
+      border-radius: 12px;
+      border: 1.2px solid var(--g-f4f4f4);
+      box-sizing: border-box;
+      opacity: 1;
+    }
+
+    .password-generator-presets .preset .preset_name {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      padding-right: 10px;
+      color: var(--g-4e4e4e);
+      -webkit-user-select: none;
+      user-select: none;
+      position: relative;
+      white-space: nowrap;
+      word-break: keep-all;
+    }
+
+    .preset_icon {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      position: relative;
+      color: #333;
+      font-size: 23px;
+
+    }
+
+    .password-generator-presets .preset .preset_icon,
+    .password-generator-presets .preset .preset_name {
+      float: left;
+    }
+
     .details-list,
     .details-note,
     .details-check-result,
@@ -1300,7 +1382,7 @@
             <input type="text" placeholder="password" readonly="readonly">
           </div>
         </div>
-        
+
         <div class="password-generator-options">
           <div class="password-generator-option" l="default">Strong</div>
           <div class="password-generator-option" l="custom">Custom</div>
@@ -2415,9 +2497,11 @@ All you have to do is follow the instructions:
   function openAddPassword() {
     fade(qe('.add-password-page'), 'In', 'block')
   }
+
   function closeAddPassword() {
     fade(qe('.add-password-page'), 'Out', 'none')
   }
+
   qe(".search").addEventListener("click", function (e) {
     openSearch()
   })
