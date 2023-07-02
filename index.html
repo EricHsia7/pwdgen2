@@ -1285,8 +1285,33 @@
   </div>
   <div class="add-password-page">
     <div class="contents-box">
+      <div class="add-item">
+        <div class="add-item-title">Password</div>
+        <div class="add-item-value" k="password">
+          <input type="text" placeholder="password" readonly="readonly">
+        </div>
+      </div>
+      <div class="password-generator-options">
+        <div class="password-generator-option" l="default">Strong</div>
+        <div class="password-generator-option" l="custom">Custom</div>
+        <div class="password-generator-option" l="manage">Manage</div>
+      </div>
 
+      <div class="details-item">
+        <div class="details-item-title">Username</div>
+        <div class="details-item-value" k="username">
+          <input type="text" placeholder="username" readonly="readonly">
+        </div>
+      </div>
+
+      <div class="details-item">
+        <div class="details-item-title">Website</div>
+        <div class="details-item-value" k="website">
+          <input type="text" placeholder="website" readonly="readonly">
+        </div>
+      </div>
     </div>
+
     <div class="fixed-title-box">
       <div class="btn left-top-corner" onclick="closeAddPassword()">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -2374,6 +2399,10 @@ All you have to do is follow the instructions:
       qe('.options').style.setProperty('display', 'none')
       qe('.options_mask').style.setProperty('display', 'none')
     }, { once: true })
+  }
+
+  function openAddPassword() {
+    fade(qe('.add-password-page'), 'In', 'block')
   }
 
   qe(".search").addEventListener("click", function (e) {
