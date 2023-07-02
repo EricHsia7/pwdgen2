@@ -478,7 +478,8 @@
       margin-bottom: 10px;
     }
 
-    .details-item {
+    .details-item,
+    .add-item {
       position: relative;
       width: calc(100% - 20px);
       height: 50px;
@@ -489,7 +490,8 @@
       -webkit-user-select: none;
     }
 
-    .details-item .details-item-title {
+    .details-item .details-item-title,
+    .add-item .add-item-title {
       position: absolute;
       top: 10px;
       left: 0px;
@@ -507,7 +509,8 @@
       -webkit-user-select: none;
     }
 
-    .details-item .details-item-value {
+    .details-item .details-item-value,
+    .add-item .add-item-value {
       position: absolute;
       right: 35px;
       top: 10px;
@@ -516,7 +519,8 @@
       overflow: hidden;
     }
 
-    .details-item .details-item-value input {
+    .details-item .details-item-value input,
+    .add-item .add-item-value input {
       position: absolute;
       top: 0px;
       left: 0px;
@@ -557,7 +561,8 @@
       fill: var(--p-main-color);
     }
 
-    .details-list .details-item:last-child {
+    .details-list .details-item:last-child,
+    .add-list .add-item:last-child {
       border: none;
     }
 
@@ -1297,16 +1302,16 @@
         <div class="password-generator-option" l="manage">Manage</div>
       </div>
 
-      <div class="details-item">
-        <div class="details-item-title">Username</div>
-        <div class="details-item-value" k="username">
+      <div class="add-item">
+        <div class="add-item-title">Username</div>
+        <div class="add-item-value" k="username">
           <input type="text" placeholder="username" readonly="readonly">
         </div>
       </div>
 
-      <div class="details-item">
-        <div class="details-item-title">Website</div>
-        <div class="details-item-value" k="website">
+      <div class="add-item">
+        <div class="add-item-title">Website</div>
+        <div class="add-item-value" k="website">
           <input type="text" placeholder="website" readonly="readonly">
         </div>
       </div>
