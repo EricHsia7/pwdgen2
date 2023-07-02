@@ -470,7 +470,7 @@
       overflow-x: scroll;
       overflow-y: hidden;
       white-space: nowrap;
-      width: 100%;
+      width: calc(100% - 10px);
       -webkit-user-select: none;
       user-select: none;
       border-radius: 12px;
@@ -479,6 +479,8 @@
       display: block;
       margin-top: 5px;
       margin-bottom: 5px;
+      position: relative;
+      left: 5px;
     }
 
     .password-generator-presets .preset {
