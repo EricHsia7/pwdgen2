@@ -466,7 +466,8 @@
 
     .details-list,
     .details-note,
-    .details-check-result {
+    .details-check-result,
+    .add-list {
       position: relative;
       width: 100%;
       display: inline-block;
@@ -1290,29 +1291,32 @@
   </div>
   <div class="add-password-page">
     <div class="contents-box">
-      <div class="add-item">
-        <div class="add-item-title">Password</div>
-        <div class="add-item-value" k="password">
-          <input type="text" placeholder="password" readonly="readonly">
-        </div>
-      </div>
-      <div class="password-generator-options">
-        <div class="password-generator-option" l="default">Strong</div>
-        <div class="password-generator-option" l="custom">Custom</div>
-        <div class="password-generator-option" l="manage">Manage</div>
-      </div>
+      <div class="add-list">
 
-      <div class="add-item">
-        <div class="add-item-title">Username</div>
-        <div class="add-item-value" k="username">
-          <input type="text" placeholder="username" readonly="readonly">
+        <div class="add-item">
+          <div class="add-item-title">Password</div>
+          <div class="add-item-value" k="password">
+            <input type="text" placeholder="password" readonly="readonly">
+          </div>
         </div>
-      </div>
+        <div class="password-generator-options">
+          <div class="password-generator-option" l="default">Strong</div>
+          <div class="password-generator-option" l="custom">Custom</div>
+          <div class="password-generator-option" l="manage">Manage</div>
+        </div>
 
-      <div class="add-item">
-        <div class="add-item-title">Website</div>
-        <div class="add-item-value" k="website">
-          <input type="text" placeholder="website" readonly="readonly">
+        <div class="add-item">
+          <div class="add-item-title">Username</div>
+          <div class="add-item-value" k="username">
+            <input type="text" placeholder="username" readonly="readonly">
+          </div>
+        </div>
+
+        <div class="add-item">
+          <div class="add-item-title">Website</div>
+          <div class="add-item-value" k="website">
+            <input type="text" placeholder="website" readonly="readonly">
+          </div>
         </div>
       </div>
     </div>
