@@ -2414,7 +2414,9 @@ All you have to do is follow the instructions:
   function openAddPassword() {
     fade(qe('.add-password-page'), 'In', 'block')
   }
-
+  function closeAddPassword() {
+    fade(qe('.add-password-page'), 'Out', 'none')
+  }
   qe(".search").addEventListener("click", function (e) {
     openSearch()
   })
