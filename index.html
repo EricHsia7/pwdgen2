@@ -1932,7 +1932,9 @@
   function qe(selector) {
     return document.querySelector(selector)
   }
-
+  function qeAll(selector) {
+    return document.querySelectorAll(selector)
+  }
   function checkPassword(string, cache, id) {
     var getPoints = function (string) {
       var length = -42.7 + 29.7 * Math.log(string.length);
@@ -2745,16 +2747,29 @@ All you have to do is follow the instructions:
     for (var i = 0; i < list_len; i++) {
       var p = list[i]
       if (place === 'add-password-page') {
-        var h = `<li class="preset" apply="${(i === 0 ? 1 : 0)}" index="${i}" onclick="applyPattern(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+        var h = `<li class="preset" apply="${(i === 0 ? 1 : 0)}" index="${i}" onclick="applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
       }
       if (place === 'pattern-manager') {
-        var h = `<li class="preset" index="${i}" onclick="applyPattern(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+        var h = `<li class="preset" index="${i}" onclick="applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
       }
       html.push(h)
     }
     if (place === 'add-password-page') {
       qe(".add-password-page .password-generator-presets").innerHTML = html.join('')
     }
+  }
+
+  function applyPreset(index) {
+    var list = pwd_pattern()
+    var preset = list[index]
+    qe('.add-password-page .add-list .add-item-value[k="password"] input').value = pwd_fine_grained_pattern(preset.pattern)
+    var all_preset = qeAll(".add-password-page .password-generator-presets .preset")
+    var all_preset_len = (all_preset ? all_preset.length : 0)
+    for (var o = 0; o < all_preset_len; o++) {
+      all_preset[o].setAttribute('apply', '0')
+    }
+    var this_preset = qe(`.add-password-page .password-generator-presets .preset[index="${index}"]`)
+    this_preset.setAttribute('apply', '1')
   }
 
   qe(".search").addEventListener("click", function (e) {
