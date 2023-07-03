@@ -174,6 +174,38 @@
       overflow: hidden;
     }
 
+    .promptcenter {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--p-333333);
+      font-size: 18px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .promptcenter * {
+      color: var(--d-333333);
+      font-size: 15px;
+    }
+
+    .prompt {
+      width: clamp(180px, calc(100% - 40px), 450px);
+      height: 50px;
+      border-radius: 15px;
+      position: fixed;
+      left: 50%;
+      bottom: 0px;
+      opacity: 0;
+      transform: translateX(-50%) translateY(0px) scale(1);
+      background: var(--p-e5e5ea);
+      will-change: transform, opacity;
+      -webkit-user-select: none;
+      user-select: none;
+      box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.23);
+    }
+
     .container,
     .password-page,
     .main-page,
