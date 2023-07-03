@@ -1836,7 +1836,6 @@
     for (var k = 0; k < list_len; k++) {
       var tags = []
       html.push(`<div class="password-item" onclick="openPassword('${list[k].id}')"><div class="password-item-title">${timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icon_arrow}</div></div>`)
-
     }
     qe(".password-list").innerHTML = html.join('')
   }
@@ -2443,7 +2442,7 @@ All you have to do is follow the instructions:
     }
     if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
       var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
-      var note_plain_text = deur(atob(String(json.note)))
+      var note_plain_text = (json.note ? deur(atob(String(json.note))) : '')
       var password = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
       qe('.password-page .details-item-value[k="username"] input').value = json.username || ""
       qe('.password-page .details-item-value[k="password"] input').value = password
@@ -2616,7 +2615,7 @@ All you have to do is follow the instructions:
       username: username,
       encrypted_password: encryption[0],
       aes_iv: encryption[1],
-      note: btoa(enur(note)),
+      note: (note === "" ? null : btoa(enur(note))),
       time_stamp: time,
       id: id
     }
