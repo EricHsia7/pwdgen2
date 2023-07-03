@@ -2542,7 +2542,7 @@ All you have to do is follow the instructions:
     var username = qe('.add-password-page .add-list .add-item-value[k="username"] input').value
     var website = qe('.add-password-page .add-list .add-item-value[k="website"] input').value
     addPassword(password, username, website, '')
-    prompt_message('Added password')
+    prompt_message('Added password', 1200)
   }
   function openOptions(r) {
     qe('.options_mask').style.setProperty('display', 'block')
