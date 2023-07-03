@@ -1570,14 +1570,14 @@
     pwd_pattern_custom = getPatternsFromLS()
     return pwd_pattern_default.concat(pwd_pattern_custom)
   }
-  
+
   function getPatternsFromLS() {
     var list = searchItemsbyname('pwdgen2_pattern_b_')
     var list_len = list.length
-    var rseult = []
+    var result = []
     for (var p = 0; p < list_len; p++) {
       if (LS.hasOwnProperty(list[p])) {
-        rseult.push(JSON.parse(String(LS.getItem(list[p]))))
+        result.push(JSON.parse(String(LS.getItem(list[p]))))
       }
     }
     return result
