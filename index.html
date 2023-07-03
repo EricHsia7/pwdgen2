@@ -2200,7 +2200,7 @@ All you have to do is follow the instructions:
       var all = []
       all.push(list[r].password)
       all.push(list[r].website)
-      all.push(list[r].note ? deur(atob(list[r].note)) : '')
+      all.push(list[r].note === null ? '' : deur(atob(list[r].note)))
       all.push(list[r].username)
       var date = new Date(list[r].time_stamp)
       all.push(timestr(date))
@@ -2442,7 +2442,7 @@ All you have to do is follow the instructions:
     }
     if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
       var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
-      var note_plain_text = (json.note ? deur(atob(String(json.note))) : '')
+      var note_plain_text = (json.note === null ? '' : deur(atob(String(json.note))))
       var password = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
       qe('.password-page .details-item-value[k="username"] input').value = json.username || ""
       qe('.password-page .details-item-value[k="password"] input').value = password
