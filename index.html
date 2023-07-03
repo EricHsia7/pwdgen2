@@ -567,9 +567,11 @@
       color: var(--p-333333);
       font-size: 23px;
     }
+
     .password-generator-presets .preset[apply="1"] .preset_icon {
       color: #fff;
     }
+
     .password-generator-presets .preset .preset_icon,
     .password-generator-presets .preset .preset_name {
       float: left;
@@ -1551,6 +1553,63 @@
                 "/"
               ],
               "quantity": 32,
+              "repeat": true
+            }
+          ],
+          "actions": [
+            "shuffle"
+          ]
+        }
+      ]
+    },
+    {
+      "pattern_name": "Easy to read",
+      "pattern_icon": "visibility",
+      "id": "_strong",
+      "pattern": [
+        {
+          "type": "group",
+          "group": [
+            {
+              "type": "regex",
+              "regex": "/[A-HKMNP-Z0-9]/g",
+              "quantity": 8,
+              "repeat": true
+            }
+          ],
+          "actions": [
+            "shuffle"
+          ]
+        },
+        {
+          "type": "string",
+          "string": "-"
+        },
+        {
+          "type": "group",
+          "group": [
+            {
+              "type": "regex",
+              "regex": "/[A-HKMNP-Z0-9]/g",
+              "quantity": 8,
+              "repeat": true
+            }
+          ],
+          "actions": [
+            "shuffle"
+          ]
+        },
+        {
+          "type": "string",
+          "string": "-"
+        },
+        {
+          "type": "group",
+          "group": [
+            {
+              "type": "regex",
+              "regex": "/[A-HKMNP-Z0-9]/g",
+              "quantity": 8,
               "repeat": true
             }
           ],
