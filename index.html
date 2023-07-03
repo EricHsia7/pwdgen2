@@ -2688,6 +2688,7 @@ All you have to do is follow the instructions:
     var list = pwd_pattern()
     var list_len = list.length
     for (var i = 0; i < list_len; i++) {
+      var p = list[i]
       if (place === 'add-password-page') {
         var h = `<li class="preset" apply="0" index="${i}" onclick="applyPattern(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
       }
