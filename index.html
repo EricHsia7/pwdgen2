@@ -1415,12 +1415,12 @@
         <div class="add-item">
           <div class="add-item-title">Password</div>
           <div class="add-item-value" k="password">
-            <input type="text" placeholder="password" readonly="readonly">
+            <input type="text" placeholder="password">
           </div>
         </div>
 
         <div class="password-generator-presets">
-          <li class="preset">
+          <li class="preset" apply="1" key="default">
             <div class="preset_icon">
               <span class="material-symbols-rounded">key</span>
             </div>
@@ -1510,6 +1510,78 @@
   var search_sticky = false
   var container_scrollTop = 0
   var words_list = { 'loaded': false, 'progress': 0, 'c': {} }
+  var pwd_pattern = {
+    _strong: {
+      "pattern_name": "Strong",
+      "pattern_icon": "password",
+      "pattern": [
+        {
+          "type": "group",
+          "group": [
+            {
+              "type": "regex",
+              "regex": "/[A-Z]/g",
+              "quantity": 32,
+              "repeat": true
+            },
+            {
+              "type": "regex",
+              "regex": "/[a-z]/g",
+              "quantity": 32,
+              "repeat": true
+            },
+            {
+              "type": "regex",
+              "regex": "/[0-9]/g",
+              "quantity": 32,
+              "repeat": true
+            },
+            {
+              "type": "list",
+              "list": [
+                "-",
+                "!",
+                "$",
+                "%",
+                "^",
+                "&",
+                "*",
+                "(",
+                ")",
+                "_",
+                "+",
+                "|",
+                "~",
+                "=",
+                "`",
+                "{",
+                "}",
+                "\\",
+                "[",
+                "]",
+                ":",
+                ",",
+                ";",
+                "'",
+                "<",
+                ">",
+                "?",
+                ",",
+                ".",
+                "/"
+              ],
+              "quantity": 32,
+              "repeat": true
+            }
+          ],
+          "actions": [
+            "shuffle"
+          ]
+        }
+      ]
+    }
+  }
+
 
   function encryptString(string) {
     var initialization_vector_pattern = [
@@ -2601,6 +2673,9 @@ All you have to do is follow the instructions:
 
   function openAddPassword(event) {
     fade(qe('.add-password-page'), 'In', 'block')
+    qe('.add-password-page .add-list .add-item-value[k="password"] input').value = pwd_fine_grained_pattern(pwd_pattern._strong)
+    qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
+    qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
     closeOptions(event)
   }
 
