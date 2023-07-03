@@ -533,17 +533,8 @@
       width: auto;
     }
 
-    .password-generator-presets .preset::after {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      content: '';
-      border-radius: 12px;
-      border: 1.2px solid var(--g-f4f4f4);
-      box-sizing: border-box;
-      opacity: 1;
+    .password-generator-presets .preset[apply="1"] {
+      background: var(--p-main-color);
     }
 
     .password-generator-presets .preset .preset_name {
@@ -560,6 +551,10 @@
       word-break: keep-all;
     }
 
+    .password-generator-presets .preset[apply="1"] .preset_name {
+      color: #fff;
+    }
+
     .preset_icon {
       width: 35px;
       height: 35px;
@@ -569,11 +564,12 @@
       user-select: none;
       -webkit-user-select: none;
       position: relative;
-      color: #333;
+      color: var(--p-333333);
       font-size: 23px;
-
     }
-
+    .password-generator-presets .preset[apply="1"] .preset_icon {
+      color: #fff;
+    }
     .password-generator-presets .preset .preset_icon,
     .password-generator-presets .preset .preset_name {
       float: left;
@@ -2690,10 +2686,10 @@ All you have to do is follow the instructions:
     for (var i = 0; i < list_len; i++) {
       var p = list[i]
       if (place === 'add-password-page') {
-        var h = `<li class="preset" apply="0" index="${i}" onclick="applyPattern(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+        var h = `<li class="preset" apply="${(i === 0 ? 1 : 0)}" index="${i}" onclick="applyPattern(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
       }
       if (place === 'pattern-manager') {
-        var h = `<li class="preset" apply="0" index="${i}" onclick="applyPattern(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+        var h = `<li class="preset" index="${i}" onclick="applyPattern(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
       }
       html.push(h)
     }
