@@ -2737,7 +2737,9 @@ All you have to do is follow the instructions:
   }
 
   function closeAddPassword() {
-    fade(qe('.add-password-page'), 'Out', 'none')
+    fade(qe('.add-password-page'), 'Out', 'none', function () {
+      qe('.add-password-page').scrollTop = 0
+    })
   }
 
   function printPatternPresets(place) {
