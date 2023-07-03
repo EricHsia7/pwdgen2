@@ -2772,6 +2772,16 @@ All you have to do is follow the instructions:
     this_preset.setAttribute('apply', '1')
   }
 
+  function refreshPage() {
+    var p = [{
+      "type": "regex",
+      "regex": "/[a-zA-Z0-9]/g",
+      "quantity": 16,
+      "repeat": true
+    }]
+    location.replace('https://erichsia7.github.io/pwdgen2/?v=' + pwd_fine_grained_pattern(p))
+  }
+
   qe(".search").addEventListener("click", function (e) {
     openSearch()
   })
