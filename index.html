@@ -2673,7 +2673,7 @@ All you have to do is follow the instructions:
   function openAddPassword(event) {
     fade(qe('.add-password-page'), 'In', 'block')
     printPatternPresets()
-    qe('.add-password-page .add-list .add-item-value[k="password"] input').value = pwd_fine_grained_pattern(pwd_pattern[0].pattern)
+    qe('.add-password-page .add-list .add-item-value[k="password"] input').value = pwd_fine_grained_pattern(pwd_pattern()[0].pattern)
     qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
     qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
     closeOptions(event)
