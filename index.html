@@ -1567,7 +1567,20 @@
   ]
   var pwd_pattern_custom = []
   var pwd_pattern = function () {
+    pwd_pattern_custom = getPatternsFromLS()
     return pwd_pattern_default.concat(pwd_pattern_custom)
+  }
+  
+  function getPatternsFromLS() {
+    var list = searchItemsbyname('pwdgen2_pattern_b_')
+    var list_len = list.length
+    var rseult = []
+    for (var p = 0; p < list_len; p++) {
+      if (LS.hasOwnProperty(list[p])) {
+        rseult.push(JSON.parse(String(LS.getItem(list[p]))))
+      }
+    }
+    return result
   }
 
   function encryptString(string) {
@@ -2658,7 +2671,6 @@ All you have to do is follow the instructions:
   }
 
   function openAddPassword(event) {
-
     fade(qe('.add-password-page'), 'In', 'block')
     printPatternPresets()
     qe('.add-password-page .add-list .add-item-value[k="password"] input').value = pwd_fine_grained_pattern(pwd_pattern[0].pattern)
@@ -2671,21 +2683,9 @@ All you have to do is follow the instructions:
     fade(qe('.add-password-page'), 'Out', 'none')
   }
 
-  function getPatterns() {
-    var list = searchItemsbyname('pwdgen2_pattern_b_')
-    var list_len = list.length
-    var rseult = []
-    for (var p = 0; p < list_len; p++) {
-      if (LS.hasOwnProperty(list[p])) {
-        rseult.push(JSON.parse(String(LS.getItem(list[p]))))
-      }
-    }
-    return result
-  }
-
   function printPatternPresets(place) {
     var html = []
-    var list = getPatterns()
+    var list = pwd_pattern()
     var list_len = list.length
     for (var i = 0; i < list_len; i++) {
       if (place === 'add-password-page') {
