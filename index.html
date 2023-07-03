@@ -1246,7 +1246,7 @@
     </div>
     <div class="options_mask" onclick="closeOptions(event)" ontouchstart="closeOptions(event)"></div>
     <div class="options">
-      <li onclick="openAddPassword()" style="--options-list-n:0;" y="addpassword" group="0" b="0">
+      <li onclick="openAddPassword(event)" style="--options-list-n:0;" y="addpassword" group="0" b="0">
         <div class="l_options_title">Add Password</div>
         <div class="l_options_icon">
           <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -2511,8 +2511,9 @@ All you have to do is follow the instructions:
     }, { once: true })
   }
 
-  function openAddPassword() {
+  function openAddPassword(event) {
     fade(qe('.add-password-page'), 'In', 'block')
+    closeOptions(event)
   }
 
   function closeAddPassword() {
