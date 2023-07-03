@@ -2509,6 +2509,7 @@ All you have to do is follow the instructions:
     var encryption = encryptString(password)
     var json = {
       website: website,
+      username: username,
       encrypted_password: encryption[0],
       aes_iv: encryption[1],
       note: btoa(enur(note)),
