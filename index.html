@@ -1209,7 +1209,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" /></head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
 
 <body>
 
@@ -1429,6 +1430,11 @@
         </svg>
       </div>
       Add Password
+      <div class="btn right-top-corner" onclick="addPasswordWithForm()">
+        <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M28.5714 64L28.5714 35.4286L1.06581e-14 35.4286L1.06581e-14 28.5714L28.5714 28.5714L28.5714 0L35.4286 0L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z" fill-rule="nonzero" opacity="1" stroke="none" />
+        </svg>
+      </div>
     </div>
   </div>
   <div class="pattern_creator">
@@ -1570,6 +1576,46 @@
       element.classList.add(`fade-display-${display}`)
       if (!(document.getElementById(`fade-css-${fade_id}`) === null)) {
         document.getElementById(`fade-css-${fade_id}`).remove()
+      }
+    }, { once: true })
+  }
+
+  function prompt_message(message, duration) {
+    if (isNaN(duration)) {
+      duration = 1200
+    }
+    message = String(message)
+    var all_prompt = document.querySelectorAll('.prompt')
+    if (!(all_prompt === null)) {
+      var all_prompt_len = all_prompt.length
+      for (var e = 0; e < all_prompt_len; e++) {
+        all_prompt[e].remove()
+      }
+    }
+    var at = 180
+    translateY = -25
+    var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+    var prompt_id = "";
+    for (var i = 0; i < 8; i++) {
+      var idrandomNumber = Math.floor(Math.random() * idchars.length);
+      prompt_id += idchars.substring(idrandomNumber, idrandomNumber + 1);
+    }
+    var prompt_element = document.createElement('div')
+    prompt_element.id = prompt_id
+    prompt_element.classList.add('prompt')
+    prompt_element.classList.add('prompt_animation' + prompt_id)
+    var prompt_center_element = document.createElement('div')
+    prompt_center_element.classList.add('promptcenter')
+    prompt_center_element.innerText = message
+    prompt_element.appendChild(prompt_center_element)
+    var prompt_css = `.prompt_animation${prompt_id}{animation-timing-function:cubic-bezier(.21,.75,.1,.96);animation-name:prompt${prompt_id};animation-duration:${(duration + at * 2)}ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt${prompt_id}{0%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(0.8);}${Math.floor((at) / (duration + at + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}${Math.floor((at + duration) / (duration + at + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(1);}}`
+    var prompt_css_element = document.createElement('style')
+    prompt_css_element.innerHTML = prompt_css
+    prompt_element.appendChild(prompt_css_element)
+    document.body.appendChild(prompt_element)
+    document.getElementById(prompt_id).addEventListener('animationend', function () {
+      if (!(document.getElementById(prompt_id) === null)) {
+        document.getElementById(prompt_id).remove()
       }
     }, { once: true })
   }
@@ -2491,7 +2537,13 @@ All you have to do is follow the instructions:
     setPassword(password, username, time, website, note, id)
     return id
   }
-
+  function addPasswordWithForm() {
+    var password = qe('.add-password-page .add-list .add-item-value[k="password"] input').value
+    var username = qe('.add-password-page .add-list .add-item-value[k="username"] input').value
+    var website = qe('.add-password-page .add-list .add-item-value[k="website"] input').value
+    addPassword(password, username, website, '')
+    prompt_message('Added password')
+  }
   function openOptions(r) {
     qe('.options_mask').style.setProperty('display', 'block')
     qe('.options').style.setProperty('display', 'inline-block')
