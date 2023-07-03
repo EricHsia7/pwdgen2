@@ -2529,7 +2529,9 @@ All you have to do is follow the instructions:
     }
   }
   function closePassword() {
-    fade(qe('.password-page'), 'Out', 'none')
+    fade(qe('.password-page'), 'Out', 'none', function () {
+      qe('.password-page').scrollTop = 0
+    })
     if (search_sticky || search_status === 1) {
       standaloneStatusBarColor(1)
     }
@@ -2737,9 +2739,7 @@ All you have to do is follow the instructions:
   }
 
   function closeAddPassword() {
-    fade(qe('.add-password-page'), 'Out', 'none', function () {
-      qe('.add-password-page').scrollTop = 0
-    })
+    fade(qe('.add-password-page'), 'Out', 'none')
   }
 
   function printPatternPresets(place) {
