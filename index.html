@@ -174,10 +174,42 @@
       overflow: hidden;
     }
 
+    .promptcenter {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--p-333333);
+      font-size: 18px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .promptcenter * {
+      color: var(--d-333333);
+      font-size: 15px;
+    }
+
+    .prompt {
+      width: clamp(180px, calc(100% - 40px), 450px);
+      height: 50px;
+      border-radius: 15px;
+      position: fixed;
+      left: 50%;
+      bottom: 0px;
+      opacity: 0;
+      transform: translateX(-50%) translateY(0px) scale(1);
+      background: var(--p-e5e5ea);
+      will-change: transform, opacity;
+      -webkit-user-select: none;
+      user-select: none;
+      box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.23);
+    }
+
     .container,
     .password-page,
     .main-page,
-    .password-check-reports-page {
+    .add-password-page {
       position: fixed;
       top: 0px;
       left: 0px;
@@ -190,7 +222,7 @@
     }
 
     .password-page,
-    .password-check-reports-page {
+    .add-password-page {
       display: none;
     }
 
@@ -460,13 +492,95 @@
       width: calc(100% - 30px);
     }
 
-    .password-page .contents-box {
+    .password-page .contents-box,
+    .add-password-page .contents-box {
       top: 55px;
+    }
+
+    .password-generator-presets {
+      height: 35px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      width: calc(100% - 10px);
+      -webkit-user-select: none;
+      user-select: none;
+      border-radius: 12px;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: -webkit-radial-gradient(white, black);
+      display: block;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      position: relative;
+      left: 5px;
+    }
+
+    .password-generator-presets .preset {
+      list-style: none;
+      background: var(--p-e5e5ea);
+      display: inline-block;
+      padding: 0px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      height: 35px;
+      margin-right: 5px;
+      overflow: hidden;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      mask-image: -webkit-radial-gradient(white, black);
+      user-select: none;
+      -webkit-user-select: none;
+      position: relative;
+      width: auto;
+    }
+
+    .password-generator-presets .preset[apply="1"] {
+      background: var(--p-main-color);
+    }
+
+    .password-generator-presets .preset .preset_name {
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      padding-right: 10px;
+      color: var(--p-333333);
+      -webkit-user-select: none;
+      user-select: none;
+      position: relative;
+      white-space: nowrap;
+      word-break: keep-all;
+    }
+
+    .password-generator-presets .preset[apply="1"] .preset_name {
+      color: #fff;
+    }
+
+    .preset_icon {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      -webkit-user-select: none;
+      position: relative;
+      color: var(--p-333333);
+      font-size: 23px;
+    }
+
+    .password-generator-presets .preset[apply="1"] .preset_icon {
+      color: #fff;
+    }
+
+    .password-generator-presets .preset .preset_icon,
+    .password-generator-presets .preset .preset_name {
+      float: left;
     }
 
     .details-list,
     .details-note,
-    .details-check-result {
+    .details-check-result,
+    .add-list {
       position: relative;
       width: 100%;
       display: inline-block;
@@ -478,7 +592,8 @@
       margin-bottom: 10px;
     }
 
-    .details-item {
+    .details-item,
+    .add-item {
       position: relative;
       width: calc(100% - 20px);
       height: 50px;
@@ -489,7 +604,8 @@
       -webkit-user-select: none;
     }
 
-    .details-item .details-item-title {
+    .details-item .details-item-title,
+    .add-item .add-item-title {
       position: absolute;
       top: 10px;
       left: 0px;
@@ -507,7 +623,8 @@
       -webkit-user-select: none;
     }
 
-    .details-item .details-item-value {
+    .details-item .details-item-value,
+    .add-item .add-item-value {
       position: absolute;
       right: 35px;
       top: 10px;
@@ -516,7 +633,13 @@
       overflow: hidden;
     }
 
-    .details-item .details-item-value input {
+    .add-item .add-item-value {
+      width: calc(100% - 100px);
+      right: 10px
+    }
+
+    .details-item .details-item-value input,
+    .add-item .add-item-value input {
       position: absolute;
       top: 0px;
       left: 0px;
@@ -533,6 +656,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       color: var(--p-333333);
+      caret-color: var(--p-main-color);
     }
 
     .details-item .details-item-copy {
@@ -557,7 +681,8 @@
       fill: var(--p-main-color);
     }
 
-    .details-list .details-item:last-child {
+    .details-list .details-item:last-child,
+    .add-list .add-item:last-child {
       border: none;
     }
 
@@ -681,6 +806,11 @@
     .btn.left-top-corner {
       top: 7.5px;
       left: 7.5px;
+    }
+
+    .btn.right-top-corner {
+      top: 7.5px;
+      right: 7.5px;
     }
 
     .search-output-box {
@@ -957,8 +1087,136 @@
       background: var(--g-f4f4f4);
       color: var(--g-4e4e4e);
     }
-  </style>
 
+    .options_mask {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+      display: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .options {
+      position: fixed;
+      top: 50px;
+      right: 10px;
+      transform: scale(0);
+      transform-origin: top right;
+      opacity: 0;
+      width: clamp(100px, calc(100% - 20px), 230px);
+      min-height: 50px;
+      height: 50px;
+      display: none;
+      background: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(11px);
+      -webkit-backdrop-filter: blur(11px);
+      border-radius: 15px;
+      overflow: hidden;
+      max-height: 450px;
+      user-select: none;
+      -webkit-user-select: none;
+      box-shadow: 0px 0px 32px -11px rgba(0, 0, 0, 0.15);
+      transition: 0.25s;
+      transition-timing-function: cubic-bezier(0.175, 0.660, 0.610, 0.970);
+      will-change: transform, opacity;
+    }
+
+    .options[k="1"] {
+      transform: scale(1);
+      opacity: 1;
+      transition: 0.45s;
+      transition-timing-function: cubic-bezier(0.190, 1.100, 0.420, 1.025);
+      height: calc(var(--js-options-list-count) * 50px);
+    }
+
+    .options[s="-1"] {
+      transform: scale(1);
+      transition: 0.25s;
+      transition-timing-function: linear;
+    }
+
+    .options[s="1"] {
+      transform: scale(calc(95 / 100));
+      transition: 0.25s;
+      transition-timing-function: linear;
+      box-shadow: 0px 0px 32px -11px rgba(0, 0, 0, 0);
+      overflow: visible;
+    }
+
+    .options li {
+      width: 100%;
+      height: 50px;
+      border-top: 1px solid var(--p-e5e5ea);
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      position: absolute;
+      right: 0px;
+      top: calc(var(--options-list-n) * 50px);
+    }
+
+    .options li[b="0"] {
+      border: none;
+    }
+
+    .options[s="1"] li {
+      opacity: 0.6;
+    }
+
+    .options[s="1"] li[s="1"] {
+      opacity: 1;
+      transition-timing-function: cubic-bezier(0.190, 1.100, 0.420, 1.025);
+      transform: scale(calc(100 / 95));
+      transition: 0.25s;
+      transform-origin: top right;
+      z-index: 30;
+      background: rgba(var(--d-options-r), var(--d-options-g), var(--d-options-b), 0.5);
+      box-shadow: 0px 0px 32px -11px rgba(0, 0, 0, 0.15);
+      border-radius: 15px;
+      backdrop-filter: blur(11px);
+      -webkit-backdrop-filter: blur(11px);
+      border: 0px solid rgba(0, 0, 0, 0);
+    }
+
+    .options li .l_options_title {
+      position: absolute;
+      top: 0px;
+      left: 12px;
+      width: calc(100% - 50px - 10px);
+      height: 50px;
+      display: flex;
+      align-items: center;
+      color: var(--p-333333);
+      font-size: 16px;
+    }
+
+    .options li .l_options_icon {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .options li .l_options_icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .options li .l_options_icon svg path {
+      fill: var(--p-333333)
+    }
+  </style>
+  <style id="options_css"></style>
   <style>
     .fade-display-none {
       display: none;
@@ -984,6 +1242,10 @@
       display: inline-block;
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
@@ -995,7 +1257,14 @@
     <div class="title-box">
       <div class="title">Passwords</div>
     </div>
-    <div class="fixed-title-box">Passwords</div>
+    <div class="fixed-title-box">
+      Passwords
+      <div class="btn right-top-corner" onclick="openOptions(0)">
+        <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M14.8894 36C16.0031 36 16.9467 35.6102 17.72 34.8306C18.4933 34.051 18.88 33.1043 18.88 31.9906C18.88 30.8769 18.4902 29.9333 17.7106 29.16C16.931 28.3867 15.9843 28 14.8706 28C13.7569 28 12.8133 28.3898 12.04 29.1694C11.2667 29.949 10.88 30.8957 10.88 32.0094C10.88 33.1231 11.2698 34.0667 12.0494 34.84C12.829 35.6133 13.7757 36 14.8894 36ZM32.0094 36C33.1231 36 34.0667 35.6102 34.84 34.8306C35.6133 34.051 36 33.1043 36 31.9906C36 30.8769 35.6102 29.9333 34.8306 29.16C34.051 28.3867 33.1043 28 31.9906 28C30.8769 28 29.9333 28.3898 29.16 29.1694C28.3867 29.949 28 30.8957 28 32.0094C28 33.1231 28.3898 34.0667 29.1694 34.84C29.949 35.6133 30.8957 36 32.0094 36ZM49.0494 36C50.1631 36 51.1067 35.6102 51.88 34.8306C52.6533 34.051 53.04 33.1043 53.04 31.9906C53.04 30.8769 52.6502 29.9333 51.8706 29.16C51.091 28.3867 50.1443 28 49.0306 28C47.9169 28 46.9733 28.3898 46.2 29.1694C45.4267 29.949 45.04 30.8957 45.04 32.0094C45.04 33.1231 45.4298 34.0667 46.2094 34.84C46.989 35.6133 47.9357 36 49.0494 36ZM32.0213 64C27.6088 64 23.4621 63.16 19.5813 61.48C15.7004 59.8 12.3067 57.5067 9.4 54.6C6.49333 51.6933 4.2 48.2976 2.52 44.4127C0.84 40.5279 7.10543e-15 36.377 7.10543e-15 31.96C7.10543e-15 27.543 0.84 23.3921 2.52 19.5073C4.2 15.6224 6.49333 12.24 9.4 9.36C12.3067 6.48 15.7024 4.2 19.5873 2.52C23.4721 0.84 27.623 0 32.04 0C36.457 0 40.6079 0.84 44.4927 2.52C48.3776 4.2 51.76 6.48 54.64 9.36C57.52 12.24 59.8 15.6267 61.48 19.52C63.16 23.4133 64 27.5662 64 31.9787C64 36.3912 63.16 40.5379 61.48 44.4187C59.8 48.2996 57.52 51.6884 54.64 54.5853C51.76 57.4821 48.3733 59.7755 44.48 61.4653C40.5867 63.1551 36.4338 64 32.0213 64ZM32.04 59.2C39.5867 59.2 46 56.5467 51.28 51.24C56.56 45.9333 59.2 39.5067 59.2 31.96C59.2 24.4133 56.565 18 51.295 12.72C46.025 7.44 39.5933 4.8 32 4.8C24.48 4.8 18.0667 7.43499 12.76 12.705C7.45333 17.975 4.8 24.4067 4.8 32C4.8 39.52 7.45333 45.9333 12.76 51.24C18.0667 56.5467 24.4933 59.2 32.04 59.2Z" fill-rule="nonzero" opacity="1" stroke="none" />
+        </svg>
+      </div>
+    </div>
     <div class="search-box">
       <div class="search-cancel" onclick="closeSearch()">
         Cancel
@@ -1011,6 +1280,59 @@
     </div>
     <div class="search-output-box">
       <div class="search-output"></div>
+    </div>
+    <div class="options_mask" onclick="closeOptions(event)" ontouchstart="closeOptions(event)"></div>
+    <div class="options">
+      <li onclick="openAddPassword(event)" style="--options-list-n:0;" y="addpassword" group="0" b="0">
+        <div class="l_options_title">Add Password</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M28.5714 64L28.5714 35.4286L1.06581e-14 35.4286L1.06581e-14 28.5714L28.5714 28.5714L28.5714 0L35.4286 0L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
+
+      <li onclick="openNewPattern()" style="--options-list-n:1;" y="newpattern" group="0">
+        <div class="l_options_title">New Pattern</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M23.0222 44.1778L26.9333 40.2667L18.6667 32L26.8444 23.8222L22.9333 19.9111L10.8444 32L23.0222 44.1778ZM40.9778 44.1778L53.1556 32L40.9778 19.8222L37.0667 23.7333L45.3333 32L37.0667 40.2667L40.9778 44.1778ZM5.33333 64C3.91111 64 2.66667 63.4667 1.6 62.4C0.533333 61.3333 1.06581e-14 60.0889 1.06581e-14 58.6667L1.06581e-14 5.33333C1.06581e-14 3.91111 0.533333 2.66667 1.6 1.6C2.66667 0.533333 3.91111 0 5.33333 0L58.6667 0C60.0889 0 61.3333 0.533333 62.4 1.6C63.4667 2.66667 64 3.91111 64 5.33333L64 58.6667C64 60.0889 63.4667 61.3333 62.4 62.4C61.3333 63.4667 60.0889 64 58.6667 64L5.33333 64ZM5.33333 58.6667L58.6667 58.6667L58.6667 5.33333L5.33333 5.33333L5.33333 58.6667ZM5.33333 5.33333L5.33333 58.6667L5.33333 5.33333Z" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
+
+      <li onclick="openManagePattern()" style="--options-list-n:2;" y="managepatterns" group="0">
+        <div class="l_options_title">Manage Patterns</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M28.5714 64L28.5714 35.4286L1.06581e-14 35.4286L1.06581e-14 28.5714L28.5714 28.5714L28.5714 0L35.4286 0L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
+      <li onclick="openSettings()" style="--options-list-n:3;" y="opensettings" group="0">
+        <div class="l_options_title">Settings</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M43.4375 0L43.4375 19.0938L47.5312 19.0938L47.5312 11.625L64 11.625L64 7.5L47.5312 7.5L47.5312 0L43.4375 0ZM0 7.5L0 11.625L35.6562 11.625L35.6562 7.5L0 7.5ZM16.4688 22.3125L16.4688 29.9062L0 29.9062L0 34.0938L16.4688 34.0938L16.4688 41.5L20.5625 41.5L20.5625 22.3125L16.4688 22.3125ZM28.3438 29.9062L28.3438 34.0938L64 34.0938L64 29.9062L28.3438 29.9062ZM28.3438 44.9062L28.3438 64L32.5625 64L32.5625 56.5L64 56.5L64 52.375L32.5625 52.375L32.5625 44.9062L28.3438 44.9062ZM0 52.375L0 56.5L20.5625 56.5L20.5625 52.375L0 52.375Z" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
+      <li onclick="refreshPage()" style="--options-list-n:4;" y="refresh" group="0">
+        <div class="l_options_title">Refresh</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M32.2133 64C23.3244 64 15.7689 60.8889 9.54667 54.6667C3.32444 48.4444 0.213334 40.8889 0.213334 32C0.213334 23.1111 3.32444 15.5556 9.54667 9.33333C15.7689 3.11111 23.3244 0 32.2133 0C37.9733 0 43.1111 1.26222 47.6267 3.78667C52.1422 6.31111 55.9289 9.77778 58.9867 14.1867L58.9867 0L63.7867 0L63.7867 24.1067L39.7867 24.1067L39.7867 19.2L56.64 19.2C54.08 14.8622 50.72 11.3778 46.56 8.74667C42.4 6.11556 37.6178 4.8 32.2133 4.8C24.6044 4.8 18.1689 7.43111 12.9067 12.6933C7.64444 17.9556 5.01333 24.3911 5.01333 32C5.01333 39.6089 7.64444 46.0444 12.9067 51.3067C18.1689 56.5689 24.6044 59.2 32.2133 59.2C37.9733 59.2 43.2356 57.5467 48 54.24C52.7644 50.9333 56.1067 46.5422 58.0267 41.0667L63.04 41.0667C61.0489 47.9644 57.2089 53.5111 51.52 57.7067C45.8311 61.9022 39.3956 64 32.2133 64Z" fill="var(--d-333333)" fill-rule="nonzero" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
+      <li onclick="viewOnGithub()" style="--options-list-n:5;" y="github" group="0">
+        <div class="l_options_title">Github</div>
+        <div class="l_options_icon">
+          <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path d="M31.9021 0.868074C14.2875 0.868074 0 15.1555 0 32.7702C0 46.862 9.19878 58.8008 21.7248 63.1066C23.2905 63.3023 23.8777 62.3237 23.8777 61.5409C23.8777 60.758 23.8777 58.8008 23.8777 56.0607C15.0703 58.0179 13.1131 51.7549 13.1131 51.7549C11.7431 48.0363 9.59021 47.0577 9.59021 47.0577C6.65443 45.1005 9.78593 45.1005 9.78593 45.1005C12.9174 45.2962 14.6789 48.4277 14.6789 48.4277C17.6147 53.3207 22.1162 51.9506 23.8777 51.1678C24.0734 49.0149 25.052 47.6448 25.8349 46.862C18.789 46.0791 11.3517 43.339 11.3517 31.0087C11.3517 27.4858 12.526 24.7457 14.6789 22.3971C14.2875 21.6143 13.3089 18.287 15.0703 13.9812C15.0703 13.9812 17.8104 13.1983 23.8777 17.3084C26.422 16.5256 29.1621 16.3298 31.9021 16.3298C34.6422 16.3298 37.3823 16.7213 39.9266 17.3084C45.9939 13.1983 48.7339 13.9812 48.7339 13.9812C50.4954 18.287 49.3211 21.6143 49.1254 22.3971C51.0826 24.55 52.4526 27.4858 52.4526 31.0087C52.4526 43.339 45.0153 45.8834 37.9694 46.6662C39.1437 47.6448 40.1223 49.602 40.1223 52.5378C40.1223 56.8436 40.1223 60.1708 40.1223 61.3451C40.1223 62.128 40.7095 63.1066 42.2752 62.9109C54.9969 58.6051 64 46.6662 64 32.5745C63.8043 15.1555 49.5168 0.868074 31.9021 0.868074Z" fill="var(--d-333333)" fill-rule="evenodd" opacity="1" stroke="none" />
+          </svg>
+        </div>
+      </li>
     </div>
   </div>
   <div class="password-page">
@@ -1090,10 +1412,52 @@
       Password
     </div>
   </div>
+  <div class="add-password-page">
+    <div class="contents-box">
+      <div class="add-list">
+        <div class="add-item">
+          <div class="add-item-title">Password</div>
+          <div class="add-item-value" k="password">
+            <input type="text" placeholder="password">
+          </div>
+        </div>
+        <div class="password-generator-presets"></div>
+      </div>
+      <div class="add-list">
+        <div class="add-item">
+          <div class="add-item-title">Username</div>
+          <div class="add-item-value" k="username">
+            <input type="text" placeholder="username">
+          </div>
+        </div>
+
+        <div class="add-item">
+          <div class="add-item-title">Website</div>
+          <div class="add-item-value" k="website">
+            <input type="text" placeholder="website">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fixed-title-box">
+      <div class="btn left-top-corner" onclick="closeAddPassword()">
+        <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill-rule="nonzero" opacity="1" stroke="none" />
+        </svg>
+      </div>
+      Add Password
+      <div class="btn right-top-corner" onclick="addPasswordWithForm()">
+        <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M28.5714 64L28.5714 35.4286L1.06581e-14 35.4286L1.06581e-14 28.5714L28.5714 28.5714L28.5714 0L35.4286 0L35.4286 28.5714L64 28.5714L64 35.4286L35.4286 35.4286L35.4286 64L28.5714 64Z" fill-rule="nonzero" opacity="1" stroke="none" />
+        </svg>
+      </div>
+    </div>
+  </div>
   <div class="pattern_creator">
     <div class="pattern_creator_title">
       Pattern Creator
-      <div class="btn2-l" r-click="closePatternCreator()">
+      <div class="btn2-l" onclick="closePatternCreator()">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <path d="M45.76 64L13.76 32L45.76 0L50.24 4.56L22.8 32L50.24 59.44L45.76 64Z" fill="var(--g-4e4e4e)" fill-rule="evenodd" opacity="1" stroke="none" />
         </svg>
@@ -1131,6 +1495,152 @@
   var search_sticky = false
   var container_scrollTop = 0
   var words_list = { 'loaded': false, 'progress': 0, 'c': {} }
+  var pwd_pattern_default = [
+    {
+      "pattern_name": "Strong",
+      "pattern_icon": "key",
+      "id": "_strong",
+      "pattern": [
+        {
+          "type": "group",
+          "group": [
+            {
+              "type": "regex",
+              "regex": "/[A-Z]/g",
+              "quantity": 32,
+              "repeat": true
+            },
+            {
+              "type": "regex",
+              "regex": "/[a-z]/g",
+              "quantity": 32,
+              "repeat": true
+            },
+            {
+              "type": "regex",
+              "regex": "/[0-9]/g",
+              "quantity": 32,
+              "repeat": true
+            },
+            {
+              "type": "list",
+              "list": [
+                "-",
+                "!",
+                "$",
+                "%",
+                "^",
+                "&",
+                "*",
+                "(",
+                ")",
+                "_",
+                "+",
+                "|",
+                "~",
+                "=",
+                "`",
+                "{",
+                "}",
+                "\\",
+                "[",
+                "]",
+                ":",
+                ",",
+                ";",
+                "'",
+                "<",
+                ">",
+                "?",
+                ",",
+                ".",
+                "/"
+              ],
+              "quantity": 32,
+              "repeat": true
+            }
+          ],
+          "actions": [
+            "shuffle"
+          ]
+        }
+      ]
+    },
+    {
+      "pattern_name": "Easy to read",
+      "pattern_icon": "visibility",
+      "id": "_strong",
+      "pattern": [
+        {
+          "type": "group",
+          "group": [
+            {
+              "type": "regex",
+              "regex": "/[A-HKMNP-Z0-9a-hkmnp-z]/g",
+              "quantity": 8,
+              "repeat": true
+            }
+          ],
+          "actions": [
+            "shuffle"
+          ]
+        },
+        {
+          "type": "string",
+          "string": "-"
+        },
+        {
+          "type": "group",
+          "group": [
+            {
+              "type": "regex",
+              "regex": "/[A-HKMNP-Z0-9a-hkmnp-z]/g",
+              "quantity": 8,
+              "repeat": true
+            }
+          ],
+          "actions": [
+            "shuffle"
+          ]
+        },
+        {
+          "type": "string",
+          "string": "-"
+        },
+        {
+          "type": "group",
+          "group": [
+            {
+              "type": "regex",
+              "regex": "/[A-HKMNP-Z0-9a-hkmnp-z]/g",
+              "quantity": 8,
+              "repeat": true
+            }
+          ],
+          "actions": [
+            "shuffle"
+          ]
+        }
+      ]
+    }
+  ]
+  var pwd_pattern_custom = []
+  var pwd_pattern = function () {
+    pwd_pattern_custom = getPatternsFromLS()
+    return pwd_pattern_default.concat(pwd_pattern_custom)
+  }
+
+  function getPatternsFromLS() {
+    var list = searchItemsbyname('pwdgen2_pattern_b_')
+    var list_len = list.length
+    var result = []
+    for (var p = 0; p < list_len; p++) {
+      if (LS.hasOwnProperty(list[p])) {
+        result.push(JSON.parse(String(LS.getItem(list[p]))))
+      }
+    }
+    return result
+  }
 
   function encryptString(string) {
     var initialization_vector_pattern = [
@@ -1229,6 +1739,46 @@
       element.classList.add(`fade-display-${display}`)
       if (!(document.getElementById(`fade-css-${fade_id}`) === null)) {
         document.getElementById(`fade-css-${fade_id}`).remove()
+      }
+    }, { once: true })
+  }
+
+  function prompt_message(message, duration) {
+    if (isNaN(duration)) {
+      duration = 1200
+    }
+    message = String(message)
+    var all_prompt = document.querySelectorAll('.prompt')
+    if (!(all_prompt === null)) {
+      var all_prompt_len = all_prompt.length
+      for (var e = 0; e < all_prompt_len; e++) {
+        all_prompt[e].remove()
+      }
+    }
+    var at = 180
+    translateY = -25
+    var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+    var prompt_id = "";
+    for (var i = 0; i < 8; i++) {
+      var idrandomNumber = Math.floor(Math.random() * idchars.length);
+      prompt_id += idchars.substring(idrandomNumber, idrandomNumber + 1);
+    }
+    var prompt_element = document.createElement('div')
+    prompt_element.id = prompt_id
+    prompt_element.classList.add('prompt')
+    prompt_element.classList.add('prompt_animation' + prompt_id)
+    var prompt_center_element = document.createElement('div')
+    prompt_center_element.classList.add('promptcenter')
+    prompt_center_element.innerText = message
+    prompt_element.appendChild(prompt_center_element)
+    var prompt_css = `.prompt_animation${prompt_id}{animation-timing-function:cubic-bezier(.21,.75,.1,.96);animation-name:prompt${prompt_id};animation-duration:${(duration + at * 2)}ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt${prompt_id}{0%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(0.8);}${Math.floor((at) / (duration + at + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}${Math.floor((at + duration) / (duration + at + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(1);}}`
+    var prompt_css_element = document.createElement('style')
+    prompt_css_element.innerHTML = prompt_css
+    prompt_element.appendChild(prompt_css_element)
+    document.body.appendChild(prompt_element)
+    document.getElementById(prompt_id).addEventListener('animationend', function () {
+      if (!(document.getElementById(prompt_id) === null)) {
+        document.getElementById(prompt_id).remove()
       }
     }, { once: true })
   }
@@ -1345,7 +1895,6 @@
     for (var k = 0; k < list_len; k++) {
       var tags = []
       html.push(`<div class="password-item" onclick="openPassword('${list[k].id}')"><div class="password-item-title">${timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icon_arrow}</div></div>`)
-
     }
     qe(".password-list").innerHTML = html.join('')
   }
@@ -1387,7 +1936,9 @@
   function qe(selector) {
     return document.querySelector(selector)
   }
-
+  function qeAll(selector) {
+    return document.querySelectorAll(selector)
+  }
   function checkPassword(string, cache, id) {
     var getPoints = function (string) {
       var length = -42.7 + 29.7 * Math.log(string.length);
@@ -1710,7 +2261,7 @@ All you have to do is follow the instructions:
       var all = []
       all.push(list[r].password)
       all.push(list[r].website)
-      all.push(deur(atob(list[r].note)))
+      all.push(list[r].note === null ? '' : deur(atob(list[r].note)))
       all.push(list[r].username)
       var date = new Date(list[r].time_stamp)
       all.push(timestr(date))
@@ -1952,7 +2503,7 @@ All you have to do is follow the instructions:
     }
     if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
       var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
-      var note_plain_text = deur(atob(String(json.note)))
+      var note_plain_text = (json.note === null ? '' : deur(atob(String(json.note))))
       var password = deur(decryptString(json.encrypted_password, json.aes_iv)) || ""
       qe('.password-page .details-item-value[k="username"] input').value = json.username || ""
       qe('.password-page .details-item-value[k="password"] input').value = password
@@ -1982,7 +2533,9 @@ All you have to do is follow the instructions:
     }
   }
   function closePassword() {
-    fade(qe('.password-page'), 'Out', 'none')
+    fade(qe('.password-page'), 'Out', 'none', function () {
+      qe('.password-page').scrollTop = 0
+    })
     if (search_sticky || search_status === 1) {
       standaloneStatusBarColor(1)
     }
@@ -2119,12 +2672,13 @@ All you have to do is follow the instructions:
   }
 
   function setPassword(password, username, time, website, note, id) {
-    var encryption = encryptString(password)
+    var encryption = encryptString(enur(password))
     var json = {
       website: website,
+      username: username,
       encrypted_password: encryption[0],
       aes_iv: encryption[1],
-      note: btoa(enur(note)),
+      note: (note === "" ? null : btoa(enur(note))),
       time_stamp: time,
       id: id
     }
@@ -2150,6 +2704,90 @@ All you have to do is follow the instructions:
     setPassword(password, username, time, website, note, id)
     return id
   }
+  function addPasswordWithForm() {
+    var password = qe('.add-password-page .add-list .add-item-value[k="password"] input').value || ''
+    var username = qe('.add-password-page .add-list .add-item-value[k="username"] input').value || ''
+    var website = qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
+    var addedpassword = addPassword(password, username, website, '')
+    prompt_message('Added password', 1200)
+    openPassword(addedpassword)
+    closeAddPassword()
+    printSavedPasswordList()
+  }
+  function openOptions(r) {
+    qe('.options_mask').style.setProperty('display', 'block')
+    qe('.options').style.setProperty('display', 'inline-block')
+    qe('.options').style.setProperty('--js-options-list-count', document.querySelectorAll('.options li[group="' + r + '"]').length)
+    setTimeout(function () {
+      qe('.options').setAttribute('k', '1')
+    }, 1)
+    qe('#options_css').innerHTML = '.options li{display:none;}.options li[group="' + r + '"] {display:flex;}'
+  }
+
+  function closeOptions(event) {
+    event.stopPropagation()
+    qe('.options').setAttribute('k', '0')
+    qe('.options').addEventListener('transitionend', function () {
+      qe('.options').style.setProperty('display', 'none')
+      qe('.options_mask').style.setProperty('display', 'none')
+    }, { once: true })
+  }
+
+  function openAddPassword(event) {
+    fade(qe('.add-password-page'), 'In', 'block')
+    printPatternPresets('add-password-page')
+    qe('.add-password-page .add-list .add-item-value[k="password"] input').value = pwd_fine_grained_pattern(pwd_pattern()[0].pattern)
+    qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
+    qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
+    closeOptions(event)
+  }
+
+  function closeAddPassword() {
+    fade(qe('.add-password-page'), 'Out', 'none')
+  }
+
+  function printPatternPresets(place) {
+    var html = []
+    var list = pwd_pattern()
+    var list_len = list.length
+    for (var i = 0; i < list_len; i++) {
+      var p = list[i]
+      if (place === 'add-password-page') {
+        var h = `<li class="preset" apply="${(i === 0 ? 1 : 0)}" index="${i}" onclick="applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+      }
+      if (place === 'pattern-manager') {
+        var h = `<li class="preset" index="${i}" onclick="applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+      }
+      html.push(h)
+    }
+    if (place === 'add-password-page') {
+      qe(".add-password-page .password-generator-presets").innerHTML = html.join('')
+    }
+  }
+
+  function applyPreset(index) {
+    var list = pwd_pattern()
+    var preset = list[index]
+    qe('.add-password-page .add-list .add-item-value[k="password"] input').value = pwd_fine_grained_pattern(preset.pattern)
+    var all_preset = qeAll(".add-password-page .password-generator-presets .preset")
+    var all_preset_len = (all_preset ? all_preset.length : 0)
+    for (var o = 0; o < all_preset_len; o++) {
+      all_preset[o].setAttribute('apply', '0')
+    }
+    var this_preset = qe(`.add-password-page .password-generator-presets .preset[index="${index}"]`)
+    this_preset.setAttribute('apply', '1')
+  }
+
+  function refreshPage() {
+    var p = [{
+      "type": "regex",
+      "regex": "/[a-zA-Z0-9]/g",
+      "quantity": 16,
+      "repeat": true
+    }]
+    location.replace('https://erichsia7.github.io/pwdgen2/?v=' + pwd_fine_grained_pattern(p))
+  }
+
   qe(".search").addEventListener("click", function (e) {
     openSearch()
   })
