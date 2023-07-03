@@ -2200,7 +2200,7 @@ All you have to do is follow the instructions:
       var all = []
       all.push(list[r].password)
       all.push(list[r].website)
-      all.push(deur(atob(list[r].note)))
+      all.push(list[r].note ? deur(atob(list[r].note)) : '')
       all.push(list[r].username)
       var date = new Date(list[r].time_stamp)
       all.push(timestr(date))
