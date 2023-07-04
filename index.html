@@ -1057,8 +1057,8 @@
       border-radius: 10px;
     }
 
-    .pattern_creator .pattern_box_visual_json .json_object,
-    .pattern_creator .pattern_box_visual_json .json_array {
+    .pattern_creator .pattern_box_visual_json .vjson_object,
+    .pattern_creator .pattern_box_visual_json .vjson_array {
       position: relative;
       box-sizing: border-box;
       width: calc(100% - 20px);
@@ -1071,16 +1071,16 @@
       border-radius: 10px;
     }
 
-    .pattern_creator .pattern_box_visual_json .json_object:last-child,
-    .pattern_creator .pattern_box_visual_json .json_array:last-child {
+    .pattern_creator .pattern_box_visual_json .vjson_object:last-child,
+    .pattern_creator .pattern_box_visual_json .vjson_array:last-child {
       margin-bottom: 10px;
     }
 
 
 
-    .pattern_creator .pattern_box_visual_json .json_string,
-    .pattern_creator .pattern_box_visual_json .json_number,
-    .pattern_creator .pattern_box_visual_json .json_boolean {
+    .pattern_creator .pattern_box_visual_json .vjson_string,
+    .pattern_creator .pattern_box_visual_json .vjson_number,
+    .pattern_creator .pattern_box_visual_json .vjson_boolean {
       position: relative;
       width: 100%;
       height: 40px;
@@ -1089,15 +1089,15 @@
       border-bottom: 1px solid var(--p-ffffff);
     }
 
-    .pattern_creator .pattern_box_visual_json .json_string:last-child,
-    .pattern_creator .pattern_box_visual_json .json_number:last-child,
-    .pattern_creator .pattern_box_visual_json .json_boolean:last-child {
+    .pattern_creator .pattern_box_visual_json .vjson_string:last-child,
+    .pattern_creator .pattern_box_visual_json .vjson_number:last-child,
+    .pattern_creator .pattern_box_visual_json .vjson_boolean:last-child {
       border-bottom: none;
     }
 
-    .pattern_creator .pattern_box_visual_json .json_string>.json_key,
-    .pattern_creator .pattern_box_visual_json .json_number>.json_key,
-    .pattern_creator .pattern_box_visual_json .json_boolean>.json_key {
+    .pattern_creator .pattern_box_visual_json .vjson_string>.vjson_key,
+    .pattern_creator .pattern_box_visual_json .vjson_number>.vjson_key,
+    .pattern_creator .pattern_box_visual_json .vjson_boolean>.vjson_key {
       position: relative;
       display: inline-flex;
       width: auto;
@@ -1107,8 +1107,8 @@
       padding-left: 8px;
     }
 
-    .pattern_creator .pattern_box_visual_json .json_array>.json_key,
-    .pattern_creator .pattern_box_visual_json .json_object>.json_key {
+    .pattern_creator .pattern_box_visual_json .vjson_array>.vjson_key,
+    .pattern_creator .pattern_box_visual_json .vjson_object>.vjson_key {
       position: relative;
       display: inline-flex;
       width: auto;
@@ -1118,26 +1118,26 @@
       padding-left: 10px;
     }
 
-    .pattern_creator .pattern_box_visual_json .json_object .json_key+.json_object {
+    .pattern_creator .pattern_box_visual_json .vjson_object .vjson_key+.vjson_object {
       margin-top: 0px
     }
 
-    .pattern_creator .pattern_box_visual_json .json_string>.json_key::after,
-    .pattern_creator .pattern_box_visual_json .json_number>.json_key::after,
-    .pattern_creator .pattern_box_visual_json .json_boolean>.json_key::after {
+    .pattern_creator .pattern_box_visual_json .vjson_string>.vjson_key::after,
+    .pattern_creator .pattern_box_visual_json .vjson_number>.vjson_key::after,
+    .pattern_creator .pattern_box_visual_json .vjson_boolean>.vjson_key::after {
       content: ': ';
       white-space: pre;
     }
 
-    .pattern_creator .pattern_box_visual_json .json_array .json_key+.json_string,
-    .pattern_creator .pattern_box_visual_json .json_array .json_key+.json_number,
-    .pattern_creator .pattern_box_visual_json .json_array .json_key+.json_boolean {
+    .pattern_creator .pattern_box_visual_json .vjson_array .vjson_key+.vjson_string,
+    .pattern_creator .pattern_box_visual_json .vjson_array .vjson_key+.vjson_number,
+    .pattern_creator .pattern_box_visual_json .vjson_array .vjson_key+.vjson_boolean {
       border-top: 1px solid var(--p-ffffff);
     }
 
-    .pattern_creator .pattern_box_visual_json .json_string input,
-    .pattern_creator .pattern_box_visual_json .json_number input,
-    .pattern_creator .pattern_box_visual_json .json_boolean select {
+    .pattern_creator .pattern_box_visual_json .vjson_string input,
+    .pattern_creator .pattern_box_visual_json .vjson_number input,
+    .pattern_creator .pattern_box_visual_json .vjson_boolean select {
       position: relative;
       display: inline-block;
       width: 100%;
@@ -1152,12 +1152,12 @@
       color: var(--p-333333);
     }
 
-    .pattern_creator .pattern_box_visual_json .json_string .json_key,
-    .pattern_creator .pattern_box_visual_json .json_string textarea {
+    .pattern_creator .pattern_box_visual_json .vjson_string .vjson_key,
+    .pattern_creator .pattern_box_visual_json .vjson_string textarea {
       float: left;
     }
 
-    .pattern_creator .pattern_box_visual_json>.json_object>.json_key {
+    .pattern_creator .pattern_box_visual_json>.vjson_object>.vjson_key {
       display: none;
     }
 
@@ -2893,27 +2893,27 @@ All you have to do is follow the instructions:
 
   var pattern_box_visual_json = document.querySelector('.pattern_box_visual_json')
 
-  function json_type(thing, path, place) {
+  function vjson_type(thing, path, place) {
     if (typeof thing === 'string') {
-      return json_string(thing, path, place)
+      return vjson_string(thing, path, place)
     }
     if (typeof thing === 'number') {
-      return json_number(thing, path, place)
+      return vjson_number(thing, path, place)
     }
     if (typeof thing === 'boolean') {
-      return json_boolean(thing, path, place)
+      return vjson_boolean(thing, path, place)
     }
     if (typeof thing === 'object' && Array.isArray(thing)) {
-      return json_array(thing, path, place)
+      return vjson_array(thing, path, place)
     }
     if (typeof thing === 'object' && !Array.isArray(thing)) {
-      return json_object(thing, path, place)
+      return vjson_object(thing, path, place)
     }
   }
 
-  function json_string(string, path, place) {
+  function vjson_string(string, path, place) {
     var element = document.createElement('div')
-    element.classList.add('json_string')
+    element.classList.add('vjson_string')
     if (place === 'object') {
       key = path[path.length - 1]
     }
@@ -2922,11 +2922,11 @@ All you have to do is follow the instructions:
     }
     var input = document.createElement('input')
     input.setAttribute('value', string)
-    input.setAttribute('onkeyup', `json_update_single_object(pattern_box_visual_json,json,event)`)
-    input.setAttribute('onselectionchange', `json_update_single_object(pattern_box_visual_json,json,event)`)
+    input.setAttribute('onkeyup', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
+    input.setAttribute('onselectionchange', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
 
     var key_elt = document.createElement('div')
-    key_elt.classList.add('json_key')
+    key_elt.classList.add('vjson_key')
     key_elt.innerText = key
     element.innerHTML = key_elt.outerHTML + input.outerHTML
     element.setAttribute('path', path.join('/'))
@@ -2934,9 +2934,9 @@ All you have to do is follow the instructions:
     return element.outerHTML
   }
 
-  function json_number(num, path, place) {
+  function vjson_number(num, path, place) {
     var element = document.createElement('div')
-    element.classList.add('json_number')
+    element.classList.add('vjson_number')
     if (place === 'object') {
       key = path[path.length - 1]
     }
@@ -2945,11 +2945,11 @@ All you have to do is follow the instructions:
     }
     var input = document.createElement('input')
     input.setAttribute('value', num)
-    input.setAttribute('onkeyup', `json_update_single_object(pattern_box_visual_json,json,event)`)
-    input.setAttribute('onselectionchange', `json_update_single_object(pattern_box_visual_json,json,event)`)
+    input.setAttribute('onkeyup', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
+    input.setAttribute('onselectionchange', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
 
     var key_elt = document.createElement('div')
-    key_elt.classList.add('json_key')
+    key_elt.classList.add('vjson_key')
     key_elt.innerText = key
     element.innerHTML = key_elt.outerHTML + input.outerHTML
     element.setAttribute('path', path.join('/'))
@@ -2957,9 +2957,9 @@ All you have to do is follow the instructions:
     return element.outerHTML
   }
 
-  function json_boolean(boolean, path, place) {
+  function vjson_boolean(boolean, path, place) {
     var element = document.createElement('div')
-    element.classList.add('json_boolean')
+    element.classList.add('vjson_boolean')
     var opt_1 = document.createElement('option')
     opt_1.setAttribute('value', 'true')
     opt_1.innerText = 'true'
@@ -2974,7 +2974,7 @@ All you have to do is follow the instructions:
     }
     var select = document.createElement('select')
     select.innerHTML = opt_1.outerHTML + opt_2.outerHTML
-    select.setAttribute('onchange', `json_update_single_object(pattern_box_visual_json,json,event)`)
+    select.setAttribute('onchange', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
 
     if (place === 'object') {
       key = path[path.length - 1]
@@ -2983,7 +2983,7 @@ All you have to do is follow the instructions:
       key = path[path.length - 1]
     }
     var key_elt = document.createElement('div')
-    key_elt.classList.add('json_key')
+    key_elt.classList.add('vjson_key')
     key_elt.innerText = key
     element.innerHTML = key_elt.outerHTML + select.outerHTML
     element.setAttribute('path', path.join('/'))
@@ -2991,9 +2991,9 @@ All you have to do is follow the instructions:
     return element.outerHTML
   }
 
-  function json_array(array, path, place) {
+  function vjson_array(array, path, place) {
     var element = document.createElement('div')
-    element.classList.add('json_array')
+    element.classList.add('vjson_array')
 
     if (place === 'object') {
       key = path[path.length - 1]
@@ -3002,19 +3002,19 @@ All you have to do is follow the instructions:
       key = path[path.length - 1]
     }
     var key_elt = document.createElement('div')
-    key_elt.classList.add('json_key')
+    key_elt.classList.add('vjson_key')
     key_elt.innerText = key
     element.innerHTML = key_elt.outerHTML
     var array_len = array.length
     for (var i = 0; i < array_len; i++) {
-      element.innerHTML += json_type(array[i], path.concat([i]), 'array')
+      element.innerHTML += vjson_type(array[i], path.concat([i]), 'array')
     }
     return element.outerHTML
   }
 
-  function json_object(object, path, place) {
+  function vjson_object(object, path, place) {
     var element = document.createElement('div')
-    element.classList.add('json_object')
+    element.classList.add('vjson_object')
 
     if (place === 'object') {
       key = path[path.length - 1]
@@ -3024,11 +3024,11 @@ All you have to do is follow the instructions:
     }
 
     var key_elt = document.createElement('div')
-    key_elt.classList.add('json_key')
+    key_elt.classList.add('vjson_key')
     key_elt.innerText = key
     element.innerHTML = key_elt.outerHTML
     for (var k in object) {
-      element.innerHTML += json_type(object[k], path.concat([String(k)]), 'object')
+      element.innerHTML += vjson_type(object[k], path.concat([String(k)]), 'object')
     }
     return element.outerHTML
   }
@@ -3061,7 +3061,7 @@ All you have to do is follow the instructions:
   }
 
 
-  function json_getValue(parent) {
+  function vjson_getValue(parent) {
     var type = parent.getAttribute('type')
     if (type === 'string') {
       return parent.querySelector('input').value
@@ -3087,24 +3087,24 @@ All you have to do is follow the instructions:
     }
   }
 
-  function json_update_entire_object(root, json) {
+  function vjson_update_entire_object(root, json) {
 
-    var all_elements = root.querySelectorAll('.json_string,.json_number,.json_boolean')
+    var all_elements = root.querySelectorAll('.vjson_string,.vjson_number,.vjson_boolean')
     var all_elements_len = all_elements.length
     for (var i = 0; i < all_elements_len; i++) {
-      setValueByPath(json, all_elements[i].getAttribute('path'), json_getValue(all_elements[i]))
+      setValueByPath(json, all_elements[i].getAttribute('path'), vjson_getValue(all_elements[i]))
     }
 
   }
 
-  function json_update_single_object(root, json, event) {
+  function vjson_update_single_object(root, json, event) {
     var path = event.target.parentNode.getAttribute('path')
-    setValueByPath(json, path, json_getValue(event.target.parentNode))
+    setValueByPath(json, path, vjson_getValue(event.target.parentNode))
     console.log(JSON.stringify(json, null, 3))
   }
 
-  pattern_box_visual_json.innerHTML = json_object(json, [''], 'object')
-  json_update_entire_object(pattern_box_visual_json, json)
+  pattern_box_visual_json.innerHTML = vjson_object(json, [''], 'object')
+  vjson_update_entire_object(pattern_box_visual_json, json)
 
   function openPatternCreator(event) {
     fade(qe('.pattern_creator'), 'In', 'block')
