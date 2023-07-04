@@ -3088,13 +3088,11 @@ All you have to do is follow the instructions:
   }
 
   function vjson_update_entire_object(root, json) {
-
     var all_elements = root.querySelectorAll('.vjson_string,.vjson_number,.vjson_boolean')
     var all_elements_len = all_elements.length
     for (var i = 0; i < all_elements_len; i++) {
       setValueByPath(json, all_elements[i].getAttribute('path'), vjson_getValue(all_elements[i]))
     }
-
   }
 
   function vjson_update_single_object(root, json, event) {
@@ -3102,9 +3100,6 @@ All you have to do is follow the instructions:
     setValueByPath(json, path, vjson_getValue(event.target.parentNode))
     console.log(JSON.stringify(json, null, 3))
   }
-
-  pattern_box_visual_json.innerHTML = vjson_object(json, [''], 'object')
-  vjson_update_entire_object(pattern_box_visual_json, json)
 
   function openPatternCreator(event) {
     fade(qe('.pattern_creator'), 'In', 'block')
