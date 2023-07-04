@@ -1733,7 +1733,9 @@
     pwd_pattern_custom = getPatternsFromLS()
     return pwd_pattern_default.concat(pwd_pattern_custom)
   }
+  var pattern_box_visual_json = document.querySelector('.pattern_box_visual_json')
 
+  
   function getPatternsFromLS() {
     var list = searchItemsbyname('pwdgen2_pattern_b_')
     var list_len = list.length
@@ -2890,8 +2892,6 @@ All you have to do is follow the instructions:
 
   var pattern_creator_evt = 0
   const pattern_json = {}
-
-  var pattern_box_visual_json = document.querySelector('.pattern_box_visual_json')
 
   function vjson_type(thing, path, place) {
     if (typeof thing === 'string') {
