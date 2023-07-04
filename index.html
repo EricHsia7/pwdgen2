@@ -1012,13 +1012,13 @@
       top: 0px;
       left: 0px;
       width: 100%;
-      height: 55px;
-      box-sizing: border-box;
+      height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
       color: var(--p-333333);
-      font-size: 18px;
+      font-size: 20px;
+      font-weight: 700;
     }
 
     .pattern_creator .pattern,
@@ -1470,6 +1470,7 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aes-js/3.1.2/index.min.js" integrity="sha512-LOqfKFwH2W3jeb0NzXcImFlSyoL7hjsWbZvIeKNOaZw1gFw+yKTE/QUDGLit2KWdd57qd6IgMDkppK2tkwIEhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="sha512-rdhY3cbXURo13l/WU9VlaRyaIYeJ/KBakckXIvJNAQde8DgpOmE+eZf7ha4vdqVjTtwQt69bD2wH2LXob/LB7Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 
   let LS = window.localStorage
@@ -2780,9 +2781,35 @@ All you have to do is follow the instructions:
     this_preset.setAttribute('apply', '1')
   }
 
+  var pattern_creator_evt = 0
+  const pattern_json = {}
   function openPatternCreator(event) {
     fade(qe('.pattern_creator'), 'In', 'block')
     closeOptions(event)
+    qe('.pattern').innerHTML = JSON.stringify(pattern_json, null, 2)
+    qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
+    hljs.highlightAll();
+    if (pattern_creator_evt === 0) {
+      pattern_creator_evt = 1
+      qe('.pattern2').addEventListener('input', function (event) {
+        qe('.pattern').innerHTML = qe('.pattern2').innerText
+        hljs.highlightBlock(qe('.pattern'));
+      });
+      qe('.pattern2').addEventListener('blur', function (event) {
+        try {
+          qe('.pattern2').innerHTML = JSON.stringify(JSON.parse(document.querySelector('.pattern2').innerText), null, 2)
+          hljs.highlightBlock(qe('.pattern2'));
+        } catch (e) {
+        }
+        qe('.pattern').innerHTML = qe('.pattern2').innerHTML
+      });
+      qe('.pattern2').addEventListener('scroll', function (event) {
+        window.requestAnimationFrame(function () {
+          var st = qe('.pattern2').pageYOffset || qe('.pattern2').scrollTop
+          qe('.pattern').scrollTop = st
+        })
+      });
+    }
   }
 
   function closePatternCreator() {
