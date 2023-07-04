@@ -1292,7 +1292,7 @@
         </div>
       </li>
 
-      <li onclick="openNewPattern()" style="--options-list-n:1;" y="newpattern" group="0">
+      <li onclick="openPatternCreator()" style="--options-list-n:1;" y="newpattern" group="0">
         <div class="l_options_title">New Pattern</div>
         <div class="l_options_icon">
           <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -2782,6 +2782,14 @@ All you have to do is follow the instructions:
     }
     var this_preset = qe(`.add-password-page .password-generator-presets .preset[index="${index}"]`)
     this_preset.setAttribute('apply', '1')
+  }
+
+  function openPatternCreator() {
+    fade(qe('.pattern_creator'), 'In', 'block')
+  }
+
+  function closePatternCreator() {
+    fade(qe('.pattern_creator'), 'Out', 'none')
   }
 
   function refreshPage() {
