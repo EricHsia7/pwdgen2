@@ -205,11 +205,13 @@
       bottom: 0px;
       opacity: 0;
       transform: translateX(-50%) translateY(0px) scale(1);
-      background: var(--p-e5e5ea);
+      background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.8);
       will-change: transform, opacity;
       -webkit-user-select: none;
       user-select: none;
       box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.23);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
     }
 
     .container,
