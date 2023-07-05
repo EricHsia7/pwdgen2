@@ -2543,16 +2543,15 @@ All you have to do is follow the instructions:
         updateSearch(qe(".search input#search").value, searchIndex)
       })
     }
-    qe(".search-box").setAttribute('status', '1')
+    qe('.search-output-box').style.setProperty('--j-search-output-box-y', (qe(".search-box").offsetTop + 60) + 'px')
     qe(".search-output-box").setAttribute('status', '1')
+    qe(".search-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
     qe(".search-box").setAttribute('transition', '1')
     qe(".search-box").addEventListener('transitionend', function () {
       qe(".search-box").setAttribute('transition', '0')
     })
     if (search_status === 0) {
-      qe('.search-output-box').style.setProperty('--j-search-output-box-y', (qe(".search-box").offsetTop + 60) + 'px')
-      qe('.search-output-box').setAttribute('status', '1')
       fade(qe('.search-output-box'), 'In', 'block')
     }
     standaloneStatusBarColor(1)
