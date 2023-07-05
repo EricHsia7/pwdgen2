@@ -283,11 +283,12 @@
       background: var(--p-f2f2f7);
       box-sizing: border-box;
       left: 0px;
-      top: 90px
+      top: 90px;
     }
 
     .search-box[transition="1"] {
       transition: 0.3s;
+      transition-timing-function: ease-out;
     }
 
     .search-box[status="1"] {
@@ -831,6 +832,7 @@
       overscroll-behavior: contain;
       transform: translateY(var(--j-search-output-box-y));
       transition: transform 0.3s, opacity 0.3s;
+      transition-timing-function: ease-out;
     }
 
 
