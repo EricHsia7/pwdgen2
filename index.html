@@ -288,7 +288,7 @@
 
     .search-box[transition="1"] {
       transition: 300ms;
-      transition-timing-function: ease-out;
+      transition-timing-function: ease;
     }
 
     .search-box[status="1"] {
@@ -336,7 +336,7 @@
       background: var(--p-e5e5ea);
       border-radius: 10px;
       transition: width 300ms, background-color 300ms;
-      transition-timing-function: ease-out;
+      transition-timing-function: ease;
     }
 
     .search-box[sticky="true"] .search {
@@ -833,7 +833,7 @@
       overscroll-behavior: contain;
       transform: translateY(var(--j-search-output-box-y));
       transition: transform 300ms, opacity 300ms;
-      transition-timing-function: transform ease-out;
+      transition-timing-function: ease;
     }
 
 
@@ -1835,7 +1835,7 @@
     var style_str = element.getAttribute('style')
     element.setAttribute('style', String(style_str).replaceAll(/display[\s]*:{1,1}[\sa-z-]*;{1,1}[^\s]*/gm, ''))
     element.classList.add(`fade${type}-${fade_id}`)
-    var css = `.fadeIn-${fade_id} {display:${element_display};opacity:0} .fadeIn-${fade_id}-start{transition:${duration}ms;opacity:1;transition-timing-function:ease-out;} .fadeOut-${fade_id} {display:${element_display};opacity:1} .fadeOut-${fade_id}-start{transition:${duration}ms;opacity:0;transition-timing-function:ease-out;}`
+    var css = `.fadeIn-${fade_id} {display:${element_display};opacity:0} .fadeIn-${fade_id}-start{transition:${duration}ms;opacity:1;transition-timing-function:ease;} .fadeOut-${fade_id} {display:${element_display};opacity:1} .fadeOut-${fade_id}-start{transition:${duration}ms;opacity:0;transition-timing-function:ease;}`
     var css_style_element = document.createElement("style")
     css_style_element.innerHTML = css
     css_style_element.id = `fade-css-${fade_id}`
