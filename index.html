@@ -820,8 +820,8 @@
 
     .search-output-box {
       position: fixed;
-      top: 60px;
       left: 0px;
+      top:0px;
       width: 100%;
       height: calc(100% - 60px);
       overflow: scroll;
@@ -829,13 +829,14 @@
       display: none;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
+      transform: translateY(var(--j-search-output-box-y));
     }
 
-    /*
+    
     .search-output-box[status="1"] {
-      display: block;
+      transform: translateY(60px);
     }
-*/
+
     .search-output {
       width: 100%;
       display: inline-block;
@@ -2549,6 +2550,8 @@ All you have to do is follow the instructions:
       qe(".search-box").setAttribute('transition', '0')
     })
     if (search_status === 0) {
+      qe('.search-output-box').style.setProperty('--j-search-output-box-y',qe(".search-box").offsetTop)
+      qe('.search-output-box').setAttribute('status','1')
       fade(qe('.search-output-box'), 'In', 'block')
     }
     standaloneStatusBarColor(1)
@@ -2564,6 +2567,7 @@ All you have to do is follow the instructions:
       qe(".search-box").setAttribute('transition', '0')
     })
     if (search_status === 1) {
+      qe('.search-output-box').setAttribute('status','0')
       fade(qe('.search-output-box'), 'Out', 'none')
     }
     if (!search_sticky) {
