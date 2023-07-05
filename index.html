@@ -2543,8 +2543,7 @@ All you have to do is follow the instructions:
         updateSearch(qe(".search input#search").value, searchIndex)
       })
     }
-    qe('.search-output-box').style.setProperty('--j-search-output-box-y', (qe(".search-box").offsetTop + 60) + 'px')
-    qe(".search-output-box").setAttribute('status', '1')
+
     qe(".search-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
     qe(".search-box").setAttribute('transition', '1')
@@ -2553,6 +2552,8 @@ All you have to do is follow the instructions:
     })
     if (search_status === 0) {
       fade(qe('.search-output-box'), 'In', 'block')
+      qe('.search-output-box').style.setProperty('--j-search-output-box-y', (qe(".search-box").offsetTop + 60) + 'px')
+      qe(".search-output-box").setAttribute('status', '1')
     }
     standaloneStatusBarColor(1)
     search_status = 1
