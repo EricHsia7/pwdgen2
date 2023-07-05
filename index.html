@@ -148,6 +148,9 @@
       --p-main-color: #54b4e4;
       --p-f2f2f7: #f2f2f7;
       --p-ffffff: #ffffff;
+      --p-ffffff-r: 255;
+      --p-ffffff-g: 255;
+      --p-ffffff-b: 255;
       --p-e5e5ea: #e5e5ea;
       --p-aeaeb2: #aeaeb2;
       --p-333333: #333333;
@@ -157,6 +160,9 @@
       :root {
         --p-f2f2f7: #0a0a0b;
         --p-ffffff: #1c1c1e;
+        --p-ffffff-r: 28;
+        --p-ffffff-g: 28;
+        --p-ffffff-b: 30;
         --p-e5e5ea: #2c2c2e;
         --p-aeaeb2: #636366;
         --p-333333: #ffffff;
@@ -1221,7 +1227,7 @@
       min-height: 50px;
       height: 50px;
       display: none;
-      background: rgba(0, 0, 0, 0);
+      background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.8);
       backdrop-filter: blur(11px);
       -webkit-backdrop-filter: blur(11px);
       border-radius: 15px;
