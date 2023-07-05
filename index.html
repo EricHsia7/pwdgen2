@@ -279,10 +279,12 @@
     .search-box {
       height: 60px;
       width: 100%;
-      position: relative;
+      position: absolute;
       background: var(--p-f2f2f7);
       transition: transform 0.3s;
       box-sizing: border-box;
+      left: 0px;
+      top: 90px
     }
 
     .search-box[status="1"] {
@@ -292,7 +294,7 @@
 
     .search-box[sticky="true"],
     .search-box[status="1"] {
-      position: absolute;
+      position: fixed;
       top: 40px;
       left: 0px;
       background: var(--p-ffffff);
