@@ -288,7 +288,7 @@
 
     .search-box[transition="1"] {
       transition: 0.3s;
-      transition-timing-function: ease-out;
+      transition-timing-function: ease-in-out;
     }
 
     .search-box[status="1"] {
@@ -832,7 +832,7 @@
       overscroll-behavior: contain;
       transform: translateY(var(--j-search-output-box-y));
       transition: transform 0.3s, opacity 0.3s;
-      transition-timing-function: ease-out;
+      transition-timing-function: transform ease-in-out;
     }
 
 
