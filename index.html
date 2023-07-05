@@ -287,8 +287,8 @@
     }
 
     .search-box[transition="1"] {
-      transition: 0.3s;
-      transition-timing-function: ease-in-out;
+      transition: 300ms;
+      transition-timing-function: ease-out;
     }
 
     .search-box[status="1"] {
@@ -335,7 +335,8 @@
       height: 40px;
       background: var(--p-e5e5ea);
       border-radius: 10px;
-      transition: width 0.3s, background-color 0.3s;
+      transition: width 300ms, background-color 300ms;
+      transition-timing-function: ease-out;
     }
 
     .search-box[sticky="true"] .search {
@@ -831,8 +832,8 @@
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
       transform: translateY(var(--j-search-output-box-y));
-      transition: transform 0.3s, opacity 0.3s;
-      transition-timing-function: transform ease-in-out;
+      transition: transform 300ms, opacity 300ms;
+      transition-timing-function: transform ease-out;
     }
 
 
