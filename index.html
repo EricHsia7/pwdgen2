@@ -286,14 +286,13 @@
       top: 90px
     }
 
-    .search-box[status="0"] {
+    .search-box[transition="1"] {
       transition: 0.3s;
     }
 
     .search-box[status="1"] {
       transform: translateY(-40px);
       background: var(--p-ffffff);
-      transition: 0.3s;
     }
 
     .search-box[sticky="true"],
@@ -303,11 +302,6 @@
       left: 0px;
       background: var(--p-ffffff);
       border-bottom: var(--p-e5e5ea) 1px solid;
-    }
-
-    .search-box[sticky="false"],
-    .search-box[sticky="true"][status="0"] {
-      transition: none;
     }
 
     .search-cancel {
@@ -2550,6 +2544,10 @@ All you have to do is follow the instructions:
     qe(".search-box").setAttribute('status', '1')
     qe(".search-output-box").setAttribute('status', '1')
     qe(".search-box").setAttribute('sticky', 'true')
+    qe(".search-box").setAttribute('transition', '1')
+    qe(".search-box").addEventListener('transitionend', function () {
+      qe(".search-box").setAttribute('transition', '0')
+    })
     if (search_status === 0) {
       fade(qe('.search-output-box'), 'In', 'block')
     }
@@ -2561,6 +2559,10 @@ All you have to do is follow the instructions:
     qe(".search-box").setAttribute('status', '0')
     qe(".search-output-box").setAttribute('status', '0')
     qe(".search-box").setAttribute('sticky', search_sticky)
+    qe(".search-box").setAttribute('transition', '1')
+    qe(".search-box").addEventListener('transitionend', function () {
+      qe(".search-box").setAttribute('transition', '0')
+    })
     if (search_status === 1) {
       fade(qe('.search-output-box'), 'Out', 'none')
     }
