@@ -2396,7 +2396,7 @@ All you have to do is follow the instructions:
   function createSearchIndex() {
     var list = listSavedPassword()
     var list_len = list.length
-    searchIndex = { all: [], hashtags: [], date: [] }
+    searchIndex = { all: [], hashtags: [], date: [], len: [] }
     for (var r = 0; r < list_len; r++) {
       var all = []
       all.push(list[r].password)
@@ -2411,9 +2411,10 @@ All you have to do is follow the instructions:
       all.push('year:' + date.getFullYear())
       all.push('month:' + (date.getMonth() + 1))
       all.push('date:' + date.getDate())
+      all.push('length:' + String(list[r].password).length)
       var all_unicode = unicode_arr(String(all.join('')).toLowerCase())
       var hashtags_unicode = unicode_arr(hashtags.join(''))
-      searchIndex.all.push({ id: list[r].id, password: all[0], website: all[1], note: all[2], username: all[3], date: all[4], all_unicode: all_unicode, hashtags: hashtags, hashtags_unicode: hashtags_unicode, all: all.join(' '), type: 0 })
+      searchIndex.all.push({ id: list[r].id, password: all[0], website: all[1], note: all[2], username: all[3], date: all[4], len: all[9], all_unicode: all_unicode, hashtags: hashtags, hashtags_unicode: hashtags_unicode, all: all.join(' '), type: 0 })
       for (var w = 0; w < hashtags_len; w++) {
         if (!(searchIndex.hashtags.indexOf(hashtags[w]) > -1)) {
           searchIndex.hashtags.push(hashtags[w])
@@ -2424,7 +2425,9 @@ All you have to do is follow the instructions:
           searchIndex.date.push(all[w])
         }
       }
-
+      if (!(searchIndex.len.indexOf(all[9]) > -1)) {
+        searchIndex.len.push(all[9])
+      }
     }
     return searchIndex
   }
@@ -2433,8 +2436,10 @@ All you have to do is follow the instructions:
   function search_passwords(query, index) {
     var index_hashtags_len = index.hashtags.length
     var index_date_len = index.date.length
+    var index_len_len = index.len.length
     var suggestions_hashtags = []
     var suggestions_date = []
+    var suggestions_len = []
     var suggestions = []
     for (var h = 0; h < index_hashtags_len; h++) {
       if (index.hashtags[h].indexOf(query) > -1) {
@@ -2446,13 +2451,18 @@ All you have to do is follow the instructions:
         suggestions_date.push({ type: 2, suggestion: index.date[d], similarity: (suggestions_date.length < 10 ? jaroWinklerDistance(query, index.date[d]) : 0) })
       }
     }
-    if (suggestions_hashtags.length < 10 && suggestions_date.length < 10) {
-      suggestions = suggestions_hashtags.concat(suggestions_date).sort(function (a, b) {
+    for (var d = 0; d < index_len_len; d++) {
+      if (index.len[d].indexOf(query) > -1) {
+        suggestions_date.push({ type: 4, suggestion: index.len[d], similarity: (suggestions_len.length < 10 ? jaroWinklerDistance(query, index.len[d]) : 0) })
+      }
+    }
+    if (suggestions_hashtags.length < 10 && suggestions_date.length < 10 && suggestions_len.length < 10) {
+      suggestions = suggestions_hashtags.concat(suggestions_date).concat(suggestions_len).sort(function (a, b) {
         return b.similarity - a.similarity
       })
     }
     else {
-      suggestions = suggestions_hashtags.concat(suggestions_date).sort()
+      suggestions = suggestions_hashtags.concat(suggestions_date).concat(suggestions_len).sort()
     }
 
     var query_unicode = unicode_arr(query)
@@ -2506,7 +2516,7 @@ All you have to do is follow the instructions:
         result.push(this_index)
       }
     }
-    return { result: result, suggestions: suggestions.slice(0, 3) }
+    return { result: result, suggestions: suggestions.slice(0, 5) }
   }
 
   function printSearch(search, element) {
@@ -2542,6 +2552,13 @@ All you have to do is follow the instructions:
         var display_icon = ""
         var elt_class = "search-category"
         var elt_action = ""
+      }
+      if (t.type === 4) {
+        var display_title = t.suggestion
+        var display_preview = ""
+        var display_icon = ""
+        var elt_class = "search-suggestion"
+        var elt_action = `setSearchQuery('${t.suggestion}')`
       }
       var t_html = `<div class="${elt_class}" onclick="${elt_action}"><div class="${elt_class}-icon">${display_icon}</div><div class="${elt_class}-title">${display_title}</div><div class="${elt_class}-preview">${display_preview}</div></div>`
       html.push(t_html)
