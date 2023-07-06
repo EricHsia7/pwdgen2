@@ -299,6 +299,10 @@
       transition-timing-function: ease;
     }
 
+    .search-box[will-change="1"] {
+      will-change: transform, top;
+    }
+
     .search-box[status="1"] {
       transform: translateY(-40px);
       background: var(--p-ffffff);
@@ -345,6 +349,10 @@
       border-radius: 10px;
       transition: width 300ms, background-color 300ms;
       transition-timing-function: ease;
+    }
+
+    .search[will-change="1"] {
+      will-change: background-color, width;
     }
 
     .search-box[sticky="true"] .search {
@@ -1752,6 +1760,15 @@
     return pwd_pattern_default.concat(pwd_pattern_custom)
   }
   var pattern_box_visual_json = document.querySelector('.pattern_box_visual_json')
+
+  function checkTouchFeatures() {
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
 
   function getPatternsFromLS() {
     var list = searchItemsbyname('pwdgen2_pattern_b_')
@@ -3212,6 +3229,20 @@ All you have to do is follow the instructions:
       search_sticky = false
     }
   })
+  var search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
+  search_will_change_evt = [0, 1]
+  if (!checkTouchFeatures()) {
+    search_will_change_evt = [2, 3]
+  }
+  qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[0]], function () {
+    qe(".search-box").setAttribute('will-change', '1')
+    qe(".search").setAttribute('will-change', '1')
+  })
+  qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[1]], function () {
+    qe(".search-box").setAttribute('will-change', '0')
+    qe(".search").setAttribute('will-change', '0')
+  })
+
   getWordsList()
 </script>
 
