@@ -55,7 +55,7 @@ export function upgradeData() {
     var hash = list[k].split('_')[3]
     var pwtime = new Date()
     pwtime.setTime(this_item[2])
-    var id = generate(id_pattern)
+    var id = fine_grained_password.generate(id_pattern)
     var note = LS.getItem(`pwdgen2_saved_notes_cf_${hash}`) || ""
     list_decrypted.push({ website: "", encrypted_password: this_item[0], aes_iv: parseInt(this_item[1]), note: note, time_stamp: pwtime, id: id })
     LS.setItem(`pwdgen2_saved_b_${id}`, JSON.stringify(list_decrypted[list_decrypted.length - 1]))
@@ -64,13 +64,13 @@ export function upgradeData() {
 }
 
 export function setPassword(password, username, time, website, note, id) {
-  var encryption = encryptString(enur(password))
+  var encryption = utilities.encryptString(utilities.enur(password))
   var json = {
     website: website,
     username: username,
     encrypted_password: encryption[0],
     aes_iv: encryption[1],
-    note: (note === "" ? null : btoa(enur(note))),
+    note: (note === "" ? null : btoa(utilities.enur(note))),
     time_stamp: time,
     id: id
   }
