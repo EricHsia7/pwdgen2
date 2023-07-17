@@ -39,10 +39,11 @@
     "style-loader": "^3.3.3",
     "css-loader": "^6.8.1",
     "mini-css-extract-plugin": "^2.7.6",
-    "css-minimizer-webpack-plugin":"^5.0.1"
+    "css-minimizer-webpack-plugin": "^5.0.1"
   },
   "dependencies": {
     "aes-js": "^3.1.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "highlight.js": "^11.8.0"
   }
 }
