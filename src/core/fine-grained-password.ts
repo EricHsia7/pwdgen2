@@ -190,7 +190,7 @@ function generate(options: object): string {
       }
     }
     if (this_item['type'] === "group") {
-      result = pwd_fine_grained_pattern(this_content)
+      result = fine_grained_password.generate(this_content)
       var actions = this_item['actions']
       var actions_len = actions.length
       for (var j = 0; j < actions_len; j++) {
