@@ -9,6 +9,7 @@ import icons from './user-interfaces/icons'
 import interaction from './user-interfaces/interaction'
 import sty from './user-interfaces/style'
 
+import './user-interfaces/css/hljs.css'
 import './user-interfaces/css/theme.css'
 import './user-interfaces/css/index.css'
 import './user-interfaces/css/container.css'
@@ -20,6 +21,7 @@ import './user-interfaces/css/details.css'
 import './user-interfaces/css/main-page/search.css'
 import './user-interfaces/css/main-page/password-list.css'
 import './user-interfaces/css/add-password/presets.css'
+import './user-interfaces/css/fade.css'
 
 
 window.password_page_icon_loaded = false

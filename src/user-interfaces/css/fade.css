@@ -1,0 +1,23 @@
+.fade-display-none {
+  display: none;
+}
+
+.fade-display-flex {
+  display: flex;
+}
+
+.fade-display-inline {
+  display: inline;
+}
+
+.fade-display-block {
+  display: block;
+}
+
+.fade-display-inline-flex {
+  display: inline-flex;
+}
+
+.fade-display-inline-block {
+  display: inline-block;
+}
