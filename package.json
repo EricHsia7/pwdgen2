@@ -1,6 +1,6 @@
 {
   "name": "@erichsia7/pwdgen2",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate strong password",
   "main": "dist/index.min.js",
   "private": false,
