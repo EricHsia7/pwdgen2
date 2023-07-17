@@ -1,10 +1,13 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   plugins: [
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles.min.css', // Output CSS filename
+    }),
   ],
   target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
   mode: 'production', // Set the mode to 'production' or 'development'
@@ -33,8 +36,8 @@ module.exports = {
         },
       },
       {
-        test: /\.css|less$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.css|less?$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
@@ -44,7 +47,10 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new TerserPlugin(),
+      new CssMinimizerPlugin()
+    ],
   },
   // Add any additional plugins and configurations as needed
 };
