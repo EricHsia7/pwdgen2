@@ -35,12 +35,19 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'], // File extensions to resolve
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css'], // File extensions to resolve
     mainFields: ['browser', 'module', 'main'],
   },
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
-  }
+  },
+/*
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'index.min.css',
+    }),
+  ],
+*/
   // Add any additional plugins and configurations as needed
 };
