@@ -1,5 +1,6 @@
 import { LS, searchItemsbyname } from './storage'
 import utilities from './utilities'
+var _ = require('lodash');
 
 const pwd_pattern_default: object = [
   {
