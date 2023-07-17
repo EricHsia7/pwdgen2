@@ -328,7 +328,7 @@ function openAddPassword(event) {
     interaction.standaloneStatusBarColor(0)
   }
   printPatternPresets('add-password-page')
-  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(getPatterns()[0].pattern)
+  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern)
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
   utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
   closeOptions(event)
@@ -348,10 +348,10 @@ function printPatternPresets(place) {
   for (var i = 0; i < list_len; i++) {
     var p = list[i]
     if (place === 'add-password-page') {
-      var h = `<li class="preset" apply="${(i === 0 ? 1 : 0)}" index="${i}" onclick="applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+      var h = `<li class="preset" apply="${(i === 0 ? 1 : 0)}" index="${i}" onclick="interaction.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
     }
     if (place === 'pattern-manager') {
-      var h = `<li class="preset" index="${i}" onclick="applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+      var h = `<li class="preset" index="${i}" onclick="interaction.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
     }
     html.push(h)
   }
