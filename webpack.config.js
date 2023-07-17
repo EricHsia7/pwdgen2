@@ -52,7 +52,7 @@ module.exports = {
       new CssMinimizerPlugin({
         minimizerOptions: {
           preset: [
-            "advanced",
+            "default",
             {
               discardComments: { removeAll: true },
             },
