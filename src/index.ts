@@ -7,7 +7,6 @@ import vjson from 'src/core/visual-json'
 import words_list from './/core/words-list'
 import icons from './user-interfaces/icons'
 import interaction from './user-interfaces/interaction'
-import sty from './user-interfaces/style'
 
 import './user-interfaces/css/hljs.css'
 import './user-interfaces/css/theme.css'
