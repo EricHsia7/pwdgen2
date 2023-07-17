@@ -35,7 +35,8 @@
     "jest": "^29.6.1",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "clean-webpack-plugin": "^4.0.0"
   },
   "dependencies": {
     "aes-js": "^3.1.2",
