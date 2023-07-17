@@ -1,5 +1,5 @@
 import words_list from './words-list'
-import LS from './storage'
+import { LS } from './storage'
 
 export function checkCommonWordPatterns(string) {
   if (!words_list.loaded) {
