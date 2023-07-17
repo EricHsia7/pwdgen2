@@ -325,7 +325,7 @@ function closeOptions(event) {
 function openAddPassword(event) {
   interaction.fade(utilities.qe('.add-password-page'), 'In', 'block')
   if (search_sticky || search_status === 1) {
-    standaloneStatusBarColor(0)
+    interaction.standaloneStatusBarColor(0)
   }
   printPatternPresets('add-password-page')
   utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(getPatterns()[0].pattern)
@@ -337,7 +337,7 @@ function openAddPassword(event) {
 function closeAddPassword() {
   interaction.fade(utilities.qe('.add-password-page'), 'Out', 'none')
   if (search_sticky || search_status === 1) {
-    standaloneStatusBarColor(1)
+    interaction.standaloneStatusBarColor(1)
   }
 }
 
