@@ -1,0 +1,118 @@
+    :root {
+      --h-bg: #fff;
+      /* background color */
+      --h-fg: #24292e;
+      /* foreground color */
+      --h-red: #d73a49;
+      --h-purple: #6f42c1;
+      --h-blue: #005cc5;
+      --h-green: #22863a;
+      --h-yellow: #735c0f;
+      --h-orange: #e36209;
+      --h-gray: #6a737d;
+      --h-light-gray: #f0fff4;
+      --h-light-red: #ffeef0;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --h-bg: #0d1117;
+        --h-fg: #c9d1d9;
+        --h-red: #ff7b72;
+        --h-purple: #d2a8ff;
+        --h-blue: #79c0ff;
+        --h-green: #7ee787;
+        --h-yellow: #f2cc60;
+        --h-orange: #ffa657;
+        --h-gray: #8b949e;
+        --h-light-gray: #033a16;
+        --h-light-red: #67060c;
+      }
+    }
+
+    .hljs-doctag,
+    .hljs-keyword,
+    .hljs-meta .hljs-keyword,
+    .hljs-template-tag,
+    .hljs-template-variable,
+    .hljs-type,
+    .hljs-variable.language_ {
+      color: var(--h-red);
+    }
+
+    .hljs-title,
+    .hljs-title.class_,
+    .hljs-title.class_.inherited__,
+    .hljs-title.function_ {
+      color: var(--h-purple);
+    }
+
+    .hljs-attr,
+    .hljs-attribute,
+    .hljs-literal,
+    .hljs-meta,
+    .hljs-number,
+    .hljs-operator,
+    .hljs-selector-attr,
+    .hljs-selector-class,
+    .hljs-selector-id,
+    .hljs-variable {
+      color: var(--h-blue);
+    }
+
+    .hljs-meta .hljs-string,
+    .hljs-regexp,
+    .hljs-string {
+      color: var(--h-light-blue);
+    }
+
+    .hljs-built_in,
+    .hljs-symbol {
+      color: var(--h-orange);
+    }
+
+    .hljs-code,
+    .hljs-comment,
+    .hljs-formula {
+      color: var(--h-gray);
+    }
+
+    .hljs-name,
+    .hljs-quote,
+    .hljs-selector-pseudo,
+    .hljs-selector-tag {
+      color: var(--h-green);
+    }
+
+    .hljs-subst {
+      color: var(--h-fg);
+    }
+
+    .hljs-section {
+      color: var(--h-blue);
+      font-weight: 700;
+    }
+
+    .hljs-bullet {
+      color: var(--h-yellow);
+    }
+
+    .hljs-emphasis {
+      color: var(--h-fg);
+      font-style: italic;
+    }
+
+    .hljs-strong {
+      color: var(--h-fg);
+      font-weight: 700;
+    }
+
+    .hljs-addition {
+      color: var(--h-green);
+      background-color: var(--h-light-gray);
+    }
+
+    .hljs-deletion {
+      color: var(--h-red);
+      background-color: var(--h-light-red);
+    }
