@@ -64,13 +64,13 @@ function gid(n) {
 
 
 function shuffleSelf(array: object, size: number) {
-  var index = -1,
-    length = array.length,
-    lastIndex = length - 1;
+  var index = -1
+  var length = array.length
+  var lastIndex = length - 1
   size = size === undefined ? length : size;
   while (++index < size) {
     var rand = index + Math.floor(Math.random() * (lastIndex - index + 1))
-    value = array[rand];
+    var value = array[rand];
     array[rand] = array[index];
     array[index] = value;
   }
