@@ -2,6 +2,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const AdvancedPreset = require('cssnano-preset-advanced');
 
 module.exports = {
   plugins: [
@@ -50,9 +51,11 @@ module.exports = {
     minimizer: [
       new TerserPlugin(),
       new CssMinimizerPlugin({
+        parallel: 4,
         minimizerOptions: {
           preset: [
-            "default",
+            'default',
+            AdvancedPreset,
             {
               discardComments: { removeAll: true },
             },
@@ -63,3 +66,5 @@ module.exports = {
   },
   // Add any additional plugins and configurations as needed
 };
+
+
