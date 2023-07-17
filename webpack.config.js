@@ -1,7 +1,11 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  plugins: [
+    new MiniCssExtractPlugin(),
+  ],
   target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
   mode: 'production', // Set the mode to 'production' or 'development'
   entry: './src/index.ts', // Entry point of your application
@@ -29,7 +33,7 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.css|less$/,
         use: ['style-loader', 'css-loader'],
       },
     ],
@@ -42,12 +46,5 @@ module.exports = {
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
-/*
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'index.min.css',
-    }),
-  ],
-*/
   // Add any additional plugins and configurations as needed
 };

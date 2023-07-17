@@ -37,7 +37,8 @@
     "webpack-cli": "^5.1.4",
     "gh-pages": "^5.0.0",
     "style-loader": "^3.3.3",
-    "css-loader": "^6.8.1"
+    "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6"
   },
   "dependencies": {
     "aes-js": "^3.1.2",
