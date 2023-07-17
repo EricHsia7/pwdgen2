@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - to-typescript2
+      - dev-fine-grained-password-pattern
 jobs:
   build:
     runs-on: ubuntu-latest
