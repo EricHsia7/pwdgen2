@@ -205,11 +205,11 @@ function generate(options: object): string {
   return d
 }
 
-var fine_grained_password = {
+window.fine_grained_password = {
   pwd_pattern_custom,
   generate,
   listPatterns,
   getPatterns
 }
 
-export default fine_grained_password
+export default window.fine_grained_password

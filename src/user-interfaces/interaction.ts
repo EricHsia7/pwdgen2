@@ -431,7 +431,7 @@ function addPasswordWithForm() {
   interaction.printSavedPasswordList()
 }
 
-const interaction = {
+window.interaction = {
   prompt_message,
   fade,
   setSearchQuery,
@@ -459,4 +459,4 @@ const interaction = {
   viewongithub
 }
 
-export default interaction
+export default window.interaction
