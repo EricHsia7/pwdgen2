@@ -36,7 +36,7 @@ window.search_will_change_evt = [0, 1]
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
 
 
-window.initialize = function () {
+window.pwdgen2 = function () { //initialize
   utilities.qe(".search").addEventListener("click", function (e) {
     interaction.openSearch()
   })
@@ -89,4 +89,4 @@ window.initialize = function () {
   words_list.getWordsList()
 }
 
-export default window.initialize
+export default window.pwdgen2
