@@ -406,6 +406,9 @@ function closePatternCreator() {
   interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
 }
 
+function viewongithub() {
+  window.open('https://github.com/EricHsia7/pwdgen2')
+}
 
 function refreshPage() {
   var p = [{
@@ -452,7 +455,8 @@ const interaction = {
   openPatternCreator,
   closePatternCreator,
   refreshPage,
-  addPasswordWithForm
+  addPasswordWithForm,
+  viewongithub
 }
 
 export default interaction
