@@ -183,7 +183,7 @@ function openSearch() {
     utilities.qe('.search-output-box').style.setProperty('--j-search-output-box-y', (utilities.qe(".search-box").offsetTop + 60) + 'px')
     utilities.qe(".search-output-box").setAttribute('status', '1')
   }
-  utilities.standaloneStatusBarColor(1)
+  interaction.standaloneStatusBarColor(1)
   search_status = 1
   interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
 }
@@ -200,7 +200,7 @@ function closeSearch() {
     interaction.fade(utilities.qe('.search-output-box'), 'Out', 'none')
   }
   if (!search_sticky) {
-    utilities.standaloneStatusBarColor(0)
+    interaction.standaloneStatusBarColor(0)
   }
   search_status = 0
 }
@@ -221,7 +221,7 @@ function generateHashTagHTML(plain_text) {
 function openPassword(id) {
   interaction.fade(utilities.qe('.password-page'), 'In', 'block')
   if (search_sticky || search_status === 1) {
-    utilities.standaloneStatusBarColor(0)
+    interaction.standaloneStatusBarColor(0)
   }
   if (!password_page_icon_loaded) {
     password_page_icon_loaded = true
@@ -267,7 +267,7 @@ function closePassword() {
     utilities.qe('.password-page').scrollTop = 0
   })
   if (search_sticky || search_status === 1) {
-    utilities.standaloneStatusBarColor(1)
+    interaction.standaloneStatusBarColor(1)
   }
 }
 
