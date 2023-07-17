@@ -14,6 +14,9 @@ jobs:
           node-version: '16.x'
       - run: npm install
       - run: npm run build
+      - name: Clean up unnecessary files
+        run: |
+          rm -rf node_modules/
       - name: Deploy with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
