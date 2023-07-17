@@ -29,7 +29,7 @@ const pattern_box_visual_json = utilities.qe('.pattern_box_visual_json')
 
 
 
-function initialize() {
+window.initialize = function () {
   utilities.qe(".search").addEventListener("click", function (e) {
     interaction.openSearch()
   })
@@ -84,4 +84,4 @@ function initialize() {
   words_list.getWordsList()
 }
 
-export default initialize
+export default window.initialize
