@@ -1,5 +1,7 @@
 import searchItemsbyname from 'src/core/storage'
 import utilities from './utilities'
+import { LS } from './/core/storage'
+
 
 function getWordsList() {
   if (!words_list.loaded) {
