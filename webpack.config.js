@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', MiniCssExtractPlugin.loader],
       },
     ],
   },
@@ -42,12 +42,8 @@ module.exports = {
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
-/*
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'index.min.css',
-    }),
+    new MiniCssExtractPlugin(),
   ],
-*/
   // Add any additional plugins and configurations as needed
 };
