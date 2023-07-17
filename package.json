@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --mode=production",
-    "deploy": "gh-pages -d ."
+    "deploy": "npm run deploy"
   },
   "repository": {
     "type": "git",
