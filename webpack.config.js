@@ -1,6 +1,5 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
@@ -38,10 +37,6 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()],
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    // other plugins...
-  ],
+  }
   // Add any additional plugins and configurations as needed
 };
