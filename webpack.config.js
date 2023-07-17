@@ -49,7 +49,16 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserPlugin(),
-      new CssMinimizerPlugin()
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: [
+            "advanced",
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        }
+      })
     ],
   },
   // Add any additional plugins and configurations as needed
