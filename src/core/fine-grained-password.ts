@@ -1,4 +1,4 @@
-import { LS } from './storage'
+import { LS, searchItemsbyname } from './storage'
 import utilities from './utilities'
 
 const pwd_pattern_default: object = [
