@@ -408,7 +408,7 @@ function closePatternCreator() {
   interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
 }
 
-function viewongithub() {
+function viewOnGithub() {
   window.open('https://github.com/EricHsia7/pwdgen2')
 }
 
@@ -458,7 +458,7 @@ window.interaction = {
   closePatternCreator,
   refreshPage,
   addPasswordWithForm,
-  viewongithub
+  viewOnGithub
 }
 
 export default window.interaction
