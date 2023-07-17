@@ -6,8 +6,7 @@
   "private": false,
   "scripts": {
     "test": "jest",
-    "build": "webpack --mode=production",
-    "deploy": "npm run deploy"
+    "build": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
