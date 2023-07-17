@@ -1,4 +1,5 @@
 import fine_grained_password from './fine-grained-password'
+var aesjs = require('aes-js')
 
 function encryptString(string) {
   var initialization_vector_pattern = [
