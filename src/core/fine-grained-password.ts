@@ -151,7 +151,7 @@ const getPatterns = function (): object {
 
 function generate(options: object): string {
   const pattern: object = _.cloneDeep(options);
-  const d: string = ""
+  var d: string = ""
   const get_chars_from_regex = function (regex) {
     const input = String.fromCharCode(...Array.from({ length: Math.pow(2, 16) }, (_, i) => i));
     const matches = String(input).match(regex);
