@@ -17,17 +17,17 @@ import icons from './user-interfaces/icons'
 import interaction from './user-interfaces/interaction'
 
 
-const password_page_icon_loaded: boolean = false
-const allhashtag: object = {}
-const search_status: number = 0
-const search_evt: number = 0
-const search_sticky: boolean = false
-const container_scrollTop: number = 0
-const pattern_creator_evt: number = 0
-const pattern_json: object = {}
-const pattern_box_visual_json = utilities.qe('.pattern_box_visual_json')
-const search_will_change_evt: object = [0, 1]
-let search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
+window.password_page_icon_loaded = false
+window.allhashtag = {}
+window.search_status = 0
+window.search_evt = 0
+window.search_sticky = false
+window.container_scrollTop = 0
+window.pattern_creator_evt = 0
+window.pattern_json = {}
+window.pattern_box_visual_json = utilities.qe('.pattern_box_visual_json')
+window.search_will_change_evt = [0, 1]
+window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
 
 
 window.initialize = function () {
