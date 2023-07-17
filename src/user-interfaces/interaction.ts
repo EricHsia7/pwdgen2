@@ -3,7 +3,7 @@ import utilities from '../core/utilities'
 import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword } from '../core/storage'
 import icons from './icons'
-import { checkPassword, checkCommonWordPatterns } from 'src/core/check-password'
+import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 
 
 function fade(element, type, display, callback) {
