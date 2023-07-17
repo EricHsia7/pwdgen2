@@ -343,7 +343,7 @@ function closeAddPassword() {
 
 function printPatternPresets(place) {
   var html = []
-  var list = getPatterns()
+  var list = fine_grained_password.getPatterns()
   var list_len = list.length
   for (var i = 0; i < list_len; i++) {
     var p = list[i]
@@ -361,7 +361,7 @@ function printPatternPresets(place) {
 }
 
 function applyPreset(index) {
-  var list = getPatterns()
+  var list = fine_grained_password.getPatterns()
   var preset = list[index]
   utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(preset.pattern)
   var all_preset = utilities.qeAll(".add-password-page .password-generator-presets .preset")
