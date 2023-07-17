@@ -153,7 +153,7 @@ function printSavedPasswordList() {
 
 
 function openSearch() {
-  Xsearch.searchIndex = createSearchIndex()
+  Xsearch.searchIndex = Xsearch.createSearchIndex()
   if (search_evt === 0) {
     utilities.qe(".search input#search").addEventListener("selectionchange", function (e) {
       interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
