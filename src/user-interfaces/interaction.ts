@@ -211,7 +211,7 @@ function updateSearch(query, index) {
 }
 
 function generateHashTagHTML(plain_text) {
-  var hashtags = gethashtags(plain_text, false)
+  var hashtags = utilities.gethashtags(plain_text, false)
   var hashtags_len = hashtags.length
   for (var w = 0; w < hashtags_len; w++) {
     plain_text = plain_text.replaceAll(hashtags[w], `<span class="hashtag">${hashtags[w]}</span>`)
