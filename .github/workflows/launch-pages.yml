@@ -12,6 +12,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
+      - run: git fsck
       - run: npm install
       - run: npm run build
       - name: Deploy
