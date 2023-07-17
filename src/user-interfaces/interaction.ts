@@ -7,7 +7,7 @@ import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 
 import hljs from 'highlight.js/lib/core';
 import json from 'highlight.js/lib/languages/json';
-hljs.registerLanguage('javascript', json);
+hljs.registerLanguage('json', json);
 
 function fade(element, type, display, callback) {
   var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
