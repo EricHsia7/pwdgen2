@@ -19,6 +19,6 @@ jobs:
           GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
         run: |
           git config --global user.email "${{ secrets.GH_EMAIL }}"
-          git config --global user.name "erichsia7"
-          npx gh-pages -d . --branch pages -r https://github.com/EricHsia7/pwdgen2/ 
+          git config --global user.name "EricHsia7"
+          npx gh-pages -d . --branch pages -r EricHsia7/pwdgen2
           npm run deploy
