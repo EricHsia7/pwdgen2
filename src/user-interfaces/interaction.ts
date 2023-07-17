@@ -1,7 +1,7 @@
 import fine_grained_password from '../core/fine-grained-password'
 import utilities from '../core/utilities'
 import Xsearch from '../core/search'
-import { LS, setPassword, addPassword } from '../core/storage'
+import { LS, setPassword, addPassword, listSavedPassword } from '../core/storage'
 import icons from './icons'
 
 function fade(element, type, display, callback) {
@@ -156,19 +156,19 @@ function openSearch() {
   Xsearch.searchIndex = createSearchIndex()
   if (search_evt === 0) {
     utilities.qe(".search input#search").addEventListener("selectionchange", function (e) {
-      updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
     utilities.qe(".search input#search").addEventListener("keyup", function (e) {
-      updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
     utilities.qe(".search input#search").addEventListener("cut", function (e) {
-      updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
     utilities.qe(".search input#search").addEventListener("paste", function (e) {
-      updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
     utilities.qe(".search input#search").addEventListener("copy", function (e) {
-      updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
   }
 
@@ -183,9 +183,9 @@ function openSearch() {
     utilities.qe('.search-output-box').style.setProperty('--j-search-output-box-y', (utilities.qe(".search-box").offsetTop + 60) + 'px')
     utilities.qe(".search-output-box").setAttribute('status', '1')
   }
-  standaloneStatusBarColor(1)
+  utilities.standaloneStatusBarColor(1)
   search_status = 1
-  updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+  interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
 }
 function closeSearch() {
   utilities.qe(".search-box").setAttribute('status', '0')
@@ -200,14 +200,14 @@ function closeSearch() {
     interaction.fade(utilities.qe('.search-output-box'), 'Out', 'none')
   }
   if (!search_sticky) {
-    standaloneStatusBarColor(0)
+    utilities.standaloneStatusBarColor(0)
   }
   search_status = 0
 }
 
 function updateSearch(query, index) {
-  var search = search_passwords(String(query).toLowerCase(), index)
-  printSearch(search, utilities.qe(".search-output"))
+  var search = Xsearch.search_passwords(String(query).toLowerCase(), index)
+  interaction.printSearch(search, utilities.qe(".search-output"))
 }
 
 function generateHashTagHTML(plain_text) {
@@ -221,7 +221,7 @@ function generateHashTagHTML(plain_text) {
 function openPassword(id) {
   interaction.fade(utilities.qe('.password-page'), 'In', 'block')
   if (search_sticky || search_status === 1) {
-    standaloneStatusBarColor(0)
+    utilities.standaloneStatusBarColor(0)
   }
   if (!password_page_icon_loaded) {
     password_page_icon_loaded = true
@@ -267,7 +267,7 @@ function closePassword() {
     utilities.qe('.password-page').scrollTop = 0
   })
   if (search_sticky || search_status === 1) {
-    standaloneStatusBarColor(1)
+    utilities.standaloneStatusBarColor(1)
   }
 }
 
@@ -289,7 +289,7 @@ function copyElement(selector) {
 }
 
 function copyDetails(k) {
-  copyElement(`.password-page .details-item-value[k="${k}"] input`)
+  interaction.copyElement(`.password-page .details-item-value[k="${k}"] input`)
 }
 
 function standaloneStatusBarColor(a) {
@@ -416,15 +416,16 @@ function refreshPage() {
   }]
   location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p))
 }
+
 function addPasswordWithForm() {
   var password = utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value || ''
   var username = utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value || ''
   var website = utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
   var addedpassword = addPassword(password, username, website, '')
-  prompt_message('Added password', 1200)
-  openPassword(addedpassword)
-  closeAddPassword()
-  printSavedPasswordList()
+  interaction.prompt_message('Added password', 1200)
+  interaction.openPassword(addedpassword)
+  interaction.closeAddPassword()
+  interaction.printSavedPasswordList()
 }
 
 const interaction = {

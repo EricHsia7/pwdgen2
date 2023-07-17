@@ -132,7 +132,6 @@ const searchIndex: object = {}
 const Xsearch = {
   createSearchIndex,
   search_passwords,
-  printSearch,
   searchIndex
 }
 export default Xsearch
