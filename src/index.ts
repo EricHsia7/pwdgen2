@@ -1,20 +1,14 @@
 import { checkPassword, checkCommonWordPatterns } from 'src/core/check-password'
-
 import fine_grained_password from 'src/core/fine-grained-password'
-
 import Xsearch from './search'
-
 import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword } from './/core/storage'
-
 import utilities from './/core/utilities'
-
 import vjson from 'src/core/visual-json'
-
 import words_list from './/core/words-list'
-
 import icons from './user-interfaces/icons'
-
 import interaction from './user-interfaces/interaction'
+import sty from './user-interfaces/style'
+import './user-interfaces/css/index.css'
 
 
 window.password_page_icon_loaded = false
