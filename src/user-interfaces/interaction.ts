@@ -145,7 +145,7 @@ function printSavedPasswordList() {
   var html = []
   for (var k = 0; k < list_len; k++) {
     var tags = []
-    html.push(`<div class="password-item" onclick="openPassword('${list[k].id}')"><div class="password-item-title">${timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
+    html.push(`<div class="password-item" onclick="openPassword('${list[k].id}')"><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
   }
   utilities.qe(".password-list").innerHTML = html.join('')
 }
@@ -238,7 +238,7 @@ function openPassword(id) {
     utilities.qe('.password-page .details-item-value[k="username"] input').value = json.username || ""
     utilities.qe('.password-page .details-item-value[k="password"] input').value = password
     utilities.qe('.password-page .details-item-value[k="website"] input').value = json.website || ""
-    utilities.qe('.password-page .details-item-value[k="createdat"] input').value = timestr(new Date(json.time_stamp)) || ""
+    utilities.qe('.password-page .details-item-value[k="createdat"] input').value = utilities.timestr(new Date(json.time_stamp)) || ""
     utilities.qe('.password-page .details-note-content').innerHTML = interaction.generateHashTagHTML(note_plain_text)
 
     var check = checkPassword(password, false, id)
