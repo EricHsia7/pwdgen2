@@ -26,7 +26,8 @@ const container_scrollTop: number = 0
 const pattern_creator_evt: number = 0
 const pattern_json: object = {}
 const pattern_box_visual_json = utilities.qe('.pattern_box_visual_json')
-
+const search_will_change_evt: object = [0, 1]
+let search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
 
 
 window.initialize = function () {
@@ -68,8 +69,6 @@ window.initialize = function () {
       search_sticky = false
     }
   })
-  var search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
-  search_will_change_evt = [0, 1]
   if (!utilities.checkTouchFeatures()) {
     search_will_change_evt = [2, 3]
   }
