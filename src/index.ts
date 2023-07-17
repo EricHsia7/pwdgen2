@@ -38,7 +38,7 @@ window.initialize = function () {
   })
 
   upgradeData()
-  printSavedPasswordList()
+  interaction.printSavedPasswordList()
 
   utilities.qe('.main-page').addEventListener('scroll', function (e) {
     container_scrollTop = utilities.qe('.main-page').scrollTop
@@ -70,7 +70,7 @@ window.initialize = function () {
   })
   var search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
   search_will_change_evt = [0, 1]
-  if (!checkTouchFeatures()) {
+  if (!utilities.checkTouchFeatures()) {
     search_will_change_evt = [2, 3]
   }
   utilities.qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[0]], function () {
