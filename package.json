@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/erichsia7/pwdgen2/issues"
   },
-  "homepage": "https://github.com/erichsia7/pwdgen2/",
+  "homepage": "https://erichsia7.github.io/pwdgen2/",
   "devDependencies": {
     "babel-loader": "^9.1.3",
     "@babel/core": "^7.22.9",
