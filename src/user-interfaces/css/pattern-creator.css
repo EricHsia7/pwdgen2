@@ -1,0 +1,195 @@
+
+.pattern_creator {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: var(--p-f2f2f7);
+  display: none;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+.pattern_creator .pattern_creator_title {
+  position: absolute;
+  background: var(--p-f2f2f7);
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--p-333333);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.pattern_creator .pattern,
+.pattern_creator .pattern2 {
+  padding: 5px;
+  margin: 0px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 1.15rem;
+  caret-color: var(--p-main-color);
+  color: var(--p-333333);
+  word-break: break-all;
+  white-space: pre-wrap;
+  overflow: scroll;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+}
+
+.pattern_creator .pattern2 *,
+.pattern_creator .pattern2 {
+  color: rgba(0, 0, 0, 0)
+}
+
+.pattern_creator .pattern_box_json {
+  width: calc(100% - 20px);
+  height: 300px;
+  overflow: hidden;
+  position: absolute;
+  top: 130px;
+  left: 10px;
+  background: var(--p-ffffff);
+  border-radius: 10px;
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_object,
+.pattern_creator .pattern_box_visual_json .vjson_array {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(100% - 20px);
+  font-family: 'Noto Sans', sans-serif;
+  display: inline-block;
+  background: none;
+  border: 1px solid var(--p-ffffff);
+  margin: 0px 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_object:last-child,
+.pattern_creator .pattern_box_visual_json .vjson_array:last-child {
+  margin-bottom: 10px;
+}
+
+
+
+.pattern_creator .pattern_box_visual_json .vjson_string,
+.pattern_creator .pattern_box_visual_json .vjson_number,
+.pattern_creator .pattern_box_visual_json .vjson_boolean {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: left;
+  border-bottom: 1px solid var(--p-ffffff);
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_string:last-child,
+.pattern_creator .pattern_box_visual_json .vjson_number:last-child,
+.pattern_creator .pattern_box_visual_json .vjson_boolean:last-child {
+  border-bottom: none;
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_string > .vjson_key,
+.pattern_creator .pattern_box_visual_json .vjson_number > .vjson_key,
+.pattern_creator .pattern_box_visual_json .vjson_boolean > .vjson_key {
+  position: relative;
+  display: inline-flex;
+  width: auto;
+  height: 40px;
+  font-size: 16px;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_array > .vjson_key,
+.pattern_creator .pattern_box_visual_json .vjson_object > .vjson_key {
+  position: relative;
+  display: inline-flex;
+  width: auto;
+  height: 30px;
+  font-size: 16px;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_object .vjson_key + .vjson_object {
+  margin-top: 0px
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_string > .vjson_key::after,
+.pattern_creator .pattern_box_visual_json .vjson_number > .vjson_key::after,
+.pattern_creator .pattern_box_visual_json .vjson_boolean > .vjson_key::after {
+  content: ': ';
+  white-space: pre;
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_array .vjson_key + .vjson_string,
+.pattern_creator .pattern_box_visual_json .vjson_array .vjson_key + .vjson_number,
+.pattern_creator .pattern_box_visual_json .vjson_array .vjson_key + .vjson_boolean {
+  border-top: 1px solid var(--p-ffffff);
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_string input,
+.pattern_creator .pattern_box_visual_json .vjson_number input,
+.pattern_creator .pattern_box_visual_json .vjson_boolean select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 0px;
+  min-width: 0px;
+  background: none;
+  color: var(--p-333333);
+}
+
+.pattern_creator .pattern_box_visual_json .vjson_string .vjson_key,
+.pattern_creator .pattern_box_visual_json .vjson_string textarea {
+  float: left;
+}
+
+.pattern_creator .pattern_box_visual_json > .vjson_object > .vjson_key {
+  display: none;
+}
+
+.pattern_creator .generation_preview_title {
+  position: absolute;
+  top: 65px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 20px;
+  display: flex;
+  align-items: center;
+  color: var(--p-333333);
+}
+
+.pattern_creator .generation_preview {
+  position: absolute;
+  top: 90px;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 30px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 5px;
+  overflow: hidden;
+  background: var(--p-ffffff);
+  color: var(--p-333333);
+}
