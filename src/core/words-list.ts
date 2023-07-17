@@ -1,6 +1,6 @@
 import searchItemsbyname from 'src/core/storage'
 import utilities from './utilities'
-import { LS } from './/core/storage'
+import { LS } from './storage'
 
 
 function getWordsList() {
