@@ -34,7 +34,7 @@ module.exports = {
       },
       {
         test: /\.css|less$/,
-        use: ['style-loader', 'css-loader', MiniCssExtractPlugin.loader],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
