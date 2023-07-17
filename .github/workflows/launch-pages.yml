@@ -20,5 +20,5 @@ jobs:
         run: |
           git config --global user.email "${{ secrets.GH_EMAIL }}"
           git config --global user.name "EricHsia7"
-          npx gh-pages -d . --branch pages -r pwdgen2
+          npx gh-pages -d . --branch pages
           npm run deploy
