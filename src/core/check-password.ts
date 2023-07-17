@@ -70,7 +70,7 @@ export function checkPassword(string, cache, id) {
     for (var w = 0; w < 4; w++) {
       t_s += Math.pow(t[w] - t_avg, 2)
     }
-    ty = (1 - Math.min(Math.max(Math.sqrt(t_s / 4) / t_avg, 0), 1)) * 100
+    const ty:number = (1 - Math.min(Math.max(Math.sqrt(t_s / 4) / t_avg, 0), 1)) * 100
 
     var commonWords = checkCommonWordPatterns(string) * 100
     return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.5 + repeat * 2 + ty * 2 + commonWords * 2) / 10.5), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), Math.floor(commonWords), t[0], t[1], t[2], t[3]]
