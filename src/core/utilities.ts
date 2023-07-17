@@ -232,7 +232,7 @@ function fetchWithProgress(url, progressCallback) {
 }
 
 
-const utilities = {
+window.utilities = {
   encryptString,
   decryptString,
   enur,
@@ -250,4 +250,4 @@ const utilities = {
   fetchWithProgress
 }
 
-export default utilities
+export default window.utilities

@@ -129,9 +129,9 @@ function search_passwords(query, index) {
 
 const searchIndex: object = {}
 
-const Xsearch = {
+window.Xsearch = {
   createSearchIndex,
   search_passwords,
   searchIndex
 }
-export default Xsearch
+export default window.Xsearch

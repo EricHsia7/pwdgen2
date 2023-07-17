@@ -207,7 +207,7 @@ function vjson_update_single_object(root, json, event) {
   console.log(JSON.stringify(json, null, 3))
 }
 
-const vjson = {
+ window.vjson = {
   vjson_type,
   vjson_string,
   vjson_number,
@@ -219,4 +219,4 @@ const vjson = {
   vjson_update_entire_object,
   vjson_update_single_object
 }
-export default vjson
+export default window.vjson

@@ -39,7 +39,7 @@ function getWordsList() {
   }
 }
 
-const words_list = { 'loaded': false, 'progress': 0, 'c': {}, 'getWordsList': getWordsList }
+window.words_list = { 'loaded': false, 'progress': 0, 'c': {}, 'getWordsList': getWordsList }
 
 
-export default words_list
+export default window.words_list
