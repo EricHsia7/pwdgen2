@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - to-typescript
+      - to-typescript2
 jobs:
   build:
     runs-on: ubuntu-latest
