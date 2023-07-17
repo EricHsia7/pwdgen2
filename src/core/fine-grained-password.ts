@@ -132,7 +132,7 @@ const pwd_pattern_default: object = [
 ]
 
 function listPatterns() {
-  var list = LS.searchItemsbyname('pwdgen2_pattern_b_')
+  var list = searchItemsbyname('pwdgen2_pattern_b_')
   var list_len = list.length
   var result = []
   for (var p = 0; p < list_len; p++) {
