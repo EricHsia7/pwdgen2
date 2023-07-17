@@ -105,21 +105,21 @@ function printSearch(search, element) {
       var display_preview = (String(t.note).length > 0) ? (t.note).replaceAll(/\n/g, " ") : "note-free"
       var display_icon = icons.icon_password
       var elt_class = "search-item"
-      var elt_action = `openPassword('${t.id}')`
+      var elt_action = `interaction.openPassword('${t.id}')`
     }
     if (t.type === 1) {
       var display_title = String(t.suggestion).substring(1)
       var display_preview = ""
       var display_icon = icons.icon_hashtag
       var elt_class = "search-suggestion"
-      var elt_action = `setSearchQuery('${t.suggestion}')`
+      var elt_action = `interaction.setSearchQuery('${t.suggestion}')`
     }
     if (t.type === 2) {
       var display_title = t.suggestion
       var display_preview = ""
       var display_icon = icons.icon_date
       var elt_class = "search-suggestion"
-      var elt_action = `setSearchQuery('${t.suggestion}')`
+      var elt_action = `interaction.setSearchQuery('${t.suggestion}')`
     }
     if (t.type === 3) {
       var display_title = t.title
@@ -133,7 +133,7 @@ function printSearch(search, element) {
       var display_preview = ""
       var display_icon = icons.icon_text
       var elt_class = "search-suggestion"
-      var elt_action = `setSearchQuery('${t.suggestion}')`
+      var elt_action = `interaction.setSearchQuery('${t.suggestion}')`
     }
     var t_html = `<div class="${elt_class}" onclick="${elt_action}"><div class="${elt_class}-icon">${display_icon}</div><div class="${elt_class}-title">${display_title}</div><div class="${elt_class}-preview">${display_preview}</div></div>`
     html.push(t_html)
@@ -147,7 +147,7 @@ function printSavedPasswordList() {
   var html = []
   for (var k = 0; k < list_len; k++) {
     var tags = []
-    html.push(`<div class="password-item" onclick="openPassword('${list[k].id}')"><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
+    html.push(`<div class="password-item" onclick="interaction.openPassword('${list[k].id}')"><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
   }
   utilities.qe(".password-list").innerHTML = html.join('')
 }
