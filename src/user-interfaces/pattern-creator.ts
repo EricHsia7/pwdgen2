@@ -60,7 +60,7 @@ export function generatePatternPreview(): string {
     var this_component = generation[c]
     var component_color = utilities.randomColorSet()
     var path = 'x'
-    var component_id =  pattern[e].id | fine_grained_password.generate([
+    var component_id = fine_grained_password.generate([
       {
         type: 'string',
         string: 'component-'
