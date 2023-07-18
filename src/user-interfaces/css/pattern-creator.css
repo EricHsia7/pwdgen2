@@ -195,6 +195,13 @@
   display: inline-flex;
   height: 20px;
   width: auto;
-  color: var(--j-component-color-text);
-  background: var(--j-component-color-bg);
+  color: var(--j-component-color-light-text);
+  background: var(--j-component-color-light-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .pattern_creator .pattern_creator_preview_component {
+    color: var(--j-component-color-dark-text);
+    background: var(--j-component-dark-color-bg);
+  }
 }
