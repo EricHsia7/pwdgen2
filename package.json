@@ -6,6 +6,7 @@
   "private": false,
   "scripts": {
     "test": "jest",
+    "build-dev": "webpack --mode=development",
     "build": "webpack --mode=production",
     "deploy": "gh-pages -d ."
   },
