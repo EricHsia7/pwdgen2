@@ -456,8 +456,7 @@ window.interaction = {
     openPatternCreator,
     closePatternCreator,
     generatePatternPreview,
-    showPatternPreviewInfoCard,
-    searchPatternComponent
+    showPatternPreviewInfoCard
   },
   password_page: {
     openPassword,
