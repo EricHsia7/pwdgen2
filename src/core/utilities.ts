@@ -348,7 +348,7 @@ function randomColorSet() {
     var bg = { r: rgb_bg.r, g: rgb_bg.g, b: rgb_bg.b, a: a, str: `rgba(${rgb_bg.r},${rgb_bg.g},${rgb_bg.b},${a})` }
     return { text, bg }
   }
-  return { light: f(75, 0.06), dark: f(100, 0.095) }
+  return { light: f(75, 0.06), dark: f(100, 0.15) }
 }
 
 
