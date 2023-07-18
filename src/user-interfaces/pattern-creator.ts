@@ -77,8 +77,10 @@ export function generatePatternPreview(): string {
     component_elt.id = component_id
     component_elt.setAttribute('path', path)
     component_elt.setAttribute('type', this_component.component.type)
-    component_elt.style.setProperty('--j-component-color-text', component_color.text.str)
-    component_elt.style.setProperty('--j-component-color-bg', component_color.bg.str)
+    component_elt.style.setProperty('--j-component-color-light-text', component_color.light.text.str)
+    component_elt.style.setProperty('--j-component-color-light-bg', component_color.light.bg.str)
+    component_elt.style.setProperty('--j-component-color-dark-text', component_color.dark.text.str)
+    component_elt.style.setProperty('--j-component-color-dark-bg', component_color.dark.bg.str)
     component_elt.innerText = this_component.result
     component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternPreviewInfoCard('${component_id}',event)`)
     html.push(component_elt.outerHTML)
