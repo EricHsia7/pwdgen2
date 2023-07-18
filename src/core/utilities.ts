@@ -232,6 +232,36 @@ function fetchWithProgress(url, progressCallback) {
   });
 }
 
+function filterObjectWithKey(root_object: object,key: string,query: string){
+  var root_object_type = typeof root_object
+  //object
+  if(root_object_type === 'object' && !Array.isArray(root_object)) { 
+for(var o in root_object) {
+  if(typeof root_object[o] === 'string') {
+    if(o===key && root_object[o].type) {
+
+    }
+  }
+}
+  }
+  //array
+  if(root_object_type === 'object' && Array.isArray(root_object)) {
+
+  }
+  //string
+  if(root_object_type === 'string') {
+
+  }
+  //number
+  if(root_object_type === 'number') {
+
+  }
+  //boolean
+  if(root_object_type === 'boolean') {
+
+  }
+}
+
 
 window.utilities = {
   encryptString,

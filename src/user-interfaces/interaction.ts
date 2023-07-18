@@ -6,6 +6,7 @@ import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 import hljs from 'highlight.js/lib/core';
 import json from 'highlight.js/lib/languages/json';
+import { openPatternCreator, closePatternCreator } from './pattern-creator'
 hljs.registerLanguage('json', json);
 
 
@@ -422,43 +423,6 @@ function applyPreset(index) {
   }
   var this_preset = utilities.qe(`.add-password-page .password-generator-presets .preset[index="${index}"]`)
   this_preset.setAttribute('apply', '1')
-}
-
-
-
-function openPatternCreator(event) {
-  interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
-  interaction.fade(utilities.qe('.pattern_creator_title'), 'In', 'flex')
-  closeOptions(event)
-  utilities.qe('.pattern').innerHTML = JSON.stringify(pattern_json, null, 2)
-  utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
-  hljs.highlightAll();
-  if (pattern_creator_evt === 0) {
-    pattern_creator_evt = 1
-    utilities.qe('.pattern2').addEventListener('input', function (event) {
-      utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
-      hljs.highlightBlock(utilities.qe('.pattern'));
-    });
-    utilities.qe('.pattern2').addEventListener('blur', function (event) {
-      try {
-        utilities.qe('.pattern2').innerHTML = JSON.stringify(JSON.parse(document.querySelector('.pattern2').innerText), null, 2)
-        hljs.highlightBlock(utilities.qe('.pattern2'));
-      } catch (e) {
-      }
-      utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerHTML
-    });
-    utilities.qe('.pattern2').addEventListener('scroll', function (event) {
-      window.requestAnimationFrame(function () {
-        var st = utilities.qe('.pattern2').pageYOffset || utilities.qe('.pattern2').scrollTop
-        utilities.qe('.pattern').scrollTop = st
-      })
-    });
-  }
-}
-
-function closePatternCreator() {
-  interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
-  interaction.fade(utilities.qe('.pattern_creator_title'), 'Out', 'none')
 }
 
 
