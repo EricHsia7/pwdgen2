@@ -18,8 +18,14 @@ export function openPatternCreator(event) {
     pattern_creator_evt = 1
     utilities.qe('.pattern2').addEventListener('input', function (event) {
       utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
-      hljs.highlightBlock(utilities.qe('.pattern'));
-      utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
+      try {
+        hljs.highlightBlock(utilities.qe('.pattern'));
+        pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
+        utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
+      }
+      catch (e) {
+
+      }
     });
     utilities.qe('.pattern2').addEventListener('blur', function (event) {
       try {
@@ -29,6 +35,7 @@ export function openPatternCreator(event) {
       } catch (e) {
       }
       utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerHTML
+      utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
     });
     utilities.qe('.pattern2').addEventListener('scroll', function (event) {
       window.requestAnimationFrame(function () {
