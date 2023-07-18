@@ -67,6 +67,10 @@ module.exports = (env, argv) => {
       ],
     },
     devtool: 'source-map',
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      hot: true,
+    },
     // Add any additional plugins and configurations as needed
   }
 }
