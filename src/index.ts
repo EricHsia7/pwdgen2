@@ -23,6 +23,21 @@ import './user-interfaces/css/add-password/presets.css'
 import './user-interfaces/css/fade.css'
 
 
+//for development
+const ErrorStackParser = require('error-stack-parser');
+
+window.onerror = function (message, source, lineno, colno, error) {
+  const stackFrames = ErrorStackParser.parse(error);
+  console.error('Error occurred:');
+  for (const frame of stackFrames) {
+    console.error(
+      `  - at ${frame.functionName} (${frame.fileName}:${frame.lineNumber}:${frame.columnNumber})`
+    );
+  }
+};
+
+
+
 window.password_page_icon_loaded = false
 window.allhashtag = {}
 window.search_status = 0
