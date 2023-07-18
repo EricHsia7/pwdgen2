@@ -339,16 +339,16 @@ function randomColorSet() {
   }
 
   var h = randomIntInRange(0, 360)
-  var f = function (v: number) {
+  var f = function (v: number, a: number) {
     var hsv_text = { h: h, s: 67, v: v }
     var hsv_bg = { h: h, s: 100, v: v }
     var rgb_text = hsvToRgb(hsv_text.h, hsv_text.s, hsv_text.v)
     var rgb_bg = hsvToRgb(hsv_bg.h, hsv_bg.s, hsv_bg.v)
     var text = { r: rgb_text.r, g: rgb_text.g, b: rgb_text.b, a: 1, str: `rgba(${rgb_text.r},${rgb_text.g},${rgb_text.b},${1})` }
-    var bg = { r: rgb_bg.r, g: rgb_bg.g, b: rgb_bg.b, a: 0.06, str: `rgba(${rgb_bg.r},${rgb_bg.g},${rgb_bg.b},${0.06})` }
+    var bg = { r: rgb_bg.r, g: rgb_bg.g, b: rgb_bg.b, a: a, str: `rgba(${rgb_bg.r},${rgb_bg.g},${rgb_bg.b},${a})` }
     return { text, bg }
   }
-  return { light: f(75), dark: f(100) }
+  return { light: f(75, 0.06), dark: f(100, 0.095) }
 }
 
 
