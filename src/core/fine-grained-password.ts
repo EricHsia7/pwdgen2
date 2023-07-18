@@ -210,19 +210,6 @@ function generate(options: object, mode: string): string | object {
       d += result
     }
     if (mode === 'editor') {
-      var component_id =  pattern[e].id | fine_grained_password.generate([
-        {
-          type: 'string',
-          string: 'component-'
-        },
-        {
-          type: 'regex',
-          regex: '/[a-z0-9]/g',
-          quantity: 16,
-          repeat: true
-        }
-      ], 'production')
-      pattern[e].id = component_id
       d.push({ result: result, component: this_item })
     }
   }
