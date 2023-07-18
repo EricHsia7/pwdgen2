@@ -18,7 +18,12 @@ function fade(element, type, display, callback) {
   }
   var element_display = getComputedStyle(element).getPropertyValue('display')
   if (element_display === 'none') {
-    element_display = 'block'
+    if (display === 'flex') {
+      element_display = 'flex'
+    }
+    else {
+      element_display = 'block'
+    }
   }
   var duration = 300
   var class_str = element.getAttribute('class')
