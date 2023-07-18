@@ -66,6 +66,7 @@ module.exports = (env, argv) => {
         })
       ],
     },
+    devtool: 'source-map',
     // Add any additional plugins and configurations as needed
   }
 }
