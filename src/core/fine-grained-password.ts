@@ -157,7 +157,7 @@ function generate(options: object, mode: string): string | object {
   }
   if (mode === 'editor') {
     var d: Array = []
-    var pattern = options
+    var pattern: object = options
   }
 
   const get_chars_from_regex = function (regex) {
