@@ -151,12 +151,13 @@ const getPatterns = function (): object {
 }
 
 function generate(options: object, mode: string): string | object {
-  const pattern: object = _.cloneDeep(options);
   if (mode === 'production') {
     var d: string = ""
+    const pattern: object = _.cloneDeep(options);
   }
   if (mode === 'editor') {
     var d: Array = []
+    var pattern = options
   }
 
   const get_chars_from_regex = function (regex) {
@@ -201,7 +202,7 @@ function generate(options: object, mode: string): string | object {
       var actions_len = actions.length
       for (var j = 0; j < actions_len; j++) {
         if (actions[j] === 'shuffle') {
-            result = utilities.shuffleSelf(result.split(''), result.length).join('')
+          result = utilities.shuffleSelf(result.split(''), result.length).join('')
           continue;
         }
       }
@@ -210,6 +211,19 @@ function generate(options: object, mode: string): string | object {
       d += result
     }
     if (mode === 'editor') {
+      var component_id =  pattern[e].id | fine_grained_password.generate([
+        {
+          type: 'string',
+          string: 'component-'
+        },
+        {
+          type: 'regex',
+          regex: '/[a-z0-9]/g',
+          quantity: 16,
+          repeat: true
+        }
+      ], 'production')
+      pattern[e].id = component_id
       d.push({ result: result, component: this_item })
     }
   }
