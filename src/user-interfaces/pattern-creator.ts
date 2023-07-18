@@ -53,12 +53,11 @@ export function closePatternCreator() {
 
 
 export function generatePatternPreview(): string {
-  var current_pattern = _.cloneDeep(pattern_json)
-  var generation = fine_grained_password.generate(current_pattern.pattern, 'editor')
+  var generation = fine_grained_password.generate(pattern_json.pattern, 'editor')
   var generation_len = generation.length
   var html = []
   for (var c = 0; c < generation_len; c++) {
-    var component_id = fine_grained_password.generate([
+    var component_id = generation[c].id | fine_grained_password.generate([
       {
         type: 'string',
         string: 'pattern-creator-preview-component-'
@@ -70,6 +69,8 @@ export function generatePatternPreview(): string {
         repeat: true
       }
     ], 'production')
+
+    generation[c].component.id = component_id
 
     var this_component = generation[c]
     var component_color = utilities.randomColorSet()
@@ -113,6 +114,13 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
       repeat: true
     }
   ], 'production')
+  var component = fine_grained_password.generate(pattern_json.pattern, 'editor').filter(j => (j.component.id === component_id ? true : false))
+  if(component<1) {
+    return ''
+  }
+  else {
+    component = component[0]
+  }
   var card_elt = document.createElement('div')
   card_elt.setAttribute('type', component.type)
   card_elt.setAttribute('path', path)
