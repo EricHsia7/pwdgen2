@@ -68,6 +68,67 @@ export function generatePatternPreview() {
 }
 
 
+
+try {
+  window.fine_grained_password.generate([
+    {
+     "type": "regex",
+     "regex": "/[a-z]/g",
+     "quantity": 3,
+     "repeat": false
+    },
+    {
+     "type": "group",
+     "group": [
+      {
+       "type": "regex",
+       "regex": "/[a-z]/g",
+       "quantity": 8,
+       "repeat": true
+      },
+      {
+       "type": "regex",
+       "regex": "/[0-9]/g",
+       "quantity": 5,
+       "repeat": true
+      }
+     ],
+     "actions": [
+      "shuffle"
+     ]
+    },
+    {
+     "type": "string",
+     "string": "@"
+    },
+    {
+     "type": "regex",
+     "regex": "/[a-z]/g",
+     "quantity": 10,
+     "repeat": true
+    },
+    {
+     "type": "string",
+     "string": "."
+    },
+    {
+     "type": "list",
+     "list": [
+      "com",
+      "app",
+      "net",
+      "one",
+      "me"
+     ],
+     "quantity": 1,
+     "repeat": false
+    }
+   ],'editor')
+}
+catch(e) {
+  console.log(e)
+}
+
 export function showPatternPreviewInfoCard(component_id: string, event: Event): string {
   var html = `<div class="pattern_creator_preview_component_info" type="${component.type}" path="${path}"><div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component_id}')">Show in editor</div></div>`
 }
