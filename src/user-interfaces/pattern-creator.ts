@@ -42,6 +42,8 @@ export function closePatternCreator() {
 
 
 export function generatePatternPreview() {
+  var current_pattern = _.cloneDeep(pattern_json)
+
   var component_id = fine_grained_password.generate([
     {
       type: 'string',
@@ -53,7 +55,12 @@ export function generatePatternPreview() {
       quantity: 16,
       repeat: true
     }
-  ])
+  ], 'production')
+
+
+
+  var html = `<div class="pattern_creator_preview_component" id="${component_id}" path="${path}" type="${type}"></div>`
+
 }
 
 

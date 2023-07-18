@@ -302,7 +302,7 @@ function refreshPage() {
     "quantity": 16,
     "repeat": true
   }]
-  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p))
+  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p,'production'))
 }
 
 
@@ -369,7 +369,7 @@ function openAddPassword(event) {
     interaction.standaloneStatusBarColor(0)
   }
   interaction.add_password.printPatternPresets('add-password-page')
-  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern)
+  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern,'production')
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
   utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
   interaction.options.closeOptions(event)
@@ -415,7 +415,7 @@ function printPatternPresets(place) {
 function applyPreset(index) {
   var list = fine_grained_password.getPatterns()
   var preset = list[index]
-  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(preset.pattern)
+  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(preset.pattern,'production')
   var all_preset = utilities.qeAll(".add-password-page .password-generator-presets .preset")
   var all_preset_len = (all_preset ? all_preset.length : 0)
   for (var o = 0; o < all_preset_len; o++) {
