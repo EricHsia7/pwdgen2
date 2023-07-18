@@ -27,7 +27,7 @@ import './user-interfaces/css/fade.css'
 const ErrorStackParser = require('error-stack-parser');
 const SourceMap = require('source-map'); 
 
-window.onerror = function (message, source, lineno, colno, error) {
+window.onerror = async function (message, source, lineno, colno, error) {
 
   // Parse the error stack trace using ErrorStackParser
   const stackFrames = ErrorStackParser.parse(error);
