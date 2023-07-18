@@ -17,11 +17,13 @@ export function openPatternCreator(event) {
     utilities.qe('.pattern2').addEventListener('input', function (event) {
       utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
       hljs.highlightBlock(utilities.qe('.pattern'));
+      utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
     });
     utilities.qe('.pattern2').addEventListener('blur', function (event) {
       try {
         utilities.qe('.pattern2').innerHTML = JSON.stringify(JSON.parse(document.querySelector('.pattern2').innerText), null, 2)
         hljs.highlightBlock(utilities.qe('.pattern2'));
+        utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
       } catch (e) {
       }
       utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerHTML
@@ -41,10 +43,11 @@ export function closePatternCreator() {
 }
 
 
-export function generatePatternPreview() {
+export function generatePatternPreview(): string {
   var current_pattern = _.cloneDeep(pattern_json)
   var generation = fine_grained_password.generate(current_pattern.pattern, 'editor')
   var generation_len = generation.length
+  var html = []
   for (var c = 0; c < generation_len; c++) {
     var component_id = fine_grained_password.generate([
       {
@@ -59,78 +62,56 @@ export function generatePatternPreview() {
       }
     ], 'production')
 
-    
     var this_component = generation[c]
-    var html = `<div class="pattern_creator_preview_component" id="${component_id}" path="${path}" type="${this_component.component.type}"></div>`
-
+    var component_color = utilities.randomColorSet()
+    var path = 'x'
+    var component_elt = document.createElement('span')
+    component_elt.classList.add('pattern_creator_preview_component')
+    component_elt.id = component_id
+    component_elt.setAttribute('path', path)
+    component_elt.setAttribute('type', this_component.component.type)
+    component_elt.style.setProperty('--j-component-color-text', component_color.text.str)
+    component_elt.style.setProperty('--j-component-color-bg', component_color.text.bg)
+    component_elt.innerText = this_component.result
+    component_elt.setAttribute('onclick', `showPatternPreviewInfoCard('${component_id}',event)`)
+    html.push(component_elt.outerHTML)
   }
-
+  return html.join('')
 }
 
-
-
-try {
-  window.fine_grained_password.generate([
+export function showPatternPreviewInfoCard(component_id: string, event: Event): void {
+  var elt = event.target
+  var elt_rect = elt.getBoundingClientRect();
+  var elt_x = elt_rect.x
+  var elt_y = elt_rect.y
+  var elt_w = elt.clientWidth;
+  var elt_h = elt.clientHeight;
+  var preview_elt = utilities.qe('.pattern_creator .generation_preview')
+  var preview_elt_rect = preview_elt.getBoundingClientRect()
+  var preview_elt_x = preview_elt_rect.x
+  var preview_elt_y = preview_elt_rect.y
+  var relative_x = elt_x - preview_elt_x
+  var relative_y = elt_y - preview_elt_y + elt_h + 2
+  var tmp_id = fine_grained_password.generate([
     {
-     "type": "regex",
-     "regex": "/[a-z]/g",
-     "quantity": 3,
-     "repeat": false
+      type: 'string',
+      string: 'pattern-component-info-'
     },
     {
-     "type": "group",
-     "group": [
-      {
-       "type": "regex",
-       "regex": "/[a-z]/g",
-       "quantity": 8,
-       "repeat": true
-      },
-      {
-       "type": "regex",
-       "regex": "/[0-9]/g",
-       "quantity": 5,
-       "repeat": true
-      }
-     ],
-     "actions": [
-      "shuffle"
-     ]
-    },
-    {
-     "type": "string",
-     "string": "@"
-    },
-    {
-     "type": "regex",
-     "regex": "/[a-z]/g",
-     "quantity": 10,
-     "repeat": true
-    },
-    {
-     "type": "string",
-     "string": "."
-    },
-    {
-     "type": "list",
-     "list": [
-      "com",
-      "app",
-      "net",
-      "one",
-      "me"
-     ],
-     "quantity": 1,
-     "repeat": false
+      type: 'regex',
+      regex: '/[a-z0-9]/g',
+      quantity: 16,
+      repeat: true
     }
-   ],'editor')
-}
-catch(e) {
-  console.log(e)
-}
-
-export function showPatternPreviewInfoCard(component_id: string, event: Event): string {
-  var html = `<div class="pattern_creator_preview_component_info" type="${component.type}" path="${path}"><div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component_id}')">Show in editor</div></div>`
+  ], 'production')
+  var card_elt = document.createElement('div')
+  card_elt.setAttribute('type', component.type)
+  card_elt.setAttribute('path', path)
+  card_elt.style.setProperty('--j-component-info-top', `${relative_y}px`)
+  card_elt.style.setProperty('--j-component-info-left', `${relative_x}px`)
+  card_elt.id = tmp_id
+  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component_id}')">Show in editor</div>`
+  preview_elt.appendChild(card_elt)
 }
 
 

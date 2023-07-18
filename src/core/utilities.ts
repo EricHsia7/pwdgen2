@@ -24,7 +24,7 @@ function encryptString(string) {
       ]
     }
   ]
-  var initialization_vector = parseInt(fine_grained_password.generate(initialization_vector_pattern,'production'));
+  var initialization_vector = parseInt(fine_grained_password.generate(initialization_vector_pattern, 'production'));
   var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
   var textBytes = aesjs.utils.utf8.toBytes(string);
   var aesCtr = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(initialization_vector));
@@ -232,34 +232,46 @@ function fetchWithProgress(url, progressCallback) {
   });
 }
 
-function filterObjectWithKey(root_object: object,key: string,query: string){
+function filterObjectWithKey(root_object: object, key: string, query: string) {
   var root_object_type = typeof root_object
   //object
-  if(root_object_type === 'object' && !Array.isArray(root_object)) { 
-for(var o in root_object) {
-  if(typeof root_object[o] === 'string') {
-    if(o===key && root_object[o].type) {
+  if (root_object_type === 'object' && !Array.isArray(root_object)) {
+    for (var o in root_object) {
+      if (typeof root_object[o] === 'string') {
+        if (o === key && root_object[o].type) {
 
+        }
+      }
     }
   }
-}
-  }
   //array
-  if(root_object_type === 'object' && Array.isArray(root_object)) {
+  if (root_object_type === 'object' && Array.isArray(root_object)) {
 
   }
   //string
-  if(root_object_type === 'string') {
+  if (root_object_type === 'string') {
 
   }
   //number
-  if(root_object_type === 'number') {
+  if (root_object_type === 'number') {
 
   }
   //boolean
-  if(root_object_type === 'boolean') {
+  if (root_object_type === 'boolean') {
 
   }
+}
+
+function randomColorSet() {
+  var randomIntInRange = function (min, max) {
+    return Math.max(Math.min(Math.round(min + (max - min) * Math.random()), max), min)
+  }
+  var r = randomIntInRange(0, 255)
+  var g = randomIntInRange(0, 255)
+  var b = randomIntInRange(0, 255)
+  var text = { r: r, g: g, b: b, a: 1, str: `rgba(${r},${g},${b},${1})` }
+  var bg = { r: r, g: g, b: b, a: 0.3, str: `rgba(${r},${g},${b},${0.3})` }
+  return { text, bg }
 }
 
 
@@ -278,7 +290,8 @@ window.utilities = {
   unicode_arr,
   jaroWinklerDistance,
   gethashtags,
-  fetchWithProgress
+  fetchWithProgress,
+  randomColorSet
 }
 
 export default window.utilities
