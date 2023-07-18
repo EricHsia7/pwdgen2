@@ -8,7 +8,7 @@ window.pattern_creator_current_editor = 'blocks'
 export function openPatternCreator(event) {
   interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
   interaction.fade(utilities.qe('.pattern_creator_title'), 'In', 'flex')
-  closeOptions(event)
+  interaction.options.closeOptions(event)
   utilities.qe('.pattern').innerHTML = JSON.stringify(pattern_json, null, 2)
   utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
   hljs.highlightAll();
@@ -53,11 +53,13 @@ export function generatePatternPreview() {
       },
       {
         type: 'regex',
-        regex: '/a-z0-9/g',
+        regex: '/[a-z0-9]/g',
         quantity: 16,
         repeat: true
       }
     ], 'production')
+
+    
     var this_component = generation[c]
     var html = `<div class="pattern_creator_preview_component" id="${component_id}" path="${path}" type="${this_component.component.type}"></div>`
 

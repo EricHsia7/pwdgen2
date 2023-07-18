@@ -214,8 +214,8 @@ function generate(options: object, mode: string): string | object {
     if (mode === 'production') {
       d += result
     }
-    else {
-      d.psuh({ result: result, component: this_item })
+    if (mode === 'editor') {
+      d.push({ result: result, component: this_item })
     }
   }
   return d
