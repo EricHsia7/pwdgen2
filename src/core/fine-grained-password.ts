@@ -196,17 +196,12 @@ function generate(options: object, mode: string): string | object {
       }
     }
     if (this_item['type'] === "group") {
-      result = fine_grained_password.generate(this_content, mode)
+      result = fine_grained_password.generate(this_content, 'production')
       var actions = this_item['actions']
       var actions_len = actions.length
       for (var j = 0; j < actions_len; j++) {
         if (actions[j] === 'shuffle') {
-          if (mode === 'production') {
             result = utilities.shuffleSelf(result.split(''), result.length).join('')
-          }
-          if (mode === 'editor') {
-            result = utilities.shuffleSelf(result.result.split(''), result.result.length).join('')
-          }
           continue;
         }
       }
