@@ -60,6 +60,18 @@ export function generatePatternPreview(): string {
     var this_component = generation[c]
     var component_color = utilities.randomColorSet()
     var path = 'x'
+    var component_id =  pattern[e].id | fine_grained_password.generate([
+      {
+        type: 'string',
+        string: 'component-'
+      },
+      {
+        type: 'regex',
+        regex: '/[a-z0-9]/g',
+        quantity: 16,
+        repeat: true
+      }
+    ], 'production')
     var component_elt = document.createElement('span')
     component_elt.classList.add('pattern_creator_preview_component')
     component_elt.id = component_id
