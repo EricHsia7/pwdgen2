@@ -57,21 +57,6 @@ export function generatePatternPreview(): string {
   var generation_len = generation.length
   var html = []
   for (var c = 0; c < generation_len; c++) {
-    var component_id = generation[c].component.id | fine_grained_password.generate([
-      {
-        type: 'string',
-        string: 'pattern-creator-preview-component-'
-      },
-      {
-        type: 'regex',
-        regex: '/[a-z0-9]/g',
-        quantity: 16,
-        repeat: true
-      }
-    ], 'production')
-
-    generation[c].component.id = component_id
-
     var this_component = generation[c]
     var component_color = utilities.randomColorSet()
     var path = 'x'
