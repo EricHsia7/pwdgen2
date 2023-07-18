@@ -25,15 +25,20 @@ import './user-interfaces/css/fade.css'
 
 //for development
 const ErrorStackParser = require('error-stack-parser');
+const StackTraceGPS = require('stacktrace-js');
 
-window.onerror = function (message, source, lineno, colno, error) {
-  const stackFrames = ErrorStackParser.parse(error);
-  console.error('Error occurred:');
-  for (const frame of stackFrames) {
-    console.error(
-      `  - at ${frame.functionName} (${frame.fileName}:${frame.lineNumber}:${frame.columnNumber})`
-    );
-  }
+window.onerror = async function (message, source, lineno, colno, error) {
+    const stackTraceGPS = new StackTraceGPS();
+    stackTraceGPS
+      .fromError(error)
+      .then(stackFrames => {
+        // Now you have an array of stack frames with enhanced source map information
+        console.log(stackFrames);
+      })
+      .catch(error => {
+        // Handling errors while parsing the stack trace
+        console.error('Failed to parse stack trace:', error);
+      });
 };
 
 
