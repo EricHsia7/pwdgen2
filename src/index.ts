@@ -38,14 +38,14 @@ window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'm
 
 window.pwdgen2 = function () { //initialize
   utilities.qe(".search").addEventListener("click", function (e) {
-    interaction.openSearch()
+    interaction.search.openSearch()
   })
   utilities.qe(".search-box .search input#search").addEventListener("focus", function (e) {
-    interaction.openSearch()
+    interaction.search.openSearch()
   })
 
   upgradeData()
-  interaction.printSavedPasswordList()
+  interaction.main_page.printSavedPasswordList()
 
   utilities.qe('.main-page').addEventListener('scroll', function (e) {
     container_scrollTop = utilities.qe('.main-page').scrollTop

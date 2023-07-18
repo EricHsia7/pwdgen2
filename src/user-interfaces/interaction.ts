@@ -4,10 +4,10 @@ import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword } from '../core/storage'
 import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
-
 import hljs from 'highlight.js/lib/core';
 import json from 'highlight.js/lib/languages/json';
 hljs.registerLanguage('json', json);
+
 
 function fade(element, type, display, callback) {
   var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -48,6 +48,8 @@ function fade(element, type, display, callback) {
     }
   }, { once: true })
 }
+
+
 
 function prompt_message(message, duration) {
   if (isNaN(duration)) {
@@ -91,68 +93,49 @@ function prompt_message(message, duration) {
 
 
 
-function setSearchQuery(q) {
-  utilities.qe(".search input#search").value = q
-  updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+function standaloneStatusBarColor(a) {
+  var c = '#f2f2f7'
+  var d = '#0a0a0b'
+  if (a === 1) {
+    c = '#ffffff'
+    d = '#1c1c1e'
+  }
+  utilities.qe('head meta[kji="light"]').setAttribute('content', c)
+  utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
 }
 
 
-function printSearch(search, element) {
-  var html = []
-  var array = (search.suggestions.length >= 1 ? [{ type: 3, title: "Suggestions" }] : []).concat(search.suggestions).concat(search.result.length >= 1 ? [{ type: 3, title: "Results" }] : []).concat(search.result)
-  var array_len = array.length
-  for (var i = 0; i < array_len; i++) {
-    var t = array[i]
-    if (t.type === 0) {
-      var display_title = t.date
-      var display_preview = (String(t.note).length > 0) ? (t.note).replaceAll(/\n/g, " ") : "note-free"
-      var display_icon = icons.icon_password
-      var elt_class = "search-item"
-      var elt_action = `interaction.openPassword('${t.id}')`
-    }
-    if (t.type === 1) {
-      var display_title = String(t.suggestion).substring(1)
-      var display_preview = ""
-      var display_icon = icons.icon_hashtag
-      var elt_class = "search-suggestion"
-      var elt_action = `interaction.setSearchQuery('${t.suggestion}')`
-    }
-    if (t.type === 2) {
-      var display_title = t.suggestion
-      var display_preview = ""
-      var display_icon = icons.icon_date
-      var elt_class = "search-suggestion"
-      var elt_action = `interaction.setSearchQuery('${t.suggestion}')`
-    }
-    if (t.type === 3) {
-      var display_title = t.title
-      var display_preview = ""
-      var display_icon = ""
-      var elt_class = "search-category"
-      var elt_action = ""
-    }
-    if (t.type === 4) {
-      var display_title = t.suggestion
-      var display_preview = ""
-      var display_icon = icons.icon_text
-      var elt_class = "search-suggestion"
-      var elt_action = `interaction.setSearchQuery('${t.suggestion}')`
-    }
-    var t_html = `<div class="${elt_class}" onclick="${elt_action}"><div class="${elt_class}-icon">${display_icon}</div><div class="${elt_class}-title">${display_title}</div><div class="${elt_class}-preview">${display_preview}</div></div>`
-    html.push(t_html)
+
+function generateHashTagHTML(plain_text) {
+  var hashtags = utilities.gethashtags(plain_text, false)
+  var hashtags_len = hashtags.length
+  for (var w = 0; w < hashtags_len; w++) {
+    plain_text = plain_text.replaceAll(hashtags[w], `<span class="hashtag">${hashtags[w]}</span>`)
   }
-  element.innerHTML = html.join('')
+  return plain_text
 }
 
-function printSavedPasswordList() {
-  var list = listSavedPassword()
-  var list_len = list.length
-  var html = []
-  for (var k = 0; k < list_len; k++) {
-    var tags = []
-    html.push(`<div class="password-item" onclick="interaction.openPassword('${list[k].id}')"><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
+
+
+function copyElement(selector) {
+  if (utilities.qe(selector).tagName === "INPUT" || utilities.qe(selector).tagName === "TEXTAREA") {
+    var copyText = utilities.qe(selector).value;
   }
-  utilities.qe(".password-list").innerHTML = html.join('')
+  else {
+    var copyText = utilities.qe(selector).textContent;
+  }
+
+  var textArea = document.createElement("textarea");
+  textArea.value = copyText;
+  textArea.setAttribute('readonly', 'readonly')
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand("Copy");
+  textArea.remove();
+}
+
+function copyDetails(k) {
+  interaction.copyElement(`.password-page .details-item-value[k="${k}"] input`)
 }
 
 
@@ -161,19 +144,19 @@ function openSearch() {
   Xsearch.searchIndex = Xsearch.createSearchIndex()
   if (search_evt === 0) {
     utilities.qe(".search input#search").addEventListener("selectionchange", function (e) {
-      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
     utilities.qe(".search input#search").addEventListener("keyup", function (e) {
-      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
     utilities.qe(".search input#search").addEventListener("cut", function (e) {
-      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
     utilities.qe(".search input#search").addEventListener("paste", function (e) {
-      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
     utilities.qe(".search input#search").addEventListener("copy", function (e) {
-      interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
   }
 
@@ -190,8 +173,9 @@ function openSearch() {
   }
   interaction.standaloneStatusBarColor(1)
   search_status = 1
-  interaction.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+  interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
 }
+
 function closeSearch() {
   utilities.qe(".search-box").setAttribute('status', '0')
   utilities.qe(".search-output-box").setAttribute('status', '0')
@@ -210,19 +194,113 @@ function closeSearch() {
   search_status = 0
 }
 
-function updateSearch(query, index) {
-  var search = Xsearch.search_passwords(String(query).toLowerCase(), index)
-  interaction.printSearch(search, utilities.qe(".search-output"))
+function printSearch(search, element) {
+  var html = []
+  var array = (search.suggestions.length >= 1 ? [{ type: 3, title: "Suggestions" }] : []).concat(search.suggestions).concat(search.result.length >= 1 ? [{ type: 3, title: "Results" }] : []).concat(search.result)
+  var array_len = array.length
+  for (var i = 0; i < array_len; i++) {
+    var t = array[i]
+    if (t.type === 0) {
+      var display_title = t.date
+      var display_preview = (String(t.note).length > 0) ? (t.note).replaceAll(/\n/g, " ") : "note-free"
+      var display_icon = icons.icon_password
+      var elt_class = "search-item"
+      var elt_action = `interaction.password_page.openPassword('${t.id}')`
+    }
+    if (t.type === 1) {
+      var display_title = String(t.suggestion).substring(1)
+      var display_preview = ""
+      var display_icon = icons.icon_hashtag
+      var elt_class = "search-suggestion"
+      var elt_action = `interaction.search.setSearchQuery('${t.suggestion}')`
+    }
+    if (t.type === 2) {
+      var display_title = t.suggestion
+      var display_preview = ""
+      var display_icon = icons.icon_date
+      var elt_class = "search-suggestion"
+      var elt_action = `interaction.search.setSearchQuery('${t.suggestion}')`
+    }
+    if (t.type === 3) {
+      var display_title = t.title
+      var display_preview = ""
+      var display_icon = ""
+      var elt_class = "search-category"
+      var elt_action = ""
+    }
+    if (t.type === 4) {
+      var display_title = t.suggestion
+      var display_preview = ""
+      var display_icon = icons.icon_text
+      var elt_class = "search-suggestion"
+      var elt_action = `interaction.search.setSearchQuery('${t.suggestion}')`
+    }
+    var t_html = `<div class="${elt_class}" onclick="${elt_action}"><div class="${elt_class}-icon">${display_icon}</div><div class="${elt_class}-title">${display_title}</div><div class="${elt_class}-preview">${display_preview}</div></div>`
+    html.push(t_html)
+  }
+  element.innerHTML = html.join('')
 }
 
-function generateHashTagHTML(plain_text) {
-  var hashtags = utilities.gethashtags(plain_text, false)
-  var hashtags_len = hashtags.length
-  for (var w = 0; w < hashtags_len; w++) {
-    plain_text = plain_text.replaceAll(hashtags[w], `<span class="hashtag">${hashtags[w]}</span>`)
-  }
-  return plain_text
+function updateSearch(query, index) {
+  var search = Xsearch.search_passwords(String(query).toLowerCase(), index)
+  interaction.search.printSearch(search, utilities.qe(".search-output"))
 }
+
+function setSearchQuery(q) {
+  utilities.qe(".search input#search").value = q
+  updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+}
+
+
+
+function printSavedPasswordList() {
+  var list = listSavedPassword()
+  var list_len = list.length
+  var html = []
+  for (var k = 0; k < list_len; k++) {
+    var tags = []
+    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')"><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
+  }
+  utilities.qe(".password-list").innerHTML = html.join('')
+}
+
+
+
+function openOptions(r) {
+  utilities.qe('.options_mask').style.setProperty('display', 'block')
+  utilities.qe('.options').style.setProperty('display', 'inline-block')
+  utilities.qe('.options').style.setProperty('--js-options-list-count', document.querySelectorAll('.options li[group="' + r + '"]').length)
+  setTimeout(function () {
+    utilities.qe('.options').setAttribute('k', '1')
+  }, 1)
+  utilities.qe('#options_css').innerHTML = '.options li{display:none;}.options li[group="' + r + '"] {display:flex;}'
+}
+
+function closeOptions(event) {
+  event.stopPropagation()
+  utilities.qe('.options').setAttribute('k', '0')
+  utilities.qe('.options').addEventListener('transitionend', function () {
+    utilities.qe('.options').style.setProperty('display', 'none')
+    utilities.qe('.options_mask').style.setProperty('display', 'none')
+  }, { once: true })
+}
+
+function viewOnGithub() {
+  window.open('https://github.com/EricHsia7/pwdgen2')
+}
+
+function refreshPage() {
+  var p = [{
+    "type": "regex",
+    "regex": "/[a-zA-Z0-9]/g",
+    "quantity": 16,
+    "repeat": true
+  }]
+  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p))
+}
+
+
+
 function openPassword(id) {
   interaction.fade(utilities.qe('.password-page'), 'In', 'block')
   if (search_sticky || search_status === 1) {
@@ -267,6 +345,7 @@ function openPassword(id) {
 
   }
 }
+
 function closePassword() {
   interaction.fade(utilities.qe('.password-page'), 'Out', 'none', function () {
     utilities.qe('.password-page').scrollTop = 0
@@ -276,67 +355,18 @@ function closePassword() {
   }
 }
 
-function copyElement(selector) {
-  if (utilities.qe(selector).tagName === "INPUT" || utilities.qe(selector).tagName === "TEXTAREA") {
-    var copyText = utilities.qe(selector).value;
-  }
-  else {
-    var copyText = utilities.qe(selector).textContent;
-  }
 
-  var textArea = document.createElement("textarea");
-  textArea.value = copyText;
-  textArea.setAttribute('readonly', 'readonly')
-  document.body.appendChild(textArea);
-  textArea.select();
-  document.execCommand("Copy");
-  textArea.remove();
-}
-
-function copyDetails(k) {
-  interaction.copyElement(`.password-page .details-item-value[k="${k}"] input`)
-}
-
-function standaloneStatusBarColor(a) {
-  var c = '#f2f2f7'
-  var d = '#0a0a0b'
-  if (a === 1) {
-    c = '#ffffff'
-    d = '#1c1c1e'
-  }
-  utilities.qe('head meta[kji="light"]').setAttribute('content', c)
-  utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
-}
-
-function openOptions(r) {
-  utilities.qe('.options_mask').style.setProperty('display', 'block')
-  utilities.qe('.options').style.setProperty('display', 'inline-block')
-  utilities.qe('.options').style.setProperty('--js-options-list-count', document.querySelectorAll('.options li[group="' + r + '"]').length)
-  setTimeout(function () {
-    utilities.qe('.options').setAttribute('k', '1')
-  }, 1)
-  utilities.qe('#options_css').innerHTML = '.options li{display:none;}.options li[group="' + r + '"] {display:flex;}'
-}
-
-function closeOptions(event) {
-  event.stopPropagation()
-  utilities.qe('.options').setAttribute('k', '0')
-  utilities.qe('.options').addEventListener('transitionend', function () {
-    utilities.qe('.options').style.setProperty('display', 'none')
-    utilities.qe('.options_mask').style.setProperty('display', 'none')
-  }, { once: true })
-}
 
 function openAddPassword(event) {
   interaction.fade(utilities.qe('.add-password-page'), 'In', 'block')
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
-  printPatternPresets('add-password-page')
+  interaction.printPatternPresets('add-password-page')
   utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern)
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
   utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
-  closeOptions(event)
+  interaction.options.closeOptions(event)
 }
 
 function closeAddPassword() {
@@ -346,6 +376,17 @@ function closeAddPassword() {
   }
 }
 
+function addPasswordWithForm() {
+  var password = utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value || ''
+  var username = utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value || ''
+  var website = utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
+  var addedpassword = addPassword(password, username, website, '')
+  interaction.prompt_message('Added password', 1200)
+  interaction.password_page.openPassword(addedpassword)
+  interaction.add_password.closeAddPassword()
+  interaction.main_page.printSavedPasswordList()
+}
+
 function printPatternPresets(place) {
   var html = []
   var list = fine_grained_password.getPatterns()
@@ -353,10 +394,10 @@ function printPatternPresets(place) {
   for (var i = 0; i < list_len; i++) {
     var p = list[i]
     if (place === 'add-password-page') {
-      var h = `<li class="preset" apply="${(i === 0 ? 1 : 0)}" index="${i}" onclick="interaction.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+      var h = `<li class="preset" apply="${(i === 0 ? 1 : 0)}" index="${i}" onclick="interaction.add_password.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
     }
     if (place === 'pattern-manager') {
-      var h = `<li class="preset" index="${i}" onclick="interaction.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
+      var h = `<li class="preset" index="${i}" onclick="interaction.add_password.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`
     }
     html.push(h)
   }
@@ -377,6 +418,8 @@ function applyPreset(index) {
   var this_preset = utilities.qe(`.add-password-page .password-generator-presets .preset[index="${index}"]`)
   this_preset.setAttribute('apply', '1')
 }
+
+
 
 function openPatternCreator(event) {
   interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
@@ -411,57 +454,46 @@ function closePatternCreator() {
   interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
 }
 
-function viewOnGithub() {
-  window.open('https://github.com/EricHsia7/pwdgen2')
-}
 
-function refreshPage() {
-  var p = [{
-    "type": "regex",
-    "regex": "/[a-zA-Z0-9]/g",
-    "quantity": 16,
-    "repeat": true
-  }]
-  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p))
-}
-
-function addPasswordWithForm() {
-  var password = utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value || ''
-  var username = utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value || ''
-  var website = utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
-  var addedpassword = addPassword(password, username, website, '')
-  interaction.prompt_message('Added password', 1200)
-  interaction.openPassword(addedpassword)
-  interaction.closeAddPassword()
-  interaction.printSavedPasswordList()
-}
 
 window.interaction = {
   prompt_message,
   fade,
-  setSearchQuery,
-  printSearch,
-  printSavedPasswordList,
-  openSearch,
-  closeSearch,
-  updateSearch,
   generateHashTagHTML,
-  openPassword,
-  closePassword,
   copyElement,
   copyDetails,
   standaloneStatusBarColor,
-  openOptions,
-  closeOptions,
-  openAddPassword,
-  closeAddPassword,
-  printPatternPresets,
-  applyPreset,
-  openPatternCreator,
-  closePatternCreator,
-  refreshPage,
-  addPasswordWithForm,
-  viewOnGithub
+  search: {
+    openSearch,
+    closeSearch,
+    updateSearch,
+    setSearchQuery,
+    printSearch
+  },
+  add_password: {
+    openAddPassword,
+    closeAddPassword,
+    addPasswordWithForm,
+    printPatternPresets,
+    applyPreset
+  },
+  options: {
+    openOptions,
+    closeOptions,
+    refreshPage,
+    viewOnGithub
+  },
+  pattern_creator: {
+    openPatternCreator,
+    closePatternCreator
+  },
+  password_page: {
+    openPassword,
+    closePassword,
+  },
+  main_page: {
+    printSavedPasswordList,
+  }
 }
 
 export default window.interaction
