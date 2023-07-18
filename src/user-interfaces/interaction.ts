@@ -4,10 +4,11 @@ import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword } from '../core/storage'
 import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
+import { openPatternCreator, closePatternCreator, generatePatternPreview, showPatternPreviewInfoCard, searchPatternComponent } from './pattern-creator'
 
-import { openPatternCreator, closePatternCreator ,generatePatternPreview,showPatternPreviewInfoCard,searchPatternComponent} from './pattern-creator'
-
-
+import hljs from 'highlight.js/lib/core';
+import json from 'highlight.js/lib/languages/json';
+hljs.registerLanguage('json', json);
 
 function fade(element, type, display, callback) {
   var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -301,7 +302,7 @@ function refreshPage() {
     "quantity": 16,
     "repeat": true
   }]
-  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p,'production'))
+  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p, 'production'))
 }
 
 
@@ -368,7 +369,7 @@ function openAddPassword(event) {
     interaction.standaloneStatusBarColor(0)
   }
   interaction.add_password.printPatternPresets('add-password-page')
-  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern,'production')
+  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern, 'production')
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
   utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
   interaction.options.closeOptions(event)
@@ -414,7 +415,7 @@ function printPatternPresets(place) {
 function applyPreset(index) {
   var list = fine_grained_password.getPatterns()
   var preset = list[index]
-  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(preset.pattern,'production')
+  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(preset.pattern, 'production')
   var all_preset = utilities.qeAll(".add-password-page .password-generator-presets .preset")
   var all_preset_len = (all_preset ? all_preset.length : 0)
   for (var o = 0; o < all_preset_len; o++) {

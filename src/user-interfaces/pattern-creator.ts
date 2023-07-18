@@ -1,9 +1,8 @@
 import fine_grained_password from '../core/fine-grained-password'
 import utilities from '../core/utilities'
 var _ = require('lodash');
-import hljs from 'highlight.js/lib/core';
-import json from 'highlight.js/lib/languages/json';
-hljs.registerLanguage('json', json);
+
+
 
 window.pattern_creator_current_editor = 'blocks'
 
