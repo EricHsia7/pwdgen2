@@ -367,7 +367,7 @@ function openAddPassword(event) {
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
-  interaction.printPatternPresets('add-password-page')
+  interaction.add_password.printPatternPresets('add-password-page')
   utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern)
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
   utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
