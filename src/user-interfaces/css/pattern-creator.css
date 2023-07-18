@@ -188,4 +188,13 @@
   overflow: hidden;
   background: var(--p-ffffff);
   color: var(--p-333333);
+  white-space: pre;
+}
+
+.pattern_creator .pattern_creator_preview_component {
+  display: inline-flex;
+  height: 20px;
+  width: auto;
+  color: var(--j-component-color-text);
+  background: var(--j-component-color-bg);
 }
