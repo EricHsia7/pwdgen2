@@ -25,15 +25,36 @@ import './user-interfaces/css/fade.css'
 
 //for development
 const ErrorStackParser = require('error-stack-parser');
+const SourceMap = require('source-map'); 
 
 window.onerror = function (message, source, lineno, colno, error) {
+
+  // Parse the error stack trace using ErrorStackParser
   const stackFrames = ErrorStackParser.parse(error);
-  console.error('Error occurred:');
-  for (const frame of stackFrames) {
-    console.error(
-      `  - at ${frame.functionName} (${frame.fileName}:${frame.lineNumber}:${frame.columnNumber})`
-    );
-  }
+  // Load the source map
+  fetch('your-source-map-file.map')
+    .then(response => response.json())
+    .then(sourceMapData => {
+      // Create a new SourceMapConsumer using the source map data
+      const consumer = await new SourceMap.SourceMapConsumer(sourceMapData);
+
+      // Process the stack frames and map them to the original source code location
+      console.error('Error occurred:');
+      for (const frame of stackFrames) {
+        const originalPosition = consumer.originalPositionFor({
+          line: frame.lineNumber,
+          column: frame.columnNumber,
+        });
+
+        console.error(
+          `  - at ${frame.functionName} (${originalPosition.source}:${originalPosition.line}:${originalPosition.column})`
+        );
+      }
+
+      // Clean up the consumer
+      consumer.destroy();
+    })
+    .catch(err => console.error('Failed to load source map:', err));
 };
 
 
