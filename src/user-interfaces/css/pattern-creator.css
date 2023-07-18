@@ -55,8 +55,7 @@
   width: calc(100% - 20px);
   height: 300px;
   overflow: hidden;
-  position: absolute;
-  top: 130px;
+  position: relative;
   left: 10px;
   background: var(--p-ffffff);
   border-radius: 10px;
