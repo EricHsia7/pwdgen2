@@ -37,8 +37,9 @@ window.onerror = async function (message, source, lineno, colno, error) {
         columnNumber: frame.columnNumber,
       };
     });
+    console.log('\n\n\n----------')
     parsedStackTrace.forEach(e => {
-      console.log(`%c${message}\n %cfunc: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`, "color: rgba(255,0,0,1); font-size: 23px; font-weight:700; background-color: rgba(255,0,0,0.09);","color: rgba(255,0,0,1); background-color: rgba(255,0,0,0.09);");
+      console.log(`%cfunc: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`,"color: rgba(255,0,0,1); background-color: rgba(255,0,0,0.09);");
     });
   });  
 };
