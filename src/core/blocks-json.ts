@@ -1,25 +1,25 @@
 
-function vjson_type(thing, path, place) {
+function bjson_type(thing, path, place) {
   if (typeof thing === 'string') {
-    return vjson_string(thing, path, place)
+    return bjson_string(thing, path, place)
   }
   if (typeof thing === 'number') {
-    return vjson_number(thing, path, place)
+    return bjson_number(thing, path, place)
   }
   if (typeof thing === 'boolean') {
-    return vjson_boolean(thing, path, place)
+    return bjson_boolean(thing, path, place)
   }
   if (typeof thing === 'object' && Array.isArray(thing)) {
-    return vjson_array(thing, path, place)
+    return bjson_array(thing, path, place)
   }
   if (typeof thing === 'object' && !Array.isArray(thing)) {
-    return vjson_object(thing, path, place)
+    return bjson_object(thing, path, place)
   }
 }
 
-function vjson_string(string, path, place) {
+function bjson_string(string, path, place) {
   var element = document.createElement('div')
-  element.classList.add('vjson_string')
+  element.classList.add('bjson_string')
   if (place === 'object') {
     key = path[path.length - 1]
   }
@@ -28,11 +28,11 @@ function vjson_string(string, path, place) {
   }
   var input = document.createElement('input')
   input.setAttribute('value', string)
-  input.setAttribute('onkeyup', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
-  input.setAttribute('onselectionchange', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
+  input.setAttribute('onkeyup', `bjson_update_single_object(pattern_editor_blocks_json,json,event)`)
+  input.setAttribute('onselectionchange', `bjson_update_single_object(pattern_editor_blocks_json,json,event)`)
 
   var key_elt = document.createElement('div')
-  key_elt.classList.add('vjson_key')
+  key_elt.classList.add('bjson_key')
   key_elt.innerText = key
   element.innerHTML = key_elt.outerHTML + input.outerHTML
   element.setAttribute('path', path.join('/'))
@@ -40,9 +40,9 @@ function vjson_string(string, path, place) {
   return element.outerHTML
 }
 
-function vjson_number(num, path, place) {
+function bjson_number(num, path, place) {
   var element = document.createElement('div')
-  element.classList.add('vjson_number')
+  element.classList.add('bjson_number')
   if (place === 'object') {
     key = path[path.length - 1]
   }
@@ -51,11 +51,11 @@ function vjson_number(num, path, place) {
   }
   var input = document.createElement('input')
   input.setAttribute('value', num)
-  input.setAttribute('onkeyup', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
-  input.setAttribute('onselectionchange', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
+  input.setAttribute('onkeyup', `bjson_update_single_object(pattern_editor_blocks_json,json,event)`)
+  input.setAttribute('onselectionchange', `bjson_update_single_object(pattern_editor_blocks_json,json,event)`)
 
   var key_elt = document.createElement('div')
-  key_elt.classList.add('vjson_key')
+  key_elt.classList.add('bjson_key')
   key_elt.innerText = key
   element.innerHTML = key_elt.outerHTML + input.outerHTML
   element.setAttribute('path', path.join('/'))
@@ -63,9 +63,9 @@ function vjson_number(num, path, place) {
   return element.outerHTML
 }
 
-function vjson_boolean(boolean, path, place) {
+function bjson_boolean(boolean, path, place) {
   var element = document.createElement('div')
-  element.classList.add('vjson_boolean')
+  element.classList.add('bjson_boolean')
   var opt_1 = document.createElement('option')
   opt_1.setAttribute('value', 'true')
   opt_1.innerText = 'true'
@@ -80,7 +80,7 @@ function vjson_boolean(boolean, path, place) {
   }
   var select = document.createElement('select')
   select.innerHTML = opt_1.outerHTML + opt_2.outerHTML
-  select.setAttribute('onchange', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
+  select.setAttribute('onchange', `bjson_update_single_object(pattern_editor_blocks_json,json,event)`)
 
   if (place === 'object') {
     key = path[path.length - 1]
@@ -89,7 +89,7 @@ function vjson_boolean(boolean, path, place) {
     key = path[path.length - 1]
   }
   var key_elt = document.createElement('div')
-  key_elt.classList.add('vjson_key')
+  key_elt.classList.add('bjson_key')
   key_elt.innerText = key
   element.innerHTML = key_elt.outerHTML + select.outerHTML
   element.setAttribute('path', path.join('/'))
@@ -97,9 +97,9 @@ function vjson_boolean(boolean, path, place) {
   return element.outerHTML
 }
 
-function vjson_array(array, path, place) {
+function bjson_array(array, path, place) {
   var element = document.createElement('div')
-  element.classList.add('vjson_array')
+  element.classList.add('bjson_array')
 
   if (place === 'object') {
     key = path[path.length - 1]
@@ -108,19 +108,19 @@ function vjson_array(array, path, place) {
     key = path[path.length - 1]
   }
   var key_elt = document.createElement('div')
-  key_elt.classList.add('vjson_key')
+  key_elt.classList.add('bjson_key')
   key_elt.innerText = key
   element.innerHTML = key_elt.outerHTML
   var array_len = array.length
   for (var i = 0; i < array_len; i++) {
-    element.innerHTML += vjson_type(array[i], path.concat([i]), 'array')
+    element.innerHTML += bjson_type(array[i], path.concat([i]), 'array')
   }
   return element.outerHTML
 }
 
-function vjson_object(object, path, place) {
+function bjson_object(object, path, place) {
   var element = document.createElement('div')
-  element.classList.add('vjson_object')
+  element.classList.add('bjson_object')
 
   if (place === 'object') {
     key = path[path.length - 1]
@@ -130,11 +130,11 @@ function vjson_object(object, path, place) {
   }
 
   var key_elt = document.createElement('div')
-  key_elt.classList.add('vjson_key')
+  key_elt.classList.add('bjson_key')
   key_elt.innerText = key
   element.innerHTML = key_elt.outerHTML
   for (var k in object) {
-    element.innerHTML += vjson_type(object[k], path.concat([String(k)]), 'object')
+    element.innerHTML += bjson_type(object[k], path.concat([String(k)]), 'object')
   }
   return element.outerHTML
 }
@@ -167,7 +167,7 @@ function setValueByPath(obj, path, value) {
 }
 
 
-function vjson_getValue(parent) {
+function bjson_getValue(parent) {
   var type = parent.getAttribute('type')
   if (type === 'string') {
     return parent.querySelector('input').value
@@ -193,30 +193,30 @@ function vjson_getValue(parent) {
   }
 }
 
-function vjson_update_entire_object(root, json) {
-  var all_elements = root.querySelectorAll('.vjson_string,.vjson_number,.vjson_boolean')
+function bjson_update_entire_object(root, json) {
+  var all_elements = root.querySelectorAll('.bjson_string,.bjson_number,.bjson_boolean')
   var all_elements_len = all_elements.length
   for (var i = 0; i < all_elements_len; i++) {
-    setValueByPath(json, all_elements[i].getAttribute('path'), vjson_getValue(all_elements[i]))
+    setValueByPath(json, all_elements[i].getAttribute('path'), bjson_getValue(all_elements[i]))
   }
 }
 
-function vjson_update_single_object(root, json, event) {
+function bjson_update_single_object(root, json, event) {
   var path = event.target.parentNode.getAttribute('path')
-  setValueByPath(json, path, vjson_getValue(event.target.parentNode))
+  setValueByPath(json, path, bjson_getValue(event.target.parentNode))
   console.log(JSON.stringify(json, null, 3))
 }
 
- window.vjson = {
-  vjson_type,
-  vjson_string,
-  vjson_number,
-  vjson_boolean,
-  vjson_array,
-  vjson_object,
+ window.bjson = {
+  bjson_type,
+  bjson_string,
+  bjson_number,
+  bjson_boolean,
+  bjson_array,
+  bjson_object,
   setValueByPath,
-  vjson_getValue,
-  vjson_update_entire_object,
-  vjson_update_single_object
+  bjson_getValue,
+  bjson_update_entire_object,
+  bjson_update_single_object
 }
-export default window.vjson
+export default window.bjson

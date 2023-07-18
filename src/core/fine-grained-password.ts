@@ -150,9 +150,15 @@ const getPatterns = function (): object {
   return pwd_pattern_default.concat(fine_grained_password.pwd_pattern_custom)
 }
 
-function generate(options: object): string {
+function generate(options: object, mode: string): string | object {
   const pattern: object = _.cloneDeep(options);
-  var d: string = ""
+  if (mode === 'production') {
+    var d: string = ""
+  }
+  if (mode === 'editor') {
+    var d: Array = []
+  }
+
   const get_chars_from_regex = function (regex) {
     const input = String.fromCharCode(...Array.from({ length: Math.pow(2, 16) }, (_, i) => i));
     const matches = String(input).match(regex);
@@ -163,7 +169,6 @@ function generate(options: object): string {
   for (var e = 0; e < pattern_len; e++) {
     var this_item = pattern[e]
     var this_content = this_item[this_item['type']]
-
     var result = ''
     if (this_item['type'] === "regex") {
       var this_content_matches = this_content.match(/^\/(.*)\/([a-z]*)$/i);
@@ -191,17 +196,27 @@ function generate(options: object): string {
       }
     }
     if (this_item['type'] === "group") {
-      result = fine_grained_password.generate(this_content)
+      result = fine_grained_password.generate(this_content, mode)
       var actions = this_item['actions']
       var actions_len = actions.length
       for (var j = 0; j < actions_len; j++) {
         if (actions[j] === 'shuffle') {
-          result = utilities.shuffleSelf(result.split(''), result.length).join('')
+          if (mode === 'production') {
+            result = utilities.shuffleSelf(result.split(''), result.length).join('')
+          }
+          if (mode === 'editor') {
+            result = utilities.shuffleSelf(result.result.split(''), result.result.length).join('')
+          }
           continue;
         }
       }
     }
-    d += result
+    if (mode === 'production') {
+      d += result
+    }
+    else {
+      d.psuh({ result: result, component: this_item })
+    }
   }
   return d
 }

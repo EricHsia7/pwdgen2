@@ -3,7 +3,7 @@ import fine_grained_password from 'src/core/fine-grained-password'
 import Xsearch from './search'
 import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword } from './/core/storage'
 import utilities from './/core/utilities'
-import vjson from 'src/core/visual-json'
+import bjson from 'src/core/blocks-json'
 import words_list from './/core/words-list'
 import icons from './user-interfaces/icons'
 import interaction from './user-interfaces/interaction'
@@ -31,7 +31,7 @@ window.search_sticky = false
 window.container_scrollTop = 0
 window.pattern_creator_evt = 0
 window.pattern_json = {}
-window.pattern_editor_visual_json = utilities.qe('.pattern_editor_visual_json')
+window.pattern_editor_blocks_json = utilities.qe('.pattern_editor_blocks_json')
 window.search_will_change_evt = [0, 1]
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
 

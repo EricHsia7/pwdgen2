@@ -237,12 +237,19 @@
   <div class="pattern_creator">
     <div class="generation_preview_title">Generation preview</div>
     <div class="generation_preview"></div>
-    <div class="pattern_editor">
-      <div class="pattern_editor_json">
-        <pre><code class="language-json pattern"></code></pre>
-        <pre><code class="language-json pattern2" contenteditable="true"></code></pre>
+    <div class="pattern_editor_picker">
+      <div class="pattern_editor_picker_option" j="blocks">Blocks</div>
+      <div class="pattern_editor_picker_option" j="json">JSON</div>
+    </div>
+    <div class="pattern_editor_box">
+      <div class="pattern_editor_container" j="blocks">
+        <div class="pattern_editor_blocks_json"></div>
       </div>
-      <div class="pattern_editor_visual_json">
+      <div class="pattern_editor_container" j="json">
+        <div class="pattern_editor_json">
+          <pre><code class="language-json pattern"></code></pre>
+          <pre><code class="language-json pattern2" contenteditable="true"></code></pre>
+        </div>
       </div>
     </div>
   </div>
