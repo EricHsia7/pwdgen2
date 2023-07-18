@@ -423,6 +423,7 @@ function applyPreset(index) {
 
 function openPatternCreator(event) {
   interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
+  interaction.fade(utilities.qe('.pattern_creator_title'), 'In', 'flex')
   closeOptions(event)
   utilities.qe('.pattern').innerHTML = JSON.stringify(pattern_json, null, 2)
   utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
@@ -452,6 +453,7 @@ function openPatternCreator(event) {
 
 function closePatternCreator() {
   interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
+  interaction.fade(utilities.qe('.pattern_creator_title'), 'Out', 'none')
 }
 
 
