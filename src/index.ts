@@ -25,38 +25,20 @@ import './user-interfaces/css/fade.css'
 
 //for development
 const ErrorStackParser = require('error-stack-parser');
-const SourceMap = require('source-map');
+const StackTraceGPS = require('stacktrace-js');
 
 window.onerror = async function (message, source, lineno, colno, error) {
-  // Prevent default browser error handling
-  // Parse the error stack trace using ErrorStackParser
-  const stackFrames = ErrorStackParser.parse(error);
-  // Load the source map
-  try {
-    const response = await fetch('your-source-map-file.map');
-    const sourceMapData = await response.json();
-
-    // Create a new SourceMapConsumer using the source map data
-    const consumer = await new SourceMap.SourceMapConsumer(sourceMapData);
-
-    // Process the stack frames and map them to the original source code location
-    console.error('Error occurred:');
-    for (const frame of stackFrames) {
-      const originalPosition = consumer.originalPositionFor({
-        line: frame.lineNumber,
-        column: frame.columnNumber,
+    const stackTraceGPS = new StackTraceGPS();
+    stackTraceGPS
+      .fromError(error)
+      .then(stackFrames => {
+        // Now you have an array of stack frames with enhanced source map information
+        console.log(stackFrames);
+      })
+      .catch(error => {
+        // Handling errors while parsing the stack trace
+        console.error('Failed to parse stack trace:', error);
       });
-
-      console.error(
-        `  - at ${frame.functionName} (${originalPosition.source}:${originalPosition.line}:${originalPosition.column})`
-      );
-    }
-
-    // Clean up the consumer
-    consumer.destroy();
-  } catch (err) {
-    console.error('Failed to load source map:', err);
-  }
 };
 
 
