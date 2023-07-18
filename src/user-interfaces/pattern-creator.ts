@@ -1,7 +1,9 @@
 import fine_grained_password from '../core/fine-grained-password'
 import utilities from '../core/utilities'
 var _ = require('lodash');
-
+import hljs from 'highlight.js/lib/core';
+import json from 'highlight.js/lib/languages/json';
+hljs.registerLanguage('json', json);
 
 window.pattern_creator_current_editor = 'blocks'
 
@@ -73,7 +75,7 @@ export function generatePatternPreview(): string {
     component_elt.style.setProperty('--j-component-color-text', component_color.text.str)
     component_elt.style.setProperty('--j-component-color-bg', component_color.text.bg)
     component_elt.innerText = this_component.result
-    component_elt.setAttribute('onclick', `showPatternPreviewInfoCard('${component_id}',event)`)
+    component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternPreviewInfoCard('${component_id}',event)`)
     html.push(component_elt.outerHTML)
   }
   return html.join('')

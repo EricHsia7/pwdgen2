@@ -4,10 +4,9 @@ import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword } from '../core/storage'
 import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
-import hljs from 'highlight.js/lib/core';
-import json from 'highlight.js/lib/languages/json';
-import { openPatternCreator, closePatternCreator } from './pattern-creator'
-hljs.registerLanguage('json', json);
+
+import { openPatternCreator, closePatternCreator ,generatePatternPreview,showPatternPreviewInfoCard,searchPatternComponent} from './pattern-creator'
+
 
 
 function fade(element, type, display, callback) {
@@ -456,7 +455,10 @@ window.interaction = {
   },
   pattern_creator: {
     openPatternCreator,
-    closePatternCreator
+    closePatternCreator,
+    generatePatternPreview,
+    showPatternPreviewInfoCard,
+    searchPatternComponent
   },
   password_page: {
     openPassword,
