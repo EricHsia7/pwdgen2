@@ -262,6 +262,15 @@ function filterObjectWithKey(root_object: object, key: string, query: string) {
   }
 }
 
+function isDarkMode(): boolean {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return true
+  } else {
+    return false
+  }
+
+}
+
 function hsvToRgb(h, s, v) {
   // Normalize values
   h /= 360;
@@ -329,12 +338,12 @@ function randomColorSet() {
     return Math.max(Math.min(Math.round(min + (max - min) * Math.random()), max), min)
   }
   var h = randomIntInRange(0, 360)
-  var hsv_text = { h: h, s: 67, v: 100 }
-  var hsv_bg = { h: h, s: 100, v: 100 }
+  var hsv_text = { h: h, s: 67, v: isDarkMode() ? 100 : 75 }
+  var hsv_bg = { h: h, s: 100, v: isDarkMode() ? 100 : 75 }
   var rgb_text = hsvToRgb(hsv_text.h, hsv_text.s, hsv_text.v)
   var rgb_bg = hsvToRgb(hsv_bg.h, hsv_bg.s, hsv_bg.v)
   var text = { r: rgb_text.r, g: rgb_text.g, b: rgb_text.b, a: 1, str: `rgba(${rgb_text.r},${rgb_text.g},${rgb_text.b},${1})` }
-  var bg = { r: rgb_bg.r, g: rgb_bg.g, b: rgb_bg.b, a: 0.3, str: `rgba(${rgb_bg.r},${rgb_bg.g},${rgb_bg.b},${0.3})` }
+  var bg = { r: rgb_bg.r, g: rgb_bg.g, b: rgb_bg.b, a: 0.06, str: `rgba(${rgb_bg.r},${rgb_bg.g},${rgb_bg.b},${0.06})` }
   return { text, bg }
 }
 
@@ -356,7 +365,8 @@ window.utilities = {
   gethashtags,
   fetchWithProgress,
   hsvToRgb,
-  randomColorSet
+  randomColorSet,
+  isDarkMode
 }
 
 export default window.utilities
