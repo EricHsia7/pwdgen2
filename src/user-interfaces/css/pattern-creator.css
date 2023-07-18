@@ -167,8 +167,7 @@
 }
 
 .pattern_creator .generation_preview_title {
-  position: absolute;
-  top: 65px;
+  position: relative;
   left: 10px;
   width: calc(100% - 20px);
   height: 20px;
@@ -178,13 +177,12 @@
 }
 
 .pattern_creator .generation_preview {
-  position: absolute;
-  top: 90px;
+  position: relative;
   left: 10px;
   width: calc(100% - 20px);
-  height: 30px;
+  height: auto;
   border-radius: 10px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   box-sizing: border-box;
   padding: 5px;
