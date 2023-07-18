@@ -28,8 +28,8 @@ function vjson_string(string, path, place) {
   }
   var input = document.createElement('input')
   input.setAttribute('value', string)
-  input.setAttribute('onkeyup', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
-  input.setAttribute('onselectionchange', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
+  input.setAttribute('onkeyup', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
+  input.setAttribute('onselectionchange', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
 
   var key_elt = document.createElement('div')
   key_elt.classList.add('vjson_key')
@@ -51,8 +51,8 @@ function vjson_number(num, path, place) {
   }
   var input = document.createElement('input')
   input.setAttribute('value', num)
-  input.setAttribute('onkeyup', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
-  input.setAttribute('onselectionchange', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
+  input.setAttribute('onkeyup', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
+  input.setAttribute('onselectionchange', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
 
   var key_elt = document.createElement('div')
   key_elt.classList.add('vjson_key')
@@ -80,7 +80,7 @@ function vjson_boolean(boolean, path, place) {
   }
   var select = document.createElement('select')
   select.innerHTML = opt_1.outerHTML + opt_2.outerHTML
-  select.setAttribute('onchange', `vjson_update_single_object(pattern_box_visual_json,json,event)`)
+  select.setAttribute('onchange', `vjson_update_single_object(pattern_editor_visual_json,json,event)`)
 
   if (place === 'object') {
     key = path[path.length - 1]

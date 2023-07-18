@@ -51,7 +51,7 @@
   color: rgba(0, 0, 0, 0)
 }
 
-.pattern_creator .pattern_box_json {
+.pattern_creator .pattern_editor_json {
   width: calc(100% - 20px);
   height: 300px;
   overflow: hidden;
@@ -62,8 +62,8 @@
   border-radius: 10px;
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_object,
-.pattern_creator .pattern_box_visual_json .vjson_array {
+.pattern_creator .pattern_editor_visual_json .vjson_object,
+.pattern_creator .pattern_editor_visual_json .vjson_array {
   position: relative;
   box-sizing: border-box;
   width: calc(100% - 20px);
@@ -76,16 +76,16 @@
   border-radius: 10px;
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_object:last-child,
-.pattern_creator .pattern_box_visual_json .vjson_array:last-child {
+.pattern_creator .pattern_editor_visual_json .vjson_object:last-child,
+.pattern_creator .pattern_editor_visual_json .vjson_array:last-child {
   margin-bottom: 10px;
 }
 
 
 
-.pattern_creator .pattern_box_visual_json .vjson_string,
-.pattern_creator .pattern_box_visual_json .vjson_number,
-.pattern_creator .pattern_box_visual_json .vjson_boolean {
+.pattern_creator .pattern_editor_visual_json .vjson_string,
+.pattern_creator .pattern_editor_visual_json .vjson_number,
+.pattern_creator .pattern_editor_visual_json .vjson_boolean {
   position: relative;
   width: 100%;
   height: 40px;
@@ -94,15 +94,15 @@
   border-bottom: 1px solid var(--p-ffffff);
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_string:last-child,
-.pattern_creator .pattern_box_visual_json .vjson_number:last-child,
-.pattern_creator .pattern_box_visual_json .vjson_boolean:last-child {
+.pattern_creator .pattern_editor_visual_json .vjson_string:last-child,
+.pattern_creator .pattern_editor_visual_json .vjson_number:last-child,
+.pattern_creator .pattern_editor_visual_json .vjson_boolean:last-child {
   border-bottom: none;
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_string > .vjson_key,
-.pattern_creator .pattern_box_visual_json .vjson_number > .vjson_key,
-.pattern_creator .pattern_box_visual_json .vjson_boolean > .vjson_key {
+.pattern_creator .pattern_editor_visual_json .vjson_string > .vjson_key,
+.pattern_creator .pattern_editor_visual_json .vjson_number > .vjson_key,
+.pattern_creator .pattern_editor_visual_json .vjson_boolean > .vjson_key {
   position: relative;
   display: inline-flex;
   width: auto;
@@ -112,8 +112,8 @@
   padding-left: 8px;
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_array > .vjson_key,
-.pattern_creator .pattern_box_visual_json .vjson_object > .vjson_key {
+.pattern_creator .pattern_editor_visual_json .vjson_array > .vjson_key,
+.pattern_creator .pattern_editor_visual_json .vjson_object > .vjson_key {
   position: relative;
   display: inline-flex;
   width: auto;
@@ -123,26 +123,26 @@
   padding-left: 10px;
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_object .vjson_key + .vjson_object {
+.pattern_creator .pattern_editor_visual_json .vjson_object .vjson_key + .vjson_object {
   margin-top: 0px
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_string > .vjson_key::after,
-.pattern_creator .pattern_box_visual_json .vjson_number > .vjson_key::after,
-.pattern_creator .pattern_box_visual_json .vjson_boolean > .vjson_key::after {
+.pattern_creator .pattern_editor_visual_json .vjson_string > .vjson_key::after,
+.pattern_creator .pattern_editor_visual_json .vjson_number > .vjson_key::after,
+.pattern_creator .pattern_editor_visual_json .vjson_boolean > .vjson_key::after {
   content: ': ';
   white-space: pre;
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_array .vjson_key + .vjson_string,
-.pattern_creator .pattern_box_visual_json .vjson_array .vjson_key + .vjson_number,
-.pattern_creator .pattern_box_visual_json .vjson_array .vjson_key + .vjson_boolean {
+.pattern_creator .pattern_editor_visual_json .vjson_array .vjson_key + .vjson_string,
+.pattern_creator .pattern_editor_visual_json .vjson_array .vjson_key + .vjson_number,
+.pattern_creator .pattern_editor_visual_json .vjson_array .vjson_key + .vjson_boolean {
   border-top: 1px solid var(--p-ffffff);
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_string input,
-.pattern_creator .pattern_box_visual_json .vjson_number input,
-.pattern_creator .pattern_box_visual_json .vjson_boolean select {
+.pattern_creator .pattern_editor_visual_json .vjson_string input,
+.pattern_creator .pattern_editor_visual_json .vjson_number input,
+.pattern_creator .pattern_editor_visual_json .vjson_boolean select {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -157,12 +157,12 @@
   color: var(--p-333333);
 }
 
-.pattern_creator .pattern_box_visual_json .vjson_string .vjson_key,
-.pattern_creator .pattern_box_visual_json .vjson_string textarea {
+.pattern_creator .pattern_editor_visual_json .vjson_string .vjson_key,
+.pattern_creator .pattern_editor_visual_json .vjson_string textarea {
   float: left;
 }
 
-.pattern_creator .pattern_box_visual_json > .vjson_object > .vjson_key {
+.pattern_creator .pattern_editor_visual_json > .vjson_object > .vjson_key {
   display: none;
 }
 
