@@ -14,7 +14,9 @@ module.exports = {
   mode: 'production', // Set the mode to 'production' or 'development'
   entry: './src/index.ts', // Entry point of your application
   output: {
-    filename: 'index.min.js', // Output bundle filename
+    filename: (pathData) => {
+      return pathData.chunk.name === 'main' ? 'index.min.js' : 'index.js';
+    }, // Output bundle filename
     path: path.resolve(__dirname, 'dist'), // Output directory for bundled files
     library: {
       name: 'pwdgen2',
@@ -63,6 +65,16 @@ module.exports = {
         }
       })
     ],
+  },
+  splitChunks: {
+    cacheGroups: {
+      notMinified: {
+        test: /\.js$/,
+        name: 'not-minified',
+        chunks: 'all',
+        enforce: true,
+      },
+    },
   },
   // Add any additional plugins and configurations as needed
 };
