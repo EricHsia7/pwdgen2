@@ -31,7 +31,7 @@ window.search_sticky = false
 window.container_scrollTop = 0
 window.pattern_creator_evt = 0
 window.pattern_json = {}
-window.pattern_box_visual_json = utilities.qe('.pattern_box_visual_json')
+window.pattern_editor_visual_json = utilities.qe('.pattern_editor_visual_json')
 window.search_will_change_evt = [0, 1]
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
 
