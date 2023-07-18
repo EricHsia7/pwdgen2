@@ -324,18 +324,13 @@ function hsvToRgb(h, s, v) {
   return rgb;
 }
 
-// Example usage
-const hsv = { h: 200, s: 50, v: 75 };
-const rgb = hsvToRgb(hsv.h, hsv.s, hsv.v);
-console.log(rgb); // { r: 63, g: 159, b: 159 }
-
-
 function randomColorSet() {
   var randomIntInRange = function (min, max) {
     return Math.max(Math.min(Math.round(min + (max - min) * Math.random()), max), min)
   }
-  var hsv_text = { h: randomIntInRange(0, 360), s: 67, v: 100 }
-  var hsv_bg = { h: randomIntInRange(0, 360), s: 100, v: 100 }
+  var h = randomIntInRange(0, 360)
+  var hsv_text = { h: h, s: 67, v: 100 }
+  var hsv_bg = { h: h, s: 100, v: 100 }
   var rgb_text = hsvToRgb(hsv_text.h, hsv_text.s, hsv_text.v)
   var rgb_bg = hsvToRgb(hsv_bg.h, hsv_bg.s, hsv_bg.v)
   var text = { r: rgb_text.r, g: rgb_text.g, b: rgb_text.b, a: 1, str: `rgba(${rgb_text.r},${rgb_text.g},${rgb_text.b},${1})` }
