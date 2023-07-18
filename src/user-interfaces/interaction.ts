@@ -6,9 +6,7 @@ import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 import { openPatternCreator, closePatternCreator, generatePatternPreview, showPatternPreviewInfoCard, searchPatternComponent } from './pattern-creator'
 
-import hljs from 'highlight.js/lib/core';
-import json from 'highlight.js/lib/languages/json';
-hljs.registerLanguage('json', json);
+
 
 function fade(element, type, display, callback) {
   var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
