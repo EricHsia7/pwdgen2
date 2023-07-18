@@ -65,16 +65,6 @@ module.exports = {
         }
       })
     ],
-    splitChunks: {
-      cacheGroups: {
-        notMinified: {
-          test: /\.js$/,
-          name: 'not-minified',
-          chunks: 'all',
-          enforce: true,
-        },
-      },
-    },
   },
   // Add any additional plugins and configurations as needed
 };
