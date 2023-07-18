@@ -262,15 +262,84 @@ function filterObjectWithKey(root_object: object, key: string, query: string) {
   }
 }
 
+function hsvToRgb(h, s, v) {
+  // Normalize values
+  h /= 360;
+  s /= 100;
+  v /= 100;
+
+  let r, g, b;
+
+  if (s === 0) {
+    // If saturation is 0, the color is a shade of gray
+    r = g = b = v;
+  } else {
+    const i = Math.floor(h * 6);
+    const f = h * 6 - i;
+    const p = v * (1 - s);
+    const q = v * (1 - f * s);
+    const t = v * (1 - (1 - f) * s);
+
+    switch (i % 6) {
+      case 0:
+        r = v;
+        g = t;
+        b = p;
+        break;
+      case 1:
+        r = q;
+        g = v;
+        b = p;
+        break;
+      case 2:
+        r = p;
+        g = v;
+        b = t;
+        break;
+      case 3:
+        r = p;
+        g = q;
+        b = v;
+        break;
+      case 4:
+        r = t;
+        g = p;
+        b = v;
+        break;
+      case 5:
+        r = v;
+        g = p;
+        b = q;
+        break;
+    }
+  }
+
+  // Convert RGB values to the range of 0-255
+  const rgb = {
+    r: Math.round(r * 255),
+    g: Math.round(g * 255),
+    b: Math.round(b * 255)
+  };
+
+  return rgb;
+}
+
+// Example usage
+const hsv = { h: 200, s: 50, v: 75 };
+const rgb = hsvToRgb(hsv.h, hsv.s, hsv.v);
+console.log(rgb); // { r: 63, g: 159, b: 159 }
+
+
 function randomColorSet() {
   var randomIntInRange = function (min, max) {
     return Math.max(Math.min(Math.round(min + (max - min) * Math.random()), max), min)
   }
-  var r = randomIntInRange(0, 255)
-  var g = randomIntInRange(0, 255)
-  var b = randomIntInRange(0, 255)
-  var text = { r: r, g: g, b: b, a: 1, str: `rgba(${r},${g},${b},${1})` }
-  var bg = { r: r, g: g, b: b, a: 0.3, str: `rgba(${r},${g},${b},${0.3})` }
+  var hsv_text = { h: randomIntInRange(0, 360), s: 67, v: 100 }
+  var hsv_bg = { h: randomIntInRange(0, 360), s: 100, v: 100 }
+  var rgb_text = hsvToRgb(hsv_text.h, hsv_text.s, hsv_text.v)
+  var rgb_bg = hsvToRgb(hsv_bg.h, hsv_bg.s, hsv_bg.v)
+  var text = { r: rgb_text.r, g: rgb_text.g, b: rgb_text.b, a: 1, str: `rgba(${rgb_text.r},${rgb_text.g},${rgb_text.b},${1})` }
+  var bg = { r: rgb_bg.r, g: rgb_bg.g, b: rgb_bg.b, a: 0.3, str: `rgba(${rgb_bg.r},${rgb_bg.g},${rgb_bg.b},${0.3})` }
   return { text, bg }
 }
 
@@ -291,6 +360,7 @@ window.utilities = {
   jaroWinklerDistance,
   gethashtags,
   fetchWithProgress,
+  hsvToRgb,
   randomColorSet
 }
 
