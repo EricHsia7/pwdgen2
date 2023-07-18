@@ -201,7 +201,12 @@ function generate(options: object, mode: string): string | object {
       var actions_len = actions.length
       for (var j = 0; j < actions_len; j++) {
         if (actions[j] === 'shuffle') {
-          result = utilities.shuffleSelf(result.split(''), result.length).join('')
+          if (mode === 'production') {
+            result = utilities.shuffleSelf(result.split(''), result.length).join('')
+          }
+          if (mode === 'editor') {
+            result = utilities.shuffleSelf(result.result.split(''), result.result.length).join('')
+          }
           continue;
         }
       }

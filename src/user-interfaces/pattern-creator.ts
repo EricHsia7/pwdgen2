@@ -43,23 +43,25 @@ export function closePatternCreator() {
 
 export function generatePatternPreview() {
   var current_pattern = _.cloneDeep(pattern_json)
+  var generation = fine_grained_password.generate(current_pattern.pattern, 'editor')
+  var generation_len = generation.length
+  for (var c = 0; c < generation_len; c++) {
+    var component_id = fine_grained_password.generate([
+      {
+        type: 'string',
+        string: 'pattern-creator-preview-component-'
+      },
+      {
+        type: 'regex',
+        regex: '/a-z0-9/g',
+        quantity: 16,
+        repeat: true
+      }
+    ], 'production')
+    var this_component = generation[c]
+    var html = `<div class="pattern_creator_preview_component" id="${component_id}" path="${path}" type="${this_component.component.type}"></div>`
 
-  var component_id = fine_grained_password.generate([
-    {
-      type: 'string',
-      string: 'pattern-creator-preview-component-'
-    },
-    {
-      type: 'regex',
-      regex: '/a-z0-9/g',
-      quantity: 16,
-      repeat: true
-    }
-  ], 'production')
-
-
-
-  var html = `<div class="pattern_creator_preview_component" id="${component_id}" path="${path}" type="${type}"></div>`
+  }
 
 }
 

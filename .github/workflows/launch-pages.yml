@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev-fine-grained-password-pattern
+      - dev-pattern-editor
 jobs:
   build:
     runs-on: ubuntu-latest
