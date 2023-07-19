@@ -72,7 +72,7 @@ window.pattern_json = {}
 window.pattern_editor_blocks_json = utilities.qe('.pattern_editor_blocks_json')
 window.search_will_change_evt = [0, 1]
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
-}
+
 
 window.pwdgen2 = function () { //initialize
   utilities.qe(".search").addEventListener("click", function (e) {
