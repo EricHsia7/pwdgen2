@@ -6,7 +6,111 @@ hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 
 
 window.pattern_creator_current_editor = 'blocks'
-window.pattern_json = {}
+window.pattern_json = {
+  "pattern_name": "Tutorial",
+  "pattern_icon": "developer_guide",
+  "pattern": [
+    {
+      "type": "string",
+      "string": "You can use 4 types of components to specify generation sources, including string, list, regex, and group."
+    },
+    {
+      "type": "string",
+      "string": "\n  String: a string"
+    },
+    {
+      "type": "string",
+      "string": "\n  List: "
+    },
+    {
+      "type": "list",
+      "list": [
+        "item1",
+        "item2",
+        "item3"
+      ],
+      "quantity": 2,
+      "repeat": false
+    },
+    {
+      "type": "string",
+      "string": "\n  Regex: "
+    },
+    {
+      "type": "regex",
+      "regex": "/\\w/g",
+      "quantity": 16,
+      "repeat": true
+    },
+    {
+      "type": "string",
+      "string": "\n  Group: "
+    },
+    {
+      "type": "group",
+      "group": [
+        {
+          "type": "regex",
+          "regex": "/[A-Z]/g",
+          "quantity": 4,
+          "repeat": true
+        },
+        {
+          "type": "regex",
+          "regex": "/[a-z]/g",
+          "quantity": 4,
+          "repeat": true
+        },
+        {
+          "type": "regex",
+          "regex": "/[0-9]/g",
+          "quantity": 4,
+          "repeat": true
+        },
+        {
+          "type": "list",
+          "list": [
+            "-",
+            "!",
+            "$",
+            "%",
+            "^",
+            "&",
+            "*",
+            "(",
+            ")",
+            "_",
+            "+",
+            "|",
+            "~",
+            "=",
+            "`",
+            "{",
+            "}",
+            "\\",
+            "[",
+            "]",
+            ":",
+            ",",
+            ";",
+            "'",
+            "<",
+            ">",
+            "?",
+            ",",
+            ".",
+            "/"
+          ],
+          "quantity": 4,
+          "repeat": true
+        }
+      ],
+      "actions": [
+        "shuffle"
+      ]
+    }
+  ]
+}
 
 export function openPatternCreator(event) {
   if (search_sticky || search_status === 1) {
@@ -17,13 +121,13 @@ export function openPatternCreator(event) {
   interaction.options.closeOptions(event)
   utilities.qe('.pattern').innerHTML = JSON.stringify(pattern_json, null, 2)
   utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
-  hljs.highlightAll();
   if (pattern_creator_evt === 0) {
     pattern_creator_evt = 1
     utilities.qe('.pattern2').addEventListener('input', function (event) {
       try {
         utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
-        hljs.highlightBlock(utilities.qe('.pattern'));
+        hljs.highlightElement(utilities.qe('.pattern'));
+        hljs.highlightElement(utilities.qe('.pattern2'));
         pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
         utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
       }
@@ -37,8 +141,8 @@ export function openPatternCreator(event) {
         interaction.pattern_creator.addIdentityToPattern()
         utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
         utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
-        hljs.highlightBlock(utilities.qe('.pattern2'));
-        hljs.highlightBlock(utilities.qe('.pattern'));
+        hljs.highlightElement(utilities.qe('.pattern2'));
+        hljs.highlightElement(utilities.qe('.pattern'));
         utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
       } catch (e) {
       }
@@ -180,6 +284,6 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
   card_elt.style.setProperty('--j-component-info-left', `${relative_x}px`)
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = tmp_id
-  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name?component.name:'Unnamed'}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Show in editor</div>`
+  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Show in editor</div>`
   preview_elt.appendChild(card_elt)
 }
