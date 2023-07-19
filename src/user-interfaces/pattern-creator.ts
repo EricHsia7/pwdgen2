@@ -21,11 +21,10 @@ export function openPatternCreator(event) {
   if (pattern_creator_evt === 0) {
     pattern_creator_evt = 1
     utilities.qe('.pattern2').addEventListener('input', function (event) {
-      utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
       try {
+        utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
         hljs.highlightBlock(utilities.qe('.pattern'));
         pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
-        interaction.pattern_creator.addIdentityToPattern()
         utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
       }
       catch (e) {
@@ -34,8 +33,12 @@ export function openPatternCreator(event) {
     });
     utilities.qe('.pattern2').addEventListener('blur', function (event) {
       try {
-        utilities.qe('.pattern2').innerHTML = JSON.stringify(JSON.parse(document.querySelector('.pattern2').innerText), null, 2)
+        pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
+        interaction.pattern_creator.addIdentityToPattern()
+        utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
+        utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
         hljs.highlightBlock(utilities.qe('.pattern2'));
+        hljs.highlightBlock(utilities.qe('.pattern'));
         utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
       } catch (e) {
       }
