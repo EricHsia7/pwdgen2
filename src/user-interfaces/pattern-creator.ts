@@ -271,7 +271,7 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
   var preview_elt_x = preview_elt_rect.x
   var preview_elt_y = preview_elt_rect.y
   var relative_x = elt_x - preview_elt_x
-  var relative_y = elt_y - preview_elt_y + 22
+  var relative_y = elt_y - preview_elt_y + 25
   var tmp_id = fine_grained_password.generate([
     {
       type: 'string',
