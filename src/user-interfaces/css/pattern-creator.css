@@ -257,8 +257,10 @@
   width: auto;
   padding: 0px 5px;
   border-radius: 15px;
-  color:var(--j-component-color-light-text);
-  border:0.5px solid var(--j-component-color-light-text);
+  color: var(--j-component-color-light-text);
+  border: 0.5px solid var(--j-component-color-light-text);
+  display: inline-flex;
+  align-items: center;
 }
 
 .pattern_creator .pattern_creator_preview_component_info_mask {
@@ -298,6 +300,6 @@
 
   .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor {
     color: var(--j-component-color-dark-text);
-    border:0.5px solid var(--j-component-color-dark-text);
+    border: 0.5px solid var(--j-component-color-dark-text);
   }
 }
