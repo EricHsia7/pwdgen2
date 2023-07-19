@@ -67,28 +67,28 @@ export function addIdentityToPattern(): void {
     var pattern_len = pattern.length
     for (var j = 0; j < pattern_len; j++) {
       var this_item = pattern[j]
-if (!this_item.hasOwnProperty('id')) {
-          this_item.id = fine_grained_password.generate([
-            {
-              type: "string",
-              string: "c-"
-            },
-            {
-              type: "regex",
-              regex: "/[A-Za-z0-9]/g",
-              quantity: 16,
-              repeat: true
-            }
-          ], 'production')
-        }
+      if (!this_item.hasOwnProperty('id')) {
+        this_item.id = fine_grained_password.generate([
+          {
+            type: "string",
+            string: "c-"
+          },
+          {
+            type: "regex",
+            regex: "/[A-Za-z0-9]/g",
+            quantity: 16,
+            repeat: true
+          }
+        ], 'production')
+      }
       if (this_item.type === 'string' || this_item === 'regex' || this_item === 'list') {
-        
+
       }
-else {
-      if (this_item.type === 'group') {
-        this_item['group'] = p(this_item['group'])
+      else {
+        if (this_item.type === 'group') {
+          this_item['group'] = p(this_item['group'])
+        }
       }
-}
 
       pattern.splice(j, 1, this_item)
     }
@@ -166,7 +166,7 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
     }
   ], 'production')
   var component = fine_grained_password.generate(pattern_json.pattern, 'editor').filter(j => (j.component.id === component_id ? true : false))
-  if (component < 1) {
+  if (component.length < 1) {
     return ''
   }
   else {
@@ -177,6 +177,7 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
   card_elt.setAttribute('path', path)
   card_elt.style.setProperty('--j-component-info-top', `${relative_y}px`)
   card_elt.style.setProperty('--j-component-info-left', `${relative_x}px`)
+  card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = tmp_id
   card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component_id}')">Show in editor</div>`
   preview_elt.appendChild(card_elt)
