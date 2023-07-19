@@ -266,7 +266,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   card_elt.setAttribute('type', component.type)
   card_elt.setAttribute('path', path)
   card_elt.style.setProperty('--j-component-info-top', `${relative_y}px`)
-  card_elt.style.setProperty('--j-component-info-left', `${relative_x}px`)
+  card_elt.style.setProperty('--j-component-info-left', `${10}px`)
   interaction.copyProperty(elt, card_elt, '--j-component-color-light-text')
   interaction.copyProperty(elt, card_elt, '--j-component-color-light-bg')
   interaction.copyProperty(elt, card_elt, '--j-component-color-dark-text')
