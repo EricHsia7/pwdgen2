@@ -32,6 +32,7 @@ export function openPatternCreator(event) {
     });
     utilities.qe('.pattern2').addEventListener('blur', function (event) {
       try {
+        interaction.pattern_creator.addIdentityToPattern()
         utilities.qe('.pattern2').innerHTML = JSON.stringify(JSON.parse(document.querySelector('.pattern2').innerText), null, 2)
         hljs.highlightBlock(utilities.qe('.pattern2'));
         utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
@@ -57,6 +58,37 @@ export function closePatternCreator() {
   }
 }
 
+export function addIdentityToPattern(): void {
+  var p = function (pattern) {
+    var pattern_len = pattern.length
+    for (var j = 0; j < pattern_len; j++) {
+      var this_item = pattern[j]
+      if (this_item.type === 'string' || this_item === 'regex' || this_item === 'list') {
+        if (!this_item.hasOwnProperty('id')) {
+          this_item.id = fine_grained_password.generate([
+            {
+              type: "string",
+              string: "c-"
+            },
+            {
+              type: "regex",
+              regex: "/[A-Za-z0-9]/g",
+              quantity: 16,
+              repeat: true
+            }
+          ], 'production')
+          pattern.splice(j, 1, this_item)
+        }
+      }
+      if (this_item.type === 'group') {
+        p(this_item)
+      }
+    }
+  }
+  if (pattern_json.hasOwnProperty('pattern')) {
+    pattern_json.pattern = p(pattern_json.pattern)
+  }
+}
 
 export function generatePatternPreview(): string {
   if (pattern_json.hasOwnProperty('pattern')) {
