@@ -217,20 +217,21 @@
   flex-direction: row;
 }
 
-
-
-
 .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_type {
   position: relative;
   top: 5px;
   left: 5px;
   height: 30px;
   width: 30px;
-  font-size: 23px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--j-component-color-light-text);
+}
+
+.pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_type svg {
+  width: 25px;
+  height: 25px;
 }
 
 .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_name {
