@@ -25,6 +25,7 @@ export function openPatternCreator(event) {
       try {
         hljs.highlightBlock(utilities.qe('.pattern'));
         pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
+        interaction.pattern_creator.addIdentityToPattern()
         utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
       }
       catch (e) {
@@ -33,7 +34,6 @@ export function openPatternCreator(event) {
     });
     utilities.qe('.pattern2').addEventListener('blur', function (event) {
       try {
-        interaction.pattern_creator.addIdentityToPattern()
         utilities.qe('.pattern2').innerHTML = JSON.stringify(JSON.parse(document.querySelector('.pattern2').innerText), null, 2)
         hljs.highlightBlock(utilities.qe('.pattern2'));
         utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
