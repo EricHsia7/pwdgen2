@@ -81,13 +81,12 @@ export function addIdentityToPattern(): void {
               repeat: true
             }
           ], 'production')
-          
         }
       }
       if (this_item.type === 'group') {
-this_item['group'] = p(this_item['group']))
+        this_item['group'] = p(this_item['group'])
       }
-pattern.splice(j, 1, this_item)
+      pattern.splice(j, 1, this_item)
     }
     return pattern
   }
