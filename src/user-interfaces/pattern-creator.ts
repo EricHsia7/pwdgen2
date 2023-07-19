@@ -156,7 +156,7 @@ export function openPatternCreator(event) {
   interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
   interaction.fade(utilities.qe('.pattern_creator_title'), 'In', 'flex')
   interaction.options.closeOptions(event)
-  syncAndFormatPatternCreatorJSONEditor()
+  interaction.pattern_creator.initializePatternCreatorJSONEditor()
   if (pattern_creator_evt === 0) {
     pattern_creator_evt = 1
     utilities.qe('.pattern2').addEventListener('input', function (event) {
