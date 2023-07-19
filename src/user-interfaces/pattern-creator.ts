@@ -111,18 +111,18 @@ export function generatePatternPreview(): string {
       var component_id = fine_grained_password.generate([
         {
           type: 'string',
-          string: 'component-'
+          string: 'c-'
         },
         {
           type: 'regex',
-          regex: '/[a-z0-9]/g',
+          regex: '/[A-Za-z0-9]/g',
           quantity: 16,
           repeat: true
         }
       ], 'production')
       var component_elt = document.createElement('span')
       component_elt.classList.add('pattern_creator_preview_component')
-      component_elt.id = component_id
+      component_elt.id = this_component.component.id | component_id
       component_elt.setAttribute('path', path)
       component_elt.setAttribute('type', this_component.component.type)
       component_elt.style.setProperty('--j-component-color-light-text', component_color.light.text.str)
