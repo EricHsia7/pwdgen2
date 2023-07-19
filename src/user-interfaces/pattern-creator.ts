@@ -8,6 +8,9 @@ hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 window.pattern_creator_current_editor = 'blocks'
 
 export function openPatternCreator(event) {
+  if (search_sticky || search_status === 1) {
+    interaction.standaloneStatusBarColor(0)
+  }
   interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
   interaction.fade(utilities.qe('.pattern_creator_title'), 'In', 'flex')
   interaction.options.closeOptions(event)
@@ -53,41 +56,41 @@ export function closePatternCreator() {
 
 
 export function generatePatternPreview(): string {
-if(pattern_json.hasOwnProperty('pattern')) {
-  var generation = fine_grained_password.generate(pattern_json.pattern, 'editor')
-  var generation_len = generation.length
-  var html = []
-  for (var c = 0; c < generation_len; c++) {
-    var this_component = generation[c]
-    var component_color = utilities.randomColorSet()
-    var path = 'x'
-    var component_id = fine_grained_password.generate([
-      {
-        type: 'string',
-        string: 'component-'
-      },
-      {
-        type: 'regex',
-        regex: '/[a-z0-9]/g',
-        quantity: 16,
-        repeat: true
-      }
-    ], 'production')
-    var component_elt = document.createElement('span')
-    component_elt.classList.add('pattern_creator_preview_component')
-    component_elt.id = component_id
-    component_elt.setAttribute('path', path)
-    component_elt.setAttribute('type', this_component.component.type)
-    component_elt.style.setProperty('--j-component-color-light-text', component_color.light.text.str)
-    component_elt.style.setProperty('--j-component-color-light-bg', component_color.light.bg.str)
-    component_elt.style.setProperty('--j-component-color-dark-text', component_color.dark.text.str)
-    component_elt.style.setProperty('--j-component-color-dark-bg', component_color.dark.bg.str)
-    component_elt.innerText = this_component.result
-    component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternPreviewInfoCard('${component_id}',event)`)
-    html.push(component_elt.outerHTML)
+  if (pattern_json.hasOwnProperty('pattern')) {
+    var generation = fine_grained_password.generate(pattern_json.pattern, 'editor')
+    var generation_len = generation.length
+    var html = []
+    for (var c = 0; c < generation_len; c++) {
+      var this_component = generation[c]
+      var component_color = utilities.randomColorSet()
+      var path = 'x'
+      var component_id = fine_grained_password.generate([
+        {
+          type: 'string',
+          string: 'component-'
+        },
+        {
+          type: 'regex',
+          regex: '/[a-z0-9]/g',
+          quantity: 16,
+          repeat: true
+        }
+      ], 'production')
+      var component_elt = document.createElement('span')
+      component_elt.classList.add('pattern_creator_preview_component')
+      component_elt.id = component_id
+      component_elt.setAttribute('path', path)
+      component_elt.setAttribute('type', this_component.component.type)
+      component_elt.style.setProperty('--j-component-color-light-text', component_color.light.text.str)
+      component_elt.style.setProperty('--j-component-color-light-bg', component_color.light.bg.str)
+      component_elt.style.setProperty('--j-component-color-dark-text', component_color.dark.text.str)
+      component_elt.style.setProperty('--j-component-color-dark-bg', component_color.dark.bg.str)
+      component_elt.innerText = this_component.result
+      component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternPreviewInfoCard('${component_id}',event)`)
+      html.push(component_elt.outerHTML)
+    }
+    return html.join('')
   }
-  return html.join('')
-}
 }
 
 export function showPatternPreviewInfoCard(component_id: string, event: Event): void {
@@ -116,7 +119,7 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
     }
   ], 'production')
   var component = fine_grained_password.generate(pattern_json.pattern, 'editor').filter(j => (j.component.id === component_id ? true : false))
-  if(component<1) {
+  if (component < 1) {
     return ''
   }
   else {
