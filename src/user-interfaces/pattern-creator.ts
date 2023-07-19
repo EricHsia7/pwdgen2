@@ -67,8 +67,7 @@ export function addIdentityToPattern(): void {
     var pattern_len = pattern.length
     for (var j = 0; j < pattern_len; j++) {
       var this_item = pattern[j]
-      if (this_item.type === 'string' || this_item === 'regex' || this_item === 'list') {
-        if (!this_item.hasOwnProperty('id')) {
+if (!this_item.hasOwnProperty('id')) {
           this_item.id = fine_grained_password.generate([
             {
               type: "string",
@@ -82,10 +81,15 @@ export function addIdentityToPattern(): void {
             }
           ], 'production')
         }
+      if (this_item.type === 'string' || this_item === 'regex' || this_item === 'list') {
+        
       }
+else {
       if (this_item.type === 'group') {
         this_item['group'] = p(this_item['group'])
       }
+}
+
       pattern.splice(j, 1, this_item)
     }
     return pattern
