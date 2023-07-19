@@ -281,14 +281,14 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   var elt_rect = elt.getBoundingClientRect();
   var elt_x = elt_rect.x
   var elt_y = elt_rect.y
-  var elt_w = elt.clientWidth;
-  var elt_h = elt.clientHeight;
+  var elt_w = elt_rect.width;
+  var elt_h = elt_rect.height;
   var pattern_creator_elt = utilities.qe('.pattern_creator')
   var pattern_creator_elt_rect = pattern_creator_elt.getBoundingClientRect()
   var pattern_creator_elt_x = pattern_creator_elt_rect.x
   var pattern_creator_elt_y = pattern_creator_elt_rect.y
   var relative_x = elt_x - pattern_creator_elt_x
-  var relative_y = elt_y - pattern_creator_elt_y + 25
+  var relative_y = elt_y - pattern_creator_elt_y + elt_h
   var tmp_id = fine_grained_password.generate([
     {
       type: 'string',
