@@ -250,6 +250,17 @@
   color: var(--j-component-color-light-text);
 }
 
+.pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor {
+  position: relative;
+  top: 5px;
+  height: 30px;
+  width: auto;
+  padding: 0px 5px;
+  border-radius: 15px;
+  color:var(--j-component-color-light-text);
+  border:0.5px solid var(--j-component-color-light-text);
+}
+
 .pattern_creator .pattern_creator_preview_component_info_mask {
   position: fixed;
   top: 0px;
@@ -258,6 +269,8 @@
   height: 100%;
   background: rgba(0, 0, 0, 0);
 }
+
+
 
 
 @media (prefers-color-scheme: dark) {
@@ -281,5 +294,10 @@
 
   .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_type svg path {
     fill: var(--j-component-color-dark-text);
+  }
+
+  .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor {
+    color: var(--j-component-color-dark-text);
+    border:0.5px solid var(--j-component-color-dark-text);
   }
 }
