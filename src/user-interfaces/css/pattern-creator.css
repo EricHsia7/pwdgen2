@@ -256,7 +256,7 @@
 .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor {
   position: relative;
   top: 5px;
-  left: 5px;
+  left: 10px;
   height: 30px;
   width: auto;
   padding: 0px 5px;
@@ -266,6 +266,7 @@
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
+  margin: 0px 5px;
 }
 
 .pattern_creator .pattern_creator_preview_component_info_mask {
