@@ -249,7 +249,7 @@ export function generatePatternPreview(): string {
       component_elt.style.setProperty('--j-component-color-dark-text', component_color.dark.text.str)
       component_elt.style.setProperty('--j-component-color-dark-bg', component_color.dark.bg.str)
       component_elt.innerText = this_component.result
-      component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternPreviewInfoCard('${(this_component.component.id ? this_component.component.id : component_id)}',event)`)
+      component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternPreviewInfo('${(this_component.component.id ? this_component.component.id : component_id)}',event)`)
       html.push(component_elt.outerHTML)
     }
     return html.join('')
@@ -259,7 +259,17 @@ export function generatePatternPreview(): string {
   }
 }
 
-export function showPatternPreviewInfoCard(component_id: string, event: Event): void | string {
+export function removePatternPreviewInfo(tmp_id: string, event: Event): void {
+  utilities.qe(`.pattern_creator .generation_preview #${tmp_id}`).remove()
+  utilities.qe(`.pattern_creator .generation_preview #${tmp_id}-mask`).remove()
+}
+
+export function showPatternPreviewInfo(component_id: string, event: Event): void | string {
+  var existing_info = utilities.qeAll('.pattern_creator .generation_preview .pattern_creator_preview_component_info')
+  var existing_info_len = existing_info.length
+  for (var e = 0; e < existing_info_len; e++) {
+    removePatternPreviewInfo(existing_info[e].id)
+  }
   var elt = event.target
   var elt_rect = elt.getBoundingClientRect();
   var elt_x = elt_rect.x
@@ -305,4 +315,8 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
   card_elt.id = tmp_id
   card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Show in editor</div>`
   preview_elt.appendChild(card_elt)
+  var mask_elt = document.createElement('div')
+  mask_elt.classList.add('.pattern_creator_preview_component_info_mask')
+  mask_elt.id = `${tmp_id}-mask`
+  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `removePatternPreviewInfo('${tmp_id}',event)`)
 }
