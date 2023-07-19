@@ -207,7 +207,7 @@
   position: absolute;
   top: var(--j-component-info-top);
   left: var(--j-component-info-left);
-  width: auto;
+  width:calc(100% - 20px);
   height: 40px;
   background: var(--j-component-color-light-bg);
   backdrop-filter: blur(15px);
