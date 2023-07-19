@@ -192,7 +192,7 @@
 }
 
 .pattern_creator .pattern_creator_preview_component {
-  display: inline-block;
+  display: inline;
   height: 20px;
   width: auto;
   color: var(--j-component-color-light-text);
