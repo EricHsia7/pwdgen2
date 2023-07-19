@@ -94,6 +94,9 @@ export function generatePatternPreview(): string {
     }
     return html.join('')
   }
+  else {
+    return 'Invalid pattern'
+  }
 }
 
 export function showPatternPreviewInfoCard(component_id: string, event: Event): void {
