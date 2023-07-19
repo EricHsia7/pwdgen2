@@ -139,9 +139,8 @@ export function syncAndFormatPatternCreatorJSONEditor(): void {
 export function syncPatternCreatorJSONEditor() {
   try {
     utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
-    hljs.highlightElement(utilities.qe('.pattern'));
-    hljs.highlightElement(utilities.qe('.pattern2'));
     pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
+    hljs.highlightElement(utilities.qe('.pattern'));
     utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
   }
   catch (e) {
