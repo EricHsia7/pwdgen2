@@ -298,10 +298,10 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
   card_elt.setAttribute('path', path)
   card_elt.style.setProperty('--j-component-info-top', `${relative_y}px`)
   card_elt.style.setProperty('--j-component-info-left', `${relative_x}px`)
-  interaction.copyProperty(elt, component_elt, '--j-component-color-light-text')
-  interaction.copyProperty(elt, component_elt, '--j-component-color-light-bg')
-  interaction.copyProperty(elt, component_elt, '--j-component-color-dark-text')
-  interaction.copyProperty(elt, component_elt, '--j-component-color-dark-bg')
+  interaction.copyProperty(elt, card_elt, '--j-component-color-light-text')
+  interaction.copyProperty(elt, card_elt, '--j-component-color-light-bg')
+  interaction.copyProperty(elt, card_elt, '--j-component-color-dark-text')
+  interaction.copyProperty(elt, card_elt, '--j-component-color-dark-bg')
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = tmp_id
   card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Show in editor</div>`
