@@ -197,6 +197,7 @@ function generate(options: object, mode: string): string | object {
     }
     if (this_item['type'] === "group") {
       result = fine_grained_password.generate(this_content, 'production')
+if(this_item.hasOwnProperty('actions')){
       var actions = this_item['actions']
       var actions_len = actions.length
       for (var j = 0; j < actions_len; j++) {
@@ -205,6 +206,7 @@ function generate(options: object, mode: string): string | object {
           continue;
         }
       }
+}
     }
     if (mode === 'production') {
       d += result
