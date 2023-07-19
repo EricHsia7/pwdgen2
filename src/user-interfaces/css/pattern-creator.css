@@ -209,9 +209,9 @@
   left: var(--j-component-info-left);
   width: 180px;
   height: 80px;
-  border-radius: 15px;
+  border-radius: 12px;
   border: 1px solid var(--j-component-color-light-text);
-  background: var(--j-component-light-color-bg);
+  background: var(--j-component-color-light-bg);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }
@@ -220,11 +220,11 @@
 @media (prefers-color-scheme: dark) {
   .pattern_creator .pattern_creator_preview_component {
     color: var(--j-component-color-dark-text);
-    background: var(--j-component-dark-color-bg);
+    background: var(--j-component-color-dark-bg);
   }
 
   .pattern_creator .pattern_creator_preview_component_info {
     border: 1px solid var(--j-component-color-dark-text);
-    background: var(--j-component-dark-dark-bg);
+    background: var(--j-component-color-dark-bg);
   }
 }
