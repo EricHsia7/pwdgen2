@@ -45,6 +45,21 @@ window.onerror = async function (message, source, lineno, colno, error) {
 };
 
 
+declare global {
+interface Window {
+password_page_icon_loaded: Boolean;
+allhashtag: Object;
+search_status: Number;
+search_evt: Number;
+search_sticky: Boolean;
+container_scrollTop: Number;
+pattern_creator_evt: Number;
+pattern_json: Object;
+pattern_editor_blocks_json: any
+search_will_change_evt: Object
+search_will_change_evt_list: Object
+}
+}
 
 window.password_page_icon_loaded = false
 window.allhashtag = {}
