@@ -244,7 +244,6 @@
 .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_name {
   position: relative;
   top: 5px;
-  margin: 0px 5px;
   width: auto;
   display: inline-flex;
   height: 30px;
