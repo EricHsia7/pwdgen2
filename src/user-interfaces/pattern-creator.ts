@@ -260,9 +260,9 @@ export function generatePatternPreview(): string {
   }
 }
 
-export function removePatternPreviewInfo(tmp_id: string, event: Event): void {
-  utilities.qe(`.pattern_creator #${tmp_id}`).remove()
-  utilities.qe(`.pattern_creator #${tmp_id}-mask`).remove()
+export function removePatternPreviewInfo(temporary_id: string, event: Event): void {
+  utilities.qe(`.pattern_creator #${temporary_id}`).remove()
+  utilities.qe(`.pattern_creator #${temporary_id}-mask`).remove()
 }
 
 export function showPatternPreviewInfo(component_id: string, event: Event): void | string {
@@ -288,8 +288,8 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   var pattern_creator_elt_x = pattern_creator_elt_rect.x
   var pattern_creator_elt_y = pattern_creator_elt_rect.y
   var relative_x = elt_x - pattern_creator_elt_x
-  var relative_y = elt_y - pattern_creator_elt_y + elt_h
-  var tmp_id = fine_grained_password.generate([
+  var relative_y = elt_y - pattern_creator_elt_y + elt_h + 3
+  var temporary_id = fine_grained_password.generate([
     {
       type: 'string',
       string: 'pattern-component-info-'
@@ -319,12 +319,12 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   interaction.copyProperty(elt, card_elt, '--j-component-color-dark-text')
   interaction.copyProperty(elt, card_elt, '--j-component-color-dark-bg')
   card_elt.classList.add('pattern_creator_preview_component_info')
-  card_elt.id = tmp_id
-  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_type">${type_icon[component.type]}</div><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Show in editor</div>`
+  card_elt.id = temporary_id
+  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_type">${type_icon[component.type]}</div><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Find</div>`
   var mask_elt = document.createElement('div')
   mask_elt.classList.add('pattern_creator_preview_component_info_mask')
-  mask_elt.id = `${tmp_id}-mask`
-  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removePatternPreviewInfo('${tmp_id}',event)`)
+  mask_elt.id = `${temporary_id}-mask`
+  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removePatternPreviewInfo('${temporary_id}',event)`)
   pattern_creator_elt.appendChild(mask_elt)
   pattern_creator_elt.appendChild(card_elt)
 }
