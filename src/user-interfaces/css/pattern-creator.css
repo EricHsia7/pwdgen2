@@ -182,8 +182,7 @@
   height: auto;
   min-height: 35px;
   border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   box-sizing: border-box;
   padding: 5px;
   background: var(--p-ffffff);
