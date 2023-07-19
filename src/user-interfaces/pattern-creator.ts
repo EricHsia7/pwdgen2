@@ -276,12 +276,12 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   var elt_y = elt_rect.y
   var elt_w = elt.clientWidth;
   var elt_h = elt.clientHeight;
-  var preview_elt = utilities.qe('.pattern_creator .generation_preview')
-  var preview_elt_rect = preview_elt.getBoundingClientRect()
-  var preview_elt_x = preview_elt_rect.x
-  var preview_elt_y = preview_elt_rect.y
-  var relative_x = elt_x - preview_elt_x
-  var relative_y = elt_y - preview_elt_y + 25
+  var pattern_creator_elt = utilities.qe('.pattern_creator')
+  var pattern_creator_elt_rect = pattern_creator_elt.getBoundingClientRect()
+  var pattern_creator_elt_x = pattern_creator_elt_rect.x
+  var pattern_creator_elt_y = pattern_creator_elt_rect.y
+  var relative_x = elt_x - pattern_creator_elt_x
+  var relative_y = elt_y - pattern_creator_elt_y + 25
   var tmp_id = fine_grained_password.generate([
     {
       type: 'string',
@@ -314,9 +314,10 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = tmp_id
   card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Show in editor</div>`
-  preview_elt.appendChild(card_elt)
   var mask_elt = document.createElement('div')
   mask_elt.classList.add('.pattern_creator_preview_component_info_mask')
   mask_elt.id = `${tmp_id}-mask`
   mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `removePatternPreviewInfo('${tmp_id}',event)`)
+  pattern_creator_elt.appendChild(mask_elt)
+  pattern_creator_elt.appendChild(card_elt)
 }
