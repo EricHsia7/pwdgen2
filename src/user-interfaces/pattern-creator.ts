@@ -81,7 +81,7 @@ export function addIdentityToPattern(): void {
         }
       }
       if (this_item.type === 'group') {
-        p(this_item)
+        p(this_item['group'])
       }
     }
   }
