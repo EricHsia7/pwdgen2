@@ -130,7 +130,7 @@ export function generatePatternPreview(): string {
       component_elt.style.setProperty('--j-component-color-dark-text', component_color.dark.text.str)
       component_elt.style.setProperty('--j-component-color-dark-bg', component_color.dark.bg.str)
       component_elt.innerText = this_component.result
-      component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternPreviewInfoCard('${component_id}',event)`)
+      component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternPreviewInfoCard('${(this_component.component.id | component_id)}',event)`)
       html.push(component_elt.outerHTML)
     }
     return html.join('')
@@ -140,7 +140,7 @@ export function generatePatternPreview(): string {
   }
 }
 
-export function showPatternPreviewInfoCard(component_id: string, event: Event): void {
+export function showPatternPreviewInfoCard(component_id: string, event: Event): void | string {
   var elt = event.target
   var elt_rect = elt.getBoundingClientRect();
   var elt_x = elt_rect.x
@@ -182,5 +182,3 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
   card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_head"><div class="pattern_creator_preview_component_info_name">${component.name}</div><div class="pattern_creator_preview_component_info_type">${component.type}</div></div><div class="pattern_creator_preview_component_info_location">${path}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component_id}')">Show in editor</div>`
   preview_elt.appendChild(card_elt)
 }
-
-
