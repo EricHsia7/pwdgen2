@@ -216,6 +216,7 @@
   display: inline-flex;
   flex-direction: row;
   border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_type {
@@ -228,6 +229,7 @@
   justify-content: center;
   align-items: center;
   color: var(--j-component-color-light-text);
+  box-sizing: border-box;
 }
 
 .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_type svg {
@@ -248,11 +250,13 @@
   height: 30px;
   align-items: center;
   color: var(--j-component-color-light-text);
+  box-sizing: border-box;
 }
 
 .pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor {
   position: relative;
   top: 5px;
+  left: 5px;
   height: 30px;
   width: auto;
   padding: 0px 5px;
@@ -261,6 +265,7 @@
   border: 0.5px solid var(--j-component-color-light-text);
   display: inline-flex;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .pattern_creator .pattern_creator_preview_component_info_mask {
