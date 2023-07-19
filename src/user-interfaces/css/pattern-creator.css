@@ -192,11 +192,13 @@
 }
 
 .pattern_creator .pattern_creator_preview_component {
-  display: inline-flex;
+  display: inline-block;
   height: 20px;
   width: auto;
   color: var(--j-component-color-light-text);
   background: var(--j-component-color-light-bg);
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 @media (prefers-color-scheme: dark) {
