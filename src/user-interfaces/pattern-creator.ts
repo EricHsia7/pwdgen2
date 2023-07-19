@@ -107,7 +107,7 @@ export function generatePatternPreview(): string {
     for (var c = 0; c < generation_len; c++) {
       var this_component = generation[c]
       var component_color = utilities.randomColorSet()
-      var path = 'x'
+      var path = '--'
       var component_id = fine_grained_password.generate([
         {
           type: 'string',
@@ -173,6 +173,7 @@ export function showPatternPreviewInfoCard(component_id: string, event: Event): 
     component = component[0]
   }
   var card_elt = document.createElement('div')
+  var path = '--'
   card_elt.setAttribute('type', component.type)
   card_elt.setAttribute('path', path)
   card_elt.style.setProperty('--j-component-info-top', `${relative_y}px`)
