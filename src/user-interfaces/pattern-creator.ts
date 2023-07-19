@@ -8,107 +8,60 @@ import icons from './icons'
 
 window.pattern_creator_current_editor = 'blocks'
 window.pattern_json = {
-  "pattern_name": "Tutorial",
-  "pattern_icon": "developer_guide",
+  "pattern_name": "Email",
+  "pattern_icon": "alternate_email",
   "pattern": [
     {
-      "type": "string",
-      "string": "You can use 4 types of components to specify generation sources, including string, list, regex, and group."
-    },
-    {
-      "type": "string",
-      "string": "\n  String: a string"
-    },
-    {
-      "type": "string",
-      "string": "\n  List: "
-    },
-    {
-      "type": "list",
-      "list": [
-        "item1",
-        "item2",
-        "item3"
-      ],
-      "quantity": 2,
-      "repeat": false
-    },
-    {
-      "type": "string",
-      "string": "\n  Regex: "
-    },
-    {
       "type": "regex",
-      "regex": "/\\w/g",
-      "quantity": 16,
-      "repeat": true
-    },
-    {
-      "type": "string",
-      "string": "\n  Group: "
+      "regex": "/[a-z]/g",
+      "quantity": 3,
+      "repeat": false
     },
     {
       "type": "group",
       "group": [
         {
           "type": "regex",
-          "regex": "/[A-Z]/g",
-          "quantity": 4,
-          "repeat": true
-        },
-        {
-          "type": "regex",
           "regex": "/[a-z]/g",
-          "quantity": 4,
+          "quantity": 8,
           "repeat": true
         },
         {
           "type": "regex",
           "regex": "/[0-9]/g",
-          "quantity": 4,
-          "repeat": true
-        },
-        {
-          "type": "list",
-          "list": [
-            "-",
-            "!",
-            "$",
-            "%",
-            "^",
-            "&",
-            "*",
-            "(",
-            ")",
-            "_",
-            "+",
-            "|",
-            "~",
-            "=",
-            "`",
-            "{",
-            "}",
-            "\\",
-            "[",
-            "]",
-            ":",
-            ",",
-            ";",
-            "'",
-            "<",
-            ">",
-            "?",
-            ",",
-            ".",
-            "/"
-          ],
-          "quantity": 4,
+          "quantity": 5,
           "repeat": true
         }
       ],
       "actions": [
         "shuffle"
       ]
+    },
+    {
+      "type": "string",
+      "string": "@"
+    },
+    {
+      "type": "regex",
+      "regex": "/[a-z]/g",
+      "quantity": 10,
+      "repeat": true
+    },
+    {
+      "type": "string",
+      "string": "."
+    },
+    {
+      "type": "list",
+      "list": [
+        "com",
+        "app",
+        "net",
+        "one",
+        "me"
+      ],
+      "quantity": 1,
+      "repeat": false
     }
   ]
 }
