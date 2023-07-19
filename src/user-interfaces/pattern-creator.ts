@@ -52,6 +52,9 @@ export function openPatternCreator(event) {
 export function closePatternCreator() {
   interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
   interaction.fade(utilities.qe('.pattern_creator_title'), 'Out', 'none')
+  if (search_sticky || search_status === 1) {
+    interaction.standaloneStatusBarColor(1)
+  }
 }
 
 
