@@ -84,6 +84,7 @@ export function addIdentityToPattern(): void {
       if (this_item.type === 'group') {
         p(this_item['group'])
       }
+      return pattern
     }
   }
   if (pattern_json.hasOwnProperty('pattern')) {
