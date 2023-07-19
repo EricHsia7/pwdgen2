@@ -185,7 +185,6 @@
   align-items: center;
   box-sizing: border-box;
   padding: 5px;
-  overflow: hidden;
   background: var(--p-ffffff);
   color: var(--p-333333);
   white-space: pre-wrap;
