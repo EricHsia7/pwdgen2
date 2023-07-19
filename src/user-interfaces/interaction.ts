@@ -4,7 +4,7 @@ import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword } from '../core/storage'
 import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
-import { openPatternCreator, closePatternCreator, generatePatternPreview, showPatternPreviewInfoCard, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor } from './pattern-creator'
+import { openPatternCreator, closePatternCreator, generatePatternPreview, showPatternPreviewInfoCard, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor ,initializePatternCreatorJSONEditor} from './pattern-creator'
 
 
 
@@ -459,7 +459,8 @@ window.interaction = {
     showPatternPreviewInfoCard,
     addIdentityToPattern,
     syncPatternCreatorJSONEditor,
-    syncAndFormatPatternCreatorJSONEditor
+    syncAndFormatPatternCreatorJSONEditor,
+    initializePatternCreatorJSONEditor
   },
   password_page: {
     openPassword,

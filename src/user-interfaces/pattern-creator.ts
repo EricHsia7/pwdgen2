@@ -112,6 +112,15 @@ window.pattern_json = {
   ]
 }
 
+export function initializePatternCreatorJSONEditor(): void {
+  interaction.pattern_creator.addIdentityToPattern()
+  utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
+  utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
+  hljs.highlightElement(utilities.qe('.pattern2'));
+  hljs.highlightElement(utilities.qe('.pattern'));
+  utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
+}
+
 export function syncAndFormatPatternCreatorJSONEditor(): void {
   try {
     pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
@@ -151,7 +160,7 @@ export function openPatternCreator(event) {
   if (pattern_creator_evt === 0) {
     pattern_creator_evt = 1
     utilities.qe('.pattern2').addEventListener('input', function (event) {
-      interaction.pattern_creator.syncPatternCreatorJSONEditor()
+      interaction.pattern_creator.initializePatternCreatorJSONEditor()
     });
     utilities.qe('.pattern2').addEventListener('blur', function (event) {
       interaction.pattern_creator.syncAndFormatPatternCreatorJSONEditor()
