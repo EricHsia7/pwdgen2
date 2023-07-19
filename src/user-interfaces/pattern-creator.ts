@@ -53,6 +53,7 @@ export function closePatternCreator() {
 
 
 export function generatePatternPreview(): string {
+if(pattern_json.hasOwnProperty('pattern')) {
   var generation = fine_grained_password.generate(pattern_json.pattern, 'editor')
   var generation_len = generation.length
   var html = []
@@ -86,6 +87,7 @@ export function generatePatternPreview(): string {
     html.push(component_elt.outerHTML)
   }
   return html.join('')
+}
 }
 
 export function showPatternPreviewInfoCard(component_id: string, event: Event): void {
