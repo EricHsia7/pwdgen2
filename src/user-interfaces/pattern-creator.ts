@@ -112,6 +112,34 @@ window.pattern_json = {
   ]
 }
 
+export function syncAndFormatPatternCreatorJSONEditor(): void {
+  try {
+    pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
+    interaction.pattern_creator.addIdentityToPattern()
+    utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
+    utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
+    hljs.highlightElement(utilities.qe('.pattern2'));
+    hljs.highlightElement(utilities.qe('.pattern'));
+    utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
+  } catch (e) {
+  }
+  utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerHTML
+  utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
+}
+
+export function syncPatternCreatorJSONEditor() {
+  try {
+    utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
+    hljs.highlightElement(utilities.qe('.pattern'));
+    hljs.highlightElement(utilities.qe('.pattern2'));
+    pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
+    utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
+  }
+  catch (e) {
+
+  }
+}
+
 export function openPatternCreator(event) {
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
@@ -124,30 +152,10 @@ export function openPatternCreator(event) {
   if (pattern_creator_evt === 0) {
     pattern_creator_evt = 1
     utilities.qe('.pattern2').addEventListener('input', function (event) {
-      try {
-        utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
-        hljs.highlightElement(utilities.qe('.pattern'));
-        hljs.highlightElement(utilities.qe('.pattern2'));
-        pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
-        utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
-      }
-      catch (e) {
-
-      }
+      interaction.pattern_creator.syncPatternCreatorJSONEditor()
     });
     utilities.qe('.pattern2').addEventListener('blur', function (event) {
-      try {
-        pattern_json = JSON.parse(utilities.qe('.pattern2').innerText)
-        interaction.pattern_creator.addIdentityToPattern()
-        utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
-        utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
-        hljs.highlightElement(utilities.qe('.pattern2'));
-        hljs.highlightElement(utilities.qe('.pattern'));
-        utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
-      } catch (e) {
-      }
-      utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerHTML
-      utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview()
+      interaction.pattern_creator.syncAndFormatPatternCreatorJSONEditor()
     });
     utilities.qe('.pattern2').addEventListener('scroll', function (event) {
       window.requestAnimationFrame(function () {
