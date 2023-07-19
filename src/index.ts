@@ -44,7 +44,7 @@ window.onerror = async function (message, source, lineno, colno, error) {
   });
 };
 
-
+/*
 declare global {
 interface Window {
 password_page_icon_loaded: Boolean;
@@ -60,6 +60,7 @@ search_will_change_evt: Object
 search_will_change_evt_list: Object
 }
 }
+*/
 
 window.password_page_icon_loaded = false
 window.allhashtag = {}
@@ -68,7 +69,6 @@ window.search_evt = 0
 window.search_sticky = false
 window.container_scrollTop = 0
 window.pattern_creator_evt = 0
-window.pattern_json = {}
 window.pattern_editor_blocks_json = utilities.qe('.pattern_editor_blocks_json')
 window.search_will_change_evt = [0, 1]
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']

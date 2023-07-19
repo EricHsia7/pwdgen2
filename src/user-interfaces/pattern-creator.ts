@@ -6,6 +6,7 @@ hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 
 
 window.pattern_creator_current_editor = 'blocks'
+window.pattern_json = {}
 
 export function openPatternCreator(event) {
   if (search_sticky || search_status === 1) {
