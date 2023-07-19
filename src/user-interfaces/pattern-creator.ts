@@ -317,7 +317,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   var mask_elt = document.createElement('div')
   mask_elt.classList.add('.pattern_creator_preview_component_info_mask')
   mask_elt.id = `${tmp_id}-mask`
-  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `removePatternPreviewInfo('${tmp_id}',event)`)
+  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removePatternPreviewInfo('${tmp_id}',event)`)
   pattern_creator_elt.appendChild(mask_elt)
   pattern_creator_elt.appendChild(card_elt)
 }
