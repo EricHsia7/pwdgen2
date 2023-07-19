@@ -7,7 +7,7 @@ import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 import { openPatternCreator, closePatternCreator, generatePatternPreview, showPatternPreviewInfoCard, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor } from './pattern-creator'
 
 function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
-  target.style.setProperty(property, source.style.getProperty(property))
+  target.style.setProperty(property, source.style.getPropertyValue(property))
 }
 
 function fade(element, type, display, callback) {
