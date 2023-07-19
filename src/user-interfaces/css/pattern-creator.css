@@ -211,7 +211,7 @@
   height: 80px;
   border-radius: 15px;
   border: 1px solid var(--j-component-color-light-text);
-  background: var(--j-component-dark-color-bg);
+  background: var(--j-component-light-color-bg);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }
