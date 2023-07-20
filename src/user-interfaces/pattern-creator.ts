@@ -233,17 +233,21 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
     removePatternPreviewInfo(existing_info[e].id)
   }
   var elt = event.target
+  /*
   var elt_rect = elt.getBoundingClientRect();
   var elt_x = elt_rect.x
   var elt_y = elt_rect.y
   var elt_w = elt_rect.width;
   var elt_h = elt_rect.height;
+  */
   var pattern_creator_elt = utilities.qe('.pattern_creator')
+  /*
   var pattern_creator_elt_rect = pattern_creator_elt.getBoundingClientRect()
   var pattern_creator_elt_x = pattern_creator_elt_rect.x
   var pattern_creator_elt_y = pattern_creator_elt_rect.y
   var relative_x = elt_x - pattern_creator_elt_x
   var relative_y = elt_y - pattern_creator_elt_y + elt_h + 3
+ */
   var temporary_id = fine_grained_password.generate([
     {
       type: 'string',
@@ -265,21 +269,24 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   }
   var card_elt = document.createElement('div')
   var path = '--'
-  card_elt.setAttribute('type', component.type)
-  card_elt.setAttribute('path', path)
+  /*
   card_elt.style.setProperty('--j-component-info-top', `${relative_y}px`)
   card_elt.style.setProperty('--j-component-info-left', `${10}px`)
   interaction.copyProperty(elt, card_elt, '--j-component-color-light-text')
   interaction.copyProperty(elt, card_elt, '--j-component-color-light-bg')
   interaction.copyProperty(elt, card_elt, '--j-component-color-dark-text')
   interaction.copyProperty(elt, card_elt, '--j-component-color-dark-bg')
+  */
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = temporary_id
-  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_type">${type_icon[component.type]}</div><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Find</div>`
+  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list"><div class="pattern_creator_preview_component_info_type">${component.type}</div><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div></div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Find</div><div class="pattern_creator_preview_component_info_close">Close</div>`
   var mask_elt = document.createElement('div')
   mask_elt.classList.add('pattern_creator_preview_component_info_mask')
   mask_elt.id = `${temporary_id}-mask`
   mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removePatternPreviewInfo('${temporary_id}',event)`)
   pattern_creator_elt.appendChild(mask_elt)
   pattern_creator_elt.appendChild(card_elt)
+  interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
+  interaction.fade(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
+  utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
 }
