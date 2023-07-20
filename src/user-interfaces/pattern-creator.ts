@@ -274,7 +274,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   var items = []
   var tostr = function (content) {
     if (typeof content === 'string' || typeof contnet === 'number' || typeof content === 'boolean') {
-      return String(content)
+      return content
     }
     if (typeof content === 'object' && !Array.isArray(content)) {
       return JSON.stringify(content)
