@@ -265,8 +265,10 @@
   width: calc(100% - 30px);
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
-  height: 75px;
+  height: 65px;
   background: var(--p-f2f2f7);
+  box-sizing: border-box;
+  padding-top: 5px;
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor,
