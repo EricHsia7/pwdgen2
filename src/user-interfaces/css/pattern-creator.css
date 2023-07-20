@@ -194,7 +194,7 @@
   font-size: 18px;
 }
 
-.pattern_creator_preview_component {
+.pattern_creator .pattern_creator_preview_component {
   display: inline;
   height: 20px;
   width: auto;
@@ -211,7 +211,6 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.45);
-  transition: 0.3s;
 }
 
 .pattern_creator_preview_component_info {
@@ -224,6 +223,7 @@
   border-radius: 15px 15px 0px 0px;
   box-sizing: border-box;
   transform: translateY(250px);
+  transition: 0.3s;
 }
 
 .pattern_creator_preview_component_info[o="1"] {
