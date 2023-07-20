@@ -285,7 +285,9 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
     return '--'
   }
   for (var i in component) {
-    items.push(`<div class="pattern_creator_preview_component_info_item"><div class="pattern_creator_preview_component_info_item_title">${i}</div><div class="pattern_creator_preview_component_info_item_value"><input type="text" placeholder="${i}" readonly="readonly" value="${tostr(component[i])}"></div></div>`)
+    var input_elt = document.createElement('input')
+    input_elt.setAttribute('value',tostr(component[i]))
+    items.push(`<div class="pattern_creator_preview_component_info_item"><div class="pattern_creator_preview_component_info_item_title">${i}</div><div class="pattern_creator_preview_component_info_item_value">${input_elt.outerHTML}</div></div>`)
   }
   var card_elt = document.createElement('div')
   var path = '--'
