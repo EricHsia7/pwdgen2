@@ -107,7 +107,8 @@
 }
 
 .details-list .details-item:last-child,
-.add-list .add-item:last-child {
+.add-list .add-item:last-child,
+.pattern_creator_preview_component_info_list .pattern_creator_preview_component_info_item:last-child {
   border: none;
 }
 
