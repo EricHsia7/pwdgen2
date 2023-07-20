@@ -90,8 +90,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--p-f2f2f7);
-  border-radius: 8px;
+  background: var(--p-636366);
+  border-radius: 9px;
 }
 
 .details-item .details-item-copy svg {
