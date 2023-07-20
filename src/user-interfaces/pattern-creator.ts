@@ -271,6 +271,10 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   else {
     component = component[0].component
   }
+  var items = []
+  for (var i in component) {
+    items.push(`<div class="pattern_creator_preview_component_info_item"><div class="pattern_creator_preview_component_info_item_title">${i}</div><div class="pattern_creator_preview_component_info_item_value"><input type="text" placeholder="${i}" readonly="readonly" value="${component[i]}"></div></div>`)
+  }
   var card_elt = document.createElement('div')
   var path = '--'
   /*
@@ -283,7 +287,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   */
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = temporary_id
-  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list"><div class="pattern_creator_preview_component_info_type">${component.type}</div><div class="pattern_creator_preview_component_info_name">${component.name ? component.name : 'Unnamed'}</div></div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Find</div><div class="pattern_creator_preview_component_info_close">Close</div>`
+  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list">${items.join('')}</div><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Find</div><div class="pattern_creator_preview_component_info_close">Close</div>`
   var mask_elt = document.createElement('div')
   mask_elt.classList.add('pattern_creator_preview_component_info_mask')
   mask_elt.id = `${temporary_id}-mask`
