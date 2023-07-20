@@ -281,6 +281,7 @@
   width: calc(100% - 30px);
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor,
@@ -294,6 +295,7 @@
   justify-content: center;
   box-sizing: border-box;
   background: var(--p-main-color);
+  font-size: 20px;
 }
 
 /*
