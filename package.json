@@ -47,6 +47,7 @@
   "dependencies": {
     "aes-js": "^3.1.2",
     "lodash": "^4.17.21",
-    "highlight.js": "^11.8.0"
+    "highlight.js": "^11.8.0",
+    "@erichsia7/ripple": "^1.1.5"
   }
 }
