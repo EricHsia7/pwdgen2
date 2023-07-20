@@ -280,7 +280,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
       return JSON.stringify(content)
     }
     if (typeof content === 'object' && Array.isArray(content)) {
-      return content.join(', ')
+      return content.map(r => tostr(r)).join(', ')
     }
     return '--'
   }
