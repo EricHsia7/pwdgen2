@@ -273,7 +273,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   }
   var items = []
   var tostr = function (content) {
-    if (typeof content === 'string' || typeof contnet === 'number' || typeof content === 'boolean') {
+    if (typeof content === 'string' || typeof content === 'number' || typeof content === 'boolean') {
       return content
     }
     if (typeof content === 'object' && !Array.isArray(content)) {
