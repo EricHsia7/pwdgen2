@@ -215,8 +215,12 @@ export function generatePatternPreview(): string {
 
 export function removePatternPreviewInfo(temporary_id: string, event: Event): void {
   event.preventDefault()
-  utilities.qe(`.pattern_creator #${temporary_id}`).remove()
-  utilities.qe(`.pattern_creator #${temporary_id}-mask`).remove()
+  interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
+    utilities.qe(`body #${temporary_id}`).remove()
+  })
+  interaction.fade(utilities.qe(`body #${temporary_id}-mask`), 'Out', 'none', function () {
+    utilities.qe(`body #${temporary_id}-mask`).remove()
+  })
 }
 
 export function showPatternPreviewInfo(component_id: string, event: Event): void | string {
@@ -240,7 +244,6 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   var elt_w = elt_rect.width;
   var elt_h = elt_rect.height;
   */
-  var pattern_creator_elt = utilities.qe('.pattern_creator')
   /*
   var pattern_creator_elt_rect = pattern_creator_elt.getBoundingClientRect()
   var pattern_creator_elt_x = pattern_creator_elt_rect.x
@@ -284,8 +287,8 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   mask_elt.classList.add('pattern_creator_preview_component_info_mask')
   mask_elt.id = `${temporary_id}-mask`
   mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removePatternPreviewInfo('${temporary_id}',event)`)
-  pattern_creator_elt.appendChild(mask_elt)
-  pattern_creator_elt.appendChild(card_elt)
+  document.body.appendChild(mask_elt)
+  document.body.appendChild(card_elt)
   interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
   interaction.fade(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
   utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
