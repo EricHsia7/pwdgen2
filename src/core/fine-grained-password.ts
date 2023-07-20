@@ -152,12 +152,12 @@ const getPatterns = function (): object {
 
 function generate(options: object, mode: string): string | object {
   const pattern: object = _.cloneDeep(options);
+  const original_pattern: object = _.cloneDeep(options)
   if (mode === 'production') {
     var d: string = ""
   }
   if (mode === 'editor') {
     var d: Array = []
-    const original_pattern: object = _.cloneDeep(options)
   }
 
   const get_chars_from_regex = function (regex) {
