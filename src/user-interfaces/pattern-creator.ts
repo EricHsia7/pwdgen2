@@ -215,6 +215,7 @@ export function generatePatternPreview(): string {
 
 export function removePatternPreviewInfo(temporary_id: string, event: Event): void {
   event.preventDefault()
+  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
   interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
     utilities.qe(`body #${temporary_id}`).remove()
   })
