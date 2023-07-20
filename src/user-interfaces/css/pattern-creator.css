@@ -276,8 +276,9 @@
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
   position: relative;
+  left: 15px;
   display: grid;
-  width: calc(100% - 15px);
+  width: calc(100% - 30px);
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
 }
@@ -285,7 +286,7 @@
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor,
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_close {
   position: relative;
-  height: 50px;
+  height: 45px;
   border-radius: 10px;
   color: #fff;
   display: flex;
