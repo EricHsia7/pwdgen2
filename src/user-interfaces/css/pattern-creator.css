@@ -273,6 +273,7 @@
   width: calc(100% - 30px);
   display: inline-block;
 }
+
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
   position: relative;
   display: grid;
@@ -280,6 +281,7 @@
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
 }
+
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor,
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_close {
   position: relative;
