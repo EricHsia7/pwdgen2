@@ -306,8 +306,9 @@
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
     position: fixed;
-    bottom: 0px;
-    left: 0px;
+    bottom: 5px;
+    left: 15px;
+    margin-bottom: 0px;
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list {
