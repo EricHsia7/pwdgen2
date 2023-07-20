@@ -233,8 +233,7 @@
   transform: translateY(0%);
 }
 
-@media screen and (min-width: 601px) {
-
+@media screen and (min-width: 600px) {
   /*screens wider than 600px*/
   .pattern_creator_preview_component_info {
     border-radius: 15px;
@@ -242,7 +241,6 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%) scale(0.8);
     width: clamp(400px, 50vw, 500px);
-    height: clamp(400px, 50vw, 500px);
   }
 
   .pattern_creator_preview_component_info[o="1"] {
