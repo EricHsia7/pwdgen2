@@ -306,14 +306,14 @@
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
     position: fixed;
-    bottom: 5px;
+    bottom: 15px;
     left: 15px;
     margin-bottom: 0px;
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list {
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
   }
 }
 
