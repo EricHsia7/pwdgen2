@@ -10,10 +10,12 @@ function copyProperty(source: HTMLElement, target: HTMLElement, property: string
   target.style.setProperty(property, source.style.getPropertyValue(property))
 }
 
-function fade(element, type, display, callback) {
+type fadeType = 'In' | 'Out'
+type fadeDisplay = 'none' | 'flex' | 'inline' | 'block' | 'inline-flex' | 'inline-block'
+function fade(element: HTMLElement, type: fadeType, display: fadeDisplay, callback: Function | void) {
   var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   var fade_id = "";
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 16; i++) {
     var idrandomNumber = Math.floor(Math.random() * idchars.length);
     fade_id += idchars.substring(idrandomNumber, idrandomNumber + 1);
   }
