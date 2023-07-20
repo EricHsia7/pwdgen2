@@ -89,17 +89,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--p-main-color);
-  border-radius: 9px;
 }
 
 .details-item .details-item-copy svg {
-  width: 18px;
-  height: 18px;
+  width: 21px;
+  height: 21px;
 }
 
 .details-item .details-item-copy svg path {
-  fill: var(--p-333333);
+  fill: var(--p-main-color);
 }
 
 .details-list .details-item:last-child,
