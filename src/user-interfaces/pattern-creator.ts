@@ -230,7 +230,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   var existing_info = utilities.qeAll('.pattern_creator .pattern_creator_preview_component_info')
   var existing_info_len = existing_info.length
   for (var e = 0; e < existing_info_len; e++) {
-    removePatternPreviewInfo(existing_info[e].id)
+    removePatternPreviewInfo(existing_info[e].id, event)
   }
   var elt = event.target
   /*
