@@ -233,22 +233,6 @@
   transform: translateY(0%);
 }
 
-@media screen and (min-width: 600px) {
-  /*screens wider than 600px*/
-  .pattern_creator_preview_component_info {
-    border-radius: 15px;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%) scale(0.8);
-    width: clamp(400px, 50vw, 500px);
-    height: auto;
-    max-height: none;
-  }
-
-  .pattern_creator_preview_component_info[o="1"] {
-    transform: translateX(-50%) translateY(-50%) scale(1);
-  }
-}
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_title {
   position: relative;
@@ -296,6 +280,40 @@
   box-sizing: border-box;
   background: var(--p-main-color);
   font-size: 18px;
+}
+
+@media screen and (min-width: 600px) {
+
+  /*screens wider than 600px*/
+  .pattern_creator_preview_component_info {
+    border-radius: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0.8);
+    width: clamp(400px, 50vw, 500px);
+    height: clamp(400px, 50vw, 500px);
+  }
+
+  .pattern_creator_preview_component_info[o="1"] {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+
+  .pattern_creator_preview_component_info .pattern_creator_preview_component_info_title {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+  }
+
+  .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 }
 
 /*
