@@ -7,6 +7,7 @@ import bjson from 'src/core/blocks-json'
 import words_list from './/core/words-list'
 import icons from './user-interfaces/icons'
 import interaction from './user-interfaces/interaction'
+const ripple = require('@erichsia7/ripple')
 
 import './user-interfaces/css/hljs.css'
 import './user-interfaces/css/theme.css'
@@ -125,6 +126,7 @@ window.pwdgen2 = function () { //initialize
     utilities.qe(".search").setAttribute('will-change', '0')
   })
   words_list.getWordsList()
+  ripple.addTo('.btn', 'var(--p-main-color)', 450)
 }
 
 export default window.pwdgen2
