@@ -194,7 +194,7 @@
   font-size: 18px;
 }
 
-.pattern_creator .pattern_creator_preview_component {
+.pattern_creator_preview_component {
   display: inline;
   height: 20px;
   width: auto;
@@ -204,7 +204,7 @@
   word-break: break-all;
 }
 
-.pattern_creator .pattern_creator_preview_component_info_mask {
+.pattern_creator_preview_component_info_mask {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -214,7 +214,7 @@
   transition: 0.3s;
 }
 
-.pattern_creator .pattern_creator_preview_component_info {
+.pattern_creator_preview_component_info {
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -226,26 +226,26 @@
   transform: translateY(250px);
 }
 
-.pattern_creator .pattern_creator_preview_component_info[o="1"] {
+.pattern_creator_preview_component_info[o="1"] {
   transform: translateY(0px);
 }
 
 @media screen and (min-width: 601px) {
 
   /*screens wider than 600px*/
-  .pattern_creator .pattern_creator_preview_component_info {
+  .pattern_creator_preview_component_info {
     border-radius: 15px;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%) scale(0.8);
   }
 
-  .pattern_creator .pattern_creator_preview_component_info[o="1"] {
+  .pattern_creator_preview_component_info[o="1"] {
     transform: translateX(-50%) translateY(-50%) scale(1);
   }
 }
 
-.pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_type {
+.pattern_creator_preview_component_info .pattern_creator_preview_component_info_type {
   position: relative;
   top: 5px;
   margin: 0px 5px;
@@ -258,7 +258,7 @@
   box-sizing: border-box;
 }
 
-.pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_name {
+.pattern_creator_preview_component_info .pattern_creator_preview_component_info_name {
   position: relative;
   top: 5px;
   width: auto;
@@ -269,7 +269,7 @@
   box-sizing: border-box;
 }
 
-.pattern_creator .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor {
+.pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor {
   position: relative;
   top: 5px;
   height: 30px;
