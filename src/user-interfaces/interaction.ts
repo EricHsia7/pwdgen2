@@ -390,8 +390,8 @@ function addPasswordWithForm() {
   var website = utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
   var addedpassword = addPassword(password, username, website, '')
   interaction.prompt_message('Added password', 1200)
+  interaction.add_password.closeAddPassword()
   interaction.password_page.openPassword(addedpassword, function () {
-    interaction.add_password.closeAddPassword()
     interaction.main_page.printSavedPasswordList()
   })
 }
