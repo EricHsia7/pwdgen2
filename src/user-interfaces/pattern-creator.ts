@@ -272,8 +272,20 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
     component = component[0].component
   }
   var items = []
+  var tostr = function (content) {
+    if (typeof content === 'string' || typeof contnet === 'number' || typeof content === 'boolean') {
+      return String(content)
+    }
+    if (typeof content === 'object' && !Array.isArray(content)) {
+      return JSON.stringify(content)
+    }
+    if (typeof content === 'object' && Array.isArray(content)) {
+      return content.join(', ')
+    }
+    return '--'
+  }
   for (var i in component) {
-    items.push(`<div class="pattern_creator_preview_component_info_item"><div class="pattern_creator_preview_component_info_item_title">${i}</div><div class="pattern_creator_preview_component_info_item_value"><input type="text" placeholder="${i}" readonly="readonly" value="${component[i]}"></div></div>`)
+    items.push(`<div class="pattern_creator_preview_component_info_item"><div class="pattern_creator_preview_component_info_item_title">${i}</div><div class="pattern_creator_preview_component_info_item_value"><input type="text" placeholder="${i}" readonly="readonly" value="${tostr(component[i])}"></div></div>`)
   }
   var card_elt = document.createElement('div')
   var path = '--'
