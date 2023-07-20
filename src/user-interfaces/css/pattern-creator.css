@@ -223,11 +223,11 @@
   background: var(--p-f2f2f7);
   border-radius: 15px 15px 0px 0px;
   box-sizing: border-box;
-  transform: translateY(100%);
+  transform: translateY(250px);
 }
 
 .pattern_creator .pattern_creator_preview_component_info[o="1"] {
-  transform: translateY(0%);
+  transform: translateY(0px);
 }
 
 @media screen and (min-width: 601px) {
