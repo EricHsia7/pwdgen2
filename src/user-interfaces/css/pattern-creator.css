@@ -265,7 +265,8 @@
   width: calc(100% - 30px);
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
-  margin-bottom: 20px;
+  height: 75px;
+  background: var(--p-f2f2f7);
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor,
@@ -306,9 +307,8 @@
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
     position: fixed;
-    bottom: 15px;
+    bottom: 0px;
     left: 15px;
-    margin-bottom: 0px;
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list {

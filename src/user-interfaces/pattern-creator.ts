@@ -6,7 +6,7 @@ hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 import icons from './icons'
 
 
-window.pattern_creator_current_editor = 'blocks'
+window.pattern_creator_current_editor = 'json'
 window.pattern_json = {
   "pattern_name": "Email",
   "pattern_icon": "alternate_email",
@@ -314,4 +314,28 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
   interaction.fade(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
   utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
+}
+
+export function showComponentInEditor(component_id: string, event: Event): void {
+  if (pattern_creator_current_editor === 'blocks') {
+
+  }
+  if (pattern_creator_current_editor === 'json') {
+    var query = `"${component_id}"`
+    var elt = utilities.qeAll('.pattern_creator .pattern_editor_box .pattern_editor_container[j="json"] .pattern2 .hljs-string')
+    var elt_len = elt.length
+    var result_elt: Element
+    for (var i = 0; i < elt_len; i++) {
+      if (String(elt[i].innerText).indexOf(query) > -1) {
+        result_elt = elt[i]
+        break;
+      }
+    }
+    var offsetTop = result_elt.offsetTop
+    utilities.qe('.pattern_creator .pattern_editor_box .pattern_editor_container[j="json"] .pattern').scrollTo({
+      top: offsetTop,
+      left: 0,
+      behavior: "smooth"
+    })
+  }
 }
