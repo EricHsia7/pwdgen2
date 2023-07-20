@@ -331,8 +331,15 @@ export function showComponentInEditor(component_id: string, event: Event): void 
         break;
       }
     }
-    var offsetTop = result_elt.offsetTop
-    utilities.qe('.pattern_creator .pattern_editor_box .pattern_editor_container[j="json"] .pattern').scrollTo({
+    var pattern = utilities.qe('.pattern_creator .pattern_editor_box .pattern_editor_container[j="json"] .pattern')
+    var pattern2 = utilities.qe('.pattern_creator .pattern_editor_box .pattern_editor_container[j="json"] .pattern2')
+    var offsetTop = result_elt.offsetTop - pattern2.getBoundingClientRect().height / 2 - result_elt.getBoundingClientRect().height / 2
+    pattern2.scrollTo({
+      top: offsetTop,
+      left: 0,
+      behavior: "smooth"
+    })
+    pattern.scrollTo({
       top: offsetTop,
       left: 0,
       behavior: "smooth"
