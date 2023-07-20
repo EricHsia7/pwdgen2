@@ -66,6 +66,7 @@ window.pattern_json = {
   ]
 }
 
+window.pattern_json_generation = []
 export function initializePatternCreatorJSONEditor(): void {
   interaction.pattern_creator.addIdentityToPattern()
   utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
@@ -176,6 +177,7 @@ export function generatePatternPreview(): string {
   if (pattern_json.hasOwnProperty('pattern')) {
     var generation = fine_grained_password.generate(pattern_json.pattern, 'editor')
     var generation_len = generation.length
+    pattern_json_generation = generation
     var html = []
     for (var c = 0; c < generation_len; c++) {
       var this_component = generation[c]
@@ -264,7 +266,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
       repeat: true
     }
   ], 'production')
-  var component = fine_grained_password.generate(pattern_json.pattern, 'editor').filter(j => (j.component.id === component_id ? true : false))
+  var component = pattern_json_generation.filter(j => (j.component.id === component_id ? true : false))
   if (component.length < 1) {
     return ''
   }
