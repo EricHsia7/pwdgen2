@@ -307,8 +307,8 @@ function refreshPage() {
 
 
 
-function openPassword(id) {
-  interaction.fade(utilities.qe('.password-page'), 'In', 'block')
+function openPassword(id, fadeCallback) {
+  interaction.fade(utilities.qe('.password-page'), 'In', 'block', fadeCallback)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
@@ -388,9 +388,10 @@ function addPasswordWithForm() {
   var website = utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
   var addedpassword = addPassword(password, username, website, '')
   interaction.prompt_message('Added password', 1200)
-  interaction.password_page.openPassword(addedpassword)
-  interaction.add_password.closeAddPassword()
-  interaction.main_page.printSavedPasswordList()
+  interaction.password_page.openPassword(addedpassword, function () {
+    interaction.add_password.closeAddPassword()
+    interaction.main_page.printSavedPasswordList()
+  })
 }
 
 function printPatternPresets(place) {
