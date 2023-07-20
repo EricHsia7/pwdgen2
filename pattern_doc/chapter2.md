@@ -32,3 +32,6 @@ This property comes in `number`, specifying the times of choosing actions. This 
 
 ### actions
 This property comes in `array`,and the available value is `shuffle` at this time. This property is only for the component `group`.
+
+### id
+This property will be generated and added to every component automatically by editor.
