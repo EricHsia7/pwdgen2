@@ -1,7 +1,8 @@
 .details-list,
 .details-note,
 .details-check-result,
-.add-list {
+.add-list,
+.pattern_creator_preview_component_info .pattern_creator_preview_component_info_list {
   position: relative;
   width: 100%;
   display: inline-block;
@@ -14,7 +15,8 @@
 }
 
 .details-item,
-.add-item {
+.add-item,
+.pattern_creator_preview_component_info .pattern_creator_preview_component_info_item {
   position: relative;
   width: calc(100% - 20px);
   height: 50px;
@@ -26,7 +28,8 @@
 }
 
 .details-item .details-item-title,
-.add-item .add-item-title {
+.add-item .add-item-title,
+.pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_title {
   position: absolute;
   top: 10px;
   left: 0px;
@@ -45,7 +48,8 @@
 }
 
 .details-item .details-item-value,
-.add-item .add-item-value {
+.add-item .add-item-value,
+.pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
   position: absolute;
   right: 35px;
   top: 10px;
@@ -54,13 +58,15 @@
   overflow: hidden;
 }
 
-.add-item .add-item-value {
+.add-item .add-item-value,
+.pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
   width: calc(100% - 100px);
   right: 10px
 }
 
 .details-item .details-item-value input,
-.add-item .add-item-value input {
+.add-item .add-item-value input,
+.pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value input {
   position: absolute;
   top: 0px;
   left: 0px;

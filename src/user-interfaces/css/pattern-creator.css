@@ -247,17 +247,19 @@
   }
 }
 
-.pattern_creator_preview_component_info .pattern_creator_preview_component_info_type {
+.pattern_creator_preview_component_info .pattern_creator_preview_component_info_title {
   position: relative;
-  top: 5px;
-  margin: 0px 5px;
-  height: 30px;
-  width: 30px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 50px;
+  background: var(--p-f2f2f7);
+  font-size: 20px;
+  font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--p-333333);
-  box-sizing: border-box;
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_name {
