@@ -304,7 +304,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   */
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = temporary_id
-  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list_container"><div class="pattern_creator_preview_component_info_list">${items.join('')}</div></div><div class="pattern_creator_preview_component_info_button_box"><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Find</div><div class="pattern_creator_preview_component_info_close">Close</div></div>`
+  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list_container"><div class="pattern_creator_preview_component_info_list">${items.join('')}</div></div><div class="pattern_creator_preview_component_info_button_box"><div class="pattern_creator_preview_component_info_show_in_editor" onclick="showComponentInEditor('${component.id}')">Find</div><div class="pattern_creator_preview_component_info_close" onclick="interaction.pattern_creator.removePatternPreviewInfo('${temporary_id}',event)">Close</div></div>`
   var mask_elt = document.createElement('div')
   mask_elt.classList.add('pattern_creator_preview_component_info_mask')
   mask_elt.id = `${temporary_id}-mask`
