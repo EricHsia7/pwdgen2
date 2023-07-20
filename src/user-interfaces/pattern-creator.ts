@@ -214,11 +214,13 @@ export function generatePatternPreview(): string {
 }
 
 export function removePatternPreviewInfo(temporary_id: string, event: Event): void {
+  event.preventDefault()
   utilities.qe(`.pattern_creator #${temporary_id}`).remove()
   utilities.qe(`.pattern_creator #${temporary_id}-mask`).remove()
 }
 
 export function showPatternPreviewInfo(component_id: string, event: Event): void | string {
+  event.preventDefault()
   var type_icon = {
     regex: icons.icon_regular_expression,
     string: icons.icon_text,
