@@ -218,12 +218,15 @@
   bottom: 0px;
   left: 0px;
   width: 100%;
-  height: 250px;
+  height: auto;
+  max-height: 100%;
+  display: inline-block;
   background: var(--p-f2f2f7);
   border-radius: 15px 15px 0px 0px;
   box-sizing: border-box;
   transform: translateY(250px);
   transition: 0.3s;
+  overflow: scroll;
 }
 
 .pattern_creator_preview_component_info[o="1"] {
@@ -262,15 +265,11 @@
   color: var(--p-333333);
 }
 
-.pattern_creator_preview_component_info .pattern_creator_preview_component_info_name {
+.pattern_creator_preview_component_info .pattern_creator_preview_component_info_list_container {
   position: relative;
-  top: 5px;
-  width: auto;
-  display: inline-flex;
-  height: 30px;
-  align-items: center;
-  color: var(--p-333333);
-  box-sizing: border-box;
+  left: 15px;
+  width: calc(100% - 30px);
+  display: inline-block;
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor {
