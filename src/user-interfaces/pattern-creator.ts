@@ -289,6 +289,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   for (var i in component) {
     var input_elt = document.createElement('input')
     input_elt.setAttribute('value', tostr(component[i]))
+    input_elt.setAttribute('readonly', 'readonly')
     items.push(`<div class="pattern_creator_preview_component_info_item"><div class="pattern_creator_preview_component_info_item_title">${i}</div><div class="pattern_creator_preview_component_info_item_value">${input_elt.outerHTML}</div></div>`)
   }
   var card_elt = document.createElement('div')
