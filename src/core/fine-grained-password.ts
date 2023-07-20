@@ -157,6 +157,7 @@ function generate(options: object, mode: string): string | object {
   }
   if (mode === 'editor') {
     var d: Array = []
+    const original_pattern: object = _.cloneDeep(options)
   }
 
   const get_chars_from_regex = function (regex) {
@@ -197,22 +198,22 @@ function generate(options: object, mode: string): string | object {
     }
     if (this_item['type'] === "group") {
       result = fine_grained_password.generate(this_content, 'production')
-if(this_item.hasOwnProperty('actions')){
-      var actions = this_item['actions']
-      var actions_len = actions.length
-      for (var j = 0; j < actions_len; j++) {
-        if (actions[j] === 'shuffle') {
-          result = utilities.shuffleSelf(result.split(''), result.length).join('')
-          continue;
+      if (this_item.hasOwnProperty('actions')) {
+        var actions = this_item['actions']
+        var actions_len = actions.length
+        for (var j = 0; j < actions_len; j++) {
+          if (actions[j] === 'shuffle') {
+            result = utilities.shuffleSelf(result.split(''), result.length).join('')
+            continue;
+          }
         }
       }
-}
     }
     if (mode === 'production') {
       d += result
     }
     if (mode === 'editor') {
-      d.push({ result: result, component: this_item })
+      d.push({ result: result, component: original_pattern[e] })
     }
   }
   return d
