@@ -30,7 +30,7 @@
 
 .pattern_creator .pattern,
 .pattern_creator .pattern2 {
-  padding: 5px;
+  padding: 10px;
   margin: 0px;
   display: block;
   width: 100%;
@@ -182,15 +182,16 @@
   left: 10px;
   width: calc(100% - 20px);
   height: auto;
-  min-height: 35px;
+  min-height: 50px;
   border-radius: 10px;
   display: inline-block;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 10px;
   background: var(--p-ffffff);
   color: var(--p-333333);
   white-space: pre-wrap;
   word-break: break-all;
+  font-size: 18px;
 }
 
 .pattern_creator .pattern_creator_preview_component {
@@ -207,7 +208,7 @@
   position: absolute;
   top: var(--j-component-info-top);
   left: var(--j-component-info-left);
-  width:calc(100% - 20px);
+  width: calc(100% - 20px);
   height: 40px;
   background: var(--j-component-color-light-bg);
   backdrop-filter: blur(15px);
