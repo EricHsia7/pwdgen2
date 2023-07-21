@@ -136,8 +136,11 @@ export function openPatternCreator(event) {
           else {
             translateY = (maxScrollTop - scrollTop)
           }
-          utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${translateY}px)`)
         }
+        else {
+          translateY = 0
+        }
+        utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${translateY}px)`)
       })
     });
   }

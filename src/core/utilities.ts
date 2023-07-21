@@ -351,6 +351,55 @@ function randomColorSet() {
   return { light: f(75, 0.06), dark: f(100, 0.11) }
 }
 
+function blendColors(color1, color2, ratio) {
+  // Convert the colors from hexadecimal to RGB values
+  const hexToRGB = (color) => ({
+    r: parseInt(color.slice(1, 3), 16),
+    g: parseInt(color.slice(3, 5), 16),
+    b: parseInt(color.slice(5, 7), 16),
+  });
+
+  const rgb1 = hexToRGB(color1);
+  const rgb2 = hexToRGB(color2);
+
+  // Calculate the blended RGB values
+  const blendedRGB = {
+    r: Math.round(rgb1.r * (1 - ratio) + rgb2.r * ratio),
+    g: Math.round(rgb1.g * (1 - ratio) + rgb2.g * ratio),
+    b: Math.round(rgb1.b * (1 - ratio) + rgb2.b * ratio),
+  };
+
+  // Convert the blended RGB values back to hexadecimal
+  const componentToHex = (c) => {
+    const hex = c.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  };
+
+  const blendedColor = `#${componentToHex(blendedRGB.r)}${componentToHex(blendedRGB.g)}${componentToHex(blendedRGB.b)}`;
+  return blendedColor;
+}
+
+function blendHexWithRGBA(hexColor, rgbaColor, ratio) {
+  // Convert the hexadecimal color to RGBA
+  const hexToRGBA = (hex) => {
+    const bigint = parseInt(hex.slice(1), 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return `rgba(${r}, ${g}, ${b}, 1)`;
+  };
+
+  const rgba1 = hexToRGBA(hexColor);
+
+  // Split the RGBA color into its components
+  const rgba2 = rgbaColor.match(/(\d+(\.\d+)?)/g);
+  const [r2, g2, b2, a2] = rgba2.map((component) => parseFloat(component));
+
+  // Calculate the blended RGBA values
+  const blendedRGBA = `rgb(${r2 * (1 - ratio) + parseFloat(rgba1.slice(5)) * ratio},${g2 * (1 - ratio) + parseFloat(rgba1.slice(5)) * ratio},${b2 * (1 - ratio) + parseFloat(rgba1.slice(5)) * ratio})`;
+
+  return blendedRGBA;
+}
 
 window.utilities = {
   encryptString,
@@ -370,7 +419,8 @@ window.utilities = {
   fetchWithProgress,
   hsvToRgb,
   randomColorSet,
-  isDarkMode
+  isDarkMode,
+  blendHexWithRGBA
 }
 
 export default window.utilities
