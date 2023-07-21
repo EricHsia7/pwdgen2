@@ -233,19 +233,9 @@ export function generatePatternPreview(): string {
   }
 }
 
-export function removePatternPreviewInfo(temporary_id: string, event: Event): void {
-  event.preventDefault()
-  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
-  interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
-    utilities.qe(`body #${temporary_id}`).remove()
-  })
-  interaction.fade(utilities.qe(`body #${temporary_id}-mask`), 'Out', 'none', function () {
-    utilities.qe(`body #${temporary_id}-mask`).remove()
-  })
-}
-
 export function showPatternPreviewInfo(component_id: string, event: Event): void | string {
   event.preventDefault()
+  interaction.standaloneStatusBarColor(2)
   var type_icon = {
     regex: icons.icon_regular_expression,
     string: icons.icon_text,
@@ -255,7 +245,7 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   var existing_info = utilities.qeAll('.pattern_creator .pattern_creator_preview_component_info')
   var existing_info_len = existing_info.length
   for (var e = 0; e < existing_info_len; e++) {
-    removePatternPreviewInfo(existing_info[e].id, event)
+    removePatternComponentInfo(existing_info[e].id, event)
   }
   var elt = event.target
   /*
@@ -322,11 +312,11 @@ export function showPatternPreviewInfo(component_id: string, event: Event): void
   */
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = temporary_id
-  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list_container"><div class="pattern_creator_preview_component_info_list">${items.join('')}</div></div><div class="pattern_creator_preview_component_info_button_box"><div class="pattern_creator_preview_component_info_show_in_editor" onclick="interaction.pattern_creator.showComponentInEditor('${temporary_id}','${component.id}',event)">Find</div><div class="pattern_creator_preview_component_info_close" onclick="interaction.pattern_creator.removePatternPreviewInfo('${temporary_id}',event)">Close</div></div>`
+  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list_container"><div class="pattern_creator_preview_component_info_list">${items.join('')}</div></div><div class="pattern_creator_preview_component_info_button_box"><div class="pattern_creator_preview_component_info_show_in_editor" onclick="interaction.pattern_creator.showComponentInEditor('${temporary_id}','${component.id}',event)">Find</div><div class="pattern_creator_preview_component_info_close" onclick="interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)">Close</div></div>`
   var mask_elt = document.createElement('div')
   mask_elt.classList.add('pattern_creator_preview_component_info_mask')
   mask_elt.id = `${temporary_id}-mask`
-  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removePatternPreviewInfo('${temporary_id}',event)`)
+  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)`)
   document.body.appendChild(mask_elt)
   document.body.appendChild(card_elt)
   interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
@@ -363,5 +353,17 @@ export function showComponentInEditor(temporary_id: string, component_id: string
       behavior: "smooth"
     })
   }
-  removePatternPreviewInfo(temporary_id, event)
+  removePatternComponentInfo(temporary_id, event)
+}
+
+export function removePatternComponentInfo(temporary_id: string, event: Event): void {
+  event.preventDefault()
+  interaction.standaloneStatusBarColor(0)
+  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
+  interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
+    utilities.qe(`body #${temporary_id}`).remove()
+  })
+  interaction.fade(utilities.qe(`body #${temporary_id}-mask`), 'Out', 'none', function () {
+    utilities.qe(`body #${temporary_id}-mask`).remove()
+  })
 }
