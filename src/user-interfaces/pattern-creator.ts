@@ -422,7 +422,7 @@ export function displayAddPatternErrors(errors) {
   var mask = document.createElement('div')
   mask.id = `${temporary_id}-mask`
   mask.classList.add('pattern_creator_add_pattern_errors_mask')
-  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)`)
+  mask.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)`)
   document.body.appendChild(mask)
   document.body.appendChild(elt)
   interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
