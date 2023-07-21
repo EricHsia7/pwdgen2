@@ -241,7 +241,7 @@ export function showPatternComponentInfo(component_id: string, event: Event): vo
     group: '',
     list: ''
   }
-  var existing_info = utilities.qeAll('.pattern_creator .pattern_creator_preview_component_info')
+  var existing_info = utilities.qeAll('body .pattern_creator_preview_component_info')
   var existing_info_len = existing_info.length
   for (var e = 0; e < existing_info_len; e++) {
     removePatternComponentInfo(existing_info[e].id, event)
@@ -323,6 +323,18 @@ export function showPatternComponentInfo(component_id: string, event: Event): vo
   utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
 }
 
+export function removePatternComponentInfo(temporary_id: string, event: Event): void {
+  event.preventDefault()
+  interaction.standaloneStatusBarColor(0)
+  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
+  interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
+    utilities.qe(`body #${temporary_id}`).remove()
+  })
+  interaction.fade(utilities.qe(`body #${temporary_id}-mask`), 'Out', 'none', function () {
+    utilities.qe(`body #${temporary_id}-mask`).remove()
+  })
+}
+
 export function showComponentInEditor(temporary_id: string, component_id: string, event: Event): void {
   if (pattern_creator_current_editor === 'blocks') {
 
@@ -355,22 +367,10 @@ export function showComponentInEditor(temporary_id: string, component_id: string
   removePatternComponentInfo(temporary_id, event)
 }
 
-export function removePatternComponentInfo(temporary_id: string, event: Event): void {
-  event.preventDefault()
-  interaction.standaloneStatusBarColor(0)
-  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
-  interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
-    utilities.qe(`body #${temporary_id}`).remove()
-  })
-  interaction.fade(utilities.qe(`body #${temporary_id}-mask`), 'Out', 'none', function () {
-    utilities.qe(`body #${temporary_id}-mask`).remove()
-  })
-}
-
 export function addPatternWithCreator(): void | string {
   var check = fine_grained_password.checkPatternQualification(pattern_json)
   if (!check.result) {
-    interaction.prompt_message(`Cannot add the pattern because the error${(check.errors.length > 1) ? 's' : ''} occured.`)
+    interaction.prompt_message(`Cannot add pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)
     interaction.pattern_creator.displayAddPatternErrors(check.errors)
     return ''
   }
