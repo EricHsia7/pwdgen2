@@ -127,10 +127,14 @@ export function openPatternCreator(event) {
         pattern.scrollTop = scrollTop
         var scrollHeight: number = pattern2.scrollHeight;
         var clientHeight: number = pattern2.clientHeight;
+        var maxScrollTop: number = scrollHeight - clientHeight
         var translateY = scrollTop
-        if (scrollTop < 0 || scrollTop + clientHeight >= scrollHeight) {
+        if (scrollTop < 0 || scrollTop >= maxScrollTop) {
           if (scrollTop < 0) {
             translateY *= -1
+          }
+          else {
+            translateY = maxScrollTop - scrollTop
           }
           utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${translateY}px)`)
         }
