@@ -47,7 +47,7 @@
   background: rgba(0, 0, 0, 0);
   box-sizing: border-box;
 }
-.pattern_creator .pattern {
+.pattern_creator .pattern pre code * {
   transform: var(--j-pattern-overscroll-translate);
 }
 .pattern_creator .pattern2 *,
