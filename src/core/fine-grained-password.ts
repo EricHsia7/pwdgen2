@@ -332,8 +332,12 @@ function checkPatternQualification(pattern: object): object {
       pushError(json)
       result *= 0
     }
-    if (typeof json['pattern'] === 'object') {
-      result *= check(json['pattern'])
+    if (typeof json['pattern'] === 'object' && Array.isArray(json['pattern'])) {
+      var pattern = json['pattern']
+      var pattern_len = pattern.length
+      for (var i = 0; i < pattern_len; i++) {
+        result *= check(pattern[i])
+      }
     } else {
       pushError(json)
       result *= 0
