@@ -222,15 +222,27 @@ function generate(options: object, mode: string): string | object {
 function checkPatternQualification(pattern: object): boolean {
   var json = _.cloneDeep(pattern)
   var result = 1
+  var errors: Array = []
+  const pushError = function (content) {
+    if (typeof content === 'object' && !Array.isArray(content)) {
+      return JSON.stringify(content)
+    }
+    if (typeof content === 'object' && Array.isArray(content)) {
+      return content.join(', ')
+    }
+    return content
+  }
   const check_hasOwnProperty = function (object: object, property: string): boolean {
     if (typeof obj === 'object') {
       if (object.hasOwnProperty(property)) {
         return 1
       }
       else {
+        pushError(object)
         return 0
       }
     }
+    pushError(object)
     return 0
   }
   var check = function (object: object) {
@@ -244,6 +256,7 @@ function checkPatternQualification(pattern: object): boolean {
       result *= check_hasOwnProperty(object, 'quantity')
       result *= check_hasOwnProperty(object, 'repeat')
       if (!(typeof object['quantity'] === 'number')) {
+        pushError(object)
         result *= 0
       }
     }
@@ -253,11 +266,13 @@ function checkPatternQualification(pattern: object): boolean {
         var list_len = list.length
         for (var e = 0; e < list_len; e++) {
           if (!(typeof list[e] === 'string')) {
+            pushError(object)
             result *= 0
           }
         }
       }
       else {
+        pushError(object)
         result *= 0
       }
     }
@@ -267,10 +282,12 @@ function checkPatternQualification(pattern: object): boolean {
         var actions_len = actions.length
         for (var e = 0; e < actions_len; e++) {
           if (!(typeof actions[e] === 'string')) {
+            pushError(object)
             result *= 0
           }
           else {
             if (!(actions[e] === 'shuffle')) {
+              pushError(object)
               result *= 0
             }
           }
@@ -287,9 +304,11 @@ function checkPatternQualification(pattern: object): boolean {
     if (type === "regex") {
       if (typeof object['regex'] === 'string') {
         if (!object['regex'].match(/^\/(.*)\/([a-z]*)$/i)) {
+          pushError(object)
           result *= 0
         }
       } else {
+        pushError(object)
         result *= 0
       }
     }
@@ -306,18 +325,22 @@ function checkPatternQualification(pattern: object): boolean {
     result *= check_hasOwnProperty(json, 'pattern_icon')
     result *= check_hasOwnProperty(json, 'pattern')
     if (!(typeof object['pattern_name'] === 'string')) {
+      pushError(object)
       result *= 0
     }
     if (!(typeof object['pattern_icon'] === 'string')) {
+      pushError(object)
       result *= 0
     }
     if (typeof object['pattern'] === 'object') {
       result *= check(json['pattern'])
     } else {
+      pushError(object)
       result *= 0
     }
   }
   else {
+    pushError(object)
     result *= 0
   }
   return result
