@@ -30,6 +30,10 @@
 }
 
 .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list_item {
+  padding-bottom: 10px;
+}
+
+.pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list_item {
   display: inline-block;
   height: auto;
   min-height: 50px;
@@ -62,7 +66,6 @@
   min-height: 30px;
   white-space: pre-line;
   word-break: normal;
-  padding-bottom: 10px;
   display: inline-block;
   align-items: normal;
   position: relative;
