@@ -109,8 +109,8 @@ function standaloneStatusBarColor(a) {
     d = '#1c1c1e'
   }
   if (a === 2) {
-    c = utilities.blendColors('#ffffff', 'rgba(0,0,0,0.45)', 0.5)
-    d = utilities.blendColors('#1c1c1e', 'rgba(0,0,0,0.45)', 0.5)
+    c = utilities.blendColors('#f2f2f7', 'rgba(0,0,0,0.45)', 0.5)
+    d = utilities.blendColors('#0a0a0b', 'rgba(0,0,0,0.45)', 0.5)
   }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
   utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
