@@ -47,7 +47,9 @@
   background: rgba(0, 0, 0, 0);
   box-sizing: border-box;
 }
-
+.pattern_creator .pattern {
+  transform: var(--j-pattern-overscroll-translate);
+}
 .pattern_creator .pattern2 *,
 .pattern_creator .pattern2 {
   color: rgba(0, 0, 0, 0)
