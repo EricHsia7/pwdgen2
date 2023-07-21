@@ -302,16 +302,26 @@
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_title {
-    position: sticky;
+    position: absolute;
     top: 0px;
     left: 0px;
     z-index: 1;
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
-    position: sticky;
+    position: absolute;
     bottom: 0px;
     left: 15px;
+  }
+
+  .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list_container {
+    position: absolute;
+    overflow: scroll;
+    top: 50px;
+    left: 15px;
+    height: calc(100% - 50px - 65px);
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 }
 
