@@ -232,7 +232,7 @@
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list_container,
-.pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list {
+.pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list_container {
   position: relative;
   left: 15px;
   width: calc(100% - 30px);
