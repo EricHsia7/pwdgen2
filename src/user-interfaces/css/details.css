@@ -29,6 +29,12 @@
   -webkit-user-select: none;
 }
 
+.pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list_item {
+  display: inline-block;
+  height: auto;
+  min-height: 50px;
+}
+
 .details-item .details-item-title,
 .add-item .add-item-title,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_title,
@@ -52,6 +58,11 @@
 
 .pattern_creator_add_pattern_errors_list_item .pattern_creator_add_pattern_errors_list_item_title {
   width: 100%;
+  height: auto;
+  min-height: 30px;
+  white-space: pre-line;
+  word-break: normal;
+  margin-bottom: 10px;
 }
 
 .details-item .details-item-value,
