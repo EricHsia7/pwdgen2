@@ -349,6 +349,12 @@ function checkPatternQualification(pattern: object): object {
     errors.push(`Type of the thing you want to check is not object.`)
     result *= 0
   }
+  if (result === 1) {
+    result === true
+  }
+  else {
+    result === false
+  }
   return { errors: errors, result: result }
 }
 
