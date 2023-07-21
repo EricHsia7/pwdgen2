@@ -472,7 +472,8 @@ window.interaction = {
     syncAndFormatPatternCreatorJSONEditor,
     initializePatternCreatorJSONEditor,
     removePatternComponentInfo,
-    showComponentInEditor
+    showComponentInEditor,
+    addPatternWithCreator
   },
   password_page: {
     openPassword,

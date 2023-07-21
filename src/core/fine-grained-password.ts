@@ -219,11 +219,116 @@ function generate(options: object, mode: string): string | object {
   return d
 }
 
+function checkPatternQualification(pattern: object): boolean {
+  var json = _.cloneDeep(pattern)
+  var result = 1
+  const check_hasOwnProperty = function (object: object, property: string): boolean {
+    if (typeof obj === 'object') {
+      if (object.hasOwnProperty(property)) {
+        return 1
+      }
+      else {
+        return 0
+      }
+    }
+    return 0
+  }
+  const check = function (object: object) {
+    var result = 1
+    result *= check_hasOwnProperty(object, 'type')
+    var type = object['type']
+    if (type === 'string' || type === 'regex' || type === 'list' || type === 'group') {
+      result *= check_hasOwnProperty(object, object['type'])
+    }
+    if (type === 'regex' || type === 'list') {
+      result *= check_hasOwnProperty(object, 'quantity')
+      result *= check_hasOwnProperty(object, 'repeat')
+      if (!(typeof object['quantity'] === 'number')) {
+        result *= 0
+      }
+    }
+    if (type === 'list') {
+      if (typeof object['list'] === 'object' && Array.isArray(object['list'])) {
+        var list = object['list']
+        var list_len = list.length
+        for (var e = 0; e < list_len; e++) {
+          if (!(typeof list[e] === 'string')) {
+            result *= 0
+          }
+        }
+      }
+      else {
+        result *= 0
+      }
+    }
+    if (type === 'group') {
+      if (typeof object['actions'] === 'object' && Array.isArray(object['actions'])) {
+        var actions = object['actions']
+        var actions_len = actions.length
+        for (var e = 0; e < actions_len; e++) {
+          if (!(typeof actions[e] === 'string')) {
+            result *= 0
+          }
+          else {
+            if (!(actions[e] === 'shuffle')) {
+              result *= 0
+            }
+          }
+        }
+      }
+      if (typeof object['group'] === 'object' && Array.isArray(object['group'])) {
+        var group = object['group']
+        var group_len = group.length
+        for (var e = 0; e < group_len; e++) {
+          result *= check(group[e])
+        }
+      }
+    }
+    if (type === "regex") {
+      if (typeof object['regex'] === 'string') {
+        if (!object['regex'].match(/^\/(.*)\/([a-z]*)$/i)) {
+          result *= 0
+        }
+      } else {
+        result *= 0
+      }
+    }
+    if (result === 1) {
+      return false
+    }
+    else {
+      return true
+    }
+  }
+
+  if (typeof object === 'object') {
+    result *= check_hasOwnProperty(json, 'pattern_name')
+    result *= check_hasOwnProperty(json, 'pattern_icon')
+    result *= check_hasOwnProperty(json, 'pattern')
+    if (!(typeof object['pattern_name'] === 'string')) {
+      result *= 0
+    }
+    if (!(typeof object['pattern_icon'] === 'string')) {
+      result *= 0
+    }
+    if (typeof object['pattern'] === 'object') {
+      result *= check(json['pattern'])
+    } else {
+      result *= 0
+    }
+  }
+  else {
+    result *= 0
+  }
+  return result
+}
+
 window.fine_grained_password = {
   pwd_pattern_custom,
   generate,
   listPatterns,
-  getPatterns
+  getPatterns,
+  checkPatternQualification
 }
 
 export default window.fine_grained_password
