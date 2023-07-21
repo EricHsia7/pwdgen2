@@ -365,7 +365,12 @@ export function removePatternComponentInfo(temporary_id: string, event: Event): 
     utilities.qe(`body #${temporary_id}-mask`).remove()
   })
 }
-export function addPatternWithCreator() {
-  if(pattern_json.hasOwnProperty('pattern_name'))
+
+export function addPatternWithCreator(): boolean {
+  if (fine_grained_password.checkPatternQualification(pattern_json)) {
+    return false
+  }
   var string: string = JSON.stringify(pattern_json)
+
+  return true
 }
