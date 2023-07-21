@@ -366,11 +366,45 @@ export function removePatternComponentInfo(temporary_id: string, event: Event): 
   })
 }
 
-export function addPatternWithCreator(): boolean {
-  if (fine_grained_password.checkPatternQualification(pattern_json)) {
-    return false
+export function addPatternWithCreator(): void {
+  var check = fine_grained_password.checkPatternQualification(pattern_json)
+  if (!check.result) {
+    interaction.prompt_message(`Cannot add the pattern because the error${(check.errors.length > 1) ? 's' : ''} occured.`)
+    interaction.pattern_creator.displayAddPatternErrors(check.errors)
   }
-  var string: string = JSON.stringify(pattern_json)
+}
 
-  return true
+export function displayAddPatternErrors(errors) {
+  var error_html = function (error) {
+    var elt = document.createElement('div')
+    elt.classList.add('pattern_creator_add_pattern_error')
+    elt.innerText(error)
+    return elt.outerHTML
+  }
+  var errors_len = errors.length
+  var errors_html = []
+  for (var e = 0; e < errors_len; e++) {
+    errors_html.push(error_html(errors[e]))
+  }
+  var tmp_id = fine_grained_password.generate([
+    {
+      type: "string",
+      string: "e-"
+    },
+    {
+      type: "regex",
+      regex: "/[a-z0-9A-Z]/g",
+      quantity: 16,
+      repeat: true
+    }
+  ])
+  var elt = document.createElement('div')
+  elt.id = tmp_id
+  elt.classList.add('pattern_creator_add_pattern_errors')
+  elt.innerHTML = `<div class="pattern_creator_add_pattern_errors_title"></div>${errors_html.join('')}<div class="pattern_creator_add_pattern_errors_go_to_document">Go to documents</div><div class="pattern_creator_add_pattern_errors_close">Close</div>`
+  var mask = document.createElement('div')
+  mask.id = `${tmp_id}-mask`
+  mask.classList.add('pattern_creator_add_pattern_errors_mask')
+  document.body.appendChild(elt)
+  document.body.appendChild(mask)
 }
