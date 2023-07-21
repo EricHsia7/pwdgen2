@@ -303,7 +303,7 @@
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list_container,
-  .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list {
+  .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list_container {
     position: absolute;
     overflow: scroll;
     top: 50px;

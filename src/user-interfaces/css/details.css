@@ -3,7 +3,7 @@
 .details-check-result,
 .add-list,
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list,
-.pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list{
+.pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list {
   position: relative;
   width: 100%;
   display: inline-block;
@@ -48,6 +48,10 @@
   color: var(--p-333333);
   user-select: none;
   -webkit-user-select: none;
+}
+
+.pattern_creator_add_pattern_errors_list_item .pattern_creator_add_pattern_errors_list_item_title {
+  width: 100%;
 }
 
 .details-item .details-item-value,
