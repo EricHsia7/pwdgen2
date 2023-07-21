@@ -63,6 +63,8 @@
   white-space: pre-line;
   word-break: normal;
   margin-bottom: 10px;
+  display: inline-block;
+  align-items: normal;
   position: relative;
 }
 
