@@ -351,7 +351,7 @@ function randomColorSet() {
   return { light: f(75, 0.06), dark: f(100, 0.11) }
 }
 
-function blendColors(hexColor, rgbaColor, alpha) {
+function blendColors(hexColor, rgbaColor) {
 
   var hexToRGBA = function (hex, alpha) {
     const r = parseInt(hex.substring(1, 3), 16);
@@ -360,10 +360,11 @@ function blendColors(hexColor, rgbaColor, alpha) {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 
-  const rgba: Array = rgbaColor.substring(5, rgbaColor.length - 1).split(',').map(f => parseInt(String(f).trim()));
+  const rgba: Array = rgbaColor.substring(5, rgbaColor.length - 1).split(',').map(f => parseFloat(String(f).trim()));
   const r: number = rgba[0]
   const g: number = rgba[1]
   const b: number = rgba[2]
+  const alpha: number = rgba[3]
 
   const blendedR: number = Math.round((1 - alpha) * parseInt(hexColor.substring(1, 3), 16) + alpha * r);
   const blendedG: number = Math.round((1 - alpha) * parseInt(hexColor.substring(3, 5), 16) + alpha * g);
