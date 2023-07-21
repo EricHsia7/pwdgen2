@@ -153,14 +153,16 @@ const getPatterns = function (): object {
 function generate(options: object, mode: string): string | object {
   const pattern: object = _.cloneDeep(options);
   const original_pattern: object = _.cloneDeep(options)
-  const check = fine_grained_password.checkPatternQualification({
-    'pattern_name': 'name',
-    'pattern_icon': 'icon',
-    'pattern': options
-  })
-  if (!check.result) {
-    return original_pattern.map(e => { ({ result: '', component: e }) })
-  }
+  /*
+   const check = fine_grained_password.checkPatternQualification({
+     'pattern_name': 'name',
+     'pattern_icon': 'icon',
+     'pattern': options
+   })
+   if (!check.result) {
+     return original_pattern.map(e => { ({ result: '', component: e }) })
+   }
+   */
   if (mode === 'production') {
     var d: string = ""
   }
