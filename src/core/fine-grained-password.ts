@@ -226,9 +226,11 @@ function checkPatternQualification(pattern: object): object {
   const pushError = function (content) {
     if (typeof content === 'object' && !Array.isArray(content)) {
       errors.push(JSON.stringify(content))
+      return ''
     }
     if (typeof content === 'object' && Array.isArray(content)) {
       errors.push(content.join(', '))
+      return ''
     }
     errors.push(content)
   }
@@ -238,11 +240,11 @@ function checkPatternQualification(pattern: object): object {
         return 1
       }
       else {
-        pushError(object)
+        errors.push(`Property "${property}" was not found in ${JSON.stringify(object)}.`)
         return 0
       }
     }
-    pushError(object)
+    errors.push('Cannot check property due to type error.')
     return 0
   }
   var check = function (object: object) {
@@ -256,7 +258,7 @@ function checkPatternQualification(pattern: object): object {
       result *= check_hasOwnProperty(object, 'quantity')
       result *= check_hasOwnProperty(object, 'repeat')
       if (!(typeof object['quantity'] === 'number')) {
-        pushError(object)
+        errors.push(`Type of the property "number" in ${JSON.stringify(object)} is not number.`)
         result *= 0
       }
     }
@@ -266,13 +268,13 @@ function checkPatternQualification(pattern: object): object {
         var list_len = list.length
         for (var e = 0; e < list_len; e++) {
           if (!(typeof list[e] === 'string')) {
-            pushError(object)
+            errors.push(`Type of the item ${e} in the list of ${JSON.stringify(object)} is not string.`)
             result *= 0
           }
         }
       }
       else {
-        pushError(object)
+        errors.push('Cannot get item due to type error or property not existing.')
         result *= 0
       }
     }
@@ -282,12 +284,12 @@ function checkPatternQualification(pattern: object): object {
         var actions_len = actions.length
         for (var e = 0; e < actions_len; e++) {
           if (!(typeof actions[e] === 'string')) {
-            pushError(object)
+            errors.push(`An item in actions must be string.`)
             result *= 0
           }
           else {
             if (!(actions[e] === 'shuffle')) {
-              pushError(object)
+              errors.push('Cannot use ${actions[e]} at this time due to not supportted value.')
               result *= 0
             }
           }
@@ -304,11 +306,11 @@ function checkPatternQualification(pattern: object): object {
     if (type === "regex") {
       if (typeof object['regex'] === 'string') {
         if (!object['regex'].match(/^\/(.*)\/([a-z]*)$/i)) {
-          pushError(object)
+          errors.push(`The regex in ${JSON.stringify(object)} is invalid on formats.`)
           result *= 0
         }
       } else {
-        pushError(object)
+        errors.push(`The type of the property "regex" in ${JSON.stringify(object)} is not string.`)
         result *= 0
       }
     }
@@ -325,11 +327,11 @@ function checkPatternQualification(pattern: object): object {
     result *= check_hasOwnProperty(json, 'pattern_icon')
     result *= check_hasOwnProperty(json, 'pattern')
     if (!(typeof json['pattern_name'] === 'string')) {
-      pushError(json)
+      errors.push(`Type of the property "pattern_name" in ${JSON.stringify(object)} is not string.`)
       result *= 0
     }
     if (!(typeof json['pattern_icon'] === 'string')) {
-      pushError(json)
+      errors.push(`Type of the property "pattern_icon" in ${JSON.stringify(object)} is not string.`)
       result *= 0
     }
     if (typeof json['pattern'] === 'object' && Array.isArray(json['pattern'])) {
@@ -339,12 +341,12 @@ function checkPatternQualification(pattern: object): object {
         result *= check(pattern[i])
       }
     } else {
-      pushError(json)
+      errors.push(`Type of the property "pattern" in ${JSON.stringify(object)} is not array.`)
       result *= 0
     }
   }
   else {
-    pushError(json)
+    errors.push(`Type of the thing you want to check is not object.`)
     result *= 0
   }
   return { errors: errors, result: result }
