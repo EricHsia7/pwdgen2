@@ -365,3 +365,7 @@ export function removePatternComponentInfo(temporary_id: string, event: Event): 
     utilities.qe(`body #${temporary_id}-mask`).remove()
   })
 }
+export function addPatternWithCreator() {
+  if(pattern_json.hasOwnProperty('pattern_name'))
+  var string: string = JSON.stringify(pattern_json)
+}
