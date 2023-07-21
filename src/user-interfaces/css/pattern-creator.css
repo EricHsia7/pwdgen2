@@ -222,10 +222,9 @@
   transform: translateY(0%);
 }
 
-
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_title,
 .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_title {
-  position: relative;
+  position: sticky;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -253,7 +252,8 @@
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box,
 .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_button_box {
-  position: relative;
+  position: sticky;
+  bottom: 0px;
   left: 15px;
   display: grid;
   width: calc(100% - 30px);
