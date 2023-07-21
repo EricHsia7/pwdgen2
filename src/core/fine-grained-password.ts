@@ -253,7 +253,7 @@ function checkPatternQualification(pattern: object): object {
         return 1
       }
       else {
-        errors.push(`The property "${property}" was not found in ${JSON.stringify(object)}.`)
+        errors.push(`The property "${property}" was not found in ${ommitobject(object)}.`)
         return 0
       }
     }
