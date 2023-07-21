@@ -108,7 +108,6 @@ export function openPatternCreator(event) {
     interaction.standaloneStatusBarColor(0)
   }
   interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
-  interaction.fade(utilities.qe('.pattern_creator_title'), 'In', 'flex')
   interaction.options.closeOptions(event)
   interaction.pattern_creator.initializePatternCreatorJSONEditor()
   if (pattern_creator_evt === 0) {
@@ -148,7 +147,6 @@ export function openPatternCreator(event) {
 
 export function closePatternCreator() {
   interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
-  interaction.fade(utilities.qe('.pattern_creator_title'), 'Out', 'none')
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(1)
   }
