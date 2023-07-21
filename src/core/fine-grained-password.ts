@@ -324,26 +324,26 @@ function checkPatternQualification(pattern: object): object {
     result *= check_hasOwnProperty(json, 'pattern_name')
     result *= check_hasOwnProperty(json, 'pattern_icon')
     result *= check_hasOwnProperty(json, 'pattern')
-    if (!(typeof object['pattern_name'] === 'string')) {
-      pushError(object)
+    if (!(typeof json['pattern_name'] === 'string')) {
+      pushError(json)
       result *= 0
     }
-    if (!(typeof object['pattern_icon'] === 'string')) {
-      pushError(object)
+    if (!(typeof json['pattern_icon'] === 'string')) {
+      pushError(json)
       result *= 0
     }
-    if (typeof object['pattern'] === 'object') {
+    if (typeof json['pattern'] === 'object') {
       result *= check(json['pattern'])
     } else {
-      pushError(object)
+      pushError(json)
       result *= 0
     }
   }
   else {
-    pushError(object)
+    pushError(json)
     result *= 0
   }
-  return {errors:errors,result:result}
+  return { errors: errors, result: result }
 }
 
 window.fine_grained_password = {
