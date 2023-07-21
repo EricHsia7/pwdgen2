@@ -219,7 +219,7 @@ function generate(options: object, mode: string): string | object {
   return d
 }
 
-function checkPatternQualification(pattern: object): boolean {
+function checkPatternQualification(pattern: object): object {
   var json = _.cloneDeep(pattern)
   var result = 1
   var errors: Array = []
@@ -343,7 +343,7 @@ function checkPatternQualification(pattern: object): boolean {
     pushError(object)
     result *= 0
   }
-  return result
+  return {errors:errors,result:result}
 }
 
 window.fine_grained_password = {
