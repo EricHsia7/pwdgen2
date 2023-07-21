@@ -327,11 +327,11 @@ function checkPatternQualification(pattern: object): object {
     result *= check_hasOwnProperty(json, 'pattern_icon')
     result *= check_hasOwnProperty(json, 'pattern')
     if (!(typeof json['pattern_name'] === 'string')) {
-      errors.push(`Type of the property "pattern_name" in ${JSON.stringify(object)} is not string.`)
+      errors.push(`Type of the property "pattern_name" in ${JSON.stringify(json)} is not string.`)
       result *= 0
     }
     if (!(typeof json['pattern_icon'] === 'string')) {
-      errors.push(`Type of the property "pattern_icon" in ${JSON.stringify(object)} is not string.`)
+      errors.push(`Type of the property "pattern_icon" in ${JSON.stringify(json)} is not string.`)
       result *= 0
     }
     if (typeof json['pattern'] === 'object' && Array.isArray(json['pattern'])) {
@@ -341,7 +341,7 @@ function checkPatternQualification(pattern: object): object {
         result *= check(pattern[i])
       }
     } else {
-      errors.push(`Type of the property "pattern" in ${JSON.stringify(object)} is not array.`)
+      errors.push(`Type of the property "pattern" in ${JSON.stringify(json)} is not array.`)
       result *= 0
     }
   }
