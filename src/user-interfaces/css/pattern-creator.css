@@ -151,6 +151,8 @@
   display: flex;
   align-items: center;
   color: var(--p-333333);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pattern_creator .generation_preview {
@@ -168,6 +170,8 @@
   white-space: pre-wrap;
   word-break: break-all;
   font-size: 18px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pattern_creator .pattern_creator_preview_component {
@@ -178,6 +182,8 @@
   background: var(--j-component-color-light-bg);
   white-space: pre-wrap;
   word-break: break-all;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pattern_creator_preview_component_info_mask,
@@ -188,6 +194,8 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.45);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pattern_creator_preview_component_info,
@@ -205,6 +213,8 @@
   transform: translateY(100%);
   transition: 0.3s;
   overflow: scroll;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pattern_creator_preview_component_info[o="1"],
@@ -237,6 +247,8 @@
   left: 15px;
   width: calc(100% - 30px);
   display: inline-block;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box,
@@ -251,6 +263,8 @@
   background: var(--p-f2f2f7);
   box-sizing: border-box;
   padding-top: 5px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_show_in_editor,
@@ -267,6 +281,8 @@
   box-sizing: border-box;
   background: var(--p-main-color);
   font-size: 18px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @media screen and (min-width: 600px) {
