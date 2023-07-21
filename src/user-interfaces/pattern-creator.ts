@@ -415,10 +415,10 @@ export function displayAddPatternErrors(errors) {
   var elt = document.createElement('div')
   elt.id = tmp_id
   elt.classList.add('pattern_creator_add_pattern_errors')
-  elt.innerHTML = `<div class="pattern_creator_add_pattern_errors_title"></div>${errors_html.join('')}<div class="pattern_creator_add_pattern_errors_go_to_document">Go to documents</div><div class="pattern_creator_add_pattern_errors_close">Close</div>`
+  elt.innerHTML = `<div class="pattern_creator_add_pattern_errors_title">Error${(errors.length > 1 ? 's' : '')}</div><div class="pattern_creator_add_pattern_errors_list">${errors_html.join('')}</div><div class="pattern_creator_add_pattern_errors_button_box"><div class="pattern_creator_add_pattern_errors_go_to_documents">Go to documents</div><div class="pattern_creator_add_pattern_errors_close">Close</div></div>`
   var mask = document.createElement('div')
   mask.id = `${tmp_id}-mask`
   mask.classList.add('pattern_creator_add_pattern_errors_mask')
-  document.body.appendChild(elt)
   document.body.appendChild(mask)
+  document.body.appendChild(elt)
 }
