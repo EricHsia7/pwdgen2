@@ -267,6 +267,10 @@ function checkPatternQualification(pattern: object): object {
     if (type === 'string' || type === 'regex' || type === 'list' || type === 'group') {
       result *= check_hasOwnProperty(object, object['type'])
     }
+    else {
+      errors.push(`The type "${type}" was not supported at this time.`)
+      result *= 0
+    }
     if (type === 'regex' || type === 'list') {
       result *= check_hasOwnProperty(object, 'quantity')
       result *= check_hasOwnProperty(object, 'repeat')

@@ -227,6 +227,7 @@
   position: sticky;
   top: 0px;
   left: 0px;
+  z-index: 1;
   width: 100%;
   height: 50px;
   background: var(--p-f2f2f7);
@@ -255,7 +256,6 @@
   position: sticky;
   bottom: 0px;
   left: 15px;
-  z-index: 1;
   display: grid;
   width: calc(100% - 30px);
   grid-gap: 10px;
