@@ -394,7 +394,7 @@ export function displayAddPatternErrors(errors) {
     elt.classList.add('pattern_creator_add_pattern_errors_list_item')
     var title_elt = document.createElement('div')
     title_elt.classList.add('pattern_creator_add_pattern_errors_list_item_title')
-    title_elt.innerText = error
+    title_elt.innerText = utilities.encodeSignsToHtmlEntities(error)
     elt.innerHTML = title_elt.outerHTML
     return elt.outerHTML
   }
