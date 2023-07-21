@@ -314,6 +314,12 @@ function checkPatternQualification(pattern: object): object {
         result *= 0
       }
     }
+    if (result === 1) {
+      return true
+    }
+    else {
+      return false
+    }
   }
 
   if (typeof json === 'object') {
