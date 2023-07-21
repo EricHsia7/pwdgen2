@@ -30,10 +30,6 @@
 }
 
 .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list_item {
-  padding-bottom: 10px;
-}
-
-.pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list_item {
   display: inline-block;
   height: auto;
   min-height: 50px;
@@ -69,7 +65,9 @@
   word-break: break-all;
   display: inline-block;
   align-items: initial;
-  position: relative;
+  position: static;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .details-item .details-item-value,
