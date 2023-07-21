@@ -392,7 +392,7 @@ export function displayAddPatternErrors(errors) {
   var error_html = function (error) {
     var elt = document.createElement('div')
     elt.classList.add('pattern_creator_add_pattern_error')
-    elt.innerText(error)
+    elt.innerText = error
     return elt.outerHTML
   }
   var errors_len = errors.length
