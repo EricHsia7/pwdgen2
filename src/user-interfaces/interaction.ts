@@ -393,7 +393,7 @@ function addPasswordWithForm() {
   var username = utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value || ''
   var website = utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
   var addedpassword = addPassword(password, username, website, '')
-  interaction.prompt_message('Added password', 1200)
+  interaction.prompt_message('Added password.', 1200)
   interaction.add_password.closeAddPassword()
   interaction.password_page.openPassword(addedpassword, function () {
     interaction.main_page.printSavedPasswordList()
@@ -473,7 +473,8 @@ window.interaction = {
     initializePatternCreatorJSONEditor,
     removePatternComponentInfo,
     showComponentInEditor,
-    addPatternWithCreator
+    addPatternWithCreator,
+    displayAddPatternErrors
   },
   password_page: {
     openPassword,
