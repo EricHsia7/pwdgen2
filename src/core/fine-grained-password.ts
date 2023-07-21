@@ -261,6 +261,10 @@ function checkPatternQualification(pattern: object): object {
         errors.push(`Type of the property "number" in ${JSON.stringify(object)} is not number.`)
         result *= 0
       }
+      if (!(typeof object['repeat'] === 'boolean')) {
+        errors.push(`Type of the property "repeat" in ${JSON.stringify(object)} is not boolean (true or false).`)
+        result *= 0
+      }
     }
     if (type === 'list') {
       if (typeof object['list'] === 'object' && Array.isArray(object['list'])) {
