@@ -68,7 +68,7 @@
   white-space: pre-line;
   word-break: break-all;
   display: inline-block;
-  align-items: normal;
+  align-items: initial;
   position: relative;
 }
 
