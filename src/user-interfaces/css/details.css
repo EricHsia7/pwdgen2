@@ -37,6 +37,7 @@
   display: inline-block;
   height: auto;
   min-height: 50px;
+  overflow: hidden;
 }
 
 .details-item .details-item-title,
