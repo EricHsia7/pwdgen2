@@ -400,7 +400,7 @@ export function displayAddPatternErrors(errors) {
   for (var e = 0; e < errors_len; e++) {
     errors_html.push(error_html(errors[e]))
   }
-  var tmp_id = fine_grained_password.generate([
+  var temporary_id = fine_grained_password.generate([
     {
       type: "string",
       string: "e-"
@@ -413,12 +413,16 @@ export function displayAddPatternErrors(errors) {
     }
   ], 'production')
   var elt = document.createElement('div')
-  elt.id = tmp_id
+  elt.id = temporary_id
   elt.classList.add('pattern_creator_add_pattern_errors')
   elt.innerHTML = `<div class="pattern_creator_add_pattern_errors_title">Error${(errors.length > 1 ? 's' : '')}</div><div class="pattern_creator_add_pattern_errors_list">${errors_html.join('')}</div><div class="pattern_creator_add_pattern_errors_button_box"><div class="pattern_creator_add_pattern_errors_go_to_documents">Go to documents</div><div class="pattern_creator_add_pattern_errors_close">Close</div></div>`
   var mask = document.createElement('div')
-  mask.id = `${tmp_id}-mask`
+  mask.id = `${temporary_id}-mask`
   mask.classList.add('pattern_creator_add_pattern_errors_mask')
   document.body.appendChild(mask)
   document.body.appendChild(elt)
+  interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
+  interaction.fade(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
+  utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
+
 }
