@@ -302,13 +302,13 @@
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_title {
-    position: absolute;
+    position: sticky;
     top: 0px;
     left: 0px;
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
-    position: absolute;
+    position: sticky;
     bottom: 0px;
     left: 15px;
   }
