@@ -207,7 +207,8 @@
   overflow: scroll;
 }
 
-.pattern_creator_preview_component_info[o="1"] .pattern_creator_add_pattern_errors[o="1"] {
+.pattern_creator_preview_component_info[o="1"],
+.pattern_creator_add_pattern_errors[o="1"] {
   transform: translateY(0%);
 }
 
@@ -285,7 +286,7 @@
   .pattern_creator_add_pattern_errors[o="1"] {
     transform: translateX(-50%) translateY(-50%) scale(1);
   }
-   
+
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_title,
   .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_title {
     position: absolute;
