@@ -108,9 +108,9 @@ function standaloneStatusBarColor(a) {
     c = '#ffffff'
     d = '#1c1c1e'
   }
-  if(a===2) {
-    c = utilities.blendHexWithRGBA('#ffffff','rgba(0,0,0,0.45)')
-    d = utilities.blendHexWithRGBA('#1c1c1e','rgba(0,0,0,0.45)')
+  if (a === 2) {
+    c = utilities.blendColors('#ffffff', 'rgba(0,0,0,0.45)', 0.5)
+    d = utilities.blendHexWithRGBA('#1c1c1e', 'rgba(0,0,0,0.45)', 0.5)
   }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
   utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
