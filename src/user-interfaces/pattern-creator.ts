@@ -382,7 +382,7 @@ export function addPatternWithCreator(): void | string {
       quantity: 32,
       repeat: true
     }
-  ])
+  ], 'production')
   LS.setItem(`pwdgen2_pattern_b_${id}`, string)
   interaction.prompt_message('Added pattern.')
   interaction.pattern_creator.closePatternCreator()
