@@ -411,7 +411,7 @@ export function displayAddPatternErrors(errors) {
       quantity: 16,
       repeat: true
     }
-  ])
+  ], 'production')
   var elt = document.createElement('div')
   elt.id = tmp_id
   elt.classList.add('pattern_creator_add_pattern_errors')
