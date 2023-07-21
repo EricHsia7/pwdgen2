@@ -235,7 +235,7 @@ function checkPatternQualification(pattern: object): object {
     errors.push(content)
   }
   const check_hasOwnProperty = function (object: object, property: string): boolean {
-    if (typeof obj === 'object') {
+    if (typeof object === 'object') {
       if (object.hasOwnProperty(property)) {
         return 1
       }
