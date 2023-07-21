@@ -268,7 +268,7 @@ function checkPatternQualification(pattern: object): object {
       result *= check_hasOwnProperty(object, 'quantity')
       result *= check_hasOwnProperty(object, 'repeat')
       if (!(typeof object['quantity'] === 'number')) {
-        errors.push(`Type of the property "number" in ${JSON.stringify(object)} is not number.`)
+        errors.push(`Type of the property "quantity" in ${JSON.stringify(object)} is not number.`)
         result *= 0
       }
       if (!(typeof object['repeat'] === 'boolean')) {
