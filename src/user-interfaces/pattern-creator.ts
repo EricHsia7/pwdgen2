@@ -121,8 +121,15 @@ export function openPatternCreator(event) {
     });
     utilities.qe('.pattern2').addEventListener('scroll', function (event) {
       window.requestAnimationFrame(function () {
-        var st = utilities.qe('.pattern2').pageYOffset || utilities.qe('.pattern2').scrollTop
-        utilities.qe('.pattern').scrollTop = st
+        var pattern2 = utilities.qe('.pattern_creator .pattern2')
+        var pattern = utilities.qe('.pattern_creator .pattern')
+        var scrollTop = pattern2.pageYOffset || pattern2.scrollTop
+        pattern.scrollTop = scrollTop
+        var scrollHeight: number = pattern2.scrollHeight;
+        var clientHeight: number = pattern2.clientHeight;
+        if (scrollTop < 0 || scrollTop + clientHeight >= scrollHeight) {
+          utilities.qe('.pattern_creator .pattern code pre').style.setProperty('--j-pattern-overscroll-translate', `translateY(${scrollTop * -1}px)`)
+        }
       })
     });
   }
