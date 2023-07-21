@@ -366,12 +366,25 @@ export function removePatternComponentInfo(temporary_id: string, event: Event): 
   })
 }
 
-export function addPatternWithCreator(): void {
+export function addPatternWithCreator(): void | string {
   var check = fine_grained_password.checkPatternQualification(pattern_json)
   if (!check.result) {
     interaction.prompt_message(`Cannot add the pattern because the error${(check.errors.length > 1) ? 's' : ''} occured.`)
     interaction.pattern_creator.displayAddPatternErrors(check.errors)
+    return ''
   }
+  var string = JSON.stringify(pattern_json)
+  var id = fine_grained_password.generate([
+    {
+      type: 'regex',
+      regex: '/[a-zA-Z0-9]/g',
+      quantity: 32,
+      repeat: true
+    }
+  ])
+  LS.setItem(`pwdgen2_pattern_b_${id}`, string)
+  interaction.prompt_message('Added pattern.')
+  interaction.pattern_creator.closePatternCreator()
 }
 
 export function displayAddPatternErrors(errors) {
