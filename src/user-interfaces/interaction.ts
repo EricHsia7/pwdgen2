@@ -4,7 +4,7 @@ import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword } from '../core/storage'
 import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
-import { openPatternCreator, closePatternCreator, generatePatternPreview, showPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors } from './pattern-creator'
+import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors } from './pattern-creator'
 
 function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
   target.style.setProperty(property, source.style.getPropertyValue(property))
@@ -466,7 +466,7 @@ window.interaction = {
     openPatternCreator,
     closePatternCreator,
     generatePatternPreview,
-    showPatternComponentInfo,
+    displayPatternComponentInfo,
     addIdentityToPattern,
     syncPatternCreatorJSONEditor,
     syncAndFormatPatternCreatorJSONEditor,
