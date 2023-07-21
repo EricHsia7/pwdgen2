@@ -305,17 +305,13 @@
     position: sticky;
     top: 0px;
     left: 0px;
+    z-index: 1;
   }
 
   .pattern_creator_preview_component_info .pattern_creator_preview_component_info_button_box {
     position: sticky;
     bottom: 0px;
     left: 15px;
-  }
-
-  .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list {
-    margin-top: 50px;
-    margin-bottom: 70px;
   }
 }
 
