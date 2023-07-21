@@ -56,8 +56,8 @@ module.exports = (env, argv) => {
           parallel: 4,
           minimizerOptions: {
             preset: [
-              'default',
-              AdvancedPreset,
+              'default'
+              /*,AdvancedPreset*/,
               {
                 discardComments: { removeAll: true },
               },
