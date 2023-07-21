@@ -128,15 +128,12 @@ export function openPatternCreator(event) {
         var scrollHeight: number = pattern2.scrollHeight;
         var clientHeight: number = pattern2.clientHeight;
         var translateY = scrollTop
-        if (scrollTop < 0) {
-          translateY *= -1
-        }
-        else {
-          if (!(scrollTop + clientHeight >= scrollHeight)) {
-            translateY = 0
+        if (scrollTop < 0 || scrollTop + clientHeight >= scrollHeight) {
+          if (scrollTop < 0) {
+            translateY *= -1
           }
+          utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${translateY}px)`)
         }
-        utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${scrollTop * -1}px)`)
       })
     });
   }
