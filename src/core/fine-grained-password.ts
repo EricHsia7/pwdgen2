@@ -233,7 +233,7 @@ function checkPatternQualification(pattern: object): boolean {
     }
     return 0
   }
-  const check = function (object: object) {
+  var check = function (object: object) {
     var result = 1
     result *= check_hasOwnProperty(object, 'type')
     var type = object['type']
