@@ -225,12 +225,12 @@ function checkPatternQualification(pattern: object): object {
   var errors: Array = []
   const pushError = function (content) {
     if (typeof content === 'object' && !Array.isArray(content)) {
-      return JSON.stringify(content)
+      errors.push(JSON.stringify(content))
     }
     if (typeof content === 'object' && Array.isArray(content)) {
-      return content.join(', ')
+      errors.push(content.join(', '))
     }
-    return content
+    errors.push(content)
   }
   const check_hasOwnProperty = function (object: object, property: string): boolean {
     if (typeof obj === 'object') {
