@@ -353,21 +353,21 @@ function randomColorSet() {
 
 function blendColors(hexColor, rgbaColor, alpha) {
 
-var hexToRGBA = function(hex, alpha) {
-  const r = parseInt(hex.substring(1, 3), 16);
-  const g = parseInt(hex.substring(3, 5), 16);
-  const b = parseInt(hex.substring(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
+  var hexToRGBA = function (hex, alpha) {
+    const r = parseInt(hex.substring(1, 3), 16);
+    const g = parseInt(hex.substring(3, 5), 16);
+    const b = parseInt(hex.substring(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
 
-  const rgba = rgbaColor.substring(5, rgbaColor.length - 1).split(', ');
-  const r = parseInt(rgba[0]);
-  const g = parseInt(rgba[1]);
-  const b = parseInt(rgba[2]);
+  const rgba: Array = rgbaColor.substring(5, rgbaColor.length - 1).split(',').map(f => parseInt(String(f).trim()));
+  const r: number = rgba[0]
+  const g: number = rgba[1]
+  const b: number = rgba[2]
 
-  const blendedR = Math.round((1 - alpha) * parseInt(hexColor.substring(1, 3), 16) + alpha * r);
-  const blendedG = Math.round((1 - alpha) * parseInt(hexColor.substring(3, 5), 16) + alpha * g);
-  const blendedB = Math.round((1 - alpha) * parseInt(hexColor.substring(5, 7), 16) + alpha * b);
+  const blendedR: number = Math.round((1 - alpha) * parseInt(hexColor.substring(1, 3), 16) + alpha * r);
+  const blendedG: number = Math.round((1 - alpha) * parseInt(hexColor.substring(3, 5), 16) + alpha * g);
+  const blendedB: number = Math.round((1 - alpha) * parseInt(hexColor.substring(5, 7), 16) + alpha * b);
 
   return `#${blendedR.toString(16).padStart(2, '0')}${blendedG.toString(16).padStart(2, '0')}${blendedB.toString(16).padStart(2, '0')}`;
 }
