@@ -4,6 +4,7 @@ var _ = require('lodash');
 const hljs = require('highlight.js/lib/core');
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 import icons from './icons'
+import { LS } from '../core/storage'
 
 
 window.pattern_creator_current_editor = 'json'
