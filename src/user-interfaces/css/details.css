@@ -69,6 +69,7 @@
   display: inline-block;
   align-items: normal;
   position: relative;
+  overflow: auto;
 }
 
 .details-item .details-item-value,
