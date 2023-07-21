@@ -353,17 +353,17 @@ function randomColorSet() {
 
 function blendColors(hexColor, rgbaColor, alpha) {
 
-var hexToRGBA = function(hex, alpha) {
-  const r = parseInt(hex.substring(1, 3), 16);
-  const g = parseInt(hex.substring(3, 5), 16);
-  const b = parseInt(hex.substring(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
+  var hexToRGBA = function (hex, alpha) {
+    const r = parseInt(hex.substring(1, 3), 16);
+    const g = parseInt(hex.substring(3, 5), 16);
+    const b = parseInt(hex.substring(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
 
-  const rgba = rgbaColor.substring(5, rgbaColor.length - 1).split(', ');
-  const r = parseInt(rgba[0]);
-  const g = parseInt(rgba[1]);
-  const b = parseInt(rgba[2]);
+  const rgba = rgbaColor.substring(5, rgbaColor.length - 1).split(',').map(f => parseInt(String(f).trim());
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
 
   const blendedR = Math.round((1 - alpha) * parseInt(hexColor.substring(1, 3), 16) + alpha * r);
   const blendedG = Math.round((1 - alpha) * parseInt(hexColor.substring(3, 5), 16) + alpha * g);
