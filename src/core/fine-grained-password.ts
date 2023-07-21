@@ -322,7 +322,7 @@ function checkPatternQualification(pattern: object): object {
     }
   }
 
-  if (typeof object === 'object') {
+  if (typeof json === 'object') {
     result *= check_hasOwnProperty(json, 'pattern_name')
     result *= check_hasOwnProperty(json, 'pattern_icon')
     result *= check_hasOwnProperty(json, 'pattern')
