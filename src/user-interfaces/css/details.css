@@ -62,7 +62,7 @@
   height: auto;
   min-height: 30px;
   white-space: pre-line;
-  word-break: normal;
+  word-break: break-all;
   display: inline-block;
   align-items: initial;
   position: static;

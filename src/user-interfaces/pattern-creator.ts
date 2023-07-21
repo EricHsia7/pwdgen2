@@ -222,7 +222,7 @@ export function generatePatternPreview(): string {
       component_elt.style.setProperty('--j-component-color-dark-text', component_color.dark.text.str)
       component_elt.style.setProperty('--j-component-color-dark-bg', component_color.dark.bg.str)
       component_elt.innerText = this_component.result
-      component_elt.setAttribute('onclick', `interaction.pattern_creator.showPatternComponentInfo('${(this_component.component.id ? this_component.component.id : component_id)}',event)`)
+      component_elt.setAttribute('onclick', `interaction.pattern_creator.displayPatternComponentInfo('${(this_component.component.id ? this_component.component.id : component_id)}',event)`)
       html.push(component_elt.outerHTML)
     }
     return html.join('')
@@ -232,7 +232,7 @@ export function generatePatternPreview(): string {
   }
 }
 
-export function showPatternComponentInfo(component_id: string, event: Event): void | string {
+export function displayPatternComponentInfo(component_id: string, event: Event): void | string {
   event.preventDefault()
   interaction.standaloneStatusBarColor(2)
   var type_icon = {
@@ -389,6 +389,7 @@ export function addPatternWithCreator(): void | string {
 }
 
 export function displayAddPatternErrors(errors) {
+  interaction.standaloneStatusBarColor(2)
   var error_html = function (error) {
     var elt = document.createElement('div')
     elt.classList.add('pattern_creator_add_pattern_errors_list_item')
