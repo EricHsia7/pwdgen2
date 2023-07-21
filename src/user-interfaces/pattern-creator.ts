@@ -127,9 +127,16 @@ export function openPatternCreator(event) {
         pattern.scrollTop = scrollTop
         var scrollHeight: number = pattern2.scrollHeight;
         var clientHeight: number = pattern2.clientHeight;
-        if (scrollTop < 0 || scrollTop + clientHeight >= scrollHeight) {
-          utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${scrollTop * -1}px)`)
+        var translateY = scrollTop
+        if (scrollTop < 0) {
+          translateY *= -1
         }
+        else {
+          if (!(scrollTop + clientHeight >= scrollHeight)) {
+            translateY = 0
+          }
+        }
+        utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${scrollTop * -1}px)`)
       })
     });
   }
