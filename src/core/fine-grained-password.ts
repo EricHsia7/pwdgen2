@@ -233,16 +233,19 @@ function checkPatternQualification(pattern: object): object {
   var json = _.cloneDeep(pattern)
   var result = 1
   var errors: Array = []
-  const pushError = function (content) {
-    if (typeof content === 'object' && !Array.isArray(content)) {
-      errors.push(JSON.stringify(content))
-      return ''
+  const ommitobject = function (object: object): string {
+    var obj = _.cloneDeep(object)
+    if (typeof object === 'object' && !Array.isArray(object)) {
+      for (var w in obj) {
+        if (typeof obj[w] === 'object' && !Array.isArray(obj[w])) {
+          obj[w] = '{...}'
+        }
+        if (typeof obj[w] === 'object' && Array.isArray(obj[w])) {
+          obj[w] = '[...]'
+        }
+      }
+      return JSON.stringify(obj)
     }
-    if (typeof content === 'object' && Array.isArray(content)) {
-      errors.push(content.join(', '))
-      return ''
-    }
-    errors.push(content)
   }
   const check_hasOwnProperty = function (object: object, property: string): boolean {
     if (typeof object === 'object') {
@@ -268,11 +271,11 @@ function checkPatternQualification(pattern: object): object {
       result *= check_hasOwnProperty(object, 'quantity')
       result *= check_hasOwnProperty(object, 'repeat')
       if (!(typeof object['quantity'] === 'number')) {
-        errors.push(`Type of the property "quantity" in ${JSON.stringify(object)} is not number.`)
+        errors.push(`Type of the property "quantity" in ${ommitobject(object)} is not number.`)
         result *= 0
       }
       if (!(typeof object['repeat'] === 'boolean')) {
-        errors.push(`Type of the property "repeat" in ${JSON.stringify(object)} is not boolean (true or false).`)
+        errors.push(`Type of the property "repeat" in ${ommitobject(object)} is not boolean (true or false).`)
         result *= 0
       }
     }
@@ -282,7 +285,7 @@ function checkPatternQualification(pattern: object): object {
         var list_len = list.length
         for (var e = 0; e < list_len; e++) {
           if (!(typeof list[e] === 'string')) {
-            errors.push(`Type of the item ${e} in the list of ${JSON.stringify(object)} is not string.`)
+            errors.push(`Type of the item ${e} in the list of ${ommitobject(object)} is not string.`)
             result *= 0
           }
         }
@@ -303,7 +306,7 @@ function checkPatternQualification(pattern: object): object {
           }
           else {
             if (!(actions[e] === 'shuffle')) {
-              errors.push('Cannot use ${actions[e]} at this time due to not supportted value.')
+              errors.push(`Cannot use ${actions[e]} at this time due to not supportted value.`)
               result *= 0
             }
           }
@@ -324,7 +327,7 @@ function checkPatternQualification(pattern: object): object {
           result *= 0
         }
       } else {
-        errors.push(`The type of the property "regex" in ${JSON.stringify(object)} is not string.`)
+        errors.push(`The type of the property "regex" in ${ommitobject(object)} is not string.`)
         result *= 0
       }
     }
@@ -341,11 +344,11 @@ function checkPatternQualification(pattern: object): object {
     result *= check_hasOwnProperty(json, 'pattern_icon')
     result *= check_hasOwnProperty(json, 'pattern')
     if (!(typeof json['pattern_name'] === 'string')) {
-      errors.push(`Type of the property "pattern_name" in ${JSON.stringify(json)} is not string.`)
+      errors.push(`Type of the property "pattern_name" in ${ommitobject(json)} is not string.`)
       result *= 0
     }
     if (!(typeof json['pattern_icon'] === 'string')) {
-      errors.push(`Type of the property "pattern_icon" in ${JSON.stringify(json)} is not string.`)
+      errors.push(`Type of the property "pattern_icon" in ${ommitobject(json)} is not string.`)
       result *= 0
     }
     if (typeof json['pattern'] === 'object' && Array.isArray(json['pattern'])) {
@@ -355,7 +358,7 @@ function checkPatternQualification(pattern: object): object {
         result *= check(pattern[i])
       }
     } else {
-      errors.push(`Type of the property "pattern" in ${JSON.stringify(json)} is not array.`)
+      errors.push(`Type of the property "pattern" in ${ommitobject(json)} is not array.`)
       result *= 0
     }
   }
