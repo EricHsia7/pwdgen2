@@ -62,10 +62,11 @@
   height: auto;
   min-height: 30px;
   white-space: pre-line;
-  word-break: break-all;
+  word-break: normal;
   display: inline-block;
   align-items: initial;
   position: static;
+  top: auto;
   padding-bottom: 10px;
   padding-top: 10px;
 }
