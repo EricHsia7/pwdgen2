@@ -240,11 +240,11 @@ function checkPatternQualification(pattern: object): object {
         return 1
       }
       else {
-        errors.push(`Property "${property}" was not found in ${JSON.stringify(object)}.`)
+        errors.push(`The property "${property}" was not found in ${JSON.stringify(object)}.`)
         return 0
       }
     }
-    errors.push('Cannot check property due to type error.')
+    errors.push(`Cannot check the property "${property}" due to type error of ${String(object)}.`)
     return 0
   }
   var check = function (object: object) {
@@ -350,10 +350,10 @@ function checkPatternQualification(pattern: object): object {
     result *= 0
   }
   if (result === 1) {
-    result === true
+    result = true
   }
   else {
-    result === false
+    result = false
   }
   return { errors: errors, result: result }
 }
