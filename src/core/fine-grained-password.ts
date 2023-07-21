@@ -159,7 +159,7 @@ function generate(options: object, mode: string): string | object {
     'pattern': options
   })
   if (!check.result) {
-    return check.errors.join('\n')
+    return original_pattern.map(e => { ({ result: '', component: e }) })
   }
   if (mode === 'production') {
     var d: string = ""
