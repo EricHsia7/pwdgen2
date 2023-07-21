@@ -128,7 +128,7 @@ export function openPatternCreator(event) {
         var scrollHeight: number = pattern2.scrollHeight;
         var clientHeight: number = pattern2.clientHeight;
         if (scrollTop < 0 || scrollTop + clientHeight >= scrollHeight) {
-          utilities.qe('.pattern_creator .pattern code pre').style.setProperty('--j-pattern-overscroll-translate', `translateY(${scrollTop * -1}px)`)
+          utilities.qe('.pattern_creator .pattern_editor_json .pattern pre code').style.setProperty('--j-pattern-overscroll-translate', `translateY(${scrollTop * -1}px)`)
         }
       })
     });
