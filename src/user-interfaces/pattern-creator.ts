@@ -447,8 +447,11 @@ export function removeAddPatternErrors(temporary_id: string, event: Event): void
 export function switchEditor(editor: string): void | string {
   if (editor === 'blocks') {
     interaction.pattern_creator.syncAndFormatPatternCreatorJSONEditor()
+    /* pending message */
     interaction.prompt_message('This editor is unavailable at this time.')
+    return ''
   }
+  pattern_creator_current_editor = editor
   var check = fine_grained_password.checkPatternQualification(pattern_json)
   if (!check.result) {
     displayAddPatternErrors(check.errors)
