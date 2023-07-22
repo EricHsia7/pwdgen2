@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const AdvancedPreset = require('cssnano-preset-advanced');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -15,7 +16,11 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html', // Path to your custom HTML template file
         inject: 'head', // Specify 'body' to insert the script tags just before the closing </body> tag
-        filename: './index.html'
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: './dist/index.html', to: '.' },
+        ],
       }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
