@@ -315,7 +315,7 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
   var mask_elt = document.createElement('div')
   mask_elt.classList.add('pattern_creator_preview_component_info_mask')
   mask_elt.id = `${temporary_id}-mask`
-  mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)`)
+  mask_elt.setAttribute(`onclick`, `interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)`)
   document.body.appendChild(mask_elt)
   document.body.appendChild(card_elt)
   interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
@@ -423,7 +423,7 @@ export function displayAddPatternErrors(errors) {
   var mask = document.createElement('div')
   mask.id = `${temporary_id}-mask`
   mask.classList.add('pattern_creator_add_pattern_errors_mask')
-  mask.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mouseenter'}`, `interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)`)
+  mask.setAttribute(`onclick`, `interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)`)
   document.body.appendChild(mask)
   document.body.appendChild(elt)
   interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
