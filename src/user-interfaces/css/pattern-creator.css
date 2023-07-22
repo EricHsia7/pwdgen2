@@ -163,7 +163,7 @@
   left: 10px;
   width: calc(100% - 20px);
   height: auto;
-  min-height: 50px;
+  min-height: 40px;
   border-radius: 10px;
   display: inline-block;
   box-sizing: border-box;
