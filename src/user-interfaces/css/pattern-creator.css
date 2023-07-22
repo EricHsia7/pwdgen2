@@ -215,6 +215,8 @@
   overflow: scroll;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .pattern_creator_preview_component_info[o="1"],
