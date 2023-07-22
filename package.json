@@ -7,7 +7,6 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --mode=production",
-    "move-html": "cp /dist/index.html .",
     "deploy": "gh-pages -d ."
   },
   "repository": {
