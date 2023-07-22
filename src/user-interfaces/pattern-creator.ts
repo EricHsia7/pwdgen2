@@ -370,7 +370,7 @@ export function showComponentInEditor(temporary_id: string, component_id: string
 export function addPatternWithCreator(): void | string {
   var check = fine_grained_password.checkPatternQualification(pattern_json)
   if (!check.result) {
-    interaction.prompt_message(`Cannot add pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)
+    /*interaction.prompt_message(`Cannot add pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)*/
     interaction.pattern_creator.displayAddPatternErrors(check.errors)
     return ''
   }
