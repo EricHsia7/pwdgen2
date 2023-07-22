@@ -358,7 +358,7 @@
   position: relative;
   width: 100%;
   height: 45px;
-  background: var(--p-ffffff);
+  background: var(--p-e5e5ea);
   border-radius: 10px;
   user-select: none;
   -webkit-user-select: none;
@@ -384,9 +384,8 @@
 }
 
 .pattern_editor_picker .pattern_editor_picker_option[s="1"] {
-  background: var(--p-main-color);
-  /* box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.15);*/
-  color: #fff;
+  background: var(--p-ffffff);
+  box-shadow: 0px 0px 25px -17px rgba(0, 0, 0, 0.15);
 }
 
 /* editor displays*/
