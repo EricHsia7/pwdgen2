@@ -419,7 +419,7 @@ export function displayAddPatternErrors(errors) {
   var elt = document.createElement('div')
   elt.id = temporary_id
   elt.classList.add('pattern_creator_add_pattern_errors')
-  elt.innerHTML = `<div class="pattern_creator_add_pattern_errors_title">Occurred Error${(errors.length > 1 ? 's' : '')}</div><div class="pattern_creator_add_pattern_errors_list_container"><div class="pattern_creator_add_pattern_errors_list">${errors_html.join('')}</div></div><div class="pattern_creator_add_pattern_errors_button_box"><div class="pattern_creator_add_pattern_errors_go_to_documents">Go to docs</div><div class="pattern_creator_add_pattern_errors_close" onclick="interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)">Close</div></div>`
+  elt.innerHTML = `<div class="pattern_creator_add_pattern_errors_title">Occurred Error${(errors.length > 1 ? 's' : '')}</div><div class="pattern_creator_add_pattern_errors_list_container"><div class="pattern_creator_add_pattern_errors_list">${errors_html.join('')}</div></div><div class="pattern_creator_add_pattern_errors_button_box"><div class="pattern_creator_add_pattern_errors_go_to_documents" onclick="interaction.pattern_creator.go_to_documents()">Go to docs</div><div class="pattern_creator_add_pattern_errors_close" onclick="interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)">Close</div></div>`
   var mask = document.createElement('div')
   mask.id = `${temporary_id}-mask`
   mask.classList.add('pattern_creator_add_pattern_errors_mask')
@@ -464,4 +464,8 @@ export function switchEditor(editor: string): void | string {
   }
   tab.setAttribute('s', '1')
   editor_container.setAttribute('s', '1')
+}
+
+export function go_to_documents() {
+  window.open('https://github.com/EricHsia7/pwdgen2/blob/dev-pattern-editor/pattern_doc/chapter1.md')
 }
