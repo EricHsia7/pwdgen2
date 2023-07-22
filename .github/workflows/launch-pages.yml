@@ -3,8 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - dev-fine-grained-password-pattern
-      - dev-pattern-editor
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
