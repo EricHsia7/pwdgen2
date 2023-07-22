@@ -358,6 +358,8 @@
   column-gap: 5px;
   padding: 5px;
   box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .pattern_editor_picker .pattern_editor_picker_option {
@@ -370,8 +372,6 @@
   align-items: center;
   user-select: none;
   -webkit-user-select: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .pattern_editor_picker .pattern_editor_picker_option[s="1"] {
