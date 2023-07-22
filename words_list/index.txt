@@ -1802,12 +1802,12 @@ commission
 commissioner
 commissioners
 commissions
-comit
-comitment
-comitments
-comitted
-comittee
-comittees
+commit
+commitment
+commitments
+committed
+committee
+committees
 commodities
 commodity
 common
@@ -8594,7 +8594,7 @@ stylus
 su
 sub
 subaru
-subcomittee
+subcommittee
 subdivision
 subject
 subjects
