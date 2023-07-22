@@ -3,6 +3,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const AdvancedPreset = require('cssnano-preset-advanced');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -11,12 +12,16 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: 'styles.min.css', // Output CSS filename
       }),
+      new HtmlWebpackPlugin({
+        template: './src/index.html', // Path to your custom HTML template file
+        inject: 'body', // Specify 'body' to insert the script tags just before the closing </body> tag
+      }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
     mode: 'production', // Set the mode to 'production' or 'development'
     entry: './src/index.ts', // Entry point of your application
     output: {
-      filename: isProduction ? 'index.min.js' : 'index.js', // Output bundle filename
+      filename: isProduction ? '[name].[hash].min.js' : 'index.js', // Output bundle filename
       path: path.resolve(__dirname, 'dist'), // Output directory for bundled files
       library: {
         name: 'pwdgen2',
@@ -65,6 +70,9 @@ module.exports = (env, argv) => {
           }
         })
       ],
+      splitChunks: {
+        chunks: 'all',
+      },
     },
     devtool: 'source-map',
     devServer: {
