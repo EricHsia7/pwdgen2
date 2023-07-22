@@ -1,7 +1,7 @@
 .pattern_editor_box {
   position: relative;
-  margin:0px;
-  padding:0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .pattern_editor_container {
@@ -389,6 +389,7 @@
   color: #fff;
 }
 
+/* editor displays*/
 .pattern_creator .pattern_editor_box .pattern_creator_add_pattern_errors_list_container[j="blocks"] {
-  display:none;
+  display: none;
 }
