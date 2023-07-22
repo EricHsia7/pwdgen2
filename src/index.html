@@ -267,13 +267,15 @@
     </div>
   </div>
 
-  <script defer>
-    try {
-      pwdgen2()
-    }
-    catch (e) {
-      console.log(e)
-    }
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        pwdgen2()
+      }
+      catch (e) {
+        console.log(e)
+      }
+    });
   </script>
 </body>
 
