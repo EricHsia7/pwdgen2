@@ -443,3 +443,24 @@ export function removeAddPatternErrors(temporary_id: string, event: Event): void
     utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).remove()
   })
 }
+
+export function switchEditor(editor: string): void | string {
+  if (editor === 'blocks') {
+    interaction.pattern_creator.syncAndFormatPatternCreatorJSONEditor()
+  }
+  var check = fine_grained_password.checkPatternQualification(pattern_json)
+  if (!check.result) {
+    displayAddPatternErrors(check.errors)
+    return ''
+  }
+  var all_editor_container = utilities.qe(`.pattern_editor_box .pattern_editor_container`)
+  var editor_container = utilities.qe(`.pattern_editor_box .pattern_editor_container[j="${editor}"]`)
+  var all_tab = utilities.qeAll(`.pattern_creator .pattern_editor_picker .pattern_editor_picker_option`)
+  var tab = utilities.qe(`.pattern_creator .pattern_editor_picker .pattern_editor_picker_option[j="${editor}"]`)
+  for (var i = 0; i < 2; i++) {
+    all_tab[i].setAttribute('s', '0')
+    all_editor_container.setAttribute('s', '0')
+  }
+  tab.setAttribute('s', '1')
+  editor_container.setAttribute('s', '1')
+}

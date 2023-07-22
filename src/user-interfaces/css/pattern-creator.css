@@ -340,3 +340,37 @@
     background: var(--j-component-color-dark-bg);
   }
 }
+
+.pattern_editor_picker {
+  position: relative;
+  left: 15px;
+  width: calc(100% - 30px);
+  height: 40px;
+  background: var(--p-ffffff);
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.pattern_editor_picker .pattern_editor_picker_option {
+  background: var(--p-e5e5ea);
+  border-radius: 10px;
+  color: var(--p-333333);
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.pattern_editor_picker .pattern_editor_picker_option[o="1"] {
+  background: var(--p-main-color);
+  /* box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.15);*/
+  color: #fff;
+}
