@@ -1,0 +1,58 @@
+{
+ "pattern_name": "Email",
+ "pattern_icon": "alternate_email",
+ "pattern": [
+  {
+   "type": "regex",
+   "regex": "/[a-z]/g",
+   "quantity": 3,
+   "repeat": false
+  },
+  {
+   "type": "group",
+   "group": [
+    {
+     "type": "regex",
+     "regex": "/[a-z]/g",
+     "quantity": 8,
+     "repeat": true
+    },
+    {
+     "type": "regex",
+     "regex": "/[0-9]/g",
+     "quantity": 5,
+     "repeat": true
+    }
+   ],
+   "actions": [
+    "shuffle"
+   ]
+  },
+  {
+   "type": "string",
+   "string": "@"
+  },
+  {
+   "type": "regex",
+   "regex": "/[a-z]/g",
+   "quantity": 10,
+   "repeat": true
+  },
+  {
+   "type": "string",
+   "string": "."
+  },
+  {
+   "type": "list",
+   "list": [
+    "com",
+    "app",
+    "net",
+    "one",
+    "me"
+   ],
+   "quantity": 1,
+   "repeat": false
+  }
+ ]
+}

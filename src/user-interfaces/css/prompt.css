@@ -1,0 +1,33 @@
+.prompt_content {
+  width: calc(100% - 20px);
+  height: 40px;
+  color: var(--p-333333);
+  font-size: 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  word-break: keep-all;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.prompt {
+  width: clamp(180px, calc(100% - 40px), 450px);
+  height: 50px;
+  border-radius: 15px;
+  position: fixed;
+  left: 50%;
+  bottom: 0px;
+  opacity: 0;
+  transform: translateX(-50%) translateY(0px) scale(1);
+  background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.8);
+  will-change: transform, opacity;
+  -webkit-user-select: none;
+  user-select: none;
+  box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.23);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
