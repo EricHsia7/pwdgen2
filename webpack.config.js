@@ -15,9 +15,6 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html', // Path to your custom HTML template file
         inject: 'head', // Specify 'body' to insert the script tags just before the closing </body> tag
-        customData: {
-          src: 'https://erichsia7.github.io/pwdgen2/dist/[name].[contenthash].min.js',
-        },
       }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
@@ -26,6 +23,7 @@ module.exports = (env, argv) => {
     output: {
       filename: isProduction ? '[name].[contenthash].min.js' : 'index.js', // Output bundle filename
       path: path.resolve(__dirname, 'dist'), // Output directory for bundled files
+      publicPath:'https://erichsia7.github.io/pwdgen2/dist/',
       library: {
         name: 'pwdgen2',
         type: 'umd',
