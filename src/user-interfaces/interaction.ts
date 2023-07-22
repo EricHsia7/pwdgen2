@@ -4,21 +4,29 @@ import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword } from '../core/storage'
 import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
-import hljs from 'highlight.js/lib/core';
-import json from 'highlight.js/lib/languages/json';
-hljs.registerLanguage('json', json);
+import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator'
 
+function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
+  target.style.setProperty(property, source.style.getPropertyValue(property))
+}
 
-function fade(element, type, display, callback) {
+type fadeType = 'In' | 'Out'
+type fadeDisplay = 'none' | 'flex' | 'inline' | 'block' | 'inline-flex' | 'inline-block'
+function fade(element: HTMLElement, type: fadeType, display: fadeDisplay, callback: Function | void) {
   var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
   var fade_id = "";
-  for (var i = 0; i < 8; i++) {
+  for (var i = 0; i < 16; i++) {
     var idrandomNumber = Math.floor(Math.random() * idchars.length);
     fade_id += idchars.substring(idrandomNumber, idrandomNumber + 1);
   }
   var element_display = getComputedStyle(element).getPropertyValue('display')
   if (element_display === 'none') {
-    element_display = 'block'
+    if (display === 'flex') {
+      element_display = 'flex'
+    }
+    else {
+      element_display = 'block'
+    }
   }
   var duration = 300
   var class_str = element.getAttribute('class')
@@ -76,7 +84,7 @@ function prompt_message(message, duration) {
   prompt_element.classList.add('prompt')
   prompt_element.classList.add('prompt_animation' + prompt_id)
   var prompt_center_element = document.createElement('div')
-  prompt_center_element.classList.add('promptcenter')
+  prompt_center_element.classList.add('prompt_content')
   prompt_center_element.innerText = message
   prompt_element.appendChild(prompt_center_element)
   var prompt_css = `.prompt_animation${prompt_id}{animation-timing-function:cubic-bezier(.21,.75,.1,.96);animation-name:prompt${prompt_id};animation-duration:${(duration + duration_base * 2)}ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt${prompt_id}{0%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(0.8);}${Math.floor((duration_base) / (duration + duration_base + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}${Math.floor((duration_base + duration) / (duration + duration_base + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(1);}}`
@@ -99,6 +107,10 @@ function standaloneStatusBarColor(a) {
   if (a === 1) {
     c = '#ffffff'
     d = '#1c1c1e'
+  }
+  if (a === 2) {
+    c = utilities.blendColors('#f2f2f7', 'rgba(0,0,0,0.45)')
+    d = utilities.blendColors('#0a0a0b', 'rgba(0,0,0,0.45)')
   }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
   utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
@@ -296,13 +308,13 @@ function refreshPage() {
     "quantity": 16,
     "repeat": true
   }]
-  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p))
+  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p, 'production'))
 }
 
 
 
-function openPassword(id) {
-  interaction.fade(utilities.qe('.password-page'), 'In', 'block')
+function openPassword(id, fadeCallback) {
+  interaction.fade(utilities.qe('.password-page'), 'In', 'block', fadeCallback)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
@@ -362,8 +374,8 @@ function openAddPassword(event) {
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
-  interaction.printPatternPresets('add-password-page')
-  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern)
+  interaction.add_password.printPatternPresets('add-password-page')
+  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern, 'production')
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
   utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value = ''
   interaction.options.closeOptions(event)
@@ -381,10 +393,11 @@ function addPasswordWithForm() {
   var username = utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value || ''
   var website = utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
   var addedpassword = addPassword(password, username, website, '')
-  interaction.prompt_message('Added password', 1200)
-  interaction.password_page.openPassword(addedpassword)
+  interaction.prompt_message('Added password.', 1200)
   interaction.add_password.closeAddPassword()
-  interaction.main_page.printSavedPasswordList()
+  interaction.password_page.openPassword(addedpassword, function () {
+    interaction.main_page.printSavedPasswordList()
+  })
 }
 
 function printPatternPresets(place) {
@@ -409,7 +422,7 @@ function printPatternPresets(place) {
 function applyPreset(index) {
   var list = fine_grained_password.getPatterns()
   var preset = list[index]
-  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(preset.pattern)
+  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(preset.pattern, 'production')
   var all_preset = utilities.qeAll(".add-password-page .password-generator-presets .preset")
   var all_preset_len = (all_preset ? all_preset.length : 0)
   for (var o = 0; o < all_preset_len; o++) {
@@ -421,44 +434,8 @@ function applyPreset(index) {
 
 
 
-function openPatternCreator(event) {
-  interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
-  interaction.fade(utilities.qe('.pattern_creator_title'), 'In', 'flex')
-  closeOptions(event)
-  utilities.qe('.pattern').innerHTML = JSON.stringify(pattern_json, null, 2)
-  utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2)
-  hljs.highlightAll();
-  if (pattern_creator_evt === 0) {
-    pattern_creator_evt = 1
-    utilities.qe('.pattern2').addEventListener('input', function (event) {
-      utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText
-      hljs.highlightBlock(utilities.qe('.pattern'));
-    });
-    utilities.qe('.pattern2').addEventListener('blur', function (event) {
-      try {
-        utilities.qe('.pattern2').innerHTML = JSON.stringify(JSON.parse(document.querySelector('.pattern2').innerText), null, 2)
-        hljs.highlightBlock(utilities.qe('.pattern2'));
-      } catch (e) {
-      }
-      utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerHTML
-    });
-    utilities.qe('.pattern2').addEventListener('scroll', function (event) {
-      window.requestAnimationFrame(function () {
-        var st = utilities.qe('.pattern2').pageYOffset || utilities.qe('.pattern2').scrollTop
-        utilities.qe('.pattern').scrollTop = st
-      })
-    });
-  }
-}
-
-function closePatternCreator() {
-  interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
-  interaction.fade(utilities.qe('.pattern_creator_title'), 'Out', 'none')
-}
-
-
-
 window.interaction = {
+  copyProperty,
   prompt_message,
   fade,
   generateHashTagHTML,
@@ -487,7 +464,20 @@ window.interaction = {
   },
   pattern_creator: {
     openPatternCreator,
-    closePatternCreator
+    closePatternCreator,
+    generatePatternPreview,
+    displayPatternComponentInfo,
+    addIdentityToPattern,
+    syncPatternCreatorJSONEditor,
+    syncAndFormatPatternCreatorJSONEditor,
+    initializePatternCreatorJSONEditor,
+    removePatternComponentInfo,
+    showComponentInEditor,
+    addPatternWithCreator,
+    displayAddPatternErrors,
+    removeAddPatternErrors,
+    switchEditor,
+    go_to_documents
   },
   password_page: {
     openPassword,

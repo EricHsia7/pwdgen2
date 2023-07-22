@@ -1,7 +1,8 @@
 .container,
 .password-page,
 .main-page,
-.add-password-page {
+.add-password-page,
+.pattern_creator {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -14,7 +15,8 @@
 }
 
 .password-page,
-.add-password-page {
+.add-password-page,
+.pattern_creator {
   display: none;
 }
 
@@ -27,6 +29,34 @@
 }
 
 .password-page .contents-box,
-.add-password-page .contents-box {
-  top: 55px;
+.add-password-page .contents-box,
+.pattern_creator .contents-box {
+  top: 50px;
+}
+
+.fixed-title-box {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 50px;
+  background: var(--p-f2f2f7);
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: color 0.3s;
+  color: var(--p-333333);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.main-page .fixed-title-box {
+  color: rgba(0, 0, 0, 0);
+}
+
+.main-page .fixed-title-box[sticky="true"] {
+  color: var(--p-333333);
+  background: var(--p-ffffff)
 }

@@ -3,7 +3,7 @@ import fine_grained_password from 'src/core/fine-grained-password'
 import Xsearch from './search'
 import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword } from './/core/storage'
 import utilities from './/core/utilities'
-import vjson from 'src/core/visual-json'
+import bjson from 'src/core/blocks-json'
 import words_list from './/core/words-list'
 import icons from './user-interfaces/icons'
 import interaction from './user-interfaces/interaction'
@@ -14,14 +14,53 @@ import './user-interfaces/css/index.css'
 import './user-interfaces/css/container.css'
 import './user-interfaces/css/button.css'
 import './user-interfaces/css/options.css'
-import './user-interfaces/css/pattern-creator.css'
 import './user-interfaces/css/prompt.css'
 import './user-interfaces/css/details.css'
+import './user-interfaces/css/pattern-creator.css'
 import './user-interfaces/css/main-page/search.css'
 import './user-interfaces/css/main-page/password-list.css'
 import './user-interfaces/css/add-password/presets.css'
 import './user-interfaces/css/fade.css'
 
+
+//for development
+const ErrorStackParser = require('error-stack-parser');
+const StackTrace = require('stacktrace-js');
+
+window.onerror = async function (message, source, lineno, colno, error) {
+  StackTrace.fromError(error).then(function (stackTrace) {
+    var parsedStackTrace = stackTrace.map(function (frame) {
+      return {
+        functionName: frame.functionName,
+        fileName: frame.fileName,
+        lineNumber: frame.lineNumber,
+        columnNumber: frame.columnNumber,
+      };
+    });
+    console.log('%c ----------', "color: #888;")
+    parsedStackTrace.forEach(e => {
+      console.log(`%c func: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`, "color: rgba(255,0,0,1); background-color: rgba(255,0,0,0.09);");
+    });
+  });
+};
+
+/*
+declare global {
+interface Window {
+password_page_icon_loaded: Boolean;
+allhashtag: Object;
+search_status: Number;
+search_evt: Number;
+search_sticky: Boolean;
+container_scrollTop: Number;
+pattern_creator_evt: Number;
+pattern_json: Object;
+pattern_editor_blocks_json: any
+search_will_change_evt: Object
+search_will_change_evt_list: Object
+}
+}
+*/
 
 window.password_page_icon_loaded = false
 window.allhashtag = {}
@@ -30,8 +69,7 @@ window.search_evt = 0
 window.search_sticky = false
 window.container_scrollTop = 0
 window.pattern_creator_evt = 0
-window.pattern_json = {}
-window.pattern_editor_visual_json = utilities.qe('.pattern_editor_visual_json')
+window.pattern_editor_blocks_json = utilities.qe('.pattern_editor_blocks_json')
 window.search_will_change_evt = [0, 1]
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave']
 
