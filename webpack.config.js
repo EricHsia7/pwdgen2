@@ -72,6 +72,8 @@ module.exports = (env, argv) => {
       ],
       splitChunks: {
         chunks: 'all',
+        chunksSortMode: 'dependency',
+        maxSize: 32000
       },
     },
     devtool: 'source-map',
