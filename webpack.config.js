@@ -15,6 +15,7 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html', // Path to your custom HTML template file
         inject: 'head', // Specify 'body' to insert the script tags just before the closing </body> tag
+        filename: './index.html'
       }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
