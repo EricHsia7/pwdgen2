@@ -72,6 +72,16 @@ module.exports = (env, argv) => {
       ],
       splitChunks: {
         chunks: 'all',
+        maxSize: 32000,
+        cacheGroups: {
+          // Define your cache groups here with specific rules
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          // Add more cache groups if needed
+        },
       },
     },
     devtool: 'source-map',
