@@ -842,7 +842,7 @@
       background-repeat: repeat
     }
 
-    .promptcenter {
+    .prompt_content {
       position: absolute;
       left: 15px;
       top: 50%;
@@ -854,7 +854,7 @@
       -webkit-user-select: none;
     }
 
-    .promptcenter * {
+    .prompt_content * {
       color: var(--g-4e4e4e);
       font-size: 15px;
       font-family: "Noto Sans TC", sans-serif
@@ -3388,7 +3388,7 @@
           promptid += promptchars.substring(randomNumber, randomNumber + 1);
         }
         var translateY = -1 * (document.querySelector('.bottom').clientHeight + 20)
-        $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time + 150 + 200) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt' + promptid + '{0%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(0.85);}' + Math.floor((200) / (settings.time + 200 + 150) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}' + Math.floor((200 + settings.time) / (settings.time + 200 + 150) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="promptcenter">' + settings.message + "</span></div>");
+        $(this).append('<style qix="promptanimation' + promptid + '" promptanimation="promptanimation">.promptanimation' + promptid + '{animation-name:prompt' + promptid + ';animation-duration:' + (settings.time + 150 + 200) + 'ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt' + promptid + '{0%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(0.85);}' + Math.floor((200) / (settings.time + 200 + 150) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}' + Math.floor((200 + settings.time) / (settings.time + 200 + 150) * 100) + '%{opacity:1;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(' + translateY + 'px) scale(1);}}</style><div class="prompt promptanimation' + promptid + '" id="' + promptid + '"><span class="prompt_content">' + settings.message + "</span></div>");
 
         setTimeout(function () {
           $("#" + promptid + ',style[qix="promptanimation' + promptid + '"]').remove();

@@ -84,7 +84,7 @@ function prompt_message(message, duration) {
   prompt_element.classList.add('prompt')
   prompt_element.classList.add('prompt_animation' + prompt_id)
   var prompt_center_element = document.createElement('div')
-  prompt_center_element.classList.add('promptcenter')
+  prompt_center_element.classList.add('prompt_content')
   prompt_center_element.innerText = message
   prompt_element.appendChild(prompt_center_element)
   var prompt_css = `.prompt_animation${prompt_id}{animation-timing-function:cubic-bezier(.21,.75,.1,.96);animation-name:prompt${prompt_id};animation-duration:${(duration + duration_base * 2)}ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt${prompt_id}{0%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(0.8);}${Math.floor((duration_base) / (duration + duration_base + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}${Math.floor((duration_base + duration) / (duration + duration_base + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(1);}}`
