@@ -9,6 +9,7 @@
   white-space: nowrap;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .prompt {
@@ -30,4 +31,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
