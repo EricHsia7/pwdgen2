@@ -9,7 +9,7 @@ import { openPatternCreator, closePatternCreator, generatePatternPreview, displa
 window.lazyCSS = {
   loaded: {
     'googleFontsNotoSans': false,
-    'googleFontsMaterialSymbols': true
+    'googleFontsMaterialSymbols': false
   }
 }
 
