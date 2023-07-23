@@ -19,6 +19,7 @@ window.lazyPasswordListIcons = {
 }
 
 function lazyLoadPasswordListIcon(identity, url) {
+  /*
   var getPixelColor = function (ctx, x, y) {
     var pixelData = ctx.getImageData(x, y, 1, 1).data;
     var red = pixelData[0]
@@ -27,13 +28,14 @@ function lazyLoadPasswordListIcon(identity, url) {
     var alpha = pixelData[3]
     return [red, green, blue, alpha]
   }
-
+*/
   var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`)
   var icon_elt = item_elt.querySelector('.password-item-website-icon')
+
   if (item_elt.getAttribute('icon') === '0') {
-    item_elt.setAttribute('icon', '1')
     var index = window.lazyPasswordListIcons.unloaded.indexOf(identity)
     if (index > -1) {
+      /*
       var canvas = utilities.qe('body canvas#faviconcanvas')
       var ctx = canvas.getContext('2d')
       canvas.width = 400
@@ -69,11 +71,14 @@ function lazyLoadPasswordListIcon(identity, url) {
         ctx.fillRect(0, 0, w, h); // (x, y, width, height)
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         var dataURL = canvas.toDataURL()
-        window.lazyPasswordListIcons.unloaded.splice(index, 1)
-        window.lazyPasswordListIcons.loaded.push({ dataURL: dataURL, identity: identity })
-        item_elt.setAttribute('icon', '2')
-        icon_elt.style.setProperty('--j-website-icon', `url(${dataURL})`)
-      }, { once: true });
+        */
+      window.lazyPasswordListIcons.unloaded.splice(index, 1)
+      window.lazyPasswordListIcons.loaded.push({ dataURL: dataURL, identity: identity })
+      item_elt.setAttribute('icon', '1')
+      icon_elt.style.setProperty('--j-website-icon', `url(${url})`)
+      /*
+       }, { once: true });
+       */
     }
   }
 }
