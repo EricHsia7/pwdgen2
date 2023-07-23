@@ -402,7 +402,7 @@ function printSavedPasswordList(): void {
   var html = []
   for (var k = 0; k < list_len; k++) {
     var tags = []
-    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')" pwd-id="${list[k].id}" icon="0" icon-url="${list[k].website_icon}"><div class="password-item-website-icon" style="--j-website-icon:var(--p-e5e5ea)"></div><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
+    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')" pwd-id="${list[k].id}" icon="0" icon-url="${list[k].website_icon}"><div class="password-item-website-icon-bg"></div><div class="password-item-website-icon" style="--j-website-icon:var(--p-e5e5ea)"></div><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
   }
   utilities.qe(".password-list").innerHTML = html.join('')
   interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler()
