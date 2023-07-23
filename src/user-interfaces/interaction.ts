@@ -44,8 +44,8 @@ function lazyLoadPasswordListIcon(identity, url) {
       image.width = 10
       image.height = 10
       image.id = id
+      image.crossOrigin = "anonymous";
       utilities.qe('#faviconsloader').appendChild(image)
-      //image.crossOrigin = "anonymous";
       utilities.qe(`#faviconsloader img#${id}`).addEventListener('load', function () {
         var w = canvas.width
         var h = canvas.height
