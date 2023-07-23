@@ -13,6 +13,7 @@ function copyProperty(source: HTMLElement, target: HTMLElement, property: string
 function loadFont(url) {
   var link = document.createElement('link')
   link.setAttribute('href', url)
+  link.setAttribute('rel', 'stylesheet')
   document.head.appendChild(link)
 }
 
