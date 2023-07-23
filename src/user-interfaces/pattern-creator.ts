@@ -1,7 +1,6 @@
 import fine_grained_password from '../core/fine-grained-password'
 import utilities from '../core/utilities'
-var _ = require('lodash/core');
-var cloneDeep = require('lodash/cloneDeep')
+var _ = require('lodash');
 
 const hljs = require('highlight.js/lib/core');
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
