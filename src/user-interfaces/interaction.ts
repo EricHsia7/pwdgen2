@@ -47,6 +47,7 @@ function lazyLoadPasswordListIcon(identity, url) {
             var w = canvas.width
             var h = canvas.height
             var padding = 5
+            ctx.clearRect(0, 0, w, h); // (x, y, width, height)
             ctx.drawImage(image, padding, padding, w, h);
             var top_left_corner = getPixelColor(ctx, padding, padding)
             var top_right_corner = getPixelColor(ctx, w - padding, padding)
@@ -580,6 +581,8 @@ window.interaction = {
   },
   main_page: {
     printSavedPasswordList,
+    lazyLoadPasswordListIcon,
+    lazyLoadPasswordListIcons_scrolling_handler
   }
 }
 
