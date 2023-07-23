@@ -294,7 +294,7 @@ function printSavedPasswordList() {
   var html = []
   for (var k = 0; k < list_len; k++) {
     var tags = []
-    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')"><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
+    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')"><div class="password-item-website-icon">${list[k].website_icon}</div><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`)
   }
   utilities.qe(".password-list").innerHTML = html.join('')
 }
