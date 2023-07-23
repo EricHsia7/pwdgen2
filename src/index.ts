@@ -22,13 +22,8 @@ import './user-interfaces/css/main-page/password-list.css'
 import './user-interfaces/css/add-password/presets.css'
 import './user-interfaces/css/fade.css'
 
-var WebFont = require('webfontloader');
+const WebFont = require('webfontloader');
 
-WebFont.load({
-  google: {
-    families: ['Noto Sans:400,500,700']
-  }
-});
 
 //for development
 const ErrorStackParser = require('error-stack-parser');
@@ -132,6 +127,13 @@ window.pwdgen2 = function () { //initialize
     utilities.qe(".search").setAttribute('will-change', '0')
   })
   words_list.getWordsList()
+
+
+  WebFont.load({
+    google: {
+      families: ['Noto Sans:400,500,700&display=swap']
+    }
+  });
 }
 
 export default window.pwdgen2
