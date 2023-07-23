@@ -101,7 +101,7 @@ function prompt_message(message, duration) {
       quantity: 16,
       repeat: true
     }
-  ])
+  ], 'production')
   var prompt_element = document.createElement('div')
   prompt_element.id = prompt_id
   prompt_element.classList.add('prompt')
