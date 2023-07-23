@@ -450,6 +450,7 @@ window.interaction = {
   copyElement,
   copyDetails,
   standaloneStatusBarColor,
+  loadFont,
   search: {
     openSearch,
     closeSearch,
