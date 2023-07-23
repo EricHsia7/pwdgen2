@@ -43,12 +43,12 @@
     "cssnano-preset-advanced": "^6.0.1",
     "error-stack-parser": "^2.1.4",
     "stacktrace-js": "^2.0.2",
-    "html-webpack-plugin": "^5.5.3",
-    "webfontloader": "^1.6.28"
+    "html-webpack-plugin": "^5.5.3"
   },
   "dependencies": {
     "aes-js": "^3.1.2",
     "lodash": "^4.17.21",
-    "highlight.js": "^11.8.0"
+    "highlight.js": "^11.8.0",
+    "webfontloader": "^1.6.28"
   }
 }
