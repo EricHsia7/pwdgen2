@@ -26,7 +26,7 @@ export function listSavedPassword() {
       if (!(this_item.website.indexOf('http://') > -1 || this_item.website.indexOf('https://') > -1)) {
         url = 'https://' + url
       }
-      url_obj = new URL(url)
+      var url_obj = new URL(url)
       url_obj.search = '';
       url_obj.protocol = 'http://'
       website_icon = `url(https://remote-ivory-bovid.faviconkit.com/${url_obj.toString().replace('http://', '')})`
