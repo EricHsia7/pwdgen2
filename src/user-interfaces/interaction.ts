@@ -39,6 +39,7 @@ function lazyLoadPasswordListIcon(identity, url) {
       canvas.width = 400
       canvas.height = 400
       var image = new Image();
+      image.crossOrigin = "anonymous";
       image.src = url;
       image.addEventListener('load', function () {
         var w = canvas.width
@@ -67,7 +68,7 @@ function lazyLoadPasswordListIcon(identity, url) {
         window.lazyPasswordListIcons.loaded.push({ dataURL: dataURL, identity: identity })
         item_elt.setAttribute('icon', '2')
         icon_elt.style.setProperty('--j-website-icon', `url(${dataURL})`)
-      });
+      }, { once: true });
     }
   }
 }
