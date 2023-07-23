@@ -48,7 +48,6 @@
   "dependencies": {
     "aes-js": "^3.1.2",
     "lodash": "^4.17.21",
-    "highlight.js": "^11.8.0",
-    "webfontloader": "^1.6.28"
+    "highlight.js": "^11.8.0"
   }
 }

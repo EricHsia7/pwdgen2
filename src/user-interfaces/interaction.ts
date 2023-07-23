@@ -10,6 +10,12 @@ function copyProperty(source: HTMLElement, target: HTMLElement, property: string
   target.style.setProperty(property, source.style.getPropertyValue(property))
 }
 
+function loadFont(url) {
+  var link = document.createElement('link')
+  link.setAttribute('href', url)
+  document.head.appendChild(link)
+}
+
 type fadeType = 'In' | 'Out'
 type fadeDisplay = 'none' | 'flex' | 'inline' | 'block' | 'inline-flex' | 'inline-block'
 function fade(element: HTMLElement, type: fadeType, display: fadeDisplay, callback: Function | void) {
@@ -371,6 +377,8 @@ function closePassword() {
 
 function openAddPassword(event) {
   interaction.fade(utilities.qe('.add-password-page'), 'In', 'block')
+  interaction.loadFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0')
+
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
