@@ -1,6 +1,11 @@
 import fine_grained_password from './fine-grained-password'
 var aesjs = require('aes-js')
 
+function isValidURL(url: string) {
+  const regex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(?:\/.*)?$/;
+  return regex.test(url);
+}
+
 function encryptString(string) {
   var initialization_vector_pattern = [
     {
@@ -328,7 +333,6 @@ function randomColorSet() {
 }
 
 function blendColors(hexColor, rgbaColor) {
-
   var hexToRGBA = function (hex, alpha) {
     const r = parseInt(hex.substring(1, 3), 16);
     const g = parseInt(hex.substring(3, 5), 16);
@@ -369,7 +373,8 @@ window.utilities = {
   randomColorSet,
   isDarkMode,
   blendColors,
-  encodeSignsToHtmlEntities
+  encodeSignsToHtmlEntities,
+  isValidURL
 }
 
 export default window.utilities

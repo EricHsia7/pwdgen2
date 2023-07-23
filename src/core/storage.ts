@@ -19,7 +19,19 @@ export function listSavedPassword() {
   var list_decrypted = []
   for (var k = 0; k < list_len; k++) {
     var this_item = JSON.parse(String(LS.getItem(list[k])))
-    list_decrypted.push({ website: this_item.website, password: utilities.deur(utilities.decryptString(this_item.encrypted_password, this_item.aes_iv)), username: this_item.username, note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
+    var url = ''
+    var website_icon = 'var(--p-aeaeb2)'
+    if (utilities.isValidURL(this_item.website)) {
+      url = this_item.website
+      if (!(this_item.website.indexOf('http://') > -1 || this_item.website.indexOf('https://') > -1)) {
+        url = 'https://' + url
+      }
+      url_obj = new URL(url)
+      url_obj.search = '';
+      url_obj.protocol = 'http://'
+      website_icon = `url(https://remote-ivory-bovid.faviconkit.com/${url_obj.toString().replace('http://', '')})`
+    }
+    list_decrypted.push({ website_icon: website_icon, website: this_item.website, password: utilities.deur(utilities.decryptString(this_item.encrypted_password, this_item.aes_iv)), username: this_item.username, note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
   }
   list_decrypted.sort(function (a, b) {
     return new Date(b.time_stamp).getTime() - new Date(a.time_stamp).getTime()
@@ -93,7 +105,7 @@ export function addPassword(password, username, website, note) {
     }
   ]
   var time = new Date()
-  var id = fine_grained_password.generate(id_pattern,'production')
+  var id = fine_grained_password.generate(id_pattern, 'production')
   setPassword(password, username, time, website, note, id)
   return id
 }
