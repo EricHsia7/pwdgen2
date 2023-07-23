@@ -38,41 +38,36 @@ function lazyLoadPasswordListIcon(identity, url) {
       var ctx = canvas.getContext('2d')
       canvas.width = 400
       canvas.height = 400
-      fetch(url)
-        .then(response => response.blob()) // Convert response to blob
-        .then(blob => {
-          var image = new Image();
-          image.src = URL.createObjectURL(blob); // Create a temporary object URL for the blob
-          image.addEventListener('load', function () {
-            var w = canvas.width
-            var h = canvas.height
-            var padding = 5
-            ctx.clearRect(0, 0, w, h); // (x, y, width, height)
-            ctx.drawImage(image, padding, padding, w, h);
-            var top_left_corner = getPixelColor(ctx, padding, padding)
-            var top_right_corner = getPixelColor(ctx, w - padding, padding)
-            var bottom_right_corner = getPixelColor(ctx, w - padding, h - padding)
-            var bottom_left_corner = getPixelColor(ctx, padding, h - padding)
-            var top = getPixelColor(ctx, w / 2, padding)
-            var right = getPixelColor(ctx, w - padding, h / 2)
-            var bottom = getPixelColor(ctx, w / 2, h - padding)
-            var left = getPixelColor(ctx, padding, h / 2)
-            var all_points = [top_left_corner, top_right_corner, bottom_right_corner, bottom_left_corner, top, right, left, bottom]
-            var solid_colors = all_points.filter(e => (e[3] > 0.5 ? true : false))
-            var r = solid_colors.map(o => o[0]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
-            var g = solid_colors.map(o => o[1]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
-            var b = solid_colors.map(o => o[2]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
-            ctx.fillStyle = `rgb(${r},${g},${b})`;
-            ctx.fillRect(0, 0, w, h); // (x, y, width, height)
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-            var dataURL = canvas.toDataURL()
-            window.lazyPasswordListIcons.unloaded.splice(index, 1)
-            window.lazyPasswordListIcons.loaded.push({ dataURL: dataURL, identity: identity })
-            item_elt.setAttribute('icon', '2')
-            icon_elt.style.setProperty('--j-website-icon', `url(${dataURL})`)
-          });
-        })
-        .catch(error => console.error('Error fetching image:', error));
+      var image = new Image();
+      image.src = url;
+      image.addEventListener('load', function () {
+        var w = canvas.width
+        var h = canvas.height
+        var padding = 5
+        ctx.clearRect(0, 0, w, h); // (x, y, width, height)
+        ctx.drawImage(image, padding, padding, w, h);
+        var top_left_corner = getPixelColor(ctx, padding, padding)
+        var top_right_corner = getPixelColor(ctx, w - padding, padding)
+        var bottom_right_corner = getPixelColor(ctx, w - padding, h - padding)
+        var bottom_left_corner = getPixelColor(ctx, padding, h - padding)
+        var top = getPixelColor(ctx, w / 2, padding)
+        var right = getPixelColor(ctx, w - padding, h / 2)
+        var bottom = getPixelColor(ctx, w / 2, h - padding)
+        var left = getPixelColor(ctx, padding, h / 2)
+        var all_points = [top_left_corner, top_right_corner, bottom_right_corner, bottom_left_corner, top, right, left, bottom]
+        var solid_colors = all_points.filter(e => (e[3] > 0.5 ? true : false))
+        var r = solid_colors.map(o => o[0]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
+        var g = solid_colors.map(o => o[1]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
+        var b = solid_colors.map(o => o[2]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
+        ctx.fillRect(0, 0, w, h); // (x, y, width, height)
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        var dataURL = canvas.toDataURL()
+        window.lazyPasswordListIcons.unloaded.splice(index, 1)
+        window.lazyPasswordListIcons.loaded.push({ dataURL: dataURL, identity: identity })
+        item_elt.setAttribute('icon', '2')
+        icon_elt.style.setProperty('--j-website-icon', `url(${dataURL})`)
+      });
     }
   }
 }
