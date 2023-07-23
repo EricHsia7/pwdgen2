@@ -1,6 +1,7 @@
 import { LS, searchItemsbyname } from './storage'
 import utilities from './utilities'
-var _ = require('lodash');
+var _ = require('lodash/core');
+var cloneDeep = require('lodash/cloneDeep')
 
 const pwd_pattern_default: object = [
   {
