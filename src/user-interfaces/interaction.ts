@@ -73,7 +73,7 @@ function lazyLoadPasswordListIcon(identity, url) {
         var dataURL = canvas.toDataURL()
         */
       window.lazyPasswordListIcons.unloaded.splice(index, 1)
-      window.lazyPasswordListIcons.loaded.push({ dataURL: dataURL, identity: identity })
+      window.lazyPasswordListIcons.loaded.push(identity)
       item_elt.setAttribute('icon', '1')
       icon_elt.style.setProperty('--j-website-icon', `url(${url})`)
       /*
