@@ -29,7 +29,7 @@ export function listSavedPassword() {
       url_obj = new URL(url)
       url_obj.search = '';
       url_obj.protocol = 'http://'
-      website_icon = `https://remote-ivory-bovid.faviconkit.com/${url_obj.toString().replace('http://', '')}`
+      website_icon = `url(https://remote-ivory-bovid.faviconkit.com/${url_obj.toString().replace('http://', '')})`
     }
     list_decrypted.push({ website_icon: website_icon, website: this_item.website, password: utilities.deur(utilities.decryptString(this_item.encrypted_password, this_item.aes_iv)), username: this_item.username, note: this_item.note, time_stamp: this_item.time_stamp, id: this_item.id })
   }
