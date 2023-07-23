@@ -126,13 +126,6 @@ window.pwdgen2 = function () { //initialize
     utilities.qe(".search").setAttribute('will-change', '0')
   })
   words_list.getWordsList()
-
-
-  WebFont.load({
-    google: {
-      families: ['Noto Sans:400,500,700&display=swap']
-    }
-  });
   interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap','googleFontsNotoSans')
 }
 
