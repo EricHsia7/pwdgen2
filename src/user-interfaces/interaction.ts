@@ -38,15 +38,20 @@ function lazyLoadPasswordListIcon(identity, url) {
       var ctx = canvas.getContext('2d')
       canvas.width = 400
       canvas.height = 400
-      var image = new Image();
-      image.crossOrigin = "anonymous";
-      image.src = url;
-      image.addEventListener('load', function () {
+      var id = fine_grained_password.generate([{ type: 'string', string: 'f-' }, { type: 'regex', regex: '/[a-z0-9]/g', quantity: 16, repeat: true }], 'production')
+      var image = document.createElement('img')
+      image.setAttribute('src', url)
+      image.width = 10
+      image.height = 10
+      image.id = id
+      utilities.qe('#faviconsloader').appendChild(image)
+      //image.crossOrigin = "anonymous";
+      utilities.qe(`#faviconsloader img#${id}`).addEventListener('load', function () {
         var w = canvas.width
         var h = canvas.height
         var padding = 5
         ctx.clearRect(0, 0, w, h); // (x, y, width, height)
-        ctx.drawImage(image, padding, padding, w, h);
+        ctx.drawImage(image, 0, 0, w, h);
         var top_left_corner = getPixelColor(ctx, padding, padding)
         var top_right_corner = getPixelColor(ctx, w - padding, padding)
         var bottom_right_corner = getPixelColor(ctx, w - padding, h - padding)
