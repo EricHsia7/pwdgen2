@@ -113,6 +113,7 @@ window.pwdgen2 = function () { //initialize
       }
       search_sticky = false
     }
+    interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler()
   })
   if (!utilities.checkTouchFeatures()) {
     search_will_change_evt = [2, 3]
@@ -127,6 +128,7 @@ window.pwdgen2 = function () { //initialize
   })
   words_list.getWordsList()
   interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap','googleFontsNotoSans')
+  interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler()
 }
 
 export default window.pwdgen2
