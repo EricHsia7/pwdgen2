@@ -90,21 +90,27 @@ function prompt_message(message, duration) {
   }
   var duration_base: number = 180
   var translateY: number = -25
-  const idchars: string = "0123456789abcdefghijklmnopqrstuvwxyz";
-  var prompt_id: string = "";
-  for (var i = 0; i < 8; i++) {
-    var idrandomNumber = Math.floor(Math.random() * idchars.length);
-    prompt_id += idchars.substring(idrandomNumber, idrandomNumber + 1);
-  }
+  var prompt_id: string = fine_grained_password.generate([
+    {
+      type: 'string',
+      string: 'p_'
+    },
+    {
+      type: 'regex',
+      regex: '/[a-z0-9]/g',
+      quantity: 16,
+      repeat: true
+    }
+  ])
   var prompt_element = document.createElement('div')
   prompt_element.id = prompt_id
   prompt_element.classList.add('prompt')
-  prompt_element.classList.add('prompt_animation' + prompt_id)
+  prompt_element.classList.add('prompt_animation_' + prompt_id)
   var prompt_center_element = document.createElement('div')
   prompt_center_element.classList.add('prompt_content')
   prompt_center_element.innerText = message
   prompt_element.appendChild(prompt_center_element)
-  var prompt_css = `.prompt_animation${prompt_id}{animation-timing-function:cubic-bezier(.21,.75,.1,.96);animation-name:prompt${prompt_id};animation-duration:${(duration + duration_base * 2)}ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt${prompt_id}{0%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(0.8);}${Math.floor((duration_base) / (duration + duration_base + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}${Math.floor((duration_base + duration) / (duration + duration_base + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(1);}}`
+  var prompt_css = `.prompt_animation_${prompt_id}{animation-timing-function:cubic-bezier(.21,.75,.1,.96);animation-name:prompt${prompt_id};animation-duration:${(duration + duration_base * 2)}ms;animation-fill-mode:forwards;animation-timing-function:ease-in-out}@keyframes prompt${prompt_id}{0%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(0.8);}${Math.floor((duration_base) / (duration + duration_base + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}${Math.floor((duration_base + duration) / (duration + duration_base + 150) * 100)}%{opacity:1;transform:translateX(-50%) translateY(calc(${translateY}px)) scale(1);}100%{opacity:0;transform:translateX(-50%) translateY(${translateY}px) scale(1);}}`
   var prompt_css_element = document.createElement('style')
   prompt_css_element.innerHTML = prompt_css
   prompt_element.appendChild(prompt_css_element)
