@@ -133,7 +133,7 @@ window.pwdgen2 = function () { //initialize
       families: ['Noto Sans:400,500,700&display=swap']
     }
   });
-  interaction.loadFont('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap')
+  interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap','googleFontsNotoSans')
 }
 
 export default window.pwdgen2
