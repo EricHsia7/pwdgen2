@@ -84,8 +84,40 @@ function lazyLoadPasswordListIcon(identity, url) {
 }
 
 
-function lazyLoadPasswordListIcons_scrolling_handler(event) {
-  window.lazyPasswordListIcons.unloaded.push(id)
+function lazyLoadPasswordListIcons_scrolling_handler(event): void {
+  var isElementInViewport = function (container, element) {
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    const containerTop = containerRect.top;
+    const containerLeft = containerRect.left;
+    const containerBottom = containerRect.bottom;
+    const containerRight = containerRect.right;
+    const elementTop = elementRect.top;
+    const elementLeft = elementRect.left;
+    const elementBottom = elementRect.bottom;
+    const elementRight = elementRect.right;
+    const isInViewport = (
+      elementTop >= containerTop &&
+      elementLeft >= containerLeft &&
+      elementBottom <= containerBottom &&
+      elementRight <= containerRight
+    );
+
+    return isInViewport;
+  }
+
+  var container = utilities.qe('.main-page .contents-box'); // Replace 'container' with your container's ID or reference
+  var allPasswordElt = utilities.qeAll('.main-page .contents-box .password-list .password-item')
+  var allPasswordElt_len = allPasswordElt.length
+
+  for (var o = 0; o < allPasswordElt_len; o++) {
+    if (isElementInViewport(container, allPasswordElt[o])) {
+      if (!(window.lazyPasswordListIcons.unloaded.indexOf(allPasswordElt[o].id) > -1)) {
+        window.lazyPasswordListIcons.unloaded.push(allPasswordElt[o].id)
+      }
+      interaction.main_page.lazyLoadPasswordListIcon(allPasswordElt[o].id, allPasswordElt[o].getAttribute('icon-url'))
+    }
+  }
 }
 
 function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
