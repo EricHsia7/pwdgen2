@@ -6,15 +6,25 @@ import icons from './icons'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator'
 
+window.lazyCSS = {
+  loaded: {
+    'googleFontsNotoSans': false,
+    'googleFontsMaterialSymbols': true
+  }
+}
+
 function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
   target.style.setProperty(property, source.style.getPropertyValue(property))
 }
 
-function loadFont(url) {
-  var link = document.createElement('link')
-  link.setAttribute('href', url)
-  link.setAttribute('rel', 'stylesheet')
-  document.head.appendChild(link)
+function loadCSS(url, identity) {
+  if (!window.lazyCSS.loaded[identity]) {
+    var link = document.createElement('link')
+    link.setAttribute('href', url)
+    link.setAttribute('rel', 'stylesheet')
+    document.head.appendChild(link)
+    window.lazyCSS.loaded[identity] = true
+  }
 }
 
 type fadeType = 'In' | 'Out'
@@ -378,7 +388,7 @@ function closePassword() {
 
 function openAddPassword(event) {
   interaction.fade(utilities.qe('.add-password-page'), 'In', 'block')
-  interaction.loadFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0')
+  interaction.loadCSS('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0', 'googleFontsMaterialSymbols')
 
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
@@ -451,7 +461,7 @@ window.interaction = {
   copyElement,
   copyDetails,
   standaloneStatusBarColor,
-  loadFont,
+  loadCSS,
   search: {
     openSearch,
     closeSearch,
