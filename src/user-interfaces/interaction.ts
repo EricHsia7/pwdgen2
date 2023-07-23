@@ -19,66 +19,15 @@ window.lazyPasswordListIcons = {
 }
 
 function lazyLoadPasswordListIcon(identity, url) {
-  /*
-  var getPixelColor = function (ctx, x, y) {
-    var pixelData = ctx.getImageData(x, y, 1, 1).data;
-    var red = pixelData[0]
-    var green = pixelData[1]
-    var blue = pixelData[2]
-    var alpha = pixelData[3]
-    return [red, green, blue, alpha]
-  }
-*/
   var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`)
   var icon_elt = item_elt.querySelector('.password-item-website-icon')
-
   if (item_elt.getAttribute('icon') === '0') {
     var index = window.lazyPasswordListIcons.unloaded.indexOf(identity)
     if (index > -1) {
-      /*
-      var canvas = utilities.qe('body canvas#faviconcanvas')
-      var ctx = canvas.getContext('2d')
-      canvas.width = 400
-      canvas.height = 400
-      var id = fine_grained_password.generate([{ type: 'string', string: 'f-' }, { type: 'regex', regex: '/[a-z0-9]/g', quantity: 16, repeat: true }], 'production')
-      var image = document.createElement('img')
-      image.setAttribute('src', url)
-      image.width = 10
-      image.height = 10
-      image.id = id
-      image.crossOrigin = "anonymous";
-      utilities.qe('#faviconsloader').appendChild(image)
-      utilities.qe(`#faviconsloader img#${id}`).addEventListener('load', function () {
-        var w = canvas.width
-        var h = canvas.height
-        var padding = 5
-        ctx.clearRect(0, 0, w, h); // (x, y, width, height)
-        ctx.drawImage(image, 0, 0, w, h);
-        var top_left_corner = getPixelColor(ctx, padding, padding)
-        var top_right_corner = getPixelColor(ctx, w - padding, padding)
-        var bottom_right_corner = getPixelColor(ctx, w - padding, h - padding)
-        var bottom_left_corner = getPixelColor(ctx, padding, h - padding)
-        var top = getPixelColor(ctx, w / 2, padding)
-        var right = getPixelColor(ctx, w - padding, h / 2)
-        var bottom = getPixelColor(ctx, w / 2, h - padding)
-        var left = getPixelColor(ctx, padding, h / 2)
-        var all_points = [top_left_corner, top_right_corner, bottom_right_corner, bottom_left_corner, top, right, left, bottom]
-        var solid_colors = all_points.filter(e => (e[3] > 0.5 ? true : false))
-        var r = solid_colors.map(o => o[0]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
-        var g = solid_colors.map(o => o[1]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
-        var b = solid_colors.map(o => o[2]).reduce((accumulator, currentValue) => accumulator + currentValue, 0) / solid_colors.length
-        ctx.fillStyle = `rgb(${r},${g},${b})`;
-        ctx.fillRect(0, 0, w, h); // (x, y, width, height)
-        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        var dataURL = canvas.toDataURL()
-        */
       window.lazyPasswordListIcons.unloaded.splice(index, 1)
       window.lazyPasswordListIcons.loaded.push(identity)
       item_elt.setAttribute('icon', '1')
       icon_elt.style.setProperty('--j-website-icon', `url(${url})`)
-      /*
-       }, { once: true });
-       */
     }
   }
 }
