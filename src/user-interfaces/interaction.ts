@@ -112,10 +112,11 @@ function lazyLoadPasswordListIcons_scrolling_handler(event): void {
 
   for (var o = 0; o < allPasswordElt_len; o++) {
     if (isElementInViewport(container, allPasswordElt[o])) {
-      if (!(window.lazyPasswordListIcons.unloaded.indexOf(allPasswordElt[o].id) > -1)) {
-        window.lazyPasswordListIcons.unloaded.push(allPasswordElt[o].id)
+      var this_id = allPasswordElt[o].getAttribute('pwd-id')
+      if (!(window.lazyPasswordListIcons.unloaded.indexOf(this_id) > -1)) {
+        window.lazyPasswordListIcons.unloaded.push(this_id)
       }
-      interaction.main_page.lazyLoadPasswordListIcon(allPasswordElt[o].id, allPasswordElt[o].getAttribute('icon-url'))
+      interaction.main_page.lazyLoadPasswordListIcon(this_id, allPasswordElt[o].getAttribute('icon-url'))
     }
   }
 }
