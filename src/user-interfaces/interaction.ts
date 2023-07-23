@@ -387,8 +387,9 @@ function closePassword() {
 
 
 function openAddPassword(event) {
-  interaction.fade(utilities.qe('.add-password-page'), 'In', 'block')
-  interaction.loadCSS('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0', 'googleFontsMaterialSymbols')
+  interaction.fade(utilities.qe('.add-password-page'), 'In', 'block', function () {
+    interaction.loadCSS('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0', 'googleFontsMaterialSymbols')
+  })
 
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
