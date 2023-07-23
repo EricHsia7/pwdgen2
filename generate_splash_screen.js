@@ -85,12 +85,22 @@ async function processImages() {
   }
 }
 
+async function createOutputDirectories() {
+  const outputDir = 'dist/splash_screen';
+
+  try {
+    await fs.promises.mkdir(outputDir, { recursive: true });
+  } catch (err) {
+    console.error('Error creating directories:', err);
+  }
+}
+
 (async () => {
   try {
-    fs.mkdirSync('splash_screen_output', { recursive: true });
+    await createOutputDirectories();
     await processImages();
-    fs.writeFileSync('splash_screen/html.txt', html_arr.join('\n'));
-    console.log('Images and HTML code generated successfully!');
+    fs.writeFileSync('dist/splash_screen/html.txt', html_arr.join('\n'));
+    console.log('Images and HTML file generated successfully!');
   } catch (err) {
     console.error('Error:', err);
   }
