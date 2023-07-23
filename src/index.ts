@@ -113,6 +113,7 @@ window.pwdgen2 = function () { //initialize
       }
       search_sticky = false
     }
+    interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler()
   })
   if (!utilities.checkTouchFeatures()) {
     search_will_change_evt = [2, 3]
