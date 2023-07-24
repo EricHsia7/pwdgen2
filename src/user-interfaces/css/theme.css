@@ -8,6 +8,7 @@
   --p-e5e5ea: #e5e5ea;
   --p-aeaeb2: #aeaeb2;
   --p-333333: #333333;
+  --p-side-panel-width:clamp(180px,25%,250px);
 }
 
 @media (prefers-color-scheme: dark) {

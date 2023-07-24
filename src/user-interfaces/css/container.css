@@ -60,3 +60,23 @@
   color: var(--p-333333);
   background: var(--p-ffffff)
 }
+
+@media screen and (min-width: 600px) {
+  .container,
+  .password-page,
+  .main-page,
+  .add-password-page,
+  .pattern_creator {
+    width: calc(100% - var(--p-side-panel-width));
+    left: var(--p-side-panel-width)
+  }
+
+  .fixed-title-box {
+    width: calc(100% - var(--p-side-panel-width));
+    left: var(--p-side-panel-width);
+  }
+
+  .search-box {
+    width: calc(100% - var(--p-side-panel-width));
+  }
+}
