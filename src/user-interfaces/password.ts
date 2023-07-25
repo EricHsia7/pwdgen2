@@ -129,6 +129,8 @@ export function applyPreset(index) {
 
 export function openEditPassword() {
   interaction.fade(utilities.qe('.edit-password-page'), 'In', 'block')
+  utilities.qeAll(`.options li[y="editpassword"]`).setAttribute('d','1')
+
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
