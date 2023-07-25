@@ -160,7 +160,7 @@ export function modifyPasswordWithEditor(id) {
   var username = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="username"] input').value || ''
   var website = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="website"] input').value || ''
   var time_stamp = new Date().toISOString()
-  var note = utilities.qe('.edit-password-page .edit-note[k="note"] input').value || ''
+  var note = utilities.qe('.edit-password-page .edit-note-content').textContent || ''
   var addedpassword = modifyPassword(password, username, website, note, time_stamp, id)
   interaction.prompt_message('Edited password.', 1200)
   interaction.edit_password.closeEditPassword()
