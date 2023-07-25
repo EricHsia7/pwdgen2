@@ -363,7 +363,19 @@ function printSavedPasswordList(): void {
 function openOptions(r) {
   utilities.qe('.options_mask').style.setProperty('display', 'block')
   utilities.qe('.options').style.setProperty('display', 'inline-block')
-  utilities.qe('.options').style.setProperty('--js-options-list-count', document.querySelectorAll('.options li[group="' + r + '"]').length)
+  utilities.qe('.options').style.setProperty('--js-options-list-count', utilities.qeAll(`.options li[group="${r}"]`).length)
+  var all_options = utilities.qeAll('.options li')
+  var all_options_len = all_options.length
+  for (var f = 0; f < all_options_len; f++) {
+    all_options_in_group[f].setAttribute('d', '0')
+  }
+
+  var all_options_in_group = utilities.qeAll(`.options li[group="${r}"]`)
+  var all_options_in_group_len = all_options_in_group.length
+  for (var f = 0; f < all_options_in_group_len; f++) {
+    all_options_in_group[f].setAttribute('d', '1')
+  }
+
   setTimeout(function () {
     utilities.qe('.options').setAttribute('k', '1')
   }, 1)
@@ -416,6 +428,9 @@ window.interaction = {
     addPasswordWithForm,
     printPatternPresets,
     applyPreset
+  },
+  edit_password: {
+    openEditPassword
   },
   options: {
     openOptions,

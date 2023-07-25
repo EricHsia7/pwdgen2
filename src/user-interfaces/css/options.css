@@ -70,6 +70,10 @@
   top: calc(var(--options-list-n) * 50px);
 }
 
+.options li[d="0"] {
+  display:none;
+}
+
 .options li[b="0"] {
   border: none;
 }
