@@ -3,7 +3,6 @@ import utilities from '../core/utilities'
 import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword } from '../core/storage'
 import icons from './icons'
-import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator'
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword } from './password'
 
