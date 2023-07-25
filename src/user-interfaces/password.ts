@@ -161,16 +161,16 @@ export function closeEditPassword() {
   }
 }
 
-export function modifyPasswordWithEditor() {
+export function modifyPasswordWithEditor(id) {
   var password = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="password"] input').value || ''
   var username = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="username"] input').value || ''
   var website = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="website"] input').value || ''
   var time_stamp = new Date().toISOString()
   var note = utilities.qe('.edit-password-page .details-note[k="note"] input').value || ''
-  var addedpassword = addPassword(password, username, website, '')
+  var addedpassword = modifyPassword(password, username, website, note, time_stamp, id)
   interaction.prompt_message('Edited password.', 1200)
   interaction.edit_password.closeEditPassword()
-  interaction.password_page.openPassword(addedpassword, function () {
+  interaction.password_page.openPassword(id, function () {
     interaction.main_page.printSavedPasswordList()
   })
 }
