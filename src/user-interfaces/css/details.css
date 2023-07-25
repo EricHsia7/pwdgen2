@@ -88,9 +88,9 @@
 }
 
 .add-item .add-item-value,
-.edit-item .edit-item-value,
+.edit-list .edit-item-value,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
-  width: calc(100% - 100px);
+  width: calc(100% - 90px);
   right: 10px
 }
 
@@ -139,7 +139,7 @@
 
 .details-list .details-item:last-child,
 .add-list .add-item:last-child,
-.edit-item .edit-item:last-child,
+.edit-list .edit-item:last-child,
 .pattern_creator_preview_component_info_list .pattern_creator_preview_component_info_item:last-child,
 .pattern_creator_add_pattern_errors_list .pattern_creator_add_pattern_errors_list_item:last-child {
   border: none;
