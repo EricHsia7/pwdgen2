@@ -7,6 +7,7 @@ import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 
 export function openPassword(id, fadeCallback) {
   interaction.fade(utilities.qe('.password-page'), 'In', 'block', fadeCallback)
+  utilities.qeAll(`.options li[y="editpassword"]`).setAttribute('onclick', `interaction.edit_password.openEditPassword('${id}',event)`)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
@@ -127,10 +128,9 @@ export function applyPreset(index) {
 }
 
 
-export function openEditPassword() {
+export function openEditPassword(id, event) {
   interaction.fade(utilities.qe('.edit-password-page'), 'In', 'block')
-  utilities.qeAll(`.options li[y="editpassword"]`).setAttribute('d','1')
-
+  interaction.options.closeOptions(event)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
