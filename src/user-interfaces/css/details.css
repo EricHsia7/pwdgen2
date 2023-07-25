@@ -47,7 +47,7 @@
   position: absolute;
   top: 10px;
   left: 0px;
-  width: 90px;
+  width: 100px;
   height: 30px;
   font-size: 18px;
   font-weight: 500;
@@ -90,7 +90,7 @@
 .add-item .add-item-value,
 .edit-item .edit-item-value,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
-  width: calc(100% - 90px);
+  width: calc(100% - 100px);
   right: 10px
 }
 
