@@ -132,6 +132,7 @@ export function openEditPassword(id, event) {
   interaction.fade(utilities.qe('.edit-password-page'), 'In', 'block')
   closePassword()
   utilities.qe(`.edit-password-page .fixed-title-box .btn.right-top-corner`).setAttribute('onclick', `interaction.edit_password.modifyPasswordWithEditor('${id}')`)
+  utilities.qe(`.edit-password-page .fixed-title-box .btn.left-top-corner`).setAttribute('onclick', `interaction.edit_password.closeEditPassword('${id}')`)
   interaction.options.closeOptions(event)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
@@ -148,10 +149,11 @@ export function openEditPassword(id, event) {
   }
 }
 
-export function closeEditPassword() {
+export function closeEditPassword(id) {
   interaction.fade(utilities.qe('.edit-password-page'), 'Out', 'none', function () {
     utilities.qe('.edit-password-page').scrollTop = 0
   })
+  interaction.password_page.openPassword(id)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(1)
   }
