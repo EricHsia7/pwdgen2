@@ -228,8 +228,11 @@ function copyElement(selector) {
 
 function copyDetails(k) {
   interaction.copyElement(`.password-page .details-item-value[k="${k}"] input`)
+  if (k === 'createdat') {
+    k = 'create time'
+  }
+  prompt_message(`Copied ${k}.`)
 }
-
 
 
 function openSearch() {
