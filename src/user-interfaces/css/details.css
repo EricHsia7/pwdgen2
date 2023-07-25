@@ -1,8 +1,9 @@
 .details-list,
-.edit-list,
 .details-note,
 .details-check-result,
 .add-list,
+.edit-list,
+.edit-note,
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_list,
 .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list {
   position: relative;
