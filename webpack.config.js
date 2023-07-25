@@ -31,7 +31,7 @@ module.exports = (env, argv) => {
       }),
       new webpack.DefinePlugin({
         'process.env': {
-          VERSION: generateRandomString(16), // You can adjust the length of the random string here (e.g., 8 characters)
+          VERSION: JSON.stringify(generateRandomString(16)), // You can adjust the length of the random string here (e.g., 8 characters)
         },
       }),
     ],
