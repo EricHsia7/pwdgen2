@@ -233,7 +233,6 @@ function copyDetails(k) {
 
 
 function openSearch() {
-  Xsearch.searchIndex = Xsearch.createSearchIndex()
   if (search_evt === 0) {
     utilities.qe(".search input#search").addEventListener("selectionchange", function (e) {
       interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
@@ -257,6 +256,8 @@ function openSearch() {
   utilities.qe(".search-box").setAttribute('transition', '1')
   utilities.qe(".search-box").addEventListener('transitionend', function () {
     utilities.qe(".search-box").setAttribute('transition', '0')
+    Xsearch.searchIndex = Xsearch.createSearchIndex()
+    interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
   })
   if (search_status === 0) {
     interaction.fade(utilities.qe('.search-output-box'), 'In', 'block')
@@ -265,7 +266,6 @@ function openSearch() {
   }
   interaction.standaloneStatusBarColor(1)
   search_status = 1
-  interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
 }
 
 function closeSearch() {
@@ -276,6 +276,7 @@ function closeSearch() {
   utilities.qe(".search-box").addEventListener('transitionend', function () {
     utilities.qe(".search-box").setAttribute('transition', '0')
   })
+  utilities.qe('.search input#search').value = ''
   if (search_status === 1) {
     utilities.qe('.search-output-box').setAttribute('status', '0')
     interaction.fade(utilities.qe('.search-output-box'), 'Out', 'none')
