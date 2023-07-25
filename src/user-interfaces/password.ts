@@ -7,7 +7,7 @@ import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 
 export function openPassword(id, fadeCallback) {
   interaction.fade(utilities.qe('.password-page'), 'In', 'block', fadeCallback)
-  utilities.qeAll(`.options li[y="editpassword"]`).setAttribute('onclick', `interaction.edit_password.openEditPassword('${id}',event)`)
+  utilities.qe(`.options li[y="editpassword"]`).setAttribute('onclick', `interaction.edit_password.openEditPassword('${id}',event)`)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
