@@ -139,7 +139,7 @@
 
 .details-list .details-item:last-child,
 .add-list .add-item:last-child,
-.edit-item .edit-item-value:last-child,
+.edit-item .edit-item:last-child,
 .pattern_creator_preview_component_info_list .pattern_creator_preview_component_info_item:last-child,
 .pattern_creator_add_pattern_errors_list .pattern_creator_add_pattern_errors_list_item:last-child {
   border: none;
