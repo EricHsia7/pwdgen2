@@ -138,11 +138,11 @@ export function openEditPassword(id, event) {
     var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
     var note_plain_text = (json.note === null ? '' : utilities.deur(atob(String(json.note))))
     var password = utilities.deur(utilities.decryptString(json.encrypted_password, json.aes_iv)) || ""
-    utilities.qe('.edit-password-page .details-item-value[k="username"] input').value = json.username || ""
-    utilities.qe('.edit-password-page .details-item-value[k="password"] input').value = password
-    utilities.qe('.edit-password-page .details-item-value[k="website"] input').value = json.website || ""
-    utilities.qe('.edit-password-page .details-item-value[k="createdat"] input').value = utilities.timestr(new Date(json.time_stamp)) || ""
-    utilities.qe('.edit-password-page .details-note-content').innerHTML = note_plain_text
+    utilities.qe('.edit-password-page .edit-item-value[k="username"] input').value = json.username || ""
+    utilities.qe('.edit-password-page .edit-item-value[k="password"] input').value = password
+    utilities.qe('.edit-password-page .edit-item-value[k="website"] input').value = json.website || ""
+    utilities.qe('.edit-password-page .edit-item-value[k="createdat"] input').value = utilities.timestr(new Date(json.time_stamp)) || ""
+    utilities.qe('.edit-password-page .edit-note-content').innerHTML = note_plain_text
   }
 }
 
