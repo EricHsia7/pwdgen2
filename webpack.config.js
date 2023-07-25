@@ -1,9 +1,22 @@
 const path = require('path');
+const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const AdvancedPreset = require('cssnano-preset-advanced');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+function generateRandomString(length) {
+  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    result += charset[randomIndex];
+  }
+  return result;
+}
+
+
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -15,6 +28,11 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html', // Path to your custom HTML template file
         inject: 'head', // Specify 'body' to insert the script tags just before the closing </body> tag
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          VERSION: JSON.stringify(generateRandomString(16)), // You can adjust the length of the random string here (e.g., 8 characters)
+        },
       }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
@@ -93,4 +111,3 @@ module.exports = (env, argv) => {
     // Add any additional plugins and configurations as needed
   }
 }
-
