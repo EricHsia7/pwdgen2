@@ -110,28 +110,3 @@ module.exports = (env, argv) => {
     // Add any additional plugins and configurations as needed
   }
 }
-
-
-
-
-
-const webpack = require('webpack');
-const path = require('path');
-
-module.exports = {
-  // Your existing Webpack configuration...
-  output: {
-    filename: 'index.min.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: 'https://example.com/dist/', // This is the public URL for your assets
-  },
-  plugins: [
-    // Define the environment variable with the random string
-    new webpack.DefinePlugin({
-      'process.env': {
-        VERSION: JSON.stringify(generateRandomString(8)), // You can adjust the length of the random string here (e.g., 8 characters)
-      },
-    }),
-    // Other plugins...
-  ],
-};
