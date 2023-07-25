@@ -5,6 +5,18 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const AdvancedPreset = require('cssnano-preset-advanced');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+function generateRandomString(length) {
+  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    result += charset[randomIndex];
+  }
+  return result;
+}
+
+
+
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
   return {
@@ -15,6 +27,11 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html', // Path to your custom HTML template file
         inject: 'head', // Specify 'body' to insert the script tags just before the closing </body> tag
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          VERSION: generateRandomString(16), // You can adjust the length of the random string here (e.g., 8 characters)
+        },
       }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
@@ -94,3 +111,27 @@ module.exports = (env, argv) => {
   }
 }
 
+
+
+
+
+const webpack = require('webpack');
+const path = require('path');
+
+module.exports = {
+  // Your existing Webpack configuration...
+  output: {
+    filename: 'index.min.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'https://example.com/dist/', // This is the public URL for your assets
+  },
+  plugins: [
+    // Define the environment variable with the random string
+    new webpack.DefinePlugin({
+      'process.env': {
+        VERSION: JSON.stringify(generateRandomString(8)), // You can adjust the length of the random string here (e.g., 8 characters)
+      },
+    }),
+    // Other plugins...
+  ],
+};

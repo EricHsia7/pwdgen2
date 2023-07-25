@@ -88,7 +88,7 @@
 }
 
 .add-item .add-item-value,
-.edit-list .edit-item-value,
+.edit-item .edit-item-value,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
   width: calc(100% - 90px);
   right: 10px
