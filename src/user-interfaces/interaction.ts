@@ -108,7 +108,7 @@ function fade(element: HTMLElement, type: fadeType, display: fadeDisplay, callba
   var style_str = element.getAttribute('style')
   element.setAttribute('style', String(style_str).replaceAll(/display[\s]*:{1,1}[\sa-z-]*;{1,1}[^\s]*/gm, ''))
   element.classList.add(`fade${type}-${fade_id}`)
-  var css = `.fadeIn-${fade_id} {display:${element_display};opacity:0} .fadeIn-${fade_id}-start{transition:${duration}ms;opacity:1;transition-timing-function:ease;} .fadeOut-${fade_id} {display:${element_display};opacity:1} .fadeOut-${fade_id}-start{transition:${duration}ms;opacity:0;transition-timing-function:ease;}`
+  var css = `.fadeIn-${fade_id} {display:${element_display};opacity:0} .fadeIn-${fade_id}-start{transition:${duration}ms;opacity:1;transition-timing-function:ease;} .fadeOut-${fade_id} {display:${element_display};opacity:1} .fadeOut-${fade_id}-start{transition:${duration}ms;opacity:0;transition-timing-function:linear;}`
   var css_style_element = document.createElement("style")
   css_style_element.innerHTML = css
   css_style_element.id = `fade-css-${fade_id}`
