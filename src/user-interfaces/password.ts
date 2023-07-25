@@ -132,14 +132,6 @@ export function openEditPassword() {
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
-  if (!password_page_icon_loaded) {
-    password_page_icon_loaded = true
-    var copy_btn = utilities.qeAll('.password-page .details-item-copy')
-    var copy_btn_len = copy_btn.length
-    for (var q = 0; q < copy_btn_len; q++) {
-      copy_btn[q].innerHTML = icons.icon_copy
-    }
-  }
   if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
     var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
     var note_plain_text = (json.note === null ? '' : utilities.deur(atob(String(json.note))))
