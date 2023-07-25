@@ -129,5 +129,48 @@ export function applyPreset(index) {
 
 export function openEditPassword() {
   interaction.fade(utilities.qe('.edit-password-page'), 'In', 'block')
+  if (search_sticky || search_status === 1) {
+    interaction.standaloneStatusBarColor(0)
+  }
+  if (!password_page_icon_loaded) {
+    password_page_icon_loaded = true
+    var copy_btn = utilities.qeAll('.password-page .details-item-copy')
+    var copy_btn_len = copy_btn.length
+    for (var q = 0; q < copy_btn_len; q++) {
+      copy_btn[q].innerHTML = icons.icon_copy
+    }
+  }
+  if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
+    var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
+    var note_plain_text = (json.note === null ? '' : utilities.deur(atob(String(json.note))))
+    var password = utilities.deur(utilities.decryptString(json.encrypted_password, json.aes_iv)) || ""
+    utilities.qe('.edit-password-page .details-item-value[k="username"] input').value = json.username || ""
+    utilities.qe('.edit-password-page .details-item-value[k="password"] input').value = password
+    utilities.qe('.edit-password-page .details-item-value[k="website"] input').value = json.website || ""
+    utilities.qe('.edit-password-page .details-item-value[k="createdat"] input').value = utilities.timestr(new Date(json.time_stamp)) || ""
+    utilities.qe('.edit-password-page .details-note-content').innerHTML = note_plain_text
+  }
+}
 
+export function closeEditPassword() {
+  interaction.fade(utilities.qe('.edit-password-page'), 'Out', 'none', function () {
+    utilities.qe('.edit-password-page').scrollTop = 0
+  })
+  if (search_sticky || search_status === 1) {
+    interaction.standaloneStatusBarColor(1)
+  }
+}
+
+export function modifyPasswordWithEditor() {
+  var password = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="password"] input').value || ''
+  var username = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="username"] input').value || ''
+  var website = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="website"] input').value || ''
+  var time_stamp = new Date().toISOString()
+  var note = utilities.qe('.edit-password-page .details-note[k="note"] input').value || ''
+  var addedpassword = addPassword(password, username, website, '')
+  interaction.prompt_message('Edited password.', 1200)
+  interaction.edit_password.closeEditPassword()
+  interaction.password_page.openPassword(addedpassword, function () {
+    interaction.main_page.printSavedPasswordList()
+  })
 }

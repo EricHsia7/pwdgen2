@@ -1,4 +1,5 @@
 .details-list,
+.edit-list,
 .details-note,
 .details-check-result,
 .add-list,
@@ -17,6 +18,7 @@
 
 .details-item,
 .add-item,
+.edit-item,
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_item,
 .pattern_creator_add_pattern_errors .pattern_creator_add_pattern_errors_list_item {
   position: relative;
@@ -38,6 +40,7 @@
 
 .details-item .details-item-title,
 .add-item .add-item-title,
+.edit-item .edit-item-title,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_title,
 .pattern_creator_add_pattern_errors_list_item .pattern_creator_add_pattern_errors_list_item_title {
   position: absolute;
@@ -73,6 +76,8 @@
 
 .details-item .details-item-value,
 .add-item .add-item-value,
+.edit-item,
+.edit-item-value,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
   position: absolute;
   right: 35px;
@@ -83,6 +88,8 @@
 }
 
 .add-item .add-item-value,
+.edit-item,
+.edit-item-value,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
   width: calc(100% - 100px);
   right: 10px
@@ -90,6 +97,8 @@
 
 .details-item .details-item-value input,
 .add-item .add-item-value input,
+.edit-item,
+.edit-item-value input,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value input {
   position: absolute;
   top: 0px;
@@ -132,12 +141,15 @@
 
 .details-list .details-item:last-child,
 .add-list .add-item:last-child,
+.edit-item,
+.edit-item-value:last-child,
 .pattern_creator_preview_component_info_list .pattern_creator_preview_component_info_item:last-child,
 .pattern_creator_add_pattern_errors_list .pattern_creator_add_pattern_errors_list_item:last-child {
   border: none;
 }
 
-.details-note-content {
+.details-note-content,
+.edit-note-content {
   position: relative;
   width: calc(100% - 20px);
   min-height: 100px;
