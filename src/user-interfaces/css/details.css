@@ -76,8 +76,7 @@
 
 .details-item .details-item-value,
 .add-item .add-item-value,
-.edit-item,
-.edit-item-value,
+.edit-item .edit-item-value,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
   position: absolute;
   right: 35px;
@@ -88,8 +87,7 @@
 }
 
 .add-item .add-item-value,
-.edit-item,
-.edit-item-value,
+.edit-item .edit-item-value,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value {
   width: calc(100% - 100px);
   right: 10px
@@ -97,8 +95,7 @@
 
 .details-item .details-item-value input,
 .add-item .add-item-value input,
-.edit-item,
-.edit-item-value input,
+.edit-item .edit-item-value input,
 .pattern_creator_preview_component_info_item .pattern_creator_preview_component_info_item_value input {
   position: absolute;
   top: 0px;
