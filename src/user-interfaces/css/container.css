@@ -2,6 +2,7 @@
 .password-page,
 .main-page,
 .add-password-page,
+.edit-password-page,
 .pattern_creator {
   position: fixed;
   top: 0px;
@@ -16,6 +17,7 @@
 
 .password-page,
 .add-password-page,
+.edit-password-page,
 .pattern_creator {
   display: none;
 }
@@ -30,7 +32,8 @@
 
 .password-page .contents-box,
 .add-password-page .contents-box,
-.pattern_creator .contents-box {
+.pattern_creator .contents-box,
+.edit-password-page .contents-box {
   top: 50px;
 }
 
