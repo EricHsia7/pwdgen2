@@ -48,6 +48,7 @@
   "dependencies": {
     "aes-js": "^3.1.2",
     "highlight.js": "^11.8.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0"
   }
 }
