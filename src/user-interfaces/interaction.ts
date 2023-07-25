@@ -367,7 +367,7 @@ function openOptions(r) {
   var all_options = utilities.qeAll('.options li')
   var all_options_len = all_options.length
   for (var f = 0; f < all_options_len; f++) {
-    all_options_in_group[f].setAttribute('d', '0')
+    all_options[f].setAttribute('d', '0')
   }
 
   var all_options_in_group = utilities.qeAll(`.options li[group="${r}"]`)
