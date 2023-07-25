@@ -130,6 +130,7 @@ export function applyPreset(index) {
 
 export function openEditPassword(id, event) {
   interaction.fade(utilities.qe('.edit-password-page'), 'In', 'block')
+  closePassword()
   utilities.qe(`.edit-password-page .fixed-title-box .btn.right-top-corner`).setAttribute('onclick', `interaction.edit_password.modifyPasswordWithEditor('${id}')`)
   interaction.options.closeOptions(event)
   if (search_sticky || search_status === 1) {

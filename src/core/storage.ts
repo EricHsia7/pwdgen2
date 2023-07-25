@@ -39,7 +39,7 @@ export function listSavedPassword(): object[] {
   var list_decrypted = []
   for (var k = 0; k < list_len; k++) {
     var this_item = JSON.parse(String(LS.getItem(list[k])))
-    if(this_item.hasOwnProperty('history')) {
+    if (this_item.hasOwnProperty('history')) {
       continue;
     }
     var url = ''
