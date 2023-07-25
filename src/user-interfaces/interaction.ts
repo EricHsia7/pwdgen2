@@ -4,7 +4,7 @@ import Xsearch from '../core/search'
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword } from '../core/storage'
 import icons from './icons'
 import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator'
-import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword } from './password'
+import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword } from './password'
 
 window.lazyCSS = {
   loaded: {
@@ -429,7 +429,9 @@ window.interaction = {
     applyPreset
   },
   edit_password: {
-    openEditPassword
+    openEditPassword,
+    closeEditPassword,
+    modifyPasswordWithEditor
   },
   options: {
     openOptions,
