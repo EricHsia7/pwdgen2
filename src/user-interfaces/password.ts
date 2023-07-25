@@ -2,6 +2,7 @@ import utilities from '../core/utilities'
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword } from '../core/storage'
 import icons from './icons'
 import fine_grained_password from '../core/fine-grained-password'
+import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 
 
 export function openPassword(id, fadeCallback) {
@@ -128,5 +129,5 @@ export function applyPreset(index) {
 
 export function openEditPassword() {
   interaction.fade(utilities.qe('.edit-password-page'), 'In', 'block')
-  
+
 }
