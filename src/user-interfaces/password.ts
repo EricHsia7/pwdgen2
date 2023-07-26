@@ -52,9 +52,12 @@ export function openPassword(id, fadeCallback) {
   }
 }
 
-export function closePassword() {
+export function closePassword(fadeCallback) {
   interaction.fade(utilities.qe('.password-page'), 'Out', 'none', function () {
     utilities.qe('.password-page').scrollTop = 0
+    if (typeof fadeCallback === 'function') {
+      fadeCallback()
+    }
   })
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(1)
@@ -184,7 +187,9 @@ export function confirmToDeletePassword(id) {
   var remove = removePassword(id)
   if (remove) {
     interaction.prompt_message('Deleted the password permanently.')
-    interaction.password_page.closePassword()
+    interaction.password_page.closePassword(function () {
+      interaction.main_page.printSavedPasswordList()
+    })
   }
   else {
     interaction.prompt_message('Failed to delete the password.')
