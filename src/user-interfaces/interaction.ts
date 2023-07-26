@@ -205,6 +205,7 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   interaction.fade(utilities.qe(`body #${temporary_id}`), 'In', 'inline-flex')
   interaction.fade(utilities.qe(`body #${temporary_id}_mask`), 'In', 'block')
   utilities.qe(`body #${temporary_id}`).setAttribute('o', '1')
+  interaction.standaloneStatusBarColor(2)
 }
 
 function close_prompt_asking(temporary_id) {
@@ -215,6 +216,9 @@ function close_prompt_asking(temporary_id) {
   interaction.fade(utilities.qe(`body #${temporary_id}_mask`), 'Out', 'none', function () {
     utilities.qe(`body #${temporary_id}_mask`).remove()
   })
+  if (search_sticky || search_status === 1) {
+    interaction.standaloneStatusBarColor(1)
+  }
 }
 
 function standaloneStatusBarColor(a) {
