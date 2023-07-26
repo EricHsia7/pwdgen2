@@ -175,7 +175,7 @@ export function modifyPasswordWithEditor(id) {
 }
 
 export function deletePassword(id) {
-  prompt_asking('Confirm to proceed to <b>permanently</b> delete the password.', 'Confirm', `interaction.password_page.confirmToDeletePassword('${id}')`, 'Cancel', `prompt_message('Canceled deletion.',1200)`)
+  interaction.prompt_asking('Confirm to proceed to <b>permanently</b> delete the password.', 'Confirm', `interaction.password_page.confirmToDeletePassword('${id}')`, 'Cancel', `prompt_message('Canceled deletion.',1200)`)
 }
 
 export function confirmToDeletePassword(id) {
