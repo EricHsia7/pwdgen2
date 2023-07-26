@@ -9,6 +9,7 @@
   --p-aeaeb2: #aeaeb2;
   --p-333333: #333333;
   --p-border-radius-default: 15px;
+  --p-border-radius-small: 8px;
 }
 
 @media (prefers-color-scheme: dark) {

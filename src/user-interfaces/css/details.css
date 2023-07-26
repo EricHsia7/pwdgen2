@@ -220,7 +220,7 @@
   width: 30px;
   height: 30px;
   font-size: 15px;
-  border-radius: 7px;
+  border-radius: var(--p-border-radius-small);
 }
 
 .details-check-result-phrase {
