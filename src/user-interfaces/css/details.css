@@ -160,6 +160,7 @@
   color: var(--p-333333);
   white-space: pre-wrap;
   word-break: break-word;
+  caret-color: var(--p-main-color);
 }
 
 .details-note-content .hashtag {
