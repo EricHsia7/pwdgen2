@@ -8,6 +8,7 @@ import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 export function openPassword(id, fadeCallback) {
   interaction.fade(utilities.qe('.password-page'), 'In', 'block', fadeCallback)
   utilities.qe(`.options li[y="editpassword"]`).setAttribute('onclick', `interaction.edit_password.openEditPassword('${id}',event)`)
+  utilities.qe(`.options li[y="deletepassword"]`).setAttribute('onclick', `interaction.password_page.deletePassword('${id}',event)`)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(0)
   }
@@ -166,9 +167,20 @@ export function modifyPasswordWithEditor(id) {
   var time_stamp = new Date().toISOString()
   var note = utilities.qe('.edit-password-page .edit-note-content').textContent || ''
   modifyPassword(password, username, time_stamp, website, note, id)
-  interaction.prompt_message('Edited password.', 1200)
+  interaction.prompt_message('Saved changes.', 1200)
   interaction.edit_password.closeEditPassword()
   interaction.password_page.openPassword(id, function () {
     interaction.main_page.printSavedPasswordList()
   })
+}
+
+export function deletePassword(id) {
+  prompt_asking('Confirm to proceed to <b>permanently</b> delete the password.', 'Confirm', `interaction.password_page.confirmToDeletePassword('${id}')`, 'Cancel', `prompt_message('Canceled deletion.',1200)`)
+}
+
+export function confirmToDeletePassword(id) {
+  var remove = removePassword(id)
+  if (remove) {
+    prompt_message('Deleted password permanently.')
+  }
 }

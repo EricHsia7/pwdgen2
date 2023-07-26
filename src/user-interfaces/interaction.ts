@@ -1,10 +1,10 @@
 import fine_grained_password from '../core/fine-grained-password'
 import utilities from '../core/utilities'
 import Xsearch from '../core/search'
-import { LS, setPassword, addPassword, listSavedPassword, modifyPassword } from '../core/storage'
+import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword } from '../core/storage'
 import icons from './icons'
 import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator'
-import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor } from './password'
+import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password'
 
 window.lazyCSS = {
   loaded: {
@@ -179,7 +179,41 @@ function prompt_message(message, duration) {
   }, { once: true })
 }
 
+function prompt_asking(message: string, option1: string, option1_func: string, option2: string, option2_func: string) {
+  var temporary_id = fine_grained_password.generate([
+    {
+      type: 'string',
+      string: 'a-'
+    },
+    {
+      type: "regex",
+      regex: "/[a-z0-9]/g",
+      quantity: 16,
+      repeat: true
+    }
+  ], 'production')
 
+  var mask_elt = document.createElement('div')
+  mask_elt.classList.add('prompt_asking_mask')
+  mask_elt.id = `${temporary_id}_mask`
+  var prompt_asking_elt = document.createElement('div')
+  prompt_asking_elt.classList.add('prompt_asking')
+  prompt_asking_elt.id = temporary_id
+  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="${option1_func};interaction.close_prompt_asking('${temporary_id}')">${option1}</div><div class="prompt_asking_option2" onclick="${option2_func};interaction.close_prompt_asking('${temporary_id}')">${option2}</div></div>`
+  document.body.appendChild(mask_elt)
+  document.body.appendChild(prompt_asking_elt)
+  interaction.fade(utilities.qe(`body #${temporary_id}`), 'In', 'inline-flex')
+  interaction.fade(utilities.qe(`body #${temporary_id}_mask`), 'In', 'block')
+}
+
+function close_prompt_asking(temporary_id) {
+  interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
+    utilities.qe(`body #${temporary_id}`).remove()
+  })
+  interaction.fade(utilities.qe(`body #${temporary_id}_mask`), 'Out', 'none', function () {
+    utilities.qe(`body #${temporary_id}_mask`).remove()
+  })
+}
 
 function standaloneStatusBarColor(a) {
   var c = '#f2f2f7'
@@ -463,6 +497,7 @@ window.interaction = {
   password_page: {
     openPassword,
     closePassword,
+    confirmToDeletePassword
   },
   main_page: {
     printSavedPasswordList,
