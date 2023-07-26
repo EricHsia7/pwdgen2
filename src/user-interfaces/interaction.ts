@@ -18,7 +18,7 @@ window.lazyPasswordListIcons = {
   loaded: []
 }
 
-winodw.standaloneStatusBarColorHistory = [0, 0]
+const standaloneStatusBarColorHistory: number[] = [0, 0]
 
 function lazyLoadPasswordListIcon(identity, url) {
   var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`)
@@ -233,15 +233,16 @@ function standaloneStatusBarColor(a) {
     d = utilities.blendColors('#0a0a0b', 'rgba(0,0,0,0.45)')
   }
   if (a === 3) {
-    interaction.standaloneStatusBarColor(standaloneStatusBarColorHistory[standaloneStatusBarColorHistory.length - 2])
+    interaction.standaloneStatusBarColor(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2])
+    return ''
   }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
   utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
-  if (!(standaloneStatusBarColorHistory[standaloneStatusBarColorHistory.length - 1] === a)) {
-    window.standaloneStatusBarColorHistory.push(a)
+  if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] === a)) {
+    interaction.standaloneStatusBarColorHistory.push(a)
   }
-  if (standaloneStatusBarColorHistory.length > 15) {
-    standaloneStatusBarColorHistory = standaloneStatusBarColorHistory.slice(standaloneStatusBarColorHistory.length - 11, standaloneStatusBarColorHistory.length - 1)
+  if (interaction.standaloneStatusBarColorHistory.length > 15) {
+    interaction.standaloneStatusBarColorHistory = interaction.standaloneStatusBarColorHistory.slice(interaction.standaloneStatusBarColorHistory.length - 11, interaction.standaloneStatusBarColorHistory.length - 1)
   }
 }
 
@@ -468,6 +469,7 @@ window.interaction = {
   copyElement,
   copyDetails,
   standaloneStatusBarColor,
+  standaloneStatusBarColorHistory,
   loadCSS,
   search: {
     openSearch,
