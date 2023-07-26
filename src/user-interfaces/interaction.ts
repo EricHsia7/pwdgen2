@@ -238,7 +238,7 @@ function standaloneStatusBarColor(a) {
   }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
   utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
-  if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] === a)) {
+  if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] === a)) {
     interaction.standaloneStatusBarColorHistory.push(a)
   }
   if (interaction.standaloneStatusBarColorHistory.length > 15) {
