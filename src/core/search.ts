@@ -127,7 +127,7 @@ function search_passwords(query, index) {
   return { result: result, suggestions: suggestions.slice(0, 5), query: query }
 }
 
-const searchIndex: object = {}
+const searchIndex: object = { all: [], hashtags: [], date: [], len: [] }
 
 window.Xsearch = {
   createSearchIndex,
