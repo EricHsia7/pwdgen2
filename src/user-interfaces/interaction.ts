@@ -449,6 +449,7 @@ window.interaction = {
   copyProperty,
   prompt_message,
   prompt_asking,
+  close_prompt_asking,
   fade,
   generateHashTagHTML,
   copyElement,
