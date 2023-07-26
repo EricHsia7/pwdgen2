@@ -308,6 +308,33 @@ function openSearch() {
     utilities.qe(".search input#search").addEventListener("copy", function (e) {
       interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
     })
+
+    document.addEventListener("selectionchange", function (e) {
+      if (search_status === 1) {
+        interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      }
+    })
+    document.addEventListener("keyup", function (e) {
+      if (search_status === 1) {
+        interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      }
+    })
+    document.addEventListener("cut", function (e) {
+      if (search_status === 1) {
+        interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      }
+    })
+    document.addEventListener("paste", function (e) {
+      if (search_status === 1) {
+        interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      }
+    })
+    document.addEventListener("copy", function (e) {
+      if (search_status === 1) {
+        interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+      }
+    })
+
   }
 
   utilities.qe(".search-box").setAttribute('status', '1')
@@ -349,7 +376,7 @@ function closeSearch() {
 function highlightKeywordWithLimitedContext(originalString, keyword, contextLength) {
   const regex = new RegExp(keyword, 'gi');
   const matches = [];
-  let match;
+  var match;
   while ((match = regex.exec(originalString)) !== null) {
     matches.push(match);
   }
@@ -358,7 +385,7 @@ function highlightKeywordWithLimitedContext(originalString, keyword, contextLeng
   const contextStart = contextLength;
   const contextEnd = contextLength;
 
-  let highlightedString = originalString;
+  var highlightedString = originalString;
   for (var i = matches.length - 1; i >= 0; i--) {
     const startIndex = matches[i].index;
     const endIndex = matches[i].index + keyword.length;
@@ -381,7 +408,7 @@ function printSearch(search, element) {
     var t = array[i]
     if (t.type === 0) {
       var display_title = t.date
-      var display_preview = (String(t.all).length > 0) ? highlightKeywordWithLimitedContext((t.all).replaceAll(/\n/g, " "), search.query, 20) : "note-free"
+      var display_preview = (String(t.all).length > 0) ? highlightKeywordWithLimitedContext((t.all).replaceAll(/\n/g, " "), search.query, 15) : "note-free"
       var display_icon = icons.icon_password
       var elt_class = "search-item"
       var elt_action = `interaction.password_page.openPassword('${t.id}')`
