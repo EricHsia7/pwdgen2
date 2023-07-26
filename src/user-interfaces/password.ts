@@ -180,8 +180,13 @@ export function deletePassword(id, event) {
 }
 
 export function confirmToDeletePassword(id) {
+  interaction.closeOptions(event)
   var remove = removePassword(id)
   if (remove) {
-    interaction.prompt_message('Deleted password permanently.')
+    interaction.prompt_message('Deleted the password permanently.')
+    interaction.password_page.closePassword()
+  }
+  else {
+    interaction.prompt_message('Failed to delete the password.')
   }
 }
