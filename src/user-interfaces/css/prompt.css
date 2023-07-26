@@ -57,6 +57,7 @@
   border-radius: 10px;
   display: none;
   flex-direction: column;
+  transition: transform 0.3s;
 }
 
 .prompt_asking[o="1"] {
@@ -73,7 +74,6 @@
   justify-content: center;
   color: var(--p-333333);
   font-size: 20px;
-  transition: 0.3s;
 }
 
 .prompt_asking_options {
