@@ -124,7 +124,7 @@ function search_passwords(query, index) {
       result.push(this_index)
     }
   }
-  return { result: result, suggestions: suggestions.slice(0, 5) }
+  return { result: result, suggestions: suggestions.slice(0, 5), query: query }
 }
 
 const searchIndex: object = {}
