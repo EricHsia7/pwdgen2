@@ -233,12 +233,12 @@ function standaloneStatusBarColor(a) {
     d = utilities.blendColors('#0a0a0b', 'rgba(0,0,0,0.45)')
   }
   if (a === 3) {
-    interaction.standaloneStatusBarColor(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0)
+    interaction.standaloneStatusBarColor(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] | 0)
     return ''
   }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
   utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
-  if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] === a)) {
+  if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] === a)) {
     interaction.standaloneStatusBarColorHistory.push(a)
   }
   if (interaction.standaloneStatusBarColorHistory.length > 15) {
