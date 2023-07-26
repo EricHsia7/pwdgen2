@@ -446,6 +446,7 @@ function refreshPage() {
 window.interaction = {
   copyProperty,
   prompt_message,
+  prompt_asking,
   fade,
   generateHashTagHTML,
   copyElement,
