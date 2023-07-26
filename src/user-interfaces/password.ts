@@ -157,10 +157,10 @@ export function closeEditPassword(id) {
   interaction.fade(utilities.qe('.edit-password-page'), 'Out', 'none', function () {
     utilities.qe('.edit-password-page').scrollTop = 0
   })
-  interaction.password_page.openPassword(id)
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(1)
   }
+  interaction.password_page.openPassword(id)
 }
 
 export function modifyPasswordWithEditor(id) {
