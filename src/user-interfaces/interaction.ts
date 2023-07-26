@@ -204,9 +204,11 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   document.body.appendChild(prompt_asking_elt)
   interaction.fade(utilities.qe(`body #${temporary_id}`), 'In', 'inline-flex')
   interaction.fade(utilities.qe(`body #${temporary_id}_mask`), 'In', 'block')
+  utilities.qe(`body #${temporary_id}`).setAttribute('o', '1')
 }
 
 function close_prompt_asking(temporary_id) {
+  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
   interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
     utilities.qe(`body #${temporary_id}`).remove()
   })
