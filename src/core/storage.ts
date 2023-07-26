@@ -183,3 +183,14 @@ export function modifyPassword(password, username, time, website, note, id): voi
     LS.setItem(localStorage_key, JSON.stringify(modified_json))
   }
 }
+
+export function removePassword(id): boolean {
+  if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
+    LS.removeItem(`pwdgen2_saved_b_${id}`)
+    if (LS.hasOwnProperty(`pwdgen2_saved_b_history_${id}`)) {
+      LS.removeItem(`pwdgen2_saved_b_history_${id}`)
+      return true
+    }
+  }
+  return false
+}
