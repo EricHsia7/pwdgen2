@@ -189,8 +189,8 @@ export function removePassword(id): boolean {
     LS.removeItem(`pwdgen2_saved_b_${id}`)
     if (LS.hasOwnProperty(`pwdgen2_saved_b_history_${id}`)) {
       LS.removeItem(`pwdgen2_saved_b_history_${id}`)
-      return true
     }
+    return true
   }
   return false
 }
