@@ -219,6 +219,9 @@ function close_prompt_asking(temporary_id) {
   if (search_sticky || search_status === 1) {
     interaction.standaloneStatusBarColor(1)
   }
+  else {
+    interaction.standaloneStatusBarColor(0)
+  }
 }
 
 function standaloneStatusBarColor(a) {
