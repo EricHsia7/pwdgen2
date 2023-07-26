@@ -18,6 +18,8 @@ window.lazyPasswordListIcons = {
   loaded: []
 }
 
+const standaloneStatusBarColorHistory: number[] = [0, 0, 0]
+
 function lazyLoadPasswordListIcon(identity, url) {
   var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`)
   var icon_elt = item_elt.querySelector('.password-item-website-icon')
@@ -216,12 +218,7 @@ function close_prompt_asking(temporary_id) {
   interaction.fade(utilities.qe(`body #${temporary_id}_mask`), 'Out', 'none', function () {
     utilities.qe(`body #${temporary_id}_mask`).remove()
   })
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(1)
-  }
-  else {
-    interaction.standaloneStatusBarColor(0)
-  }
+  interaction.standaloneStatusBarColor(3)
 }
 
 function standaloneStatusBarColor(a) {
@@ -235,8 +232,22 @@ function standaloneStatusBarColor(a) {
     c = utilities.blendColors('#f2f2f7', 'rgba(0,0,0,0.45)')
     d = utilities.blendColors('#0a0a0b', 'rgba(0,0,0,0.45)')
   }
+  if (a === 3) {
+    var a2 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0
+    interaction.standaloneStatusBarColorHistory.splice(standaloneStatusBarColorHistory.length - 1, 1)
+    interaction.standaloneStatusBarColor(a2)
+    return ''
+  }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
   utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
+  if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] === a)) {
+    if (!(a === 2)) {
+      interaction.standaloneStatusBarColorHistory.push(a)
+    }
+  }
+  if (interaction.standaloneStatusBarColorHistory.length > 15) {
+    interaction.standaloneStatusBarColorHistory = interaction.standaloneStatusBarColorHistory.slice(interaction.standaloneStatusBarColorHistory.length - 11, interaction.standaloneStatusBarColorHistory.length - 1)
+  }
 }
 
 
@@ -328,7 +339,7 @@ function closeSearch() {
     interaction.fade(utilities.qe('.search-output-box'), 'Out', 'none')
   }
   if (!search_sticky) {
-    interaction.standaloneStatusBarColor(0)
+    interaction.standaloneStatusBarColor(3)
   }
   search_status = 0
 }
@@ -462,6 +473,7 @@ window.interaction = {
   copyElement,
   copyDetails,
   standaloneStatusBarColor,
+  standaloneStatusBarColorHistory,
   loadCSS,
   search: {
     openSearch,

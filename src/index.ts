@@ -109,7 +109,7 @@ window.pwdgen2 = function () { //initialize
       utilities.qe('.main-page .search-box').setAttribute('sticky', 'false')
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'false')
       if (!(search_status === 1)) {
-        interaction.standaloneStatusBarColor(0)
+        interaction.standaloneStatusBarColor(3)
       }
       search_sticky = false
     }
@@ -127,7 +127,7 @@ window.pwdgen2 = function () { //initialize
     utilities.qe(".search").setAttribute('will-change', '0')
   })
   words_list.getWordsList()
-  interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap','googleFontsNotoSans')
+  interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'googleFontsNotoSans')
 }
 
 export default window.pwdgen2
