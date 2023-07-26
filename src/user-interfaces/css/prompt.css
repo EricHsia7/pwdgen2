@@ -73,6 +73,7 @@
   justify-content: center;
   color: var(--p-333333);
   font-size: 20px;
+  transition: 0.3s;
 }
 
 .prompt_asking_options {
