@@ -25,7 +25,7 @@
   background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.65);
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
-  border-radius: 15px;
+  border-radius: var(--p-border-radius-default);
   overflow: hidden;
   max-height: 450px;
   user-select: none;
@@ -91,7 +91,7 @@
   z-index: 30;
   background: rgba(var(--d-options-r), var(--d-options-g), var(--d-options-b), 0.5);
   box-shadow: 0px 0px 32px -11px rgba(0, 0, 0, 0.15);
-  border-radius: 15px;
+  border-radius: var(--p-border-radius-default);
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);
   border: 0px solid rgba(0, 0, 0, 0);
