@@ -1,5 +1,5 @@
 import utilities from '../core/utilities'
-import { LS, setPassword, addPassword, listSavedPassword, modifyPassword } from '../core/storage'
+import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword } from '../core/storage'
 import icons from './icons'
 import fine_grained_password from '../core/fine-grained-password'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
