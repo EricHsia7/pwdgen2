@@ -67,8 +67,9 @@
 .prompt_asking_message {
   position: relative;
   display: inline-flex;
-  padding: 10px 0px;
+  padding: 10px 10px;
   width: 100%;
+  box-sizing: border-box;
   height: auto;
   align-items: center;
   justify-content: center;
