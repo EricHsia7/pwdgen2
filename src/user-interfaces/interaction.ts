@@ -18,7 +18,7 @@ window.lazyPasswordListIcons = {
   loaded: []
 }
 
-const standaloneStatusBarColorHistory: number[] = [0, 0]
+const standaloneStatusBarColorHistory: number[] = [0, 0, 0]
 
 function lazyLoadPasswordListIcon(identity, url) {
   var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`)
@@ -233,8 +233,7 @@ function standaloneStatusBarColor(a) {
     d = utilities.blendColors('#0a0a0b', 'rgba(0,0,0,0.45)')
   }
   if (a === 3) {
-    interaction.standaloneStatusBarColorHistory = interaction.standaloneStatusBarColorHistory.splice(interaction.standaloneStatusBarColorHistory.length - 1, 1)
-    interaction.standaloneStatusBarColor(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1])
+    interaction.standaloneStatusBarColor(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0)
     return ''
   }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
