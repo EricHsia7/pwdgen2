@@ -497,6 +497,7 @@ window.interaction = {
   password_page: {
     openPassword,
     closePassword,
+    deletePassword,
     confirmToDeletePassword
   },
   main_page: {
