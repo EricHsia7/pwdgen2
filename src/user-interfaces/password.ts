@@ -9,9 +9,7 @@ export function openPassword(id, fadeCallback) {
   interaction.fade(utilities.qe('.password-page'), 'In', 'block', fadeCallback)
   utilities.qe(`.options li[y="editpassword"]`).setAttribute('onclick', `interaction.edit_password.openEditPassword('${id}',event)`)
   utilities.qe(`.options li[y="deletepassword"]`).setAttribute('onclick', `interaction.password_page.deletePassword('${id}',event)`)
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(0)
-  }
+  interaction.standaloneStatusBarColor(0)
   if (!password_page_icon_loaded) {
     password_page_icon_loaded = true
     var copy_btn = utilities.qeAll('.password-page .details-item-copy')
@@ -59,9 +57,7 @@ export function closePassword(fadeCallback) {
       fadeCallback()
     }
   })
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(1)
-  }
+  interaction.standaloneStatusBarColor(3)
 }
 
 
@@ -70,9 +66,7 @@ export function openAddPassword(event) {
     interaction.loadCSS('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0', 'googleFontsMaterialSymbols')
   })
 
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(0)
-  }
+  interaction.standaloneStatusBarColor(0)
   interaction.add_password.printPatternPresets('add-password-page')
   utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern, 'production')
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = ''
@@ -82,9 +76,7 @@ export function openAddPassword(event) {
 
 export function closeAddPassword() {
   interaction.fade(utilities.qe('.add-password-page'), 'Out', 'none')
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(1)
-  }
+  interaction.standaloneStatusBarColor(3)
 }
 
 export function addPasswordWithForm() {
@@ -138,9 +130,7 @@ export function openEditPassword(id, event) {
   utilities.qe(`.edit-password-page .fixed-title-box .btn.right-top-corner`).setAttribute('onclick', `interaction.edit_password.modifyPasswordWithEditor('${id}')`)
   utilities.qe(`.edit-password-page .fixed-title-box .btn.left-top-corner`).setAttribute('onclick', `interaction.edit_password.closeEditPassword('${id}')`)
   interaction.options.closeOptions(event)
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(0)
-  }
+  interaction.standaloneStatusBarColor(0)
   if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
     var json = JSON.parse(String(LS.getItem(`pwdgen2_saved_b_${id}`)))
     var note_plain_text = (json.note === null ? '' : utilities.deur(atob(String(json.note))))
@@ -157,9 +147,7 @@ export function closeEditPassword(id) {
   interaction.fade(utilities.qe('.edit-password-page'), 'Out', 'none', function () {
     utilities.qe('.edit-password-page').scrollTop = 0
   })
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(1)
-  }
+  interaction.standaloneStatusBarColor(3)
   interaction.password_page.openPassword(id)
 }
 
