@@ -15,7 +15,7 @@
 .prompt {
   width: clamp(180px, calc(100% - 40px), 450px);
   height: 50px;
-  border-radius: 15px;
+  border-radius: var(--p-border-radius-default);
   position: fixed;
   left: 50%;
   bottom: 0px;
@@ -54,7 +54,7 @@
   width: clamp(250px, 80%, 350px);
   height: auto;
   background: var(--p-f2f2f7);
-  border-radius: 10px;
+  border-radius: var(--p-border-radius-default);
   display: inline-flex;
   flex-direction: column;
   transition: transform 0.3s;
@@ -90,7 +90,7 @@
 .prompt_asking_option1,
 .prompt_asking_option2 {
   height: 45px;
-  border-radius: 10px;
+  border-radius: var(--p-border-radius-default);
   color: #fff;
   background: var(--p-main-color);
   display: flex;

@@ -9,7 +9,7 @@
   position: relative;
   width: 100%;
   display: inline-block;
-  border-radius: 10px;
+  border-radius: var(--p-border-radius-default);
   overflow: hidden;
   background: var(--p-ffffff);
   user-select: none;
@@ -207,7 +207,7 @@
   width: 55px;
   height: 55px;
   background: rgba(var(--j-check-color-r), var(--j-check-color-g), var(--j-check-color-b), 0.15);
-  border-radius: 10px;
+  border-radius: var(--p-border-radius-default);
   color: rgba(var(--j-check-color-r), var(--j-check-color-g), var(--j-check-color-b), 1);
   font-size: 23px;
   display: flex;

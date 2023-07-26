@@ -22,7 +22,7 @@
   background: var(--p-e5e5ea);
   display: inline-block;
   padding: 0px;
-  border-radius: 10px;
+  border-radius: var(--p-border-radius-default);
   box-sizing: border-box;
   height: 35px;
   margin-right: 10px;
