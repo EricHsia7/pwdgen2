@@ -353,7 +353,8 @@ function highlightKeywordWithLimitedContext(originalString, keyword, contextLeng
   while ((match = regex.exec(originalString)) !== null) {
     matches.push(match);
   }
-
+  contextLength -= keyword.length
+  contextLength = Math.floor(contextLength / 2)
   const contextStart = contextLength;
   const contextEnd = contextLength;
 
@@ -380,7 +381,7 @@ function printSearch(search, element) {
     var t = array[i]
     if (t.type === 0) {
       var display_title = t.date
-      var display_preview = (String(t.all).length > 0) ? highlightKeywordWithLimitedContext((t.all).replaceAll(/\n/g, " "), search.query, 15) : "note-free"
+      var display_preview = (String(t.all).length > 0) ? highlightKeywordWithLimitedContext((t.all).replaceAll(/\n/g, " "), search.query, 20) : "note-free"
       var display_icon = icons.icon_password
       var elt_class = "search-item"
       var elt_action = `interaction.password_page.openPassword('${t.id}')`
