@@ -244,6 +244,9 @@ function standaloneStatusBarColor(a) {
     if (!(a === 2)) {
       interaction.standaloneStatusBarColorHistory.push(a)
     }
+    else {
+      interaction.standaloneStatusBarColorHistory.push(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1])
+    }
   }
   if (interaction.standaloneStatusBarColorHistory.length > 15) {
     interaction.standaloneStatusBarColorHistory = interaction.standaloneStatusBarColorHistory.slice(interaction.standaloneStatusBarColorHistory.length - 11, interaction.standaloneStatusBarColorHistory.length - 1)
