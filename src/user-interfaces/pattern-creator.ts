@@ -105,9 +105,7 @@ export function syncPatternCreatorJSONEditor() {
 }
 
 export function openPatternCreator(event) {
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(0)
-  }
+  interaction.standaloneStatusBarColor(0)
   interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
   interaction.options.closeOptions(event)
   interaction.pattern_creator.initializePatternCreatorJSONEditor()
@@ -148,9 +146,7 @@ export function openPatternCreator(event) {
 
 export function closePatternCreator() {
   interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
-  if (search_sticky || search_status === 1) {
-    interaction.standaloneStatusBarColor(1)
-  }
+  interaction.standaloneStatusBarColor(3)
 }
 
 export function addIdentityToPattern(): void {
@@ -325,7 +321,7 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
 
 export function removePatternComponentInfo(temporary_id: string, event: Event): void {
   event.preventDefault()
-  interaction.standaloneStatusBarColor(0)
+  interaction.standaloneStatusBarColor(3)
   utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).setAttribute('o', '0')
   interaction.fade(utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`), 'Out', 'none', function () {
     utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).remove()
@@ -434,7 +430,7 @@ export function displayAddPatternErrors(errors) {
 
 export function removeAddPatternErrors(temporary_id: string, event: Event): void {
   event.preventDefault()
-  interaction.standaloneStatusBarColor(0)
+  interaction.standaloneStatusBarColor(3)
   utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).setAttribute('o', '0')
   interaction.fade(utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`), 'Out', 'none', function () {
     utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).remove()
