@@ -242,9 +242,9 @@ function standaloneStatusBarColor(a) {
   utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
   if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] === a)) {
     //if (!(a === 2)) {
-      interaction.standaloneStatusBarColorHistory.push(a)
+    interaction.standaloneStatusBarColorHistory.push(a)
     //}
-   // else {
+    // else {
     //}
   }
   if (interaction.standaloneStatusBarColorHistory.length > 15) {
@@ -346,6 +346,32 @@ function closeSearch() {
   search_status = 0
 }
 
+function highlightKeywordWithLimitedContext(originalString, keyword, contextLength) {
+  const regex = new RegExp(keyword, 'gi');
+  const matches = [];
+  let match;
+  while ((match = regex.exec(originalString)) !== null) {
+    matches.push(match);
+  }
+
+  const contextStart = contextLength;
+  const contextEnd = contextLength;
+
+  let highlightedString = originalString;
+  for (var i = matches.length - 1; i >= 0; i--) {
+    const startIndex = matches[i].index;
+    const endIndex = matches[i].index + keyword.length;
+    const contextStartIndex = Math.max(0, startIndex - contextStart);
+    const contextEndIndex = Math.min(originalString.length, endIndex + contextEnd);
+    const prefix = contextStartIndex > 0 ? '...' : '';
+    const postfix = contextEndIndex < originalString.length ? '...' : '';
+    const context = originalString.substring(contextStartIndex, contextEndIndex);
+    const highlightedContext = context.replace(regex, match => `<span class="search-bold">${match}</span>`);
+    highlightedString = prefix + highlightedContext + postfix
+  }
+  return highlightedString
+}
+
 function printSearch(search, element) {
   var html = []
   var array = (search.suggestions.length >= 1 ? [{ type: 3, title: "Suggestions" }] : []).concat(search.suggestions).concat(search.result.length >= 1 ? [{ type: 3, title: "Results" }] : []).concat(search.result)
@@ -354,7 +380,7 @@ function printSearch(search, element) {
     var t = array[i]
     if (t.type === 0) {
       var display_title = t.date
-      var display_preview = (String(t.note).length > 0) ? (t.note).replaceAll(/\n/g, " ") : "note-free"
+      var display_preview = (String(t.all).length > 0) ? highlightKeywordWithLimitedContext((t.all).replaceAll(/\n/g, " "), search.query, 30) : "note-free"
       var display_icon = icons.icon_password
       var elt_class = "search-item"
       var elt_action = `interaction.password_page.openPassword('${t.id}')`

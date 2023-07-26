@@ -303,3 +303,7 @@
   word-break: keep-all;
   overflow: hidden;
 }
+
+.search-item-preview span.search-bold {
+  font-weight: 700;
+}
