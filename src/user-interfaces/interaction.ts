@@ -233,7 +233,9 @@ function standaloneStatusBarColor(a) {
     d = utilities.blendColors('#0a0a0b', 'rgba(0,0,0,0.45)')
   }
   if (a === 3) {
-    interaction.standaloneStatusBarColor(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] | 0)
+    var a2 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0
+    interaction.standaloneStatusBarColorHistory.splice(standaloneStatusBarColorHistory.length - 1, 1)
+    interaction.standaloneStatusBarColor(a2)
     return ''
   }
   utilities.qe('head meta[kji="light"]').setAttribute('content', c)
