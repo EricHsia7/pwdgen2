@@ -72,13 +72,14 @@
   height: auto;
   align-items: center;
   justify-content: center;
+  text-align: center;
   color: var(--p-333333);
   font-size: 20px;
 }
 
 .prompt_asking_options {
   width: 100%;
-  height: 50px;
+  height: 65px;
   padding: 0px 10px;
   box-sizing: border-box;
   display: grid;
