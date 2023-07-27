@@ -127,7 +127,7 @@ window.pwdgen2 = function () { //initialize
     utilities.qe(".search").setAttribute('will-change', '0')
   })
 
-  utilities.qe("#importdata").addEventListener("change", importdatahandler(event), false)
+  utilities.qe("#importdata").addEventListener("change", importdatahandler, false)
 
   words_list.getWordsList()
   interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'googleFontsNotoSans')

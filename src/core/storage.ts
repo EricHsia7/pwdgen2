@@ -197,7 +197,7 @@ export function removePassword(id): boolean {
 }
 
 export function importdatahandler(event) {
-  var f = evt.target.files[0];
+  var f = event.target.files[0];
   var reader = new FileReader();
   reader.onload = (function (theFile) {
     return function (e) {
