@@ -52,6 +52,7 @@ export function checkPassword(string, cache, id) {
       randomness += Math.abs(w - n_arr[w].i)
     }
     randomness = randomness / n_arr.length / (string.length / 2) * 100
+    randomness = -15.7 + 6.29 * randomness - 0.452 * Math.pow(randomness, 2) + 0.0139 * Math.pow(randomness, 3) - 1.67 * Math.pow(10, -4) * Math.pow(randomness, 4) + 6.66 * Math.pow(10, -7) * Math.pow(randomness, 5)
     var repeat = 0
     var repeat_len = 0
     for (var w in json) {
