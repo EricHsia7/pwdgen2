@@ -157,7 +157,7 @@ export function modifyPasswordWithEditor(id) {
   var website = utilities.qe('.edit-password-page .edit-list .edit-item-value[k="website"] input').value || ''
   //var time_stamp = new Date().toISOString()
   var note = utilities.qe('.edit-password-page .edit-note-content').textContent || ''
-  modifyPassword(password, username, time_stamp, website, note, id)
+  modifyPassword(password, username, undefined, website, note, id)
   interaction.prompt_message('Saved changes.', 1200)
   interaction.edit_password.closeEditPassword()
   interaction.password_page.openPassword(id, function () {
