@@ -153,7 +153,7 @@ export function addPassword(password, username, website, note): string {
   return id
 }
 
-export function modifyPassword(password, username, time, website, note, id): void | string {
+export function modifyPassword(password, username, website, note, id): void | string {
   var localStorage_key = `pwdgen2_saved_b_${id}`
   var localStorage_history_key = `pwdgen2_saved_b_history_${id}`
   if (LS.hasOwnProperty(localStorage_key)) {
@@ -165,7 +165,7 @@ export function modifyPassword(password, username, time, website, note, id): voi
       encrypted_password: encryption[0],
       aes_iv: encryption[1],
       note: (note === "" ? null : btoa(utilities.enur(note))),
-      time_stamp: time|json.time_stamp,
+      time_stamp: json.time_stamp,
       id: id
     }
 
