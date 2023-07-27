@@ -1,5 +1,6 @@
 import fine_grained_password from './fine-grained-password'
 import utilities from './utilities'
+import interaction from '../user-interfaces/interaction'
 const md5 = require('md5');
 
 interface EncryptedPassword {
@@ -193,4 +194,25 @@ export function removePassword(id): boolean {
     return true
   }
   return false
+}
+
+export function importdatahandler(event) {
+  var f = evt.target.files[0];
+  var reader = new FileReader();
+  reader.onload = (function (theFile) {
+    return function (e) {
+      var fileTextContent = e.target.result;
+      var json = JSON.parse(fileTextContent)
+      var data = json.data
+      var data_len = data.length
+
+      for (var i = 0; i < data_len; i++) {
+        var this_item = data[i]
+        localStorage.setItem(this_item.key, this_item.content)
+      }
+      interaction.prompt_message('Imported data successfully.')
+      interaction.main_page.printSavedPasswordList()
+    };
+  })(f);
+  reader.readAsText(f);
 }

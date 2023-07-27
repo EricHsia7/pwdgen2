@@ -1,7 +1,7 @@
 import { checkPassword, checkCommonWordPatterns } from 'src/core/check-password'
 import fine_grained_password from 'src/core/fine-grained-password'
 import Xsearch from './search'
-import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword } from './/core/storage'
+import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword, importdatahandler } from './/core/storage'
 import utilities from './/core/utilities'
 import bjson from 'src/core/blocks-json'
 import words_list from './/core/words-list'
@@ -126,6 +126,9 @@ window.pwdgen2 = function () { //initialize
     utilities.qe(".search-box").setAttribute('will-change', '0')
     utilities.qe(".search").setAttribute('will-change', '0')
   })
+
+  utilities.qe("#importdata").addEventListener("change", importdatahandler(event), false)
+
   words_list.getWordsList()
   interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'googleFontsNotoSans')
 }
