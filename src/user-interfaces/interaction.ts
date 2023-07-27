@@ -534,6 +534,7 @@ window.interaction = {
   standaloneStatusBarColor,
   standaloneStatusBarColorHistory,
   loadCSS,
+  importData,
   search: {
     openSearch,
     closeSearch,

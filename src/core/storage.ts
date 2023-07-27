@@ -210,6 +210,7 @@ export function importdatahandler(event) {
         var this_item = data[i]
         localStorage.setItem(this_item.key, this_item.content)
       }
+      upgradeData()
       interaction.prompt_message('Imported data successfully.')
       interaction.main_page.printSavedPasswordList()
     };
