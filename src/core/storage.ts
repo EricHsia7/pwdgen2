@@ -165,7 +165,7 @@ export function modifyPassword(password, username, time, website, note, id): voi
       encrypted_password: encryption[0],
       aes_iv: encryption[1],
       note: (note === "" ? null : btoa(utilities.enur(note))),
-      time_stamp: time,
+      time_stamp: time|json.time_stamp,
       id: id
     }
 
