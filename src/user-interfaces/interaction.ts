@@ -518,7 +518,7 @@ function refreshPage() {
   location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p, 'production'))
 }
 
-function importdata() {
+function importData() {
   utilities.qe('#importdata').click()
 }
 
