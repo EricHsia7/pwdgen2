@@ -66,7 +66,6 @@ search_will_change_evt_list: Object
 window.password_page_icon_loaded = false
 window.allhashtag = {}
 window.search_status = 0
-window.search_evt = 0
 window.search_sticky = false
 window.container_scrollTop = 0
 window.pattern_creator_evt = 0
