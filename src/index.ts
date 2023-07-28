@@ -1,10 +1,10 @@
 import { checkPassword, checkCommonWordPatterns } from 'src/core/check-password'
 import fine_grained_password from 'src/core/fine-grained-password'
-import Xsearch from './search'
+import Xsearch from './core/search'
 import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword, importdatahandler } from './/core/storage'
-import utilities from './/core/utilities'
+import utilities from './core/utilities'
 import bjson from 'src/core/blocks-json'
-import words_list from './/core/words-list'
+import words_list from './core/words-list'
 import icons from './user-interfaces/icons'
 import interaction from './user-interfaces/interaction'
 
@@ -131,10 +131,13 @@ window.pwdgen2 = function () { //initialize
 
   words_list.getWordsList()
   interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'googleFontsNotoSans')
+
+  upgradeData()
+  Xsearch.searchIndex = Xsearch.createSearchIndex()
+
   setTimeout(function () {
-    upgradeData()
     interaction.main_page.printSavedPasswordList()
-  }, 500);
+  }, 700);
 }
 
 export default window.pwdgen2
