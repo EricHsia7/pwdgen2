@@ -109,7 +109,7 @@
 .search-output-box {
   position: fixed;
   left: 0px;
-  top: 0px;
+  top: 60px;
   width: 100%;
   height: calc(100% - 60px);
   overflow: scroll;
