@@ -145,7 +145,7 @@ export function openPatternCreator(event) {
 }
 
 export function closePatternCreator() {
-  interaction.show(utilities.qe('.pattern_creator'), 'Out', 'none')
+  interaction.show(utilities.qe('.pattern_creator'), 'none')
   interaction.standaloneStatusBarColor(3)
 }
 
@@ -323,10 +323,10 @@ export function removePatternComponentInfo(temporary_id: string, event: Event): 
   event.preventDefault()
   interaction.standaloneStatusBarColor(3)
   utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).setAttribute('o', '0')
-  interaction.show(utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`), 'none', function () {
     utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).remove()
   })
-  interaction.show(utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`), 'none', function () {
     utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).remove()
   })
 }
@@ -432,10 +432,10 @@ export function removeAddPatternErrors(temporary_id: string, event: Event): void
   event.preventDefault()
   interaction.standaloneStatusBarColor(3)
   utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).setAttribute('o', '0')
-  interaction.show(utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`), 'none', function () {
     utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).remove()
   })
-  interaction.show(utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`), 'none', function () {
     utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).remove()
   })
 }
