@@ -18,6 +18,8 @@ window.lazyPasswordListIcons = {
   loaded: []
 }
 
+window.search_evt = 0
+
 const standaloneStatusBarColorHistory: number[] = [0, 0, 0]
 
 function lazyLoadPasswordListIcon(identity, url) {
@@ -334,7 +336,7 @@ function openSearch() {
         interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
       }
     })
-
+    search_evt = 1
   }
 
   utilities.qe(".search-box").setAttribute('status', '1')
