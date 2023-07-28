@@ -1,6 +1,7 @@
 {
   "name": "Password Generator",
   "short_name": "Password",
+  "description":"Password Generator—your password assistant",
   "icons": [
     {
       "src": "https://erichsia7.github.io/pwdgen2/icons/transparent/48x48.png",
@@ -33,7 +34,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "./?pwa=QdD7EZ65aTSs86iJ91oRuNY9e2rqar8P",
+  "start_url": "https://erichsia7.github.io/pwdgen2/",
   "display": "standalone",
   "id": "m1EttjpJ84xfKvkC8HN40QtP6B42dP50"
 }
