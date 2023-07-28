@@ -83,9 +83,6 @@ window.pwdgen2 = function () { //initialize
     interaction.search.openSearch()
   })
 
-  upgradeData()
-  interaction.main_page.printSavedPasswordList()
-
   utilities.qe('.main-page').addEventListener('scroll', function (e) {
     container_scrollTop = utilities.qe('.main-page').scrollTop
     var scale = 1
@@ -115,13 +112,16 @@ window.pwdgen2 = function () { //initialize
     }
     interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler()
   })
+
   if (!utilities.checkTouchFeatures()) {
     search_will_change_evt = [2, 3]
   }
+
   utilities.qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[0]], function () {
     utilities.qe(".search-box").setAttribute('will-change', '1')
     utilities.qe(".search").setAttribute('will-change', '1')
   })
+
   utilities.qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[1]], function () {
     utilities.qe(".search-box").setAttribute('will-change', '0')
     utilities.qe(".search").setAttribute('will-change', '0')
@@ -131,6 +131,10 @@ window.pwdgen2 = function () { //initialize
 
   words_list.getWordsList()
   interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'googleFontsNotoSans')
+  setTimeout(function () {
+    upgradeData()
+    interaction.main_page.printSavedPasswordList()
+  }, 500);
 }
 
 export default window.pwdgen2
