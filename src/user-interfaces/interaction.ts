@@ -339,10 +339,8 @@ function openSearch() {
 
   utilities.qe(".search-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('sticky', 'true')
-  interaction.fade(utilities.qe('.search-output-box'), 'In', 'block', function () {
-    Xsearch.searchIndex = Xsearch.createSearchIndex()
-    interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
-  })
+  Xsearch.searchIndex = Xsearch.createSearchIndex()
+  interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
   interaction.standaloneStatusBarColor(1)
   search_status = 1
 }
@@ -352,10 +350,6 @@ function closeSearch() {
   utilities.qe(".search-output-box").setAttribute('status', '0')
   utilities.qe(".search-box").setAttribute('sticky', search_sticky)
   utilities.qe('.search input#search').value = ''
-  if (search_status === 1) {
-    utilities.qe('.search-output-box').setAttribute('status', '0')
-    interaction.fade(utilities.qe('.search-output-box'), 'Out', 'none')
-  }
   if (!search_sticky) {
     interaction.standaloneStatusBarColor(3)
   }

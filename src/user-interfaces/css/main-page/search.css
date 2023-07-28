@@ -119,6 +119,10 @@
   overscroll-behavior: contain;
 }
 
+.search-output-box[status="1"] {
+  display: block;
+}
+
 .search-output {
   width: 100%;
   display: inline-block;
