@@ -18,8 +18,6 @@ window.lazyPasswordListIcons = {
   loaded: []
 }
 
-window.search_evt = 0
-
 const standaloneStatusBarColorHistory: number[] = [0, 0, 0]
 
 function lazyLoadPasswordListIcon(identity, url) {
@@ -336,22 +334,39 @@ function openSearch() {
         interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
       }
     })
-    search_evt = 1
+
   }
-  utilities.qe(".search-output-box").setAttribute('status', '1')
+
   utilities.qe(".search-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('sticky', 'true')
-  Xsearch.searchIndex = Xsearch.createSearchIndex()
-  interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+  utilities.qe(".search-box").setAttribute('transition', '1')
+  utilities.qe(".search-box").addEventListener('transitionend', function () {
+    utilities.qe(".search-box").setAttribute('transition', '0')
+    Xsearch.searchIndex = Xsearch.createSearchIndex()
+    interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+  }, { once: true })
+  if (search_status === 0) {
+    interaction.fade(utilities.qe('.search-output-box'), 'In', 'block')
+    utilities.qe('.search-output-box').style.setProperty('--j-search-output-box-y', (utilities.qe(".search-box").offsetTop + 60) + 'px')
+    utilities.qe(".search-output-box").setAttribute('status', '1')
+  }
   interaction.standaloneStatusBarColor(1)
   search_status = 1
 }
 
 function closeSearch() {
-  utilities.qe(".search-output-box").setAttribute('status', '0')
   utilities.qe(".search-box").setAttribute('status', '0')
+  utilities.qe(".search-output-box").setAttribute('status', '0')
   utilities.qe(".search-box").setAttribute('sticky', search_sticky)
+  utilities.qe(".search-box").setAttribute('transition', '1')
+  utilities.qe(".search-box").addEventListener('transitionend', function () {
+    utilities.qe(".search-box").setAttribute('transition', '0')
+  }, { once: true })
   utilities.qe('.search input#search').value = ''
+  if (search_status === 1) {
+    utilities.qe('.search-output-box').setAttribute('status', '0')
+    interaction.fade(utilities.qe('.search-output-box'), 'Out', 'none')
+  }
   if (!search_sticky) {
     interaction.standaloneStatusBarColor(3)
   }
