@@ -20,7 +20,7 @@ import './user-interfaces/css/pattern-creator.css'
 import './user-interfaces/css/main-page/search.css'
 import './user-interfaces/css/main-page/password-list.css'
 import './user-interfaces/css/add-password/presets.css'
-import './user-interfaces/css/fade.css'
+import './user-interfaces/css/show.css'
 
 
 
@@ -66,7 +66,6 @@ search_will_change_evt_list: Object
 window.password_page_icon_loaded = false
 window.allhashtag = {}
 window.search_status = 0
-window.search_evt = 0
 window.search_sticky = false
 window.container_scrollTop = 0
 window.pattern_creator_evt = 0
@@ -116,16 +115,6 @@ window.pwdgen2 = function () { //initialize
   if (!utilities.checkTouchFeatures()) {
     search_will_change_evt = [2, 3]
   }
-
-  utilities.qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[0]], function () {
-    utilities.qe(".search-box").setAttribute('will-change', '1')
-    utilities.qe(".search").setAttribute('will-change', '1')
-  })
-
-  utilities.qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[1]], function () {
-    utilities.qe(".search-box").setAttribute('will-change', '0')
-    utilities.qe(".search").setAttribute('will-change', '0')
-  })
 
   utilities.qe("#importdata").addEventListener("change", importdatahandler, false)
 

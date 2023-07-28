@@ -18,6 +18,8 @@ window.lazyPasswordListIcons = {
   loaded: []
 }
 
+window.search_evt = 0
+
 const standaloneStatusBarColorHistory: number[] = [0, 0, 0]
 
 function lazyLoadPasswordListIcon(identity, url) {
@@ -86,54 +88,16 @@ function loadCSS(url, identity) {
   }
 }
 
-type fadeType = 'In' | 'Out'
-type fadeDisplay = 'none' | 'flex' | 'inline' | 'block' | 'inline-flex' | 'inline-block'
-function fade(element: HTMLElement, type: fadeType, display: fadeDisplay, callback: Function | void) {
-  var idchars = "0123456789abcdefghijklmnopqrstuvwxyz";
-  var fade_id = "";
-  for (var i = 0; i < 16; i++) {
-    var idrandomNumber = Math.floor(Math.random() * idchars.length);
-    fade_id += idchars.substring(idrandomNumber, idrandomNumber + 1);
-  }
-  var element_display = getComputedStyle(element).getPropertyValue('display')
-  if (element_display === 'none') {
-    if (display === 'flex') {
-      element_display = 'flex'
-    }
-    else {
-      element_display = 'block'
-    }
-  }
-  var duration = 300
+type showDisplay = 'none' | 'flex' | 'inline' | 'block' | 'inline-flex' | 'inline-block'
+function show(element: HTMLElement, display: showDisplay, callback: Function | void) {
   var class_str = element.getAttribute('class')
-  element.setAttribute('class', class_str.replaceAll(/fade-display-[a-z-]*[^\s]/gm, ''))
-  var style_str = element.getAttribute('style')
+  element.setAttribute('class', class_str.replaceAll(/show-display-[a-z-]*[^\s]/gm, ''))
   element.setAttribute('style', String(style_str).replaceAll(/display[\s]*:{1,1}[\sa-z-]*;{1,1}[^\s]*/gm, ''))
-  element.classList.add(`fade${type}-${fade_id}`)
-  var css = `.fadeIn-${fade_id} {display:${element_display};opacity:0} .fadeIn-${fade_id}-start{transition:${duration}ms;opacity:1;transition-timing-function:ease;} .fadeOut-${fade_id} {display:${element_display};opacity:1} .fadeOut-${fade_id}-start{transition:${duration}ms;opacity:0;transition-timing-function:linear;}`
-  var css_style_element = document.createElement("style")
-  css_style_element.innerHTML = css
-  css_style_element.id = `fade-css-${fade_id}`
-  element.appendChild(css_style_element)
-  setTimeout(function () {
-    element.classList.add(`fade${type}-${fade_id}-start`)
-  }, 1)
-  element.addEventListener('transitionend', function () {
-    if (!(callback === undefined)) {
-      if (typeof callback === "function") {
-        callback()
-      }
-    }
-    element.classList.remove(`fade${type}-${fade_id}-start`)
-    element.classList.remove(`fade${type}-${fade_id}`)
-    element.classList.add(`fade-display-${display}`)
-    if (!(document.getElementById(`fade-css-${fade_id}`) === null)) {
-      document.getElementById(`fade-css-${fade_id}`).remove()
-    }
-  }, { once: true })
+  element.classList.add(`show-display-${display}`)
+  if (typeof callback === 'function') {
+    callback()
+  }
 }
-
-
 
 function prompt_message(message, duration) {
   if (isNaN(duration)) {
@@ -204,18 +168,18 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="${option1_func};interaction.close_prompt_asking('${temporary_id}')">${option1}</div><div class="prompt_asking_option2" onclick="${option2_func};interaction.close_prompt_asking('${temporary_id}')">${option2}</div></div>`
   document.body.appendChild(mask_elt)
   document.body.appendChild(prompt_asking_elt)
-  interaction.fade(utilities.qe(`body #${temporary_id}`), 'In', 'inline-flex')
-  interaction.fade(utilities.qe(`body #${temporary_id}_mask`), 'In', 'block')
+  interaction.show(utilities.qe(`body #${temporary_id}`), 'inline-flex')
+  interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'block')
   utilities.qe(`body #${temporary_id}`).setAttribute('o', '1')
   interaction.standaloneStatusBarColor(2)
 }
 
 function close_prompt_asking(temporary_id) {
   utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
-  interaction.fade(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
     utilities.qe(`body #${temporary_id}`).remove()
   })
-  interaction.fade(utilities.qe(`body #${temporary_id}_mask`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'Out', 'none', function () {
     utilities.qe(`body #${temporary_id}_mask`).remove()
   })
   interaction.standaloneStatusBarColor(3)
@@ -334,39 +298,22 @@ function openSearch() {
         interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
       }
     })
-
+    search_evt = 1
   }
-
+  utilities.qe(".search-output-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('sticky', 'true')
-  utilities.qe(".search-box").setAttribute('transition', '1')
-  utilities.qe(".search-box").addEventListener('transitionend', function () {
-    utilities.qe(".search-box").setAttribute('transition', '0')
-    Xsearch.searchIndex = Xsearch.createSearchIndex()
-    interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
-  }, { once: true })
-  if (search_status === 0) {
-    interaction.fade(utilities.qe('.search-output-box'), 'In', 'block')
-    utilities.qe('.search-output-box').style.setProperty('--j-search-output-box-y', (utilities.qe(".search-box").offsetTop + 60) + 'px')
-    utilities.qe(".search-output-box").setAttribute('status', '1')
-  }
+  Xsearch.searchIndex = Xsearch.createSearchIndex()
+  interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
   interaction.standaloneStatusBarColor(1)
   search_status = 1
 }
 
 function closeSearch() {
-  utilities.qe(".search-box").setAttribute('status', '0')
   utilities.qe(".search-output-box").setAttribute('status', '0')
+  utilities.qe(".search-box").setAttribute('status', '0')
   utilities.qe(".search-box").setAttribute('sticky', search_sticky)
-  utilities.qe(".search-box").setAttribute('transition', '1')
-  utilities.qe(".search-box").addEventListener('transitionend', function () {
-    utilities.qe(".search-box").setAttribute('transition', '0')
-  }, { once: true })
   utilities.qe('.search input#search').value = ''
-  if (search_status === 1) {
-    utilities.qe('.search-output-box').setAttribute('status', '0')
-    interaction.fade(utilities.qe('.search-output-box'), 'Out', 'none')
-  }
   if (!search_sticky) {
     interaction.standaloneStatusBarColor(3)
   }
@@ -527,7 +474,7 @@ window.interaction = {
   prompt_message,
   prompt_asking,
   close_prompt_asking,
-  fade,
+  show,
   generateHashTagHTML,
   copyElement,
   copyDetails,
