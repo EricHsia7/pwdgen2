@@ -61,6 +61,10 @@
 
 .search-transition {
   position: fixed;
+  top: var(--j-search-transition-top);
+  left: var(--j-search-transition-left);
+  width: var(--j-search-transition-width);
+  height: var(--j-search-transition-height);
   transition: 300ms;
   transition-timing-function: ease;
 }
