@@ -131,10 +131,13 @@ window.pwdgen2 = function () { //initialize
 
   words_list.getWordsList()
   interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'googleFontsNotoSans')
+
+  upgradeData()
+  Xsearch.searchIndex = Xsearch.createSearchIndex()
+
   setTimeout(function () {
-    upgradeData()
     interaction.main_page.printSavedPasswordList()
-  }, 500);
+  }, 700);
 }
 
 export default window.pwdgen2
