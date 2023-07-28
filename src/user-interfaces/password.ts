@@ -51,7 +51,7 @@ export function openPassword(id, showCallback) {
 }
 
 export function closePassword(showCallback) {
-  interaction.show(utilities.qe('.password-page'), 'Out', 'none', function () {
+  interaction.show(utilities.qe('.password-page'), 'none', function () {
     utilities.qe('.password-page').scrollTop = 0
     if (typeof showCallback === 'function') {
       showCallback()
@@ -75,7 +75,7 @@ export function openAddPassword(event) {
 }
 
 export function closeAddPassword() {
-  interaction.show(utilities.qe('.add-password-page'), 'Out', 'none')
+  interaction.show(utilities.qe('.add-password-page'), 'none')
   interaction.standaloneStatusBarColor(3)
 }
 
@@ -144,7 +144,7 @@ export function openEditPassword(id, event) {
 }
 
 export function closeEditPassword(id) {
-  interaction.show(utilities.qe('.edit-password-page'), 'Out', 'none', function () {
+  interaction.show(utilities.qe('.edit-password-page'), 'none', function () {
     utilities.qe('.edit-password-page').scrollTop = 0
   })
   interaction.standaloneStatusBarColor(3)

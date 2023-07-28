@@ -177,10 +177,10 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
 
 function close_prompt_asking(temporary_id) {
   utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
-  interaction.show(utilities.qe(`body #${temporary_id}`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body #${temporary_id}`), 'none', function () {
     utilities.qe(`body #${temporary_id}`).remove()
   })
-  interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'none', function () {
     utilities.qe(`body #${temporary_id}_mask`).remove()
   })
   interaction.standaloneStatusBarColor(3)
