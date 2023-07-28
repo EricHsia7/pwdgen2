@@ -53,7 +53,7 @@ async function processDeviceImage(deviceInfo, iconImage, backgroundImage) {
   const canvasWidth = deviceInfo.scaled_width;
   const canvasHeight = deviceInfo.scaled_height;
   const scale = deviceInfo.scaled_width / deviceInfo.width;
-  const iconWidth = Math.max(canvasWidth * 0.5897, 220);
+  const iconWidth = Math.max(canvasWidth * 0.57, 220);
   const fileName = (deviceInfo.device).toLocaleLowerCase().replace(/\s|\“/gm, "_") + '_@' + Math.round(scale) + 'x';
 
   const canvas = createCanvas(canvasWidth, canvasHeight);
@@ -82,8 +82,8 @@ async function processDeviceImage(deviceInfo, iconImage, backgroundImage) {
 
 // Function to process icon and background images for a single device
 async function processImageFiles(deviceInfo) {
-  const iconPath = 'pwaicon8/transparent.png';
-  const bgPath = 'pwaicon8/bg.png';
+  const iconPath = 'icons/splash_screen_source/icon.png';
+  const bgPath = 'icons/splash_screen_source/bg.png';
   const iconImage = await loadImage(iconPath);
   const backgroundImage = await loadImage(bgPath);
   await processDeviceImage(deviceInfo, iconImage, backgroundImage);
