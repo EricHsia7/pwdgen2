@@ -117,16 +117,6 @@ window.pwdgen2 = function () { //initialize
     search_will_change_evt = [2, 3]
   }
 
-  utilities.qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[0]], function () {
-    utilities.qe(".search-box").setAttribute('will-change', '1')
-    utilities.qe(".search").setAttribute('will-change', '1')
-  })
-
-  utilities.qe(".search-box").addEventListener(search_will_change_evt_list[search_will_change_evt[1]], function () {
-    utilities.qe(".search-box").setAttribute('will-change', '0')
-    utilities.qe(".search").setAttribute('will-change', '0')
-  })
-
   utilities.qe("#importdata").addEventListener("change", importdatahandler, false)
 
   words_list.getWordsList()

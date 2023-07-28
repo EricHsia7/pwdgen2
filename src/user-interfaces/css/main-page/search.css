@@ -53,8 +53,6 @@
   height: 40px;
   background: var(--p-e5e5ea);
   border-radius: var(--p-border-radius-default);
-  transition: width 300ms, background-color 300ms;
-  transition-timing-function: ease;
 }
 
 .search-transition {
