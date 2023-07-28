@@ -300,10 +300,10 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
   /*
   card_elt.style.setProperty('--j-component-info-top', `${relative_y}px`)
   card_elt.style.setProperty('--j-component-info-left', `${10}px`)
-  interaction.copyProperty(elt, card_elt, '--j-component-color-light-text')
-  interaction.copyProperty(elt, card_elt, '--j-component-color-light-bg')
-  interaction.copyProperty(elt, card_elt, '--j-component-color-dark-text')
-  interaction.copyProperty(elt, card_elt, '--j-component-color-dark-bg')
+  utilities.copyProperty(elt, card_elt, '--j-component-color-light-text')
+  utilities.copyProperty(elt, card_elt, '--j-component-color-light-bg')
+  utilities.copyProperty(elt, card_elt, '--j-component-color-dark-text')
+  utilities.copyProperty(elt, card_elt, '--j-component-color-dark-bg')
   */
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = temporary_id

@@ -116,6 +116,13 @@ function qeAll(selector) {
   return document.querySelectorAll(selector)
 }
 
+function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
+  target.style.setProperty(property, source.style.getPropertyValue(property))
+}
+
+function copyComputedStyle(source: HTMLElement, target: HTMLElement, property: string) {
+  target.style.setProperty(property, window.getComputedStyle(source).getPropertyValue(property))
+}
 
 function unicode_arr(str) {
   var str_len = str.length
@@ -365,6 +372,8 @@ window.utilities = {
   checkTouchFeatures,
   qe,
   qeAll,
+  copyProperty,
+  copyComputedStyle,
   unicode_arr,
   jaroWinklerDistance,
   gethashtags,
