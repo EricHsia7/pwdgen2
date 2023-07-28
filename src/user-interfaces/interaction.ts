@@ -182,7 +182,7 @@ function close_prompt_asking(temporary_id) {
   }, { once: true })
   utilities.qe(`body #${temporary_id}_mask`).addEventListener('transitionend', function () {
     utilities.qe(`body #${temporary_id}_mask`).remove()
-  })
+  }, { once: true })
   utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
   utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '0')
   interaction.standaloneStatusBarColor(3)
