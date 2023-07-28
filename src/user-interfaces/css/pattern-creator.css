@@ -224,7 +224,6 @@
   border-radius: 15px 15px 0px 0px;
   box-sizing: border-box;
   transform: translateY(100%);
-  transition: 0.3s;
   overflow: scroll;
   user-select: none;
   -webkit-user-select: none;

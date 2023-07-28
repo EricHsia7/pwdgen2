@@ -32,7 +32,6 @@
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  transition: 0.3s;
   display: flex;
   color: var(--p-main-color);
   font-weight: 500;
