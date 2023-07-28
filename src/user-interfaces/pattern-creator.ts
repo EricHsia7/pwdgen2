@@ -243,20 +243,6 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
     removePatternComponentInfo(existing_info[e].id, event)
   }
   var elt = event.target
-  /*
-  var elt_rect = elt.getBoundingClientRect();
-  var elt_x = elt_rect.x
-  var elt_y = elt_rect.y
-  var elt_w = elt_rect.width;
-  var elt_h = elt_rect.height;
-  */
-  /*
-  var pattern_creator_elt_rect = pattern_creator_elt.getBoundingClientRect()
-  var pattern_creator_elt_x = pattern_creator_elt_rect.x
-  var pattern_creator_elt_y = pattern_creator_elt_rect.y
-  var relative_x = elt_x - pattern_creator_elt_x
-  var relative_y = elt_y - pattern_creator_elt_y + elt_h + 3
- */
   var temporary_id = fine_grained_password.generate([
     {
       type: 'string',
@@ -297,14 +283,6 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
   }
   var card_elt = document.createElement('div')
   var path = '--'
-  /*
-  card_elt.style.setProperty('--j-component-info-top', `${relative_y}px`)
-  card_elt.style.setProperty('--j-component-info-left', `${10}px`)
-  interaction.copyProperty(elt, card_elt, '--j-component-color-light-text')
-  interaction.copyProperty(elt, card_elt, '--j-component-color-light-bg')
-  interaction.copyProperty(elt, card_elt, '--j-component-color-dark-text')
-  interaction.copyProperty(elt, card_elt, '--j-component-color-dark-bg')
-  */
   card_elt.classList.add('pattern_creator_preview_component_info')
   card_elt.id = temporary_id
   card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list_container"><div class="pattern_creator_preview_component_info_list">${items.join('')}</div></div><div class="pattern_creator_preview_component_info_button_box"><div class="pattern_creator_preview_component_info_show_in_editor" onclick="interaction.pattern_creator.showComponentInEditor('${temporary_id}','${component.id}',event)">Find</div><div class="pattern_creator_preview_component_info_close" onclick="interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)">Close</div></div>`
@@ -323,15 +301,16 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
 export function removePatternComponentInfo(temporary_id: string, event: Event): void {
   event.preventDefault()
   interaction.standaloneStatusBarColor(3)
-  utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).setAttribute('o', '0')
-  utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).setAttribute('o', '0')
 
   utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).addEventListener('transitionend', function () {
     utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).remove()
-  })
+  }, { once: true })
   utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).addEventListener('transitionend', function () {
     utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).remove()
-  })
+  }, { once: true })
+
+  utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).setAttribute('o', '0')
+  utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).setAttribute('o', '0')
 }
 
 export function showComponentInEditor(temporary_id: string, component_id: string, event: Event): void {
@@ -425,22 +404,24 @@ export function displayAddPatternErrors(errors) {
   mask.setAttribute(`onclick`, `interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)`)
   document.body.appendChild(mask)
   document.body.appendChild(elt)
-  interaction.show(utilities.qe(`#${temporary_id}`), 'block')
-  interaction.show(utilities.qe(`#${temporary_id}-mask`), 'block')
-  utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
+  setTimeout(function () {
+    utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
+    utilities.qe(`#${temporary_id}-mask`).setAttribute('o', '1')
+  }, 1)
 }
 
 
 export function removeAddPatternErrors(temporary_id: string, event: Event): void {
   event.preventDefault()
   interaction.standaloneStatusBarColor(3)
-  utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).setAttribute('o', '0')
-  interaction.show(utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`), 'none', function () {
+  utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).addEventListener('transitionend', function () {
     utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).remove()
-  })
-  interaction.show(utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`), 'none', function () {
+  }, { once: true })
+  utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).addEventListener('transitionend', function () {
     utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).remove()
-  })
+  }, { once: true })
+  utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).setAttribute('o', '0')
+  utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).setAttribute('o', '0')
 }
 
 export function switchEditor(editor: string): void | string {
