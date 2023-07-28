@@ -173,18 +173,20 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'block')
   setTimeout(function () {
     utilities.qe(`body #${temporary_id}`).setAttribute('o', '1')
+    utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '1')
   }, 1);
   interaction.standaloneStatusBarColor(2)
 }
 
 function close_prompt_asking(temporary_id) {
-  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
-  interaction.show(utilities.qe(`body #${temporary_id}`), 'none', function () {
+  utilities.qe(`body #${temporary_id}`).addEventListener('transitionend', function () {
     utilities.qe(`body #${temporary_id}`).remove()
-  })
-  interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'none', function () {
+  }, { once: true })
+  utilities.qe(`body #${temporary_id}_mask`).addEventListener('transitionend', function () {
     utilities.qe(`body #${temporary_id}_mask`).remove()
   })
+  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0')
+  utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '0')
   interaction.standaloneStatusBarColor(3)
 }
 

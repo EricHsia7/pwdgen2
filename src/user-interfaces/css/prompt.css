@@ -43,7 +43,13 @@
   height: 100%;
   user-select: none;
   -webkit-user-select: none;
-  display: none;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.prompt_asking_mask[o="1"] {
+  opacity: 1;
 }
 
 .prompt_asking {
