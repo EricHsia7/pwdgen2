@@ -91,6 +91,7 @@ function loadCSS(url, identity) {
 type showDisplay = 'none' | 'flex' | 'inline' | 'block' | 'inline-flex' | 'inline-block'
 function show(element: HTMLElement, display: showDisplay, callback: Function | void) {
   var class_str = element.getAttribute('class')
+  var style_str = element.getAttribute('style')
   element.setAttribute('class', class_str.replaceAll(/show-display-[a-z-]*[^\s]/gm, ''))
   element.setAttribute('style', String(style_str).replaceAll(/display[\s]*:{1,1}[\sa-z-]*;{1,1}[^\s]*/gm, ''))
   element.classList.add(`show-display-${display}`)
