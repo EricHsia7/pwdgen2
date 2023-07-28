@@ -171,7 +171,9 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   document.body.appendChild(prompt_asking_elt)
   interaction.show(utilities.qe(`body #${temporary_id}`), 'inline-flex')
   interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'block')
-  utilities.qe(`body #${temporary_id}`).setAttribute('o', '1')
+  setTimeout(function () {
+    utilities.qe(`body #${temporary_id}`).setAttribute('o', '1')
+  }, 1);
   interaction.standaloneStatusBarColor(2)
 }
 
