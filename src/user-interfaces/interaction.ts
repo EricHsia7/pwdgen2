@@ -339,17 +339,10 @@ function openSearch() {
 
   utilities.qe(".search-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('sticky', 'true')
-  utilities.qe(".search-box").setAttribute('transition', '1')
-  utilities.qe(".search-box").addEventListener('transitionend', function () {
-    utilities.qe(".search-box").setAttribute('transition', '0')
+  interaction.fade(utilities.qe('.search-output-box'), 'In', 'block', function () {
     Xsearch.searchIndex = Xsearch.createSearchIndex()
     interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
-  }, { once: true })
-  if (search_status === 0) {
-    interaction.fade(utilities.qe('.search-output-box'), 'In', 'block')
-    utilities.qe('.search-output-box').style.setProperty('--j-search-output-box-y', (utilities.qe(".search-box").offsetTop + 60) + 'px')
-    utilities.qe(".search-output-box").setAttribute('status', '1')
-  }
+  })
   interaction.standaloneStatusBarColor(1)
   search_status = 1
 }
@@ -358,10 +351,6 @@ function closeSearch() {
   utilities.qe(".search-box").setAttribute('status', '0')
   utilities.qe(".search-output-box").setAttribute('status', '0')
   utilities.qe(".search-box").setAttribute('sticky', search_sticky)
-  utilities.qe(".search-box").setAttribute('transition', '1')
-  utilities.qe(".search-box").addEventListener('transitionend', function () {
-    utilities.qe(".search-box").setAttribute('transition', '0')
-  }, { once: true })
   utilities.qe('.search input#search').value = ''
   if (search_status === 1) {
     utilities.qe('.search-output-box').setAttribute('status', '0')
