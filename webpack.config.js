@@ -23,7 +23,7 @@ module.exports = (env, argv) => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'styles.min.css', // Output CSS filename
+        filename: '[name].[contenthash].min.css', // Output CSS filename
       }),
       new HtmlWebpackPlugin({
         template: './src/index.html', // Path to your custom HTML template file
