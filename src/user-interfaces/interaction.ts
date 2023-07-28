@@ -290,7 +290,8 @@ function openSearchTransition() {
   var search_elt = utilities.qe('.main-page .search')
   search_elt.setAttribute('transition', '1')
   var search_elt_rect = search_elt.getBoundingClientRect()
-  var transition_elt = document.createElement('search-transition')
+  var transition_elt = document.createElement('div')
+  transition_elt.classList.add('search-transition')
   var temporary_id = fine_grained_password.generate([
     {
       type: 'string',
