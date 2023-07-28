@@ -338,7 +338,7 @@ function openSearch() {
     })
     search_evt = 1
   }
-
+  utilities.qe(".search-out-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('sticky', 'true')
   Xsearch.searchIndex = Xsearch.createSearchIndex()
@@ -348,8 +348,8 @@ function openSearch() {
 }
 
 function closeSearch() {
-  utilities.qe(".search-box").setAttribute('status', '0')
   utilities.qe(".search-output-box").setAttribute('status', '0')
+  utilities.qe(".search-box").setAttribute('status', '0')
   utilities.qe(".search-box").setAttribute('sticky', search_sticky)
   utilities.qe('.search input#search').value = ''
   if (!search_sticky) {
