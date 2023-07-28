@@ -289,6 +289,7 @@ function copyDetails(k) {
 function openSearchTransition() {
   var search_elt = utilities.qe('.main-page .search')
   var search_elt_rect = search_elt.getBoundingClientRect()
+  search_elt.setAttribute('transition','1')
   var transition_elt = document.createElement('div')
   transition_elt.classList.add('search-transition')
   var temporary_id = fine_grained_password.generate([
@@ -319,6 +320,7 @@ function openSearchTransition() {
     transition_elt_instance.remove()
     Xsearch.searchIndex = Xsearch.createSearchIndex()
     interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
+    search_elt.setAttribute('transition','0')
   }, { once: true })
   setTimeout(function () {
     transition_elt_instance.setAttribute('transition', '1')
