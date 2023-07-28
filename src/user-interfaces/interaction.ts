@@ -95,6 +95,9 @@ function show(element: HTMLElement, type: showType, display: showDisplay, callba
   element.setAttribute('class', class_str.replaceAll(/show-display-[a-z-]*[^\s]/gm, ''))
   element.setAttribute('style', String(style_str).replaceAll(/display[\s]*:{1,1}[\sa-z-]*;{1,1}[^\s]*/gm, ''))
   element.classList.add(`show-display-${display}`)
+  if (typeof callback === 'function') {
+    callback()
+  }
 }
 
 function prompt_message(message, duration) {
