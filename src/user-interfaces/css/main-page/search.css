@@ -55,13 +55,24 @@
   border-radius: var(--p-border-radius-default);
 }
 
+.search[transition="1"] {
+  opacity: 0;
+}
+
 .search-transition {
   position: fixed;
   transition: 300ms;
   transition-timing-function: ease;
 }
 
-.search-box[sticky="true"] .search {
+.search-transition[transition="1"] {
+  top: 10px;
+  left: 15px;
+  width: calc(100% - 95px);
+}
+
+.search-box[sticky="true"] .search,
+.search-transition[transition="1"] {
   background: var(--p-f2f2f7);
 }
 

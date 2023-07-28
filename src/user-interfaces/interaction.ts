@@ -289,6 +289,8 @@ function copyDetails(k) {
 function openSearchTransition() {
   var search_elt = utilities.qe('.main-page .search')
   search_elt.setAttribute('transition', '1')
+  search_elt.setAttribute('status', '1')
+  search_elt.setAttribute('sticky', 'true')
   var search_elt_rect = search_elt.getBoundingClientRect()
   var transition_elt = document.createElement('div')
   transition_elt.classList.add('search-transition')
@@ -308,18 +310,23 @@ function openSearchTransition() {
   transition_elt.style.setProperty('left', `${search_elt_rect.left}px`)
   transition_elt.style.setProperty('width', `${search_elt_rect.width}px`)
   transition_elt.style.setProperty('height', `${search_elt_rect.height}px`)
+  transition_elt.style.setProperty('--j-search-transition-top', `${}px`)
+
+
   transition_elt.id = temporary_id
   var html = `<div class="search-icon"><svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M23.355 46.3479C16.8276 46.3479 11.3032 44.0849 6.78192 39.5587C2.26064 35.0325 0 29.571 0 23.174C0 16.777 2.26308 11.3154 6.78925 6.78925C11.3154 2.26308 16.7921 0 23.2192 0C29.6464 0 35.108 2.26308 39.604 6.78925C44.1 11.3154 46.3479 16.7815 46.3479 23.1876C46.3479 25.7735 45.9255 28.2735 45.0806 30.6874C44.2357 33.1014 42.9684 35.3645 41.2786 37.4767L63.1853 59.2023C63.7284 59.7186 64 60.3757 64 61.1737C64 61.9716 63.7284 62.6421 63.1853 63.1853C62.6421 63.7284 61.9716 64 61.1737 64C60.3757 64 59.7186 63.7284 59.2023 63.1853L37.3861 41.3692C35.5757 42.9382 33.4647 44.1603 31.0532 45.0354C28.6417 45.9104 26.0757 46.3479 23.355 46.3479ZM23.2645 40.9165C28.1678 40.9165 32.3357 39.1815 35.768 35.7115C39.2004 32.2414 40.9165 28.0622 40.9165 23.174C40.9165 18.2857 39.2004 14.1066 35.768 10.6365C32.3357 7.16643 28.1678 5.4314 23.2645 5.4314C18.3109 5.4314 14.1003 7.16643 10.6327 10.6365C7.16516 14.1066 5.4314 18.2857 5.4314 23.174C5.4314 28.0622 7.16516 32.2414 10.6327 35.7115C14.1003 39.1815 18.3109 40.9165 23.2645 40.9165Z" fill-rule="nonzero" opacity="1" stroke="none" /></svg></div><div class="search-transition-placeholder">Search</div>`
   transition_elt.innerHTML = html
   document.body.appendChild(transition_elt)
   var transition_elt_instance = utilities.qe(`.search-transition#${temporary_id}`)
+ 
+
   transition_elt_instance.addEventListener('transitionend', function () {
     transition_elt_instance.remove()
-    tilities.qe(".search-box").setAttribute('status', '1')
-    utilities.qe(".search-box").setAttribute('sticky', 'true')
+    utilities.qe(".search-box").setAttribute('transition', '0')
     Xsearch.searchIndex = Xsearch.createSearchIndex()
     interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
   }, { once: true })
+  transition_elt_instance.setAttribute('transition', '1')
 }
 
 function openSearch() {
