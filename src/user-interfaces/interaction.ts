@@ -289,6 +289,8 @@ function copyDetails(k) {
 function openSearchTransition() {
   var search_elt = utilities.qe('.main-page .search')
   search_elt.setAttribute('transition', '1')
+  search_elt.setAttribute('status', '1')
+  search_elt.setAttribute('sticky', 'true')
   var search_elt_rect = search_elt.getBoundingClientRect()
   var transition_elt = document.createElement('div')
   transition_elt.classList.add('search-transition')
@@ -313,13 +315,15 @@ function openSearchTransition() {
   transition_elt.innerHTML = html
   document.body.appendChild(transition_elt)
   var transition_elt_instance = utilities.qe(`.search-transition#${temporary_id}`)
+ 
+
   transition_elt_instance.addEventListener('transitionend', function () {
     transition_elt_instance.remove()
-    tilities.qe(".search-box").setAttribute('status', '1')
-    utilities.qe(".search-box").setAttribute('sticky', 'true')
+    utilities.qe(".search-box").setAttribute('transition', '0')
     Xsearch.searchIndex = Xsearch.createSearchIndex()
     interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
   }, { once: true })
+  transition_elt_instance.setAttribute('transition', '1')
 }
 
 function openSearch() {
