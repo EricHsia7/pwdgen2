@@ -65,12 +65,13 @@
   left: var(--j-search-transition-left);
   width: var(--j-search-transition-width);
   height: var(--j-search-transition-height);
+  transform: translateY(0px) translateX(0px);
   transition: transform 300ms, width 300ms;
   transition-timing-function: ease;
 }
 
 .search-transition[transition="1"] {
-  transform: translateY(calc(10px - var(--j-search-transition-top))) translateY(calc(15px - var(--j-search-transition-left)));
+  transform: translateY(calc(10px - var(--j-search-transition-top))) translateX(calc(15px - var(--j-search-transition-left)));
   width: calc(100% - 95px);
   background: var(--p-f2f2f7);
 }
