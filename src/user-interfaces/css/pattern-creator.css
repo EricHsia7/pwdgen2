@@ -209,6 +209,14 @@
   background: rgba(0, 0, 0, 0.45);
   user-select: none;
   -webkit-user-select: none;
+  display: block;
+  opacity: 0
+}
+
+
+.pattern_creator_preview_component_info_mask[o="1"],
+.pattern_creator_add_pattern_errors_mask[o="1"] {
+  opacity: 1;
 }
 
 .pattern_creator_preview_component_info,

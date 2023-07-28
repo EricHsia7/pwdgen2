@@ -314,19 +314,22 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
   mask_elt.setAttribute(`onclick`, `interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)`)
   document.body.appendChild(mask_elt)
   document.body.appendChild(card_elt)
-  interaction.show(utilities.qe(`#${temporary_id}`), 'block')
-  interaction.show(utilities.qe(`#${temporary_id}-mask`), 'block')
-  utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
+  setTimeout(function () {
+    utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
+    utilities.qe(`#${temporary_id}-mask`).setAttribute('o', '1')
+  }, 1)
 }
 
 export function removePatternComponentInfo(temporary_id: string, event: Event): void {
   event.preventDefault()
   interaction.standaloneStatusBarColor(3)
   utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).setAttribute('o', '0')
-  interaction.show(utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`), 'none', function () {
+  utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).setAttribute('o', '0')
+
+  utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).addEventListener('transitionend', function () {
     utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).remove()
   })
-  interaction.show(utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`), 'none', function () {
+  utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).addEventListener('transitionend', function () {
     utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).remove()
   })
 }
