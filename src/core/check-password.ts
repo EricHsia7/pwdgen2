@@ -33,7 +33,7 @@ export function checkCommonWordPatterns(string) {
 
 export function checkPassword(string, cache, id) {
   var getPoints = function (string) {
-    const randomnessX = function (x) { return (8.31 - 1.89 * x + 0.0743 * Math.pow(x, 2) - 5.91 * Math.pow(10, -4) * Math.pow(x, 3)) / 35.89 * 100 }
+    const randomnessX = function (x) { return Math.min(100, Math.max(0, (8.31 - 1.89 * x + 0.0743 * Math.pow(x, 2) - 5.91 * Math.pow(10, -4) * Math.pow(x, 3)) / 35.89 * 100)) }
 
     var length = -42.7 + 29.7 * Math.log(string.length);
     var arr = string.split('')
