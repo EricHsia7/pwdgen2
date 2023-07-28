@@ -106,7 +106,7 @@ export function syncPatternCreatorJSONEditor() {
 
 export function openPatternCreator(event) {
   interaction.standaloneStatusBarColor(0)
-  interaction.show(utilities.qe('.pattern_creator'), 'In', 'block')
+  interaction.show(utilities.qe('.pattern_creator'), 'block')
   interaction.options.closeOptions(event)
   interaction.pattern_creator.initializePatternCreatorJSONEditor()
   if (pattern_creator_evt === 0) {
@@ -314,8 +314,8 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
   mask_elt.setAttribute(`onclick`, `interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)`)
   document.body.appendChild(mask_elt)
   document.body.appendChild(card_elt)
-  interaction.show(utilities.qe(`#${temporary_id}`), 'In', 'block')
-  interaction.show(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
+  interaction.show(utilities.qe(`#${temporary_id}`), 'block')
+  interaction.show(utilities.qe(`#${temporary_id}-mask`), 'block')
   utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
 }
 
@@ -422,8 +422,8 @@ export function displayAddPatternErrors(errors) {
   mask.setAttribute(`onclick`, `interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)`)
   document.body.appendChild(mask)
   document.body.appendChild(elt)
-  interaction.show(utilities.qe(`#${temporary_id}`), 'In', 'block')
-  interaction.show(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
+  interaction.show(utilities.qe(`#${temporary_id}`), 'block')
+  interaction.show(utilities.qe(`#${temporary_id}-mask`), 'block')
   utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
 }
 

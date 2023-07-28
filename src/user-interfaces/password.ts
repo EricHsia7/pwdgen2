@@ -6,7 +6,7 @@ import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 
 
 export function openPassword(id, showCallback) {
-  interaction.show(utilities.qe('.password-page'), 'In', 'block', showCallback)
+  interaction.show(utilities.qe('.password-page'), 'block', showCallback)
   utilities.qe(`.options li[y="editpassword"]`).setAttribute('onclick', `interaction.edit_password.openEditPassword('${id}',event)`)
   utilities.qe(`.options li[y="deletepassword"]`).setAttribute('onclick', `interaction.password_page.deletePassword('${id}',event)`)
   interaction.standaloneStatusBarColor(0)
@@ -62,7 +62,7 @@ export function closePassword(showCallback) {
 
 
 export function openAddPassword(event) {
-  interaction.show(utilities.qe('.add-password-page'), 'In', 'block', function () {
+  interaction.show(utilities.qe('.add-password-page'), 'block', function () {
     interaction.loadCSS('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0', 'googleFontsMaterialSymbols')
   })
 
@@ -125,7 +125,7 @@ export function applyPreset(index) {
 
 
 export function openEditPassword(id, event) {
-  interaction.show(utilities.qe('.edit-password-page'), 'In', 'block')
+  interaction.show(utilities.qe('.edit-password-page'), 'block')
   closePassword()
   utilities.qe(`.edit-password-page .fixed-title-box .btn.right-top-corner`).setAttribute('onclick', `interaction.edit_password.modifyPasswordWithEditor('${id}')`)
   utilities.qe(`.edit-password-page .fixed-title-box .btn.left-top-corner`).setAttribute('onclick', `interaction.edit_password.closeEditPassword('${id}')`)

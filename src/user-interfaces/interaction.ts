@@ -88,9 +88,8 @@ function loadCSS(url, identity) {
   }
 }
 
-type showType = 'In' | 'Out'
 type showDisplay = 'none' | 'flex' | 'inline' | 'block' | 'inline-flex' | 'inline-block'
-function show(element: HTMLElement, type: showType, display: showDisplay, callback: Function | void) {
+function show(element: HTMLElement, display: showDisplay, callback: Function | void) {
   var class_str = element.getAttribute('class')
   element.setAttribute('class', class_str.replaceAll(/show-display-[a-z-]*[^\s]/gm, ''))
   element.setAttribute('style', String(style_str).replaceAll(/display[\s]*:{1,1}[\sa-z-]*;{1,1}[^\s]*/gm, ''))
@@ -169,8 +168,8 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="${option1_func};interaction.close_prompt_asking('${temporary_id}')">${option1}</div><div class="prompt_asking_option2" onclick="${option2_func};interaction.close_prompt_asking('${temporary_id}')">${option2}</div></div>`
   document.body.appendChild(mask_elt)
   document.body.appendChild(prompt_asking_elt)
-  interaction.show(utilities.qe(`body #${temporary_id}`), 'In', 'inline-flex')
-  interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'In', 'block')
+  interaction.show(utilities.qe(`body #${temporary_id}`), 'inline-flex')
+  interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'block')
   utilities.qe(`body #${temporary_id}`).setAttribute('o', '1')
   interaction.standaloneStatusBarColor(2)
 }
