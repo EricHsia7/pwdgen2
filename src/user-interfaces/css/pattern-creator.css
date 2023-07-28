@@ -210,7 +210,8 @@
   user-select: none;
   -webkit-user-select: none;
   display: block;
-  opacity: 0
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 
@@ -237,11 +238,14 @@
   -webkit-user-select: none;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
 }
 
 .pattern_creator_preview_component_info[o="1"],
 .pattern_creator_add_pattern_errors[o="1"] {
   transform: translateY(0%);
+  opacity: 1;
 }
 
 .pattern_creator_preview_component_info .pattern_creator_preview_component_info_title,
