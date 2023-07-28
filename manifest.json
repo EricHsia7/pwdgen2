@@ -1,34 +1,34 @@
 {
   "name": "Password Generator",
-  "short_name": "Password Generator",
+  "short_name": "Password",
   "icons": [
     {
-      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/48x48.png",
+      "src": "https://erichsia7.github.io/pwdgen2/icons/transparent/48x48.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/72x72.png",
+      "src": "https://erichsia7.github.io/pwdgen2/icons/transparent/72x72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/96x96.png",
+      "src": "https://erichsia7.github.io/pwdgen2/icons/transparent/96x96.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/144x144.png",
+      "src": "https://erichsia7.github.io/pwdgen2/icons/transparent/144x144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/168x168.png",
+      "src": "https://erichsia7.github.io/pwdgen2/icons/transparent/168x168.png",
       "sizes": "168x168",
       "type": "image/png"
     },
     {
-      "src": "https://erichsia7.github.io/pwdgen2/pwaicon8/192x192.png",
+      "src": "https://erichsia7.github.io/pwdgen2/icons/transparent/192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
