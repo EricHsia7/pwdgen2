@@ -20,7 +20,7 @@ import './user-interfaces/css/pattern-creator.css'
 import './user-interfaces/css/main-page/search.css'
 import './user-interfaces/css/main-page/password-list.css'
 import './user-interfaces/css/add-password/presets.css'
-import './user-interfaces/css/fade.css'
+import './user-interfaces/css/show.css'
 
 
 

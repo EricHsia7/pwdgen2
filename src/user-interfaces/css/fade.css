@@ -1,23 +1,23 @@
-.fade-display-none {
+.show-display-none {
   display: none;
 }
 
-.fade-display-flex {
+.show-display-flex {
   display: flex;
 }
 
-.fade-display-inline {
+.show-display-inline {
   display: inline;
 }
 
-.fade-display-block {
+.show-display-block {
   display: block;
 }
 
-.fade-display-inline-flex {
+.show-display-inline-flex {
   display: inline-flex;
 }
 
-.fade-display-inline-block {
+.show-display-inline-block {
   display: inline-block;
 }

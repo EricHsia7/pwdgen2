@@ -106,7 +106,7 @@ export function syncPatternCreatorJSONEditor() {
 
 export function openPatternCreator(event) {
   interaction.standaloneStatusBarColor(0)
-  interaction.fade(utilities.qe('.pattern_creator'), 'In', 'block')
+  interaction.show(utilities.qe('.pattern_creator'), 'In', 'block')
   interaction.options.closeOptions(event)
   interaction.pattern_creator.initializePatternCreatorJSONEditor()
   if (pattern_creator_evt === 0) {
@@ -145,7 +145,7 @@ export function openPatternCreator(event) {
 }
 
 export function closePatternCreator() {
-  interaction.fade(utilities.qe('.pattern_creator'), 'Out', 'none')
+  interaction.show(utilities.qe('.pattern_creator'), 'Out', 'none')
   interaction.standaloneStatusBarColor(3)
 }
 
@@ -314,8 +314,8 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
   mask_elt.setAttribute(`onclick`, `interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)`)
   document.body.appendChild(mask_elt)
   document.body.appendChild(card_elt)
-  interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
-  interaction.fade(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
+  interaction.show(utilities.qe(`#${temporary_id}`), 'In', 'block')
+  interaction.show(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
   utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
 }
 
@@ -323,10 +323,10 @@ export function removePatternComponentInfo(temporary_id: string, event: Event): 
   event.preventDefault()
   interaction.standaloneStatusBarColor(3)
   utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).setAttribute('o', '0')
-  interaction.fade(utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`), 'Out', 'none', function () {
     utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).remove()
   })
-  interaction.fade(utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`), 'Out', 'none', function () {
     utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).remove()
   })
 }
@@ -422,8 +422,8 @@ export function displayAddPatternErrors(errors) {
   mask.setAttribute(`onclick`, `interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)`)
   document.body.appendChild(mask)
   document.body.appendChild(elt)
-  interaction.fade(utilities.qe(`#${temporary_id}`), 'In', 'block')
-  interaction.fade(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
+  interaction.show(utilities.qe(`#${temporary_id}`), 'In', 'block')
+  interaction.show(utilities.qe(`#${temporary_id}-mask`), 'In', 'block')
   utilities.qe(`#${temporary_id}`).setAttribute('o', '1')
 }
 
@@ -432,10 +432,10 @@ export function removeAddPatternErrors(temporary_id: string, event: Event): void
   event.preventDefault()
   interaction.standaloneStatusBarColor(3)
   utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).setAttribute('o', '0')
-  interaction.fade(utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`), 'Out', 'none', function () {
     utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).remove()
   })
-  interaction.fade(utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`), 'Out', 'none', function () {
+  interaction.show(utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`), 'Out', 'none', function () {
     utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).remove()
   })
 }
