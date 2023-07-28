@@ -169,8 +169,6 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="${option1_func};interaction.close_prompt_asking('${temporary_id}')">${option1}</div><div class="prompt_asking_option2" onclick="${option2_func};interaction.close_prompt_asking('${temporary_id}')">${option2}</div></div>`
   document.body.appendChild(mask_elt)
   document.body.appendChild(prompt_asking_elt)
-  interaction.show(utilities.qe(`body #${temporary_id}`), 'inline-flex')
-  interaction.show(utilities.qe(`body #${temporary_id}_mask`), 'block')
   setTimeout(function () {
     utilities.qe(`body #${temporary_id}`).setAttribute('o', '1')
     utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '1')
