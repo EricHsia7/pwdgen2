@@ -1,4 +1,3 @@
-
 * {
   -webkit-appearance: none;
   appearance: none;
@@ -16,4 +15,8 @@ body {
   margin: 0px;
   background: var(--p-f2f2f7);
   overflow: hidden;
+}
+
+input#importdata {
+  opacity: 0;
 }
