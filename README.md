@@ -2,11 +2,11 @@
 pwdgen2 is a password generator that mainly build up with TypeScript, and it provides a flexible and customizable way to generate strong passwords based on different patterns. It allows you to create passwords that meet specific criteria, making them more secure and suitable for various use cases.
 ## Features
 ### Password Generator
-#### Generate strong passwords based on predefined patterns.
-#### Customize password patterns to fit specific requirements.
-#### Support for different types of patterns, including regular expressions and character lists.
-#### Ability to shuffle password components for added complexity.
-#### Suitable for use in both production environments and editor/testing environments.
+- Generate strong passwords based on predefined patterns.
+- Customize password patterns to fit specific requirements.
+- Support for different types of patterns, including regular expressions and character lists.
+- Ability to shuffle password components for added complexity.
+- Suitable for use in both production environments and editor/testing environments.
 > [Learn more about it.](https://github.com/EricHsia7/pwdgen2/blob/main/pattern_docs/chapter1.md)
 
 ### Search
