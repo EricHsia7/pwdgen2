@@ -19,7 +19,8 @@ It allows users to search for passwords based on specific queries. It supports p
 - **Hashtags and Date Search**  
 It provides the ability to search for passwords using hashtags and dates. Users can find passwords associated with specific hashtags and narrow down their search based on date ranges.
     
-- **Password Length Search:** The library allows users to search for passwords based on their length. This feature is particularly useful when looking for passwords with specific security requirements.
+- **Password Length Search** 
+The library allows users to search for passwords based on their length. This feature is particularly useful when looking for passwords with specific security requirements.
     
 - **Similarity Suggestions** 
 For fuzzy search queries, Xsearch offers similarity suggestions to help users find relevant passwords even if the exact search term is not available. The library calculates similarity scores using Jaro-Winkler distance to provide well ordering of suggestions.
@@ -33,6 +34,7 @@ Users can add new passwords or modify existing ones. When creating a new passwor
 
 - **Password Removal**
 It provides a way to remove saved passwords based on their unique IDs. This ensures that users can easily delete passwords they no longer need.
+
 - **Password Listing**
 Users can list their saved passwords, which are decrypted and presented in a human-readable interface. The list is sorted based on the timestamp of when the passwords were added or modified.
 
@@ -59,4 +61,7 @@ It provides color-coded feedback, making it easier for users to identify the sec
 ## Roadmap
 Users can import password data from a JSON file, **allowing for easy migration from other systems or backups.**
 
-##
+
+## Materials
+* fonts: [`Noto Sans`](https://fonts.google.com/noto/specimen/Noto+Sans)
+* icons: [`Material Symbols`](https://fonts.google.com/icons)
