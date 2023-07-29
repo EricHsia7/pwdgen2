@@ -208,7 +208,7 @@ export function importdatahandler(event) {
 
       for (var i = 0; i < data_len; i++) {
         var this_item = data[i]
-        localStorage.setItem(this_item.key, this_item.content)
+        localStorage.setItem(this_item.key, JSON.stringify(JSON.parse(content)))
       }
       upgradeData()
       interaction.prompt.prompt_message('Imported data successfully.')
@@ -224,7 +224,7 @@ export function generateExportFile() {
   var export_list = []
   for (var k = 0; k < list_len; k++) {
     var this_item = JSON.parse(String(LS.getItem(list[k])))
-    export_list.push({ key: list[k], content: this_item })
+    export_list.push({ key: list[k], content: JSON.stringify(this_item, null, 2) })
   }
   return JSON.stringify({ data: export_list, version: '2023-07-30', export_time_stamp: new Date().toISOString() }, null, 2)
 }
