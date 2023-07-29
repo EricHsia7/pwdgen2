@@ -217,3 +217,14 @@ export function importdatahandler(event) {
   })(f);
   reader.readAsText(f);
 }
+
+export function generateExportFile() {
+  var list = searchItemsbyname('pwdgen2_saved_b')
+  var list_len = list.length
+  var list = []
+  for (var k = 0; k < list_len; k++) {
+    var this_item = JSON.parse(String(LS.getItem(list[k])))
+    list.push({ key: list[k], content: this_item })
+  }
+  return JSON.stringify({ data: list, version: '2023-07-30', export_time_stamp: new Date().toISOString() }, null, 2)
+}
