@@ -60,7 +60,7 @@ export function closePassword() {
 export function openAddPassword(event) {
   interaction.show(utilities.qe('.add-password-page'), 'block')
   if (!lazyCSS.loaded.googleFontsMaterialSymbols) {
-    interaction.loadCSS('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0', 'googleFontsMaterialSymbols')
+    interaction.loadFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0','Material Symbols Rounded', 'googleFontsMaterialSymbols')
     document.fonts.ready.then(function () {
       utilities.qe('.add-password-page .password-generator-presets').setAttribute('font', '1')
     });
@@ -85,7 +85,7 @@ export function addPasswordWithForm() {
   var username = utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value || ''
   var website = utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value || ''
   var addedpassword = addPassword(password, username, website, '')
-  interaction.prompt_message('Added password.', 1200)
+  interaction.prompt.prompt_message('Added password.', 1200)
   interaction.add_password.closeAddPassword()
   interaction.password_page.openPassword(addedpassword, function () {
     interaction.main_page.printSavedPasswordList()
@@ -158,7 +158,7 @@ export function modifyPasswordWithEditor(id) {
   //var time_stamp = new Date().toISOString()
   var note = utilities.qe('.edit-password-page .edit-note-content').textContent || ''
   modifyPassword(password, username, website, note, id)
-  interaction.prompt_message('Saved changes.', 1200)
+  interaction.prompt.prompt_message('Saved changes.', 1200)
   interaction.edit_password.closeEditPassword()
   interaction.password_page.openPassword(id, function () {
     interaction.main_page.printSavedPasswordList()
@@ -167,17 +167,17 @@ export function modifyPasswordWithEditor(id) {
 
 export function deletePassword(id, event) {
   interaction.options.closeOptions(event)
-  interaction.prompt_asking('Confirm to proceed to permanently delete the password.', 'Confirm', `interaction.password_page.confirmToDeletePassword('${id}',event)`, 'Cancel', `interaction.prompt_message('Cancelled deletion.',1200)`)
+  interaction.prompt.prompt_asking('Confirm to proceed to permanently delete the password.', 'Confirm', `interaction.password_page.confirmToDeletePassword('${id}',event)`, 'Cancel', `interaction.prompt.prompt_message('Cancelled deletion.',1200)`)
 }
 
 export function confirmToDeletePassword(id) {
   var remove = removePassword(id)
   if (remove) {
-    interaction.prompt_message('Deleted the password permanently.')
+    interaction.prompt.prompt_message('Deleted the password permanently.')
     interaction.password_page.closePassword()
     interaction.main_page.printSavedPasswordList()
   }
   else {
-    interaction.prompt_message('Failed to delete the password.')
+    interaction.prompt.prompt_message('Failed to delete the password.')
   }
 }

@@ -348,7 +348,7 @@ export function showComponentInEditor(temporary_id: string, component_id: string
 export function addPatternWithCreator(): void | string {
   var check = fine_grained_password.checkPatternQualification(pattern_json)
   if (!check.result) {
-    /*interaction.prompt_message(`Cannot add pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)*/
+    /*interaction.prompt.prompt_message(`Cannot add pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)*/
     interaction.pattern_creator.displayAddPatternErrors(check.errors)
     return ''
   }
@@ -362,7 +362,7 @@ export function addPatternWithCreator(): void | string {
     }
   ], 'production')
   LS.setItem(`pwdgen2_pattern_b_${id}`, string)
-  interaction.prompt_message('Added pattern.')
+  interaction.prompt.prompt_message('Added pattern.')
   interaction.pattern_creator.closePatternCreator()
 }
 
@@ -428,7 +428,7 @@ export function switchEditor(editor: string): void | string {
   if (editor === 'blocks') {
     interaction.pattern_creator.syncAndFormatPatternCreatorJSONEditor()
     /* pending message */
-    interaction.prompt_message('This editor is unavailable at this time.')
+    interaction.prompt.prompt_message('This editor is unavailable at this time.')
     return ''
   }
   pattern_creator_current_editor = editor
