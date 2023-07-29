@@ -2,12 +2,10 @@
 ***pwdgen2*** is a password generator that mainly build up with TypeScript, and it provides a flexible and customizable way to generate strong passwords based on different patterns. It allows you to create passwords that meet specific criteria, making them more secure and suitable for various use cases.
 ## Features
 ### Password Generator
-
 Generate strong passwords based on predefined patterns.
 
 
 ### Customizable Patterns
-
 #### Properties
 ##### pattern_name
 `pattern_name` is a string that will be displayed at the page called "Add Password".
@@ -29,7 +27,6 @@ Generate strong passwords based on predefined patterns.
 
 
 ##### Types
-
 ###### string
 A string component will make generator directly put a string you specified to the current end of the result.
 
@@ -47,7 +44,6 @@ A group component can load up 3 types of components mentioned above, and you can
 
 
 ##### Properties of a component
-
 ###### type
 This property are applicable and required for all the types.
 
@@ -73,7 +69,6 @@ This property will be generated and added to every component automatically by ed
 
 
 ### Search
-
 #### Search Index Creation
 This application offers a `createSearchIndex` function that creates an index for efficient search operations. The index contains data from saved passwords, such as passwords, websites, notes, usernames, and timestamps, making it easier to find passwords based on different criteria.
 
@@ -94,7 +89,6 @@ The library allows users to search for passwords based on their length. This fea
 The library calculates similarity scores using Jaro-Winkler distance to provide well ordering of suggestions.
 
 ### Storage
-
 #### Encrypted Password Storage
 It store password in encrypted format (AES) and other data in plain text using the `window.localStorage` API. 
 
@@ -116,7 +110,6 @@ This application supports data import and export functionalities. The export fun
 
 
 ### Password
-
 #### Common Word Pattern Check
 This feature examines passwords for common word patterns, aiming to detect possible vulnerabilities. By comparing the password with a list of known common words, it prompts users to steer clear of such patterns. It ensures password uniqueness by searching for frequently used combinations, guiding users to avoid commonly employed patterns for enhanced security.
 
