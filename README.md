@@ -2,12 +2,57 @@
 pwdgen2 is a password generator that mainly build up with TypeScript, and it provides a flexible and customizable way to generate strong passwords based on different patterns. It allows you to create passwords that meet specific criteria, making them more secure and suitable for various use cases.
 ## Features
 ### Password Generator
-- Generate strong passwords based on predefined patterns.
-- Customize password patterns to fit specific requirements.
-- Support for different types of patterns, including regular expressions and character lists.
-- Ability to shuffle password components for added complexity.
-- Suitable for use in both production environments and editor/testing environments.
-> [Learn more about it.](https://github.com/EricHsia7/pwdgen2/blob/main/pattern_docs/chapter1.md)
+Generate strong passwords based on predefined patterns.
+
+
+### Customizable Patterns
+#### Properties
+##### pattern_name
+`pattern_name` is a string that will be displayed at the page called "Add Password".
+
+##### pattern_icon
+`pattern_icon` is a string that can specify the icon being displayed before the name. You can search the icons form the website [fonts.google.com/icons](https://fonts.google.com/icons), copy the identity in "Instering the icon" section, and paste it to here to add icon.
+
+##### pattern
+`pattern` is a array that load up the generation configuration. This part is complex, so let's go to the next chapter!
+
+
+#### Component
+* A component must be loaded up in an array.
+* There're 4 types of components that you can use, including `string`, `regex`, `list`, and `group`.
+* A component must comes in `object` type (for JavaScript).
+* The generation process is progressive and cumulative like writing from left to right, and the generator will generate string according to your configuration step by step.
+##### Types
+**string**
+A string component will make generator directly put a string you specified to the current end of the result.
+
+**regex**
+"regex" reperesents "regular expression", it will tell generator what characters can appears in the generation result, in other words, you can use this type to select character sources being used.
+
+**list**
+A list component can only contains string, and the generator will randomly choose one to put at end of the rseult at one time.
+
+**group**
+A group component can load up 3 types of components mentioned above, and you can make the generator carry out actions to the result of a group.
+
+##### Properties of a component
+**type**
+This property are applicable and required for all the types.
+
+**[type]**
+This property is the content of a component, and the property name is depending on the type. For example, if there's a `string` component, `string` property is applicable and required, and it look like `{"type": "string", "string": "content"}`
+
+**repeat**
+The value of this boolean property has two options, `true` or `false`. To ensure that the characters from the sources `regex` or `list` will not appear repeatedly, you need to set this to `false`. In addition, if all the characters or items are consumed, generator will use the alternative value "undefined".
+
+**quantity**
+This property comes in `number`, specifying the times of choosing actions. This is applicable and required for some types of components, including `regex` and `list`.
+
+**actions**
+This property comes in `array`,and the available value is `shuffle` at this time. This property is only for the component `group`.
+
+**id**
+This property will be generated and added to every component automatically by editor.
 
 ### Search
 #### Search Index Creation
@@ -89,8 +134,8 @@ It provides color-coded feedback, making it easier for users to identify the sec
 
 
 ## Roadmap
-- Users can import password data from a JSON file, allowing for easy migration from other systems or backups.
-- For fuzzy search queries, it offers similarity suggestions to help users find relevant passwords even if the exact search term is not available. 
+####Users can import password data from a JSON file, allowing for easy migration from other systems or backups.
+####For fuzzy search queries, it offers similarity suggestions to help users find relevant passwords even if the exact search term is not available. 
 
 
 ## Materials
