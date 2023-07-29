@@ -5,8 +5,8 @@ import fine_grained_password from '../core/fine-grained-password'
 import { checkPassword, checkCommonWordPatterns } from '../core/check-password'
 
 
-export function openPassword(id, fadeCallback) {
-  interaction.fade(utilities.qe('.password-page'), 'In', 'block', fadeCallback)
+export function openPassword(id, showCallback) {
+  interaction.show(utilities.qe('.password-page'), 'block', showCallback)
   utilities.qe(`.options li[y="editpassword"]`).setAttribute('onclick', `interaction.edit_password.openEditPassword('${id}',event)`)
   utilities.qe(`.options li[y="deletepassword"]`).setAttribute('onclick', `interaction.password_page.deletePassword('${id}',event)`)
   interaction.standaloneStatusBarColor(0)
@@ -50,19 +50,15 @@ export function openPassword(id, fadeCallback) {
   }
 }
 
-export function closePassword(fadeCallback) {
-  interaction.fade(utilities.qe('.password-page'), 'Out', 'none', function () {
-    utilities.qe('.password-page').scrollTop = 0
-    if (typeof fadeCallback === 'function') {
-      fadeCallback()
-    }
-  })
+export function closePassword() {
+  utilities.qe('.password-page').scrollTop = 0
+  interaction.show(utilities.qe('.password-page'), 'none')
   interaction.standaloneStatusBarColor(3)
 }
 
 
 export function openAddPassword(event) {
-  interaction.fade(utilities.qe('.add-password-page'), 'In', 'block', function () {
+  interaction.show(utilities.qe('.add-password-page'), 'block', function () {
     interaction.loadCSS('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,300,0,0', 'googleFontsMaterialSymbols')
   })
 
@@ -75,7 +71,7 @@ export function openAddPassword(event) {
 }
 
 export function closeAddPassword() {
-  interaction.fade(utilities.qe('.add-password-page'), 'Out', 'none')
+  interaction.show(utilities.qe('.add-password-page'), 'none')
   interaction.standaloneStatusBarColor(3)
 }
 
@@ -125,7 +121,7 @@ export function applyPreset(index) {
 
 
 export function openEditPassword(id, event) {
-  interaction.fade(utilities.qe('.edit-password-page'), 'In', 'block')
+  interaction.show(utilities.qe('.edit-password-page'), 'block')
   closePassword()
   utilities.qe(`.edit-password-page .fixed-title-box .btn.right-top-corner`).setAttribute('onclick', `interaction.edit_password.modifyPasswordWithEditor('${id}')`)
   utilities.qe(`.edit-password-page .fixed-title-box .btn.left-top-corner`).setAttribute('onclick', `interaction.edit_password.closeEditPassword('${id}')`)
@@ -144,9 +140,8 @@ export function openEditPassword(id, event) {
 }
 
 export function closeEditPassword(id) {
-  interaction.fade(utilities.qe('.edit-password-page'), 'Out', 'none', function () {
-    utilities.qe('.edit-password-page').scrollTop = 0
-  })
+  utilities.qe('.edit-password-page').scrollTop = 0
+  interaction.show(utilities.qe('.edit-password-page'), 'none')
   interaction.standaloneStatusBarColor(3)
   interaction.password_page.openPassword(id)
 }
@@ -174,9 +169,8 @@ export function confirmToDeletePassword(id) {
   var remove = removePassword(id)
   if (remove) {
     interaction.prompt_message('Deleted the password permanently.')
-    interaction.password_page.closePassword(function () {
-      interaction.main_page.printSavedPasswordList()
-    })
+    interaction.password_page.closePassword()
+    interaction.main_page.printSavedPasswordList()
   }
   else {
     interaction.prompt_message('Failed to delete the password.')
