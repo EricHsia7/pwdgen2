@@ -164,8 +164,8 @@ It provides color-coded feedback, making it easier for users to identify the sec
 
 
 ## Roadmap
-####Users can import password data from a JSON file, allowing for easy migration from other systems or backups.
-####For fuzzy search queries, it offers similarity suggestions to help users find relevant passwords even if the exact search term is not available. 
+- Users can import password data from a JSON file, allowing for easy migration from other systems or backups.
+- For fuzzy search queries, it offers similarity suggestions to help users find relevant passwords even if the exact search term is not available. 
 
 
 ## Materials
