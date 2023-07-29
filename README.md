@@ -50,7 +50,7 @@ The value of this boolean property has two options, `true` or `false`. To ensure
 This property comes in `number`, specifying the times of choosing actions. This is applicable and required for some types of components, including `regex` and `list`.
 
 ###### actions
-This property comes in `array`, and the available value is `shuffle` at this time. This property is only for the component `group`.
+This property comes in `array`, and the available value is `shuffle` at this time. This property is only for the component `group`. For example, it might looks like `{"type": "group", "group": [...], "actions": ["shuffle", "shuffle", "shuffle"]`.
 
 ###### id
 This property will be generated and added to every component automatically by the editor.
