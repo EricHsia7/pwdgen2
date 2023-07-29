@@ -18,10 +18,10 @@ Generate strong passwords based on predefined patterns.
 `pattern` is an array that loads up the generation configuration, and the items in the array are called `components`.
 
 #### Components
-* A component must be loaded up in an `array`.
+* A component must be loaded up in an array.
 * There are 4 types of components that you can use, including `string`, `regex`, `list`, and `group`.
-* A component must come in `object` type (for JavaScript).
-* The generation process is progressive and cumulative, like writing from left to right, and the generator will generate a string according to your configuration step by step.
+* A component must come in object type (for JavaScript).
+* The generation process is progressive and cumulative, like writing from left to right, and the generator will generate a string/text according to your configuration step by step.
 
 ##### Types
 ###### string
