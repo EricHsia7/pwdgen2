@@ -5,4 +5,7 @@
       catch (e) {
         console.log(e)
       }
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./dist/service-worker.js');
+      }
     });</script></body></html>

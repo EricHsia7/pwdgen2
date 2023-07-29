@@ -59,6 +59,7 @@
   <!--<link rel="stylesheet" href="https://erichsia7.github.io/pwdgen2/dist/styles.min.css?version=<%= process.env.VERSION %>" />-->
   <style id="options_css"></style>
 </head>
+
 <body>
   <input type="file" name="importdata" id="importdata" accept="application/json">
   <div class="main-page">
@@ -480,6 +481,9 @@
       }
       catch (e) {
         console.log(e)
+      }
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./dist/service-worker.js');
       }
     });
   </script>
