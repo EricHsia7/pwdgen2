@@ -56,14 +56,12 @@ This property comes in `array`, and the available value is `shuffle` at this tim
 This property will be generated and added to every component automatically by the editor.
 
 ### Search
-#### Search Index Creation
-This application offers a `createSearchIndex` function that creates an index for efficient search operations. The index contains data from saved passwords, such as passwords, websites, notes, usernames, and timestamps, making it easier to find passwords based on different criteria.
 
 #### Flexible Search
-It allows users to search for passwords based on specific queries. It supports partial matches and returns relevant results, including passwords, websites, usernames, and timestamps, that match the search query.
+This application provides a flexible search feature with an search index, enabling efficient search operations for saved passwords. The index includes passwords, websites, notes, usernames, and timestamps, making it simple to find passwords using various keywords. Users can perform specific queries, including receiving relevant results containing passwords, websites, usernames, and timestamps that match their search query.
 
 #### Hashtags and Date Search
-It provides the ability to search for passwords using hashtags and dates. Users can find passwords associated with specific hashtags and narrow down their search based on date ranges.
+It provides the ability to search for passwords using hashtags and dates. Users can find passwords associated with specific hashtags and narrow down their search based on date.
 
 #### Password Length Search
 The library allows users to search for passwords based on their length. This feature is particularly useful when looking for passwords with specific security requirements.
@@ -106,7 +104,7 @@ It provides color-coded feedback, making it easier for users to identify the sec
 ## Roadmap
 - Users can import password data from a JSON file, allowing for easy migration from other systems or backups.
 - For fuzzy search queries, it offers similarity suggestions to help users find relevant passwords even if the exact search term is not available.
-
+- Search passwords by a date range.
 ## Materials
 * fonts: [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
 * icons: [Material Symbols](https://fonts.google.com/icons)
