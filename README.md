@@ -108,5 +108,5 @@ It provides color-coded feedback, making it easier for users to identify the sec
 - For fuzzy search queries, it offers similarity suggestions to help users find relevant passwords even if the exact search term is not available.
 
 ## Materials
-* fonts: [`Noto Sans`](https://fonts.google.com/noto/specimen/Noto+Sans)
-* icons: [`Material Symbols`](https://fonts.google.com/icons)
+* fonts: [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
+* icons: [Material Symbols](https://fonts.google.com/icons)
