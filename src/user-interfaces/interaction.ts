@@ -6,6 +6,11 @@ import icons from './icons'
 import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator'
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password'
 
+var FontFaceObserver = require('fontfaceobserver');
+const standaloneStatusBarColorHistory: number[] = [0, 0, 0]
+
+window.search_evt = 0
+
 window.lazyCSS = {
   loaded: {
     'googleFontsNotoSans': false,
@@ -18,9 +23,6 @@ window.lazyPasswordListIcons = {
   loaded: []
 }
 
-window.search_evt = 0
-
-const standaloneStatusBarColorHistory: number[] = [0, 0, 0]
 
 function lazyLoadPasswordListIcon(identity, url) {
   var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`)
@@ -86,12 +88,9 @@ function loadCSS(url: string, identity: string) {
 function loadFont(url: string, fontName: string, identity: string, loadedCallback: Function) {
   loadCSS(url, identity)
   if (typeof loadedCallback === 'function') {
-    var font: FontFace = new FontFace(fontName, `url(https://fonts.googleapis.com/css2?family=${fontName})`);
-    font.load().then((loadedFont) => {
-      document.fonts.add(loadedFont);
+    var font = new FontFaceObserver(fontName);
+    font.load().then(function () {
       loadedCallback()
-    }).catch((error) => {
-
     });
   }
 }
