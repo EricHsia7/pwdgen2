@@ -226,5 +226,5 @@ export function generateExportFile() {
     var this_item = JSON.parse(String(LS.getItem(list[k])))
     export_list.push({ key: list[k], content: this_item })
   }
-  return JSON.stringify({ data: list, version: '2023-07-30', export_time_stamp: new Date().toISOString() }, null, 2)
+  return JSON.stringify({ data: export_list, version: '2023-07-30', export_time_stamp: new Date().toISOString() }, null, 2)
 }
