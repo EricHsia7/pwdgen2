@@ -450,5 +450,5 @@ export function switchEditor(editor: string): void | string {
 }
 
 export function go_to_documents() {
-  window.open('https://github.com/EricHsia7/pwdgen2/tree/dev-readme-1#customizable-patterns')
+  window.open('https://github.com/EricHsia7/pwdgen2/tree/main#customizable-patterns')
 }
