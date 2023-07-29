@@ -38,8 +38,8 @@ module.exports = (env, argv) => {
       new WorkboxPlugin.GenerateSW({
         clientsClaim: true,
         skipWaiting: true,
-        exclude: /\.map$/,
-        include: /\.js|css|png$/,
+        exclude: [/\.map$/],
+        include: [/\.js|css|png$/],
       }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
