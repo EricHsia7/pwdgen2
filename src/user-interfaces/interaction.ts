@@ -1,7 +1,7 @@
 import fine_grained_password from '../core/fine-grained-password'
 import utilities from '../core/utilities'
 import Xsearch from '../core/search'
-import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword } from '../core/storage'
+import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword, generateExportFile } from '../core/storage'
 import icons from './icons'
 import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator'
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password'
@@ -485,6 +485,37 @@ function importData() {
   utilities.qe('#importdata').click()
 }
 
+function exportGeneratedFile() {
+  var text = generateExportFile()
+  var data = new Blob([text], { type: 'application/json' })
+  var name = fine_grained_password([
+    {
+      type: 'string',
+      string: 'pwdgen2_export_'
+    },
+    {
+      type: 'regex',
+      regex: '/[A-Z0-9a-z]/g',
+      quantity: 16,
+      repeat: true
+    }
+  ], 'production')
+  const fileObj = new File([data], name + '.json', { type: data.type })
+  if (navigator.canShare && navigator.canShare({ files: [fileObj] })) {
+    navigator.share({
+      files: [fileObj]
+    })
+  }
+  else {
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.download = `${name}.json`;
+    a.href = window.URL.createObjectURL(data);
+    a.click()
+    a.remove()
+  }
+}
+
 window.interaction = {
   prompt: {
     prompt_message,
@@ -500,6 +531,7 @@ window.interaction = {
   loadCSS,
   loadFont,
   importData,
+  exportGeneratedFile,
   search: {
     openSearch,
     closeSearch,
