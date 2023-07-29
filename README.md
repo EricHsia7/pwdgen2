@@ -10,23 +10,19 @@ Generate strong passwords based on predefined patterns.
 
 #### Properties
 ##### pattern_name
-
 `pattern_name` is a string that will be displayed at the page called "Add Password".
 
 
 ##### pattern_icon
-
 `pattern_icon` is a string that can specify the icon being displayed before the name. You can search the icons form the website [fonts.google.com/icons](https://fonts.google.com/icons), copy the identity in "Instering the icon" section, and paste it to here to add icon.
 
 
 ##### pattern
-
 `pattern` is a array that load up the generation configuration. This part is complex, so let's go to the next chapter!
 
 
 
 #### Component
-
 * A component must be loaded up in an `array`.
 * There're 4 types of components that you can use, including `string`, `regex`, `list`, and `group`.
 * A component must comes in `object` type (for JavaScript).
@@ -35,62 +31,52 @@ Generate strong passwords based on predefined patterns.
 
 ##### Types
 
-**string**
-
+###### string
 A string component will make generator directly put a string you specified to the current end of the result.
 
 
-**regex**
-
+###### regex
 "regex" reperesents "regular expression", it will tell generator what characters can appears in the generation result, in other words, you can use this type to select character sources being used.
 
 
-**list**
-
+###### list
 A list component can only contains string, and the generator will randomly choose one to put at end of the rseult at one time.
 
 
-**group**
-
+###### group
 A group component can load up 3 types of components mentioned above, and you can make the generator carry out actions to the result of a group.
 
 
 ##### Properties of a component
 
-**type**
+###### type
 
 This property are applicable and required for all the types.
 
 
-**[type]**
-
+###### [type]
 This property is the content of a component, and the property name is depending on the type. For example, if there's a `string` component, `string` property is applicable and required, and it look like `{"type": "string", "string": "content"}`
 
 
-**repeat**
-
+###### repeat
 The value of this boolean property has two options, `true` or `false`. To ensure that the characters from the sources `regex` or `list` will not appear repeatedly, you need to set this to `false`. In addition, if all the characters or items are consumed, generator will use the alternative value "undefined".
 
 
-**quantity**
-
+###### quantity
 This property comes in `number`, specifying the times of choosing actions. This is applicable and required for some types of components, including `regex` and `list`.
 
 
-**actions**
-
+###### actions
 This property comes in `array`,and the available value is `shuffle` at this time. This property is only for the component `group`.
 
 
-**id**
-
+###### id
 This property will be generated and added to every component automatically by editor.
 
 
 ### Search
 
 #### Search Index Creation
-
 This application offers a `createSearchIndex` function that creates an index for efficient search operations. The index contains data from saved passwords, such as passwords, websites, notes, usernames, and timestamps, making it easier to find passwords based on different criteria.
 
 
