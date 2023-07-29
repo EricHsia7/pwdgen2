@@ -119,7 +119,7 @@ window.pwdgen2 = function () { //initialize
   utilities.qe("#importdata").addEventListener("change", importdatahandler, false)
 
   words_list.getWordsList()
-  interaction.loadCSS('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'googleFontsNotoSans')
+  interaction.loadFont('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'Noto Sans', 'googleFontsNotoSans')
 
   upgradeData()
   Xsearch.searchIndex = Xsearch.createSearchIndex()

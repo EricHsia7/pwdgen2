@@ -36,7 +36,6 @@ function lazyLoadPasswordListIcon(identity, url) {
   }
 }
 
-
 function lazyLoadPasswordListIcons_scrolling_handler(event): void {
   var isElementInViewport = function (container, element) {
     const containerRect = container.getBoundingClientRect();
@@ -74,17 +73,26 @@ function lazyLoadPasswordListIcons_scrolling_handler(event): void {
   }
 }
 
-function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
-  target.style.setProperty(property, source.style.getPropertyValue(property))
-}
-
-function loadCSS(url, identity) {
+function loadCSS(url: string, identity: string) {
   if (!window.lazyCSS.loaded[identity]) {
     var link = document.createElement('link')
     link.setAttribute('href', url)
     link.setAttribute('rel', 'stylesheet')
     document.head.appendChild(link)
     window.lazyCSS.loaded[identity] = true
+  }
+}
+
+function loadFont(url: string, fontName: string, identity: string, loadedCallback: Function) {
+  loadCSS(url, identity)
+  if (typeof loadedCallback === 'function') {
+    var font: FontFace = new FontFace(fontName, `url(https://fonts.googleapis.com/css2?family=${fontName})`);
+    font.load().then((loadedFont) => {
+      document.fonts.add(loadedFont);
+      loadedCallback()
+    }).catch((error) => {
+
+    });
   }
 }
 
@@ -166,7 +174,7 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   var prompt_asking_elt = document.createElement('div')
   prompt_asking_elt.classList.add('prompt_asking')
   prompt_asking_elt.id = temporary_id
-  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="${option1_func};interaction.close_prompt_asking('${temporary_id}')">${option1}</div><div class="prompt_asking_option2" onclick="${option2_func};interaction.close_prompt_asking('${temporary_id}')">${option2}</div></div>`
+  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="${option1_func};interaction.prompt.close_prompt_asking('${temporary_id}')">${option1}</div><div class="prompt_asking_option2" onclick="${option2_func};interaction.prompt.close_prompt_asking('${temporary_id}')">${option2}</div></div>`
   document.body.appendChild(mask_elt)
   document.body.appendChild(prompt_asking_elt)
   setTimeout(function () {
@@ -254,7 +262,7 @@ function copyDetails(k) {
   if (k === 'createdat') {
     k = 'create time'
   }
-  prompt_message(`Copied ${k}.`)
+  prompt.prompt_message(`Copied ${k}.`)
 }
 
 
@@ -466,23 +474,24 @@ function refreshPage(event) {
       "quantity": 16,
       "repeat": true
     }]
-    location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p, 'production'))  
+    location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p, 'production'))
   } else {
-    const offline_message:string = 'You’re offline, and updates are unavailable.'
-    interaction.prompt_message(offline_message,3000)
+    const offline_message: string = 'You’re offline, and updates are unavailable.'
+    interaction.prompt.prompt_message(offline_message, 3000)
     interaction.options.closeOptions(event)
   }
-  }
+}
 
 function importData() {
   utilities.qe('#importdata').click()
 }
 
 window.interaction = {
-  copyProperty,
-  prompt_message,
-  prompt_asking,
-  close_prompt_asking,
+  prompt: {
+    prompt_message,
+    prompt_asking,
+    close_prompt_asking
+  },
   show,
   generateHashTagHTML,
   copyElement,
@@ -490,6 +499,7 @@ window.interaction = {
   standaloneStatusBarColor,
   standaloneStatusBarColorHistory,
   loadCSS,
+  loadFont,
   importData,
   search: {
     openSearch,
