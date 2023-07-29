@@ -481,11 +481,12 @@ function refreshPage(event) {
   }
 }
 
-function importData() {
+function importData(event) {
   utilities.qe('#importdata').click()
+  interaction.options.closeOptions(event)
 }
 
-function exportGeneratedFile() {
+function exportGeneratedFile(event) {
   var text = generateExportFile()
   var data = new Blob([text], { type: 'application/json' })
   var name = fine_grained_password.generate([
@@ -504,7 +505,10 @@ function exportGeneratedFile() {
   if (navigator.canShare && navigator.canShare({ files: [fileObj] })) {
     navigator.share({
       files: [fileObj]
-    })
+    }).then(() => {
+      interaction.options.closeOptions(event)
+    }).catch((error) => {
+    });
   }
   else {
     const a = document.createElement('a');
@@ -513,6 +517,7 @@ function exportGeneratedFile() {
     a.href = window.URL.createObjectURL(data);
     a.click()
     a.remove()
+    interaction.options.closeOptions(event)
   }
 }
 
