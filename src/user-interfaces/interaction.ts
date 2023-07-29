@@ -458,15 +458,21 @@ function viewOnGithub() {
   window.open('https://github.com/EricHsia7/pwdgen2')
 }
 
-function refreshPage() {
-  var p = [{
-    "type": "regex",
-    "regex": "/[a-zA-Z0-9]/g",
-    "quantity": 16,
-    "repeat": true
-  }]
-  location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p, 'production'))
-}
+function refreshPage(event) {
+  if (navigator.onLine) {
+    var p = [{
+      "type": "regex",
+      "regex": "/[a-zA-Z0-9]/g",
+      "quantity": 16,
+      "repeat": true
+    }]
+    location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p, 'production'))  
+  } else {
+    const offline_message:string = 'You’re offline, and updates are unavailable.'
+    interaction.prompt_message(offline_message,3000)
+    interaction.options.closeOptions(event)
+  }
+  }
 
 function importData() {
   utilities.qe('#importdata').click()
