@@ -60,10 +60,8 @@ export function closePassword() {
 export function openAddPassword(event) {
   interaction.show(utilities.qe('.add-password-page'), 'block')
   if (!lazyCSS.loaded.googleFontsMaterialSymbols) {
-    document.fonts.addEventListener('loadingdone', function () {
-      utilities.qe('.add-password-page .password-generator-presets').setAttribute('font', '1')
-    }, { once: true })
     interaction.loadCSS('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0', 'googleFontsMaterialSymbols')
+    utilities.qe('.add-password-page .password-generator-presets').setAttribute('font', '1')
   }
 
 

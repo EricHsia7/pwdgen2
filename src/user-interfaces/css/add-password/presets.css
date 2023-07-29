@@ -76,6 +76,15 @@
 
 .password-generator-presets[font="0"] .preset .preset_icon {
   color: rgba(0, 0, 0, 0);
+}
+
+.password-generator-presets[font="0"] .preset .preset_icon::after {
+  content: '';
+  position: absolute;
+  top: 7.5px;
+  left: 7.5px;
+  width: 20px;
+  height: 20px;
   background: var(--p-e5e5ea);
   border-radius: var(--p-border-radius-default);
 }
