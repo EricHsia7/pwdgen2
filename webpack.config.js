@@ -49,7 +49,7 @@ module.exports = (env, argv) => {
     output: {
       filename: isProduction ? '[name].[contenthash].min.js' : 'index.js', // Output bundle filename
       path: path.resolve(__dirname, 'dist'), // Output directory for bundled files
-      publicPath: './dist/',
+      publicPath: 'https://erichsia7.github.io/pwdgen2/dist/',
       library: {
         name: 'pwdgen2',
         type: 'umd',
