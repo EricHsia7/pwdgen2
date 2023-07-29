@@ -38,7 +38,7 @@ module.exports = (env, argv) => {
       new WorkboxPlugin.GenerateSW({
         clientsClaim: true,
         skipWaiting: true,
-        exclude: [/\.map|LICENSE$/],
+        exclude: [/\.map$/, /LICENSE\.txt$/],
         include: [/\.js|css|png$/],
         cacheId: `pwdgen2-${generateRandomString(16)}`
       }),
