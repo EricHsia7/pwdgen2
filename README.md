@@ -1,7 +1,5 @@
-## Introduction
-
-
-The Password Generator is a TypeScript project that provides a flexible and customizable way to generate strong passwords based on different patterns. It allows you to create passwords that meet specific criteria, making them more secure and suitable for various use cases.
+# pwdgen2
+**pwdgen2** is a password generator that mainly build up with TypeScript, and it provides a flexible and customizable way to generate strong passwords based on different patterns. It allows you to create passwords that meet specific criteria, making them more secure and suitable for various use cases.
 ## Features
 ### Password Generator
 - Generate strong passwords based on predefined patterns.
@@ -58,6 +56,7 @@ It analyzes the complexity of the password by examining the distribution of uppe
 It provides color-coded feedback, making it easier for users to identify the security level of their passwords at a glance. Different colors represent different security levels.
 
 
-
 ## Roadmap
-Users can import password data from a JSON file, allowing for easy migration from other systems or backups.
+Users can import password data from a JSON file, **allowing for easy migration from other systems or backups.**
+
+##
