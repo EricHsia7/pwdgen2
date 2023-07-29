@@ -18,8 +18,7 @@ Generate strong passwords based on predefined patterns.
 
 
 ##### pattern
-`pattern` is a array that load up the generation configuration. This part is complex, so let's go to the next chapter!
-
+`pattern` is an array that load up the generation configuration, and items in the array are called `component`.
 
 
 #### Component
