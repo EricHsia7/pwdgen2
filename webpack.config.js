@@ -40,7 +40,16 @@ module.exports = (env, argv) => {
         skipWaiting: true,
         exclude: [/\.map$/, /LICENSE\.txt$/],
         include: [/\.js|css|png$/],
-        cacheId: `pwdgen2-${generateRandomString(16)}`
+        cacheId: `pwdgen2-${generateRandomString(16)}`,
+        runtimeCaching: [
+          {
+            urlPattern: new RegExp('^https://fonts\.googleapis\.com'),
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'google-fonts-stylesheets',
+            },
+          },
+        ],
       }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
