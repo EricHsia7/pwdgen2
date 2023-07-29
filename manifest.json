@@ -66,5 +66,19 @@
   ],
   "start_url": "https://erichsia7.github.io/pwdgen2/",
   "display": "standalone",
-  "id": "m1EttjpJ84xfKvkC8HN40QtP6B42dP50"
+  "id": "m1EttjpJ84xfKvkC8HN40QtP6B42dP50",
+  "lang": "en",
+  "scope": "https://erichsia7.github.io/pwdgen2/",
+  "dir": "ltr",
+  "orientation": "any",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
+  "prefer_related_applications": false,
+  "categories": [
+    "productivity",
+    "security",
+    "utilities"
+  ]
 }
