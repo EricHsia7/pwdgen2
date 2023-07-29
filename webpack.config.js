@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const AdvancedPreset = require('cssnano-preset-advanced');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 function generateRandomString(length) {
   const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -34,6 +35,12 @@ module.exports = (env, argv) => {
           VERSION: JSON.stringify(generateRandomString(16)), // You can adjust the length of the random string here (e.g., 8 characters)
         },
       }),
+      new WorkboxPlugin.GenerateSW({
+        clientsClaim: true,
+        skipWaiting: true,
+        exclude: /\.map$/,
+        include: /\.js|css|png$/,
+      }),
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
     mode: 'production', // Set the mode to 'production' or 'development'
@@ -41,7 +48,7 @@ module.exports = (env, argv) => {
     output: {
       filename: isProduction ? '[name].[contenthash].min.js' : 'index.js', // Output bundle filename
       path: path.resolve(__dirname, 'dist'), // Output directory for bundled files
-      publicPath:'./dist/',
+      publicPath: './dist/',
       library: {
         name: 'pwdgen2',
         type: 'umd',
@@ -91,7 +98,7 @@ module.exports = (env, argv) => {
       ],
       splitChunks: {
         chunks: 'all',
-        maxSize:20000,
+        maxSize: 20000,
         cacheGroups: {
           // Define your cache groups here with specific rules
           default: {
