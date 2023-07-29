@@ -1,11 +1,13 @@
 # pwdgen2
-pwdgen2 is a password generator that mainly build up with TypeScript, and it provides a flexible and customizable way to generate strong passwords based on different patterns. It allows you to create passwords that meet specific criteria, making them more secure and suitable for various use cases.
+***pwdgen2*** is a password generator that mainly build up with TypeScript, and it provides a flexible and customizable way to generate strong passwords based on different patterns. It allows you to create passwords that meet specific criteria, making them more secure and suitable for various use cases.
 ## Features
 ### Password Generator
+---
 Generate strong passwords based on predefined patterns.
 
 
 ### Customizable Patterns
+---
 #### Properties
 ##### pattern_name
 
@@ -22,9 +24,10 @@ Generate strong passwords based on predefined patterns.
 `pattern` is a array that load up the generation configuration. This part is complex, so let's go to the next chapter!
 
 
+
 #### Component
 
-* A component must be loaded up in an array.
+* A component must be loaded up in an `array`.
 * There're 4 types of components that you can use, including `string`, `regex`, `list`, and `group`.
 * A component must comes in `object` type (for JavaScript).
 * The generation process is progressive and cumulative like writing from left to right, and the generator will generate string according to your configuration step by step.
@@ -85,6 +88,7 @@ This property will be generated and added to every component automatically by ed
 
 
 ### Search
+---
 #### Search Index Creation
 
 This application offers a `createSearchIndex` function that creates an index for efficient search operations. The index contains data from saved passwords, such as passwords, websites, notes, usernames, and timestamps, making it easier to find passwords based on different criteria.
