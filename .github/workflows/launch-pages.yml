@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - dev-delete-transition
+
 jobs:
   build:
     runs-on: ubuntu-latest
