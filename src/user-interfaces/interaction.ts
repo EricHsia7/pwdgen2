@@ -488,7 +488,7 @@ function importData() {
 function exportGeneratedFile() {
   var text = generateExportFile()
   var data = new Blob([text], { type: 'application/json' })
-  var name = fine_grained_password([
+  var name = fine_grained_password.generate([
     {
       type: 'string',
       string: 'pwdgen2_export_'
