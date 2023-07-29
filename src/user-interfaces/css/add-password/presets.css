@@ -1,4 +1,3 @@
-
 .password-generator-presets {
   height: 35px;
   overflow-x: scroll;
@@ -68,10 +67,17 @@
   position: relative;
   color: var(--p-333333);
   font-size: 20px;
+  overflow: hidden;
 }
 
 .password-generator-presets .preset[apply="1"] .preset_icon {
   color: #fff;
+}
+
+.password-generator-presets[font="0"] .preset .preset_icon {
+  color: rgba(0, 0, 0, 0);
+  background: var(--p-e5e5ea);
+  border-radius: var(--p-border-radius-default);
 }
 
 .password-generator-presets .preset .preset_icon,
