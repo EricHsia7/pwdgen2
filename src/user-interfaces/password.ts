@@ -50,13 +50,9 @@ export function openPassword(id, showCallback) {
   }
 }
 
-export function closePassword(showCallback) {
-  interaction.show(utilities.qe('.password-page'), 'none', function () {
-    utilities.qe('.password-page').scrollTop = 0
-    if (typeof showCallback === 'function') {
-      showCallback()
-    }
-  })
+export function closePassword() {
+  utilities.qe('.password-page').scrollTop = 0
+  interaction.show(utilities.qe('.password-page'), 'none')
   interaction.standaloneStatusBarColor(3)
 }
 
@@ -144,9 +140,8 @@ export function openEditPassword(id, event) {
 }
 
 export function closeEditPassword(id) {
-  interaction.show(utilities.qe('.edit-password-page'), 'none', function () {
-    utilities.qe('.edit-password-page').scrollTop = 0
-  })
+  utilities.qe('.edit-password-page').scrollTop = 0
+  interaction.show(utilities.qe('.edit-password-page'), 'none')
   interaction.standaloneStatusBarColor(3)
   interaction.password_page.openPassword(id)
 }
@@ -174,9 +169,8 @@ export function confirmToDeletePassword(id) {
   var remove = removePassword(id)
   if (remove) {
     interaction.prompt_message('Deleted the password permanently.')
-    interaction.password_page.closePassword(function () {
-      interaction.main_page.printSavedPasswordList()
-    })
+    interaction.password_page.closePassword()
+    interaction.main_page.printSavedPasswordList()
   }
   else {
     interaction.prompt_message('Failed to delete the password.')
