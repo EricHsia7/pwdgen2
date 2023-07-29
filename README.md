@@ -87,7 +87,7 @@ Users can list their saved passwords, which are decrypted and presented in a hum
 #### Data Import and Export
 This application supports data import and export functionalities. The export function creates a JSON file containing all the saved passwords and their metadata.
 
-### Password
+### Password Conditions
 #### Common Word Pattern Check
 This feature examines passwords for common word patterns, aiming to detect possible vulnerabilities. By comparing the password with a list of known common words, it prompts users to steer clear of such patterns. It ensures password uniqueness by searching for frequently used combinations, guiding users to avoid commonly employed patterns for enhanced security.
 
