@@ -208,7 +208,7 @@ export function importdatahandler(event) {
 
       for (var i = 0; i < data_len; i++) {
         var this_item = data[i]
-        localStorage.setItem(this_item.key, JSON.stringify(JSON.parse(content)))
+        localStorage.setItem(this_item.key, JSON.stringify(JSON.parse(this_item.content)))
       }
       upgradeData()
       interaction.prompt.prompt_message('Imported data successfully.')
