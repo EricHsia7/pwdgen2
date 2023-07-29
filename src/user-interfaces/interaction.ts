@@ -184,7 +184,7 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   interaction.standaloneStatusBarColor(2)
 }
 
-function prompt_asking(temporary_id) {
+function close_prompt_asking(temporary_id) {
   utilities.qe(`body #${temporary_id}`).addEventListener('transitionend', function () {
     utilities.qe(`body #${temporary_id}`).remove()
   }, { once: true })
