@@ -29,6 +29,7 @@ A string component will make the generator directly put a string you specified a
 
 ###### regex
 "Regex" represents "regular expression"; it will tell the generator what characters can appear in the generation result. In other words, you can use this type to select character sources to be used.
+Regular expression must be provided in full format, including expression and flags. F
 
 ###### list
 A list component can only contain strings, and the generator will randomly choose one to put at the end of the result at one time.
@@ -54,6 +55,57 @@ This property comes in `array`, and the available value is `shuffle` at this tim
 
 ###### id
 This property will be generated and added to every component automatically by the editor.
+
+#### Example
+```json
+{
+  "pattern_name": "example",
+  "pattern_icon": "star",
+  "pattern": [
+    {
+      "type": "group",
+      "actions": [
+        "shuffle",
+        "shuffle",
+        "shuffle"
+      ],
+      "group": [
+        {
+          "type": "list",
+          "list": [
+            "apple",
+            "banana",
+            "orange"
+          ],
+          "quantity": 1,
+          "repeat": false,
+          "id": "c-Yzdu6mPmhMGgeZOS"
+        },
+        {
+          "type": "string",
+          "string": "-",
+          "id": "c-dYKsBme39vD4Dttq"
+        },
+        {
+          "type": "regex",
+          "regex": "/[A-Z]/g",
+          "quantity": 3,
+          "repeat": true,
+          "id": "c-xeK1yNDbZWxsGj1I"
+        }
+      ],
+      "id": "c-jomUw6yVJvSP1xup"
+    },
+    {
+      "type": "regex",
+      "regex": "/[0-9]/g",
+      "quantity": 3,
+      "repeat": false,
+      "id": "c-bg99oVwIPrTPAZyJ"
+    }
+  ]
+}
+```
 
 ### Search
 
