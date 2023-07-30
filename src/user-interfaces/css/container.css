@@ -43,7 +43,7 @@
   top: 0px;
   width: 100%;
   height: 50px;
-  background: var(--p-f2f2f7);
+  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.45);
   font-size: 20px;
   font-weight: 700;
   display: flex;
@@ -52,6 +52,8 @@
   color: var(--p-333333);
   user-select: none;
   -webkit-user-select: none;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 
 .main-page .fixed-title-box {
