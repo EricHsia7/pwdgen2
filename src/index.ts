@@ -78,6 +78,7 @@ window.pwdgen2 = function () { //initialize
     if (container_scrollTop >= 50) {
       utilities.qe('.main-page .search-box').setAttribute('sticky', 'true')
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'true')
+      utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'true')
       if (!(search_status === 1)) {
         interaction.standaloneStatusBarColor(1)
 
@@ -87,13 +88,54 @@ window.pwdgen2 = function () { //initialize
     else {
       utilities.qe('.main-page .search-box').setAttribute('sticky', 'false')
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'false')
+      utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'false')
       if (!(search_status === 1)) {
         interaction.standaloneStatusBarColor(3)
       }
       search_sticky = false
     }
     interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler()
-  })
+  });
+
+  utilities.qe('.password-page').addEventListener('scroll', function (e) {
+    var scrollTop = utilities.qe('.password-page').scrollTop
+    if (scrollTop > 0) {
+      utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '1')
+    }
+    else {
+      utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '0')
+    }
+  });
+
+  utilities.qe('.add-password-page').addEventListener('scroll', function (e) {
+    var scrollTop = utilities.qe('.add-password-page').scrollTop
+    if (scrollTop > 0) {
+      utilities.qe('.add-password-page .fixed-title-box').setAttribute('scroll', '1')
+    }
+    else {
+      utilities.qe('.add-password-page .fixed-title-box').setAttribute('scroll', '0')
+    }
+  });
+
+  utilities.qe('.edit-password-page').addEventListener('scroll', function (e) {
+    var scrollTop = utilities.qe('.edit-password-page').scrollTop
+    if (scrollTop > 0) {
+      utilities.qe('.edit-password-page .fixed-title-box').setAttribute('scroll', '1')
+    }
+    else {
+      utilities.qe('.edit-password-page .fixed-title-box').setAttribute('scroll', '0')
+    }
+  });
+
+  utilities.qe('.pattern_creator').addEventListener('scroll', function (e) {
+    var scrollTop = utilities.qe('.pattern_creator').scrollTop
+    if (scrollTop > 0) {
+      utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '1')
+    }
+    else {
+      utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '0')
+    }
+  });
 
   if (!utilities.checkTouchFeatures()) {
     search_will_change_evt = [2, 3]
