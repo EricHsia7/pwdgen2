@@ -219,8 +219,8 @@ function standaloneStatusBarColor(a) {
     interaction.standaloneStatusBarColor(a2)
     return ''
   }
-  utilities.qe('head meta[kji="light"]').setAttribute('content', c)
-  utilities.qe('head meta[kji="dark"]').setAttribute('content', d)
+  utilities.qe('head meta[mode="light"]').setAttribute('content', c)
+  utilities.qe('head meta[mode="dark"]').setAttribute('content', d)
   if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] === a)) {
     //if (!(a === 2)) {
     interaction.standaloneStatusBarColorHistory.push(a)
