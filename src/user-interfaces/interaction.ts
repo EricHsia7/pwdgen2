@@ -311,9 +311,10 @@ function openSearch() {
     search_evt = 1
   }
   utilities.qe('.main-page .blur-mask').setAttribute('status', '1')
-  utilities.qe(".search-output-box").setAttribute('status', '1')
-  utilities.qe(".search-box").setAttribute('status', '1')
-  utilities.qe(".search-box").setAttribute('sticky', 'true')
+  utilities.qe('.main-page .fixed-title-box').setAttribute('status', '1')
+  utilities.qe(".main-page .search-output-box").setAttribute('status', '1')
+  utilities.qe(".main-page .search-box").setAttribute('status', '1')
+  utilities.qe(".main-page .search-box").setAttribute('sticky', 'true')
   Xsearch.searchIndex = Xsearch.createSearchIndex()
   interaction.search.updateSearch(utilities.qe(".search input#search").value, Xsearch.searchIndex)
   interaction.standaloneStatusBarColor(1)
@@ -322,10 +323,11 @@ function openSearch() {
 
 function closeSearch() {
   utilities.qe('.main-page .blur-mask').setAttribute('status', '0')
-  utilities.qe(".search-output-box").setAttribute('status', '0')
-  utilities.qe(".search-box").setAttribute('status', '0')
-  utilities.qe(".search-box").setAttribute('sticky', search_sticky)
-  utilities.qe('.search input#search').value = ''
+  utilities.qe('.main-page .fixed-title-box').setAttribute('status', '0')
+  utilities.qe(".main-page .search-output-box").setAttribute('status', '0')
+  utilities.qe(".main-page .search-box").setAttribute('status', '0')
+  utilities.qe(".main-page .search-box").setAttribute('sticky', search_sticky)
+  utilities.qe('.main-page .search input#search').value = ''
   if (!search_sticky) {
     interaction.standaloneStatusBarColor(3)
   }
