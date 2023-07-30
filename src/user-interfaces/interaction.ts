@@ -200,11 +200,11 @@ function standaloneStatusBarColor(a) {
   var d = '#000000'
   if (a === 1) {
     c = '#ffffff'
-    d = '#111111'
+    d = '#0a0a0a'
   }
   if (a === 2) {
     c = utilities.blendColors('#f2f2f7', 'rgba(0,0,0,0.45)')
-    d = utilities.blendColors('#111111', 'rgba(0,0,0,0.45)')
+    d = utilities.blendColors('#0a0a0a', 'rgba(0,0,0,0.45)')
   }
   if (a === 3) {
     var a2 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0
