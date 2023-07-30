@@ -1,11 +1,11 @@
 .search-box {
-  height: 60px;
+  height: 50px;
   width: 100%;
   position: absolute;
   background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.45);
   box-sizing: border-box;
   left: 0px;
-  top: 90px;
+  top: 100px;
 }
 
 .search-box[status="1"] {
@@ -16,7 +16,7 @@
 .search-box[sticky="true"],
 .search-box[status="1"] {
   position: fixed;
-  top: 40px;
+  top: 50px;
   left: 0px;
   background: var(--p-ffffff);
   border-bottom: var(--p-e5e5ea) 1px solid;
@@ -24,7 +24,7 @@
 
 .search-cancel {
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 15px;
   width: 55px;
   height: 40px;
@@ -45,7 +45,7 @@
 
 .search {
   position: absolute;
-  top: 10px;
+  top: 0px;
   left: 15px;
   width: calc(100% - 30px);
   height: 40px;
