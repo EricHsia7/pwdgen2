@@ -43,7 +43,7 @@
   top: 0px;
   width: 100%;
   height: 50px;
-  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.45);
+  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.65);
   font-size: 20px;
   font-weight: 700;
   display: flex;
@@ -58,7 +58,7 @@
 
 .fixed-title-box[scroll="1"] {
   border-bottom: var(--p-e5e5ea) 1px solid;
-  background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.45);
+  background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.65);
 }
 
 .main-page .fixed-title-box {
@@ -83,7 +83,7 @@
   left: 0px;
   width: 100%;
   height: 100px;
-  background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.45);
+  background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.65);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   display: none;
