@@ -32,15 +32,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --p-f2f2f7: #000000;
-    --p-f2f2f7-r: 0;
-    --p-f2f2f7-g: 0;
-    --p-f2f2f7-b: 0;
+    --p-f2f2f7: #040406;
+    --p-f2f2f7-r: 4;
+    --p-f2f2f7-g: 4;
+    --p-f2f2f7-b: 6;
 
-    --p-ffffff: #0a0a10;
-    --p-ffffff-r: 10;
-    --p-ffffff-g: 10;
-    --p-ffffff-b: 16;
+    --p-ffffff: #0c0c13;
+    --p-ffffff-r: 12;
+    --p-ffffff-g: 12;
+    --p-ffffff-b: 19;
 
     --p-e5e5ea: #2c2c2e;
     --p-e5e5ea-r: 44;
