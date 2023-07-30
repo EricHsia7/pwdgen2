@@ -54,12 +54,12 @@
 }
 
 .search-box[sticky="true"] .search {
-  background: rgba(var(--p-e5e5ea-r), var(--p-e5e5ea-g), var(--p-e5e5ea-b), 0.8);
+  background: rgba(var(--p-e5e5ea-r), var(--p-e5e5ea-g), var(--p-e5e5ea-b), 0.6);
 }
 
 .search-box[status="1"] .search {
   width: calc(100% - 95px);
-  background: rgba(var(--p-e5e5ea-r), var(--p-e5e5ea-g), var(--p-e5e5ea-b), 0.8);
+  background: rgba(var(--p-e5e5ea-r), var(--p-e5e5ea-g), var(--p-e5e5ea-b), 0.6);
 }
 
 .search input#search {
@@ -108,9 +108,9 @@
 .search-output-box {
   position: fixed;
   left: 0px;
-  top: 60px;
+  top: 0px;
   width: 100%;
-  height: calc(100% - 60px);
+  height: 100%;
   overflow: scroll;
   background: var(--p-f2f2f7);
   display: none;
@@ -129,6 +129,7 @@
   position: relative;
   user-select: none;
   -webkit-user-select: none;
+  margin-top: 60px;
 }
 
 .search-category {
