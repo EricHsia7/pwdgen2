@@ -29,7 +29,7 @@ A string component will make the generator directly put a string you specified a
 
 ###### regex
 "Regex" represents "regular expression"; it will tell the generator what characters can appear in the generation result. In other words, you can use this type to select character sources to be used.
-Regular expression must be provided in full format, including expression and flags. F
+Regular expression must be provided in full format, including expression and flags. Flags is a settings that affect the behavior of the regular expression. For example, the case-insensitive flag `i` allows matching regardless of letter case.
 
 ###### list
 A list component can only contain strings, and the generator will randomly choose one to put at the end of the result at one time.
