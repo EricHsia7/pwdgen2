@@ -56,6 +56,10 @@
   -webkit-backdrop-filter: blur(15px);
 }
 
+.fixed-title-box[scroll="1"] {
+  border-bottom: var(--p-e5e5ea) 1px solid;
+}
+
 .main-page .fixed-title-box {
   color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(0px);

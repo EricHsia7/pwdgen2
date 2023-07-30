@@ -52,6 +52,7 @@ export function openPassword(id, showCallback) {
 
 export function closePassword() {
   utilities.qe('.password-page').scrollTop = 0
+  utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '0')
   interaction.show(utilities.qe('.password-page'), 'none')
   interaction.standaloneStatusBarColor(3)
 }
