@@ -32,12 +32,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --p-f2f2f7: #000;
+    --p-f2f2f7: #000000;
     --p-f2f2f7-r: 0;
     --p-f2f2f7-g: 0;
     --p-f2f2f7-b: 0;
 
-    --p-ffffff: #111;
+    --p-ffffff: #111111;
     --p-ffffff-r: 17;
     --p-ffffff-g: 17;
     --p-ffffff-b: 17;
