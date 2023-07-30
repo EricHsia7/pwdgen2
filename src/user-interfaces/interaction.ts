@@ -310,6 +310,7 @@ function openSearch() {
     })
     search_evt = 1
   }
+  utilities.qe('.main-page .blur-mask').setAttribute('status', '1')
   utilities.qe(".search-output-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('status', '1')
   utilities.qe(".search-box").setAttribute('sticky', 'true')
@@ -320,6 +321,7 @@ function openSearch() {
 }
 
 function closeSearch() {
+  utilities.qe('.main-page .blur-mask').setAttribute('status', '0')
   utilities.qe(".search-output-box").setAttribute('status', '0')
   utilities.qe(".search-box").setAttribute('status', '0')
   utilities.qe(".search-box").setAttribute('sticky', search_sticky)
