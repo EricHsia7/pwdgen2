@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - dev-theme-color-1
+
 jobs:
   build:
     runs-on: ubuntu-latest
