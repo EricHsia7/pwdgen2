@@ -81,7 +81,6 @@ window.pwdgen2 = function () { //initialize
       utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'true')
       if (!(search_status === 1)) {
         interaction.standaloneStatusBarColor(1)
-
       }
       search_sticky = true
     }
@@ -101,9 +100,11 @@ window.pwdgen2 = function () { //initialize
     var scrollTop = utilities.qe('.password-page').scrollTop
     if (scrollTop > 0) {
       utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '1')
+      interaction.standaloneStatusBarColor(1)
     }
     else {
       utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '0')
+      interaction.standaloneStatusBarColor(3)
     }
   });
 
@@ -111,9 +112,11 @@ window.pwdgen2 = function () { //initialize
     var scrollTop = utilities.qe('.add-password-page').scrollTop
     if (scrollTop > 0) {
       utilities.qe('.add-password-page .fixed-title-box').setAttribute('scroll', '1')
+      interaction.standaloneStatusBarColor(1)
     }
     else {
       utilities.qe('.add-password-page .fixed-title-box').setAttribute('scroll', '0')
+      interaction.standaloneStatusBarColor(3)
     }
   });
 
@@ -121,9 +124,11 @@ window.pwdgen2 = function () { //initialize
     var scrollTop = utilities.qe('.edit-password-page').scrollTop
     if (scrollTop > 0) {
       utilities.qe('.edit-password-page .fixed-title-box').setAttribute('scroll', '1')
+      interaction.standaloneStatusBarColor(1)
     }
     else {
       utilities.qe('.edit-password-page .fixed-title-box').setAttribute('scroll', '0')
+      interaction.standaloneStatusBarColor(3)
     }
   });
 
@@ -131,9 +136,11 @@ window.pwdgen2 = function () { //initialize
     var scrollTop = utilities.qe('.pattern_creator').scrollTop
     if (scrollTop > 0) {
       utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '1')
+      interaction.standaloneStatusBarColor(1)
     }
     else {
       utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '0')
+      interaction.standaloneStatusBarColor(3)
     }
   });
 
