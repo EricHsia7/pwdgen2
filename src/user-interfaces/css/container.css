@@ -62,5 +62,5 @@
 
 .main-page .fixed-title-box[sticky="true"] {
   color: var(--p-333333);
-  background: var(--p-ffffff)
+  background: rgba(0, 0, 0, 0);
 }
