@@ -54,12 +54,12 @@
 }
 
 .search-box[sticky="true"] .search {
-  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.8);
+  background: rgba(var(--p-e5e5ea-r), var(--p-e5e5ea-g), var(--p-e5e5ea-b), 0.8);
 }
 
 .search-box[status="1"] .search {
   width: calc(100% - 95px);
-  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.8);
+  background: rgba(var(--p-e5e5ea-r), var(--p-e5e5ea-g), var(--p-e5e5ea-b), 0.8);
 }
 
 .search input#search {
