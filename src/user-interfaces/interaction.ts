@@ -204,11 +204,11 @@ function standaloneStatusBarColor(a) {
   }
   if (a === 2) {
     var a1 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] | 0
-    if (a2 === 0) {
+    if (a1 === 0) {
       c = '#858585'
       d = '#000000'
     }
-    if (a2 === 1) {
+    if (a1 === 1) {
       c = '#8c8c8c'
       d = '#040406'
     }
