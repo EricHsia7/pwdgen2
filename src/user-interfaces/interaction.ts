@@ -261,7 +261,7 @@ function copyDetails(k) {
   if (k === 'createdat') {
     k = 'create time'
   }
-  prompt.prompt_message(`Copied ${k}.`)
+  interaction.prompt.prompt_message(`Copied ${k}.`)
 }
 
 
