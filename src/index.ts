@@ -78,6 +78,7 @@ window.pwdgen2 = function () { //initialize
     if (container_scrollTop >= 50) {
       utilities.qe('.main-page .search-box').setAttribute('sticky', 'true')
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'true')
+      utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'true')
       if (!(search_status === 1)) {
         interaction.standaloneStatusBarColor(1)
 
@@ -87,6 +88,7 @@ window.pwdgen2 = function () { //initialize
     else {
       utilities.qe('.main-page .search-box').setAttribute('sticky', 'false')
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'false')
+      utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'false')
       if (!(search_status === 1)) {
         interaction.standaloneStatusBarColor(3)
       }
