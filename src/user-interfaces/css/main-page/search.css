@@ -1,30 +1,30 @@
 .search-box {
-  height: 50px;
+  height: 60px;
   width: 100%;
   position: absolute;
-  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.45);
+  background: rgba(0, 0, 0, 0);
   box-sizing: border-box;
   left: 0px;
-  top: 100px;
+  top: 90px;
 }
 
 .search-box[status="1"] {
   transform: translateY(-40px);
-  background: var(--p-ffffff);
+  background: rgba(0, 0, 0, 0);
 }
 
 .search-box[sticky="true"],
 .search-box[status="1"] {
   position: fixed;
-  top: 50px;
+  top: 40px;
   left: 0px;
-  background: var(--p-ffffff);
+  background: rgba(0, 0, 0, 0);
   border-bottom: var(--p-e5e5ea) 1px solid;
 }
 
 .search-cancel {
   position: absolute;
-  top: 0px;
+  top: 10px;
   right: 15px;
   width: 55px;
   height: 40px;
@@ -45,7 +45,7 @@
 
 .search {
   position: absolute;
-  top: 0px;
+  top: 10px;
   left: 15px;
   width: calc(100% - 30px);
   height: 40px;
@@ -54,12 +54,12 @@
 }
 
 .search-box[sticky="true"] .search {
-  background: var(--p-f2f2f7);
+  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.45);
 }
 
 .search-box[status="1"] .search {
   width: calc(100% - 95px);
-  background: var(--p-f2f2f7);
+  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.45);
 }
 
 .search input#search {
