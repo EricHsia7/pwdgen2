@@ -210,7 +210,7 @@ function standaloneStatusBarColor(a) {
     }
     if (a2 === 1) {
       c = utilities.blendColors(utilities.blendColors('#f2f2f7', 'rgba(255,255,255,0.65)'), 'rgba(0,0,0,0.45)')
-      d = utilities.blendColors(utilities.blendColors('#000000', 'rgba(10,10,10,0.65)'), 'rgba(0,0,0,0.45)')
+      d = utilities.blendColors(utilities.blendColors('#000000', 'rgba(8,8,13,0.65)'), 'rgba(0,0,0,0.45)')
     }
   }
   if (a === 3) {
