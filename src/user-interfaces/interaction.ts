@@ -205,12 +205,12 @@ function standaloneStatusBarColor(a) {
   }
   if (a === 2) {
     if (a2 === 0) {
-      c = utilities.blendColors('#f2f2f7', 'rgba(0,0,0,0.45)')
-      d = utilities.blendColors('#000000', 'rgba(0,0,0,0.45)')
+      c = '#858585'
+      d = '#000000'
     }
     if (a2 === 1) {
-      c = utilities.blendColors('#ffffff', 'rgba(0,0,0,0.45)')
-      d = utilities.blendColors('#08080d', 'rgba(0,0,0,0.45)')
+      c = '#8c8c8c'
+      d = '#040406'
     }
   }
   if (a === 3) {
