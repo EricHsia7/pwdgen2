@@ -200,7 +200,7 @@ function standaloneStatusBarColor(a) {
   var d = '#000000'
   if (a === 1) {
     c = '#ffffff'
-    d = '#08080d'
+    d = '#0a0a10'
   }
   if (a === 2) {
     var a1 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] | 0
@@ -210,7 +210,7 @@ function standaloneStatusBarColor(a) {
     }
     if (a1 === 1) {
       c = '#8c8c8c'
-      d = '#040406'
+      d = '#050509'
     }
   }
   if (a === 3) {
