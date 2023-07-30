@@ -196,7 +196,6 @@ function close_prompt_asking(temporary_id) {
 }
 
 function standaloneStatusBarColor(a) {
-  var a2 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0
   var c = '#f2f2f7'
   var d = '#000000'
   if (a === 1) {
@@ -204,6 +203,7 @@ function standaloneStatusBarColor(a) {
     d = '#08080d'
   }
   if (a === 2) {
+    var a1 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] | 0
     if (a2 === 0) {
       c = '#858585'
       d = '#000000'
@@ -214,6 +214,7 @@ function standaloneStatusBarColor(a) {
     }
   }
   if (a === 3) {
+    var a2 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0
     interaction.standaloneStatusBarColorHistory.splice(standaloneStatusBarColorHistory.length - 1, 1)
     interaction.standaloneStatusBarColor(a2)
     return ''
