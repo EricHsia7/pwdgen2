@@ -197,14 +197,14 @@ function close_prompt_asking(temporary_id) {
 
 function standaloneStatusBarColor(a) {
   var c = '#f2f2f7'
-  var d = '#0a0a0b'
+  var d = '#000000'
   if (a === 1) {
     c = '#ffffff'
-    d = '#1c1c1e'
+    d = '#111111'
   }
   if (a === 2) {
     c = utilities.blendColors('#f2f2f7', 'rgba(0,0,0,0.45)')
-    d = utilities.blendColors('#0a0a0b', 'rgba(0,0,0,0.45)')
+    d = utilities.blendColors('#000000', 'rgba(0,0,0,0.45)')
   }
   if (a === 3) {
     var a2 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0
