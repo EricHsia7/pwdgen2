@@ -197,20 +197,20 @@ function close_prompt_asking(temporary_id) {
 
 function standaloneStatusBarColor(a) {
   var c = '#f2f2f7'
-  var d = '#040406'
+  var d = '#050506'
   if (a === 1) {
     c = '#ffffff'
-    d = '#0a0a10'
+    d = '#0e0e11'
   }
   if (a === 2) {
     var a1 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] | 0
     if (a1 === 0) {
       c = '#858585'
-      d = '#040406'
+      d = '#030303'
     }
     if (a1 === 1) {
       c = '#8c8c8c'
-      d = '#07070A'
+      d = '#080809'
     }
   }
   if (a === 3) {

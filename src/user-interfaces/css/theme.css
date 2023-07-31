@@ -32,20 +32,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --p-f2f2f7: #040406;
-    --p-f2f2f7-r: 4;
-    --p-f2f2f7-g: 4;
+    --p-f2f2f7: #050506;
+    --p-f2f2f7-r: 5;
+    --p-f2f2f7-g: 5;
     --p-f2f2f7-b: 6;
 
-    --p-ffffff: #0c0c13;
-    --p-ffffff-r: 12;
-    --p-ffffff-g: 12;
-    --p-ffffff-b: 19;
+    --p-ffffff: #0e0e11;
+    --p-ffffff-r: 14;
+    --p-ffffff-g: 14;
+    --p-ffffff-b: 17;
 
-    --p-e5e5ea: #1d1d2f;
-    --p-e5e5ea-r: 44;
-    --p-e5e5ea-g: 44;
-    --p-e5e5ea-b: 46;
+    --p-e5e5ea: #23232a;
+    --p-e5e5ea-r: 35;
+    --p-e5e5ea-g: 35;
+    --p-e5e5ea-b: 42;
 
     --p-aeaeb2: #636366;
     --p-aeaeb2-r: 99;
