@@ -13,14 +13,7 @@
     "type": "git",
     "url": "https://github.com/EricHsia7/pwdgen2.git"
   },
-  "keywords": [
-    "password",
-    "generator",
-    "typescript",
-    "progressive",
-    "web",
-    "application"
-  ],
+  "keywords": ["password", "generator", "typescript", "progressive", "web", "application"],
   "author": "EricHsia7",
   "bugs": {
     "url": "https://github.com/erichsia7/pwdgen2/issues"

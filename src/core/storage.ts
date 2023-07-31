@@ -1,6 +1,6 @@
-import fine_grained_password from './fine-grained-password'
-import utilities from './utilities'
-import interaction from '../user-interfaces/interaction'
+import fine_grained_password from './fine-grained-password';
+import utilities from './utilities';
+import interaction from '../user-interfaces/interaction';
 const md5 = require('md5');
 
 interface EncryptedPassword {
@@ -22,178 +22,175 @@ interface DecryptedPassword {
   id: string;
 }
 
-export const LS = window.localStorage
+export const LS = window.localStorage;
 
 export function searchItemsbyname(name) {
-  var gh = []
+  var gh = [];
   for (var t in window.localStorage) {
     if (String(t).indexOf(name) > -1) {
-      gh.push(t)
+      gh.push(t);
     }
   }
-  return gh
+  return gh;
 }
 
 export function listSavedPassword(): object[] {
-  var list = searchItemsbyname('pwdgen2_saved_b')
-  var list_len = list.length
-  var list_decrypted = []
+  var list = searchItemsbyname('pwdgen2_saved_b');
+  var list_len = list.length;
+  var list_decrypted = [];
   for (var k = 0; k < list_len; k++) {
-    var this_item = JSON.parse(String(LS.getItem(list[k])))
+    var this_item = JSON.parse(String(LS.getItem(list[k])));
     if (this_item.hasOwnProperty('history')) {
       continue;
     }
-    var url = ''
-    var website_icon = false
+    var url = '';
+    var website_icon = false;
     if (utilities.isValidURL(this_item.website)) {
-      url = this_item.website
+      url = this_item.website;
       if (!(this_item.website.indexOf('http://') > -1 || this_item.website.indexOf('https://') > -1)) {
-        url = 'https://' + url
+        url = 'https://' + url;
       }
-      var url_obj = new URL(url)
+      var url_obj = new URL(url);
       url_obj.search = '';
-      url_obj.protocol = 'http://'
-      website_icon = `https://remote-ivory-bovid.faviconkit.com/${url_obj.toString().replace('http://', '')}/256`
+      url_obj.protocol = 'http://';
+      website_icon = `https://remote-ivory-bovid.faviconkit.com/${url_obj.toString().replace('http://', '')}/256`;
     }
-    list_decrypted.push(
-      {
-        website_icon: website_icon,
-        website: this_item.website,
-        password: utilities.deur(utilities.decryptString(this_item.encrypted_password, this_item.aes_iv)),
-        username: this_item.username,
-        note: this_item.note,
-        time_stamp: this_item.time_stamp,
-        id: this_item.id
-      }
-    )
+    list_decrypted.push({
+      website_icon: website_icon,
+      website: this_item.website,
+      password: utilities.deur(utilities.decryptString(this_item.encrypted_password, this_item.aes_iv)),
+      username: this_item.username,
+      note: this_item.note,
+      time_stamp: this_item.time_stamp,
+      id: this_item.id
+    });
   }
   list_decrypted.sort(function (a, b) {
-    return new Date(b.time_stamp).getTime() - new Date(a.time_stamp).getTime()
-  })
+    return new Date(b.time_stamp).getTime() - new Date(a.time_stamp).getTime();
+  });
 
-  return list_decrypted
+  return list_decrypted;
 }
-
 
 export function upgradeData(): void {
   var id_pattern = [
     {
-      type: "group",
+      type: 'group',
       group: [
         {
-          type: "regex",
-          regex: "/[A-Za-z0-9]/g",
+          type: 'regex',
+          regex: '/[A-Za-z0-9]/g',
           quantity: 32,
           repeat: true
         }
       ],
-      actions: ["shuffle"]
+      actions: ['shuffle']
     }
-  ]
-  var list = searchItemsbyname('pwdgen2_saved_a')
+  ];
+  var list = searchItemsbyname('pwdgen2_saved_a');
   if (list.length <= 0) {
-    return ''
+    return '';
   }
-  var list_len = list.length
-  var list_encrypted = []
+  var list_len = list.length;
+  var list_encrypted = [];
   for (var k = 0; k < list_len; k++) {
-    var this_item = String(LS.getItem(list[k])).split(':')
-    var hash = list[k].split('_')[3]
-    var pwtime = new Date()
-    pwtime.setTime(this_item[2])
-    var id = fine_grained_password.generate(id_pattern, 'production')
-    var note = LS.getItem(`pwdgen2_saved_notes_cf_${hash}`) || ""
-    list_encrypted.push(
-      {
-        website: "",
-        encrypted_password: this_item[0],
-        aes_iv: parseInt(this_item[1]),
-        note: note,
-        time_stamp: pwtime,
-        id: id
-      }
-    )
-    LS.setItem(`pwdgen2_saved_b_${id}`, JSON.stringify(list_encrypted[list_encrypted.length - 1]))
-    LS.removeItem(list[k])
+    var this_item = String(LS.getItem(list[k])).split(':');
+    var hash = list[k].split('_')[3];
+    var pwtime = new Date();
+    pwtime.setTime(this_item[2]);
+    var id = fine_grained_password.generate(id_pattern, 'production');
+    var note = LS.getItem(`pwdgen2_saved_notes_cf_${hash}`) || '';
+    list_encrypted.push({
+      website: '',
+      encrypted_password: this_item[0],
+      aes_iv: parseInt(this_item[1]),
+      note: note,
+      time_stamp: pwtime,
+      id: id
+    });
+    LS.setItem(`pwdgen2_saved_b_${id}`, JSON.stringify(list_encrypted[list_encrypted.length - 1]));
+    LS.removeItem(list[k]);
   }
 }
 
 export function setPassword(password, username, time, website, note, id): void {
-  var encryption = utilities.encryptString(utilities.enur(password))
+  var encryption = utilities.encryptString(utilities.enur(password));
   var json = {
     website: website,
     username: username,
     encrypted_password: encryption[0],
     aes_iv: encryption[1],
-    note: (note === "" ? null : btoa(utilities.enur(note))),
+    note: note === '' ? null : btoa(utilities.enur(note)),
     time_stamp: time,
     id: id
-  }
-  LS.setItem('pwdgen2_saved_b_' + id, JSON.stringify(json))
+  };
+  LS.setItem('pwdgen2_saved_b_' + id, JSON.stringify(json));
 }
 
 export function addPassword(password, username, website, note): string {
   var id_pattern = [
     {
-      type: "group",
+      type: 'group',
       group: [
         {
-          type: "regex",
-          regex: "/[A-Za-z0-9]/g",
+          type: 'regex',
+          regex: '/[A-Za-z0-9]/g',
           quantity: 32,
           repeat: true
         }
       ],
-      actions: ["shuffle"]
+      actions: ['shuffle']
     }
-  ]
-  var time = new Date().toISOString()
-  var id = fine_grained_password.generate(id_pattern, 'production')
-  setPassword(password, username, time, website, note, id)
-  return id
+  ];
+  var time = new Date().toISOString();
+  var id = fine_grained_password.generate(id_pattern, 'production');
+  setPassword(password, username, time, website, note, id);
+  return id;
 }
 
 export function modifyPassword(password, username, website, note, id): void | string {
-  var localStorage_key = `pwdgen2_saved_b_${id}`
-  var localStorage_history_key = `pwdgen2_saved_b_history_${id}`
+  var localStorage_key = `pwdgen2_saved_b_${id}`;
+  var localStorage_history_key = `pwdgen2_saved_b_history_${id}`;
   if (LS.hasOwnProperty(localStorage_key)) {
-    var json = JSON.parse(String(LS.getItem(localStorage_key)))
-    var encryption = utilities.encryptString(utilities.enur(password))
+    var json = JSON.parse(String(LS.getItem(localStorage_key)));
+    var encryption = utilities.encryptString(utilities.enur(password));
     var modified_json: EncryptedPassword = {
       website: website,
       username: username,
       encrypted_password: encryption[0],
       aes_iv: encryption[1],
-      note: (note === "" ? null : btoa(utilities.enur(note))),
+      note: note === '' ? null : btoa(utilities.enur(note)),
       time_stamp: json.time_stamp,
       id: id
-    }
+    };
 
-    if (md5(JSON.stringify({ website: json.website, username: json.username, password: utilities.deur(utilities.decryptString(json.encrypted_password, json.aes_iv)), note: json.note })) === md5(JSON.stringify({ website: website, username: username, password: password, note: note }))) {
-      return ''
+    if (
+      md5(JSON.stringify({ website: json.website, username: json.username, password: utilities.deur(utilities.decryptString(json.encrypted_password, json.aes_iv)), note: json.note })) ===
+      md5(JSON.stringify({ website: website, username: username, password: password, note: note }))
+    ) {
+      return '';
     }
 
     if (LS.hasOwnProperty(localStorage_history_key)) {
-      var history: object = JSON.parse(String(LS.getItem(localStorage_history_key)))
+      var history: object = JSON.parse(String(LS.getItem(localStorage_history_key)));
+    } else {
+      var history: object = { id: id, history: [] };
     }
-    else {
-      var history: object = { id: id, history: [] }
-    }
-    history['history'].push(json)
-    LS.setItem(localStorage_history_key, JSON.stringify(history))
-    LS.setItem(localStorage_key, JSON.stringify(modified_json))
+    history['history'].push(json);
+    LS.setItem(localStorage_history_key, JSON.stringify(history));
+    LS.setItem(localStorage_key, JSON.stringify(modified_json));
   }
 }
 
 export function removePassword(id): boolean {
   if (LS.hasOwnProperty(`pwdgen2_saved_b_${id}`)) {
-    LS.removeItem(`pwdgen2_saved_b_${id}`)
+    LS.removeItem(`pwdgen2_saved_b_${id}`);
     if (LS.hasOwnProperty(`pwdgen2_saved_b_history_${id}`)) {
-      LS.removeItem(`pwdgen2_saved_b_history_${id}`)
+      LS.removeItem(`pwdgen2_saved_b_history_${id}`);
     }
-    return true
+    return true;
   }
-  return false
+  return false;
 }
 
 export function importdatahandler(event) {
@@ -202,29 +199,29 @@ export function importdatahandler(event) {
   reader.onload = (function (theFile) {
     return function (e) {
       var fileTextContent = e.target.result;
-      var json = JSON.parse(fileTextContent)
-      var data = json.data
-      var data_len = data.length
+      var json = JSON.parse(fileTextContent);
+      var data = json.data;
+      var data_len = data.length;
 
       for (var i = 0; i < data_len; i++) {
-        var this_item = data[i]
-        localStorage.setItem(this_item.key, JSON.stringify(JSON.parse(this_item.content)))
+        var this_item = data[i];
+        localStorage.setItem(this_item.key, JSON.stringify(JSON.parse(this_item.content)));
       }
-      upgradeData()
-      interaction.prompt.prompt_message('Imported data successfully.')
-      interaction.main_page.printSavedPasswordList()
+      upgradeData();
+      interaction.prompt.prompt_message('Imported data successfully.');
+      interaction.main_page.printSavedPasswordList();
     };
   })(f);
   reader.readAsText(f);
 }
 
 export function generateExportFile() {
-  var list = searchItemsbyname('pwdgen2_saved_b')
-  var list_len = list.length
-  var export_list = []
+  var list = searchItemsbyname('pwdgen2_saved_b');
+  var list_len = list.length;
+  var export_list = [];
   for (var k = 0; k < list_len; k++) {
-    var this_item = JSON.parse(String(LS.getItem(list[k])))
-    export_list.push({ key: list[k], content: JSON.stringify(this_item, null, 2) })
+    var this_item = JSON.parse(String(LS.getItem(list[k])));
+    export_list.push({ key: list[k], content: JSON.stringify(this_item, null, 2) });
   }
-  return JSON.stringify({ data: export_list, version: '2023-07-30', export_time_stamp: new Date().toISOString() }, null, 2)
+  return JSON.stringify({ data: export_list, version: '2023-07-30', export_time_stamp: new Date().toISOString() }, null, 2);
 }

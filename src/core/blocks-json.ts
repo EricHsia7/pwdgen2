@@ -29,10 +29,10 @@ function bjson_string(value: string, path: string[], place: 'object' | 'array'):
   var element = document.createElement('div');
   element.classList.add('bjson_string');
   if (place === 'object') {
-    key = path[path.length - 1]
+    key = path[path.length - 1];
   }
   if (place === 'array') {
-    key = path[path.length - 1]
+    key = path[path.length - 1];
   }
   var input = document.createElement('input');
   input.setAttribute('value', value);
@@ -52,10 +52,10 @@ function bjson_number(value: number, path: string[], place: 'object' | 'array'):
   var element = document.createElement('div');
   element.classList.add('bjson_number');
   if (place === 'object') {
-    key = path[path.length - 1]
+    key = path[path.length - 1];
   }
   if (place === 'array') {
-    key = path[path.length - 1]
+    key = path[path.length - 1];
   }
   var input = document.createElement('input');
   input.setAttribute('value', value.toString());
@@ -90,10 +90,10 @@ function bjson_boolean(value: boolean, path: string[], place: 'object' | 'array'
   select.setAttribute('onchange', `bjson_update_single_object(pattern_editor_blocks_json, json, event)`);
 
   if (place === 'object') {
-    key = path[path.length - 1]
+    key = path[path.length - 1];
   }
   if (place === 'array') {
-    key = path[path.length - 1]
+    key = path[path.length - 1];
   }
   var keyElement = document.createElement('div');
   keyElement.classList.add('bjson_key');
@@ -108,12 +108,11 @@ function bjson_array(array: BjsonArray, path: string[], place: 'object' | 'array
   var element = document.createElement('div');
   element.classList.add('bjson_array');
 
-
   if (place === 'object') {
-    key = path[path.length - 1]
+    key = path[path.length - 1];
   }
   if (place === 'array') {
-    key = path[path.length - 1]
+    key = path[path.length - 1];
   }
   var keyElement = document.createElement('div');
   keyElement.classList.add('bjson_key');
@@ -209,7 +208,7 @@ window.bjson = {
   setValueByPath,
   bjson_getValue,
   bjson_update_entire_object,
-  bjson_update_single_object,
+  bjson_update_single_object
 };
 
 export default window.bjson;
