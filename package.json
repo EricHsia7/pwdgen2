@@ -1,7 +1,7 @@
 {
   "name": "@erichsia7/pwdgen2",
   "version": "0.0.3",
-  "description": "Generate strong password",
+  "description": "Password Generator—your password assistant",
   "main": "dist/index.min.js",
   "private": false,
   "scripts": {
@@ -16,8 +16,10 @@
   "keywords": [
     "password",
     "generator",
-    "javascript",
-    "webapp"
+    "typescript",
+    "progressive",
+    "web",
+    "application"
   ],
   "author": "EricHsia7",
   "bugs": {

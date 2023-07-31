@@ -44,7 +44,7 @@ export function listSavedPassword(): object[] {
       continue;
     }
     var url = ''
-    var website_icon = 'var(--p-aeaeb2)'
+    var website_icon = false
     if (utilities.isValidURL(this_item.website)) {
       url = this_item.website
       if (!(this_item.website.indexOf('http://') > -1 || this_item.website.indexOf('https://') > -1)) {
