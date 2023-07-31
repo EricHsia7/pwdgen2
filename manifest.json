@@ -71,14 +71,7 @@
   "scope": "https://erichsia7.github.io/pwdgen2/",
   "dir": "ltr",
   "orientation": "any",
-  "display_override": [
-    "window-controls-overlay",
-    "standalone"
-  ],
+  "display_override": ["window-controls-overlay", "standalone"],
   "prefer_related_applications": false,
-  "categories": [
-    "productivity",
-    "security",
-    "utilities"
-  ]
+  "categories": ["productivity", "security", "utilities"]
 }
