@@ -132,6 +132,7 @@ const pwd_pattern_default: object = [
   }
 ]
 
+//function to get all the patterns saved in the local storage
 function listPatterns() {
   var list = searchItemsbyname('pwdgen2_pattern_b_')
   var list_len = list.length
@@ -144,25 +145,18 @@ function listPatterns() {
   return result
 }
 const pwd_pattern_custom: object = []
-
+//function to get the default and saved patterns
 const getPatterns = function (): object {
   fine_grained_password.pwd_pattern_custom = fine_grained_password.listPatterns()
   return pwd_pattern_default.concat(fine_grained_password.pwd_pattern_custom)
 }
-
+//function to generate string depending on the pattern 
 function generate(options: object, mode: string): string | object {
+  //use lodash to clone the options (pattern) to avoid syncing with the original list declared above → make the declared pattern usable repeatedly
   const pattern: object = _.cloneDeep(options);
   const original_pattern: object = _.cloneDeep(options)
-  /*
-   const check = fine_grained_password.checkPatternQualification({
-     'pattern_name': 'name',
-     'pattern_icon': 'icon',
-     'pattern': options
-   })
-   if (!check.result) {
-     return original_pattern.map(e => { ({ result: '', component: e }) })
-   }
-   */
+  //production mode: only return the results
+  //editor mode: return the results, component objects, and error messages
   if (mode === 'production') {
     var d: string = ""
   }
@@ -171,43 +165,61 @@ function generate(options: object, mode: string): string | object {
   }
 
   const get_chars_from_regex = function (regex) {
-    const input = String.fromCharCode(...Array.from({ length: Math.pow(2, 16) }, (_, i) => i));
-    const matches = String(input).match(regex);
-    const chars = matches ? matches.join('') : '';
+    //generate a long string
+    const input: string = String.fromCharCode(...Array.from({ length: Math.pow(2, 16) }, (_, i) => i));
+    //use the inputed regular expression to select matched characters
+    const matches: any = String(input).match(regex);
+    //join the items in the array
+    const chars: string = matches ? matches.join('') : '';
+    //return the joined string
     return chars
   }
-  const pattern_len = pattern.length
+  const pattern_len: number = pattern.length
   for (var e = 0; e < pattern_len; e++) {
     var this_item = pattern[e]
     var this_content = this_item[this_item['type']]
     var result = ''
     if (this_item['type'] === "regex") {
+      //check if the regular expression is full (has expression and flags)
       var this_content_matches = this_content.match(/^\/(.*)\/([a-z]*)$/i);
-      var string = ''
+      var string: string = ''
+      //get the character source/sample
       var chars = get_chars_from_regex(new RegExp(this_content_matches[1], this_content_matches[2])).split('')
       for (var r = 0; r < this_item['quantity']; r++) {
+        //choose a character from the source
         var random_index = Math.round((chars.length - 1) * Math.random())
+
+        //put the character to the end of the result
         string += chars[random_index]
+
+        //if the configuration tells that repeating is not allowed, strike/remove the character from the source to avoid using repeatedly
         if (!this_item.repeat) {
           chars.splice(random_index, 1)
         }
+
       }
       result = String(string)
     }
     if (this_item['type'] === "string") {
+      //directly put the string to the end of the result
       result = String(this_content)
     }
     if (this_item['type'] === "list") {
       for (var r = 0; r < this_item['quantity']; r++) {
+        //choose an item from the list
         var random_index = Math.round((this_content.length - 1) * Math.random())
+        //put the content of the item to the end of the result
         result += this_content[random_index]
         if (!this_item.repeat) {
+          //if the configuration tells that repeating is not allowed, strike/remove the item from the list to avoid using repeatedly
           this_content.splice(random_index, 1)
         }
       }
     }
     if (this_item['type'] === "group") {
+      //use recursive way to process the components in a group
       result = fine_grained_password.generate(this_content, 'production')
+      //carry out the actions
       if (this_item.hasOwnProperty('actions')) {
         var actions = this_item['actions']
         var actions_len = actions.length
