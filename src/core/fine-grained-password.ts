@@ -94,7 +94,7 @@ const pwd_pattern_default: object[] = [
   }
 ];
 
-// Function to get all the patterns saved in the local storage
+// Function to get all the patterns saved in the Local Storage
 function listPatterns() {
   var list = searchItemsbyname('pwdgen2_pattern_b_');
   var list_len = list.length;
