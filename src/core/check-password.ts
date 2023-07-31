@@ -99,7 +99,7 @@ export function checkPassword(string, cache, id) {
     //combine the indicators with weights into single points
     return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.7 + repeat * 2 + ty * 2 + commonWords * 2) / 10.7), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), Math.floor(commonWords), t[0], t[1], t[2], t[3]]
   }
-
+  //give colors and phrases depending on the points/levels
   var judgePoints = function (points) {
     var phrase = ''
     var r, g, b = 0
@@ -131,7 +131,7 @@ export function checkPassword(string, cache, id) {
   }
 
   var getReport = function (length_points, randomness_points, repeat_points, complexity_points, uniqueness_points, n1, n2, n3, n4) {
-
+    //give suggestions depending on the points of indicators
     var points_summary = 5
     // Initialize a set to store used instructions
     var used_instructions = new Set();
@@ -228,7 +228,7 @@ All you have to do is follow the instructions:
 
     return report
   }
-
+  //use cache to avoid running report repeatedly and cause performance problems
   if (cache) {
     var LS_key = `pwdgen2_saved_b_${id}`
     var LS_cache_key = `pwdgen2_check_cache_b_${id}`
