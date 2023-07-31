@@ -2,7 +2,7 @@ import { LS, searchItemsbyname } from './storage';
 import utilities from './utilities';
 var _ = require('lodash');
 
-const pwd_pattern_default = [
+const pwd_pattern_default: object[] = [
   {
     "pattern_name": "Strong",
     "pattern_icon": "key",
@@ -340,7 +340,7 @@ function checkPatternQualification(pattern) {
       if (typeof object['group'] === 'object' && Array.isArray(object['group'])) {
         var group = object['group'];
         var group_len: number = group.length;
-        for (vat e = 0; e < group_len; e++) {
+        for (var e = 0; e < group_len; e++) {
           result *= check(group[e]);
         }
       }
