@@ -92,7 +92,7 @@ export function syncPatternCreatorJSONEditor() {
 }
 
 export function openPatternCreator(event) {
-  interaction.standaloneStatusBarColor(0);
+  interaction.SASBC(0);
   interaction.show(utilities.qe('.pattern_creator'), 'block');
   interaction.options.closeOptions(event);
   interaction.pattern_creator.initializePatternCreatorJSONEditor();
@@ -131,7 +131,7 @@ export function openPatternCreator(event) {
 
 export function closePatternCreator() {
   interaction.show(utilities.qe('.pattern_creator'), 'none');
-  interaction.standaloneStatusBarColor(3);
+  interaction.SASBC(3);
 }
 
 export function addIdentityToPattern(): void {
@@ -218,7 +218,7 @@ export function generatePatternPreview(): string {
 
 export function displayPatternComponentInfo(component_id: string, event: Event): void | string {
   event.preventDefault();
-  interaction.standaloneStatusBarColor(2);
+  interaction.SASBC(2);
   var type_icon = {
     regex: icons.icon_regular_expression,
     string: icons.icon_text,
@@ -290,7 +290,7 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
 
 export function removePatternComponentInfo(temporary_id: string, event: Event): void {
   event.preventDefault();
-  interaction.standaloneStatusBarColor(3);
+  interaction.SASBC(3);
 
   utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).addEventListener(
     'transitionend',
@@ -367,7 +367,7 @@ export function addPatternWithCreator(): void | string {
 }
 
 export function displayAddPatternErrors(errors) {
-  interaction.standaloneStatusBarColor(2);
+  interaction.SASBC(2);
   var error_html = function (error) {
     var elt = document.createElement('div');
     elt.classList.add('pattern_creator_add_pattern_errors_list_item');
@@ -415,7 +415,7 @@ export function displayAddPatternErrors(errors) {
 
 export function removeAddPatternErrors(temporary_id: string, event: Event): void {
   event.preventDefault();
-  interaction.standaloneStatusBarColor(3);
+  interaction.SASBC(3);
   utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).addEventListener(
     'transitionend',
     function () {

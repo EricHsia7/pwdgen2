@@ -79,7 +79,7 @@ window.pwdgen2 = function () {
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'true');
       utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'true');
       if (!(search_status === 1)) {
-        interaction.standaloneStatusBarColor(1);
+        interaction.SASBC(1);
       }
       search_sticky = true;
     } else {
@@ -87,7 +87,7 @@ window.pwdgen2 = function () {
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'false');
       utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'false');
       if (!(search_status === 1)) {
-        interaction.standaloneStatusBarColor(3);
+        interaction.SASBC(3);
       }
       search_sticky = false;
     }
@@ -98,10 +98,10 @@ window.pwdgen2 = function () {
     var scrollTop = utilities.qe('.password-page').scrollTop;
     if (scrollTop > 0) {
       utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '1');
-      interaction.standaloneStatusBarColor(1);
+      interaction.SASBC(1);
     } else {
       utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '0');
-      interaction.standaloneStatusBarColor(3);
+      interaction.SASBC(3);
     }
   });
 
@@ -109,10 +109,10 @@ window.pwdgen2 = function () {
     var scrollTop = utilities.qe('.add-password-page').scrollTop;
     if (scrollTop > 0) {
       utilities.qe('.add-password-page .fixed-title-box').setAttribute('scroll', '1');
-      interaction.standaloneStatusBarColor(1);
+      interaction.SASBC(1);
     } else {
       utilities.qe('.add-password-page .fixed-title-box').setAttribute('scroll', '0');
-      interaction.standaloneStatusBarColor(3);
+      interaction.SASBC(3);
     }
   });
 
@@ -120,10 +120,10 @@ window.pwdgen2 = function () {
     var scrollTop = utilities.qe('.edit-password-page').scrollTop;
     if (scrollTop > 0) {
       utilities.qe('.edit-password-page .fixed-title-box').setAttribute('scroll', '1');
-      interaction.standaloneStatusBarColor(1);
+      interaction.SASBC(1);
     } else {
       utilities.qe('.edit-password-page .fixed-title-box').setAttribute('scroll', '0');
-      interaction.standaloneStatusBarColor(3);
+      interaction.SASBC(3);
     }
   });
 
@@ -131,10 +131,10 @@ window.pwdgen2 = function () {
     var scrollTop = utilities.qe('.pattern_creator').scrollTop;
     if (scrollTop > 0) {
       utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '1');
-      interaction.standaloneStatusBarColor(1);
+      interaction.SASBC(1);
     } else {
       utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '0');
-      interaction.standaloneStatusBarColor(3);
+      interaction.SASBC(3);
     }
   });
 

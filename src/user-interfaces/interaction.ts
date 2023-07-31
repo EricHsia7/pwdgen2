@@ -7,7 +7,7 @@ import { openPatternCreator, closePatternCreator, generatePatternPreview, displa
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password';
 
 var FontFaceObserver = require('fontfaceobserver');
-const standaloneStatusBarColorHistory: number[] = [0, 0, 0];
+const SASBCH: number[] = [0, 0, 0]; // Stand Alone Status Bar Color History
 
 window.search_evt = 0;
 
@@ -184,7 +184,7 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
     utilities.qe(`body #${temporary_id}`).setAttribute('o', '1');
     utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '1');
   }, 1);
-  interaction.standaloneStatusBarColor(2);
+  interaction.SASBC(2);
 }
 
 function close_prompt_asking(temporary_id) {
@@ -204,10 +204,10 @@ function close_prompt_asking(temporary_id) {
   );
   utilities.qe(`body #${temporary_id}`).setAttribute('o', '0');
   utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '0');
-  interaction.standaloneStatusBarColor(3);
+  interaction.SASBC(3);
 }
-
-function standaloneStatusBarColor(a) {
+//Stand Alone Status Bar Color
+function SASBC(a) {
   var c = '#f2f2f7';
   var d = '#050506';
   if (a === 1) {
@@ -215,7 +215,7 @@ function standaloneStatusBarColor(a) {
     d = '#0e0e11';
   }
   if (a === 2) {
-    var a1 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] | 0;
+    var a1 = interaction.SASBCH[interaction.SASBCH.length - 1] | 0;
     if (a1 === 0) {
       c = '#858585';
       d = '#030303';
@@ -226,22 +226,18 @@ function standaloneStatusBarColor(a) {
     }
   }
   if (a === 3) {
-    var a2 = interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 2] | 0;
-    interaction.standaloneStatusBarColorHistory.splice(standaloneStatusBarColorHistory.length - 1, 1);
-    interaction.standaloneStatusBarColor(a2);
+    var a2 = interaction.SASBCH[interaction.SASBCH.length - 2] | 0;
+    interaction.SASBCH.splice(SASBCH.length - 1, 1);
+    interaction.SASBC(a2);
     return '';
   }
   utilities.qe('head meta[mode="light"]').setAttribute('content', c);
   utilities.qe('head meta[mode="dark"]').setAttribute('content', d);
-  if (!(interaction.standaloneStatusBarColorHistory[interaction.standaloneStatusBarColorHistory.length - 1] === a)) {
-    //if (!(a === 2)) {
-    interaction.standaloneStatusBarColorHistory.push(a);
-    //}
-    // else {
-    //}
+  if (!(interaction.SASBCH[interaction.SASBCH.length - 1] === a)) {
+    interaction.SASBCH.push(a);
   }
-  if (interaction.standaloneStatusBarColorHistory.length > 15) {
-    interaction.standaloneStatusBarColorHistory = interaction.standaloneStatusBarColorHistory.slice(interaction.standaloneStatusBarColorHistory.length - 11, interaction.standaloneStatusBarColorHistory.length - 1);
+  if (interaction.SASBCH.length > 15) {
+    interaction.SASBCH = interaction.SASBCH.slice(interaction.SASBCH.length - 11, interaction.SASBCH.length - 1);
   }
 }
 
@@ -330,7 +326,7 @@ function openSearch() {
   utilities.qe('.main-page .search-box').setAttribute('sticky', 'true');
   Xsearch.searchIndex = Xsearch.createSearchIndex();
   interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
-  interaction.standaloneStatusBarColor(1);
+  interaction.SASBC(1);
   search_status = 1;
 }
 
@@ -342,7 +338,7 @@ function closeSearch() {
   utilities.qe('.main-page .search-box').setAttribute('sticky', search_sticky);
   utilities.qe('.main-page .search input#search').value = '';
   if (!search_sticky) {
-    interaction.standaloneStatusBarColor(3);
+    interaction.SASBC(3);
   }
   search_status = 0;
 }
@@ -557,8 +553,8 @@ window.interaction = {
   generateHashTagHTML,
   copyElement,
   copyDetails,
-  standaloneStatusBarColor,
-  standaloneStatusBarColorHistory,
+  SASBC,
+  SASBCH,
   loadCSS,
   loadFont,
   importData,

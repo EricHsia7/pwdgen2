@@ -162,7 +162,7 @@ export function addPassword(password, username, website, note): string {
 
   // Get the current timestamp
   var time = new Date().toISOString();
-    // Generate a new ID
+  // Generate a new ID
   var id = fine_grained_password.generate(id_pattern, 'production');
 
   // Set the password entry
@@ -193,10 +193,7 @@ export function modifyPassword(password, username, website, note, id): void | st
     };
 
     // Check if the modified entry is the same as the existing one, if yes, return '' to quit function
-    if (
-      md5(JSON.stringify({ website: json.website, username: json.username, password: utilities.deur(utilities.decryptString(json.encrypted_password, json.aes_iv)), note: json.note })) ===
-      md5(JSON.stringify({ website: website, username: username, password: password, note: note }))
-    ) {
+    if (md5(JSON.stringify({ website: json.website, username: json.username, password: utilities.deur(utilities.decryptString(json.encrypted_password, json.aes_iv)), note: json.note })) === md5(JSON.stringify({ website: website, username: username, password: password, note: note }))) {
       return '';
     }
 
