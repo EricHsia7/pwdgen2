@@ -4,129 +4,90 @@ var _ = require('lodash');
 
 const pwd_pattern_default: object[] = [
   {
-    "pattern_name": "Strong",
-    "pattern_icon": "key",
-    "id": "_strong",
-    "pattern": [
+    pattern_name: 'Strong',
+    pattern_icon: 'key',
+    id: '_strong',
+    pattern: [
       {
-        "type": "group",
-        "group": [
+        type: 'group',
+        group: [
           {
-            "type": "regex",
-            "regex": "/[A-Z]/g",
-            "quantity": 32,
-            "repeat": true
+            type: 'regex',
+            regex: '/[A-Z]/g',
+            quantity: 32,
+            repeat: true
           },
           {
-            "type": "regex",
-            "regex": "/[a-z]/g",
-            "quantity": 32,
-            "repeat": true
+            type: 'regex',
+            regex: '/[a-z]/g',
+            quantity: 32,
+            repeat: true
           },
           {
-            "type": "regex",
-            "regex": "/[0-9]/g",
-            "quantity": 32,
-            "repeat": true
+            type: 'regex',
+            regex: '/[0-9]/g',
+            quantity: 32,
+            repeat: true
           },
           {
-            "type": "list",
-            "list": [
-              "-",
-              "!",
-              "$",
-              "%",
-              "^",
-              "&",
-              "*",
-              "(",
-              ")",
-              "_",
-              "+",
-              "|",
-              "~",
-              "=",
-              "`",
-              "{",
-              "}",
-              "\\",
-              "[",
-              "]",
-              ":",
-              ",",
-              ";",
-              "'",
-              "<",
-              ">",
-              "?",
-              ",",
-              ".",
-              "/"
-            ],
-            "quantity": 32,
-            "repeat": true
+            type: 'list',
+            list: ['-', '!', '$', '%', '^', '&', '*', '(', ')', '_', '+', '|', '~', '=', '`', '{', '}', '\\', '[', ']', ':', ',', ';', "'", '<', '>', '?', ',', '.', '/'],
+            quantity: 32,
+            repeat: true
           }
         ],
-        "actions": [
-          "shuffle"
-        ]
+        actions: ['shuffle']
       }
     ]
   },
   {
-    "pattern_name": "Easy to read",
-    "pattern_icon": "visibility",
-    "id": "_strong",
-    "pattern": [
+    pattern_name: 'Easy to read',
+    pattern_icon: 'visibility',
+    id: '_strong',
+    pattern: [
       {
-        "type": "group",
-        "group": [
+        type: 'group',
+        group: [
           {
-            "type": "regex",
-            "regex": "/[A-HKMNP-Z0-9a-hkmnp-z]/g",
-            "quantity": 8,
-            "repeat": true
+            type: 'regex',
+            regex: '/[A-HKMNP-Z0-9a-hkmnp-z]/g',
+            quantity: 8,
+            repeat: true
           }
         ],
-        "actions": [
-          "shuffle"
-        ]
+        actions: ['shuffle']
       },
       {
-        "type": "string",
-        "string": "-"
+        type: 'string',
+        string: '-'
       },
       {
-        "type": "group",
-        "group": [
+        type: 'group',
+        group: [
           {
-            "type": "regex",
-            "regex": "/[A-HKMNP-Z0-9a-hkmnp-z]/g",
-            "quantity": 8,
-            "repeat": true
+            type: 'regex',
+            regex: '/[A-HKMNP-Z0-9a-hkmnp-z]/g',
+            quantity: 8,
+            repeat: true
           }
         ],
-        "actions": [
-          "shuffle"
-        ]
+        actions: ['shuffle']
       },
       {
-        "type": "string",
-        "string": "-"
+        type: 'string',
+        string: '-'
       },
       {
-        "type": "group",
-        "group": [
+        type: 'group',
+        group: [
           {
-            "type": "regex",
-            "regex": "/[A-HKMNP-Z0-9a-hkmnp-z]/g",
-            "quantity": 8,
-            "repeat": true
+            type: 'regex',
+            regex: '/[A-HKMNP-Z0-9a-hkmnp-z]/g',
+            quantity: 8,
+            repeat: true
           }
         ],
-        "actions": [
-          "shuffle"
-        ]
+        actions: ['shuffle']
       }
     ]
   }
@@ -162,10 +123,10 @@ function generate(options, mode) {
   // Production mode: only return the results
   // Editor mode: return the results, component objects, and error messages
   if (mode === 'production') {
-    var d: string = ""
+    var d: string = '';
   }
   if (mode === 'editor') {
-    var d: Array = []
+    var d: Array = [];
   }
 
   const get_chars_from_regex = function (regex) {
@@ -179,16 +140,16 @@ function generate(options, mode) {
     return chars;
   };
 
-  const pattern_len: number = pattern.length
+  const pattern_len: number = pattern.length;
   for (var e = 0; e < pattern_len; e++) {
     var this_item = pattern[e];
     var this_content = this_item[this_item['type']];
     var result = '';
 
-    if (this_item['type'] === "regex") {
+    if (this_item['type'] === 'regex') {
       // Check if the regular expression is full (has expression and flags)
       var this_content_matches = this_content.match(/^\/(.*)\/([a-z]*)$/i);
-      var string: string = ''
+      var string: string = '';
       // Get the character source/sample
       var chars = get_chars_from_regex(new RegExp(this_content_matches[1], this_content_matches[2])).split('');
       for (var r = 0; r < this_item['quantity']; r++) {
@@ -206,12 +167,12 @@ function generate(options, mode) {
       result = String(string);
     }
 
-    if (this_item['type'] === "string") {
+    if (this_item['type'] === 'string') {
       // Directly put the string to the end of the result
       result = String(this_content);
     }
 
-    if (this_item['type'] === "list") {
+    if (this_item['type'] === 'list') {
       for (var r = 0; r < this_item['quantity']; r++) {
         // Choose an item from the list
         var random_index: number = Math.round((this_content.length - 1) * Math.random());
@@ -224,7 +185,7 @@ function generate(options, mode) {
       }
     }
 
-    if (this_item['type'] === "group") {
+    if (this_item['type'] === 'group') {
       // Use recursive way to process the components in a group
       result = fine_grained_password.generate(this_content, 'production');
       // Carry out the actions
@@ -274,8 +235,7 @@ function checkPatternQualification(pattern) {
     if (typeof object === 'object') {
       if (object.hasOwnProperty(property)) {
         return 1;
-      }
-      else {
+      } else {
         errors.push(`The property "${property}" was not found in ${omitobject(object)}.`);
         return 0;
       }
@@ -345,7 +305,7 @@ function checkPatternQualification(pattern) {
         }
       }
     }
-    if (type === "regex") {
+    if (type === 'regex') {
       if (typeof object['regex'] === 'string') {
         if (!object['regex'].match(/^\/(.*)\/([a-z]*)$/i)) {
           errors.push(`The regex in ${JSON.stringify(object)} is invalid on formats.`);
@@ -358,8 +318,7 @@ function checkPatternQualification(pattern) {
     }
     if (result === 1) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   };
@@ -382,20 +341,17 @@ function checkPatternQualification(pattern) {
       for (var i = 0; i < pattern_len; i++) {
         result *= check(pattern[i]);
       }
-    }
-    else {
+    } else {
       errors.push(`Type of the property "pattern" in ${omitobject(json)} is not an array.`);
       result *= 0;
     }
-  }
-  else {
+  } else {
     errors.push(`Type of the thing you want to check is not an object.`);
     result *= 0;
   }
   if (result === 1) {
     result = true;
-  }
-  else {
+  } else {
     result = false;
   }
   return { errors: errors, result: result };
@@ -409,4 +365,4 @@ window.fine_grained_password = {
   checkPatternQualification
 };
 
-export default window.fine_grained_password
+export default window.fine_grained_password;
