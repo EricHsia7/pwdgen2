@@ -1,3 +1,4 @@
+// Import required functions
 import words_list from './words-list';
 import { LS } from './storage';
 

@@ -1,3 +1,4 @@
+// Import required functions
 import { LS, searchItemsbyname } from './storage';
 import utilities from './utilities';
 var _ = require('lodash');
@@ -357,6 +358,7 @@ function checkPatternQualification(pattern) {
   return { errors: errors, result: result };
 }
 
+// Expose functions to the global scope
 window.fine_grained_password = {
   pwd_pattern_custom,
   generate,

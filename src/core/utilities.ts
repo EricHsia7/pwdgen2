@@ -1,3 +1,4 @@
+// Import required functions
 import fine_grained_password from './fine-grained-password';
 var aesjs = require('aes-js');
 
@@ -354,6 +355,7 @@ function blendColors(hexColor, rgbaColor) {
   return `#${blendedR.toString(16).padStart(2, '0')}${blendedG.toString(16).padStart(2, '0')}${blendedB.toString(16).padStart(2, '0')}`;
 }
 
+// Expose functions to the global scope
 window.utilities = {
   encryptString,
   decryptString,

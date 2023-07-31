@@ -1,3 +1,4 @@
+// Import required functions
 import searchItemsbyname from 'src/core/storage';
 import utilities from './utilities';
 import { LS } from './storage';
@@ -40,6 +41,7 @@ function getWordsList() {
   }
 }
 
+// Expose functions to the global scope
 window.words_list = { loaded: false, progress: 0, c: {}, getWordsList: getWordsList };
 
 export default window.words_list;
