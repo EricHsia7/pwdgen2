@@ -1,7 +1,7 @@
 import words_list from './words-list'
 import { LS } from './storage'
 
-export function checkCommonWordPatterns(string) {
+export function checkCommonWordPatterns(string): number {
   if (!words_list.loaded) {
     words_list.getWordsList()
     return 0
@@ -11,9 +11,11 @@ export function checkCommonWordPatterns(string) {
 
   var matched = []
   for (var i = 0; i < len; i++) {
+    //narrow down range by prefixes and pre-distributed index.
     if (words_list.c.hasOwnProperty(string.substring(i, i + 3))) {
       var arr = words_list.c[string.substring(i, i + 3)].slice()
       var arr_len = arr.length
+      //check the string if it includs a word in the range
       for (var r = 0; r < arr_len; r++) {
         if (string.indexOf(arr[r].trim()) !== -1 && matched.indexOf(arr[r]) < 0) {
           matched.push(arr[r])
@@ -21,6 +23,8 @@ export function checkCommonWordPatterns(string) {
       }
     }
   }
+  //sort the matched list by length from long to short to avoid counting subsets in a series of a root word repeatedly
+  //For example, "suitable" includes "suit" and "able"
   matched.sort(function (a, b) {
     return b.length - a.length
   })
@@ -28,53 +32,71 @@ export function checkCommonWordPatterns(string) {
   for (var g = 0; g < matched_len; g++) {
     string = string.replaceAll(matched[g].trim(), '')
   }
+  //calculate the length proportion of filtered string and original string 
+  //return a number in the range from 0 to 1
   return string.length / len
 }
 
 export function checkPassword(string, cache, id) {
   var getPoints = function (string) {
+    //Use the stats to get a function
+    //1. Generate a plenty of strong passwords using the genrator
+    //2. Use "moved character length/distance between original string and sorting by unicode version" to calculate the points
+    //3. Create a chart to calculate the count
+    //4. Use the count as the weight of the final points
+    //5. Create a function (randomnessX) that load up various relationships between original points and final points from 0 to 100
     const randomnessX = function (x) { return Math.min(100, Math.max(0, (8.31 - 1.89 * x + 0.0743 * Math.pow(x, 2) - 5.91 * Math.pow(10, -4) * Math.pow(x, 3)) / 35.89 * 100)) }
-
-    var length = -42.7 + 29.7 * Math.log(string.length);
-    var arr = string.split('')
-    var arr_len = arr.length
-    var randomness = 0
-    var n_arr = []
-    var json = {}
-    var t = []
+    //Use the stats to get a formula (length)
+    var length: number = -42.7 + 29.7 * Math.log(string.length);
+    var arr: Array = string.split('')
+    var arr_len: number = arr.length
+    var randomness: number = 0
+    var n_arr: Array = []
+    var json: object = {}
+    var t: number[] = []
     for (var w = 0; w < arr_len; w++) {
+      //create an array to log their content, index, and unicode.
       n_arr.push({ c: arr[w], i: w, u: String(arr[w]).charCodeAt(0) })
+      //create an object to calculate the proportion of same/used characters in the password → analyze the ingredient of the password
       json['u_' + String(arr[w]).charCodeAt(0)] = json.hasOwnProperty('u_' + String(arr[w]).charCodeAt(0)) ? json['u_' + String(arr[w]).charCodeAt(0)] + 1 : 1
     }
+    //sort the array by unicode
     n_arr.sort(function (a, b) {
       return a.u - b.u
     })
-
+    //calculate the total moving steps/distance of characters
     for (var w = 0; w < arr_len; w++) {
       randomness += Math.abs(w - n_arr[w].i)
     }
+    //convert total distance to points in the range from 0 to 100 and use the function to calculate the final points
     randomness = randomnessX(randomness / n_arr.length / (string.length / 2) * 100)
-    var repeat = 0
-    var repeat_len = 0
+
+    var repeat: number = 0
+    var repeat_len: number = 0
+    //calculate the proportion of same/used characters and length
     for (var w in json) {
       repeat += json[w]
       repeat_len += 1
     }
+    //calculate the final points in the range from 0 to 100
     repeat = (1 - repeat / repeat_len / string.length) * 100
-
+    //calculate the proportion of types of characters
     t.push(string.match(/[A-Z]*/gm).join('').length)
     t.push(string.match(/[a-z]*/gm).join('').length)
     t.push(string.match(/[0-9]*/gm).join('').length)
     t.push(string.length - t[0] - t[1] - t[2])
 
-    var t_avg = string.length / 4
-    var t_s = 0
+    var t_avg: number = string.length / 4
+    var t_s: number = 0
     for (var w = 0; w < 4; w++) {
       t_s += Math.pow(t[w] - t_avg, 2)
     }
+    //calculate the standard deviation to get the degress of evening distribution/degress of richness on type
     const ty: number = (1 - Math.min(Math.max(Math.sqrt(t_s / 4) / t_avg, 0), 1)) * 100
 
     var commonWords = checkCommonWordPatterns(string) * 100
+
+    //combine the indicators with weights into single points
     return [Math.min(Math.max(Math.floor((length * 3 + randomness * 1.7 + repeat * 2 + ty * 2 + commonWords * 2) / 10.7), 0), 100), Math.floor(length), Math.floor(randomness), Math.floor(repeat), Math.floor(ty), Math.floor(commonWords), t[0], t[1], t[2], t[3]]
   }
 
