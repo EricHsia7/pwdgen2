@@ -21,7 +21,7 @@
   bottom: 0px;
   opacity: 0;
   transform: translateX(-50%) translateY(0px) scale(1);
-  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.8);
+  background: rgba(var(--p-f9f9fb-r), var(--p-f9f9fb-g), var(--p-f9f9fb-b), 0.8);
   will-change: transform, opacity;
   -webkit-user-select: none;
   user-select: none;

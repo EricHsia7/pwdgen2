@@ -6,10 +6,10 @@
   --p-ffffff-g: 255;
   --p-ffffff-b: 255;
 
-  --p-f2f2f7: #f2f2f7;
-  --p-f2f2f7-r: 242;
-  --p-f2f2f7-g: 242;
-  --p-f2f2f7-b: 247;
+  --p-f9f9fb: #f9f9fb;
+  --p-f9f9fb-r: 249;
+  --p-f9f9fb-g: 249;
+  --p-f9f9fb-b: 251;
 
   --p-e5e5ea: #e5e5ea;
   --p-e5e5ea-r: 229;
@@ -37,10 +37,10 @@
     --p-ffffff-g: 5;
     --p-ffffff-b: 6;
 
-    --p-f2f2f7: #0e0e11;
-    --p-f2f2f7-r: 14;
-    --p-f2f2f7-g: 14;
-    --p-f2f2f7-b: 17;
+    --p-f9f9fb: #0e0e11;
+    --p-f9f9fb-r: 14;
+    --p-f9f9fb-g: 14;
+    --p-f9f9fb-b: 17;
 
     --p-e5e5ea: #23232a;
     --p-e5e5ea-r: 35;
@@ -52,7 +52,7 @@
     --p-aeaeb2-g: 90;
     --p-aeaeb2-b: 108;
 
-    --p-333333: #f2f2f7;
+    --p-333333: #f9f9fb;
     --p-333333-r: 255;
     --p-333333-g: 255;
     --p-333333-b: 255;

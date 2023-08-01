@@ -47,7 +47,7 @@
   height: 300px;
   overflow: hidden;
   position: relative;
-  background: var(--p-f2f2f7);
+  background: var(--p-f9f9fb);
   border-radius: var(--p-border-radius-default);
 }
 
@@ -59,7 +59,7 @@
   font-family: 'Noto Sans', sans-serif;
   display: inline-block;
   background: none;
-  border: 1px solid var(--p-f2f2f7);
+  border: 1px solid var(--p-f9f9fb);
   margin: 0px 10px;
   margin-top: 10px;
   border-radius: var(--p-border-radius-default);
@@ -80,7 +80,7 @@
   height: 40px;
   display: flex;
   justify-content: left;
-  border-bottom: 1px solid var(--p-f2f2f7);
+  border-bottom: 1px solid var(--p-f9f9fb);
 }
 
 .pattern_creator .pattern_editor_blocks_json .bjson_string:last-child,
@@ -126,7 +126,7 @@
 .pattern_creator .pattern_editor_blocks_json .bjson_array .bjson_key + .bjson_string,
 .pattern_creator .pattern_editor_blocks_json .bjson_array .bjson_key + .bjson_number,
 .pattern_creator .pattern_editor_blocks_json .bjson_array .bjson_key + .bjson_boolean {
-  border-top: 1px solid var(--p-f2f2f7);
+  border-top: 1px solid var(--p-f9f9fb);
 }
 
 .pattern_creator .pattern_editor_blocks_json .bjson_string input,
@@ -178,7 +178,7 @@
   display: inline-block;
   box-sizing: border-box;
   padding: 10px;
-  background: var(--p-f2f2f7);
+  background: var(--p-f9f9fb);
   color: var(--p-333333);
   white-space: pre-wrap;
   word-break: break-all;
@@ -395,7 +395,7 @@
 }
 
 .pattern_editor_picker .pattern_editor_picker_option[s="1"] {
-  background: var(--p-f2f2f7);
+  background: var(--p-f9f9fb);
   box-shadow: 0px 0px 25px -17px rgba(0, 0, 0, 0.15);
 }
 
