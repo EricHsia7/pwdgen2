@@ -11,7 +11,7 @@
   display: inline-block;
   border-radius: var(--p-border-radius-default);
   overflow: hidden;
-  background: var(--p-f2f2f7);
+  background: var(--p-f9f9fb);
   user-select: none;
   -webkit-user-select: none;
   margin-bottom: 10px;

@@ -211,7 +211,7 @@ function SASBC(a) {
   var c = '#ffffff';
   var d = '#050506';
   if (a === 1) {
-    c = '#f2f2f7';
+    c = '#f9f9fb';
     d = '#0e0e11';
   }
   if (a === 2) {
