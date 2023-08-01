@@ -217,11 +217,11 @@ function SASBC(a) {
   if (a === 2) {
     var a1 = interaction.SASBCH[interaction.SASBCH.length - 1] | 0;
     if (a1 === 0) {
-      c = '#858585';
+      c = '#8c8c8c';
       d = '#030303';
     }
     if (a1 === 1) {
-      c = '#8c8c8c';
+      c = '#89898a';
       d = '#080809';
     }
   }
