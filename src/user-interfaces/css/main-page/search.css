@@ -112,7 +112,7 @@
   width: 100%;
   height: 100%;
   overflow: scroll;
-  background: var(--p-f2f2f7);
+  background: var(--p-ffffff);
   display: none;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
@@ -166,7 +166,7 @@
   position: relative;
   width: 100%;
   height: 45px;
-  background: var(--p-ffffff);
+  background: var(--p-f2f2f7);
   border-top: var(--p-e5e5ea) 1px solid;
   box-sizing: border-box;
   user-select: none;
@@ -219,7 +219,7 @@
   position: relative;
   width: 100%;
   height: 60px;
-  background: var(--p-ffffff);
+  background: var(--p-f2f2f7);
   border-bottom: var(--p-e5e5ea) 1px solid;
   box-sizing: border-box;
   user-select: none;

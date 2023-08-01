@@ -21,7 +21,7 @@
   bottom: 0px;
   opacity: 0;
   transform: translateX(-50%) translateY(0px) scale(1);
-  background: rgba(var(--p-ffffff-r), var(--p-ffffff-g), var(--p-ffffff-b), 0.8);
+  background: rgba(var(--p-f2f2f7-r), var(--p-f2f2f7-g), var(--p-f2f2f7-b), 0.8);
   will-change: transform, opacity;
   -webkit-user-select: none;
   user-select: none;
@@ -59,7 +59,7 @@
   transform: translateX(-50%) translateY(-50%) scale(0.8);
   width: clamp(250px, 80%, 350px);
   height: auto;
-  background: var(--p-f2f2f7);
+  background: var(--p-ffffff);
   border-radius: var(--p-border-radius-default);
   display: inline-flex;
   flex-direction: column;

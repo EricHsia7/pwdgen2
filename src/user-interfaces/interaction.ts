@@ -208,10 +208,10 @@ function close_prompt_asking(temporary_id) {
 }
 //Stand Alone Status Bar Color
 function SASBC(a) {
-  var c = '#f2f2f7';
+  var c = '#ffffff';
   var d = '#050506';
   if (a === 1) {
-    c = '#ffffff';
+    c = '#f2f2f7';
     d = '#0e0e11';
   }
   if (a === 2) {
