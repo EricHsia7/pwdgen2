@@ -491,7 +491,18 @@ function refreshPage(event) {
         repeat: true
       }
     ];
-    location.replace('https://erichsia7.github.io/pwdgen2/?v=' + fine_grained_password.generate(p, 'production'));
+
+    // Get the current URL and parse parameters
+    var url = new URL(window.location.href);
+    var searchParams = new URLSearchParams(url.search);
+
+    // Add parameter
+    searchParams.set('v', fine_grained_password.generate(p, 'production'));
+
+    // Update the URL with the modified parameters
+    url.search = searchParams.toString();
+
+    location.replace(url);
   } else {
     const offline_message: string = 'You’re offline, and updates are unavailable.';
     interaction.prompt.prompt_message(offline_message, 3000);
