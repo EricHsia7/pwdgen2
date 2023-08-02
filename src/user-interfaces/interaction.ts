@@ -208,20 +208,20 @@ function close_prompt_asking(temporary_id) {
 }
 //Stand Alone Status Bar Color
 function SASBC(a) {
-  var c = '#f2f2f7';
+  var c = '#ffffff';
   var d = '#050506';
   if (a === 1) {
-    c = '#ffffff';
+    c = '#f9f9fb';
     d = '#0e0e11';
   }
   if (a === 2) {
     var a1 = interaction.SASBCH[interaction.SASBCH.length - 1] | 0;
     if (a1 === 0) {
-      c = '#858585';
+      c = '#8c8c8c';
       d = '#030303';
     }
     if (a1 === 1) {
-      c = '#8c8c8c';
+      c = '#89898a';
       d = '#080809';
     }
   }
