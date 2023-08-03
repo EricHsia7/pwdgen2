@@ -32,9 +32,9 @@ export function openPassword(id, showCallback) {
       var q = `.password-page .details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-points`;
       var qp = `.password-page .details-check-result .details-check-result-${type}[i="${i}"] .details-check-result-phrase`;
       utilities.qe(q).innerText = points;
-      utilities.qe(q).style.setProperty('--j-check-color-r', r);
-      utilities.qe(q).style.setProperty('--j-check-color-g', g);
-      utilities.qe(q).style.setProperty('--j-check-color-b', b);
+      utilities.qe(q).style.setProperty('--js-check-color-r', r);
+      utilities.qe(q).style.setProperty('--js-check-color-g', g);
+      utilities.qe(q).style.setProperty('--js-check-color-b', b);
       utilities.qe(qp).innerText = phrase;
     };
     setCheckResultItem('summary', 'summary', check.color.r, check.color.g, check.color.b, check.points, `This password is ${check.phrase}.`);

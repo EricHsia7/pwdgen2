@@ -207,9 +207,9 @@
   left: 0px;
   width: 55px;
   height: 55px;
-  background: rgba(var(--j-check-color-r), var(--j-check-color-g), var(--j-check-color-b), 0.15);
+  background: rgba(var(--js-check-color-r), var(--js-check-color-g), var(--js-check-color-b), 0.15);
   border-radius: var(--p-border-radius-default);
-  color: rgba(var(--j-check-color-r), var(--j-check-color-g), var(--j-check-color-b), 1);
+  color: rgba(var(--js-check-color-r), var(--js-check-color-g), var(--js-check-color-b), 1);
   font-size: 23px;
   display: flex;
   justify-content: center;

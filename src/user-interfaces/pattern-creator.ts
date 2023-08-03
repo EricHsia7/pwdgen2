@@ -123,7 +123,7 @@ export function openPatternCreator(event) {
         } else {
           translateY = 0;
         }
-        utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${translateY}px)`);
+        utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--js-pattern-overscroll-translate', `translateY(${translateY}px)`);
       });
     });
   }
@@ -202,10 +202,10 @@ export function generatePatternPreview(): string {
       component_elt.id = this_component.component.id ? this_component.component.id : component_id;
       component_elt.setAttribute('path', path);
       component_elt.setAttribute('type', this_component.component.type);
-      component_elt.style.setProperty('--j-component-color-light-text', component_color.light.text.str);
-      component_elt.style.setProperty('--j-component-color-light-bg', component_color.light.bg.str);
-      component_elt.style.setProperty('--j-component-color-dark-text', component_color.dark.text.str);
-      component_elt.style.setProperty('--j-component-color-dark-bg', component_color.dark.bg.str);
+      component_elt.style.setProperty('--js-component-color-light-text', component_color.light.text.str);
+      component_elt.style.setProperty('--js-component-color-light-bg', component_color.light.bg.str);
+      component_elt.style.setProperty('--js-component-color-dark-text', component_color.dark.text.str);
+      component_elt.style.setProperty('--js-component-color-dark-bg', component_color.dark.bg.str);
       component_elt.innerText = this_component.result;
       component_elt.setAttribute('onclick', `interaction.pattern_creator.displayPatternComponentInfo('${this_component.component.id ? this_component.component.id : component_id}',event)`);
       html.push(component_elt.outerHTML);
