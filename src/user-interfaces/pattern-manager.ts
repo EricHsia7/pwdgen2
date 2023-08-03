@@ -43,3 +43,7 @@ export function openPatternManager(event) {
 export function closePatternManager() {
   interaction.show(utilities.qe('.pattern_manager'), 'none');
 }
+
+export function openPatternOptions(id) {
+  
+}
