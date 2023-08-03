@@ -3,12 +3,12 @@ const axios = require('axios');
 const { execSync } = require('child_process');
 
 function saveMessageId(messageId) {
-  fs.writeFileSync('tmp/messageId.txt', messageId);
+  fs.writeFileSync('telegramMessageId.txt', messageId);
 }
 
 function getSavedMessageId() {
   try {
-    return fs.readFileSync('tmp/messageId.txt', 'utf-8').trim();
+    return fs.readFileSync('telegramMessageId.txt', 'utf-8').trim();
   } catch (error) {
     return null;
   }
@@ -16,7 +16,7 @@ function getSavedMessageId() {
 
 function removeMessageId() {
   try {
-    fs.unlinkSync('messageId.txt');
+    fs.unlinkSync('telegramMessageId.txt');
     console.log('Message ID removed.');
   } catch (error) {
     console.error('Error removing message ID:', error);
