@@ -25,7 +25,7 @@ export function printPatterns() {
     );
     html.push(`<div class="pattern-item><div class="pattern-item-icon"><span class="material-symbols-rounded">${this_item.pattern_icon}</span></div><div class="pattern-item-title">${this_item.pattern_name}</div><div class="pattern-item-action">${icons.icon_more_options}</div></div>`);
   }
-  utilities.qe('.pattern_manager .contents-box .patter-list').innerHTML = html.join('');
+  utilities.qe('.pattern_manager .contents-box .pattern-list').innerHTML = html.join('');
 }
 
 export function openPatternManager(event) {
