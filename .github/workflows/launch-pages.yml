@@ -65,7 +65,7 @@ jobs:
         run: npm uninstall canvas
 
       - name: Report status
-        run: node workflow_message.js update "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHAT_ID }}" "Launch pages" "All" "Success"
+        run: node workflow_message.js update "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHAT_ID }}" "Launch pages" "--" "All Success"
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
