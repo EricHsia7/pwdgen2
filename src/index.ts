@@ -16,7 +16,7 @@ import './user-interfaces/css/button.css';
 import './user-interfaces/css/options.css';
 import './user-interfaces/css/prompt.css';
 import './user-interfaces/css/details.css';
-import './user-interfaces/css/pattern-creator.css';
+import './user-interfaces/css/pattern-editor.css';
 import './user-interfaces/css/pattern-manager.css';
 import './user-interfaces/css/main-page/search.css';
 import './user-interfaces/css/main-page/password-list.css';
@@ -51,7 +51,7 @@ window.allhashtag = {};
 window.search_status = 0;
 window.search_sticky = false;
 window.container_scrollTop = 0;
-window.pattern_creator_evt = 0;
+window.pattern_editor_evt = 0;
 window.pattern_editor_blocks_json = utilities.qe('.pattern_editor_blocks_json');
 window.search_will_change_evt = [0, 1];
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave'];
@@ -128,13 +128,13 @@ window.pwdgen2 = function () {
     }
   });
 
-  utilities.qe('.pattern_creator').addEventListener('scroll', function (e) {
-    var scrollTop = utilities.qe('.pattern_creator').scrollTop;
+  utilities.qe('.pattern_editor').addEventListener('scroll', function (e) {
+    var scrollTop = utilities.qe('.pattern_editor').scrollTop;
     if (scrollTop > 0) {
-      utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '1');
+      utilities.qe('.pattern_editor .fixed-title-box').setAttribute('scroll', '1');
       interaction.SASBC(1);
     } else {
-      utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '0');
+      utilities.qe('.pattern_editor .fixed-title-box').setAttribute('scroll', '0');
       interaction.SASBC(3);
     }
   });
