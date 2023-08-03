@@ -55,7 +55,7 @@ function updateMessage(token, chatId, name, step, status, id) {
     process.exit(1);
   }
 
-  const message = `Workflow name: ${name}\nStatus: ${status}\nCurrent Step: ${step}\nID: #${id}`;
+  const message = `Workflow name: ${name}\nCurrent Step: ${step}\nStatus: ${status}\nID: #${id}`;
   const telegramApiUrl = `https://api.telegram.org/bot${token}/editMessageText`;
 
   axios
