@@ -3,12 +3,16 @@ const axios = require('axios');
 const { execSync } = require('child_process');
 
 function saveMessageId(messageId) {
-  fs.writeFileSync('telegramMessageId.txt', messageId);
+  if (typeof messageId === 'number' && !isNaN(messageId)) {
+    fs.writeFileSync('telegramMessageId.txt', messageId.toString());
+  } else {
+    console.error('Invalid messageId');
+  }
 }
 
 function getSavedMessageId() {
   try {
-    return fs.readFileSync('telegramMessageId.txt', 'utf-8').trim();
+    return parseInt(fs.readFileSync('telegramMessageId.txt', 'utf-8').trim());
   } catch (error) {
     return null;
   }
