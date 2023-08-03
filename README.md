@@ -154,9 +154,33 @@ It analyzes the complexity of the password by examining the distribution of uppe
 It provides color-coded feedback, making it easier for users to identify the security level of their passwords at a glance. Different colors represent different security levels.
 
 ## Roadmap
-- Users can import password data from a JSON file, allowing for easy migration from other systems or backups.
-- For fuzzy search queries, it offers similarity suggestions to help users find relevant passwords even if the exact search term is not available.
-- Search passwords by a date range.
+### Data
+- [ ] Users can import password data from a JSON file, allowing for easy migration from other systems or backups.
+### Search
+- [ ] Fuzzy search: offers similarity suggestions to help users find relevant passwords even if the exact search term is not available.
+- [ ] Search passwords by a date range.
+### Patterns
+  - [ ] Date Component: insert current date or relative date to generation result
+	- [ ] Choose Method
+	  - [x] Random (default)
+    - [ ] Choose When Generate (List Only): display an interface to ask user
+- Password Change History
+  - [x] LocalStorage 
+  - [ ] User Interface
+### Password
+- [ ] Password Property Depends on Types
+  - [ ] Account (default)
+    - Email
+    - Username
+    - Website
+  - [ ] File
+    - Filename
+    - File Link
+- [ ] Pin Password
+- [ ] TOTP (Time-based One-Time Password) 2FA
+### User Interface
+- Supports for multiple Languages
+- Use WebAuthn to lock access of passwords 
 ## Materials
 * fonts: [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
 * icons: [Material Symbols](https://fonts.google.com/icons)
