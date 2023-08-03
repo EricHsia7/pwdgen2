@@ -39,7 +39,7 @@ window.onerror = async function (message, source, lineno, colno, error) {
     });
     console.log('%c ----------', "color: #888;")
     parsedStackTrace.forEach(e => {
-      console.log(`%c func: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`, "color: rgba(255,0,0,1); background-color: rgba(255,0,0,0.09);");
+      console.error(`func: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`)
     });
   });
 };

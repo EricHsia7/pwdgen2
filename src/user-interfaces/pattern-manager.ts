@@ -23,15 +23,21 @@ export function printPatterns() {
       ],
       'production'
     );
-    html.push(`<div class="pattern-item><div class="pattern-item-icon"><span class="material-symbols-rounded">${this_item.pattern_icon}</span></div><div class="pattern-item-title">${this_item.pattern_name}</div><div class="pattern-item-action">${icons.icon_more_options}</div></div>`);
+    html.push(`<div class="pattern-item"><div class="pattern-item-icon"><span class="material-symbols-rounded">${this_item.pattern_icon}</span></div><div class="pattern-item-title">${this_item.pattern_name}</div><div class="pattern-item-action">${icons.icon_more_options}</div></div>`);
   }
   utilities.qe('.pattern_manager .contents-box .pattern-list').innerHTML = html.join('');
 }
 
 export function openPatternManager(event) {
-  interaction.pattern_manager.printPatterns()
-  interaction.options.closeOptions(event);
   interaction.show(utilities.qe('.pattern_manager'), 'block');
+  interaction.options.closeOptions(event);
+  interaction.pattern_manager.printPatterns();
+  if (!lazyCSS.loaded.googleFontsMaterialSymbols) {
+    interaction.loadFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0', 'Material Symbols Rounded', 'googleFontsMaterialSymbols', function () {
+      utilities.qe('.add-password-page .password-generator-presets').setAttribute('font', '1');
+      utilities.qe('.pattern_manager .pattern-list').setAttribute('font', '1');
+    });
+  }
 }
 
 export function closePatternManager() {
