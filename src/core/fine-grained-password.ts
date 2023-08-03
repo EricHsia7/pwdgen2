@@ -95,13 +95,13 @@ const pwd_pattern_default: object[] = [
 ];
 
 // Function to get all the patterns saved in the Local Storage
-function listPatterns() {
+function listPatterns(returnLocalStorageKey) {
   var list = searchItemsbyname('pwdgen2_pattern_b_');
   var list_len = list.length;
   var result = [];
   for (var p = 0; p < list_len; p++) {
     if (LS.hasOwnProperty(list[p])) {
-      result.push(JSON.parse(String(LS.getItem(list[p]))));
+      result.push(Object.assign(JSON.parse(String(LS.getItem(list[p]))), returnLocalStorageKey ? { LocalStorageKey: list[p] } : {}));
     }
   }
   return result;
@@ -110,8 +110,8 @@ function listPatterns() {
 const pwd_pattern_custom = [];
 
 // Function to get the default and saved patterns
-const getPatterns = function () {
-  fine_grained_password.pwd_pattern_custom = fine_grained_password.listPatterns();
+const getPatterns = function (returnLocalStorageKey) {
+  fine_grained_password.pwd_pattern_custom = fine_grained_password.listPatterns(returnLocalStorageKey);
   return pwd_pattern_default.concat(fine_grained_password.pwd_pattern_custom);
 };
 

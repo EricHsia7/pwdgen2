@@ -66,7 +66,7 @@ export function openAddPassword(event) {
 
   interaction.SASBC(0);
   interaction.add_password.printPatternPresets();
-  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern, 'production');
+  utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns(false)[0].pattern, 'production');
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = '';
   utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value = '';
   interaction.options.closeOptions(event);
@@ -91,7 +91,7 @@ export function addPasswordWithForm() {
 
 export function printPatternPresets(place) {
   var html = [];
-  var list = fine_grained_password.getPatterns();
+  var list = fine_grained_password.getPatterns(false);
   var list_len = list.length;
   for (var i = 0; i < list_len; i++) {
     var p = list[i];
@@ -102,7 +102,7 @@ export function printPatternPresets(place) {
 }
 
 export function applyPreset(index) {
-  var list = fine_grained_password.getPatterns();
+  var list = fine_grained_password.getPatterns(false);
   var preset = list[index];
   utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(preset.pattern, 'production');
   var all_preset = utilities.qeAll('.add-password-page .password-generator-presets .preset');

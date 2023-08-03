@@ -3,7 +3,7 @@ import fine_grained_password from '../core/fine-grained-password';
 import icons from './icons';
 
 export function printPatterns() {
-  var list = fine_grained_password.getPatterns();
+  var list = fine_grained_password.getPatterns(true);
   var list_len = list.length;
   var html = [];
   for (var i = 0; i < list_len; i++) {
@@ -23,7 +23,8 @@ export function printPatterns() {
       ],
       'production'
     );
-    html.push(`<div class="pattern-item" id="${id}"><div class="pattern-item-icon"><span class="material-symbols-rounded">${this_item.pattern_icon}</span></div><div class="pattern-item-title">${this_item.pattern_name}</div><div class="pattern-item-action" onclick="interaction.pattern_manager.openPatternOptions('${id}',event)">${icons.icon_more_options}</div></div>`);
+    var ls_key = this_item.key
+    html.push(`<div class="pattern-item" id="${id}"><div class="pattern-item-icon"><span class="material-symbols-rounded">${this_item.pattern_icon}</span></div><div class="pattern-item-title">${this_item.pattern_name}</div><div class="pattern-item-action" onclick="interaction.pattern_manager.openPatternOptions('${ls_key}','${id}',event)">${icons.icon_more_options}</div></div>`);
   }
   utilities.qe('.pattern_manager .contents-box .pattern-list').innerHTML = html.join('');
 }
@@ -44,7 +45,7 @@ export function closePatternManager() {
   interaction.show(utilities.qe('.pattern_manager'), 'none');
 }
 
-export function openPatternOptions(id, event) {
+export function openPatternOptions(ls_key, id, event) {
   var optionItemString = function (title, list_n, border, name, group, icon, onclick) {
     return `<li onclick="${onclick}" style="--options-list-n:${list_n};" y="${name}" group="0" d="1" b="${border}"><div class="l_options_title">${title}</div><div class="l_options_icon">${icon}</div></li>`;
   };
