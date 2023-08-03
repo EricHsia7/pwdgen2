@@ -59,8 +59,10 @@ export function openPatternOptions(ls_key, id, event) {
   var options_height = 50 * 3;
   var options_left = button_left + button_width - options_width;
   var options_top = button_top + button_height + 5;
+  var optiona_transform_origin = 'top right'
   if (options_top + options_height > window.innerHeight) {
     options_top = button_top - options_height - 5;
+   optiona_transform_origin = 'bottom right'
   }
   var id = fine_grained_password.generate(
     [
@@ -83,6 +85,8 @@ export function openPatternOptions(ls_key, id, event) {
   options_elt.style.setProperty('--js-pattern-item-options-top', `${options_top}px`);
   options_elt.style.setProperty('--js-pattern-item-options-left', `${options_left}px`);
   options_elt.style.setProperty('--js-options-list-count', 3);
+  options_elt.style.setProperty('--js-options-origin', optiona_transform_origin);
+
 
   options_elt.innerHTML += optionItemString('Edit', 0, 0, 'editpattern', 0, icons.icon_edit, `interaction.pattern_manager.openEditPattern('${ls_key}',event)`);
   options_elt.innerHTML += optionItemString('Delete', 1, 1, 'deletepattern', 0, icons.icon_delete, `interaction.prompt.prompt_asking('Confirm to proceed to delete the pattern permanently.','Confirm','interaction.pattern_manager.deletePattern(\`${ls_key}\`)','Cancel','interaction.prompt.prompt_message(\`Canceled delection.\`)');interaction.options.closeOptions(event)`);
