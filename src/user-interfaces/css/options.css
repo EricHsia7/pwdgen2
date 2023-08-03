@@ -1,5 +1,6 @@
 
-.options_mask {
+.options_mask,
+.pattern_item_options_mask {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -11,7 +12,8 @@
   -webkit-user-select: none;
 }
 
-.options {
+.options,
+.pattern_item_options {
   position: fixed;
   top: 50px;
   right: 10px;
@@ -34,6 +36,11 @@
   transition: 0.38s;
   transition-timing-function: cubic-bezier(0.160, 0.455, 0.190, 0.989);
   will-change: transform, opacity;
+}
+
+.pattern_item_options {
+  top:var(--js-pattern-item-options-top);
+  left:var(--js-pattern-item-options-left);
 }
 
 .options[k="1"] {

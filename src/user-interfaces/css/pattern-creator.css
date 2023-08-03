@@ -34,7 +34,7 @@
 }
 
 .pattern_creator pre code.pattern {
-  transform: var(--j-pattern-overscroll-translate);
+  transform: var(--js-pattern-overscroll-translate);
 }
 
 .pattern_creator .pattern2 *,
@@ -191,8 +191,8 @@
   display: inline;
   height: 20px;
   width: auto;
-  color: var(--j-component-color-light-text);
-  background: var(--j-component-color-light-bg);
+  color: var(--js-component-color-light-text);
+  background: var(--js-component-color-light-bg);
   white-space: pre-wrap;
   word-break: break-all;
   user-select: none;
@@ -360,8 +360,8 @@
 
 @media (prefers-color-scheme: dark) {
   .pattern_creator .pattern_creator_preview_component {
-    color: var(--j-component-color-dark-text);
-    background: var(--j-component-color-dark-bg);
+    color: var(--js-component-color-dark-text);
+    background: var(--js-component-color-dark-bg);
   }
 }
 
