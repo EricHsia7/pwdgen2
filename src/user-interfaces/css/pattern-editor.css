@@ -200,7 +200,7 @@
 }
 
 .pattern_editor_preview_component_info_mask,
-.pattern_editor_add_pattern_errors_mask {
+.pattern_editor_save_pattern_errors_mask {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -216,12 +216,12 @@
 
 
 .pattern_editor_preview_component_info_mask[o="1"],
-.pattern_editor_add_pattern_errors_mask[o="1"] {
+.pattern_editor_save_pattern_errors_mask[o="1"] {
   opacity: 1;
 }
 
 .pattern_editor_preview_component_info,
-.pattern_editor_add_pattern_errors {
+.pattern_editor_save_pattern_errors {
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -243,13 +243,13 @@
 }
 
 .pattern_editor_preview_component_info[o="1"],
-.pattern_editor_add_pattern_errors[o="1"] {
+.pattern_editor_save_pattern_errors[o="1"] {
   transform: translateY(0%);
   opacity: 1;
 }
 
 .pattern_editor_preview_component_info .pattern_editor_preview_component_info_title,
-.pattern_editor_add_pattern_errors .pattern_editor_add_pattern_errors_title {
+.pattern_editor_save_pattern_errors .pattern_editor_save_pattern_errors_title {
   position: sticky;
   top: 0px;
   left: 0px;
@@ -268,7 +268,7 @@
 }
 
 .pattern_editor_preview_component_info .pattern_editor_preview_component_info_list_container,
-.pattern_editor_add_pattern_errors .pattern_editor_add_pattern_errors_list_container {
+.pattern_editor_save_pattern_errors .pattern_editor_save_pattern_errors_list_container {
   position: relative;
   left: 15px;
   width: calc(100% - 30px);
@@ -278,7 +278,7 @@
 }
 
 .pattern_editor_preview_component_info .pattern_editor_preview_component_info_button_box,
-.pattern_editor_add_pattern_errors .pattern_editor_add_pattern_errors_button_box {
+.pattern_editor_save_pattern_errors .pattern_editor_save_pattern_errors_button_box {
   position: sticky;
   bottom: 0px;
   left: 15px;
@@ -296,8 +296,8 @@
 
 .pattern_editor_preview_component_info .pattern_editor_preview_component_info_show_in_editor,
 .pattern_editor_preview_component_info .pattern_editor_preview_component_info_close,
-.pattern_editor_add_pattern_errors .pattern_editor_add_pattern_errors_go_to_documents,
-.pattern_editor_add_pattern_errors .pattern_editor_add_pattern_errors_close {
+.pattern_editor_save_pattern_errors .pattern_editor_save_pattern_errors_go_to_documents,
+.pattern_editor_save_pattern_errors .pattern_editor_save_pattern_errors_close {
   position: relative;
   height: 45px;
   border-radius: var(--p-border-radius-default);
@@ -316,7 +316,7 @@
 
   /*screens wider than 600px*/
   .pattern_editor_preview_component_info,
-  .pattern_editor_add_pattern_errors {
+  .pattern_editor_save_pattern_errors {
     border-radius: var(--p-border-radius-default);
     top: 50%;
     left: 50%;
@@ -326,12 +326,12 @@
   }
 
   .pattern_editor_preview_component_info[o="1"],
-  .pattern_editor_add_pattern_errors[o="1"] {
+  .pattern_editor_save_pattern_errors[o="1"] {
     transform: translateX(-50%) translateY(-50%) scale(1);
   }
 
   .pattern_editor_preview_component_info .pattern_editor_preview_component_info_title,
-  .pattern_editor_add_pattern_errors .pattern_editor_add_pattern_errors_title {
+  .pattern_editor_save_pattern_errors .pattern_editor_save_pattern_errors_title {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -339,14 +339,14 @@
   }
 
   .pattern_editor_preview_component_info .pattern_editor_preview_component_info_button_box,
-  .pattern_editor_add_pattern_errors .pattern_editor_add_pattern_errors_button_box {
+  .pattern_editor_save_pattern_errors .pattern_editor_save_pattern_errors_button_box {
     position: absolute;
     bottom: 0px;
     left: 15px;
   }
 
   .pattern_editor_preview_component_info .pattern_editor_preview_component_info_list_container,
-  .pattern_editor_add_pattern_errors .pattern_editor_add_pattern_errors_list_container {
+  .pattern_editor_save_pattern_errors .pattern_editor_save_pattern_errors_list_container {
     position: absolute;
     overflow: scroll;
     top: 50px;
