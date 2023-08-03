@@ -179,8 +179,8 @@ It provides color-coded feedback, making it easier for users to identify the sec
 - [ ] Pin Password
 - [ ] TOTP (Time-based One-Time Password) 2FA
 ### User Interface
-- Supports for multiple Languages
-- Use WebAuthn to lock access of passwords 
+- [ ] Supports for multiple Languages
+- [ ] Use WebAuthn to lock access of passwords 
 ## Materials
 * fonts: [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
 * icons: [Material Symbols](https://fonts.google.com/icons)
