@@ -17,6 +17,7 @@ import './user-interfaces/css/options.css';
 import './user-interfaces/css/prompt.css';
 import './user-interfaces/css/details.css';
 import './user-interfaces/css/pattern-creator.css';
+import './user-interfaces/css/pattern-manager.css';
 import './user-interfaces/css/main-page/search.css';
 import './user-interfaces/css/main-page/password-list.css';
 import './user-interfaces/css/add-password/presets.css';
