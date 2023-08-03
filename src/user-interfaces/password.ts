@@ -64,7 +64,7 @@ export function openAddPassword(event) {
   }
 
   interaction.SASBC(0);
-  interaction.add_password.printPatternPresets('add-password-page');
+  interaction.add_password.printPatternPresets();
   utilities.qe('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns()[0].pattern, 'production');
   utilities.qe('.add-password-page .add-list .add-item-value[k="username"] input').value = '';
   utilities.qe('.add-password-page .add-list .add-item-value[k="website"] input').value = '';
@@ -94,17 +94,10 @@ export function printPatternPresets(place) {
   var list_len = list.length;
   for (var i = 0; i < list_len; i++) {
     var p = list[i];
-    if (place === 'add-password-page') {
       var h = `<li class="preset" apply="${i === 0 ? 1 : 0}" index="${i}" onclick="interaction.add_password.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`;
-    }
-    if (place === 'pattern-manager') {
-      var h = `<li class="preset" index="${i}" onclick="interaction.add_password.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`;
-    }
     html.push(h);
   }
-  if (place === 'add-password-page') {
     utilities.qe('.add-password-page .password-generator-presets').innerHTML = html.join('');
-  }
 }
 
 export function applyPreset(index) {
