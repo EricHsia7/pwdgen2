@@ -60,6 +60,7 @@ export function openAddPassword(event) {
   if (!lazyCSS.loaded.googleFontsMaterialSymbols) {
     interaction.loadFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0', 'Material Symbols Rounded', 'googleFontsMaterialSymbols', function () {
       utilities.qe('.add-password-page .password-generator-presets').setAttribute('font', '1');
+      utilities.qe('.pattern_manager .pattern-list').setAttribute('font', '1');
     });
   }
 
@@ -94,10 +95,10 @@ export function printPatternPresets(place) {
   var list_len = list.length;
   for (var i = 0; i < list_len; i++) {
     var p = list[i];
-      var h = `<li class="preset" apply="${i === 0 ? 1 : 0}" index="${i}" onclick="interaction.add_password.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`;
+    var h = `<li class="preset" apply="${i === 0 ? 1 : 0}" index="${i}" onclick="interaction.add_password.applyPreset(${i})"><div class="preset_icon"><span class="material-symbols-rounded">${p.pattern_icon}</span></div><span class="preset_name">${p.pattern_name}</span></li>`;
     html.push(h);
   }
-    utilities.qe('.add-password-page .password-generator-presets').innerHTML = html.join('');
+  utilities.qe('.add-password-page .password-generator-presets').innerHTML = html.join('');
 }
 
 export function applyPreset(index) {
