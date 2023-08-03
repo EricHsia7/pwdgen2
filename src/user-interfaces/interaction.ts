@@ -4,6 +4,7 @@ import Xsearch from '../core/search';
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword, generateExportFile } from '../core/storage';
 import icons from './icons';
 import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator';
+import { openPatternManager, closePatternManager } from './pattern-manager';
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password';
 
 var FontFaceObserver = require('fontfaceobserver');
@@ -611,6 +612,10 @@ window.interaction = {
     removeAddPatternErrors,
     switchEditor,
     go_to_documents
+  },
+  pattern_manager: {
+    openPatternManager,
+    closePatternManager
   },
   password_page: {
     openPassword,
