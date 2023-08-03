@@ -76,6 +76,11 @@
   position: absolute;
   right: 0px;
   top: calc(var(--options-list-n) * 50px);
+  list-style: none;
+}
+
+.pattern_item_options li {
+  display: flex;
 }
 
 .options li[b="0"],
