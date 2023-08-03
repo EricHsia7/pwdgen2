@@ -164,10 +164,10 @@ It provides color-coded feedback, making it easier for users to identify the sec
 	- [ ] Choose Method
 	  - [x] Random (default)
     - [ ] Choose When Generate (List Only): display an interface to ask user
-- Password Change History
+### Password
+- [ ] Password Change History
   - [x] LocalStorage 
   - [ ] User Interface
-### Password
 - [ ] Password Property Depends on Types
   - [ ] Account (default)
     - Email
