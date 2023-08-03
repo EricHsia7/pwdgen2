@@ -1,4 +1,3 @@
-
 .options_mask,
 .pattern_item_options_mask {
   position: fixed;
@@ -39,8 +38,8 @@
 }
 
 .pattern_item_options {
-  top:var(--js-pattern-item-options-top);
-  left:var(--js-pattern-item-options-left);
+  top: var(--js-pattern-item-options-top);
+  left: var(--js-pattern-item-options-left);
 }
 
 .options[k="1"] {
@@ -75,10 +74,6 @@
   position: absolute;
   right: 0px;
   top: calc(var(--options-list-n) * 50px);
-}
-
-.options li[d="0"] {
-  display:none;
 }
 
 .options li[b="0"] {
