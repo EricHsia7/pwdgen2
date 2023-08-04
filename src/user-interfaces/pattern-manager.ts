@@ -45,8 +45,8 @@ export function closePatternManager() {
   interaction.show(utilities.qe('.pattern_manager'), 'none');
 }
 
-export function showPatternOptions(ls_key, id, event) {
-  var optionItemString = function (title, list_n, border, name, group, icon, onclick) {
+export function showPatternOptions(ls_key, id, event): void {
+  var optionItemString = function (title, list_n, border, name, group, icon, onclick): string {
     return `<li onclick="${onclick}" style="--options-list-n:${list_n};" y="${name}" group="${group}"  b="${border}"><div class="l_options_title">${title}</div><div class="l_options_icon">${icon}</div></li>`;
   };
   var button = utilities.qe(`.pattern_manager .contents-box .pattern-list .pattern-item#${id} .pattern-item-action`);
@@ -93,8 +93,8 @@ export function showPatternOptions(ls_key, id, event) {
   mask_elt.classList.add('pattern_item_options_mask');
   mask_elt.id = `${temporary_id}_mask`;
   mask_elt.setAttribute(`on${utilities.checkTouchFeatures() ? 'touchstart' : 'mousedown'}`, `interaction.pattern_manager.removePatternOptions('${temporary_id}',event)`);
-  document.body.appendChild(options_elt);
   document.body.appendChild(mask_elt);
+  document.body.appendChild(options_elt);
 
   interaction.show(utilities.qe(`.pattern_item_options#${temporary_id}`), 'inline-block');
   interaction.show(utilities.qe(`.pattern_item_options_mask#${temporary_id}_mask`), 'block');
@@ -104,7 +104,7 @@ export function showPatternOptions(ls_key, id, event) {
   }, 1);
 }
 
-export function removePatternOptions(temporary_id, event) {
+export function removePatternOptions(temporary_id, event): void {
   event.stopPropagation();
   utilities.qe(`.pattern_item_options#${temporary_id}`).setAttribute('k', '0');
   utilities.qe(`.pattern_item_options#${temporary_id}`).addEventListener(
@@ -115,4 +115,12 @@ export function removePatternOptions(temporary_id, event) {
     },
     { once: true }
   );
+}
+
+export function openEditPattern() {
+
+}
+
+export function sharePattern() {
+  
 }
