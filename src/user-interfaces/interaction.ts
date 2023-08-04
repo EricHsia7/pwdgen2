@@ -617,7 +617,8 @@ window.interaction = {
     openPatternManager,
     closePatternManager,
     printPatterns,
-    showPatternOptions
+    showPatternOptions,
+    removePatternOptions
   },
   password_page: {
     openPassword,
