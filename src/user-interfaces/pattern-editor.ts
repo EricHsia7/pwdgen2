@@ -91,7 +91,14 @@ export function syncPatternEditorJSONEditor() {
   } catch (e) {}
 }
 
-export function openPatternEditor(event) {
+export function openPatternEditor(mode, ls_key, event): void | string {
+  if (mode === 'edit') {
+    if (LS.hasOwnProperty(ls_key)) {
+      pattern_json = JSON.parse(String(LS.getItem(ls_key)));
+    } else {
+      return '';
+    }
+  }
   interaction.SASBC(0);
   interaction.show(utilities.qe('.pattern_editor'), 'block');
   interaction.options.closeOptions(event);
