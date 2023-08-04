@@ -43,7 +43,7 @@
 }
 
 .pattern-list[font="1"] .pattern-item .pattern-item-icon {
-  color: var(--p-main-color);
+  color: var(--p-333333);
   font-size: 20px;
 }
 
@@ -80,5 +80,5 @@
 }
 
 .pattern-item .pattern-item-action svg path {
-  fill: var(--p-333333);
+  fill: var(--p-main-color);
 }
