@@ -342,11 +342,11 @@ export function showComponentInEditor(temporary_id: string, component_id: string
   removePatternComponentInfo(temporary_id, event);
 }
 
-export function addPatternWithEditor(): void | string {
+export function savePatternWithEditor(): void | string {
   var check = fine_grained_password.checkPatternQualification(pattern_json);
   if (!check.result) {
-    /*interaction.prompt.prompt_message(`Cannot add pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)*/
-    interaction.pattern_editor.displayAddPatternErrors(check.errors);
+    /*interaction.prompt.prompt_message(`Cannot save pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)*/
+    interaction.pattern_editor.displaySavePatternErrors(check.errors);
     return '';
   }
   var string = JSON.stringify(pattern_json);
@@ -362,17 +362,17 @@ export function addPatternWithEditor(): void | string {
     'production'
   );
   LS.setItem(`pwdgen2_pattern_b_${id}`, string);
-  interaction.prompt.prompt_message('Added pattern.');
+  interaction.prompt.prompt_message('Saved pattern.');
   interaction.pattern_editor.closePatternEditor();
 }
 
-export function displayAddPatternErrors(errors) {
+export function displaySavePatternErrors(errors) {
   interaction.SASBC(2);
   var error_html = function (error) {
     var elt = document.createElement('div');
-    elt.classList.add('pattern_editor_add_pattern_errors_list_item');
+    elt.classList.add('pattern_editor_save_pattern_errors_list_item');
     var title_elt = document.createElement('div');
-    title_elt.classList.add('pattern_editor_add_pattern_errors_list_item_title');
+    title_elt.classList.add('pattern_editor_save_pattern_errors_list_item_title');
     title_elt.innerText = utilities.encodeSignsToHtmlEntities(error);
     elt.innerHTML = title_elt.outerHTML;
     return elt.outerHTML;
@@ -399,12 +399,12 @@ export function displayAddPatternErrors(errors) {
   );
   var elt = document.createElement('div');
   elt.id = temporary_id;
-  elt.classList.add('pattern_editor_add_pattern_errors');
-  elt.innerHTML = `<div class="pattern_editor_add_pattern_errors_title">Occurred Error${errors.length > 1 ? 's' : ''}</div><div class="pattern_editor_add_pattern_errors_list_container"><div class="pattern_editor_add_pattern_errors_list">${errors_html.join('')}</div></div><div class="pattern_editor_add_pattern_errors_button_box"><div class="pattern_editor_add_pattern_errors_go_to_documents" onclick="interaction.pattern_editor.go_to_documents()">Go to docs</div><div class="pattern_editor_add_pattern_errors_close" onclick="interaction.pattern_editor.removeAddPatternErrors('${temporary_id}',event)">Close</div></div>`;
+  elt.classList.add('pattern_editor_save_pattern_errors');
+  elt.innerHTML = `<div class="pattern_editor_save_pattern_errors_title">Occurred Error${errors.length > 1 ? 's' : ''}</div><div class="pattern_editor_save_pattern_errors_list_container"><div class="pattern_editor_save_pattern_errors_list">${errors_html.join('')}</div></div><div class="pattern_editor_save_pattern_errors_button_box"><div class="pattern_editor_save_pattern_errors_go_to_documents" onclick="interaction.pattern_editor.go_to_documents()">Go to docs</div><div class="pattern_editor_save_pattern_errors_close" onclick="interaction.pattern_editor.removeSavePatternErrors('${temporary_id}',event)">Close</div></div>`;
   var mask = document.createElement('div');
   mask.id = `${temporary_id}-mask`;
-  mask.classList.add('pattern_editor_add_pattern_errors_mask');
-  mask.setAttribute(`onclick`, `interaction.pattern_editor.removeAddPatternErrors('${temporary_id}',event)`);
+  mask.classList.add('pattern_editor_save_pattern_errors_mask');
+  mask.setAttribute(`onclick`, `interaction.pattern_editor.removeSavePatternErrors('${temporary_id}',event)`);
   document.body.appendChild(mask);
   document.body.appendChild(elt);
   setTimeout(function () {
@@ -413,25 +413,25 @@ export function displayAddPatternErrors(errors) {
   }, 1);
 }
 
-export function removeAddPatternErrors(temporary_id: string, event: Event): void {
+export function removeSavePatternErrors(temporary_id: string, event: Event): void {
   event.preventDefault();
   interaction.SASBC(3);
-  utilities.qe(`body .pattern_editor_add_pattern_errors#${temporary_id}`).addEventListener(
+  utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_editor_add_pattern_errors#${temporary_id}`).remove();
+      utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body .pattern_editor_add_pattern_errors_mask#${temporary_id}-mask`).addEventListener(
+  utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_editor_add_pattern_errors_mask#${temporary_id}-mask`).remove();
+      utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body .pattern_editor_add_pattern_errors#${temporary_id}`).setAttribute('o', '0');
-  utilities.qe(`body .pattern_editor_add_pattern_errors_mask#${temporary_id}-mask`).setAttribute('o', '0');
+  utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).setAttribute('o', '0');
+  utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).setAttribute('o', '0');
 }
 
 export function switchEditor(editor: string): void | string {
@@ -444,7 +444,7 @@ export function switchEditor(editor: string): void | string {
   pattern_editor_current_editor = editor;
   var check = fine_grained_password.checkPatternQualification(pattern_json);
   if (!check.result) {
-    displayAddPatternErrors(check.errors);
+    displaySavePatternErrors(check.errors);
     return '';
   }
   var all_editor_container = utilities.qe(`.pattern_editor_box .pattern_editor_container`);
