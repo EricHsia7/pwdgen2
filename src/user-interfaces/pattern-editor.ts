@@ -95,13 +95,21 @@ export function openPatternEditor(mode, ls_key, event): void | string {
   if (mode === 'edit') {
     if (LS.hasOwnProperty(ls_key)) {
       pattern_json = JSON.parse(String(LS.getItem(ls_key)));
+      interaction.pattern_manager.removePatternOptions(event);
+      interaction.pattern_manager.closePatternManager();
+      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick',`interaction.pattern_editor.openPatternEditor('edit','${ls_key}',event)`)
+      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_tick
     } else {
       return '';
     }
   }
+  if (mode === 'new') {
+    interaction.options.closeOptions(event);
+    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick',`interaction.pattern_editor.openPatternEditor('new','',event)`)
+    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_add
+  }
   interaction.SASBC(0);
   interaction.show(utilities.qe('.pattern_editor'), 'block');
-  interaction.options.closeOptions(event);
   interaction.pattern_editor.initializePatternEditorJSONEditor();
   if (pattern_editor_evt === 0) {
     pattern_editor_evt = 1;
@@ -349,7 +357,7 @@ export function showComponentInEditor(temporary_id: string, component_id: string
   removePatternComponentInfo(temporary_id, event);
 }
 
-export function savePatternWithEditor(): void | string {
+export function savePatternWithEditor(mode, ls_key): void | string {
   var check = fine_grained_password.checkPatternQualification(pattern_json);
   if (!check.result) {
     /*interaction.prompt.prompt_message(`Cannot save pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)*/
@@ -357,18 +365,28 @@ export function savePatternWithEditor(): void | string {
     return '';
   }
   var string = JSON.stringify(pattern_json);
-  var id = fine_grained_password.generate(
-    [
-      {
-        type: 'regex',
-        regex: '/[a-zA-Z0-9]/g',
-        quantity: 32,
-        repeat: true
-      }
-    ],
-    'production'
-  );
-  LS.setItem(`pwdgen2_pattern_b_${id}`, string);
+  var id = '';
+  if (mode === 'new') {
+    id = fine_grained_password.generate(
+      [
+        {
+          type: 'string',
+          string: 'pwdgen2_pattern_b_'
+        },
+        {
+          type: 'regex',
+          regex: '/[a-zA-Z0-9]/g',
+          quantity: 32,
+          repeat: true
+        }
+      ],
+      'production'
+    );
+  }
+  if (mode === 'edit') {
+    id = ls_key;
+  }
+  LS.setItem(`${id}`, string);
   interaction.prompt.prompt_message('Saved pattern.');
   interaction.pattern_editor.closePatternEditor();
 }
