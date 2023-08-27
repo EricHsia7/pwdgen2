@@ -55,6 +55,7 @@
   color: var(--p-333333);
   user-select: none;
   -webkit-user-select: none;
+  transition: background-color 0.15s;
 }
 
 .fixed-title-box[scroll="1"] {
