@@ -65,8 +65,6 @@
 
 .main-page .fixed-title-box {
   color: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
   background: var(--p-ffffff);
 }
 
