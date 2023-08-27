@@ -320,7 +320,7 @@ function openSearch() {
     });
     search_evt = 1;
   }
-  utilities.qe('.main-page .blur-mask').setAttribute('status', '1');
+  utilities.qe('.main-page .fixed-title-box-mask').setAttribute('status', '1');
   utilities.qe('.main-page .fixed-title-box').setAttribute('status', '1');
   utilities.qe('.main-page .search-output-box').setAttribute('status', '1');
   utilities.qe('.main-page .search-box').setAttribute('status', '1');
@@ -332,7 +332,7 @@ function openSearch() {
 }
 
 function closeSearch() {
-  utilities.qe('.main-page .blur-mask').setAttribute('status', '0');
+  utilities.qe('.main-page .fixed-title-box-mask').setAttribute('status', '0');
   utilities.qe('.main-page .fixed-title-box').setAttribute('status', '0');
   utilities.qe('.main-page .search-output-box').setAttribute('status', '0');
   utilities.qe('.main-page .search-box').setAttribute('status', '0');
