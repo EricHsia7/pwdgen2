@@ -478,6 +478,66 @@ function closeOptions(event) {
   );
 }
 
+function createOption(configuration, right, top): void {
+  var option_id: string = fine_grained_password.generate(
+    [
+      {
+        type: 'string',
+        string: 'o_'
+      },
+      {
+        type: 'regex',
+        regex: '/[a-z0-9]/g',
+        quantity: 16,
+        repeat: true
+      }
+    ],
+    'production'
+  );
+  var mask_elt = document.createElement('div');
+  mask_elt.id = option_id + '_mask';
+  mask_elt.setAttribute('onclick', `interaction.options.removeOptions(event,'${option_id}')`);
+  mask_elt.setAttribute('ontouchstart', `interaction.options.removeOptions(event,'${option_id}')`);
+  mask_elt.classList.add('options_mask');
+
+  var option_elt = document.createElement('div');
+  option_elt.classList.add('options');
+  option_elt.id = option_elt;
+  option_elt.setAttribute('k', '0');
+
+  var configuration_len = configuration.length;
+  var list = [];
+  for (var c = 0; c < configuration_len; c++) {
+    var this_item = configuration[c];
+    var li_html = `<li onclick="${this_item.function}" style="--options-list-n:${c};" y="${this_item.title.replaceAll(/[\s]*/gm, '').toLowerCase()}" group="0" b="${c === 0 ? 0 : 1}"><div class="l_options_title">${this_item.title}</div><div class="l_options_icon">${this_item.icon}</div></li>`;
+    list.push(li_html);
+  }
+  option_elt.innerHTML = list.join('');
+
+  document.body.appendChild(mask_elt);
+  document.body.appendChild(option_elt);
+
+  interaction.show(utilities.qe(`.options#${option_id}`), 'inline-block');
+  interaction.show(utilities.qe(`.options_mask#${option_id}_mask`), 'block');
+
+  setTimeout(function () {
+    utilities.qe(`.options#${option_id}`).setAttribute('k', '1');
+  }, 1);
+}
+
+function removeOptions(event, identity) {
+  event.stopPropagation();
+  utilities.qe(`.options#${option_id}`).setAttribute('k', '0');
+  utilities.qe(`.options#${option_id}`).addEventListener(
+    'transitionend',
+    function () {
+      utilities.qe(`.options#${option_id}`).remove();
+      utilities.qe(`.options_mask#${option_id}_mask`).remove();
+    },
+    { once: true }
+  );
+}
+
 function viewOnGithub() {
   window.open('https://github.com/EricHsia7/pwdgen2');
 }
