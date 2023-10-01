@@ -237,7 +237,7 @@ function checkPatternQualification(pattern) {
       if (object.hasOwnProperty(property)) {
         return 1;
       } else {
-        errors.push({ message: `The property "${property}" was not found in ${omitobject(object)}.`, type: 'lack' });
+        errors.push({ message: `The property "${property}" is not found in ${omitobject(object)}.`, type: 'lack' });
         return 0;
       }
     }
@@ -252,7 +252,7 @@ function checkPatternQualification(pattern) {
     if (type === 'string' || type === 'regex' || type === 'list' || type === 'group') {
       result *= check_hasOwnProperty(object, object['type']);
     } else {
-      errors.push({ message: `The type "${type}" in ${omitobject(object)} was not supported at this time.`, type: 'type' });
+      errors.push({ message: `The type "${type}" in ${omitobject(object)} is not supported at this time.`, type: 'type' });
       result *= 0;
     }
     if (type === 'string') {
