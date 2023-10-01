@@ -237,11 +237,11 @@ function checkPatternQualification(pattern) {
       if (object.hasOwnProperty(property)) {
         return 1;
       } else {
-        errors.push(`The property "${property}" was not found in ${omitobject(object)}.`);
+        errors.push({ message: `The property "${property}" was not found in ${omitobject(object)}.`, type: 'lack' });
         return 0;
       }
     }
-    errors.push(`Cannot check the property "${property}" due to a type error of ${String(object)}.`);
+    errors.push({ message: `Cannot check the property "${property}" due to a type error of ${String(object)}.`, type: 'internal' });
     return 0;
   };
 
@@ -252,12 +252,12 @@ function checkPatternQualification(pattern) {
     if (type === 'string' || type === 'regex' || type === 'list' || type === 'group') {
       result *= check_hasOwnProperty(object, object['type']);
     } else {
-      errors.push(`The type "${type}" in ${omitobject(object)} was not supported at this time.`);
+      errors.push({ message: `The type "${type}" in ${omitobject(object)} was not supported at this time.`, type: 'type' });
       result *= 0;
     }
     if (type === 'string') {
       if (!(typeof object['string'] === 'string')) {
-        errors.push(`Type of the property "string" in ${omitobject(object)} is not a string.`);
+        errors.push({ message: `Type of the property "string" in ${omitobject(object)} is not a string.`, type: 'type' });
         result *= 0;
       }
     }
@@ -265,11 +265,11 @@ function checkPatternQualification(pattern) {
       result *= check_hasOwnProperty(object, 'quantity');
       result *= check_hasOwnProperty(object, 'repeat');
       if (!(typeof object['quantity'] === 'number')) {
-        errors.push(`Type of the property "quantity" in ${omitobject(object)} is not a number.`);
+        errors.push({ message: `Type of the property "quantity" in ${omitobject(object)} is not a number.`, type: 'type' });
         result *= 0;
       }
       if (!(typeof object['repeat'] === 'boolean')) {
-        errors.push(`Type of the property "repeat" in ${omitobject(object)} is not boolean (true or false).`);
+        errors.push({ message: `Type of the property "repeat" in ${omitobject(object)} is not boolean (true or false).`, type: 'type' });
         result *= 0;
       }
     }
@@ -279,12 +279,12 @@ function checkPatternQualification(pattern) {
         var list_len: number = list.length;
         for (var e = 0; e < list_len; e++) {
           if (!(typeof list[e] === 'string')) {
-            errors.push(`Type of the item ${e} in the list of ${omitobject(object)} is not a string.`);
+            errors.push({ message: `Type of the item ${e} in the list of ${omitobject(object)} is not a string.`, type: 'type' });
             result *= 0;
           }
         }
       } else {
-        errors.push('Cannot get item due to type error or property not existing.');
+        errors.push({ message: 'Cannot get item due to type error or property not existing.', type: 'internal' });
         result *= 0;
       }
     }
@@ -294,11 +294,11 @@ function checkPatternQualification(pattern) {
         var actions_len: number = actions.length;
         for (var e = 0; e < actions_len; e++) {
           if (!(typeof actions[e] === 'string')) {
-            errors.push(`An item in actions must be a string.`);
+            errors.push({ message: `An item in actions must be a string.`, type: 'type' });
             result *= 0;
           } else {
             if (!(actions[e] === 'shuffle')) {
-              errors.push(`Cannot use ${actions[e]} at this time due to an unsupported value.`);
+              errors.push({ message: `Cannot use ${actions[e]} at this time due to an unsupported value.`, type: 'invalid value' });
               result *= 0;
             }
           }
@@ -315,11 +315,11 @@ function checkPatternQualification(pattern) {
     if (type === 'regex') {
       if (typeof object['regex'] === 'string') {
         if (!object['regex'].match(/^\/(.*)\/([a-z]*)$/i)) {
-          errors.push(`The regex in ${JSON.stringify(object)} is invalid on formats.`);
+          errors.push({ message: `The regex in ${JSON.stringify(object)} is invalid on formats.`, type: 'invalid value' });
           result *= 0;
         }
       } else {
-        errors.push(`The type of the property "regex" in ${omitobject(object)} is not a string.`);
+        errors.push({ message: `The type of the property "regex" in ${omitobject(object)} is not a string.`, type: 'type' });
         result *= 0;
       }
     }
@@ -335,11 +335,11 @@ function checkPatternQualification(pattern) {
     result *= check_hasOwnProperty(json, 'pattern_icon');
     result *= check_hasOwnProperty(json, 'pattern');
     if (!(typeof json['pattern_name'] === 'string')) {
-      errors.push(`Type of the property "pattern_name" in ${omitobject(json)} is not a string.`);
+      errors.push({ message: `Type of the property "pattern_name" in ${omitobject(json)} is not a string.`, type: 'type' });
       result *= 0;
     }
     if (!(typeof json['pattern_icon'] === 'string')) {
-      errors.push(`Type of the property "pattern_icon" in ${omitobject(json)} is not a string.`);
+      errors.push({ message: `Type of the property "pattern_icon" in ${omitobject(json)} is not a string.`, type: 'type' });
       result *= 0;
     }
     if (typeof json['pattern'] === 'object' && Array.isArray(json['pattern'])) {
@@ -349,11 +349,11 @@ function checkPatternQualification(pattern) {
         result *= check(pattern[i]);
       }
     } else {
-      errors.push(`Type of the property "pattern" in ${omitobject(json)} is not an array.`);
+      errors.push({ message: `Type of the property "pattern" in ${omitobject(json)} is not an array.`, type: 'type' });
       result *= 0;
     }
   } else {
-    errors.push(`Type of the thing you want to check is not an object.`);
+    errors.push({ message: `Type of the thing you want to check is not an object.`, type: 'internal' });
     result *= 0;
   }
   if (result === 1) {

@@ -97,16 +97,16 @@ export function openPatternEditor(mode, ls_key, event): void | string {
       pattern_json = JSON.parse(String(LS.getItem(ls_key)));
       interaction.pattern_manager.removePatternOptions(event);
       interaction.pattern_manager.closePatternManager();
-      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick',`interaction.pattern_editor.savePatternWithEditor('edit','${ls_key}',event)`)
-      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_tick
+      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('edit','${ls_key}',event)`);
+      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_tick;
     } else {
       return '';
     }
   }
   if (mode === 'new') {
     interaction.options.closeOptions(event);
-    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick',`interaction.pattern_editor.savePatternWithEditor('new','',event)`)
-    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_add
+    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('new','',event)`);
+    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_add;
   }
   interaction.SASBC(0);
   interaction.show(utilities.qe('.pattern_editor'), 'block');
@@ -398,7 +398,7 @@ export function displaySavePatternErrors(errors) {
     elt.classList.add('pattern_editor_save_pattern_errors_list_item');
     var title_elt = document.createElement('div');
     title_elt.classList.add('pattern_editor_save_pattern_errors_list_item_title');
-    title_elt.innerText = utilities.encodeSignsToHtmlEntities(error);
+    title_elt.innerText = utilities.encodeSignsToHtmlEntities(error.message);
     elt.innerHTML = title_elt.outerHTML;
     return elt.outerHTML;
   };
