@@ -255,6 +255,12 @@ function checkPatternQualification(pattern) {
       errors.push(`The type "${type}" in ${omitobject(object)} was not supported at this time.`);
       result *= 0;
     }
+    if (type === 'string') {
+      if (!(typeof object['string'] === 'string')) {
+        errors.push(`Type of the property "string" in ${omitobject(object)} is not a string.`);
+        result *= 0;
+      }
+    }
     if (type === 'regex' || type === 'list') {
       result *= check_hasOwnProperty(object, 'quantity');
       result *= check_hasOwnProperty(object, 'repeat');
