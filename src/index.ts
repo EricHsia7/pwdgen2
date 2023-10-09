@@ -16,14 +16,15 @@ import './user-interfaces/css/button.css';
 import './user-interfaces/css/options.css';
 import './user-interfaces/css/prompt.css';
 import './user-interfaces/css/details.css';
-import './user-interfaces/css/pattern-creator.css';
+import './user-interfaces/css/pattern-editor.css';
+import './user-interfaces/css/pattern-manager.css';
 import './user-interfaces/css/main-page/search.css';
 import './user-interfaces/css/main-page/password-list.css';
 import './user-interfaces/css/add-password/presets.css';
 import './user-interfaces/css/show.css';
 
 //for development
-/*
+
 const ErrorStackParser = require('error-stack-parser');
 const StackTrace = require('stacktrace-js');
 
@@ -39,18 +40,18 @@ window.onerror = async function (message, source, lineno, colno, error) {
     });
     console.log('%c ----------', "color: #888;")
     parsedStackTrace.forEach(e => {
-      console.log(`%c func: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`, "color: rgba(255,0,0,1); background-color: rgba(255,0,0,0.09);");
+      console.error(`func: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`)
     });
   });
 };
-*/
+
 
 window.password_page_icon_loaded = false;
 window.allhashtag = {};
 window.search_status = 0;
 window.search_sticky = false;
 window.container_scrollTop = 0;
-window.pattern_creator_evt = 0;
+window.pattern_editor_evt = 0;
 window.pattern_editor_blocks_json = utilities.qe('.pattern_editor_blocks_json');
 window.search_will_change_evt = [0, 1];
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave'];
@@ -77,7 +78,7 @@ window.pwdgen2 = function () {
     if (container_scrollTop >= 50) {
       utilities.qe('.main-page .search-box').setAttribute('sticky', 'true');
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'true');
-      utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'true');
+      utilities.qe('.main-page .fixed-title-box-mask').setAttribute('sticky', 'true');
       if (!(search_status === 1)) {
         interaction.SASBC(1);
       }
@@ -85,7 +86,7 @@ window.pwdgen2 = function () {
     } else {
       utilities.qe('.main-page .search-box').setAttribute('sticky', 'false');
       utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'false');
-      utilities.qe('.main-page .blur-mask').setAttribute('sticky', 'false');
+      utilities.qe('.main-page .fixed-title-box-mask').setAttribute('sticky', 'false');
       if (!(search_status === 1)) {
         interaction.SASBC(3);
       }
@@ -127,13 +128,13 @@ window.pwdgen2 = function () {
     }
   });
 
-  utilities.qe('.pattern_creator').addEventListener('scroll', function (e) {
-    var scrollTop = utilities.qe('.pattern_creator').scrollTop;
+  utilities.qe('.pattern_editor').addEventListener('scroll', function (e) {
+    var scrollTop = utilities.qe('.pattern_editor').scrollTop;
     if (scrollTop > 0) {
-      utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '1');
+      utilities.qe('.pattern_editor .fixed-title-box').setAttribute('scroll', '1');
       interaction.SASBC(1);
     } else {
-      utilities.qe('.pattern_creator .fixed-title-box').setAttribute('scroll', '0');
+      utilities.qe('.pattern_editor .fixed-title-box').setAttribute('scroll', '0');
       interaction.SASBC(3);
     }
   });

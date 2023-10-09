@@ -3,7 +3,8 @@ import utilities from '../core/utilities';
 import Xsearch from '../core/search';
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword, generateExportFile } from '../core/storage';
 import icons from './icons';
-import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator';
+import { openPatternEditor, closePatternEditor, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternEditorJSONEditor, syncAndFormatPatternEditorJSONEditor, initializePatternEditorJSONEditor, removePatternComponentInfo, showComponentInEditor, savePatternWithEditor, displaySavePatternErrors, removeSavePatternErrors, switchEditor, go_to_documents } from './pattern-editor';
+import { openPatternManager, closePatternManager, printPatterns, showPatternOptions, removePatternOptions, sharePattern } from './pattern-manager';
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password';
 
 var FontFaceObserver = require('fontfaceobserver');
@@ -32,7 +33,7 @@ function lazyLoadPasswordListIcon(identity, url) {
       window.lazyPasswordListIcons.unloaded.splice(index, 1);
       window.lazyPasswordListIcons.loaded.push(identity);
       item_elt.setAttribute('icon', '1');
-      icon_elt.style.setProperty('--j-website-icon', `url(${url})`);
+      icon_elt.style.setProperty('--js-website-icon', `url(${url})`);
     }
   }
 }
@@ -319,7 +320,7 @@ function openSearch() {
     });
     search_evt = 1;
   }
-  utilities.qe('.main-page .blur-mask').setAttribute('status', '1');
+  utilities.qe('.main-page .fixed-title-box-mask').setAttribute('status', '1');
   utilities.qe('.main-page .fixed-title-box').setAttribute('status', '1');
   utilities.qe('.main-page .search-output-box').setAttribute('status', '1');
   utilities.qe('.main-page .search-box').setAttribute('status', '1');
@@ -331,7 +332,7 @@ function openSearch() {
 }
 
 function closeSearch() {
-  utilities.qe('.main-page .blur-mask').setAttribute('status', '0');
+  utilities.qe('.main-page .fixed-title-box-mask').setAttribute('status', '0');
   utilities.qe('.main-page .fixed-title-box').setAttribute('status', '0');
   utilities.qe('.main-page .search-output-box').setAttribute('status', '0');
   utilities.qe('.main-page .search-box').setAttribute('status', '0');
@@ -436,7 +437,7 @@ function printSavedPasswordList(): void {
   var html = [];
   for (var k = 0; k < list_len; k++) {
     var tags = [];
-    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')" pwd-id="${list[k].id}" icon="${list[k].website_icon === false ? '-1' : '0'}" icon-url="${list[k].website_icon}"><div class="password-item-website-icon" style="--j-website-icon:var(--p-e5e5ea)"></div><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`);
+    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')" pwd-id="${list[k].id}" icon="${list[k].website_icon === false ? '-1' : '0'}" icon-url="${list[k].website_icon}"><div class="password-item-website-icon" style="--js-website-icon:var(--p-e5e5ea)"></div><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`);
   }
   utilities.qe('.password-list').innerHTML = html.join('');
   interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler();
@@ -595,22 +596,30 @@ window.interaction = {
     refreshPage,
     viewOnGithub
   },
-  pattern_creator: {
-    openPatternCreator,
-    closePatternCreator,
+  pattern_editor: {
+    openPatternEditor,
+    closePatternEditor,
     generatePatternPreview,
     displayPatternComponentInfo,
     addIdentityToPattern,
-    syncPatternCreatorJSONEditor,
-    syncAndFormatPatternCreatorJSONEditor,
-    initializePatternCreatorJSONEditor,
+    syncPatternEditorJSONEditor,
+    syncAndFormatPatternEditorJSONEditor,
+    initializePatternEditorJSONEditor,
     removePatternComponentInfo,
     showComponentInEditor,
-    addPatternWithCreator,
-    displayAddPatternErrors,
-    removeAddPatternErrors,
+    savePatternWithEditor,
+    displaySavePatternErrors,
+    removeSavePatternErrors,
     switchEditor,
     go_to_documents
+  },
+  pattern_manager: {
+    openPatternManager,
+    closePatternManager,
+    printPatterns,
+    showPatternOptions,
+    removePatternOptions,
+    sharePattern
   },
   password_page: {
     openPassword,
