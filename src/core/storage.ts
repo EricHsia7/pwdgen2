@@ -256,12 +256,12 @@ export function importdatahandler(event) {
 // Function to generate an export file
 export function generateExportFile() {
   // Get all saved password entries and create a JSON object for export
-  var list = searchItemsbyname('pwdgen2_saved_b_').concat(searchItemsbyname('pwdgen2_pattern_b_'));
+  var list = searchItemsbyname('pwdgen2_saved_b');
   var list_len = list.length;
   var export_list = [];
   for (var k = 0; k < list_len; k++) {
-    var this_item = String(LS.getItem(list[k]));
-    export_list.push({ key: list[k], content: this_item });
+    var this_item = JSON.parse(String(LS.getItem(list[k])));
+    export_list.push({ key: list[k], content: JSON.stringify(this_item, null, 2) });
   }
 
   // Return the JSON object as a string
