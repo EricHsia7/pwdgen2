@@ -186,11 +186,11 @@ function prompt_asking(message: string, option1: string, option1_func: Function,
   prompt_register[temporary_id] = {};
   prompt_register[temporary_id]['opt1'] = function () {
     option1_func();
-    interaction.prompt.close_prompt_asking('${temporary_id}');
+    interaction.prompt.close_prompt_asking(temporary_id);
   };
   prompt_register[temporary_id]['opt2'] = function () {
     option2_func();
-    interaction.prompt.close_prompt_asking('${temporary_id}');
+    interaction.prompt.close_prompt_asking(temporary_id);
   };
   setTimeout(function () {
     utilities.qe(`body #${temporary_id}`).setAttribute('o', '1');
