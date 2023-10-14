@@ -73,6 +73,8 @@ export function syncAndFormatPatternEditorJSONEditor(): void {
     interaction.pattern_editor.addIdentityToPattern();
     utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
     utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
+    utilities.qe('.pattern2').setAttribute('data-highlighted', 'no');
+    utilities.qe('.pattern').setAttribute('data-highlighted', 'no');
     hljs.highlightElement(utilities.qe('.pattern2'));
     hljs.highlightElement(utilities.qe('.pattern'));
     utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
@@ -85,6 +87,7 @@ export function syncPatternEditorJSONEditor() {
   try {
     utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
     pattern_json = JSON.parse(utilities.qe('.pattern2').innerText);
+    utilities.qe('.pattern').setAttribute('data-highlighted', 'no');
     hljs.highlightElement(utilities.qe('.pattern'));
     utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
   } catch (e) {}
