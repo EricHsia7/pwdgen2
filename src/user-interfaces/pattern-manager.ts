@@ -1,6 +1,7 @@
 import utilities from '../core/utilities';
 import fine_grained_password from '../core/fine-grained-password';
 import icons from './icons';
+import { LS } from '../core/storage';
 
 export function printPatterns() {
   var list = fine_grained_password.getPatterns(true);
@@ -117,6 +118,12 @@ export function removePatternOptions(temporary_id, event): void {
   );
 }
 
-export function sharePattern() {
+export function sharePattern() {}
 
+export function deletePattern(identity): void {
+  if (LS.hasOwnProperty(identity)) {
+    LS.removeItem(identity);
+    interaction.prompt.prompt_message('Deleted pattern.', 1200);
+    interaction.pattern_manager.printPatterns();
+  }
 }
