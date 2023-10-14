@@ -102,7 +102,11 @@ function checkTouchFeatures(): boolean {
 }
 
 function qe(selector) {
-  return document.querySelector(selector);
+  var elt = document.querySelector(selector);
+  if (elt === null) {
+    elt = document.createElement('div');
+  }
+  return elt;
 }
 
 function qeAll(selector) {
