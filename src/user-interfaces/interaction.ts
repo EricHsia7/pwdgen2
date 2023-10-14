@@ -183,7 +183,7 @@ function prompt_asking(message: string, option1: string, option1_func: Function,
   prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="prompt_register[${temporary_id}]['opt1']()">${option1}</div><div class="prompt_asking_option2" onclick="prompt_register[${temporary_id}]['opt2']()">${option2}</div></div>`;
   document.body.appendChild(mask_elt);
   document.body.appendChild(prompt_asking_elt);
-  option2_func[temporary_id] = {};
+  prompt_register[temporary_id] = {};
   prompt_register[temporary_id]['opt1'] = function () {
     option1_func();
     interaction.prompt.close_prompt_asking('${temporary_id}');
