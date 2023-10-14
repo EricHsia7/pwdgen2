@@ -180,7 +180,7 @@ function prompt_asking(message: string, option1: string, option1_func: Function,
   var prompt_asking_elt = document.createElement('div');
   prompt_asking_elt.classList.add('prompt_asking');
   prompt_asking_elt.id = temporary_id;
-  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="prompt_register[${temporary_id}]['opt1']()">${option1}</div><div class="prompt_asking_option2" onclick="prompt_register[${temporary_id}]['opt2']()">${option2}</div></div>`;
+  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="prompt_register['${temporary_id}']['opt1']()">${option1}</div><div class="prompt_asking_option2" onclick="prompt_register['${temporary_id}']['opt2']()">${option2}</div></div>`;
   document.body.appendChild(mask_elt);
   document.body.appendChild(prompt_asking_elt);
   prompt_register[temporary_id] = {};
