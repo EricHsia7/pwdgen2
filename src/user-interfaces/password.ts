@@ -156,7 +156,17 @@ export function modifyPasswordWithEditor(id) {
 
 export function deletePassword(id, event) {
   interaction.options.closeOptions(event);
-  interaction.prompt.prompt_asking('Confirm to proceed to permanently delete the password.', 'Confirm', `interaction.password_page.confirmToDeletePassword('${id}',event)`, 'Cancel', `interaction.prompt.prompt_message('Cancelled deletion.',1200)`);
+  interaction.prompt.prompt_asking(
+    'Confirm to proceed to permanently delete the password.',
+    'Confirm',
+    function () {
+      interaction.password_page.confirmToDeletePassword(id, event);
+    },
+    'Cancel',
+    function () {
+      interaction.prompt.prompt_message('Cancelled deletion.', 1200);
+    }
+  );
 }
 
 export function confirmToDeletePassword(id) {

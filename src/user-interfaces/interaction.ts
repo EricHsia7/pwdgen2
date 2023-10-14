@@ -4,7 +4,7 @@ import Xsearch from '../core/search';
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword, generateExportFile } from '../core/storage';
 import icons from './icons';
 import { openPatternEditor, closePatternEditor, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternEditorJSONEditor, syncAndFormatPatternEditorJSONEditor, initializePatternEditorJSONEditor, removePatternComponentInfo, showComponentInEditor, savePatternWithEditor, displaySavePatternErrors, removeSavePatternErrors, switchEditor, go_to_documents } from './pattern-editor';
-import { openPatternManager, closePatternManager, printPatterns, showPatternOptions, removePatternOptions, sharePattern ,deletePattern} from './pattern-manager';
+import { openPatternManager, closePatternManager, printPatterns, showPatternOptions, removePatternOptions, sharePattern, deletePattern } from './pattern-manager';
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password';
 
 var FontFaceObserver = require('fontfaceobserver');
@@ -23,6 +23,8 @@ window.lazyPasswordListIcons = {
   unloaded: [],
   loaded: []
 };
+
+window.prompt_register = {};
 
 function lazyLoadPasswordListIcon(identity, url) {
   var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`);
@@ -155,12 +157,12 @@ function prompt_message(message, duration) {
   );
 }
 
-function prompt_asking(message: string, option1: string, option1_func: string, option2: string, option2_func: string) {
+function prompt_asking(message: string, option1: string, option1_func: Function, option2: string, option2_func: Function) {
   var temporary_id = fine_grained_password.generate(
     [
       {
         type: 'string',
-        string: 'a-'
+        string: 'a_'
       },
       {
         type: 'regex',
@@ -178,9 +180,18 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   var prompt_asking_elt = document.createElement('div');
   prompt_asking_elt.classList.add('prompt_asking');
   prompt_asking_elt.id = temporary_id;
-  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="${option1_func};interaction.prompt.close_prompt_asking('${temporary_id}')">${option1}</div><div class="prompt_asking_option2" onclick="${option2_func};interaction.prompt.close_prompt_asking('${temporary_id}')">${option2}</div></div>`;
+  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="prompt_register[${temporary_id}]['opt1']()">${option1}</div><div class="prompt_asking_option2" onclick="prompt_register[${temporary_id}]['opt2']()">${option2}</div></div>`;
   document.body.appendChild(mask_elt);
   document.body.appendChild(prompt_asking_elt);
+  option2_func[temporary_id] = {};
+  prompt_register[temporary_id]['opt1'] = function () {
+    option1_func();
+    interaction.prompt.close_prompt_asking('${temporary_id}');
+  };
+  prompt_register[temporary_id]['opt2'] = function () {
+    option2_func();
+    interaction.prompt.close_prompt_asking('${temporary_id}');
+  };
   setTimeout(function () {
     utilities.qe(`body #${temporary_id}`).setAttribute('o', '1');
     utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '1');
@@ -200,6 +211,7 @@ function close_prompt_asking(temporary_id) {
     'transitionend',
     function () {
       utilities.qe(`body #${temporary_id}_mask`).remove();
+      delete prompt_register[temporary_id];
     },
     { once: true }
   );

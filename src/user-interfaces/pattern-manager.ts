@@ -88,7 +88,7 @@ export function showPatternOptions(ls_key, id, event): void {
   options_elt.style.setProperty('--js-options-list-count', 3);
   options_elt.style.setProperty('--js-options-origin', optiona_transform_origin);
   options_elt.innerHTML += optionItemString('Edit', 0, 0, 'editpattern', 0, icons.icon_edit, `interaction.pattern_editor.openPatternEditor('edit','${ls_key}',event)`);
-  options_elt.innerHTML += optionItemString('Delete', 1, 1, 'deletepattern', 0, icons.icon_delete, `interaction.prompt.prompt_asking('Confirm to proceed to delete the pattern permanently.','Confirm','interaction.pattern_manager.deletePattern(\`${ls_key}\`)','Cancel','interaction.prompt.prompt_message(\`Canceled delection.\`)');interaction.options.closeOptions(event)`);
+  options_elt.innerHTML += optionItemString('Delete', 1, 1, 'deletepattern', 0, icons.icon_delete, `interaction.prompt.prompt_asking('Confirm to proceed to delete the pattern permanently.','Confirm',function() {interaction.pattern_manager.deletePattern(\`${ls_key}\`)},'Cancel',function() {interaction.prompt.prompt_message(\`Canceled delection.\`)');interaction.options.closeOptions(event)}`);
   options_elt.innerHTML += optionItemString('Share', 2, 1, 'sharepattern', 0, icons.icon_share, `interaction.pattern_manager.sharePattern('${ls_key}',event)`);
   var mask_elt = document.createElement('div');
   mask_elt.classList.add('pattern_item_options_mask');
