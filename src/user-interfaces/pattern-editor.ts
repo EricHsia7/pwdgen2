@@ -90,7 +90,7 @@ export function syncPatternEditorJSONEditor() {
   } catch (e) {}
 }
 
-export function openPatternEditor(mode, ls_key, temporary_id, event): void | string {
+export function openPatternEditor(mode, ls_key, event, temporary_id): void | string {
   if (mode === 'edit') {
     if (LS.hasOwnProperty(ls_key)) {
       pattern_json = JSON.parse(String(LS.getItem(ls_key)));
