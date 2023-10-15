@@ -2,7 +2,7 @@ import utilities from '../core/utilities';
 import fine_grained_password from '../core/fine-grained-password';
 import icons from './icons';
 import { LS } from '../core/storage';
-import { removeIdentityFromPattern } from './pattern-editor';
+import interaction from './user-interfaces/interaction';
 import Xshare from '../core/share';
 
 export function printPatterns(): void {
@@ -123,7 +123,7 @@ export function removePatternOptions(temporary_id: string, event: Event): void {
 export function sharePattern(ls_key: string): void {
   if (LS.hasOwnProperty(ls_key)) {
     var json = JSON.parse(String(LS.getItem(ls_key)));
-    json = removeIdentityFromPattern(json);
+    json = interaction.pattern_editor.removeIdentityFromPattern(json);
     Xshare.shareViaURL('pattern', 'user', JSON.stringify(json), 'json');
   }
 }
