@@ -159,9 +159,11 @@ It provides color-coded feedback, making it easier for users to identify the sec
 - [ ]  Date Component: insert current date or relative date to generation result
     - [ ]  Choose Method
         - [x]  Random (default)
-        - [ ]  Choose When Generate (List Only): display an interface to ask user
+        - [ ]  Choose manually in generating: display an interface to ask user
 - [ ]  Pattern Manager
-- [ ]  Share a pattern via link
+    - [x] Edit existing pattern
+    - [x] Delete existing pattern
+    - [ ] Share existing pattern via link
 
 ### Password
 
@@ -178,7 +180,7 @@ It provides color-coded feedback, making it easier for users to identify the sec
         - [ ]  Filename
         - [ ]  File Link
 - [ ]  Pin Password
-- [ ]  Lock Actions (e.g., copy, view, delete) with WebAuthn
+- [ ]  Locked Actions (e.g., copy, view, delete) with WebAuthn
 
 ### User Interface
 
