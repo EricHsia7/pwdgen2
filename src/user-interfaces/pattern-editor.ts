@@ -102,7 +102,7 @@ export function openPatternEditor(mode, ls_key, event, temporary_id): void | str
       interaction.pattern_manager.closePatternManager();
       utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('edit','${ls_key}',event)`);
       utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_tick;
-      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('edit')`);
+      utilities.qe('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('edit')`);
     } else {
       return '';
     }
@@ -111,7 +111,7 @@ export function openPatternEditor(mode, ls_key, event, temporary_id): void | str
     interaction.options.closeOptions(event);
     utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('new','',event)`);
     utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_add;
-    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('new')`);
+    utilities.qe('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('new')`);
   }
   interaction.SASBC(0);
   interaction.show(utilities.qe('.pattern_editor'), 'block');
