@@ -1,6 +1,7 @@
 import interaction from '../user-interfaces/interaction';
 import utilities from './utilities';
 import fine_grained_password from './fine-grained-password';
+import { LS } from './storage';
 
 type shareDataType = 'pattern';
 type shareDataFormat = 'json' | 'string';
