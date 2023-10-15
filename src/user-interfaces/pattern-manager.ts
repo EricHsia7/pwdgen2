@@ -3,7 +3,7 @@ import fine_grained_password from '../core/fine-grained-password';
 import icons from './icons';
 import { LS } from '../core/storage';
 
-export function printPatterns() {
+export function printPatterns(): void {
   var list = fine_grained_password.getPatterns(true);
   var list_len = list.length;
   var html = [];
@@ -46,8 +46,8 @@ export function closePatternManager() {
   interaction.show(utilities.qe('.pattern_manager'), 'none');
 }
 
-export function showPatternOptions(ls_key, id, event): void {
-  var optionItemString = function (title, list_n, border, name, group, icon, onclick): string {
+export function showPatternOptions(ls_key: string, id: string, even: Event): void {
+  var optionItemString = function (title: string, list_n: number, border: number, name: string, group: number, icon: string, onclick: string): string {
     return `<li onclick="${onclick}" style="--options-list-n:${list_n};" y="${name}" group="${group}"  b="${border}"><div class="l_options_title">${title}</div><div class="l_options_icon">${icon}</div></li>`;
   };
   var button = utilities.qe(`.pattern_manager .contents-box .pattern-list .pattern-item#${id} .pattern-item-action`);
@@ -105,8 +105,8 @@ export function showPatternOptions(ls_key, id, event): void {
   }, 1);
 }
 
-export function removePatternOptions(temporary_id, event): void {
-  event.stopPropagation();
+export function removePatternOptions(temporary_id: string, event: Event): void {
+  utilities.stopProp(event);
   utilities.qe(`.pattern_item_options#${temporary_id}`).setAttribute('k', '0');
   utilities.qe(`.pattern_item_options#${temporary_id}`).addEventListener(
     'transitionend',

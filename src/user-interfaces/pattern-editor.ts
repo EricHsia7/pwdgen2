@@ -388,6 +388,7 @@ export function savePatternWithEditor(mode, ls_key): void | string {
   }
   if (mode === 'edit') {
     id = ls_key;
+    interaction.pattern_manager.openPatternManager();
   }
   LS.setItem(`${id}`, string);
   interaction.prompt.prompt_message('Saved pattern.');
