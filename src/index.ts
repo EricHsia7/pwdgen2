@@ -7,6 +7,7 @@ import bjson from 'src/core/blocks-json';
 import words_list from './core/words-list';
 import icons from './user-interfaces/icons';
 import interaction from './user-interfaces/interaction';
+import Xshare from './core/share';
 
 import './user-interfaces/css/hljs.css';
 import './user-interfaces/css/theme.css';
@@ -35,16 +36,15 @@ window.onerror = async function (message, source, lineno, colno, error) {
         functionName: frame.functionName,
         fileName: frame.fileName,
         lineNumber: frame.lineNumber,
-        columnNumber: frame.columnNumber,
+        columnNumber: frame.columnNumber
       };
     });
-    console.log('%c ----------', "color: #888;")
-    parsedStackTrace.forEach(e => {
-      console.error(`func: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`)
+    console.log('%c ----------', 'color: #888;');
+    parsedStackTrace.forEach((e) => {
+      console.error(`func: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`);
     });
   });
 };
-
 
 window.password_page_icon_loaded = false;
 window.allhashtag = {};
@@ -153,6 +153,7 @@ window.pwdgen2 = function () {
 
   setTimeout(function () {
     interaction.main_page.printSavedPasswordList();
+    Xshare.receiveSharedContentFromURL(location.href);
   }, 700);
 };
 
