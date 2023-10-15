@@ -4,6 +4,9 @@ const hljs = require('highlight.js/lib/core');
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 import icons from './icons';
 import { LS } from '../core/storage';
+var _ = {};
+_.cloneDeep = require('lodash/cloneDeep');
+
 
 window.pattern_editor_current_editor = 'json';
 window.pattern_json = {
@@ -59,7 +62,7 @@ window.pattern_json = {
 
 window.pattern_json_generation = [];
 export function initializePatternEditorJSONEditor(): void {
-  interaction.pattern_editor.addIdentityToPattern();
+  pattern_json = interaction.pattern_editor.addIdentityToPattern(pattern_json);
   utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
   utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
   utilities.qe('.pattern2').removeAttribute('data-highlighted');
@@ -72,7 +75,7 @@ export function initializePatternEditorJSONEditor(): void {
 export function syncAndFormatPatternEditorJSONEditor(): void {
   try {
     pattern_json = JSON.parse(utilities.qe('.pattern2').innerText);
-    interaction.pattern_editor.addIdentityToPattern();
+    pattern_json = interaction.pattern_editor.addIdentityToPattern(pattern_json);
     utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
     utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
     utilities.qe('.pattern2').removeAttribute('data-highlighted');
@@ -157,7 +160,8 @@ export function closePatternEditor(mode) {
   }
 }
 
-export function addIdentityToPattern(): void {
+export function addIdentityToPattern(obj: object): object {
+  var pattern = _.cloneDeep(obj)
   var p = function (pattern) {
     var pattern_len = pattern.length;
     for (var j = 0; j < pattern_len; j++) {
@@ -190,9 +194,35 @@ export function addIdentityToPattern(): void {
     }
     return pattern;
   };
-  if (pattern_json.hasOwnProperty('pattern')) {
-    pattern_json.pattern = p(pattern_json.pattern);
+  if (pattern.hasOwnProperty('pattern')) {
+    pattern.pattern = p(pattern.pattern);
   }
+  return pattern
+}
+
+export function removeIdentityFromPattern(obj: object): object {
+  var pattern = _.cloneDeep(obj)
+  var p = function (pattern) {
+    var pattern_len = pattern.length;
+    for (var j = 0; j < pattern_len; j++) {
+      var this_item = pattern[j];
+      if (this_item.hasOwnProperty('id')) {
+        delete this_item.id;
+      }
+      if (this_item.type === 'string' || this_item === 'regex' || this_item === 'list') {
+      } else {
+        if (this_item.type === 'group') {
+          this_item['group'] = p(this_item['group']);
+        }
+      }
+      pattern.splice(j, 1, this_item);
+    }
+    return pattern;
+  };
+  if (pattern.hasOwnProperty('pattern')) {
+    pattern.pattern = p(pattern.pattern);
+  }
+  return pattern
 }
 
 export function generatePatternPreview(): string {
