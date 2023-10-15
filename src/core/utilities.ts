@@ -378,7 +378,7 @@ function shareViaURL(type: shareDataType, from: string, data: string, format: sh
   url.searchParams.append('share', '1');
   url.searchParams.append('type', type);
   url.searchParams.append('from', from);
-  url.searchParams.append('data', data);
+  url.searchParams.append('data', btoa(utilities.enur(data)));
   url.searchParams.append('format', format);
 
   if (navigator.canShare) {
