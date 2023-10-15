@@ -3,6 +3,7 @@ import fine_grained_password from '../core/fine-grained-password';
 import icons from './icons';
 import { LS } from '../core/storage';
 import { removeIdentityFromPattern } from './pattern-editor';
+import share from '../core/share';
 
 export function printPatterns(): void {
   var list = fine_grained_password.getPatterns(true);
@@ -123,7 +124,7 @@ export function sharePattern(ls_key: string): void {
   if (LS.hasOwnProperty(ls_key)) {
     var json = JSON.parse(String(LS.getItem(ls_key)));
     json = removeIdentityFromPattern(json);
-    utilities.shareViaURL('pattern', 'user', JSON.stringify(json), 'json');
+    share.shareViaURL('pattern', 'user', JSON.stringify(json), 'json');
   }
 }
 
