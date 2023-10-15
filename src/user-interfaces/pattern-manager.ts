@@ -119,10 +119,10 @@ export function removePatternOptions(temporary_id: string, event: Event): void {
 }
 
 export function sharePattern(ls_key: string): void {
-if(LS.hasOwnProperty(ls_key)){
-  var json = String(LS.getItem(ls_key))
-  
-}
+  if (LS.hasOwnProperty(ls_key)) {
+    var json = String(LS.getItem(ls_key));
+    utilities.shareViaURL('pattern', 'user', json, 'json');
+  }
 }
 
 export function deletePattern(ls_key: string): void {
