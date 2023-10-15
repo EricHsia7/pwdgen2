@@ -478,7 +478,7 @@ function openOptions(r) {
 }
 
 function closeOptions(event) {
-  event.stopPropagation();
+  utilities.stopProp(event);
   utilities.qe('.options').setAttribute('k', '0');
   utilities.qe('.options').addEventListener(
     'transitionend',
