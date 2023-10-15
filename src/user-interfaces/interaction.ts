@@ -3,7 +3,7 @@ import utilities from '../core/utilities';
 import Xsearch from '../core/search';
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword, generateExportFile } from '../core/storage';
 import icons from './icons';
-import { openPatternEditor, closePatternEditor, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternEditorJSONEditor, syncAndFormatPatternEditorJSONEditor, initializePatternEditorJSONEditor, removePatternComponentInfo, showComponentInEditor, savePatternWithEditor, displaySavePatternErrors, removeSavePatternErrors, switchEditor, go_to_documents } from './pattern-editor';
+import { openPatternEditor, closePatternEditor, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, removeIdentityFromPattern, syncPatternEditorJSONEditor, syncAndFormatPatternEditorJSONEditor, initializePatternEditorJSONEditor, removePatternComponentInfo, showComponentInEditor, savePatternWithEditor, displaySavePatternErrors, removeSavePatternErrors, switchEditor, go_to_documents } from './pattern-editor';
 import { openPatternManager, closePatternManager, printPatterns, showPatternOptions, removePatternOptions, sharePattern, deletePattern } from './pattern-manager';
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password';
 

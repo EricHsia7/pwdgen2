@@ -393,6 +393,50 @@ function shareViaURL(type: shareDataType, from: string, data: string, format: sh
   }
 }
 
+function receiveSharedContentFromURL(url: string) {
+  url = new URL(url);
+  var parameters = url.searchParams;
+  var type = parameters.get('type');
+  var from = parameters.get('from');
+  var data = utilities.deur(atob(String(parameters.get('data'))));
+  var format = parameters.get('format');
+  var valid = false;
+  var json = {};
+  if (format === 'json') {
+    try {
+      json = JSON.parse(data);
+      valid = true;
+    } catch (e) {
+      interaction.prompt.prompt_message('Invalid shared data.');
+    }
+  }
+  if (valid) {
+    if (type === 'pattern') {
+      json = interaction.pattern_editor.removeIdentityFromPattern(json);
+      var id = fine_grained_password.generate(
+        [
+          {
+            type: 'string',
+            string: 'pwdgen2_pattern_b_'
+          },
+          {
+            type: 'regex',
+            regex: '/[a-zA-Z0-9]/g',
+            quantity: 32,
+            repeat: true
+          }
+        ],
+        'production'
+      );
+      if (!LS.hasOwnProperty(id)) {
+        LS.setItem(id, JSON.stringify(json));
+        interaction.prompt.prompt_message('Saved shared pattern.');
+        interaction.pattern_manager.openPatternManager();
+      }
+    }
+  }
+}
+
 // Expose functions to the global scope
 window.utilities = {
   encryptString,
