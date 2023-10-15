@@ -417,7 +417,8 @@ window.utilities = {
   blendColors,
   encodeSignsToHtmlEntities,
   isValidURL,
-  stopProp
+  stopProp,
+  shareViaURL
 };
 
 export default window.utilities;
