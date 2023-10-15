@@ -2,7 +2,7 @@ import utilities from '../core/utilities';
 import fine_grained_password from '../core/fine-grained-password';
 import icons from './icons';
 import { LS } from '../core/storage';
-import interaction from './user-interfaces/interaction';
+import interaction from './interaction';
 import Xshare from '../core/share';
 
 export function printPatterns(): void {
