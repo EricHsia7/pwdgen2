@@ -371,6 +371,28 @@ function stopProp(event): void {
   }
 }
 
+type shareDataType = 'pattern';
+type shareDataFormat = 'json' | 'string';
+function shareViaURL(type: shareDataType, from: string, data: string, format: shareDataFormat): void {
+  var url = new URL('https://erichsia7.github.io/pwdgen2');
+  url.searchParams.append('share', '1');
+  url.searchParams.append('type', type);
+  url.searchParams.append('from', from);
+  url.searchParams.append('data', data);
+  url.searchParams.append('format', format);
+
+  if (navigator.canShare) {
+    navigator.share({
+      title: `Share ${type}`,
+      text: `Share ${type}`,
+      url: url.toString()
+    });
+  } else {
+    interaction.copyText(url.toString());
+    interaction.prompt.prompt_message('Copied link for sharing.');
+  }
+}
+
 // Expose functions to the global scope
 window.utilities = {
   encryptString,

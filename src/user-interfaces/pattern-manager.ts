@@ -118,11 +118,16 @@ export function removePatternOptions(temporary_id: string, event: Event): void {
   );
 }
 
-export function sharePattern() {}
+export function sharePattern(ls_key: string): void {
+if(LS.hasOwnProperty(ls_key)){
+  var json = String(LS.getItem(ls_key))
+  
+}
+}
 
-export function deletePattern(identity): void {
-  if (LS.hasOwnProperty(identity)) {
-    LS.removeItem(identity);
+export function deletePattern(ls_key: string): void {
+  if (LS.hasOwnProperty(ls_key)) {
+    LS.removeItem(ls_key);
     interaction.prompt.prompt_message('Deleted pattern.', 1200);
     interaction.pattern_manager.printPatterns();
   }

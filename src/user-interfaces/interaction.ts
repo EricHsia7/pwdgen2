@@ -263,20 +263,23 @@ function generateHashTagHTML(plain_text) {
   return plain_text;
 }
 
-function copyElement(selector) {
-  if (utilities.qe(selector).tagName === 'INPUT' || utilities.qe(selector).tagName === 'TEXTAREA') {
-    var copyText = utilities.qe(selector).value;
-  } else {
-    var copyText = utilities.qe(selector).textContent;
-  }
-
+function copyText(string: string) {
   var textArea = document.createElement('textarea');
-  textArea.value = copyText;
+  textArea.value = string;
   textArea.setAttribute('readonly', 'readonly');
   document.body.appendChild(textArea);
   textArea.select();
   document.execCommand('Copy');
   textArea.remove();
+}
+
+function copyElement(selector) {
+  if (utilities.qe(selector).tagName === 'INPUT' || utilities.qe(selector).tagName === 'TEXTAREA') {
+    var text = utilities.qe(selector).value;
+  } else {
+    var text = utilities.qe(selector).textContent;
+  }
+  copyText(text);
 }
 
 function copyDetails(k) {
@@ -575,6 +578,7 @@ window.interaction = {
   },
   show,
   generateHashTagHTML,
+  copyText,
   copyElement,
   copyDetails,
   SASBC,
