@@ -45,7 +45,7 @@ function receiveSharedContentFromURL(url: string): void {
     }
     if (valid) {
       if (type === 'pattern') {
-        json = interaction.pattern_editor.removeIdentityFromPattern(json);
+        json = interaction.pattern_editor.addIdentityToPattern(json);
         var id = fine_grained_password.generate(
           [
             {

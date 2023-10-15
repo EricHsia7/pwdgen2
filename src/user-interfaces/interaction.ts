@@ -618,6 +618,7 @@ window.interaction = {
     generatePatternPreview,
     displayPatternComponentInfo,
     addIdentityToPattern,
+    removeIdentityFromPattern,
     syncPatternEditorJSONEditor,
     syncAndFormatPatternEditorJSONEditor,
     initializePatternEditorJSONEditor,
