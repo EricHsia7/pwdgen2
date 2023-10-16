@@ -16,7 +16,6 @@ function shareViaURL(type: shareDataType, from: string, data: string, format: sh
   if (navigator.canShare) {
     navigator.share({
       title: `Share ${type}`,
-      text: `Share ${type}`,
       url: url.toString()
     });
   } else {
