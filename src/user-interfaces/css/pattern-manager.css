@@ -82,3 +82,7 @@
 .pattern-item .pattern-item-action svg path {
   fill: var(--p-main-color);
 }
+
+.pattern-item[default="true"] .pattern-item-action svg path {
+  opacity: 0.3;
+}

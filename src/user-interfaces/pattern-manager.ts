@@ -27,7 +27,7 @@ export function printPatterns(): void {
       'production'
     );
     var ls_key = this_item.LocalStorageKey;
-    html.push(`<div class="pattern-item" id="${id}"><div class="pattern-item-icon"><span class="material-symbols-rounded">${this_item.pattern_icon}</span></div><div class="pattern-item-title">${this_item.pattern_name}</div><div class="pattern-item-action" onclick="interaction.pattern_manager.showPatternOptions('${ls_key}','${id}',event)">${icons.icon_more_options}</div></div>`);
+    html.push(`<div class="pattern-item" id="${id}" default="${this_item.default_pattern ? true : false}"><div class="pattern-item-icon"><span class="material-symbols-rounded">${this_item.pattern_icon}</span></div><div class="pattern-item-title">${this_item.pattern_name}</div><div class="pattern-item-action" onclick="${this_item.default_pattern ? '' : "interaction.pattern_manager.showPatternOptions('" + ls_key + "','" + id + "',event)"}">${icons.icon_more_options}</div></div>`);
   }
   utilities.qe('.pattern_manager .contents-box .pattern-list').innerHTML = html.join('');
 }

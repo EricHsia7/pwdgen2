@@ -6,6 +6,7 @@ _.cloneDeep = require('lodash/cloneDeep');
 
 const pwd_pattern_default: object[] = [
   {
+    default_pattern: true,
     pattern_name: 'Strong',
     pattern_icon: 'key',
     id: '_strong',
@@ -43,6 +44,7 @@ const pwd_pattern_default: object[] = [
     ]
   },
   {
+    default_pattern: true,
     pattern_name: 'Easy to read',
     pattern_icon: 'visibility',
     id: '_strong',
