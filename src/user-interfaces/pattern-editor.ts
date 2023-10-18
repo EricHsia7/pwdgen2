@@ -104,7 +104,7 @@ export function openPatternEditor(mode, ls_key, event, temporary_id): void | str
       pattern_json = JSON.parse(String(LS.getItem(ls_key)));
       interaction.pattern_manager.closePatternManager();
       utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('edit','${ls_key}',event)`);
-      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_tick;
+      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_save;
       utilities.qe('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('edit')`);
     } else {
       return '';

@@ -35,7 +35,8 @@ window.icons = {
   icon_delete,
   icon_share,
   icon_tick,
-  icon_add
+  icon_add,
+  icon_save
 };
 
 export default window.icons;
