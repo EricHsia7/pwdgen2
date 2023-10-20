@@ -7,7 +7,6 @@ import { LS } from '../core/storage';
 var _ = {};
 _.cloneDeep = require('lodash/cloneDeep');
 
-
 window.pattern_editor_current_editor = 'json';
 window.pattern_json = {
   pattern_name: 'Email',
@@ -161,7 +160,7 @@ export function closePatternEditor(mode) {
 }
 
 export function addIdentityToPattern(obj: object): object {
-  var pattern = _.cloneDeep(obj)
+  var pattern = _.cloneDeep(obj);
   var p = function (pattern) {
     var pattern_len = pattern.length;
     for (var j = 0; j < pattern_len; j++) {
@@ -197,11 +196,11 @@ export function addIdentityToPattern(obj: object): object {
   if (pattern.hasOwnProperty('pattern')) {
     pattern.pattern = p(pattern.pattern);
   }
-  return pattern
+  return pattern;
 }
 
 export function removeIdentityFromPattern(obj: object): object {
-  var pattern = _.cloneDeep(obj)
+  var pattern = _.cloneDeep(obj);
   var p = function (pattern) {
     var pattern_len = pattern.length;
     for (var j = 0; j < pattern_len; j++) {
@@ -222,7 +221,7 @@ export function removeIdentityFromPattern(obj: object): object {
   if (pattern.hasOwnProperty('pattern')) {
     pattern.pattern = p(pattern.pattern);
   }
-  return pattern
+  return pattern;
 }
 
 export function generatePatternPreview(): string {
@@ -427,7 +426,7 @@ export function savePatternWithEditor(mode, ls_key): void | string {
   LS.setItem(`${id}`, string);
   interaction.prompt.prompt_message('Saved pattern.');
   interaction.pattern_editor.closePatternEditor();
-  if (mode === 'edit') {
+  if (mode === 'edit' || mode === 'new') {
     interaction.pattern_manager.openPatternManager();
   }
 }
