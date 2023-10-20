@@ -65,6 +65,7 @@ function receiveSharedContentFromURL(url: string): void {
           LS.setItem(id, JSON.stringify(json));
           interaction.prompt.prompt_message('Saved shared pattern.');
           interaction.pattern_manager.openPatternManager();
+          history.replaceState(null, document.title, 'https://erichsia7.github.io/pwdgen2/');
         }
       }
     }
