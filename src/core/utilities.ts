@@ -102,7 +102,11 @@ function checkTouchFeatures(): boolean {
 }
 
 function qe(selector) {
-  return document.querySelector(selector);
+  var elt = document.querySelector(selector);
+  if (elt === null) {
+    elt = document.createElement('div');
+  }
+  return elt;
 }
 
 function qeAll(selector) {
@@ -355,6 +359,20 @@ function blendColors(hexColor, rgbaColor) {
   return `#${blendedR.toString(16).padStart(2, '0')}${blendedG.toString(16).padStart(2, '0')}${blendedB.toString(16).padStart(2, '0')}`;
 }
 
+function stopProp(event): void {
+  var stop = false;
+  if (typeof event === 'object') {
+    if (event instanceof Event) {
+      stop = true;
+    }
+  }
+  if (stop) {
+    event.stopPropagation();
+  }
+}
+
+
+
 // Expose functions to the global scope
 window.utilities = {
   encryptString,
@@ -378,7 +396,8 @@ window.utilities = {
   isDarkMode,
   blendColors,
   encodeSignsToHtmlEntities,
-  isValidURL
+  isValidURL,
+  stopProp
 };
 
 export default window.utilities;

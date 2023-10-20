@@ -153,7 +153,7 @@
     <div class="search-output-box">
       <div class="search-output"></div>
     </div>
-    <div class="blur-mask"></div>
+    <div class="fixed-title-box-mask"></div>
     <div class="fixed-title-box">
       Passwords
       <div class="btn right-top-corner" onclick="interaction.options.openOptions(0)">
@@ -175,7 +175,7 @@
         <input type="text" placeholder="Search" id="search">
       </div>
     </div>
-
+ 
   </div>
 
   <div class="password-page">
@@ -356,7 +356,7 @@
 
   <div class="options_mask" onclick="interaction.options.closeOptions(event)" ontouchstart="interaction.options.closeOptions(event)"></div>
   <div class="options">
-    <li onclick="interaction.add_password.openAddPassword(event)" style="--options-list-n:0;" y="addpassword" group="0" b="0" d="1">
+    <li onclick="interaction.add_password.openAddPassword(event)" style="--options-list-n:0;" y="addpassword" group="0" b="0">
       <div class="l_options_title">Add Password</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -365,7 +365,7 @@
       </div>
     </li>
 
-    <li onclick="interaction.pattern_creator.openPatternCreator(event)" style="--options-list-n:1;" y="newpattern" group="0" d="1">
+    <li onclick="interaction.pattern_editor.openPatternEditor('new','',event)" style="--options-list-n:1;" y="newpattern" group="0">
       <div class="l_options_title">New Pattern</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -375,7 +375,7 @@
     </li>
 
 
-    <li onclick="interaction.openManagePattern()" style="--options-list-n:2;" y="managepatterns" group="0" d="1">
+    <li onclick="interaction.pattern_manager.openPatternManager(event)" style="--options-list-n:2;" y="managepatterns" group="0">
       <div class="l_options_title">Manage Patterns</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -384,7 +384,7 @@
       </div>
     </li>
 
-    <li onclick="interaction.openSettings()" style="--options-list-n:3;" y="opensettings" group="0" d="1">
+    <li onclick="interaction.openSettings()" style="--options-list-n:3;" y="opensettings" group="0">
       <div class="l_options_title">Settings</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -393,7 +393,7 @@
       </div>
     </li>
 
-    <li onclick="interaction.importData(event)" style="--options-list-n:4;" y="importdata" group="0" d="1">
+    <li onclick="interaction.importData(event)" style="--options-list-n:4;" y="importdata" group="0">
       <div class="l_options_title">Import Data</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -402,7 +402,7 @@
       </div>
     </li>
 
-    <li onclick="interaction.exportGeneratedFile(event)" style="--options-list-n:5;" y="importdata" group="0" d="1">
+    <li onclick="interaction.exportGeneratedFile(event)" style="--options-list-n:5;" y="importdata" group="0">
       <div class="l_options_title">Export Data</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -411,7 +411,7 @@
       </div>
     </li>
 
-    <li onclick="interaction.options.refreshPage(event)" style="--options-list-n:6;" y="refresh" group="0" d="1">
+    <li onclick="interaction.options.refreshPage(event)" style="--options-list-n:6;" y="refresh" group="0">
       <div class="l_options_title">Refresh</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -420,7 +420,7 @@
       </div>
     </li>
 
-    <li onclick="interaction.options.viewOnGithub()" style="--options-list-n:7;" y="github" group="0" d="1">
+    <li onclick="interaction.options.viewOnGithub()" style="--options-list-n:7;" y="github" group="0">
       <div class="l_options_title">Github</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -429,16 +429,16 @@
       </div>
     </li>
 
-    <li onclick="interaction.edit_password.openEditPassword()" style="--options-list-n:0;" y="editpassword" group="1" b="0" d="0">
+    <li onclick="interaction.edit_password.openEditPassword()" style="--options-list-n:0;" y="editpassword" group="1" b="0">
       <div class="l_options_title">Edit</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <path d="M58.8056 15.0257L48.96 5.18031L52.952 1.1884C53.7537 0.386661 54.7619-0.00454017 55.9765 0.0147986C57.1912 0.0340745 58.2115 0.45667 59.0374 1.28259L62.7974 5.04262C63.5991 5.84436 64 6.84291 64 8.03827C64 9.23363 63.5871 10.2442 62.7612 11.0701L58.8056 15.0257ZM2.71678 63.9859C1.92464 63.9859 1.27381 63.7311 0.764288 63.2215C0.254763 62.712 0 62.0611 0 61.269L0 55.2343C0 54.8817 0.0627881 54.5545 0.188364 54.2526C0.313941 53.9507 0.521612 53.6428 0.81138 53.3289L45.9825 8.19405L55.7917 18.0033L10.6569 63.1744C10.343 63.4642 10.035 63.6719 9.73316 63.7975C9.43134 63.9231 9.10412 63.9859 8.7515 63.9859L2.71678 63.9859Z" fill="#000000" fill-rule="nonzero" opacity="1" stroke="none" />
+          <path d="M58.8056 15.0257L48.96 5.18031L52.952 1.1884C53.7537 0.386661 54.7619-0.00454017 55.9765 0.0147986C57.1912 0.0340745 58.2115 0.45667 59.0374 1.28259L62.7974 5.04262C63.5991 5.84436 64 6.84291 64 8.03827C64 9.23363 63.5871 10.2442 62.7612 11.0701L58.8056 15.0257ZM2.71678 63.9859C1.92464 63.9859 1.27381 63.7311 0.764288 63.2215C0.254763 62.712 0 62.0611 0 61.269L0 55.2343C0 54.8817 0.0627881 54.5545 0.188364 54.2526C0.313941 53.9507 0.521612 53.6428 0.81138 53.3289L45.9825 8.19405L55.7917 18.0033L10.6569 63.1744C10.343 63.4642 10.035 63.6719 9.73316 63.7975C9.43134 63.9231 9.10412 63.9859 8.7515 63.9859L2.71678 63.9859Z"  fill-rule="nonzero" opacity="1" stroke="none" />
         </svg>
       </div>
     </li>
 
-    <li onclick="interaction.edit_password.deletePassword()" style="--options-list-n:1;" y="deletepassword" group="1" d="0">
+    <li onclick="interaction.edit_password.deletePassword()" style="--options-list-n:1;" y="deletepassword" group="1">
       <div class="l_options_title">Delete</div>
       <div class="l_options_icon">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -450,13 +450,13 @@
 
   </div>
 
-  <div class="pattern_creator">
+  <div class="pattern_editor">
     <div class="contents-box">
       <div class="generation_preview_title">Generation preview</div>
       <div class="generation_preview"></div>
       <div class="pattern_editor_picker">
-        <div class="pattern_editor_picker_option" j="json" s="1" onclick="interaction.pattern_creator.switchEditor('json')">JSON</div>
-        <div class="pattern_editor_picker_option" j="blocks" s="0" onclick="interaction.pattern_creator.switchEditor('blocks')">Blocks</div>
+        <div class="pattern_editor_picker_option" j="json" s="1" onclick="interaction.pattern_editor.switchEditor('json')">JSON</div>
+        <div class="pattern_editor_picker_option" j="blocks" s="0" onclick="interaction.pattern_editor.switchEditor('blocks')">Blocks</div>
       </div>
       <div class="pattern_editor_box">
         <div class="pattern_editor_container" j="blocks">
@@ -471,19 +471,35 @@
       </div>
     </div>
     <div class="fixed-title-box">
-      <div class="btn left-top-corner" onclick="interaction.pattern_creator.closePatternCreator()">
+      <div class="btn left-top-corner" onclick="interaction.pattern_editor.closePatternEditor('new')">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <path d="M44.1954 63.0809L14.8691 33.7546C14.5906 33.4761 14.3956 33.1976 14.2842 32.9191C14.1728 32.6406 14.1171 32.3342 14.1171 32C14.1171 31.6658 14.1728 31.3594 14.2842 31.0809C14.3956 30.8024 14.5906 30.5239 14.8691 30.2454L44.1954 0.91906C44.8082 0.306353 45.588 0 46.5349 0C47.4818 0 48.2616 0.306353 48.8743 0.91906C49.5427 1.58747 49.8769 2.3812 49.8769 3.30026C49.8769 4.21932 49.5427 5.01305 48.8743 5.68146L22.5558 32L48.8743 58.3185C49.5984 59.0426 49.9326 59.8503 49.8769 60.7415C49.8212 61.6327 49.487 62.3847 48.8743 62.9974C48.2059 63.6658 47.4122 64 46.4931 64C45.574 64 44.8082 63.6936 44.1954 63.0809Z" fill-rule="nonzero" opacity="1" stroke="none" />
         </svg>
       </div>
-      Pattern Creator
-      <div class="btn right-top-corner" onclick="interaction.pattern_creator.addPatternWithCreator()">
+      Pattern Editor
+      <div class="btn right-top-corner" onclick="interaction.pattern_editor.savePatternWithEditor('new')">
         <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <path d="M31.98 64C31.0029 64 30.1905 63.6714 29.5429 63.0143C28.8952 62.3571 28.5714 61.5429 28.5714 60.5714L28.5714 35.4286L3.42857 35.4286C2.45714 35.4286 1.64286 35.0981 0.985714 34.4371C0.328571 33.7761 0 32.9571 0 31.98C0 31.0029 0.328571 30.1905 0.985714 29.5429C1.64286 28.8952 2.45714 28.5714 3.42857 28.5714L28.5714 28.5714L28.5714 3.42857C28.5714 2.45714 28.9019 1.64286 29.5629 0.985714C30.2239 0.328571 31.0429 0 32.02 0C32.9971 0 33.8095 0.328571 34.4571 0.985714C35.1048 1.64286 35.4286 2.45714 35.4286 3.42857L35.4286 28.5714L60.5714 28.5714C61.5429 28.5714 62.3571 28.9019 63.0143 29.5629C63.6714 30.2239 64 31.0429 64 32.02C64 32.9971 63.6714 33.8095 63.0143 34.4571C62.3571 35.1048 61.5429 35.4286 60.5714 35.4286L35.4286 35.4286L35.4286 60.5714C35.4286 61.5429 35.0981 62.3571 34.4371 63.0143C33.7761 63.6714 32.9571 64 31.98 64Z" fill-rule="nonzero" opacity="1" stroke="none" />
         </svg>
       </div>
     </div>
   </div>
+
+  <div class="pattern_manager">
+    <div class="contents-box">
+      <div class="pattern-list">
+      </div>
+    </div>
+    <div class="fixed-title-box">
+      <div class="btn left-top-corner" onclick="interaction.pattern_manager.closePatternManager()">
+        <svg stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 64 64" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M44.1954 63.0809L14.8691 33.7546C14.5906 33.4761 14.3956 33.1976 14.2842 32.9191C14.1728 32.6406 14.1171 32.3342 14.1171 32C14.1171 31.6658 14.1728 31.3594 14.2842 31.0809C14.3956 30.8024 14.5906 30.5239 14.8691 30.2454L44.1954 0.91906C44.8082 0.306353 45.588 0 46.5349 0C47.4818 0 48.2616 0.306353 48.8743 0.91906C49.5427 1.58747 49.8769 2.3812 49.8769 3.30026C49.8769 4.21932 49.5427 5.01305 48.8743 5.68146L22.5558 32L48.8743 58.3185C49.5984 59.0426 49.9326 59.8503 49.8769 60.7415C49.8212 61.6327 49.487 62.3847 48.8743 62.9974C48.2059 63.6658 47.4122 64 46.4931 64C45.574 64 44.8082 63.6936 44.1954 63.0809Z" fill-rule="nonzero" opacity="1" stroke="none" />
+        </svg>
+      </div>
+      Manage Patterns
+    </div>
+  </div>
+
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {

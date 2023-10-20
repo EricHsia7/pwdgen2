@@ -1,12 +1,13 @@
 import fine_grained_password from '../core/fine-grained-password';
 import utilities from '../core/utilities';
-var _ = require('lodash');
 const hljs = require('highlight.js/lib/core');
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 import icons from './icons';
 import { LS } from '../core/storage';
+var _ = {};
+_.cloneDeep = require('lodash/cloneDeep');
 
-window.pattern_creator_current_editor = 'json';
+window.pattern_editor_current_editor = 'json';
 window.pattern_json = {
   pattern_name: 'Email',
   pattern_icon: 'alternate_email',
@@ -59,55 +60,76 @@ window.pattern_json = {
 };
 
 window.pattern_json_generation = [];
-export function initializePatternCreatorJSONEditor(): void {
-  interaction.pattern_creator.addIdentityToPattern();
+export function initializePatternEditorJSONEditor(): void {
+  pattern_json = interaction.pattern_editor.addIdentityToPattern(pattern_json);
   utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
   utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
+  utilities.qe('.pattern2').removeAttribute('data-highlighted');
+  utilities.qe('.pattern').removeAttribute('data-highlighted');
   hljs.highlightElement(utilities.qe('.pattern2'));
   hljs.highlightElement(utilities.qe('.pattern'));
-  utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview();
+  utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
 }
 
-export function syncAndFormatPatternCreatorJSONEditor(): void {
+export function syncAndFormatPatternEditorJSONEditor(): void {
   try {
     pattern_json = JSON.parse(utilities.qe('.pattern2').innerText);
-    interaction.pattern_creator.addIdentityToPattern();
+    pattern_json = interaction.pattern_editor.addIdentityToPattern(pattern_json);
     utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
     utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
+    utilities.qe('.pattern2').removeAttribute('data-highlighted');
+    utilities.qe('.pattern').removeAttribute('data-highlighted');
     hljs.highlightElement(utilities.qe('.pattern2'));
     hljs.highlightElement(utilities.qe('.pattern'));
-    utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview();
+    utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
   } catch (e) {}
   utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerHTML;
-  utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview();
+  utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
 }
 
-export function syncPatternCreatorJSONEditor() {
+export function syncPatternEditorJSONEditor() {
   try {
     utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
     pattern_json = JSON.parse(utilities.qe('.pattern2').innerText);
+    utilities.qe('.pattern').removeAttribute('data-highlighted');
     hljs.highlightElement(utilities.qe('.pattern'));
-    utilities.qe('.pattern_creator .generation_preview').innerHTML = generatePatternPreview();
+    utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
   } catch (e) {}
 }
 
-export function openPatternCreator(event) {
+export function openPatternEditor(mode, ls_key, event, temporary_id): void | string {
+  if (mode === 'edit') {
+    if (LS.hasOwnProperty(ls_key)) {
+      pattern_json = JSON.parse(String(LS.getItem(ls_key)));
+      interaction.pattern_manager.closePatternManager();
+      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('edit','${ls_key}',event)`);
+      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_tick;
+      utilities.qe('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('edit')`);
+    } else {
+      return '';
+    }
+  }
+  if (mode === 'new') {
+    interaction.options.closeOptions(event);
+    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('new','',event)`);
+    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_add;
+    utilities.qe('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('new')`);
+  }
   interaction.SASBC(0);
-  interaction.show(utilities.qe('.pattern_creator'), 'block');
-  interaction.options.closeOptions(event);
-  interaction.pattern_creator.initializePatternCreatorJSONEditor();
-  if (pattern_creator_evt === 0) {
-    pattern_creator_evt = 1;
+  interaction.show(utilities.qe('.pattern_editor'), 'block');
+  interaction.pattern_editor.initializePatternEditorJSONEditor();
+  if (pattern_editor_evt === 0) {
+    pattern_editor_evt = 1;
     utilities.qe('.pattern2').addEventListener('input', function (event) {
-      interaction.pattern_creator.syncPatternCreatorJSONEditor();
+      interaction.pattern_editor.syncPatternEditorJSONEditor();
     });
     utilities.qe('.pattern2').addEventListener('blur', function (event) {
-      interaction.pattern_creator.syncAndFormatPatternCreatorJSONEditor();
+      interaction.pattern_editor.syncAndFormatPatternEditorJSONEditor();
     });
     utilities.qe('.pattern2').addEventListener('scroll', function (event) {
       window.requestAnimationFrame(function () {
-        var pattern2 = utilities.qe('.pattern_creator .pattern2');
-        var pattern = utilities.qe('.pattern_creator .pattern');
+        var pattern2 = utilities.qe('.pattern_editor .pattern2');
+        var pattern = utilities.qe('.pattern_editor .pattern');
         var scrollTop = pattern2.pageYOffset || pattern2.scrollTop;
         pattern.scrollTop = scrollTop;
         var scrollHeight: number = pattern2.scrollHeight;
@@ -123,18 +145,22 @@ export function openPatternCreator(event) {
         } else {
           translateY = 0;
         }
-        utilities.qe('.pattern_creator .pattern_editor_json pre code.pattern').style.setProperty('--j-pattern-overscroll-translate', `translateY(${translateY}px)`);
+        utilities.qe('.pattern_editor .pattern_editor_json pre code.pattern').style.setProperty('--js-pattern-overscroll-translate', `translateY(${translateY}px)`);
       });
     });
   }
 }
 
-export function closePatternCreator() {
-  interaction.show(utilities.qe('.pattern_creator'), 'none');
+export function closePatternEditor(mode) {
+  interaction.show(utilities.qe('.pattern_editor'), 'none');
   interaction.SASBC(3);
+  if (mode === 'edit') {
+    interaction.pattern_manager.openPatternManager();
+  }
 }
 
-export function addIdentityToPattern(): void {
+export function addIdentityToPattern(obj: object): object {
+  var pattern = _.cloneDeep(obj);
   var p = function (pattern) {
     var pattern_len = pattern.length;
     for (var j = 0; j < pattern_len; j++) {
@@ -167,9 +193,35 @@ export function addIdentityToPattern(): void {
     }
     return pattern;
   };
-  if (pattern_json.hasOwnProperty('pattern')) {
-    pattern_json.pattern = p(pattern_json.pattern);
+  if (pattern.hasOwnProperty('pattern')) {
+    pattern.pattern = p(pattern.pattern);
   }
+  return pattern;
+}
+
+export function removeIdentityFromPattern(obj: object): object {
+  var pattern = _.cloneDeep(obj);
+  var p = function (pattern) {
+    var pattern_len = pattern.length;
+    for (var j = 0; j < pattern_len; j++) {
+      var this_item = pattern[j];
+      if (this_item.hasOwnProperty('id')) {
+        delete this_item.id;
+      }
+      if (this_item.type === 'string' || this_item === 'regex' || this_item === 'list') {
+      } else {
+        if (this_item.type === 'group') {
+          this_item['group'] = p(this_item['group']);
+        }
+      }
+      pattern.splice(j, 1, this_item);
+    }
+    return pattern;
+  };
+  if (pattern.hasOwnProperty('pattern')) {
+    pattern.pattern = p(pattern.pattern);
+  }
+  return pattern;
 }
 
 export function generatePatternPreview(): string {
@@ -198,16 +250,16 @@ export function generatePatternPreview(): string {
         'production'
       );
       var component_elt = document.createElement('span');
-      component_elt.classList.add('pattern_creator_preview_component');
+      component_elt.classList.add('pattern_editor_preview_component');
       component_elt.id = this_component.component.id ? this_component.component.id : component_id;
       component_elt.setAttribute('path', path);
       component_elt.setAttribute('type', this_component.component.type);
-      component_elt.style.setProperty('--j-component-color-light-text', component_color.light.text.str);
-      component_elt.style.setProperty('--j-component-color-light-bg', component_color.light.bg.str);
-      component_elt.style.setProperty('--j-component-color-dark-text', component_color.dark.text.str);
-      component_elt.style.setProperty('--j-component-color-dark-bg', component_color.dark.bg.str);
+      component_elt.style.setProperty('--js-component-color-light-text', component_color.light.text.str);
+      component_elt.style.setProperty('--js-component-color-light-bg', component_color.light.bg.str);
+      component_elt.style.setProperty('--js-component-color-dark-text', component_color.dark.text.str);
+      component_elt.style.setProperty('--js-component-color-dark-bg', component_color.dark.bg.str);
       component_elt.innerText = this_component.result;
-      component_elt.setAttribute('onclick', `interaction.pattern_creator.displayPatternComponentInfo('${this_component.component.id ? this_component.component.id : component_id}',event)`);
+      component_elt.setAttribute('onclick', `interaction.pattern_editor.displayPatternComponentInfo('${this_component.component.id ? this_component.component.id : component_id}',event)`);
       html.push(component_elt.outerHTML);
     }
     return html.join('');
@@ -225,7 +277,7 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
     group: '',
     list: ''
   };
-  var existing_info = utilities.qeAll('body .pattern_creator_preview_component_info');
+  var existing_info = utilities.qeAll('body .pattern_editor_preview_component_info');
   var existing_info_len = existing_info.length;
   for (var e = 0; e < existing_info_len; e++) {
     removePatternComponentInfo(existing_info[e].id, event);
@@ -269,17 +321,17 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
     var input_elt = document.createElement('input');
     input_elt.setAttribute('value', tostr(component[i]));
     input_elt.setAttribute('readonly', 'readonly');
-    items.push(`<div class="pattern_creator_preview_component_info_item"><div class="pattern_creator_preview_component_info_item_title">${i}</div><div class="pattern_creator_preview_component_info_item_value">${input_elt.outerHTML}</div></div>`);
+    items.push(`<div class="pattern_editor_preview_component_info_item"><div class="pattern_editor_preview_component_info_item_title">${i}</div><div class="pattern_editor_preview_component_info_item_value">${input_elt.outerHTML}</div></div>`);
   }
   var card_elt = document.createElement('div');
   var path = '--';
-  card_elt.classList.add('pattern_creator_preview_component_info');
+  card_elt.classList.add('pattern_editor_preview_component_info');
   card_elt.id = temporary_id;
-  card_elt.innerHTML = `<div class="pattern_creator_preview_component_info_title">Component</div><div class="pattern_creator_preview_component_info_list_container"><div class="pattern_creator_preview_component_info_list">${items.join('')}</div></div><div class="pattern_creator_preview_component_info_button_box"><div class="pattern_creator_preview_component_info_show_in_editor" onclick="interaction.pattern_creator.showComponentInEditor('${temporary_id}','${component.id}',event)">Find</div><div class="pattern_creator_preview_component_info_close" onclick="interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)">Close</div></div>`;
+  card_elt.innerHTML = `<div class="pattern_editor_preview_component_info_title">Component</div><div class="pattern_editor_preview_component_info_list_container"><div class="pattern_editor_preview_component_info_list">${items.join('')}</div></div><div class="pattern_editor_preview_component_info_button_box"><div class="pattern_editor_preview_component_info_show_in_editor" onclick="interaction.pattern_editor.showComponentInEditor('${temporary_id}','${component.id}',event)">Find</div><div class="pattern_editor_preview_component_info_close" onclick="interaction.pattern_editor.removePatternComponentInfo('${temporary_id}',event)">Close</div></div>`;
   var mask_elt = document.createElement('div');
-  mask_elt.classList.add('pattern_creator_preview_component_info_mask');
+  mask_elt.classList.add('pattern_editor_preview_component_info_mask');
   mask_elt.id = `${temporary_id}-mask`;
-  mask_elt.setAttribute(`onclick`, `interaction.pattern_creator.removePatternComponentInfo('${temporary_id}',event)`);
+  mask_elt.setAttribute(`onclick`, `interaction.pattern_editor.removePatternComponentInfo('${temporary_id}',event)`);
   document.body.appendChild(mask_elt);
   document.body.appendChild(card_elt);
   setTimeout(function () {
@@ -292,31 +344,31 @@ export function removePatternComponentInfo(temporary_id: string, event: Event): 
   event.preventDefault();
   interaction.SASBC(3);
 
-  utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).addEventListener(
+  utilities.qe(`body .pattern_editor_preview_component_info#${temporary_id}`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).remove();
+      utilities.qe(`body .pattern_editor_preview_component_info#${temporary_id}`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).addEventListener(
+  utilities.qe(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).remove();
+      utilities.qe(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).remove();
     },
     { once: true }
   );
 
-  utilities.qe(`body .pattern_creator_preview_component_info#${temporary_id}`).setAttribute('o', '0');
-  utilities.qe(`body .pattern_creator_preview_component_info_mask#${temporary_id}-mask`).setAttribute('o', '0');
+  utilities.qe(`body .pattern_editor_preview_component_info#${temporary_id}`).setAttribute('o', '0');
+  utilities.qe(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).setAttribute('o', '0');
 }
 
 export function showComponentInEditor(temporary_id: string, component_id: string, event: Event): void {
-  if (pattern_creator_current_editor === 'blocks') {
+  if (pattern_editor_current_editor === 'blocks') {
   }
-  if (pattern_creator_current_editor === 'json') {
+  if (pattern_editor_current_editor === 'json') {
     var query = `"${component_id}"`;
-    var elt = utilities.qeAll('.pattern_creator .pattern_editor_box .pattern_editor_container[j="json"] .pattern2 .hljs-string');
+    var elt = utilities.qeAll('.pattern_editor .pattern_editor_box .pattern_editor_container[j="json"] .pattern2 .hljs-string');
     var elt_len = elt.length;
     var result_elt: Element;
     for (var i = 0; i < elt_len; i++) {
@@ -325,8 +377,8 @@ export function showComponentInEditor(temporary_id: string, component_id: string
         break;
       }
     }
-    var pattern = utilities.qe('.pattern_creator .pattern_editor_box .pattern_editor_container[j="json"] .pattern');
-    var pattern2 = utilities.qe('.pattern_creator .pattern_editor_box .pattern_editor_container[j="json"] .pattern2');
+    var pattern = utilities.qe('.pattern_editor .pattern_editor_box .pattern_editor_container[j="json"] .pattern');
+    var pattern2 = utilities.qe('.pattern_editor .pattern_editor_box .pattern_editor_container[j="json"] .pattern2');
     var offsetTop = result_elt.offsetTop - pattern2.getBoundingClientRect().height / 2 - result_elt.getBoundingClientRect().height / 2;
     pattern2.scrollTo({
       top: offsetTop,
@@ -342,38 +394,51 @@ export function showComponentInEditor(temporary_id: string, component_id: string
   removePatternComponentInfo(temporary_id, event);
 }
 
-export function addPatternWithCreator(): void | string {
+export function savePatternWithEditor(mode, ls_key): void | string {
   var check = fine_grained_password.checkPatternQualification(pattern_json);
   if (!check.result) {
-    /*interaction.prompt.prompt_message(`Cannot add pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)*/
-    interaction.pattern_creator.displayAddPatternErrors(check.errors);
+    /*interaction.prompt.prompt_message(`Cannot save pattern due to error${(check.errors.length > 1) ? 's' : ''}.`)*/
+    interaction.pattern_editor.displaySavePatternErrors(check.errors);
     return '';
   }
   var string = JSON.stringify(pattern_json);
-  var id = fine_grained_password.generate(
-    [
-      {
-        type: 'regex',
-        regex: '/[a-zA-Z0-9]/g',
-        quantity: 32,
-        repeat: true
-      }
-    ],
-    'production'
-  );
-  LS.setItem(`pwdgen2_pattern_b_${id}`, string);
-  interaction.prompt.prompt_message('Added pattern.');
-  interaction.pattern_creator.closePatternCreator();
+  var id = '';
+  if (mode === 'new') {
+    id = fine_grained_password.generate(
+      [
+        {
+          type: 'string',
+          string: 'pwdgen2_pattern_b_'
+        },
+        {
+          type: 'regex',
+          regex: '/[a-zA-Z0-9]/g',
+          quantity: 32,
+          repeat: true
+        }
+      ],
+      'production'
+    );
+  }
+  if (mode === 'edit') {
+    id = ls_key;
+  }
+  LS.setItem(`${id}`, string);
+  interaction.prompt.prompt_message('Saved pattern.');
+  interaction.pattern_editor.closePatternEditor();
+  if (mode === 'edit' || mode === 'new') {
+    interaction.pattern_manager.openPatternManager();
+  }
 }
 
-export function displayAddPatternErrors(errors) {
+export function displaySavePatternErrors(errors) {
   interaction.SASBC(2);
   var error_html = function (error) {
     var elt = document.createElement('div');
-    elt.classList.add('pattern_creator_add_pattern_errors_list_item');
+    elt.classList.add('pattern_editor_save_pattern_errors_list_item');
     var title_elt = document.createElement('div');
-    title_elt.classList.add('pattern_creator_add_pattern_errors_list_item_title');
-    title_elt.innerText = utilities.encodeSignsToHtmlEntities(error);
+    title_elt.classList.add('pattern_editor_save_pattern_errors_list_item_title');
+    title_elt.innerText = utilities.encodeSignsToHtmlEntities(error.message);
     elt.innerHTML = title_elt.outerHTML;
     return elt.outerHTML;
   };
@@ -399,12 +464,12 @@ export function displayAddPatternErrors(errors) {
   );
   var elt = document.createElement('div');
   elt.id = temporary_id;
-  elt.classList.add('pattern_creator_add_pattern_errors');
-  elt.innerHTML = `<div class="pattern_creator_add_pattern_errors_title">Occurred Error${errors.length > 1 ? 's' : ''}</div><div class="pattern_creator_add_pattern_errors_list_container"><div class="pattern_creator_add_pattern_errors_list">${errors_html.join('')}</div></div><div class="pattern_creator_add_pattern_errors_button_box"><div class="pattern_creator_add_pattern_errors_go_to_documents" onclick="interaction.pattern_creator.go_to_documents()">Go to docs</div><div class="pattern_creator_add_pattern_errors_close" onclick="interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)">Close</div></div>`;
+  elt.classList.add('pattern_editor_save_pattern_errors');
+  elt.innerHTML = `<div class="pattern_editor_save_pattern_errors_title">Occurred Error${errors.length > 1 ? 's' : ''}</div><div class="pattern_editor_save_pattern_errors_list_container"><div class="pattern_editor_save_pattern_errors_list">${errors_html.join('')}</div></div><div class="pattern_editor_save_pattern_errors_button_box"><div class="pattern_editor_save_pattern_errors_go_to_documents" onclick="interaction.pattern_editor.go_to_documents()">Go to docs</div><div class="pattern_editor_save_pattern_errors_close" onclick="interaction.pattern_editor.removeSavePatternErrors('${temporary_id}',event)">Close</div></div>`;
   var mask = document.createElement('div');
   mask.id = `${temporary_id}-mask`;
-  mask.classList.add('pattern_creator_add_pattern_errors_mask');
-  mask.setAttribute(`onclick`, `interaction.pattern_creator.removeAddPatternErrors('${temporary_id}',event)`);
+  mask.classList.add('pattern_editor_save_pattern_errors_mask');
+  mask.setAttribute(`onclick`, `interaction.pattern_editor.removeSavePatternErrors('${temporary_id}',event)`);
   document.body.appendChild(mask);
   document.body.appendChild(elt);
   setTimeout(function () {
@@ -413,44 +478,44 @@ export function displayAddPatternErrors(errors) {
   }, 1);
 }
 
-export function removeAddPatternErrors(temporary_id: string, event: Event): void {
+export function removeSavePatternErrors(temporary_id: string, event: Event): void {
   event.preventDefault();
   interaction.SASBC(3);
-  utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).addEventListener(
+  utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).remove();
+      utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).addEventListener(
+  utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).remove();
+      utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body .pattern_creator_add_pattern_errors#${temporary_id}`).setAttribute('o', '0');
-  utilities.qe(`body .pattern_creator_add_pattern_errors_mask#${temporary_id}-mask`).setAttribute('o', '0');
+  utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).setAttribute('o', '0');
+  utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).setAttribute('o', '0');
 }
 
 export function switchEditor(editor: string): void | string {
   if (editor === 'blocks') {
-    interaction.pattern_creator.syncAndFormatPatternCreatorJSONEditor();
+    interaction.pattern_editor.syncAndFormatPatternEditorJSONEditor();
     /* pending message */
     interaction.prompt.prompt_message('This editor is unavailable at this time.');
     return '';
   }
-  pattern_creator_current_editor = editor;
+  pattern_editor_current_editor = editor;
   var check = fine_grained_password.checkPatternQualification(pattern_json);
   if (!check.result) {
-    displayAddPatternErrors(check.errors);
+    displaySavePatternErrors(check.errors);
     return '';
   }
   var all_editor_container = utilities.qe(`.pattern_editor_box .pattern_editor_container`);
   var editor_container = utilities.qe(`.pattern_editor_box .pattern_editor_container[j="${editor}"]`);
-  var all_tab = utilities.qeAll(`.pattern_creator .pattern_editor_picker .pattern_editor_picker_option`);
-  var tab = utilities.qe(`.pattern_creator .pattern_editor_picker .pattern_editor_picker_option[j="${editor}"]`);
+  var all_tab = utilities.qeAll(`.pattern_editor .pattern_editor_picker .pattern_editor_picker_option`);
+  var tab = utilities.qe(`.pattern_editor .pattern_editor_picker .pattern_editor_picker_option[j="${editor}"]`);
   for (var i = 0; i < 2; i++) {
     all_tab[i].setAttribute('s', '0');
     all_editor_container.setAttribute('s', '0');

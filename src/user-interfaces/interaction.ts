@@ -3,7 +3,8 @@ import utilities from '../core/utilities';
 import Xsearch from '../core/search';
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword, generateExportFile } from '../core/storage';
 import icons from './icons';
-import { openPatternCreator, closePatternCreator, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, syncPatternCreatorJSONEditor, syncAndFormatPatternCreatorJSONEditor, initializePatternCreatorJSONEditor, removePatternComponentInfo, showComponentInEditor, addPatternWithCreator, displayAddPatternErrors, removeAddPatternErrors, switchEditor, go_to_documents } from './pattern-creator';
+import { openPatternEditor, closePatternEditor, generatePatternPreview, displayPatternComponentInfo, addIdentityToPattern, removeIdentityFromPattern, syncPatternEditorJSONEditor, syncAndFormatPatternEditorJSONEditor, initializePatternEditorJSONEditor, removePatternComponentInfo, showComponentInEditor, savePatternWithEditor, displaySavePatternErrors, removeSavePatternErrors, switchEditor, go_to_documents } from './pattern-editor';
+import { openPatternManager, closePatternManager, printPatterns, showPatternOptions, removePatternOptions, sharePattern, deletePattern } from './pattern-manager';
 import { openPassword, closePassword, openAddPassword, closeAddPassword, addPasswordWithForm, printPatternPresets, applyPreset, openEditPassword, closeEditPassword, modifyPasswordWithEditor, deletePassword, confirmToDeletePassword } from './password';
 
 var FontFaceObserver = require('fontfaceobserver');
@@ -23,6 +24,8 @@ window.lazyPasswordListIcons = {
   loaded: []
 };
 
+window.prompt_register = {};
+
 function lazyLoadPasswordListIcon(identity, url) {
   var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`);
   var icon_elt = item_elt.querySelector('.password-item-website-icon');
@@ -32,7 +35,7 @@ function lazyLoadPasswordListIcon(identity, url) {
       window.lazyPasswordListIcons.unloaded.splice(index, 1);
       window.lazyPasswordListIcons.loaded.push(identity);
       item_elt.setAttribute('icon', '1');
-      icon_elt.style.setProperty('--j-website-icon', `url(${url})`);
+      icon_elt.style.setProperty('--js-website-icon', `url(${url})`);
     }
   }
 }
@@ -154,12 +157,12 @@ function prompt_message(message, duration) {
   );
 }
 
-function prompt_asking(message: string, option1: string, option1_func: string, option2: string, option2_func: string) {
+function prompt_asking(message: string, option1: string, option1_func: Function, option2: string, option2_func: Function) {
   var temporary_id = fine_grained_password.generate(
     [
       {
         type: 'string',
-        string: 'a-'
+        string: 'a_'
       },
       {
         type: 'regex',
@@ -177,9 +180,18 @@ function prompt_asking(message: string, option1: string, option1_func: string, o
   var prompt_asking_elt = document.createElement('div');
   prompt_asking_elt.classList.add('prompt_asking');
   prompt_asking_elt.id = temporary_id;
-  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="${option1_func};interaction.prompt.close_prompt_asking('${temporary_id}')">${option1}</div><div class="prompt_asking_option2" onclick="${option2_func};interaction.prompt.close_prompt_asking('${temporary_id}')">${option2}</div></div>`;
+  prompt_asking_elt.innerHTML = `<div class="prompt_asking_message">${message}</div><div class="prompt_asking_options"><div class="prompt_asking_option1" onclick="prompt_register['${temporary_id}']['opt1']()">${option1}</div><div class="prompt_asking_option2" onclick="prompt_register['${temporary_id}']['opt2']()">${option2}</div></div>`;
   document.body.appendChild(mask_elt);
   document.body.appendChild(prompt_asking_elt);
+  prompt_register[temporary_id] = {};
+  prompt_register[temporary_id]['opt1'] = function () {
+    option1_func();
+    interaction.prompt.close_prompt_asking(temporary_id);
+  };
+  prompt_register[temporary_id]['opt2'] = function () {
+    option2_func();
+    interaction.prompt.close_prompt_asking(temporary_id);
+  };
   setTimeout(function () {
     utilities.qe(`body #${temporary_id}`).setAttribute('o', '1');
     utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '1');
@@ -199,6 +211,7 @@ function close_prompt_asking(temporary_id) {
     'transitionend',
     function () {
       utilities.qe(`body #${temporary_id}_mask`).remove();
+      delete prompt_register[temporary_id];
     },
     { once: true }
   );
@@ -250,20 +263,23 @@ function generateHashTagHTML(plain_text) {
   return plain_text;
 }
 
-function copyElement(selector) {
-  if (utilities.qe(selector).tagName === 'INPUT' || utilities.qe(selector).tagName === 'TEXTAREA') {
-    var copyText = utilities.qe(selector).value;
-  } else {
-    var copyText = utilities.qe(selector).textContent;
-  }
-
+function copyText(string: string) {
   var textArea = document.createElement('textarea');
-  textArea.value = copyText;
+  textArea.value = string;
   textArea.setAttribute('readonly', 'readonly');
   document.body.appendChild(textArea);
   textArea.select();
   document.execCommand('Copy');
   textArea.remove();
+}
+
+function copyElement(selector) {
+  if (utilities.qe(selector).tagName === 'INPUT' || utilities.qe(selector).tagName === 'TEXTAREA') {
+    var text = utilities.qe(selector).value;
+  } else {
+    var text = utilities.qe(selector).textContent;
+  }
+  copyText(text);
 }
 
 function copyDetails(k) {
@@ -319,7 +335,7 @@ function openSearch() {
     });
     search_evt = 1;
   }
-  utilities.qe('.main-page .blur-mask').setAttribute('status', '1');
+  utilities.qe('.main-page .fixed-title-box-mask').setAttribute('status', '1');
   utilities.qe('.main-page .fixed-title-box').setAttribute('status', '1');
   utilities.qe('.main-page .search-output-box').setAttribute('status', '1');
   utilities.qe('.main-page .search-box').setAttribute('status', '1');
@@ -331,7 +347,7 @@ function openSearch() {
 }
 
 function closeSearch() {
-  utilities.qe('.main-page .blur-mask').setAttribute('status', '0');
+  utilities.qe('.main-page .fixed-title-box-mask').setAttribute('status', '0');
   utilities.qe('.main-page .fixed-title-box').setAttribute('status', '0');
   utilities.qe('.main-page .search-output-box').setAttribute('status', '0');
   utilities.qe('.main-page .search-box').setAttribute('status', '0');
@@ -436,7 +452,7 @@ function printSavedPasswordList(): void {
   var html = [];
   for (var k = 0; k < list_len; k++) {
     var tags = [];
-    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')" pwd-id="${list[k].id}" icon="${list[k].website_icon === false ? '-1' : '0'}" icon-url="${list[k].website_icon}"><div class="password-item-website-icon" style="--j-website-icon:var(--p-e5e5ea)"></div><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`);
+    html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')" pwd-id="${list[k].id}" icon="${list[k].website_icon === false ? '-1' : '0'}" icon-url="${list[k].website_icon}"><div class="password-item-website-icon" style="--js-website-icon:var(--p-e5e5ea)"></div><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`);
   }
   utilities.qe('.password-list').innerHTML = html.join('');
   interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler();
@@ -465,7 +481,7 @@ function openOptions(r) {
 }
 
 function closeOptions(event) {
-  event.stopPropagation();
+  utilities.stopProp(event);
   utilities.qe('.options').setAttribute('k', '0');
   utilities.qe('.options').addEventListener(
     'transitionend',
@@ -562,6 +578,7 @@ window.interaction = {
   },
   show,
   generateHashTagHTML,
+  copyText,
   copyElement,
   copyDetails,
   SASBC,
@@ -595,22 +612,32 @@ window.interaction = {
     refreshPage,
     viewOnGithub
   },
-  pattern_creator: {
-    openPatternCreator,
-    closePatternCreator,
+  pattern_editor: {
+    openPatternEditor,
+    closePatternEditor,
     generatePatternPreview,
     displayPatternComponentInfo,
     addIdentityToPattern,
-    syncPatternCreatorJSONEditor,
-    syncAndFormatPatternCreatorJSONEditor,
-    initializePatternCreatorJSONEditor,
+    removeIdentityFromPattern,
+    syncPatternEditorJSONEditor,
+    syncAndFormatPatternEditorJSONEditor,
+    initializePatternEditorJSONEditor,
     removePatternComponentInfo,
     showComponentInEditor,
-    addPatternWithCreator,
-    displayAddPatternErrors,
-    removeAddPatternErrors,
+    savePatternWithEditor,
+    displaySavePatternErrors,
+    removeSavePatternErrors,
     switchEditor,
     go_to_documents
+  },
+  pattern_manager: {
+    openPatternManager,
+    closePatternManager,
+    printPatterns,
+    showPatternOptions,
+    removePatternOptions,
+    sharePattern,
+    deletePattern
   },
   password_page: {
     openPassword,
