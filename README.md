@@ -160,10 +160,10 @@ It provides color-coded feedback, making it easier for users to identify the sec
     - [ ]  Choose Method
         - [x]  Random (default)
         - [ ]  Choose manually in generating: display an interface to ask user
-- [ ]  Pattern Manager
+- [x]  Pattern Manager
     - [x] Edit existing pattern
     - [x] Delete existing pattern
-    - [ ] Share existing pattern via link
+    - [x] Share existing pattern via link
 
 ### Password
 
