@@ -414,6 +414,17 @@ function checkPatternQualification(pattern) {
       result *= check_hasOwnProperty(object, 'date');
       result *= check_hasOwnProperty(object, 'date_pattern');
       if (typeof object['date'] === 'string') {
+        if (!(date === 'today')) {
+          if (!(date === 'yesterday')) {
+            if (!(date === 'tomorrow')) {
+              if (!(date.match(date_component_date_time_stamp_regex) === null)) {
+                errors.push({ message: `The date in ${JSON.stringify(object)} is invalid on formats.`, type: 'invalid value' });
+                result *= 0;
+              }
+            }
+          }
+        }
+
         if (!object['date'].match(date_component_date_offseting_time_regex)) {
           errors.push({ message: `The date in ${JSON.stringify(object)} is invalid on formats.`, type: 'invalid value' });
           result *= 0;
