@@ -118,6 +118,8 @@ const getPatterns = function (returnLocalStorageKey) {
   return pwd_pattern_default.concat(fine_grained_password.pwd_pattern_custom);
 };
 
+type date_component_date = 'today' | 'yesterday' | 'tomorrow' | string;
+
 // Function to generate a string depending on the pattern
 function generate(options, mode) {
   // Use lodash to clone the options (pattern) to avoid syncing with the original list declared above → make the declared pattern usable repeatedly
@@ -142,6 +144,83 @@ function generate(options, mode) {
     const chars: string = matches ? matches.join('') : '';
     // Return the joined string
     return chars;
+  };
+
+  const get_date_string_from_pattern = function (date: date_component_date, pattern: string) {
+    const date_component_regex = /(YYYY|yyyy|MM|M|DD|D|hh|h|mm|m|ss|s)/gm;
+    const date_component_date_time_stamp_regex = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2}|))$/gm;
+    const date_component_date_offseting_time_regex = /today\#(\-|\+){1,1}([0-9]{1,})/gm;
+    //convert the date to a date object
+    var date_obj = new Date();
+    if (date === 'today') {
+    }
+    if (date === 'yesterday') {
+      date_obj.setDate(date_obj.getDate() - 1);
+    }
+    if (date === 'tomorrow') {
+      date_obj.setDate(date_obj.getDate() + 1);
+    }
+    if (!(date.match(date_component_date_time_stamp_regex) === null)) {
+      date_obj = new Date(date);
+    }
+    if (!(date.match(date_component_date_offseting_time_regex) === null)) {
+      var match = date_component_date_offseting_time_regex.exec(date);
+      var cofficient = 0;
+      if (match[1] === '+') {
+        cofficient = 1;
+      }
+      if (match[1] === '-') {
+        cofficient = -1;
+      }
+      var offset = cofficient * parseInt(match[2]);
+      date_obj.setDate(date_obj.getDate() + offset);
+    }
+    //get the corresponding values of the date object
+    var year = String(date_obj.getFullYear());
+    var month = String(date_obj.getMonth() + 1); //the month in javascript counts from 0 to 11
+    var date = String(date_obj.getDate());
+    var hours = String(date_obj.getHours());
+    var minutes = String(date_obj.getMinutes());
+    var seconds = String(date_obj.getSeconds());
+    //replace the qualified part in the pattern with gotten values
+    return pattern.replaceAll(date_component_regex, function (match) {
+      if (match === 'YYYY') {
+        return year;
+      }
+      if (match === 'yyyy') {
+        return year;
+      }
+      if (match === 'MM') {
+        return month.padStart(2, '0');
+      }
+      if (match === 'M') {
+        return month;
+      }
+      if (match === 'DD') {
+        return date.padStart(2, '0');
+      }
+      if (match === 'D') {
+        return date;
+      }
+      if (match === 'hh') {
+        return hours.padStart(2, '0');
+      }
+      if (match === 'h') {
+        return hours;
+      }
+      if (match === 'mm') {
+        return minutes.padStart(2, '0');
+      }
+      if (match === 'm') {
+        return minutes;
+      }
+      if (match === 'ss') {
+        return seconds.padStart(2, '0');
+      }
+      if (match === 's') {
+        return seconds;
+      }
+    });
   };
 
   const pattern_len: number = pattern.length;
@@ -187,6 +266,9 @@ function generate(options, mode) {
           this_content.splice(random_index, 1);
         }
       }
+    }
+
+    if (this_item['type'] === 'date') {
     }
 
     if (this_item['type'] === 'group') {
