@@ -120,6 +120,10 @@ const getPatterns = function (returnLocalStorageKey) {
 
 type date_component_date = 'today' | 'yesterday' | 'tomorrow' | string;
 
+const date_component_regex = /(YYYY|yyyy|MM|M|DD|D|hh|h|mm|m|ss|s)/gm;
+const date_component_date_time_stamp_regex = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2}|))$/gm;
+const date_component_date_offseting_time_regex = /today\#(\-|\+){1,1}([0-9]{1,})/gm;
+
 // Function to generate a string depending on the pattern
 function generate(options, mode) {
   // Use lodash to clone the options (pattern) to avoid syncing with the original list declared above → make the declared pattern usable repeatedly
@@ -147,9 +151,6 @@ function generate(options, mode) {
   };
 
   const get_date_string_from_pattern = function (date: date_component_date, pattern: string) {
-    const date_component_regex = /(YYYY|yyyy|MM|M|DD|D|hh|h|mm|m|ss|s)/gm;
-    const date_component_date_time_stamp_regex = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2}|))$/gm;
-    const date_component_date_offseting_time_regex = /today\#(\-|\+){1,1}([0-9]{1,})/gm;
     //convert the date to a date object
     var date_obj = new Date();
     if (date === 'today') {
@@ -269,6 +270,7 @@ function generate(options, mode) {
     }
 
     if (this_item['type'] === 'date') {
+      result = get_date_string_from_pattern(this_item['date'], this_item['date_pattern']);
     }
 
     if (this_item['type'] === 'group') {
@@ -405,6 +407,17 @@ function checkPatternQualification(pattern) {
         }
       } else {
         errors.push({ message: `The type of the property "regex" in ${omitobject(object)} is not a string.`, type: 'type' });
+        result *= 0;
+      }
+    }
+    if (type === 'date') {
+      if (typeof object['date'] === 'string') {
+        if (!object['date'].match(date_component_date_offseting_time_regex)) {
+          errors.push({ message: `The date in ${JSON.stringify(object)} is invalid on formats.`, type: 'invalid value' });
+          result *= 0;
+        }
+      } else {
+        errors.push({ message: `The type of the property "date" in ${omitobject(object)} is not a string.`, type: 'type' });
         result *= 0;
       }
     }
