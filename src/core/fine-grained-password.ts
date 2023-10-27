@@ -336,7 +336,7 @@ function checkPatternQualification(pattern) {
     var result = 1;
     result *= check_hasOwnProperty(object, 'type');
     var type = object['type'];
-    if (type === 'string' || type === 'regex' || type === 'list' || type === 'group') {
+    if (type === 'string' || type === 'regex' || type === 'list' || type === 'group' || type === 'date') {
       result *= check_hasOwnProperty(object, object['type']);
     } else {
       errors.push({ message: `The type "${type}" in ${omitobject(object)} is not supported at this time.`, type: 'type' });
@@ -411,6 +411,8 @@ function checkPatternQualification(pattern) {
       }
     }
     if (type === 'date') {
+      result *= check_hasOwnProperty(object, 'date');
+      result *= check_hasOwnProperty(object, 'date_pattern');
       if (typeof object['date'] === 'string') {
         if (!object['date'].match(date_component_date_offseting_time_regex)) {
           errors.push({ message: `The date in ${JSON.stringify(object)} is invalid on formats.`, type: 'invalid value' });
@@ -418,6 +420,10 @@ function checkPatternQualification(pattern) {
         }
       } else {
         errors.push({ message: `The type of the property "date" in ${omitobject(object)} is not a string.`, type: 'type' });
+        result *= 0;
+      }
+      if (!(typeof object['date_pattern'] === 'string')) {
+        errors.push({ message: `The type of the property "date_pattern" in ${omitobject(object)} is not a string.`, type: 'type' });
         result *= 0;
       }
     }
