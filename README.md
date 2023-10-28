@@ -19,7 +19,7 @@ Generate strong passwords based on predefined patterns.
 
 #### Components
 * A component must be loaded up in an array.
-* There are 4 types of components that you can use, including `string`, `regex`, `list`, and `group`.
+* There are 5 types of components that you can use, including `string`, `regex`, `list`, `date`, and `group`.
 * A component must come in object type (for JavaScript).
 * The generation process is progressive and cumulative, like writing from left to right, and the generator will generate a string/text according to your configuration step by step.
 
@@ -32,10 +32,18 @@ A string component will make the generator directly put a string you specified a
 Regular expression must be provided in full format, including expression and flags. Flags is a settings that affect the behavior of the regular expression. For example, the case-insensitive flag `i` allows matching regardless of letter case.
 
 ###### list
-A list component can only contain strings, and the generator will randomly choose one to put at the end of the result at one time.
+A list component can only contain strings, and the generator will randomly choose one from the list to put at the end of the result at one time.
+
+###### date
+A date component will make the generator convert a date to a string according to the date pattern. This property comes in `string`, and a qualified date pattern must obey the format. The available values and format include `today`, `yesterday`, `tomorrow`, and `today#offset`. For example, the value can be `today#+7`, representing the date of 7 days from now.
+
+Syntax of **today#offset**:
+1. The `offset` must include an arithmetic operator and a number coming in string put following the operator.
+2. The available operator are unary plus operator (+) and unary negation operator (-).
+3. The number represents offset of the date from today.
 
 ###### group
-A group component can load up 3 types of components mentioned above, and you can make the generator carry out actions on the result of a group.
+A group component can load up 4 types of components mentioned above, and you can make the generator implement actions on the result of a group.
 
 ##### Properties of a component
 ###### type
@@ -49,6 +57,24 @@ The value of this boolean property has two options, `true` or `false`. To ensure
 
 ###### quantity
 This property comes in `number`, specifying the times of choosing actions. This is applicable and required for some types of components, including `regex` and `list`.
+
+###### date_pattern
+This property is only for the component `date`. To make it function well, you need to write the pattern accoding to the format. The available keys include `YYYY`, `MM`, `M`, `DD`, `D`, `hh`, `h`, `mm`, `m`, `ss`, and `s`. The uppercase ones represent **Year**, **Month**, and **Date**. On the other hand, the lowercase ones represent **hours**, **minutes**, and **seconds**. Similarly, keys of both cases with longer length have a padding before the number. For example, you can fill this property in with `YYYY/MM/DD`.
+
+The examples of values corresponding to the keys:
+| Key | 2023-01-02T01:02:03 | 2023-10-20T10:20:30 |
+| --- | --- | --- |
+| YYYY | 2023 | 2023 |
+| MM | 01 | 10 |
+| M | 1 | 10 |
+| DD | 02 | 20 |
+| D | 2 | 20 |
+| hh | 01 | 10 |
+| h | 1 | 10 |
+| mm | 02 | 20 |
+| m | 2 | 20 |
+| ss | 03 | 30 |
+| s | 3 | 30 |
 
 ###### actions
 This property comes in `array`, and the available value is `shuffle` at this time. This property is only for the component `group`. For example, it might looks like `{"type": "group", "group": [...], "actions": ["shuffle", "shuffle", "shuffle"]`.
