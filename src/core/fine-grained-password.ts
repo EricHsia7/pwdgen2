@@ -411,7 +411,6 @@ function checkPatternQualification(pattern) {
       }
     }
     if (type === 'date') {
-      result *= check_hasOwnProperty(object, 'date');
       result *= check_hasOwnProperty(object, 'date_pattern');
       if (typeof object['date'] === 'string') {
         if (!(object['date'] === 'today')) {
