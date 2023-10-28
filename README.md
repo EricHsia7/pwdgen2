@@ -35,13 +35,14 @@ Regular expression must be provided in full format, including expression and fla
 A list component can only contain strings, and the generator will randomly choose one from the list to put at the end of the result at one time.
 
 ###### date
-A date component will make the generator convert a date to a string according to the date pattern. This property comes in `string`, and a qualified date pattern must obey the format. The available values and format include `today`, `yesterday`, `tomorrow`, and `today#offset`. For example, the value can be `today#+7`, representing the date of 7 days from now.
+A date component will make the generator convert a date to a string according to the date pattern. This property comes in `string`, and a qualified date pattern must obey the format. The available values and format include `today`, `yesterday`, `tomorrow`, and `today#offset`.
 
 Syntax of **today#offset**:
 1. The `offset` must include an arithmetic operator and a number coming in string put following the operator.
 2. The available operator are unary plus operator (+) and unary negation operator (-).
 3. The number represents offset of the date from today.
 
+For example, the value can be `today#+7`, representing the date of 7 days from now.
 ###### group
 A group component can load up 4 types of components mentioned above, and you can make the generator implement actions on the result of a group.
 
