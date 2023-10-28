@@ -188,9 +188,6 @@ function generate(options, mode) {
       if (match === 'YYYY') {
         return year;
       }
-      if (match === 'yyyy') {
-        return year;
-      }
       if (match === 'MM') {
         return month.padStart(2, '0');
       }
