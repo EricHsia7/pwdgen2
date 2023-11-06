@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: npm run build
+        run: npm run build -- --config webpack.config.prod.js
 
       - name: Copy index.html to root dictionary
         run: cp dist/index.html .
