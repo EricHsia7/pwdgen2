@@ -6,7 +6,6 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const AdvancedPreset = require('cssnano-preset-advanced');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const PrettierPlugin = require('prettier-webpack-plugin');
 
 function generateRandomString(length) {
   const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -49,14 +48,6 @@ module.exports = (env, argv) => {
             }
           }
         ]
-      }),
-      new PrettierPlugin({
-        printWidth: 512, //  Specify  the  length  of  line  that  the  printer  will  wrap  on.
-        tabWidth: 2, //  Specify  the  number  of  spaces  per  indentation-level.
-        useTabs: false, //  Indent  lines  with  tabs  instead  of  spaces.
-        semi: true, //  Print  semicolons  at  the  ends  of  statements.
-        encoding: 'utf-8', //  Which  encoding  scheme  to  use  on  files
-        extensions: ['.js', '.ts', '.css'] //  Which  file  extensions  to  process
       })
     ],
     target: ['web', 'es6'], // Target the browser environment (es6 is the default for browsers)
