@@ -22,56 +22,20 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install axios
-        run: npm install axios
-
-      - name: Report status
-        run: node workflow_message.js send "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHAT_ID }}" "Launch pages" "Build project" "In Progress"
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-  
       - name: Build project
         run: npm run build
 
       - name: Copy index.html to root dictionary
         run: cp dist/index.html .
 
-      - name: Report status
-        run: node workflow_message.js update "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHAT_ID }}" "Launch pages" "Build project" "Success"
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
       - name: Install canvas package
         run: npm install canvas
-
-      - name: Report status
-        run: node workflow_message.js update "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHAT_ID }}" "Launch pages" "Generate splash screen" "In Progress"
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
       - name: Generate splash screen
         run: node generate_splash_screen.js
 
-      - name: Report status
-        run: node workflow_message.js update "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHAT_ID }}" "Launch pages" "Generate splash screen" "Success"
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
       - name: Uninstall canvas package
         run: npm uninstall canvas
-
-      - name: Report status
-        run: node workflow_message.js update "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHAT_ID }}" "Launch pages" "--" "All Success"
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-
-      - name: Remove message id 
-        run: node workflow_message.js remove
 
       - name: Deploy with gh-pages
         run: |
