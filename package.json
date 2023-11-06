@@ -1,6 +1,6 @@
 {
   "name": "@erichsia7/pwdgen2",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Password Generator—your password assistant",
   "main": "dist/index.min.js",
   "private": false,

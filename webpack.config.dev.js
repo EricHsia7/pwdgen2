@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
   return {
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[name].[contenthash].min.css', // Output CSS filename
+        filename: 'index.css', // Output CSS filename
       }),
       new HtmlWebpackPlugin({
         template: './src/index.html', // Path to your custom HTML template file
@@ -56,7 +56,7 @@ module.exports = (env, argv) => {
     mode: 'development', // Set the mode to 'production' or 'development'
     entry: './src/index.ts', // Entry point of your application
     output: {
-      filename: isProduction ? '[name].[contenthash].min.js' : 'index.js', // Output bundle filename
+      filename: 'index.js', // Output bundle filename
       path: path.resolve(__dirname, 'dist'), // Output directory for bundled files
       publicPath: 'https://erichsia7.github.io/pwdgen2/dist/',
       library: {
@@ -90,9 +90,9 @@ module.exports = (env, argv) => {
       mainFields: ['browser', 'module', 'main'],
     },
     optimization: {
-      minimize: isProduction,
+      minimize: false,
     },
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
       hot: true,
