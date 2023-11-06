@@ -90,7 +90,7 @@ module.exports = (env, argv) => {
     optimization: {
       minimize: false
     },
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
       hot: true
