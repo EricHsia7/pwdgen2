@@ -31,10 +31,10 @@ jobs:
 
       - name: Copy the things to dist dictionary
         run: |
-          cp ./icons/ ./dist/icons/
-          cp ./words_list/ ./dist/words_list/
-          cp ./manifest.json ./dist/manifest.json
-          cp ./pattern_presets ./dist/pattern_presets/
+          cp -r ./icons/ ./dist/icons/
+          cp -r ./words_list/ ./dist/words_list/
+          cp -r ./manifest.json ./dist/manifest.json
+          cp -r ./pattern_presets ./dist/pattern_presets/
 
       - name: Install canvas package
         run: npm install canvas
