@@ -17,17 +17,21 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
+      - name: Install npm
+        run: npm install
+      - name: Build
+        run: npm run build -- --config webpack.config.dev.js
       - name: Copy the things to dist dictionary
         run: |
           cp -r ./words_list/ ./dist/words_list/
           cp -r ./README.md ./dist/README.md
           cp -r ./package.json ./dist/package.json
-      - run: npm install
-      - run: npm run build -- --config webpack.config.dev.js
-      - run: npm publish --access=public
+      - name: Publish
+        run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: |
+      - name: Save to npm branch
+        run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npx gh-pages -u "github-actions-bot <support+actions@github.com>" --branch=npm -d ./dist/
         env:
