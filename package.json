@@ -1,6 +1,6 @@
 {
   "name": "@erichsia7/pwdgen2",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Password Generator—your password assistant",
   "main": "dist/index.min.js",
   "private": false,
@@ -39,7 +39,8 @@
     "error-stack-parser": "^2.1.4",
     "stacktrace-js": "^2.0.2",
     "html-webpack-plugin": "^5.5.3",
-    "workbox-webpack-plugin": "^7.0.0"
+    "workbox-webpack-plugin": "^7.0.0",
+    "canvas": "^2.11.2"
   },
   "dependencies": {
     "aes-js": "^3.1.2",

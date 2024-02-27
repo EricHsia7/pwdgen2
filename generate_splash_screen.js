@@ -65,7 +65,7 @@ async function processDeviceImage(deviceInfo, iconImage, backgroundImage) {
   // Draw the icon image in the center of the canvas
   ctx.drawImage(iconImage, canvasWidth / 2 - (iconWidth / 2), canvasHeight / 2 - iconWidth / 2, iconWidth, iconWidth);
 
-  const outputFilePath = `dist/splash_screen/${fileName}.png`;
+  const outputFilePath = `splash_screen/${fileName}.png`;
 
   const outputStream = fs.createWriteStream(outputFilePath);
   const pngStream = canvas.createPNGStream();
@@ -74,7 +74,7 @@ async function processDeviceImage(deviceInfo, iconImage, backgroundImage) {
   // Wait for the image to finish writing, then add a link to the HTML links array
   await new Promise((resolve) => {
     outputStream.on('finish', () => {
-      htmlLinks.push(`<link rel="apple-touch-startup-image" href="https://erichsia7.github.io/pwdgen2/dist/splash_screen/${fileName}.png" media="(device-width: ${deviceInfo.width}px) and (device-height: ${deviceInfo.height}px) and (-webkit-device-pixel-ratio: ${Math.round(scale)})">`);
+      htmlLinks.push(`<link rel="apple-touch-startup-image" href="https://erichsia7.github.io/pwdgen2/splash_screen/${fileName}.png" media="(device-width: ${deviceInfo.width}px) and (device-height: ${deviceInfo.height}px) and (-webkit-device-pixel-ratio: ${Math.round(scale)})">`);
       resolve();
     });
   });
@@ -98,7 +98,7 @@ async function processImages() {
 
 // Function to create the output directory for the splash screen images
 async function createOutputDirectories() {
-  const outputDir = 'dist/splash_screen';
+  const outputDir = 'splash_screen';
 
   try {
     await fs.promises.mkdir(outputDir, { recursive: true });
@@ -112,7 +112,7 @@ async function createOutputDirectories() {
   try {
     await createOutputDirectories();
     await processImages();
-    fs.writeFileSync('dist/splash_screen/html.txt', htmlLinks.join('\n'));
+    fs.writeFileSync('splash_screen/html.txt', htmlLinks.join('\n'));
     console.log('Images and HTML code generated successfully!');
   } catch (err) {
     console.error('Error:', err);
