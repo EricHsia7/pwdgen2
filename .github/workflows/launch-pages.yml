@@ -36,9 +36,6 @@ jobs:
           cp -r ./manifest.json ./dist/manifest.json
           cp -r ./pattern_presets ./dist/pattern_presets/
 
-      - name: Install canvas package
-        run: npm install canvas
-
       - name: Deploy with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
