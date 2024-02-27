@@ -39,7 +39,8 @@
     "error-stack-parser": "^2.1.4",
     "stacktrace-js": "^2.0.2",
     "html-webpack-plugin": "^5.5.3",
-    "workbox-webpack-plugin": "^7.0.0"
+    "workbox-webpack-plugin": "^7.0.0",
+    "canvas": "^2.11.2"
   },
   "dependencies": {
     "aes-js": "^3.1.2",
