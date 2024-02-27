@@ -27,7 +27,10 @@ jobs:
           cp -r ./README.md ./dist/README.md
           cp -r ./package.json ./dist/package.json
       - name: Publish
-        run: npm publish --access=public
+        run: |
+          cd ./dist
+          npm publish --access=public
+          cd ./
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Save to npm branch
