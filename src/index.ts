@@ -146,7 +146,7 @@ window.pwdgen2 = function () {
   utilities.qe('#importdata').addEventListener('change', importdatahandler, false);
 
   words_list.getWordsList();
-  interaction.loadFont('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'Noto Sans', 'googleFontsNotoSans');
+  interaction.loadFont('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap', 'Noto Sans', 'googleFontsNotoSans');
 
   upgradeData();
   Xsearch.searchIndex = Xsearch.createSearchIndex();

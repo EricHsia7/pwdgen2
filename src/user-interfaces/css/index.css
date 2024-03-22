@@ -4,6 +4,11 @@
   outline: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-family: 'Noto Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
 svg path {
