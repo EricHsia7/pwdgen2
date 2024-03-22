@@ -6,7 +6,7 @@ on:
     branches:
       - main
       - dev-date-component
-      - dev-releasing-improvement
+      - dev-upgrade-google-font
 jobs:
   build:
     runs-on: ubuntu-latest
