@@ -37,7 +37,7 @@ export function openPatternManager(event) {
   interaction.options.closeOptions(event);
   interaction.pattern_manager.printPatterns();
   if (!lazyCSS.loaded.googleFontsMaterialSymbols) {
-    interaction.loadFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0', 'Material Symbols Rounded', 'googleFontsMaterialSymbols', function () {
+    interaction.loadFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200', 'Material Symbols Rounded', 'googleFontsMaterialSymbols', function () {
       utilities.qe('.add-password-page .password-generator-presets').setAttribute('font', '1');
       utilities.qe('.pattern_manager .pattern-list').setAttribute('font', '1');
     });
