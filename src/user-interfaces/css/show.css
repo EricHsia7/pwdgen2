@@ -1,0 +1,23 @@
+.show-display-none {
+  display: none;
+}
+
+.show-display-flex {
+  display: flex;
+}
+
+.show-display-inline {
+  display: inline;
+}
+
+.show-display-block {
+  display: block;
+}
+
+.show-display-inline-flex {
+  display: inline-flex;
+}
+
+.show-display-inline-block {
+  display: inline-block;
+}

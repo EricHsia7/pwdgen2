@@ -1,0 +1,111 @@
+.prompt_content {
+  width: calc(100% - 20px);
+  height: 40px;
+  color: var(--p-333333);
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  word-break: keep-all;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.prompt {
+  width: clamp(180px, calc(100% - 30px), 450px);
+  height: 50px;
+  border-radius: var(--p-border-radius-default);
+  position: fixed;
+  left: 50%;
+  bottom: 0px;
+  opacity: 0;
+  transform: translateX(-50%) translateY(0px) scale(1);
+  background: rgba(var(--p-f9f9fb-r), var(--p-f9f9fb-g), var(--p-f9f9fb-b), 0.8);
+  will-change: transform, opacity;
+  -webkit-user-select: none;
+  user-select: none;
+  box-shadow: 0px 0px 25px -12px rgba(0, 0, 0, 0.23);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.prompt_asking_mask {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.45);
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.prompt_asking_mask[o="1"] {
+  opacity: 1;
+}
+
+.prompt_asking {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%) scale(0.8);
+  width: clamp(250px, 80%, 350px);
+  height: auto;
+  background: var(--p-ffffff);
+  border-radius: var(--p-border-radius-default);
+  display: inline-flex;
+  flex-direction: column;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+
+.prompt_asking[o="1"] {
+  transform: translateX(-50%) translateY(-50%) scale(1);
+  opacity: 1;
+}
+
+.prompt_asking_message {
+  position: relative;
+  display: inline-flex;
+  padding: 10px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--p-333333);
+  font-size: 16px;
+}
+
+.prompt_asking_options {
+  width: 100%;
+  height: 55px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.prompt_asking_option1,
+.prompt_asking_option2 {
+  height: 45px;
+  border-radius: var(--p-border-radius-default);
+  color: #fff;
+  background: var(--p-main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  user-select: none;
+  -webkit-user-select: none;
+}
