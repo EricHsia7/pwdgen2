@@ -34,7 +34,7 @@ def calculateAverageMovedDistance(arr):
     return distance / arr_len
     
 def generate_data(tag, st, file_path):
-    table = [["tag", "length", "average_ratio", "point"]]
+    table = [["tag", "length", "average_distance", "point"]]
     result = {}
     startLen = 8
     endLen = 256
@@ -58,8 +58,8 @@ def generate_data(tag, st, file_path):
         if group not in result:
             result[group] = {
                 "point": point * st,
-                "ratios": [],
-                "average_ratio": 0,
+                "distances": [],
+                "average_distance": 0,
                 "length": i + startLen
             }
         for j in range(sampleQuantity):
@@ -68,20 +68,19 @@ def generate_data(tag, st, file_path):
             else:
                 password = generate_sorted_password(i + startLen)
             distance = calculateAverageMovedDistance(password)
-            ratio = distance / len(password)
-            result[group]["ratios"].append(ratio)
-        average_ratio = sum(result[group]["ratios"]) / len(result[group]["ratios"])
-        result[group]["average_ratio"] = average_ratio
+            result[group]["distances"].append(distance)
+        average_distance = sum(result[group]["distances"]) / len(result[group]["distances"])
+        result[group]["average_distance"] = average_distance
         print("progress:", int((i + startLen) / (endLen - 1) * 100), "%")
     for key, value in result.items():
-        table.append([tag, value["length"], value["average_ratio"], value["point"]])
+        table.append([tag, value["length"], value["average_distance"], value["point"]])
     with open(file_path, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(table)
     return table
 
 def generate_padding(a, b):
-    table = [["tag", "length", "average_ratio", "point"]]
+    table = [["tag", "length", "average_distance", "point"]]
     rg = int((b - a) * 100)
     for i in range(rg):
         table.append(["padding", 16, a + i / rg, 0])
@@ -96,7 +95,7 @@ def read_data(tag, file_path0, file_path1):
             # Process the password (e.g., print it)
             L = list(word.strip()) # Use strip() to remove any leading or trailing whitespace
             P.append(L)
-    table = [["tag", "length", "average_ratio", "point"]]
+    table = [["tag", "length", "average_distance", "point"]]
     result = {}
     rg = len(P)
     o = 0
@@ -106,20 +105,19 @@ def read_data(tag, file_path0, file_path1):
         point = -50
         result[group] = {
             "point": point,
-            "ratios": [],
-            "average_ratio": 0,
+            "distances": [],
+            "average_distance": 0,
             "length": length
         }
         distance = calculateAverageMovedDistance(password)
-        ratio = distance / len(password)
-        result[group]["ratios"].append(ratio)
+        result[group]["distances"].append(distance)
         print("progress:", int((o) / (rg - 1) * 100), "%")
         o += 1
     for key, value in result.items():
-        average_ratio = sum(result[key]["ratios"]) / len(result[key]["ratios"])
-        result[key]["average_ratio"] = average_ratio
+        average_distance = sum(result[key]["distances"]) / len(result[key]["distances"])
+        result[key]["average_distance"] = average_distance
     for key, value in result.items():
-        table.append([tag, value["length"], value["average_ratio"], value["point"]])
+        table.append([tag, value["length"], value["average_distance"], value["point"]])
     with open(file_path1, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(table)
@@ -127,14 +125,14 @@ def read_data(tag, file_path0, file_path1):
 
 top204 = read_data("top204", "Top204Thousand-WPA-probable-v2.txt", "top204.csv")
 top304 = read_data("top304", "Top304Thousand-probable-v2.txt", "top304.csv")
+top1000000 =read_data("top1000000", "10-million-password-list-top-1000000.txt", "top1000000.csv")
 rd = generate_data("random", 1, "random.csv")
 sd = generate_data("sorted", 0, "sorted.csv")
-pad = generate_padding(0.5, 0.66)
 
 sl = slice(1, None, None)
-ol = top304[sl] + top204[sl] + rd[sl] + sd[sl] + pad[sl]
+ol = top304[sl] + top204[sl] + top1000000[sl] + rd[sl] + sd[sl]
 ol.sort(key=lambda x: x[2])
-pl = [["tag", "length", "average_ratio", "point"]] + ol
+pl = [["tag", "length", "average_distance", "point"]] + ol
 with open("all.csv", 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerows(pl)
