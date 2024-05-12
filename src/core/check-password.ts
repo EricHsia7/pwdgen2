@@ -47,7 +47,8 @@ export function checkPassword(string, cache, id) {
     // 4. Use the count as the weight of the final points.
     // 5. Create a function (randomnessX) that loads up various relationships between original points and final points from 0 to 100.
     const randomnessX = function (x) {
-      return Math.min(100, Math.max(0, ((8.31 - 1.89 * x + 0.0743 * Math.pow(x, 2) - 5.91 * Math.pow(10, -4) * Math.pow(x, 3)) / 35.89) * 100));
+      x = Math.min(Math.max(0, x), 128)
+      return 0.0002935722989012925 * Math.pow(x ,3) - 0.07465043014846659 * Math.pow(x ,2) + 4.948575897686438 * x
     };
     // Use the stats to get a formula (length).
     var length = -42.7 + 29.7 * Math.log(string.length);
