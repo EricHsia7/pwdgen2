@@ -3,6 +3,8 @@ import secrets
 import csv
 import numpy as np
 
+padding_spaces = "                 "
+
 def generate_password(length=16):
     characters = string.ascii_letters + string.digits + string.punctuation
     list = [secrets.choice(characters) for _ in range(length)]
@@ -41,6 +43,7 @@ def generate_data(tag, st, file_path):
     lenInterval = 1
     sampleQuantity = 256
     rg = int((endLen - startLen) / lenInterval)
+    p_prog = 0
     for i in range(rg):
         group = f"g_{i + startLen}"
         P = (i + startLen) / (endLen - 1)
@@ -71,7 +74,10 @@ def generate_data(tag, st, file_path):
             result[group]["distances"].append(distance)
         average_distance = sum(result[group]["distances"]) / len(result[group]["distances"])
         result[group]["average_distance"] = average_distance
-        print("progress:", int((i + startLen) / (endLen - 1) * 100), "%")
+        prog = ((i + startLen) / (endLen - 1) * 100)
+        if prog - p_prog > 0.01:
+            print(f"progress of {tag}: {prog:.0f}%{padding_spaces}", end='\r')
+            p_prog = prog
     for key, value in result.items():
         table.append([tag, value["length"], value["average_distance"], value["point"]])
     with open(file_path, 'w', newline='') as file:
@@ -88,6 +94,7 @@ def generate_padding(a, b):
 
 def read_data(tag, file_path0, file_path1):
     P = []
+    p_prog = 0
     # Open the file containing the password list
     with open(file_path0, 'r') as file:
         # Read each line (password) in the file
@@ -111,7 +118,10 @@ def read_data(tag, file_path0, file_path1):
         }
         distance = calculateAverageMovedDistance(password)
         result[group]["distances"].append(distance)
-        print("progress:", int((o) / (rg - 1) * 100), "%")
+        prog = ((o) / (rg - 1) * 100)
+        if prog - p_prog > 0.01:
+            print(f"progress of {tag}: {prog:.0f}%{padding_spaces}", end='\r')
+            p_prog = prog
         o += 1
     for key, value in result.items():
         average_distance = sum(result[key]["distances"]) / len(result[key]["distances"])
@@ -123,6 +133,7 @@ def read_data(tag, file_path0, file_path1):
         writer.writerows(table)
     return table
 
+names10178 = read_data("names10178", "names.txt", "names10178.csv")
 top204 = read_data("top204", "Top204Thousand-WPA-probable-v2.txt", "top204.csv")
 top304 = read_data("top304", "Top304Thousand-probable-v2.txt", "top304.csv")
 top1000000 =read_data("top1000000", "10-million-password-list-top-1000000.txt", "top1000000.csv")
@@ -130,7 +141,7 @@ rd = generate_data("random", 1, "random.csv")
 sd = generate_data("sorted", 0, "sorted.csv")
 
 sl = slice(1, None, None)
-ol = top304[sl] + top204[sl] + top1000000[sl] + rd[sl] + sd[sl]
+ol = top304[sl] + top204[sl] + top1000000[sl] + rd[sl] + sd[sl] + names10178[sl]
 ol.sort(key=lambda x: x[2])
 pl = [["tag", "length", "average_distance", "point"]] + ol
 with open("all.csv", 'w', newline='') as file:
