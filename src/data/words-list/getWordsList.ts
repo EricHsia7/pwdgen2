@@ -1,4 +1,4 @@
-import { fetchInflate } from './loader';
+import { fetchInflate } from '../loader';
 
 export type WordsList = Array<string>;
 

@@ -1,6 +1,6 @@
 .container,
 .password-page,
-.main-page,
+.css_home_field,
 .add-password-page,
 .edit-password-page,
 .pattern_editor,
@@ -63,17 +63,17 @@
   background: var(--p-f9f9fb);
 }
 
-.main-page .fixed-title-box {
+.css_home_field .fixed-title-box {
   color: rgba(0, 0, 0, 0);
   background: var(--p-ffffff);
 }
 
-.main-page .fixed-title-box[sticky="true"] {
+.css_home_field .fixed-title-box[sticky="true"] {
   color: var(--p-333333);
   background: rgba(0, 0, 0, 0);
 }
 
-.main-page .fixed-title-box[status="1"] {
+.css_home_field .fixed-title-box[status="1"] {
   display: none;
 }
 
@@ -87,11 +87,11 @@
   display: none;
 }
 
-.main-page .fixed-title-box-mask[sticky="true"] {
+.css_home_field .fixed-title-box-mask[sticky="true"] {
   display: block;
 }
 
-.main-page .fixed-title-box-mask[status="1"] {
+.css_home_field .fixed-title-box-mask[status="1"] {
   display: block;
   height: 60px;
 }

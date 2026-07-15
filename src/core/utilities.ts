@@ -62,7 +62,7 @@ export function gid(n) {
   return genid + '' + new Date().getTime();
 }
 
-export function shuffleSelf(array: object, size: number) {
+ function shuffleSelf<T>(array: Array<T>, size: number): Array<T> {
   var index = -1;
   var length = array.length;
   var lastIndex = length - 1;

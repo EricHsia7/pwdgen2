@@ -1,4 +1,5 @@
 // Import required functions
+import { shuffle } from '../tools/shuffle';
 import { LS, searchItemsbyname } from './storage';
 import utilities from './utilities';
 const { cloneDeep } = require('lodash/cloneDeep');
@@ -201,7 +202,7 @@ export function generate(options, mode) {
           const actionsLength = actions.length;
           for (let j = 0; j < actionsLength; j++) {
             if (actions[j] === 'shuffle') {
-              result = utilities.shuffleSelf(result.split(''), result.length).join('');
+              result = shuffle(result.split(''), result.length).join('');
               continue;
             }
           }
@@ -226,7 +227,7 @@ interface PatternError {
   type: 'lack' | 'internal' | 'type' | 'invalid value';
 }
 
-function checkPatternQualification(pattern) {
+function checkPattern(pattern) {
   var json = cloneDeep(pattern);
   let result = 1;
   const errors: Array<PatternError> = [];

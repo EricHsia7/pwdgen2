@@ -57,8 +57,8 @@ function lazyLoadPasswordListIcons_scrolling_handler(event): void {
     return isInViewport;
   };
 
-  var container = documentQuerySelector('.main-page .contents-box'); // Replace 'container' with your container's ID or reference
-  var allPasswordElt = utilities.qeAll('.main-page .contents-box .password-list .password-item');
+  var container = documentQuerySelector('.css_home_field .contents-box'); // Replace 'container' with your container's ID or reference
+  var allPasswordElt = utilities.qeAll('.css_home_field .contents-box .password-list .password-item');
   var allPasswordElt_len = allPasswordElt.length;
 
   for (var o = 0; o < allPasswordElt_len; o++) {
@@ -335,11 +335,11 @@ function openSearch() {
     });
     search_evt = 1;
   }
-  documentQuerySelector('.main-page .fixed-title-box-mask').setAttribute('status', '1');
-  documentQuerySelector('.main-page .fixed-title-box').setAttribute('status', '1');
-  documentQuerySelector('.main-page .search-output-box').setAttribute('status', '1');
-  documentQuerySelector('.main-page .search-box').setAttribute('status', '1');
-  documentQuerySelector('.main-page .search-box').setAttribute('sticky', 'true');
+  documentQuerySelector('.css_home_field .fixed-title-box-mask').setAttribute('status', '1');
+  documentQuerySelector('.css_home_field .fixed-title-box').setAttribute('status', '1');
+  documentQuerySelector('.css_home_field .search-output-box').setAttribute('status', '1');
+  documentQuerySelector('.css_home_field .search-box').setAttribute('status', '1');
+  documentQuerySelector('.css_home_field .search-box').setAttribute('sticky', 'true');
   Xsearch.searchIndex = Xsearch.createSearchIndex();
   interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
   interaction.SASBC(1);
@@ -347,12 +347,12 @@ function openSearch() {
 }
 
 function closeSearch() {
-  documentQuerySelector('.main-page .fixed-title-box-mask').setAttribute('status', '0');
-  documentQuerySelector('.main-page .fixed-title-box').setAttribute('status', '0');
-  documentQuerySelector('.main-page .search-output-box').setAttribute('status', '0');
-  documentQuerySelector('.main-page .search-box').setAttribute('status', '0');
-  documentQuerySelector('.main-page .search-box').setAttribute('sticky', search_sticky);
-  documentQuerySelector('.main-page .search input#search').value = '';
+  documentQuerySelector('.css_home_field .fixed-title-box-mask').setAttribute('status', '0');
+  documentQuerySelector('.css_home_field .fixed-title-box').setAttribute('status', '0');
+  documentQuerySelector('.css_home_field .search-output-box').setAttribute('status', '0');
+  documentQuerySelector('.css_home_field .search-box').setAttribute('status', '0');
+  documentQuerySelector('.css_home_field .search-box').setAttribute('sticky', search_sticky);
+  documentQuerySelector('.css_home_field .search input#search').value = '';
   if (!search_sticky) {
     interaction.SASBC(3);
   }

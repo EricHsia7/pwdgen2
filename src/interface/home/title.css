@@ -1,0 +1,22 @@
+.css_home_field .css_home_title_box {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.css_home_field .css_home_title_box .css_home_title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: inline-block;
+  position: absolute;
+  left: 15px;
+  bottom: 0px;
+  line-height: 2.5rem;
+  transform-origin: left bottom;
+  transform: scale(var(--scroll-scale));
+  color: var(--p-333333);
+  -webkit-user-select: none;
+  user-select: none;
+}

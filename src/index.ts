@@ -15,8 +15,8 @@ import './user-interfaces/css/prompt.css';
 import './user-interfaces/css/details.css';
 import './user-interfaces/css/pattern-editor.css';
 import './user-interfaces/css/pattern-manager.css';
-import './user-interfaces/css/main-page/search.css';
-import './user-interfaces/css/main-page/password-list.css';
+import './user-interfaces/css/css_home_field/search.css';
+import './user-interfaces/css/css_home_field/password-list.css';
 import './user-interfaces/css/add-password/presets.css';
 import './user-interfaces/css/show.css';
 
@@ -41,8 +41,8 @@ window.pwdgen2 = function () {
     interaction.search.openSearch();
   });
 
-  documentQuerySelector('.main-page').addEventListener('scroll', function (e) {
-    container_scrollTop = documentQuerySelector('.main-page').scrollTop;
+  documentQuerySelector('.css_home_field').addEventListener('scroll', function (e) {
+    container_scrollTop = documentQuerySelector('.css_home_field').scrollTop;
     var scale = 1;
     if (container_scrollTop < 0) {
       scale = 1 + Math.abs(container_scrollTop) / 500;
@@ -50,19 +50,19 @@ window.pwdgen2 = function () {
         scale = 1.3;
       }
     }
-    documentQuerySelector('.main-page .title').style.setProperty('--scroll-scale', scale);
+    documentQuerySelector('.css_home_field .title').style.setProperty('--scroll-scale', scale);
     if (container_scrollTop >= 50) {
-      documentQuerySelector('.main-page .search-box').setAttribute('sticky', 'true');
-      documentQuerySelector('.main-page .fixed-title-box').setAttribute('sticky', 'true');
-      documentQuerySelector('.main-page .fixed-title-box-mask').setAttribute('sticky', 'true');
+      documentQuerySelector('.css_home_field .search-box').setAttribute('sticky', 'true');
+      documentQuerySelector('.css_home_field .fixed-title-box').setAttribute('sticky', 'true');
+      documentQuerySelector('.css_home_field .fixed-title-box-mask').setAttribute('sticky', 'true');
       if (!(search_status === 1)) {
         interaction.SASBC(1);
       }
       search_sticky = true;
     } else {
-      documentQuerySelector('.main-page .search-box').setAttribute('sticky', 'false');
-      documentQuerySelector('.main-page .fixed-title-box').setAttribute('sticky', 'false');
-      documentQuerySelector('.main-page .fixed-title-box-mask').setAttribute('sticky', 'false');
+      documentQuerySelector('.css_home_field .search-box').setAttribute('sticky', 'false');
+      documentQuerySelector('.css_home_field .fixed-title-box').setAttribute('sticky', 'false');
+      documentQuerySelector('.css_home_field .fixed-title-box-mask').setAttribute('sticky', 'false');
       if (!(search_status === 1)) {
         interaction.SASBC(3);
       }
