@@ -66,7 +66,7 @@ export function listSavedPassword(): object[] {
     list_decrypted.push({
       website_icon: website_icon,
       website: this_item.website,
-      password: utilities.deur(utilities.decryptString(this_item.encrypted_password, this_item.aes_iv)),
+      password: decodeURIComponent(utilities.decryptString(this_item.encrypted_password, this_item.aes_iv)),
       username: this_item.username,
       note: this_item.note,
       time_stamp: this_item.time_stamp,
@@ -129,13 +129,13 @@ export function upgradeData(): void {
 // Function to set a password entry
 export function setPassword(password, username, time, website, note, id): void {
   // Encrypt the password and save the entry to Local Storage
-  var encryption = utilities.encryptString(utilities.enur(password));
+  var encryption = utilities.encryptString(encodeURIComponent(password));
   var json = {
     website: website,
     username: username,
     encrypted_password: encryption[0],
     aes_iv: encryption[1],
-    note: note === '' ? null : btoa(utilities.enur(note)),
+    note: note === '' ? null : btoa(encodeURIComponent(note)),
     time_stamp: time,
     id: id
   };
@@ -181,19 +181,19 @@ export function modifyPassword(password, username, website, note, id): void | st
     var json = JSON.parse(String(LS.getItem(localStorage_key)));
 
     // Encrypt the password and create the modified JSON
-    var encryption = utilities.encryptString(utilities.enur(password));
+    var encryption = utilities.encryptString(encodeURIComponent(password));
     var modified_json: EncryptedPassword = {
       website: website,
       username: username,
       encrypted_password: encryption[0],
       aes_iv: encryption[1],
-      note: note === '' ? null : btoa(utilities.enur(note)),
+      note: note === '' ? null : btoa(encodeURIComponent(note)),
       time_stamp: json.time_stamp,
       id: id
     };
 
     // Check if the modified entry is the same as the existing one, if yes, return '' to quit function
-    if (md5(JSON.stringify({ website: json.website, username: json.username, password: utilities.deur(utilities.decryptString(json.encrypted_password, json.aes_iv)), note: json.note })) === md5(JSON.stringify({ website: website, username: username, password: password, note: note }))) {
+    if (md5(JSON.stringify({ website: json.website, username: json.username, password: decodeURIComponent(utilities.decryptString(json.encrypted_password, json.aes_iv)), note: json.note })) === md5(JSON.stringify({ website: website, username: username, password: password, note: note }))) {
       return '';
     }
 

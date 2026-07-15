@@ -2,7 +2,7 @@ import { checkPassword, checkCommonWordPatterns } from 'src/core/check-password'
 import fine_grained_password from 'src/core/fine-grained-password';
 import Xsearch from './core/search';
 import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword, importdatahandler } from './/core/storage';
-import utilities from './core/utilities';
+import utilities, { documentQuerySelector } from './core/utilities';
 import bjson from 'src/core/blocks-json';
 import words_list from './core/words-list';
 import icons from './user-interfaces/icons';
@@ -52,21 +52,21 @@ window.search_status = 0;
 window.search_sticky = false;
 window.container_scrollTop = 0;
 window.pattern_editor_evt = 0;
-window.pattern_editor_blocks_json = utilities.qe('.pattern_editor_blocks_json');
+window.pattern_editor_blocks_json = documentQuerySelector('.pattern_editor_blocks_json');
 window.search_will_change_evt = [0, 1];
 window.search_will_change_evt_list = ['touchstart', 'touchend', 'mouseenter', 'mouseleave'];
 
 window.pwdgen2 = function () {
   //initialize
-  utilities.qe('.search').addEventListener('click', function (e) {
+  documentQuerySelector('.search').addEventListener('click', function (e) {
     interaction.search.openSearch();
   });
-  utilities.qe('.search-box .search input#search').addEventListener('focus', function (e) {
+  documentQuerySelector('.search-box .search input#search').addEventListener('focus', function (e) {
     interaction.search.openSearch();
   });
 
-  utilities.qe('.main-page').addEventListener('scroll', function (e) {
-    container_scrollTop = utilities.qe('.main-page').scrollTop;
+  documentQuerySelector('.main-page').addEventListener('scroll', function (e) {
+    container_scrollTop = documentQuerySelector('.main-page').scrollTop;
     var scale = 1;
     if (container_scrollTop < 0) {
       scale = 1 + Math.abs(container_scrollTop) / 500;
@@ -74,19 +74,19 @@ window.pwdgen2 = function () {
         scale = 1.3;
       }
     }
-    utilities.qe('.main-page .title').style.setProperty('--scroll-scale', scale);
+    documentQuerySelector('.main-page .title').style.setProperty('--scroll-scale', scale);
     if (container_scrollTop >= 50) {
-      utilities.qe('.main-page .search-box').setAttribute('sticky', 'true');
-      utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'true');
-      utilities.qe('.main-page .fixed-title-box-mask').setAttribute('sticky', 'true');
+      documentQuerySelector('.main-page .search-box').setAttribute('sticky', 'true');
+      documentQuerySelector('.main-page .fixed-title-box').setAttribute('sticky', 'true');
+      documentQuerySelector('.main-page .fixed-title-box-mask').setAttribute('sticky', 'true');
       if (!(search_status === 1)) {
         interaction.SASBC(1);
       }
       search_sticky = true;
     } else {
-      utilities.qe('.main-page .search-box').setAttribute('sticky', 'false');
-      utilities.qe('.main-page .fixed-title-box').setAttribute('sticky', 'false');
-      utilities.qe('.main-page .fixed-title-box-mask').setAttribute('sticky', 'false');
+      documentQuerySelector('.main-page .search-box').setAttribute('sticky', 'false');
+      documentQuerySelector('.main-page .fixed-title-box').setAttribute('sticky', 'false');
+      documentQuerySelector('.main-page .fixed-title-box-mask').setAttribute('sticky', 'false');
       if (!(search_status === 1)) {
         interaction.SASBC(3);
       }
@@ -95,46 +95,46 @@ window.pwdgen2 = function () {
     interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler();
   });
 
-  utilities.qe('.password-page').addEventListener('scroll', function (e) {
-    var scrollTop = utilities.qe('.password-page').scrollTop;
+  documentQuerySelector('.password-page').addEventListener('scroll', function (e) {
+    var scrollTop = documentQuerySelector('.password-page').scrollTop;
     if (scrollTop > 0) {
-      utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '1');
+      documentQuerySelector('.password-page .fixed-title-box').setAttribute('scroll', '1');
       interaction.SASBC(1);
     } else {
-      utilities.qe('.password-page .fixed-title-box').setAttribute('scroll', '0');
+      documentQuerySelector('.password-page .fixed-title-box').setAttribute('scroll', '0');
       interaction.SASBC(3);
     }
   });
 
-  utilities.qe('.add-password-page').addEventListener('scroll', function (e) {
-    var scrollTop = utilities.qe('.add-password-page').scrollTop;
+  documentQuerySelector('.add-password-page').addEventListener('scroll', function (e) {
+    var scrollTop = documentQuerySelector('.add-password-page').scrollTop;
     if (scrollTop > 0) {
-      utilities.qe('.add-password-page .fixed-title-box').setAttribute('scroll', '1');
+      documentQuerySelector('.add-password-page .fixed-title-box').setAttribute('scroll', '1');
       interaction.SASBC(1);
     } else {
-      utilities.qe('.add-password-page .fixed-title-box').setAttribute('scroll', '0');
+      documentQuerySelector('.add-password-page .fixed-title-box').setAttribute('scroll', '0');
       interaction.SASBC(3);
     }
   });
 
-  utilities.qe('.edit-password-page').addEventListener('scroll', function (e) {
-    var scrollTop = utilities.qe('.edit-password-page').scrollTop;
+  documentQuerySelector('.edit-password-page').addEventListener('scroll', function (e) {
+    var scrollTop = documentQuerySelector('.edit-password-page').scrollTop;
     if (scrollTop > 0) {
-      utilities.qe('.edit-password-page .fixed-title-box').setAttribute('scroll', '1');
+      documentQuerySelector('.edit-password-page .fixed-title-box').setAttribute('scroll', '1');
       interaction.SASBC(1);
     } else {
-      utilities.qe('.edit-password-page .fixed-title-box').setAttribute('scroll', '0');
+      documentQuerySelector('.edit-password-page .fixed-title-box').setAttribute('scroll', '0');
       interaction.SASBC(3);
     }
   });
 
-  utilities.qe('.pattern_editor').addEventListener('scroll', function (e) {
-    var scrollTop = utilities.qe('.pattern_editor').scrollTop;
+  documentQuerySelector('.pattern_editor').addEventListener('scroll', function (e) {
+    var scrollTop = documentQuerySelector('.pattern_editor').scrollTop;
     if (scrollTop > 0) {
-      utilities.qe('.pattern_editor .fixed-title-box').setAttribute('scroll', '1');
+      documentQuerySelector('.pattern_editor .fixed-title-box').setAttribute('scroll', '1');
       interaction.SASBC(1);
     } else {
-      utilities.qe('.pattern_editor .fixed-title-box').setAttribute('scroll', '0');
+      documentQuerySelector('.pattern_editor .fixed-title-box').setAttribute('scroll', '0');
       interaction.SASBC(3);
     }
   });
@@ -143,7 +143,7 @@ window.pwdgen2 = function () {
     search_will_change_evt = [2, 3];
   }
 
-  utilities.qe('#importdata').addEventListener('change', importdatahandler, false);
+  documentQuerySelector('#importdata').addEventListener('change', importdatahandler, false);
 
   words_list.getWordsList();
   interaction.loadFont('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'Noto Sans', 'googleFontsNotoSans');

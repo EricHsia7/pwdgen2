@@ -2,13 +2,13 @@
 import fine_grained_password from './fine-grained-password';
 var aesjs = require('aes-js');
 
-function isValidURL(url: string) {
+export function isValidURL(url: string) {
   const regex = /^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(?:\/.*)?$/;
   return regex.test(url);
 }
 
-function encryptString(string) {
-  var initialization_vector_pattern = [
+export function encryptString(string) {
+  const initialization_vector_pattern = [
     {
       type: 'regex',
       regex: '/[1-9]/g',
@@ -28,31 +28,27 @@ function encryptString(string) {
       actions: ['shuffle']
     }
   ];
-  var initialization_vector = parseInt(fine_grained_password.generate(initialization_vector_pattern, 'production'));
-  var keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-  var textBytes = aesjs.utils.utf8.toBytes(string);
-  var aesCtr = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(initialization_vector));
-  var encryptedBytes = aesCtr.encrypt(textBytes);
-  var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
-  return [encryptedHex, initialization_vector];
+  const n = new Uint32Array(1);
+  crypto.getRandomValues(n);
+  const initializationVector = Math.floor(n[0] / (2 ** 32 - 1)) * 1e10;
+  const keyu = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+  const textBytes = aesjs.utils.utf8.toBytes(string);
+  const aesCtr = new aesjs.ModeOfOperation.ctr(keyu, new aesjs.Counter(initializationVector));
+  const encryptedBytes = aesCtr.encrypt(textBytes);
+  const encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+  return [encryptedHex, initializationVector];
 }
 
 function decryptString(encrypted_string, initialization_vector) {
-  var keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-  var encryptedBytese = aesjs.utils.hex.toBytes(encrypted_string);
-  var aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(initialization_vector)));
-  var decryptedBytese = aesCtre.decrypt(encryptedBytese);
-  var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytese);
+  const keye = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+  const encryptedBytese = aesjs.utils.hex.toBytes(encrypted_string);
+  const aesCtre = new aesjs.ModeOfOperation.ctr(keye, new aesjs.Counter(parseInt(initialization_vector)));
+  const decryptedBytese = aesCtre.decrypt(encryptedBytese);
+  const decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytese);
   return decryptedText;
 }
-function enur(u) {
-  return encodeURIComponent(u);
-}
-function deur(u) {
-  return decodeURIComponent(u);
-}
 
-function gid(n) {
+export function gid(n) {
   var genidchars = '0123456789abcdefghijklmnopqrstuvwxyz';
   var genid = '';
   for (var i = 0; i < 16; i++) {
@@ -66,7 +62,7 @@ function gid(n) {
   return genid + '' + new Date().getTime();
 }
 
-function shuffleSelf(array: object, size: number) {
+export function shuffleSelf(array: object, size: number) {
   var index = -1;
   var length = array.length;
   var lastIndex = length - 1;
@@ -81,7 +77,7 @@ function shuffleSelf(array: object, size: number) {
   return array;
 }
 
-function che(y: number) {
+export function che(y: number) {
   if (y < 10) {
     return '0' + y;
   } else {
@@ -89,11 +85,11 @@ function che(y: number) {
   }
 }
 
-function timestr(date: Date) {
+export function timestr(date: Date) {
   return date.getFullYear() + '-' + che(date.getMonth() + 1) + '-' + che(date.getDate()) + ' ' + che(date.getHours()) + ':' + che(date.getMinutes()) + ':' + che(date.getSeconds());
 }
 
-function checkTouchFeatures(): boolean {
+export function checkTouchFeatures(): boolean {
   if ('ontouchstart' in window || navigator.maxTouchPoints) {
     return true;
   } else {
@@ -101,23 +97,19 @@ function checkTouchFeatures(): boolean {
   }
 }
 
-function qe(selector) {
-  var elt = document.querySelector(selector);
-  if (elt === null) {
-    elt = document.createElement('div');
-  }
-  return elt;
+export function documentQuerySelector(selector: string): HTMLElement {
+  return document.querySelector(selector) as HTMLElement;
 }
 
-function qeAll(selector) {
+export function qeAll(selector) {
   return document.querySelectorAll(selector);
 }
 
-function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
+export function copyProperty(source: HTMLElement, target: HTMLElement, property: string): void {
   target.style.setProperty(property, source.style.getPropertyValue(property));
 }
 
-function unicode_arr(str) {
+export function unicode_arr(str) {
   var str_len = str.length;
   var unicode_arr = [];
   for (var t = 0; t < str_len; t++) {
@@ -129,7 +121,7 @@ function unicode_arr(str) {
   return unicode_arr;
 }
 
-function jaroWinklerDistance(str1, str2) {
+export function jaroWinklerDistance(str1, str2) {
   var len1 = str1.length;
   var len2 = str2.length;
   var matchDistance = Math.floor(Math.max(len1, len2) / 2) - 1;
@@ -179,7 +171,7 @@ function jaroWinklerDistance(str1, str2) {
   return similarity + prefix * weight * (1 - similarity);
 }
 
-function gethashtags(str, k) {
+export function gethashtags(str, k) {
   var hashtag_regex = /\B#([a-z0-q9]{2,})(?![~!@#$%^&*()=+_`\-\|\\/'\[\]\{\}]|[?.,]*\w)/g;
   var hashtags = str.match(hashtag_regex);
   var hashtags_norepeat = [];
@@ -201,7 +193,7 @@ function gethashtags(str, k) {
   return hashtags_norepeat;
 }
 
-function fetchWithProgress(url, progressCallback) {
+export function fetchWithProgress(url, progressCallback) {
   return new Promise((resolve, reject) => {
     // Fetch the URL using the Fetch API
     fetch(url)
@@ -241,13 +233,13 @@ function fetchWithProgress(url, progressCallback) {
   });
 }
 
-function encodeSignsToHtmlEntities(html: string) {
+export function encodeSignsToHtmlEntities(html: string) {
   return html.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
     return '&#' + i.charCodeAt(0) + ';';
   });
 }
 
-function isDarkMode(): boolean {
+export function isDarkMode(): boolean {
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     return true;
   } else {
@@ -255,7 +247,7 @@ function isDarkMode(): boolean {
   }
 }
 
-function hsvToRgb(h, s, v) {
+export function hsvToRgb(h, s, v) {
   // Normalize values
   h /= 360;
   s /= 100;
@@ -317,7 +309,7 @@ function hsvToRgb(h, s, v) {
   return rgb;
 }
 
-function randomColorSet() {
+export function randomColorSet() {
   var randomIntInRange = function (min, max) {
     return Math.max(Math.min(Math.round(min + (max - min) * Math.random()), max), min);
   };
@@ -335,7 +327,7 @@ function randomColorSet() {
   return { light: f(75, 0.06), dark: f(100, 0.11) };
 }
 
-function blendColors(hexColor, rgbaColor) {
+export function blendColors(hexColor, rgbaColor) {
   var hexToRGBA = function (hex, alpha) {
     const r = parseInt(hex.substring(1, 3), 16);
     const g = parseInt(hex.substring(3, 5), 16);
@@ -359,7 +351,7 @@ function blendColors(hexColor, rgbaColor) {
   return `#${blendedR.toString(16).padStart(2, '0')}${blendedG.toString(16).padStart(2, '0')}${blendedB.toString(16).padStart(2, '0')}`;
 }
 
-function stopProp(event): void {
+export function stopProp(event): void {
   var stop = false;
   if (typeof event === 'object') {
     if (event instanceof Event) {
@@ -371,20 +363,16 @@ function stopProp(event): void {
   }
 }
 
-
-
 // Expose functions to the global scope
 window.utilities = {
   encryptString,
   decryptString,
-  enur,
-  deur,
   gid,
   shuffleSelf,
   che,
   timestr,
   checkTouchFeatures,
-  qe,
+  qe: documentQuerySelector,
   qeAll,
   copyProperty,
   unicode_arr,

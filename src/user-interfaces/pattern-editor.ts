@@ -1,5 +1,5 @@
 import fine_grained_password from '../core/fine-grained-password';
-import utilities from '../core/utilities';
+import utilities, { documentQuerySelector } from '../core/utilities';
 const hljs = require('highlight.js/lib/core');
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
 import icons from './icons';
@@ -62,38 +62,38 @@ window.pattern_json = {
 window.pattern_json_generation = [];
 export function initializePatternEditorJSONEditor(): void {
   pattern_json = interaction.pattern_editor.addIdentityToPattern(pattern_json);
-  utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
-  utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
-  utilities.qe('.pattern2').removeAttribute('data-highlighted');
-  utilities.qe('.pattern').removeAttribute('data-highlighted');
-  hljs.highlightElement(utilities.qe('.pattern2'));
-  hljs.highlightElement(utilities.qe('.pattern'));
-  utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
+  documentQuerySelector('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
+  documentQuerySelector('.pattern').innerHTML = documentQuerySelector('.pattern2').innerText;
+  documentQuerySelector('.pattern2').removeAttribute('data-highlighted');
+  documentQuerySelector('.pattern').removeAttribute('data-highlighted');
+  hljs.highlightElement(documentQuerySelector('.pattern2'));
+  hljs.highlightElement(documentQuerySelector('.pattern'));
+  documentQuerySelector('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
 }
 
 export function syncAndFormatPatternEditorJSONEditor(): void {
   try {
-    pattern_json = JSON.parse(utilities.qe('.pattern2').innerText);
+    pattern_json = JSON.parse(documentQuerySelector('.pattern2').innerText);
     pattern_json = interaction.pattern_editor.addIdentityToPattern(pattern_json);
-    utilities.qe('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
-    utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
-    utilities.qe('.pattern2').removeAttribute('data-highlighted');
-    utilities.qe('.pattern').removeAttribute('data-highlighted');
-    hljs.highlightElement(utilities.qe('.pattern2'));
-    hljs.highlightElement(utilities.qe('.pattern'));
-    utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
+    documentQuerySelector('.pattern2').innerHTML = JSON.stringify(pattern_json, null, 2);
+    documentQuerySelector('.pattern').innerHTML = documentQuerySelector('.pattern2').innerText;
+    documentQuerySelector('.pattern2').removeAttribute('data-highlighted');
+    documentQuerySelector('.pattern').removeAttribute('data-highlighted');
+    hljs.highlightElement(documentQuerySelector('.pattern2'));
+    hljs.highlightElement(documentQuerySelector('.pattern'));
+    documentQuerySelector('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
   } catch (e) {}
-  utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerHTML;
-  utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
+  documentQuerySelector('.pattern').innerHTML = documentQuerySelector('.pattern2').innerHTML;
+  documentQuerySelector('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
 }
 
 export function syncPatternEditorJSONEditor() {
   try {
-    utilities.qe('.pattern').innerHTML = utilities.qe('.pattern2').innerText;
-    pattern_json = JSON.parse(utilities.qe('.pattern2').innerText);
-    utilities.qe('.pattern').removeAttribute('data-highlighted');
-    hljs.highlightElement(utilities.qe('.pattern'));
-    utilities.qe('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
+    documentQuerySelector('.pattern').innerHTML = documentQuerySelector('.pattern2').innerText;
+    pattern_json = JSON.parse(documentQuerySelector('.pattern2').innerText);
+    documentQuerySelector('.pattern').removeAttribute('data-highlighted');
+    hljs.highlightElement(documentQuerySelector('.pattern'));
+    documentQuerySelector('.pattern_editor .generation_preview').innerHTML = generatePatternPreview();
   } catch (e) {}
 }
 
@@ -102,34 +102,34 @@ export function openPatternEditor(mode, ls_key, event, temporary_id): void | str
     if (LS.hasOwnProperty(ls_key)) {
       pattern_json = JSON.parse(String(LS.getItem(ls_key)));
       interaction.pattern_manager.closePatternManager();
-      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('edit','${ls_key}',event)`);
-      utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_tick;
-      utilities.qe('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('edit')`);
+      documentQuerySelector('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('edit','${ls_key}',event)`);
+      documentQuerySelector('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_tick;
+      documentQuerySelector('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('edit')`);
     } else {
       return '';
     }
   }
   if (mode === 'new') {
     interaction.options.closeOptions(event);
-    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('new','',event)`);
-    utilities.qe('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_add;
-    utilities.qe('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('new')`);
+    documentQuerySelector('.pattern_editor .fixed-title-box .btn.right-top-corner').setAttribute('onclick', `interaction.pattern_editor.savePatternWithEditor('new','',event)`);
+    documentQuerySelector('.pattern_editor .fixed-title-box .btn.right-top-corner').innerHTML = icons.icon_add;
+    documentQuerySelector('.pattern_editor .fixed-title-box .btn.left-top-corner').setAttribute('onclick', `interaction.pattern_editor.closePatternEditor('new')`);
   }
   interaction.SASBC(0);
-  interaction.show(utilities.qe('.pattern_editor'), 'block');
+  interaction.show(documentQuerySelector('.pattern_editor'), 'block');
   interaction.pattern_editor.initializePatternEditorJSONEditor();
   if (pattern_editor_evt === 0) {
     pattern_editor_evt = 1;
-    utilities.qe('.pattern2').addEventListener('input', function (event) {
+    documentQuerySelector('.pattern2').addEventListener('input', function (event) {
       interaction.pattern_editor.syncPatternEditorJSONEditor();
     });
-    utilities.qe('.pattern2').addEventListener('blur', function (event) {
+    documentQuerySelector('.pattern2').addEventListener('blur', function (event) {
       interaction.pattern_editor.syncAndFormatPatternEditorJSONEditor();
     });
-    utilities.qe('.pattern2').addEventListener('scroll', function (event) {
+    documentQuerySelector('.pattern2').addEventListener('scroll', function (event) {
       window.requestAnimationFrame(function () {
-        var pattern2 = utilities.qe('.pattern_editor .pattern2');
-        var pattern = utilities.qe('.pattern_editor .pattern');
+        var pattern2 = documentQuerySelector('.pattern_editor .pattern2');
+        var pattern = documentQuerySelector('.pattern_editor .pattern');
         var scrollTop = pattern2.pageYOffset || pattern2.scrollTop;
         pattern.scrollTop = scrollTop;
         var scrollHeight: number = pattern2.scrollHeight;
@@ -145,14 +145,14 @@ export function openPatternEditor(mode, ls_key, event, temporary_id): void | str
         } else {
           translateY = 0;
         }
-        utilities.qe('.pattern_editor .pattern_editor_json pre code.pattern').style.setProperty('--js-pattern-overscroll-translate', `translateY(${translateY}px)`);
+        documentQuerySelector('.pattern_editor .pattern_editor_json pre code.pattern').style.setProperty('--js-pattern-overscroll-translate', `translateY(${translateY}px)`);
       });
     });
   }
 }
 
 export function closePatternEditor(mode) {
-  interaction.show(utilities.qe('.pattern_editor'), 'none');
+  interaction.show(documentQuerySelector('.pattern_editor'), 'none');
   interaction.SASBC(3);
   if (mode === 'edit') {
     interaction.pattern_manager.openPatternManager();
@@ -335,8 +335,8 @@ export function displayPatternComponentInfo(component_id: string, event: Event):
   document.body.appendChild(mask_elt);
   document.body.appendChild(card_elt);
   setTimeout(function () {
-    utilities.qe(`#${temporary_id}`).setAttribute('o', '1');
-    utilities.qe(`#${temporary_id}-mask`).setAttribute('o', '1');
+    documentQuerySelector(`#${temporary_id}`).setAttribute('o', '1');
+    documentQuerySelector(`#${temporary_id}-mask`).setAttribute('o', '1');
   }, 1);
 }
 
@@ -344,23 +344,23 @@ export function removePatternComponentInfo(temporary_id: string, event: Event): 
   event.preventDefault();
   interaction.SASBC(3);
 
-  utilities.qe(`body .pattern_editor_preview_component_info#${temporary_id}`).addEventListener(
+  documentQuerySelector(`body .pattern_editor_preview_component_info#${temporary_id}`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_editor_preview_component_info#${temporary_id}`).remove();
+      documentQuerySelector(`body .pattern_editor_preview_component_info#${temporary_id}`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).addEventListener(
+  documentQuerySelector(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).remove();
+      documentQuerySelector(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).remove();
     },
     { once: true }
   );
 
-  utilities.qe(`body .pattern_editor_preview_component_info#${temporary_id}`).setAttribute('o', '0');
-  utilities.qe(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).setAttribute('o', '0');
+  documentQuerySelector(`body .pattern_editor_preview_component_info#${temporary_id}`).setAttribute('o', '0');
+  documentQuerySelector(`body .pattern_editor_preview_component_info_mask#${temporary_id}-mask`).setAttribute('o', '0');
 }
 
 export function showComponentInEditor(temporary_id: string, component_id: string, event: Event): void {
@@ -377,8 +377,8 @@ export function showComponentInEditor(temporary_id: string, component_id: string
         break;
       }
     }
-    var pattern = utilities.qe('.pattern_editor .pattern_editor_box .pattern_editor_container[j="json"] .pattern');
-    var pattern2 = utilities.qe('.pattern_editor .pattern_editor_box .pattern_editor_container[j="json"] .pattern2');
+    var pattern = documentQuerySelector('.pattern_editor .pattern_editor_box .pattern_editor_container[j="json"] .pattern');
+    var pattern2 = documentQuerySelector('.pattern_editor .pattern_editor_box .pattern_editor_container[j="json"] .pattern2');
     var offsetTop = result_elt.offsetTop - pattern2.getBoundingClientRect().height / 2 - result_elt.getBoundingClientRect().height / 2;
     pattern2.scrollTo({
       top: offsetTop,
@@ -473,30 +473,30 @@ export function displaySavePatternErrors(errors) {
   document.body.appendChild(mask);
   document.body.appendChild(elt);
   setTimeout(function () {
-    utilities.qe(`#${temporary_id}`).setAttribute('o', '1');
-    utilities.qe(`#${temporary_id}-mask`).setAttribute('o', '1');
+    documentQuerySelector(`#${temporary_id}`).setAttribute('o', '1');
+    documentQuerySelector(`#${temporary_id}-mask`).setAttribute('o', '1');
   }, 1);
 }
 
 export function removeSavePatternErrors(temporary_id: string, event: Event): void {
   event.preventDefault();
   interaction.SASBC(3);
-  utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).addEventListener(
+  documentQuerySelector(`body .pattern_editor_save_pattern_errors#${temporary_id}`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).remove();
+      documentQuerySelector(`body .pattern_editor_save_pattern_errors#${temporary_id}`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).addEventListener(
+  documentQuerySelector(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).remove();
+      documentQuerySelector(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body .pattern_editor_save_pattern_errors#${temporary_id}`).setAttribute('o', '0');
-  utilities.qe(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).setAttribute('o', '0');
+  documentQuerySelector(`body .pattern_editor_save_pattern_errors#${temporary_id}`).setAttribute('o', '0');
+  documentQuerySelector(`body .pattern_editor_save_pattern_errors_mask#${temporary_id}-mask`).setAttribute('o', '0');
 }
 
 export function switchEditor(editor: string): void | string {
@@ -512,10 +512,10 @@ export function switchEditor(editor: string): void | string {
     displaySavePatternErrors(check.errors);
     return '';
   }
-  var all_editor_container = utilities.qe(`.pattern_editor_box .pattern_editor_container`);
-  var editor_container = utilities.qe(`.pattern_editor_box .pattern_editor_container[j="${editor}"]`);
+  var all_editor_container = documentQuerySelector(`.pattern_editor_box .pattern_editor_container`);
+  var editor_container = documentQuerySelector(`.pattern_editor_box .pattern_editor_container[j="${editor}"]`);
   var all_tab = utilities.qeAll(`.pattern_editor .pattern_editor_picker .pattern_editor_picker_option`);
-  var tab = utilities.qe(`.pattern_editor .pattern_editor_picker .pattern_editor_picker_option[j="${editor}"]`);
+  var tab = documentQuerySelector(`.pattern_editor .pattern_editor_picker .pattern_editor_picker_option[j="${editor}"]`);
   for (var i = 0; i < 2; i++) {
     all_tab[i].setAttribute('s', '0');
     all_editor_container.setAttribute('s', '0');

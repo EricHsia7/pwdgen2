@@ -18,7 +18,6 @@ function getWordsList() {
       return '';
     }
     var url: string = `https://erichsia7.github.io/pwdgen2/words_list/index.txt?${new Date().getTime()}`;
-    //var url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQLnA8hJhyZ8V7ZxrgeF6l7kIHahobdTqkXwdmEcBgbC0UNdSFCU1dy7wuFMOzuq_DBx49uzCjknOMJ/pub?gid=0&single=true&output=csv&' + new Date().getTime();
     var handleProgress = function (progress) {
       words_list.progress = progress;
     };

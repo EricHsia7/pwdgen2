@@ -19,7 +19,7 @@ function createSearchIndex() {
     // Push password, website, note, and username to the all array
     all.push(list[r].password);
     all.push(list[r].website);
-    all.push(list[r].note === null ? '' : utilities.deur(atob(list[r].note)));
+    all.push(list[r].note === null ? '' : decodeURIComponent(atob(list[r].note)));
     all.push(list[r].username);
 
     // Convert timestamp to a human-readable format and push to the all array

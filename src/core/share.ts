@@ -10,7 +10,7 @@ function shareViaURL(type: shareDataType, from: string, data: string, format: sh
   url.searchParams.append('share', '1');
   url.searchParams.append('type', type);
   url.searchParams.append('from', from);
-  url.searchParams.append('data', btoa(utilities.enur(data)));
+  url.searchParams.append('data', btoa(encodeURIComponent(data)));
   url.searchParams.append('format', format);
 
   if (navigator.canShare) {
@@ -31,7 +31,7 @@ function receiveSharedContentFromURL(url: string): void {
   if (share === '1') {
     var type = parameters.get('type');
     var from = parameters.get('from');
-    var data = utilities.deur(atob(String(parameters.get('data'))));
+    var data = decodeURIComponent(atob(String(parameters.get('data'))));
     var format = parameters.get('format');
     var valid = false;
     var json = {};

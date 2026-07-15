@@ -1,5 +1,5 @@
 import fine_grained_password from '../core/fine-grained-password';
-import utilities from '../core/utilities';
+import utilities, { documentQuerySelector } from '../core/utilities';
 import Xsearch from '../core/search';
 import { LS, setPassword, addPassword, listSavedPassword, modifyPassword, removePassword, generateExportFile } from '../core/storage';
 import icons from './icons';
@@ -27,7 +27,7 @@ window.lazyPasswordListIcons = {
 window.prompt_register = {};
 
 function lazyLoadPasswordListIcon(identity, url) {
-  var item_elt = utilities.qe(`.password-list .password-item[pwd-id="${identity}"]`);
+  var item_elt = documentQuerySelector(`.password-list .password-item[pwd-id="${identity}"]`);
   var icon_elt = item_elt.querySelector('.password-item-website-icon');
   if (item_elt.getAttribute('icon') === '0') {
     var index = window.lazyPasswordListIcons.unloaded.indexOf(identity);
@@ -57,7 +57,7 @@ function lazyLoadPasswordListIcons_scrolling_handler(event): void {
     return isInViewport;
   };
 
-  var container = utilities.qe('.main-page .contents-box'); // Replace 'container' with your container's ID or reference
+  var container = documentQuerySelector('.main-page .contents-box'); // Replace 'container' with your container's ID or reference
   var allPasswordElt = utilities.qeAll('.main-page .contents-box .password-list .password-item');
   var allPasswordElt_len = allPasswordElt.length;
 
@@ -193,30 +193,30 @@ function prompt_asking(message: string, option1: string, option1_func: Function,
     interaction.prompt.close_prompt_asking(temporary_id);
   };
   setTimeout(function () {
-    utilities.qe(`body #${temporary_id}`).setAttribute('o', '1');
-    utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '1');
+    documentQuerySelector(`body #${temporary_id}`).setAttribute('o', '1');
+    documentQuerySelector(`body #${temporary_id}_mask`).setAttribute('o', '1');
   }, 1);
   interaction.SASBC(2);
 }
 
 function close_prompt_asking(temporary_id) {
-  utilities.qe(`body #${temporary_id}`).addEventListener(
+  documentQuerySelector(`body #${temporary_id}`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body #${temporary_id}`).remove();
+      documentQuerySelector(`body #${temporary_id}`).remove();
     },
     { once: true }
   );
-  utilities.qe(`body #${temporary_id}_mask`).addEventListener(
+  documentQuerySelector(`body #${temporary_id}_mask`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`body #${temporary_id}_mask`).remove();
+      documentQuerySelector(`body #${temporary_id}_mask`).remove();
       delete prompt_register[temporary_id];
     },
     { once: true }
   );
-  utilities.qe(`body #${temporary_id}`).setAttribute('o', '0');
-  utilities.qe(`body #${temporary_id}_mask`).setAttribute('o', '0');
+  documentQuerySelector(`body #${temporary_id}`).setAttribute('o', '0');
+  documentQuerySelector(`body #${temporary_id}_mask`).setAttribute('o', '0');
   interaction.SASBC(3);
 }
 //Stand Alone Status Bar Color
@@ -244,8 +244,8 @@ function SASBC(a) {
     interaction.SASBC(a2);
     return '';
   }
-  utilities.qe('head meta[mode="light"]').setAttribute('content', c);
-  utilities.qe('head meta[mode="dark"]').setAttribute('content', d);
+  documentQuerySelector('head meta[mode="light"]').setAttribute('content', c);
+  documentQuerySelector('head meta[mode="dark"]').setAttribute('content', d);
   if (!(interaction.SASBCH[interaction.SASBCH.length - 1] === a)) {
     interaction.SASBCH.push(a);
   }
@@ -274,10 +274,10 @@ function copyText(string: string) {
 }
 
 function copyElement(selector) {
-  if (utilities.qe(selector).tagName === 'INPUT' || utilities.qe(selector).tagName === 'TEXTAREA') {
-    var text = utilities.qe(selector).value;
+  if (documentQuerySelector(selector).tagName === 'INPUT' || documentQuerySelector(selector).tagName === 'TEXTAREA') {
+    var text = documentQuerySelector(selector).value;
   } else {
-    var text = utilities.qe(selector).textContent;
+    var text = documentQuerySelector(selector).textContent;
   }
   copyText(text);
 }
@@ -292,67 +292,67 @@ function copyDetails(k) {
 
 function openSearch() {
   if (search_evt === 0) {
-    utilities.qe('.search input#search').addEventListener('selectionchange', function (e) {
-      interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+    documentQuerySelector('.search input#search').addEventListener('selectionchange', function (e) {
+      interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
     });
-    utilities.qe('.search input#search').addEventListener('keyup', function (e) {
-      interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+    documentQuerySelector('.search input#search').addEventListener('keyup', function (e) {
+      interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
     });
-    utilities.qe('.search input#search').addEventListener('cut', function (e) {
-      interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+    documentQuerySelector('.search input#search').addEventListener('cut', function (e) {
+      interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
     });
-    utilities.qe('.search input#search').addEventListener('paste', function (e) {
-      interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+    documentQuerySelector('.search input#search').addEventListener('paste', function (e) {
+      interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
     });
-    utilities.qe('.search input#search').addEventListener('copy', function (e) {
-      interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+    documentQuerySelector('.search input#search').addEventListener('copy', function (e) {
+      interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
     });
 
     document.addEventListener('selectionchange', function (e) {
       if (search_status === 1) {
-        interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+        interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
       }
     });
     document.addEventListener('keyup', function (e) {
       if (search_status === 1) {
-        interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+        interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
       }
     });
     document.addEventListener('cut', function (e) {
       if (search_status === 1) {
-        interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+        interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
       }
     });
     document.addEventListener('paste', function (e) {
       if (search_status === 1) {
-        interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+        interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
       }
     });
     document.addEventListener('copy', function (e) {
       if (search_status === 1) {
-        interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+        interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
       }
     });
     search_evt = 1;
   }
-  utilities.qe('.main-page .fixed-title-box-mask').setAttribute('status', '1');
-  utilities.qe('.main-page .fixed-title-box').setAttribute('status', '1');
-  utilities.qe('.main-page .search-output-box').setAttribute('status', '1');
-  utilities.qe('.main-page .search-box').setAttribute('status', '1');
-  utilities.qe('.main-page .search-box').setAttribute('sticky', 'true');
+  documentQuerySelector('.main-page .fixed-title-box-mask').setAttribute('status', '1');
+  documentQuerySelector('.main-page .fixed-title-box').setAttribute('status', '1');
+  documentQuerySelector('.main-page .search-output-box').setAttribute('status', '1');
+  documentQuerySelector('.main-page .search-box').setAttribute('status', '1');
+  documentQuerySelector('.main-page .search-box').setAttribute('sticky', 'true');
   Xsearch.searchIndex = Xsearch.createSearchIndex();
-  interaction.search.updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+  interaction.search.updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
   interaction.SASBC(1);
   search_status = 1;
 }
 
 function closeSearch() {
-  utilities.qe('.main-page .fixed-title-box-mask').setAttribute('status', '0');
-  utilities.qe('.main-page .fixed-title-box').setAttribute('status', '0');
-  utilities.qe('.main-page .search-output-box').setAttribute('status', '0');
-  utilities.qe('.main-page .search-box').setAttribute('status', '0');
-  utilities.qe('.main-page .search-box').setAttribute('sticky', search_sticky);
-  utilities.qe('.main-page .search input#search').value = '';
+  documentQuerySelector('.main-page .fixed-title-box-mask').setAttribute('status', '0');
+  documentQuerySelector('.main-page .fixed-title-box').setAttribute('status', '0');
+  documentQuerySelector('.main-page .search-output-box').setAttribute('status', '0');
+  documentQuerySelector('.main-page .search-box').setAttribute('status', '0');
+  documentQuerySelector('.main-page .search-box').setAttribute('sticky', search_sticky);
+  documentQuerySelector('.main-page .search input#search').value = '';
   if (!search_sticky) {
     interaction.SASBC(3);
   }
@@ -438,12 +438,12 @@ function printSearch(search, element) {
 
 function updateSearch(query, index) {
   var search = Xsearch.search_passwords(String(query).toLowerCase(), index);
-  interaction.search.printSearch(search, utilities.qe('.search-output'));
+  interaction.search.printSearch(search, documentQuerySelector('.search-output'));
 }
 
 function setSearchQuery(q) {
-  utilities.qe('.search input#search').value = q;
-  updateSearch(utilities.qe('.search input#search').value, Xsearch.searchIndex);
+  documentQuerySelector('.search input#search').value = q;
+  updateSearch(documentQuerySelector('.search input#search').value, Xsearch.searchIndex);
 }
 
 function printSavedPasswordList(): void {
@@ -454,14 +454,14 @@ function printSavedPasswordList(): void {
     var tags = [];
     html.push(`<div class="password-item" onclick="interaction.password_page.openPassword('${list[k].id}')" pwd-id="${list[k].id}" icon="${list[k].website_icon === false ? '-1' : '0'}" icon-url="${list[k].website_icon}"><div class="password-item-website-icon" style="--js-website-icon:var(--p-e5e5ea)"></div><div class="password-item-title">${utilities.timestr(new Date(list[k].time_stamp))}</div><div class="password-item-tags">${tags}</div><div class="password-open-icon">${icons.icon_arrow}</div></div>`);
   }
-  utilities.qe('.password-list').innerHTML = html.join('');
+  documentQuerySelector('.password-list').innerHTML = html.join('');
   interaction.main_page.lazyLoadPasswordListIcons_scrolling_handler();
 }
 
 function openOptions(r) {
-  utilities.qe('.options_mask').style.setProperty('display', 'block');
-  utilities.qe('.options').style.setProperty('display', 'inline-block');
-  utilities.qe('.options').style.setProperty('--js-options-list-count', utilities.qeAll(`.options li[group="${r}"]`).length);
+  documentQuerySelector('.options_mask').style.setProperty('display', 'block');
+  documentQuerySelector('.options').style.setProperty('display', 'inline-block');
+  documentQuerySelector('.options').style.setProperty('--js-options-list-count', utilities.qeAll(`.options li[group="${r}"]`).length);
   var all_options = utilities.qeAll('.options li');
   var all_options_len = all_options.length;
   for (var f = 0; f < all_options_len; f++) {
@@ -475,19 +475,19 @@ function openOptions(r) {
   }
 
   setTimeout(function () {
-    utilities.qe('.options').setAttribute('k', '1');
+    documentQuerySelector('.options').setAttribute('k', '1');
   }, 1);
-  utilities.qe('#options_css').innerHTML = '.options li{display:none;}.options li[group="' + r + '"] {display:flex;}';
+  documentQuerySelector('#options_css').innerHTML = '.options li{display:none;}.options li[group="' + r + '"] {display:flex;}';
 }
 
 function closeOptions(event) {
   utilities.stopProp(event);
-  utilities.qe('.options').setAttribute('k', '0');
-  utilities.qe('.options').addEventListener(
+  documentQuerySelector('.options').setAttribute('k', '0');
+  documentQuerySelector('.options').addEventListener(
     'transitionend',
     function () {
-      utilities.qe('.options').style.setProperty('display', 'none');
-      utilities.qe('.options_mask').style.setProperty('display', 'none');
+      documentQuerySelector('.options').style.setProperty('display', 'none');
+      documentQuerySelector('.options_mask').style.setProperty('display', 'none');
     },
     { once: true }
   );
@@ -527,7 +527,7 @@ function refreshPage(event) {
 }
 
 function importData(event) {
-  utilities.qe('#importdata').click();
+  documentQuerySelector('#importdata').click();
   interaction.options.closeOptions(event);
 }
 

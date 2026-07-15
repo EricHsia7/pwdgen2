@@ -1,4 +1,4 @@
-import utilities from '../core/utilities';
+import utilities, { documentQuerySelector } from '../core/utilities';
 import fine_grained_password from '../core/fine-grained-password';
 import icons from './icons';
 import { LS } from '../core/storage';
@@ -29,30 +29,30 @@ export function printPatterns(): void {
     var ls_key = this_item.LocalStorageKey;
     html.push(`<div class="pattern-item" id="${id}" default="${this_item.default_pattern ? true : false}"><div class="pattern-item-icon"><span class="material-symbols-rounded">${this_item.pattern_icon}</span></div><div class="pattern-item-title">${this_item.pattern_name}</div><div class="pattern-item-action" onclick="${this_item.default_pattern ? '' : "interaction.pattern_manager.showPatternOptions('" + ls_key + "','" + id + "',event)"}">${icons.icon_more_options}</div></div>`);
   }
-  utilities.qe('.pattern_manager .contents-box .pattern-list').innerHTML = html.join('');
+  documentQuerySelector('.pattern_manager .contents-box .pattern-list').innerHTML = html.join('');
 }
 
 export function openPatternManager(event) {
-  interaction.show(utilities.qe('.pattern_manager'), 'block');
+  interaction.show(documentQuerySelector('.pattern_manager'), 'block');
   interaction.options.closeOptions(event);
   interaction.pattern_manager.printPatterns();
   if (!lazyCSS.loaded.googleFontsMaterialSymbols) {
     interaction.loadFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0', 'Material Symbols Rounded', 'googleFontsMaterialSymbols', function () {
-      utilities.qe('.add-password-page .password-generator-presets').setAttribute('font', '1');
-      utilities.qe('.pattern_manager .pattern-list').setAttribute('font', '1');
+      documentQuerySelector('.add-password-page .password-generator-presets').setAttribute('font', '1');
+      documentQuerySelector('.pattern_manager .pattern-list').setAttribute('font', '1');
     });
   }
 }
 
 export function closePatternManager() {
-  interaction.show(utilities.qe('.pattern_manager'), 'none');
+  interaction.show(documentQuerySelector('.pattern_manager'), 'none');
 }
 
 export function showPatternOptions(ls_key: string, id: string, even: Event): void {
   var optionItemString = function (title: string, list_n: number, border: number, name: string, group: number, icon: string, onclick: string): string {
     return `<li onclick="${onclick}" style="--options-list-n:${list_n};" y="${name}" group="${group}"  b="${border}"><div class="l_options_title">${title}</div><div class="l_options_icon">${icon}</div></li>`;
   };
-  var button = utilities.qe(`.pattern_manager .contents-box .pattern-list .pattern-item#${id} .pattern-item-action`);
+  var button = documentQuerySelector(`.pattern_manager .contents-box .pattern-list .pattern-item#${id} .pattern-item-action`);
   var button_rect = button.getBoundingClientRect();
   var button_left = button_rect.left;
   var button_top = button_rect.top;
@@ -99,22 +99,22 @@ export function showPatternOptions(ls_key: string, id: string, even: Event): voi
   document.body.appendChild(mask_elt);
   document.body.appendChild(options_elt);
 
-  interaction.show(utilities.qe(`.pattern_item_options#${temporary_id}`), 'inline-block');
-  interaction.show(utilities.qe(`.pattern_item_options_mask#${temporary_id}_mask`), 'block');
+  interaction.show(documentQuerySelector(`.pattern_item_options#${temporary_id}`), 'inline-block');
+  interaction.show(documentQuerySelector(`.pattern_item_options_mask#${temporary_id}_mask`), 'block');
 
   setTimeout(function () {
-    utilities.qe(`.pattern_item_options#${temporary_id}`).setAttribute('k', '1');
+    documentQuerySelector(`.pattern_item_options#${temporary_id}`).setAttribute('k', '1');
   }, 1);
 }
 
 export function removePatternOptions(temporary_id: string, event: Event): void {
   utilities.stopProp(event);
-  utilities.qe(`.pattern_item_options#${temporary_id}`).setAttribute('k', '0');
-  utilities.qe(`.pattern_item_options#${temporary_id}`).addEventListener(
+  documentQuerySelector(`.pattern_item_options#${temporary_id}`).setAttribute('k', '0');
+  documentQuerySelector(`.pattern_item_options#${temporary_id}`).addEventListener(
     'transitionend',
     function () {
-      utilities.qe(`.pattern_item_options#${temporary_id}`).remove();
-      utilities.qe(`.pattern_item_options_mask#${temporary_id}_mask`).remove();
+      documentQuerySelector(`.pattern_item_options#${temporary_id}`).remove();
+      documentQuerySelector(`.pattern_item_options_mask#${temporary_id}_mask`).remove();
     },
     { once: true }
   );
