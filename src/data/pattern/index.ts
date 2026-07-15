@@ -1,4 +1,5 @@
 import { MaterialSymbol } from '../../interface/icons';
+import { Random } from '../../tools/random';
 import { shuffle } from '../../tools/shuffle';
 
 export interface PatternString {
@@ -37,6 +38,7 @@ export interface Pattern {
 }
 
 function generateFromPatternComponent(component: PatternComponent): string {
+  const random = new Random();
   switch (component.type) {
     case 'string': {
       return component.string;
@@ -58,12 +60,9 @@ function generateFromPatternComponent(component: PatternComponent): string {
       const charset = match.join('').split('');
       let charsetLength1 = charset.length - 1;
 
-      const randomNumbers = new Uint32Array(component.quantity);
-      crypto.getRandomValues(randomNumbers);
-
       const result = new Array(component.quantity).fill('');
       for (let i = 0; i < component.quantity; i++) {
-        const index = Math.round((charsetLength1 * randomNumbers[i]) / (2 ** 32 - 1));
+        const index = Math.round(charsetLength1 * random.pull());
         result[i] = charset[index];
         if (component.repeat === false) {
           charset.splice(index, 1);
@@ -77,12 +76,9 @@ function generateFromPatternComponent(component: PatternComponent): string {
       const list = component.list.slice(); // shallow copy
       let length1 = list.length - 1;
 
-      const randomNumbers = new Uint32Array(component.quantity);
-      crypto.getRandomValues(randomNumbers);
-
       const result = new Array(component.quantity).fill('');
       for (let i = 0; i < component.quantity; i++) {
-        const index = Math.round((length1 * randomNumbers[i]) / (2 ** 32 - 1));
+        const index = Math.round(length1 * random.pull());
         result[i] = list[index];
         if (component.repeat === false) {
           list.splice(index, 1);
@@ -97,7 +93,7 @@ function generateFromPatternComponent(component: PatternComponent): string {
         const quantity = component.group.length;
         let result = new Array(quantity).fill('');
         for (let i = 0; i < quantity; i++) {
-          result[i] = generateFromPatternComponent(component);
+          result[i] = generateFromPatternComponent(component.group[i]);
         }
         const actions = component.actions;
         const actionsLength = actions.length;
@@ -113,7 +109,7 @@ function generateFromPatternComponent(component: PatternComponent): string {
         const quantity = component.group.length;
         const result = new Array(quantity).fill('');
         for (let i = 0; i < quantity; i++) {
-          result[i] = generateFromPatternComponent(component);
+          result[i] = generateFromPatternComponent(component.group[i]);
         }
         return result.join('');
       }
