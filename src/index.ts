@@ -1,11 +1,7 @@
-import { checkPassword, checkCommonWordPatterns } from 'src/core/check-password';
-import fine_grained_password from 'src/core/fine-grained-password';
-import Xsearch from './core/search';
-import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword, importdatahandler } from './/core/storage';
+import { buildSearchIndex } from './core/search';
+import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword, importdatahandler } from './core/storage';
 import utilities, { documentQuerySelector } from './core/utilities';
-import bjson from 'src/core/blocks-json';
 import words_list from './core/words-list';
-import icons from './user-interfaces/icons';
 import interaction from './user-interfaces/interaction';
 import Xshare from './core/share';
 
@@ -25,26 +21,6 @@ import './user-interfaces/css/add-password/presets.css';
 import './user-interfaces/css/show.css';
 
 //for development
-
-const ErrorStackParser = require('error-stack-parser');
-const StackTrace = require('stacktrace-js');
-
-window.onerror = async function (message, source, lineno, colno, error) {
-  StackTrace.fromError(error).then(function (stackTrace) {
-    var parsedStackTrace = stackTrace.map(function (frame) {
-      return {
-        functionName: frame.functionName,
-        fileName: frame.fileName,
-        lineNumber: frame.lineNumber,
-        columnNumber: frame.columnNumber
-      };
-    });
-    console.log('%c ----------', 'color: #888;');
-    parsedStackTrace.forEach((e) => {
-      console.error(`func: ${e.functionName}\npath: ${e.fileName}\nlocation: L${e.lineNumber} C${e.columnNumber}`);
-    });
-  });
-};
 
 window.password_page_icon_loaded = false;
 window.allhashtag = {};
@@ -149,7 +125,7 @@ window.pwdgen2 = function () {
   interaction.loadFont('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&display=swap', 'Noto Sans', 'googleFontsNotoSans');
 
   upgradeData();
-  Xsearch.searchIndex = Xsearch.createSearchIndex();
+  buildSearchIndex();
 
   setTimeout(function () {
     interaction.main_page.printSavedPasswordList();

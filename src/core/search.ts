@@ -2,14 +2,15 @@
 import utilities from './utilities';
 import { listSavedPassword } from './storage';
 
+const searchIndex = { all: [], hashtags: [], date: [], len: [] };
+
 // Function to create a search index from saved passwords
-function createSearchIndex() {
+export function buildSearchIndex() {
   // Get the list of saved passwords
   var list = listSavedPassword();
   var list_len = list.length;
 
   // Initialize the search index object
-  Xsearch.searchIndex = { all: [], hashtags: [], date: [], len: [] };
 
   // Loop through each saved password to create search index
   for (var r = 0; r < list_len; r++) {
@@ -42,7 +43,7 @@ function createSearchIndex() {
     // Convert the all array to Unicode array and push to the search index
     var all_unicode = utilities.unicode_arr(String(all.join('')).toLowerCase());
     var hashtags_unicode = utilities.unicode_arr(hashtags.join(''));
-    Xsearch.searchIndex.all.push({
+    searchIndex.all.push({
       id: list[r].id,
       password: all[0],
       website: all[1],
@@ -59,22 +60,19 @@ function createSearchIndex() {
 
     // Add hashtags, date tags, and length tags to their respective arrays in the search index
     for (var w = 0; w < hashtags_len; w++) {
-      if (!(Xsearch.searchIndex.hashtags.indexOf(hashtags[w]) > -1)) {
-        Xsearch.searchIndex.hashtags.push(hashtags[w]);
+      if (!(searchIndex.hashtags.indexOf(hashtags[w]) > -1)) {
+        searchIndex.hashtags.push(hashtags[w]);
       }
     }
     for (var w = 6; w < 9; w++) {
-      if (!(Xsearch.searchIndex.date.indexOf(all[w]) > -1)) {
-        Xsearch.searchIndex.date.push(all[w]);
+      if (!(searchIndex.date.indexOf(all[w]) > -1)) {
+        searchIndex.date.push(all[w]);
       }
     }
-    if (!(Xsearch.searchIndex.len.indexOf(all[9]) > -1)) {
-      Xsearch.searchIndex.len.push(all[9]);
+    if (!(searchIndex.len.indexOf(all[9]) > -1)) {
+      searchIndex.len.push(all[9]);
     }
   }
-
-  // Return the created search index
-  return Xsearch.searchIndex;
 }
 
 // Function to search passwords based on a query in the search index
@@ -181,14 +179,3 @@ function search_passwords(query, index) {
   // Return the search result and suggestions
   return { result: result, suggestions: suggestions.slice(0, 5), query: query };
 }
-
-// Initialize an empty search index object
-const searchIndex: object = { all: [], hashtags: [], date: [], len: [] };
-
-// Expose functions and search index object to the global scope
-window.Xsearch = {
-  createSearchIndex,
-  search_passwords,
-  searchIndex
-};
-export default window.Xsearch;

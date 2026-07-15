@@ -1,8 +1,7 @@
 // Import required functions
 import { LS, searchItemsbyname } from './storage';
 import utilities from './utilities';
-var _ = {};
-_.cloneDeep = require('lodash/cloneDeep');
+const { cloneDeep } = require('lodash/cloneDeep');
 
 const defaultPatterns: object[] = [
   {
@@ -98,11 +97,11 @@ const defaultPatterns: object[] = [
 ];
 
 // Function to get all the patterns saved in the Local Storage
-function listPatterns(returnLocalStorageKey) {
-  var list = searchItemsbyname('pwdgen2_pattern_b_');
-  var list_len = list.length;
-  var result = [];
-  for (var p = 0; p < list_len; p++) {
+function listPatterns(returnLocalStorageKey: boolean) {
+  const list = searchItemsbyname('pwdgen2_pattern_b_');
+  const length = list.length;
+  const result = [];
+  for (let p = 0; p < length; p++) {
     if (LS.hasOwnProperty(list[p])) {
       result.push(Object.assign(JSON.parse(String(LS.getItem(list[p]))), returnLocalStorageKey ? { LocalStorageKey: list[p] } : {}));
     }
@@ -110,19 +109,19 @@ function listPatterns(returnLocalStorageKey) {
   return result;
 }
 
-const pwd_pattern_custom = [];
+let customPatterns = [];
 
 // Function to get the default and saved patterns
-const getPatterns = function (returnLocalStorageKey) {
-  fine_grained_password.pwd_pattern_custom = fine_grained_password.listPatterns(returnLocalStorageKey);
-  return defaultPatterns.concat(fine_grained_password.pwd_pattern_custom);
-};
+export function getPatterns(returnLocalStorageKey) {
+  customPatterns = listPatterns(returnLocalStorageKey);
+  return defaultPatterns.concat(customPatterns);
+}
 
 // Function to generate a string depending on the pattern
 export function generate(options, mode) {
   // Use lodash to clone the options (pattern) to avoid syncing with the original list declared above → make the declared pattern usable repeatedly
-  const pattern = _.cloneDeep(options);
-  const original_pattern = _.cloneDeep(options);
+  const pattern = cloneDeep(options);
+  const original_pattern = cloneDeep(options);
 
   // Production mode: only return the results
   // Editor mode: return the results, component objects, and error messages
@@ -222,13 +221,18 @@ export function generate(options, mode) {
   return d;
 }
 
+interface PatternError {
+  message: string;
+  type: 'lack' | 'internal' | 'type' | 'invalid value';
+}
+
 function checkPatternQualification(pattern) {
-  var json = _.cloneDeep(pattern);
-  var result = 1;
-  var errors: Array = [];
+  var json = cloneDeep(pattern);
+  let result = 1;
+  const errors: Array<PatternError> = [];
 
   const omitObject = function (object) {
-    var obj = _.cloneDeep(object);
+    var obj = cloneDeep(object);
     if (typeof object === 'object' && !Array.isArray(object)) {
       for (var w in obj) {
         if (typeof obj[w] === 'object' && !Array.isArray(obj[w])) {
@@ -242,7 +246,7 @@ function checkPatternQualification(pattern) {
     }
   };
 
-  const check_hasOwnProperty = function (object, property) {
+  function hasOwnProperty(object: object, property: string): 0 | 1 {
     if (typeof object === 'object') {
       if (object.hasOwnProperty(property)) {
         return 1;
@@ -253,14 +257,14 @@ function checkPatternQualification(pattern) {
     }
     errors.push({ message: `Cannot check the property "${property}" due to a type error of ${String(object)}.`, type: 'internal' });
     return 0;
-  };
+  }
 
-  const check = function (object) {
+  function check(object: object) {
     var result = 1;
-    result *= check_hasOwnProperty(object, 'type');
+    result *= hasOwnProperty(object, 'type');
     var type = object['type'];
     if (type === 'string' || type === 'regex' || type === 'list' || type === 'group') {
-      result *= check_hasOwnProperty(object, object['type']);
+      result *= hasOwnProperty(object, object['type']);
     } else {
       errors.push({ message: `The type "${type}" in ${omitObject(object)} is not supported at this time.`, type: 'type' });
       result *= 0;
@@ -272,8 +276,8 @@ function checkPatternQualification(pattern) {
       }
     }
     if (type === 'regex' || type === 'list') {
-      result *= check_hasOwnProperty(object, 'quantity');
-      result *= check_hasOwnProperty(object, 'repeat');
+      result *= hasOwnProperty(object, 'quantity');
+      result *= hasOwnProperty(object, 'repeat');
       if (!(typeof object['quantity'] === 'number')) {
         errors.push({ message: `Type of the property "quantity" in ${omitObject(object)} is not a number.`, type: 'type' });
         result *= 0;
@@ -338,12 +342,12 @@ function checkPatternQualification(pattern) {
     } else {
       return false;
     }
-  };
+  }
 
   if (typeof json === 'object') {
-    result *= check_hasOwnProperty(json, 'pattern_name');
-    result *= check_hasOwnProperty(json, 'pattern_icon');
-    result *= check_hasOwnProperty(json, 'pattern');
+    result *= hasOwnProperty(json, 'pattern_name');
+    result *= hasOwnProperty(json, 'pattern_icon');
+    result *= hasOwnProperty(json, 'pattern');
     if (!(typeof json['pattern_name'] === 'string')) {
       errors.push({ message: `Type of the property "pattern_name" in ${omitObject(json)} is not a string.`, type: 'type' });
       result *= 0;
@@ -373,14 +377,3 @@ function checkPatternQualification(pattern) {
   }
   return { errors: errors, result: result };
 }
-
-// Expose functions to the global scope
-window.fine_grained_password = {
-  pwd_pattern_custom,
-  generate,
-  listPatterns,
-  getPatterns,
-  checkPatternQualification
-};
-
-export default window.fine_grained_password;

@@ -1,5 +1,4 @@
 // Import required functions
-import searchItemsbyname from 'src/core/storage';
 import utilities from './utilities';
 import { LS } from './storage';
 

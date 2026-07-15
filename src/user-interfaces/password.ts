@@ -1,7 +1,7 @@
 import utilities, { documentQuerySelector } from '../core/utilities';
 import { LS, addPassword, modifyPassword, removePassword } from '../core/storage';
 import icons from './icons';
-import fine_grained_password from '../core/fine-grained-password';
+import fine_grained_password, { generate } from '../core/fine-grained-password';
 import { checkPassword } from '../core/check-password';
 
 export function openPassword(id, showCallback) {
@@ -66,7 +66,7 @@ export function openAddPassword(event) {
 
   interaction.SASBC(0);
   interaction.add_password.printPatternPresets();
-  documentQuerySelector('.add-password-page .add-list .add-item-value[k="password"] input').value = fine_grained_password.generate(fine_grained_password.getPatterns(false)[0].pattern, 'production');
+  documentQuerySelector('.add-password-page .add-list .add-item-value[k="password"] input').value = generate(getPatterns(false)[0].pattern, 'production');
   documentQuerySelector('.add-password-page .add-list .add-item-value[k="username"] input').value = '';
   documentQuerySelector('.add-password-page .add-list .add-item-value[k="website"] input').value = '';
   interaction.options.closeOptions(event);
