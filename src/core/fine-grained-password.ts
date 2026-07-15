@@ -119,7 +119,7 @@ const getPatterns = function (returnLocalStorageKey) {
 };
 
 // Function to generate a string depending on the pattern
-function generate(options, mode) {
+export function generate(options, mode) {
   // Use lodash to clone the options (pattern) to avoid syncing with the original list declared above → make the declared pattern usable repeatedly
   const pattern = _.cloneDeep(options);
   const original_pattern = _.cloneDeep(options);
@@ -133,7 +133,7 @@ function generate(options, mode) {
     var d: Array = [];
   }
 
-  const get_chars_from_regex = function (regex) {
+  const getCharsFromRegex = function (regex) {
     // Generate a long string
     const input: string = String.fromCharCode(...Array.from({ length: Math.pow(2, 16) }, (_, i) => i));
     // Use the input regular expression to select matched characters
@@ -144,65 +144,72 @@ function generate(options, mode) {
     return chars;
   };
 
-  const pattern_len: number = pattern.length;
-  for (var e = 0; e < pattern_len; e++) {
-    var this_item = pattern[e];
-    var this_content = this_item[this_item['type']];
-    var result = '';
+  const patternLength: number = pattern.length;
+  for (let e = 0; e < patternLength; e++) {
+    const thisItem = pattern[e];
+    const thisContent = thisItem[thisItem['type']];
+    let result = '';
 
-    if (this_item['type'] === 'regex') {
-      // Check if the regular expression is full (has expression and flags)
-      var this_content_matches = this_content.match(/^\/(.*)\/([a-z]*)$/i);
-      var string: string = '';
-      // Get the character source/sample
-      var chars = get_chars_from_regex(new RegExp(this_content_matches[1], this_content_matches[2])).split('');
-      for (var r = 0; r < this_item['quantity']; r++) {
-        // Choose a character from the source
-        var random_index: number = Math.round((chars.length - 1) * Math.random());
+    switch (thisItem['type']) {
+      case 'regex': {
+        const randomNumbers = new Uint32Array(thisItem['quantity']);
+        crypto.getRandomValues(randomNumbers);
+        // Check if the regular expression is full (has expression and flags)
+        const thisContentMatches = thisContent.match(/^\/(.*)\/([a-z]*)$/i);
+        let string: string = '';
+        // Get the character source/sample
+        const chars = getCharsFromRegex(new RegExp(thisContentMatches[1], thisContentMatches[2])).split('');
+        for (let r = 0; r < thisItem['quantity']; r++) {
+          // Choose a character from the source
+          const randomIndex: number = Math.round(((chars.length - 1) * randomNumbers[r]) / (2 ** 32 - 1));
 
-        // Put the character to the end of the result
-        string += chars[random_index];
+          // Put the character to the end of the result
+          string += chars[randomIndex];
 
-        // If the configuration tells that repeating is not allowed, strike/remove the character from the source to avoid using repeatedly
-        if (!this_item.repeat) {
-          chars.splice(random_index, 1);
+          // If the configuration tells that repeating is not allowed, strike/remove the character from the source to avoid using repeatedly
+          if (!thisItem.repeat) {
+            chars.splice(randomIndex, 1);
+          }
         }
+        result = String(string);
+        break;
       }
-      result = String(string);
-    }
-
-    if (this_item['type'] === 'string') {
-      // Directly put the string to the end of the result
-      result = String(this_content);
-    }
-
-    if (this_item['type'] === 'list') {
-      for (var r = 0; r < this_item['quantity']; r++) {
-        // Choose an item from the list
-        var random_index: number = Math.round((this_content.length - 1) * Math.random());
-        // Put the content of the item to the end of the result
-        result += this_content[random_index];
-        if (!this_item.repeat) {
-          // If the configuration tells that repeating is not allowed, strike/remove the item from the list to avoid using repeatedly
-          this_content.splice(random_index, 1);
+      case 'string':
+        // Directly put the string to the end of the result
+        result = String(thisContent);
+        break;
+      case 'list': {
+        const randomNumbers = new Uint32Array(thisItem['quantity']);
+        crypto.getRandomValues(randomNumbers);
+        for (let r = 0; r < thisItem['quantity']; r++) {
+          // Choose an item from the list
+          const randomIndex: number = Math.round(((thisContent.length - 1) * randomNumbers[r]) / (2 ** 32 - 1));
+          // Put the content of the item to the end of the result
+          result += thisContent[randomIndex];
+          if (!thisItem.repeat) {
+            // If the configuration tells that repeating is not allowed, strike/remove the item from the list to avoid using repeatedly
+            thisContent.splice(randomIndex, 1);
+          }
         }
+        break;
       }
-    }
-
-    if (this_item['type'] === 'group') {
-      // Use recursive way to process the components in a group
-      result = fine_grained_password.generate(this_content, 'production');
-      // Carry out the actions
-      if (this_item.hasOwnProperty('actions')) {
-        var actions = this_item['actions'];
-        var actions_len = actions.length;
-        for (var j = 0; j < actions_len; j++) {
-          if (actions[j] === 'shuffle') {
-            result = utilities.shuffleSelf(result.split(''), result.length).join('');
-            continue;
+      case 'group': {
+        // Use recursive way to process the components in a group
+        result = generate(thisContent, 'production');
+        // Carry out the actions
+        if (thisItem.hasOwnProperty('actions')) {
+          const actions = thisItem['actions'];
+          const actionsLength = actions.length;
+          for (let j = 0; j < actionsLength; j++) {
+            if (actions[j] === 'shuffle') {
+              result = utilities.shuffleSelf(result.split(''), result.length).join('');
+              continue;
+            }
           }
         }
       }
+      default:
+        break;
     }
 
     if (mode === 'production') {

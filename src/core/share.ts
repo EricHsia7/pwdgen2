@@ -1,6 +1,6 @@
 import interaction from '../user-interfaces/interaction';
 import utilities from './utilities';
-import fine_grained_password from './fine-grained-password';
+import fine_grained_password, { generate } from './fine-grained-password';
 import { LS } from './storage';
 
 type shareDataType = 'pattern';
@@ -46,7 +46,7 @@ function receiveSharedContentFromURL(url: string): void {
     if (valid) {
       if (type === 'pattern') {
         json = interaction.pattern_editor.addIdentityToPattern(json);
-        var id = fine_grained_password.generate(
+        var id = generate(
           [
             {
               type: 'string',
