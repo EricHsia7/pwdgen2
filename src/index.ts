@@ -1,5 +1,5 @@
 import { buildSearchIndex } from './core/search';
-import { LS, listSavedPassword, searchItemsbyname, upgradeData, setPassword, addPassword, importdatahandler } from './core/storage';
+import { upgradeData, importdatahandler } from './core/storage';
 import utilities, { documentQuerySelector } from './core/utilities';
 import words_list from './core/words-list';
 import interaction from './user-interfaces/interaction';

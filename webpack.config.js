@@ -21,7 +21,7 @@ module.exports = (env, argv) => {
         runtime: false
       }),
       new MangleCssNamespacePlugin({
-        prefixes: ['css_', 'b-css-', 'b-cssvar-'],
+        prefixes: ['css_', 'p-css-', 'p-cssvar-'],
         mangleCssVariables: true,
         emitManifest: true
       }),
@@ -44,7 +44,7 @@ module.exports = (env, argv) => {
         skipWaiting: true,
         exclude: [/\.map$/, /\.erm$/, /LICENSE\.txt$/, /css-mangle-manifest\.json$/],
         include: [/\.js|css|png$/, /index\.html$/],
-        cacheId: 'bus',
+        cacheId: 'pwdgen2',
         navigateFallback: './index.html',
         navigateFallbackDenylist: [/\/[^\/]+\.(?!(html$))[^\/.]{0,}$/],
         runtimeCaching: [
@@ -87,7 +87,7 @@ module.exports = (env, argv) => {
       publicPath: './',
       crossOriginLoading: 'anonymous', // Required for SRI
       library: {
-        name: 'bus',
+        name: 'pwdgen2',
         type: 'umd',
         umdNamedDefine: true,
         export: 'default'
